@@ -45,11 +45,8 @@ public class BlazeArmour extends ItemArmor {
 			while (iterator.hasNext()) {
 				Entity entity = (Entity) iterator.next();
 				if (!(entity instanceof EntityItem || entity instanceof EntityPlayer))
-					if (hasFullAmour(player)) {
-						entity.setFire(10);
-						stack.damageItem(1, player);
-
-					}
+					if (hasFullAmour(player))
+						entity.setFire(2);
 			}
 		}
 	}
