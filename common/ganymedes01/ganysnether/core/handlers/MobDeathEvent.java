@@ -10,6 +10,13 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class MobDeathEvent {
 
 	@ForgeSubscribe

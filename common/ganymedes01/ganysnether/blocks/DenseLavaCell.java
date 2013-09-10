@@ -12,6 +12,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class DenseLavaCell extends Block {
 
 	public DenseLavaCell(int id) {

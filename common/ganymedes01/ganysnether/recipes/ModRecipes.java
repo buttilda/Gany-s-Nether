@@ -13,6 +13,13 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class ModRecipes {
 
 	private static String[] dyes = new String[] { "dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple", "dyeCyan", "dyeLightGray", "dyeGray", "dyePink", "dyeLime", "dyeYellow", "dyeLightBlue", "dyeMagenta", "dyeOrange", "dyeWhite" };

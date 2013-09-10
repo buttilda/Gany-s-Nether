@@ -8,6 +8,13 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class SpookyFlour extends Item {
 
 	public SpookyFlour(int id) {

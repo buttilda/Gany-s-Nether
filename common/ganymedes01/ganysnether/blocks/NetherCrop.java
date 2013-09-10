@@ -5,6 +5,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class NetherCrop extends BlockCrops {
 
 	protected NetherCrop(int id) {

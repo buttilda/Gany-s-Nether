@@ -15,6 +15,12 @@ import net.minecraft.util.Icon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
 public class ColouredQuartzBlock extends Block {
 
 	@SideOnly(Side.CLIENT)

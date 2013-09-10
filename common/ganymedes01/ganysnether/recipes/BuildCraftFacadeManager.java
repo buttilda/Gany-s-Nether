@@ -5,6 +5,13 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import buildcraft.api.transport.FacadeManager;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class BuildCraftFacadeManager {
 
 	public static void init() {

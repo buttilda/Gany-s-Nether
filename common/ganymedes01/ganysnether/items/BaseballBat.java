@@ -8,6 +8,13 @@ import net.minecraft.item.ItemSimpleFoiled;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class BaseballBat extends ItemSimpleFoiled {
 
 	public BaseballBat(int id) {

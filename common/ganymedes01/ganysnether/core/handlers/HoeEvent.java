@@ -7,6 +7,13 @@ import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class HoeEvent {
 
 	@ForgeSubscribe

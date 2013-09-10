@@ -5,6 +5,13 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class ContainerSlot extends Slot {
 
 	public ContainerSlot(IInventory inventory, int slot, int posX, int posY) {

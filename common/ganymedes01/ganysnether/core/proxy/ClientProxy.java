@@ -7,6 +7,13 @@ import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class ClientProxy extends CommonProxy {
 
 	@Override

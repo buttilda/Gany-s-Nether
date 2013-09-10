@@ -16,6 +16,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class TileEntityReproducer extends TileEntity implements ISidedInventory {
 
 	ItemStack[] inventory = new ItemStack[5];

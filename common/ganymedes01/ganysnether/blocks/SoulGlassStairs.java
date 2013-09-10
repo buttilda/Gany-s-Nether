@@ -8,6 +8,13 @@ import java.util.Random;
 
 import net.minecraft.block.BlockStairs;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class SoulGlassStairs extends BlockStairs {
 
 	public SoulGlassStairs(int id) {

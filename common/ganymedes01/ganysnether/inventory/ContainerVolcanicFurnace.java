@@ -9,6 +9,13 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class ContainerVolcanicFurnace extends Container {
 
 	private TileEntityVolcanicFurnace furnace;

@@ -5,6 +5,13 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.Item;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class QuarzBerry extends Item {
 
 	public QuarzBerry(int id) {

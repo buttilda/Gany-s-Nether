@@ -6,6 +6,13 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.ItemReed;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class GlowingReed extends ItemReed {
 
 	public GlowingReed(int id) {

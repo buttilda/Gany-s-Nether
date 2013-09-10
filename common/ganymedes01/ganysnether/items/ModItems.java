@@ -5,6 +5,13 @@ import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class ModItems {
 
 	// Items

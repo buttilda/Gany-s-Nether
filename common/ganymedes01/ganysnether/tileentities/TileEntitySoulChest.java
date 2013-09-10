@@ -14,6 +14,13 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class TileEntitySoulChest extends TileEntity implements IInventory {
 	private ItemStack[] chestContents = new ItemStack[36];
 

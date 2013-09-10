@@ -3,6 +3,13 @@ package ganymedes01.ganysnether.lib;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class ModMaterials {
 
 	// Armour

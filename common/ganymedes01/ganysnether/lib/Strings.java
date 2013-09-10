@@ -1,5 +1,12 @@
 package ganymedes01.ganysnether.lib;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class Strings {
 
 	// Block names

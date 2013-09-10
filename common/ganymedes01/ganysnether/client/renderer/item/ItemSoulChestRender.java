@@ -14,6 +14,13 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 @SideOnly(Side.CLIENT)
 public class ItemSoulChestRender implements IItemRenderer {
 

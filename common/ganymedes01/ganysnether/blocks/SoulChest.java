@@ -27,6 +27,13 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class SoulChest extends BlockContainer {
 	private final Random random = new Random();
 

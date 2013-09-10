@@ -5,6 +5,13 @@ import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class ItemColouredQuartzBlock extends ItemBlock {
 
 	public ItemColouredQuartzBlock(int id) {

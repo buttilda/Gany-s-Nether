@@ -2,6 +2,13 @@ package ganymedes01.ganysnether.lib;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class BlocksID {
 
 	/* Default */

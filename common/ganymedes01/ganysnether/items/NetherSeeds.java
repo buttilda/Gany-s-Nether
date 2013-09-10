@@ -9,6 +9,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class NetherSeeds extends ItemSeeds {
 
 	private int blockType;

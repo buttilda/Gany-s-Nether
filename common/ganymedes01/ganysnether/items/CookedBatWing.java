@@ -6,6 +6,13 @@ import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class CookedBatWing extends ItemFood {
 
 	public CookedBatWing(int id) {

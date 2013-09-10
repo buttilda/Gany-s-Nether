@@ -6,6 +6,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class BlazeLeggings extends BlazeArmour {
 
 	public BlazeLeggings(int id) {

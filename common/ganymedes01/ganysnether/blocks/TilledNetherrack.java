@@ -18,6 +18,13 @@ import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class TilledNetherrack extends BlockFarmland {
 
 	@SideOnly(Side.CLIENT)

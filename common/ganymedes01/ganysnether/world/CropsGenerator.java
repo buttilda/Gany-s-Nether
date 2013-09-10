@@ -10,6 +10,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class CropsGenerator implements IWorldGenerator {
 
 	@Override

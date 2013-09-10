@@ -1,6 +1,14 @@
 package ganymedes01.ganysnether.lib;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class ItemsID {
+
 	/* Default */
 	// Items
 	public static int QUARZ_BERRY_SEEDS_ID_DEFAULT = 7000;

@@ -9,6 +9,13 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 
+/**
+ * Gany's Nether
+ * 
+ * @author ganymedes01
+ * 
+ */
+
 public class ContainerReproducer extends Container {
 
 	TileEntityReproducer reproducer;
