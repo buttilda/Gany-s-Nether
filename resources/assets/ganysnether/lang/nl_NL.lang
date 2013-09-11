@@ -1,0 +1,131 @@
+# Item localizations
+item.ganysnether.quarzBerrySeeds.name=Quarz Besjes Zaadjes
+item.ganysnether.quarzBerry.name=Quarz Besje
+item.ganysnether.ghostSeeds.name=Geesten Zaadjes
+item.ganysnether.spectreWheatItem.name=Spoken Graan
+item.ganysnether.glowingReedItem.name=Gloei Riet
+item.ganysnether.spookyFlour.name=Geestig Meel
+item.ganysnether.bottomlessBucket.name=Emmer zonder Bodem
+item.ganysnether.dimensionalBread.name=Dimensie Brood
+item.ganysnether.baseballBat.name=Basketbal Vleermuis
+item.ganysnether.sceptreOfConcealment.name=Sceptre of Concealment
+item.ganysnether.skeletonSpawner0.name=Spawn Normale Skelet
+item.ganysnether.skeletonSpawner1.name=Spawn Wither Skelet
+item.ganysnether.silverfishScale.name=ZilverVis Stuk
+item.ganysnether.batWing.name=Vleermuis Vleugel
+item.ganysnether.cookedBatWing.name=Gebakken Vleermuis Vleugel
+item.ganysnether.wolfTeeth.name=Wolven Tand
+item.ganysnether.blazeIngot0.name=Blaze Mesh
+item.ganysnether.blazeIngot1.name=Blaze Ingot
+
+item.ganysnether.blazeHelmet.name=Blaze Helm
+item.ganysnether.blazeChestplate.name=Blaze Borstplaat
+item.ganysnether.blazeLeggings.name=Blaze Broek
+item.ganysnether.blazeBoots.name=Blaze Schoenen
+
+# Block localizations
+tile.ganysnether.tilledNetherrack.name=Tilled Nethersteen
+tile.ganysnether.quarzBerryBush.name=Quarz-Besjes Plant
+tile.ganysnether.spectreWheat.name=Spoken Graan
+tile.ganysnether.glowingReed.name=Gloei Riet
+tile.ganysnether.soulGlass.name=Zielen Glas
+tile.ganysnether.soulGlassBrick.name=Zielen Glas Blok
+tile.ganysnether.soulGlassStairs.name=Zielen Glas Block Trap
+tile.ganysnether.soulChest.name=Zielen Klist
+tile.ganysnether.volcanicFurnace.name=Vulkaan Fornuis
+tile.ganysnether.denseLavaCell.name=Lava Gedeelte
+tile.ganysnether.reproducer.name=Reproducer
+
+tile.ganysnether.glowBoxBlack.name=Zwarte GloeiDoos
+tile.ganysnether.glowBoxRed.name=Rode GloeiDoos
+tile.ganysnether.glowBoxGreen.name=Groene GloeiDoos
+tile.ganysnether.glowBoxBrown.name=Bruine GloeiDoos
+tile.ganysnether.glowBoxBlue.name=Blauwe GloeiDoos
+tile.ganysnether.glowBoxPurple.name=Paarse GloeiDoos
+tile.ganysnether.glowBoxCyan.name=BlauwGroene GloeiDoos
+tile.ganysnether.glowBoxLightGrey.name=LightGrijze GloeiDoos
+tile.ganysnether.glowBoxGrey.name=Grijze GloeiDoos
+tile.ganysnether.glowBoxPink.name=Roze GloeiDoos
+tile.ganysnether.glowBoxLime.name=LichtGroene GloeiDoos
+tile.ganysnether.glowBoxYellow.name=Gele GloeiDoos
+tile.ganysnether.glowBoxLightBlue.name=LightBlauw GloeiDoos
+tile.ganysnether.glowBoxMagenta.name=RozePaarse GloeiDoos
+tile.ganysnether.glowBoxOrange.name=Oranje GloeiDoos
+tile.ganysnether.glowBoxWhite.name=Witte GloeiDoos
+
+tile.ganysnether.colouredQuartzBlockBlack.name=Zwarte Quartz Blok
+tile.ganysnether.colouredQuartzBlockRed.name=Rode Quartz Blok
+tile.ganysnether.colouredQuartzBlockGreen.name=Groene Quartz Blok
+tile.ganysnether.colouredQuartzBlockBrown.name=Bruine Quartz Blok
+tile.ganysnether.colouredQuartzBlockBlue.name=Blauwe Quartz Blok
+tile.ganysnether.colouredQuartzBlockPurple.name=Paarse Quartz Blok
+tile.ganysnether.colouredQuartzBlockCyan.name=BlauwGroene Quartz Blok
+tile.ganysnether.colouredQuartzBlockLightGrey.name=LightGrijze Quartz Blok
+tile.ganysnether.colouredQuartzBlockGrey.name=Grijze Quartz Blok
+tile.ganysnether.colouredQuartzBlockPink.name=Roze Quartz Blok
+tile.ganysnether.colouredQuartzBlockLime.name=LichtGroene Quartz Blok
+tile.ganysnether.colouredQuartzBlockYellow.name=Gele Quartz Blok
+tile.ganysnether.colouredQuartzBlockLightBlue.name=LightBlauw Quartz Blok
+tile.ganysnether.colouredQuartzBlockMagenta.name=RozePaarse Quartz Blok
+tile.ganysnether.colouredQuartzBlockOrange.name=Oranje Quartz Blok
+tile.ganysnether.colouredQuartzBlockWhite.name=Witte Quartz Blok
+
+tile.ganysnether.colouredChiselledQuartzBlockBlack.name=Zwarte Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockRed.name=Rode Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockGreen.name=Groene Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockBrown.name=Bruine Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockBlue.name=Blauwe Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockPurple.name=Paarse Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockCyan.name=BlauwGroene Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockLightGrey.name=LightGrijze Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockGrey.name=Grijze Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockPink.name=Roze Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockLime.name=LichtGroene Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockYellow.name=Gele Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockLightBlue.name=LightBlauw Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockMagenta.name=RozePaarse Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockOrange.name=Oranje Geschilderde Quartz Blok
+tile.ganysnether.colouredChiselledQuartzBlockWhite.name=Witte Geschilderde Quartz Blok
+
+tile.ganysnether.colouredQuartzPillar00.name=Zwarte Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar01.name=Rode Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar02.name=Groene Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar03.name=Bruine Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar10.name=Blauwe Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar11.name=Paarse Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar12.name=BlauwGroene Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar13.name=LightGrijze Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar20.name=Grijze Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar21.name=Roze Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar22.name=LichtGroene Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar23.name=Gele Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar30.name=LightBlauw Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar31.name=RozePaarse Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar32.name=Oranje Pilaar Quartz Block
+tile.ganysnether.colouredQuartzPillar33.name=Witte Pilaar Quartz Block
+
+tile.ganysnether.blackQuartzStairs.name=Zwarte Quartz Trap
+tile.ganysnether.redQuartzStairs.name=Rode Quartz Trap
+tile.ganysnether.greenQuartzStairs.name=Groene Quartz Trap
+tile.ganysnether.brownQuartzStairs.name=Bruine Quartz Trap
+tile.ganysnether.blueQuartzStairs.name=Blauwe Quartz Trap
+tile.ganysnether.purpleQuartzStairs.name=Paarse Quartz Trap
+tile.ganysnether.cyanQuartzStairs.name=BlauwGroene Quartz Trap
+tile.ganysnether.lightGreyQuartzStairs.name=LightGrijze Quartz Trap
+tile.ganysnether.greyQuartzStairs.name=Grijze Quartz Trap
+tile.ganysnether.pinkQuartzStairs.name=Roze Quartz Trap
+tile.ganysnether.limeQuartzStairs.name=LichtGroene Quartz Trap
+tile.ganysnether.yellowQuartzStairs.name=Gele Quartz Trap
+tile.ganysnether.lightBlueQuartzStairs.name=LightBlauw Quartz Trap
+tile.ganysnether.magentaQuartzStairs.name=RozePaarse Quartz Trap
+tile.ganysnether.orangeQuartzStairs.name=Oranje Quartz Trap
+tile.ganysnether.whiteQuartzStairs.name=Witte Quartz Trap
+
+# GUI localizations
+container.ganysnether:volcanicFurnace=Vulkaan Fornuis
+container.ganysnether:reproducer=Reproducer
+fluidtogo=Klaar voor Gebruik:
+intank=In de Tank:
+
+# Creative Tab localizations
+itemGroup.ganysnether=Gany's Nether
