@@ -29,10 +29,10 @@ public class CropsGenerator implements IWorldGenerator {
 						int blockY = y + 1;
 						int blockZ = chunkZ * 16 + z;
 
-						if (world.getBlockId(blockX, blockY - 1, blockZ) == Block.netherrack.blockID)
-							if (world.isAirBlock(blockX, blockY, blockZ))
-								if (hasLavaNearby(world, blockX, blockY - 1, blockZ))
-									if (rand.nextInt(20) == 10)
+						if (rand.nextInt(20) == 10)
+							if (world.getBlockId(blockX, blockY - 1, blockZ) == Block.netherrack.blockID)
+								if (world.isAirBlock(blockX, blockY, blockZ))
+									if (hasLavaNearby(world, blockX, blockY - 1, blockZ))
 										switch (rand.nextInt(4)) {
 											case 2:
 												world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
