@@ -11,8 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,6 +23,9 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 
 public class BlazeArmour extends ItemArmor {
+
+	private final int MAX_COOL_DOWN = 40;
+	private int coolDown = MAX_COOL_DOWN;
 
 	public BlazeArmour(int id, int type) {
 		super(id, ModMaterials.BLAZE, 0, type);
@@ -39,7 +40,16 @@ public class BlazeArmour extends ItemArmor {
 
 	@Override
 	public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack stack) {
-		player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 4, -3));
+		if (!world.isRemote) {
+			coolDown--;
+			if (coolDown == 0) {
+				if (stack.getItemDamage() > 0)
+					stack.setItemDamage(stack.getItemDamage() - 1);
+				if (stack.getItemDamage() < 0)
+					stack.setItemDamage(0);
+				coolDown = MAX_COOL_DOWN;
+			}
+		}
 	}
 
 	@Override

@@ -80,6 +80,7 @@ public class SkeletonSpawner extends ItemMonsterPlacer {
 					entityliving.rotationYawHead = entityliving.rotationYaw;
 					entityliving.renderYawOffset = entityliving.rotationYaw;
 					entityliving.onSpawnWithEgg((EntityLivingData) null);
+					entity.setSkeletonType(type);
 					if (type == 1) {
 						entity.tasks.addTask(4, new EntityAIAttackOnCollide(entity, EntityPlayer.class, 1.2D, false));
 						entity.setCurrentItemOrArmor(0, new ItemStack(Item.swordStone));

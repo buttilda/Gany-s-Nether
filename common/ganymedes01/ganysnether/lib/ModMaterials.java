@@ -13,7 +13,7 @@ import net.minecraftforge.common.EnumHelper;
 public class ModMaterials {
 
 	// Armour
-	public static final EnumArmorMaterial BLAZE = EnumHelper.addArmorMaterial("BLAZE", 24, new int[] { 3, 7, 5, 2 }, 12);
+	public static final EnumArmorMaterial BLAZE = EnumHelper.addArmorMaterial("BLAZE", 3, new int[] { 2, 6, 5, 2 }, 25);
 
 	// Item
 }
