@@ -7,7 +7,6 @@ import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -35,7 +34,6 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 
 public class SoulChest extends BlockContainer {
-	private final Random random = new Random();
 
 	protected SoulChest(int id) {
 		super(id, Material.sand);

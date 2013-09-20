@@ -1,13 +1,12 @@
 package ganymedes01.ganysnether.blocks;
 
-import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.ItemColouredChiselledQuartzBlock;
 import ganymedes01.ganysnether.items.ItemColouredQuartzBlock;
 import ganymedes01.ganysnether.items.ItemColouredQuartzPillars;
 import ganymedes01.ganysnether.items.ItemGlowBox;
 import ganymedes01.ganysnether.items.ItemSoulGlass;
-import ganymedes01.ganysnether.lib.BlocksID;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -39,24 +38,24 @@ public class ModBlocks {
 	public static Block reproducer;
 
 	public static void init() {
-		tilledNetherrack = new TilledNetherrack(BlocksID.TILLED_NETHERRACK_ID);
-		quarzBerryBush = new QuarzBerryBush(BlocksID.QUARZ_BERRY_BUSH_ID);
-		spectreWheat = new SpectreWheatCrop(BlocksID.SPECTRE_WHEAT_ID);
-		glowingReed = new GlowingReedCrop(BlocksID.GLOWING_REED_ID);
-		soulGlass = new SoulGlass(BlocksID.SOUL_GLASS_ID);
-		soulChest = new SoulChest(BlocksID.SOUL_CHEST_ID);
-		volcanicFurnaceIdle = new VolcanicFurnace(BlocksID.VOLCANIC_FURNACE_IDLE_ID, false).setCreativeTab(GanysNether.netherTab);
-		volcanicFurnaceActive = new VolcanicFurnace(BlocksID.VOLCANIC_FURNACE_ACTIVE_ID, true).setLightValue(1.0F);
-		denseLavaCell = new DenseLavaCell(BlocksID.DENSE_LAVA_CELL_ID);
-		glowBox = new GlowBox(BlocksID.GLOW_BOX_ID);
-		colouredQuartzBlock = new ColouredQuartzBlock(BlocksID.COLOURED_QUARTZ_BLOCK_ID);
-		colouredChiselledQuartzBlock = new ColouredChiselledQuartzBlock(BlocksID.COLOURED_CHISELLED_QUARTZ_BLOCK_ID);
+		tilledNetherrack = new TilledNetherrack(ModIDs.TILLED_NETHERRACK_ID);
+		quarzBerryBush = new QuarzBerryBush(ModIDs.QUARZ_BERRY_BUSH_ID);
+		spectreWheat = new SpectreWheatCrop(ModIDs.SPECTRE_WHEAT_CROP_ID);
+		glowingReed = new GlowingReedCrop(ModIDs.GLOWING_REED_CROP_ID);
+		soulGlass = new SoulGlass(ModIDs.SOUL_GLASS_ID);
+		soulChest = new SoulChest(ModIDs.SOUL_CHEST_ID);
+		volcanicFurnaceIdle = new VolcanicFurnace(ModIDs.VOLCANIC_FURNACE_IDLE_ID, false);
+		volcanicFurnaceActive = new VolcanicFurnace(ModIDs.VOLCANIC_FURNACE_ACTIVE_ID, true);
+		denseLavaCell = new DenseLavaCell(ModIDs.DENSE_LAVA_CELL_ID);
+		glowBox = new GlowBox(ModIDs.GLOW_BOX_ID);
+		colouredQuartzBlock = new ColouredQuartzBlock(ModIDs.COLOURED_QUARTZ_BLOCK_ID);
+		colouredChiselledQuartzBlock = new ColouredChiselledQuartzBlock(ModIDs.COLOURED_CHISELLED_QUARTZ_BLOCK_ID);
 		for (int i = 0; i < colouredQuartzBlockStairs.length; i++)
-			colouredQuartzBlockStairs[i] = new ColouredQuartzStairs(BlocksID.COLOURED_QUARTZ_STAIRS_IDS[i], colouredQuartzBlock, i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_STAIRS_NAMES[i]));
-		soulGlassStairs = new SoulGlassStairs(BlocksID.SOUL_GLASS_STAIRS_ID);
+			colouredQuartzBlockStairs[i] = new ColouredQuartzStairs(ModIDs.COLOURED_QUARTZ_STAIRS_IDS[i], colouredQuartzBlock, i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_STAIRS_NAMES[i]));
+		soulGlassStairs = new SoulGlassStairs(ModIDs.SOUL_GLASS_STAIRS_ID);
 		for (int i = 0; i < colouredQuartzPillar.length; i++)
-			colouredQuartzPillar[i] = new ColouredQuartzPillar(BlocksID.COLOURED_QUARTZ_PILLARS_IDS[i], i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_PILLARS_NAME) + i);
-		reproducer = new Reproducer(BlocksID.REPRODUCER_ID);
+			colouredQuartzPillar[i] = new ColouredQuartzPillar(ModIDs.COLOURED_QUARTZ_PILLARS_IDS[i], i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_PILLARS_NAME) + i);
+		reproducer = new Reproducer(ModIDs.REPRODUCER_ID);
 
 		registerNames();
 	}

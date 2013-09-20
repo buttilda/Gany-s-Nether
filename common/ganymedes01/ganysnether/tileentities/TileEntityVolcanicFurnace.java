@@ -21,6 +21,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -186,7 +187,6 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 		craft.sendProgressBarUpdate(furnace, 3, meltTime);
 	}
 
-	// TODO - Add different burning times for different items
 	// 1000 = 1 bucket
 	// Default - 20 (50 Items/Blocks = 1 Bucket)
 	public static int getItemBurnTime(ItemStack stack) {
@@ -199,7 +199,7 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 
 		if (item == Item.blazePowder || item == Item.dyePowder)
 			return 7;
-		else if (stack.getDisplayName().toLowerCase().contains("nugget"))
+		else if (stack.getUnlocalizedName().toLowerCase().contains("nugget"))
 			return 2;
 		else if (item == Item.netherStar)
 			return 10000;
@@ -249,16 +249,17 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 
 	public static boolean itemIsFuel(ItemStack stack) {
 		if (stack != null) {
-			if (stack.itemID < Block.blocksList.length) {
-				Material material = Block.blocksList[stack.itemID].blockMaterial;
-				if (material == Material.snow || material == Material.craftedSnow || material == Material.ice || material == Material.water)
-					return false;
-			}
-			if (stack.getDisplayName().toLowerCase().contains("bucket"))
-				return false;
+			if (FluidContainerRegistry.isFilledContainer(stack))
+				return FluidContainerRegistry.getFluidForFilledItem(stack) != null && FluidContainerRegistry.getFluidForFilledItem(stack).isFluidEqual(new FluidStack(FluidRegistry.LAVA, FluidContainerRegistry.BUCKET_VOLUME));
 			for (ItemStack item : getItemsThatCantBeMelted())
 				if (item.getItem() == stack.getItem())
 					return false;
+			if (stack.getItem() instanceof ItemBlock)
+				if (stack.itemID < Block.blocksList.length) {
+					Material material = Block.blocksList[stack.itemID].blockMaterial;
+					if (material == Material.snow || material == Material.craftedSnow || material == Material.ice || material == Material.water)
+						return false;
+				}
 			return true;
 		}
 		return false;
@@ -292,7 +293,7 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
-		return side == 0 ? new int[] { 2 } : side == 1 ? new int[] { 0 } : new int[] { 0, 1 };
+		return side == 0 ? new int[] { 2 } : side == 1 ? new int[] { 0 } : new int[] { 1 };
 	}
 
 	@Override

@@ -26,11 +26,11 @@ public class ContainerVolcanicFurnace extends Container {
 		addSlotToContainer(new ContainerSlot(tile, 1, 136, 17));
 		addSlotToContainer(new InvalidSlot(tile, 2, 136, 53));
 
-		for (int i = 0; i < 3; ++i)
-			for (int j = 0; j < 9; ++j)
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 9; j++)
 				addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 
-		for (int i = 0; i < 9; ++i)
+		for (int i = 0; i < 9; i++)
 			addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 142));
 	}
 
@@ -63,11 +63,11 @@ public class ContainerVolcanicFurnace extends Container {
 			if (slotIndex < 3) {
 				if (!mergeItemStack(slotItemStack, 1, inventorySlots.size(), true))
 					return null;
-			} else if (TileEntityVolcanicFurnace.itemIsFuel(slotItemStack)) {
-				if (!mergeItemStack(slotItemStack, 0, 1, false))
-					return null;
 			} else if (FluidContainerRegistry.isEmptyContainer(slotItemStack)) {
 				if (!mergeItemStack(slotItemStack, 1, 2, false))
+					return null;
+			} else if (TileEntityVolcanicFurnace.itemIsFuel(slotItemStack)) {
+				if (!mergeItemStack(slotItemStack, 0, 1, false))
 					return null;
 			} else
 				return null;

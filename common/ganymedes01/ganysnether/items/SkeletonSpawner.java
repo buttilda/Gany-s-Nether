@@ -129,7 +129,7 @@ public class SkeletonSpawner extends ItemMonsterPlacer {
 				if (j < 3 && rand.nextFloat() < f)
 					break;
 				if (itemstack == null) {
-					Item item = skeleton.getArmorItemForSlot(j + 1, i);
+					Item item = EntityLiving.getArmorItemForSlot(j + 1, i);
 					if (item != null)
 						skeleton.setCurrentItemOrArmor(j + 1, new ItemStack(item));
 				}

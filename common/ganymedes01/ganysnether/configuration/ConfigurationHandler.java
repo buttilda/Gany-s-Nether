@@ -1,8 +1,8 @@
 package ganymedes01.ganysnether.configuration;
 
 import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.lib.BlocksID;
-import ganymedes01.ganysnether.lib.ItemsID;
+import ganymedes01.ganysnether.core.utils.IdGenerator;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 
@@ -22,6 +22,19 @@ import cpw.mods.fml.common.FMLLog;
 public class ConfigurationHandler {
 
 	public static Configuration configuration;
+	private static IdGenerator idGen = new IdGenerator(Reference.ITEM_ID_BASE, Reference.BLOCK_ID_BASE);
+
+	private static int configBlock(String name) {
+		return configuration.getBlock(name, idGen.getNextBlockID()).getInt(idGen.getLastBlockID());
+	}
+
+	private static int configStairs(String name) {
+		return configuration.get("Coloured Quartz Stairs", name, idGen.getNextBlockID()).getInt(idGen.getLastBlockID());
+	}
+
+	private static int configItem(String name) {
+		return configuration.getItem(name, idGen.getNextItemID()).getInt(idGen.getLastItemID());
+	}
 
 	public static void init(File configFile) {
 		configuration = new Configuration(configFile);
@@ -30,55 +43,56 @@ public class ConfigurationHandler {
 			configuration.load();
 
 			// Blocks
-			BlocksID.TILLED_NETHERRACK_ID = configuration.getBlock(Strings.TILLED_NETHERRACK_NAME, BlocksID.TILLED_NETHERRACK_ID_DEFAULT).getInt(BlocksID.TILLED_NETHERRACK_ID_DEFAULT);
-			BlocksID.QUARZ_BERRY_BUSH_ID = configuration.getBlock(Strings.QUARZ_BERRY_BUSH_NAME, BlocksID.QUARZ_BERRY_BUSH_ID_DEFAULT).getInt(BlocksID.QUARZ_BERRY_BUSH_ID_DEFAULT);
-			BlocksID.SPECTRE_WHEAT_ID = configuration.getBlock(Strings.SPECTRE_WHEAT_NAME, BlocksID.SPECTRE_WHEAT_ID_DEFAULT).getInt(BlocksID.SPECTRE_WHEAT_ID_DEFAULT);
-			BlocksID.GLOWING_REED_ID = configuration.getBlock(Strings.GLOWING_REED_NAME, BlocksID.GLOWING_REED_ID_DEFAULT).getInt(BlocksID.GLOWING_REED_ID_DEFAULT);
-			BlocksID.SOUL_GLASS_ID = configuration.getBlock(Strings.SOUL_GLASS_NAME, BlocksID.SOUL_GLASS_ID_DEFAULT).getInt(BlocksID.SOUL_GLASS_ID_DEFAULT);
-			BlocksID.SOUL_CHEST_ID = configuration.getBlock(Strings.SOUL_CHEST_NAME, BlocksID.SOUL_CHEST_ID_DEFAULT).getInt(BlocksID.SOUL_CHEST_ID_DEFAULT);
-			BlocksID.VOLCANIC_FURNACE_IDLE_ID = configuration.getBlock(Strings.VOLCANIC_FURNACE_NAME + "idle", BlocksID.VOLCANIC_FURNACE_IDLE_ID_DEFAULT).getInt(BlocksID.VOLCANIC_FURNACE_IDLE_ID_DEFAULT);
-			BlocksID.VOLCANIC_FURNACE_ACTIVE_ID = configuration.getBlock(Strings.VOLCANIC_FURNACE_NAME + "_active", BlocksID.VOLCANIC_FURNACE_ACTIVE_ID_DEFAULT).getInt(BlocksID.VOLCANIC_FURNACE_ACTIVE_ID_DEFAULT);
-			BlocksID.DENSE_LAVA_CELL_ID = configuration.getBlock(Strings.DENSE_LAVA_CELL_NAME, BlocksID.DENSE_LAVA_CELL_ID_DEFAULT).getInt(BlocksID.DENSE_LAVA_CELL_ID_DEFAULT);
-			BlocksID.GLOW_BOX_ID = configuration.getBlock(Strings.GLOW_BOX_NAME, BlocksID.GLOW_BOX_ID_DEFAULT).getInt(BlocksID.GLOW_BOX_ID_DEFAULT);
-			BlocksID.COLOURED_QUARTZ_BLOCK_ID = configuration.getBlock(Strings.COLOURED_QUARTZ_BLOCK_NAME, BlocksID.COLOURED_QUARTZ_BLOCK_ID_DEFAULT).getInt(BlocksID.COLOURED_QUARTZ_BLOCK_ID_DEFAULT);
-			BlocksID.COLOURED_CHISELLED_QUARTZ_BLOCK_ID = configuration.getBlock(Strings.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME, BlocksID.COLOURED_CHISELLED_QUARTZ_BLOCK_ID_DEFAULT).getInt(BlocksID.COLOURED_CHISELLED_QUARTZ_BLOCK_ID_DEFAULT);
-			BlocksID.SOUL_GLASS_STAIRS_ID = configuration.getBlock(Strings.SOUL_GLASS_STAIRS_NAME, BlocksID.SOUL_GLASS_STAIRS_ID_DEFAULT).getInt(BlocksID.SOUL_GLASS_STAIRS_ID_DEFAULT);
-			for (int i = 0; i < BlocksID.COLOURED_QUARTZ_PILLARS_IDS.length; i++)
-				BlocksID.COLOURED_QUARTZ_PILLARS_IDS[i] = configuration.getBlock(Strings.COLOURED_QUARTZ_PILLARS_NAME + i, BlocksID.COLOURED_QUARTZ_PILLARS_IDS_DEFAULT[i]).getInt(BlocksID.COLOURED_QUARTZ_PILLARS_IDS_DEFAULT[i]);
-			BlocksID.REPRODUCER_ID = configuration.getBlock(Strings.REPRODUCER_NAME, BlocksID.REPRODUCER_ID_DEFAULT).getInt(BlocksID.REPRODUCER_ID_DEFAULT);
+			ModIDs.TILLED_NETHERRACK_ID = configBlock(Strings.TILLED_NETHERRACK_NAME);
+			ModIDs.QUARZ_BERRY_BUSH_ID = configBlock(Strings.QUARZ_BERRY_BUSH_NAME);
+			ModIDs.SPECTRE_WHEAT_CROP_ID = configBlock(Strings.SPECTRE_WHEAT_NAME);
+			ModIDs.GLOWING_REED_CROP_ID = configBlock(Strings.GLOWING_REED_NAME);
+			ModIDs.SOUL_GLASS_ID = configBlock(Strings.SOUL_GLASS_NAME);
+			ModIDs.SOUL_CHEST_ID = configBlock(Strings.SOUL_CHEST_NAME);
+			ModIDs.VOLCANIC_FURNACE_IDLE_ID = configBlock(Strings.VOLCANIC_FURNACE_NAME + "idle");
+			ModIDs.VOLCANIC_FURNACE_ACTIVE_ID = configBlock(Strings.VOLCANIC_FURNACE_NAME + "_active");
+			ModIDs.DENSE_LAVA_CELL_ID = configBlock(Strings.DENSE_LAVA_CELL_NAME);
+			ModIDs.GLOW_BOX_ID = configBlock(Strings.GLOW_BOX_NAME);
+			ModIDs.COLOURED_QUARTZ_BLOCK_ID = configBlock(Strings.COLOURED_QUARTZ_BLOCK_NAME);
+			ModIDs.COLOURED_CHISELLED_QUARTZ_BLOCK_ID = configBlock(Strings.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME);
+			ModIDs.SOUL_GLASS_STAIRS_ID = configBlock(Strings.SOUL_GLASS_STAIRS_NAME);
+			for (int i = 0; i < ModIDs.COLOURED_QUARTZ_PILLARS_IDS.length; i++)
+				ModIDs.COLOURED_QUARTZ_PILLARS_IDS[i] = configBlock(Strings.COLOURED_QUARTZ_PILLARS_NAME + i);
+			ModIDs.REPRODUCER_ID = configBlock(Strings.REPRODUCER_NAME);
 
 			// Stairs
-			for (int i = 0; i < BlocksID.COLOURED_QUARTZ_STAIRS_IDS.length; i++)
-				BlocksID.COLOURED_QUARTZ_STAIRS_IDS[i] = configuration.get("Coloured Quartz Stairs", Strings.COLOURED_QUARTZ_STAIRS_NAMES[i], BlocksID.COLOURED_QUARTZ_STAIRS_IDS_DEFAULT[i]).getInt(BlocksID.COLOURED_QUARTZ_STAIRS_IDS_DEFAULT[i]);
-
-			// Items
-			ItemsID.QUARZ_BERRY_SEEDS_ID = configuration.getItem(Strings.QUARZ_BERRY_SEEDS_NAME, ItemsID.QUARZ_BERRY_SEEDS_ID_DEFAULT).getInt(ItemsID.QUARZ_BERRY_SEEDS_ID_DEFAULT);
-			ItemsID.QUARZ_BERRY_ID = configuration.getItem(Strings.QUARZ_BERRY_NAME, ItemsID.QUARZ_BERRY_ID_DEFAULT).getInt(ItemsID.QUARZ_BERRY_ID_DEFAULT);
-			ItemsID.GHOST_SEEDS_ID = configuration.getItem(Strings.GHOST_SEEDS_NAME, ItemsID.GHOST_SEEDS_ID_DEFAULT).getInt(ItemsID.GHOST_SEEDS_ID_DEFAULT);
-			ItemsID.SPECTRE_WHEAT_ID = configuration.getItem(Strings.SPECTRE_WHEAT_NAME, ItemsID.SPECTRE_WHEAT_ID_DEFAULT).getInt(ItemsID.SPECTRE_WHEAT_ID_DEFAULT);
-			ItemsID.SPOOKY_FLOUR_ID = configuration.getItem(Strings.SPOOKY_FLOUR_NAME, ItemsID.SPOOKY_FLOUR_ID_DEFAULT).getInt(ItemsID.SPOOKY_FLOUR_ID_DEFAULT);
-			ItemsID.GLOWING_REED_ID = configuration.getItem(Strings.GLOWING_REED_NAME, ItemsID.GLOWING_REED_ID_DEFAULT).getInt(ItemsID.GLOWING_REED_ID_DEFAULT);
-			ItemsID.BOTTOMLESS_BUCKET_ID = configuration.getItem(Strings.BOTTOMLESS_BUCKET_NAME, ItemsID.BOTTOMLESS_BUCKET_ID_DEFAULT).getInt(ItemsID.BOTTOMLESS_BUCKET_ID_DEFAULT);
-			ItemsID.DIMENSIONAL_BREAD_ID = configuration.getItem(Strings.DIMENSIONAL_BREAD_NAME, ItemsID.DIMENSIONAL_BREAD_ID_DEFAULT).getInt(ItemsID.DIMENSIONAL_BREAD_ID_DEFAULT);
-			ItemsID.BASEBALL_BAT_ID = configuration.getItem(Strings.BASEBALL_BAT_NAME, ItemsID.BASEBALL_BAT_ID_DEFAULT).getInt(ItemsID.BASEBALL_BAT_ID_DEFAULT);
-			ItemsID.SCEPTRE_OF_CONCEALMENT_ID = configuration.getItem(Strings.SCEPTRE_OF_CONCEALMENT_NAME, ItemsID.SCEPTRE_OF_CONCEALMENT_ID_DEFAULT).getInt(ItemsID.SCEPTRE_OF_CONCEALMENT_ID_DEFAULT);
-			ItemsID.SKELETON_SPAWNER_ID = configuration.getItem(Strings.SKELETON_SPAWNER_NAME, ItemsID.SKELETON_SPAWNER_ID_DEFAULT).getInt(ItemsID.SKELETON_SPAWNER_ID_DEFAULT);
-			ItemsID.SILVERFISH_SCALE_ID = configuration.getItem(Strings.SILVERFISH_SCALE_NAME, ItemsID.SILVERFISH_SCALE_ID_DEFAULT).getInt(ItemsID.SILVERFISH_SCALE_ID_DEFAULT);
-			ItemsID.BAT_WING_ID = configuration.getItem(Strings.BAT_WING_NAME, ItemsID.BAT_WING_ID_DEFAULT).getInt(ItemsID.BAT_WING_ID_DEFAULT);
-			ItemsID.COOKED_BAT_WING_ID = configuration.getItem(Strings.COOKED_BAT_WING_NAME, ItemsID.COOKED_BAT_WING_ID_DEFAULT).getInt(ItemsID.COOKED_BAT_WING_ID_DEFAULT);
-			ItemsID.WOLF_TEETH_ID = configuration.getItem(Strings.WOLF_TEETH_NAME, ItemsID.WOLF_TEETH_ID_DEFAULT).getInt(ItemsID.WOLF_TEETH_ID_DEFAULT);
-			ItemsID.BLAZE_INGOT_ID = configuration.getItem(Strings.BLAZE_INGOT_NAME, ItemsID.BLAZE_INGOT_ID_DEFAULT).getInt(ItemsID.BLAZE_INGOT_ID_DEFAULT);
+			for (int i = 0; i < ModIDs.COLOURED_QUARTZ_STAIRS_IDS.length; i++)
+				ModIDs.COLOURED_QUARTZ_STAIRS_IDS[i] = configStairs(Strings.COLOURED_QUARTZ_STAIRS_NAMES[i]);
 
 			// Armour
-			ItemsID.BLAZE_HELMET_ID = configuration.getItem(Strings.BLAZE_HELMET_NAME, ItemsID.BLAZE_HELMET_ID_DEFAULT).getInt(ItemsID.BLAZE_HELMET_ID_DEFAULT);
-			ItemsID.BLAZE_CHESTPLATE_ID = configuration.getItem(Strings.BLAZE_CHESTPLATE_NAME, ItemsID.BLAZE_CHESTPLATE_ID_DEFAULT).getInt(ItemsID.BLAZE_CHESTPLATE_ID_DEFAULT);
-			ItemsID.BLAZE_LEGGINGS_ID = configuration.getItem(Strings.BLAZE_LEGGINGS_NAME, ItemsID.BLAZE_LEGGINGS_ID_DEFAULT).getInt(ItemsID.BLAZE_LEGGINGS_ID_DEFAULT);
-			ItemsID.BLAZE_BOOTS_ID = configuration.getItem(Strings.BLAZE_BOOTS_NAME, ItemsID.BLAZE_BOOTS_ID_DEFAULT).getInt(ItemsID.BLAZE_BOOTS_ID_DEFAULT);
+			ModIDs.BLAZE_HELMET_ID = configItem(Strings.BLAZE_HELMET_NAME);
+			ModIDs.BLAZE_CHESTPLATE_ID = configItem(Strings.BLAZE_CHESTPLATE_NAME);
+			ModIDs.BLAZE_LEGGINGS_ID = configItem(Strings.BLAZE_LEGGINGS_NAME);
+			ModIDs.BLAZE_BOOTS_ID = configItem(Strings.BLAZE_BOOTS_NAME);
+
+			// Items
+			ModIDs.QUARZ_BERRY_SEEDS_ID = configItem(Strings.QUARZ_BERRY_SEEDS_NAME);
+			ModIDs.QUARZ_BERRY_ID = configItem(Strings.QUARZ_BERRY_NAME);
+			ModIDs.GHOST_SEEDS_ID = configItem(Strings.GHOST_SEEDS_NAME);
+			ModIDs.SPECTRE_WHEAT_ITEM_ID = configItem(Strings.SPECTRE_WHEAT_NAME);
+			ModIDs.SPOOKY_FLOUR_ID = configItem(Strings.SPOOKY_FLOUR_NAME);
+			ModIDs.GLOWING_REED_ITEM_ID = configItem(Strings.GLOWING_REED_NAME);
+			ModIDs.BOTTOMLESS_BUCKET_ID = configItem(Strings.BOTTOMLESS_BUCKET_NAME);
+			ModIDs.DIMENSIONAL_BREAD_ID = configItem(Strings.DIMENSIONAL_BREAD_NAME);
+			ModIDs.BASEBALL_BAT_ID = configItem(Strings.BASEBALL_BAT_NAME);
+			ModIDs.SCEPTRE_OF_CONCEALMENT_ID = configItem(Strings.SCEPTRE_OF_CONCEALMENT_NAME);
+			ModIDs.SKELETON_SPAWNER_ID = configItem(Strings.SKELETON_SPAWNER_NAME);
+			ModIDs.SILVERFISH_SCALE_ID = configItem(Strings.SILVERFISH_SCALE_NAME);
+			ModIDs.BAT_WING_ID = configItem(Strings.BAT_WING_NAME);
+			ModIDs.COOKED_BAT_WING_ID = configItem(Strings.COOKED_BAT_WING_NAME);
+			ModIDs.WOLF_TEETH_ID = configItem(Strings.WOLF_TEETH_NAME);
+			ModIDs.BLAZE_INGOT_ID = configItem(Strings.BLAZE_INGOT_NAME);
 
 			// Others
 			GanysNether.sceptreOfConcealmentDurability = configuration.get("Durability", Strings.SCEPTRE_OF_CONCEALMENT_NAME, 128).getInt(128);
 			GanysNether.baseballBatDurability = configuration.get("Durability", Strings.BASEBALL_BAT_NAME, 256).getInt(256);
 			GanysNether.shouldGenerateCrops = configuration.get("Others", Strings.SHOULD_GENERATE_CROPS, true).getBoolean(true);
+			GanysNether.shouldDoVersionCheck = configuration.get("Others", Strings.SHOULD_DO_VERSION_CHECK, true).getBoolean(true);
 
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");

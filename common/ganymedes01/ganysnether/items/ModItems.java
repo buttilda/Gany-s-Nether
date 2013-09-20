@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.items;
 
-import ganymedes01.ganysnether.lib.ItemsID;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -39,28 +39,28 @@ public class ModItems {
 	public static Item blazeBoots;
 
 	public static void init() {
-		quarzBerrySeeds = new QuarzBerrySeeds(ItemsID.QUARZ_BERRY_SEEDS_ID);
-		quarzBerry = new QuarzBerry(ItemsID.QUARZ_BERRY_ID);
-		ghostSeeds = new GhostSeeds(ItemsID.GHOST_SEEDS_ID);
-		spectreWheat = new SpectreWheat(ItemsID.SPECTRE_WHEAT_ID);
-		spookyFlour = new SpookyFlour(ItemsID.SPOOKY_FLOUR_ID);
-		glowingReed = new GlowingReed(ItemsID.GLOWING_REED_ID);
-		bottomlessBucket = new BottomlessBucket(ItemsID.BOTTOMLESS_BUCKET_ID);
-		dimensionalBread = new DimensionalBread(ItemsID.DIMENSIONAL_BREAD_ID);
-		baseballBat = new BaseballBat(ItemsID.BASEBALL_BAT_ID);
-		sceptreOfConcealment = new SceptreOfConcealment(ItemsID.SCEPTRE_OF_CONCEALMENT_ID);
-		skeletonSpawner = new SkeletonSpawner(ItemsID.SKELETON_SPAWNER_ID);
-		silverfishScale = new SilverfishScale(ItemsID.SILVERFISH_SCALE_ID);
-		batWing = new BatWing(ItemsID.BAT_WING_ID);
-		cookedBatWing = new CookedBatWing(ItemsID.COOKED_BAT_WING_ID);
-		wolfTeeth = new WolfTeeth(ItemsID.WOLF_TEETH_ID);
-		blazeIngot = new BlazeIngot(ItemsID.BLAZE_INGOT_ID);
+		quarzBerrySeeds = new QuarzBerrySeeds(ModIDs.QUARZ_BERRY_SEEDS_ID);
+		quarzBerry = new QuarzBerry(ModIDs.QUARZ_BERRY_ID);
+		ghostSeeds = new GhostSeeds(ModIDs.GHOST_SEEDS_ID);
+		spectreWheat = new SpectreWheat(ModIDs.SPECTRE_WHEAT_ITEM_ID);
+		spookyFlour = new SpookyFlour(ModIDs.SPOOKY_FLOUR_ID);
+		glowingReed = new GlowingReed(ModIDs.GLOWING_REED_ITEM_ID);
+		bottomlessBucket = new BottomlessBucket(ModIDs.BOTTOMLESS_BUCKET_ID);
+		dimensionalBread = new DimensionalBread(ModIDs.DIMENSIONAL_BREAD_ID);
+		baseballBat = new BaseballBat(ModIDs.BASEBALL_BAT_ID);
+		sceptreOfConcealment = new SceptreOfConcealment(ModIDs.SCEPTRE_OF_CONCEALMENT_ID);
+		skeletonSpawner = new SkeletonSpawner(ModIDs.SKELETON_SPAWNER_ID);
+		silverfishScale = new SilverfishScale(ModIDs.SILVERFISH_SCALE_ID);
+		batWing = new BatWing(ModIDs.BAT_WING_ID);
+		cookedBatWing = new CookedBatWing(ModIDs.COOKED_BAT_WING_ID);
+		wolfTeeth = new WolfTeeth(ModIDs.WOLF_TEETH_ID);
+		blazeIngot = new BlazeIngot(ModIDs.BLAZE_INGOT_ID);
 
 		// Armour
-		blazeHelmet = new BlazeHelmet(ItemsID.BLAZE_HELMET_ID);
-		blazeChestplate = new BlazeChestplate(ItemsID.BLAZE_CHESTPLATE_ID);
-		blazeLeggings = new BlazeLeggings(ItemsID.BLAZE_LEGGINGS_ID);
-		blazeBoots = new BlazeBoots(ItemsID.BLAZE_BOOTS_ID);
+		blazeHelmet = new BlazeHelmet(ModIDs.BLAZE_HELMET_ID);
+		blazeChestplate = new BlazeChestplate(ModIDs.BLAZE_CHESTPLATE_ID);
+		blazeLeggings = new BlazeLeggings(ModIDs.BLAZE_LEGGINGS_ID);
+		blazeBoots = new BlazeBoots(ModIDs.BLAZE_BOOTS_ID);
 
 		registerNames();
 	}
