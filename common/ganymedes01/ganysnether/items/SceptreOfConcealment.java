@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.items;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySkeleton;
@@ -40,13 +41,16 @@ public class SceptreOfConcealment extends ItemSimpleFoiled {
 	}
 
 	@Override
-	public boolean hitEntity(ItemStack item, EntityLivingBase target, EntityLivingBase player) {
-		if (target.isChild())
+	public boolean onLeftClickEntity(ItemStack item, EntityPlayer player, Entity target) {
+		if (!(target instanceof EntityLivingBase))
+			return false;
+
+		if (((EntityLivingBase) target).isChild())
 			return false;
 		int id = EntityList.getEntityID(target);
 		if (id >= 50 && id != 63 && id != 64 && id < 200)
 			if (player instanceof EntityPlayer)
-				if (((EntityPlayer) player).inventory.consumeInventoryItem(Item.egg.itemID)) {
+				if (player.inventory.consumeInventoryItem(Item.egg.itemID)) {
 					if (!player.worldObj.isRemote) {
 						target.setDead();
 						player.worldObj.playSoundAtEntity(target, "random.breath", 1.5F, player.worldObj.rand.nextFloat() * 0.1F + 0.9F);

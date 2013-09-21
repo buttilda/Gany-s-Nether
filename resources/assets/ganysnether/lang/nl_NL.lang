@@ -125,7 +125,6 @@ tile.ganysnether.whiteQuartzStairs.name=Witte Quartz Trap
 container.ganysnether:volcanicFurnace=Vulkaan Fornuis
 container.ganysnether:reproducer=Reproducer
 fluidtogo=Klaar voor Gebruik:
-intank=In de Tank:
 
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether

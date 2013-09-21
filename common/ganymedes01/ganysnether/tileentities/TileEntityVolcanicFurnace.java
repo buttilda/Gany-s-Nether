@@ -208,6 +208,8 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 				return 12;
 			else if (block == Block.dragonEgg)
 				return 1000000;
+			else if (block == Block.netherrack)
+				return 35 + new Random().nextInt(5);
 			else if (block == Block.thinGlass || block == Block.fenceIron)
 				return 7;
 			else if (block instanceof BlockWood)

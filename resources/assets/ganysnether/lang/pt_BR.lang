@@ -124,7 +124,6 @@ tile.ganysnether.whiteQuartzStairs.name=Escadas de Quartzo Branca
 # GUI localizations
 container.ganysnether:volcanicFurnace=Fornalha Vulcânica
 fluidtogo=Fluido Restante:
-intank=No tanque:
 
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether
