@@ -1,8 +1,6 @@
 package ganymedes01.ganysnether.items;
 
-import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -12,12 +10,10 @@ import net.minecraft.item.ItemStack;
  * 
  */
 
-public class ItemSoulGlass extends ItemBlock {
+public class ItemSoulGlass extends ItemBlockBase {
 
 	public ItemSoulGlass(int id) {
-		super(id);
-		setHasSubtypes(true);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SOUL_GLASS_NAME + "_item_"));
+		super(id, Strings.SOUL_GLASS_NAME + "_item_");
 	}
 
 	@Override
@@ -26,10 +22,5 @@ public class ItemSoulGlass extends ItemBlock {
 			return getUnlocalizedName();
 		else
 			return getUnlocalizedName() + "Brick";
-	}
-
-	@Override
-	public int getMetadata(int meta) {
-		return meta;
 	}
 }
