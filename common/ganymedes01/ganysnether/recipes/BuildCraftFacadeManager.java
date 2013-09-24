@@ -14,22 +14,22 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 public class BuildCraftFacadeManager {
 
 	public static void registerFacades() {
-		registerBlock(ModBlocks.denseLavaCell.blockID);
+		addFacade(ModBlocks.denseLavaCell.blockID);
 		for (int i = 0; i < 16; i++) {
-			registerBlock(ModBlocks.colouredQuartzBlock.blockID, i);
-			registerBlock(ModBlocks.colouredChiselledQuartzBlock.blockID, i);
+			addFacade(ModBlocks.colouredQuartzBlock.blockID, i);
+			addFacade(ModBlocks.colouredChiselledQuartzBlock.blockID, i);
 		}
 
 		for (Block pillar : ModBlocks.colouredQuartzPillar)
 			for (int i = 0; i < 4; i++)
-				registerBlock(pillar.blockID, i);
+				addFacade(pillar.blockID, i);
 	}
 
-	private static void registerBlock(int blockID) {
-		registerBlock(blockID, 0);
+	private static void addFacade(int blockID) {
+		addFacade(blockID, 0);
 	}
 
-	private static void registerBlock(int blockID, int meta) {
+	private static void addFacade(int blockID, int meta) {
 		FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", String.format("%d@%d", blockID, meta));
 	}
 }
