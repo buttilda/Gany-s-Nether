@@ -77,10 +77,10 @@ public class GanysNether {
 		proxy.registerRenderers();
 		if (shouldGenerateCrops)
 			GameRegistry.registerWorldGenerator(new CropsGenerator());
+		BuildCraftFacadeManager.registerFacades();
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		BuildCraftFacadeManager.init();
 	}
 }

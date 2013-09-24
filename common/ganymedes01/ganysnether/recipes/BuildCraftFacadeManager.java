@@ -2,8 +2,7 @@ package ganymedes01.ganysnether.recipes;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-import buildcraft.api.transport.FacadeManager;
+import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
  * Gany's Nether
@@ -14,15 +13,23 @@ import buildcraft.api.transport.FacadeManager;
 
 public class BuildCraftFacadeManager {
 
-	public static void init() {
-		FacadeManager.addFacade(new ItemStack(ModBlocks.denseLavaCell));
+	public static void registerFacades() {
+		registerBlock(ModBlocks.denseLavaCell.blockID);
 		for (int i = 0; i < 16; i++) {
-			FacadeManager.addFacade(new ItemStack(ModBlocks.colouredQuartzBlock, 1, i));
-			FacadeManager.addFacade(new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 1, i));
+			registerBlock(ModBlocks.colouredQuartzBlock.blockID, i);
+			registerBlock(ModBlocks.colouredChiselledQuartzBlock.blockID, i);
 		}
 
 		for (Block pillar : ModBlocks.colouredQuartzPillar)
 			for (int i = 0; i < 4; i++)
-				FacadeManager.addFacade(new ItemStack(pillar, 1, i));
+				registerBlock(pillar.blockID, i);
+	}
+
+	private static void registerBlock(int blockID) {
+		registerBlock(blockID, 0);
+	}
+
+	private static void registerBlock(int blockID, int meta) {
+		FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", String.format("%d@%d", blockID, meta));
 	}
 }
