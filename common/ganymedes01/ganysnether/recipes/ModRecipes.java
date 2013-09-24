@@ -3,8 +3,13 @@ package ganymedes01.ganysnether.recipes;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.items.ModItems;
+
+import java.util.Iterator;
+
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.EntityEggInfo;
+import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -85,7 +90,7 @@ public class ModRecipes {
 				index++;
 			}
 
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.reproducer), "yzy", "wxw", "zaz", 'x', new ItemStack(Block.blockNetherQuartz, 1, 2), 'y', Block.obsidian, 'z', Block.slowSand, 'w', ModItems.spookyFlour, 'a', ModItems.quarzBerry);
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.reproducer), "yzy", "wxw", "zwz", 'x', new ItemStack(Block.blockNetherQuartz, 1, 2), 'y', Block.obsidian, 'z', Block.slowSand, 'w', "ganysNetherSpawnEggs"));
 
 		// Vanilla
 		GameRegistry.addRecipe(new ItemStack(Block.slowSand, 6), "xxx", "yyy", "xxx", 'x', ModItems.spookyFlour, 'y', Block.sand);
@@ -105,5 +110,13 @@ public class ModRecipes {
 		OreDictionary.registerOre("ganysNetherColouredQuartzBlock", new ItemStack(Block.blockNetherQuartz, 1, 0));
 		OreDictionary.registerOre("ganysNetherColouredChiseledQuartz", new ItemStack(Block.blockNetherQuartz, 1, 1));
 		OreDictionary.registerOre("ganysNetherColouredQuartzPillar", new ItemStack(Block.blockNetherQuartz, 1, 2));
+
+		Iterator iterator = EntityList.entityEggs.values().iterator();
+		while (iterator.hasNext()) {
+			EntityEggInfo entityegginfo = (EntityEggInfo) iterator.next();
+			OreDictionary.registerOre("ganysNetherSpawnEggs", new ItemStack(Item.monsterPlacer, 1, entityegginfo.spawnedID));
+		}
+		OreDictionary.registerOre("ganysNetherSpawnEggs", new ItemStack(ModItems.skeletonSpawner, 1, 0));
+		OreDictionary.registerOre("ganysNetherSpawnEggs", new ItemStack(ModItems.skeletonSpawner, 1, 1));
 	}
 }
