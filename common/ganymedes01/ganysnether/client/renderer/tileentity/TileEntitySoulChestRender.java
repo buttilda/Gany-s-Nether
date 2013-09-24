@@ -35,7 +35,7 @@ public class TileEntitySoulChestRender extends TileEntitySpecialRenderer {
 			i = soulChestTile.getBlockMetadata();
 
 		ModelChest modelchest = new ModelChest();
-		bindTexture(new ResourceLocation(Utils.getEntityTexture(Strings.SOUL_CHEST_NAME)));
+		bindTexture(Utils.getResource(Utils.getEntityTexture(Strings.SOUL_CHEST_NAME)));
 
 		GL11.glPushMatrix();
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);

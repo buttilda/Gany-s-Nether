@@ -3,9 +3,12 @@ package ganymedes01.ganysnether.core.utils;
 import ganymedes01.ganysnether.lib.Reference;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 /**
@@ -44,10 +47,6 @@ public class Utils {
 		return Reference.ENTITY_TEXTURE_PATH + name + ".png";
 	}
 
-	public static final String getEntityItemTexture(String name) {
-		return Reference.ENTITY_ITEM_TEXTURE_PATH + name + ".png";
-	}
-
 	public static final String getConainerName(String name) {
 		return "container." + Reference.MOD_ID + ":" + name;
 	}
@@ -66,6 +65,18 @@ public class Utils {
 
 	public static final int getColour(int R, int G, int B) {
 		return new Color(R, G, B).getRGB() & 0x00ffffff;
+	}
+
+	public static final ResourceLocation getResource(String path) {
+		return new ResourceLocation(path);
+	}
+
+	public static final ArrayList<Integer> getRandomizedList(int min, int max) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		for (int i = min; i < max; i++)
+			list.add(i);
+		Collections.shuffle(list);
+		return list;
 	}
 
 	public static final String CHAT_COLOUR_BLACK = "¤0";

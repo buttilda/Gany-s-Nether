@@ -1,11 +1,9 @@
 package ganymedes01.ganysnether.client.renderer.item;
 
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
@@ -65,7 +63,7 @@ public class ItemSoulChestRender implements IItemRenderer {
 	}
 
 	private void renderSoulChest(float x, float y, float z) {
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID, Utils.getEntityItemTexture(Strings.SOUL_CHEST_NAME)));
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Utils.getResource(Utils.getEntityTexture(Strings.SOUL_CHEST_NAME)));
 		GL11.glPushMatrix();
 		GL11.glTranslatef(x, y, z);
 		GL11.glRotatef(180, 1, 0, 0);
