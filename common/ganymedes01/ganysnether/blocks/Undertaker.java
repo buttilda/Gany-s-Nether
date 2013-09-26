@@ -11,6 +11,7 @@ import java.util.Random;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -99,5 +100,11 @@ public class Undertaker extends BlockContainer {
 	@Override
 	public TileEntity createNewTileEntity(World world) {
 		return new TileEntityUndertaker();
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister reg) {
+		blockIcon = reg.registerIcon("soul_sand");
 	}
 }
