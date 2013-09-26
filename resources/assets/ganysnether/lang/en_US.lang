@@ -35,6 +35,7 @@ tile.ganysnether.soulChest.name=Soul Chest
 tile.ganysnether.volcanicFurnace.name=Volcanic Furnace
 tile.ganysnether.denseLavaCell.name=Dense Lava Cell
 tile.ganysnether.reproducer.name=Reproducer
+tile.ganysnether.undertaker.name=Undertaker
 
 tile.ganysnether.glowBoxBlack.name=Black Glow Box
 tile.ganysnether.glowBoxRed.name=Red Glow Box
@@ -124,6 +125,8 @@ tile.ganysnether.whiteQuartzStairs.name=White Quartz Stairs
 # GUI localizations
 container.ganysnether:volcanicFurnace=Volcanic Furnace
 container.ganysnether:reproducer=Reproducer
+container.ganysnether:soulChest=Soul Chest
+container.ganysnether:undertaker=Undertaker
 fluidtogo=Fluid to go:
 
 # Creative Tab localizations

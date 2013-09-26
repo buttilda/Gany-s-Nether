@@ -26,6 +26,7 @@ public class Strings {
 	public static final String SOUL_GLASS_STAIRS_NAME = "soulGlassStairs";
 	public static final String COLOURED_QUARTZ_PILLARS_NAME = "colouredQuartzPillar";
 	public static final String REPRODUCER_NAME = "reproducer";
+	public static final String UNDERTAKER_NAME = "undertaker";
 
 	// Item names
 	public static final String QUARZ_BERRY_SEEDS_NAME = "quarzBerrySeeds";

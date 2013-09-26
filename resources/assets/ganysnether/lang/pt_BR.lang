@@ -123,7 +123,10 @@ tile.ganysnether.whiteQuartzStairs.name=Escadas de Quartzo Branca
 
 # GUI localizations
 container.ganysnether:volcanicFurnace=Fornalha Vulcânica
-fluidtogo=Fluido Restante:
+container.ganysnether:reproducer=Reprodutor
+container.ganysnether:soulChest=Baú de Alma
+container.ganysnether:undertaker=Undertaker
+fluidtogo=Fluido restante:
 
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether

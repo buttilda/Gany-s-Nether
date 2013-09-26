@@ -91,6 +91,7 @@ public class ModRecipes {
 			}
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.reproducer), "yzy", "wxw", "zwz", 'x', new ItemStack(Block.blockNetherQuartz, 1, 2), 'y', Block.obsidian, 'z', Block.slowSand, 'w', "ganysNetherSpawnEggs"));
+		GameRegistry.addSmelting(ModBlocks.soulChest.blockID, new ItemStack(ModBlocks.undertaker), 1.0F);
 
 		// Vanilla
 		GameRegistry.addRecipe(new ItemStack(Block.slowSand, 6), "xxx", "yyy", "xxx", 'x', ModItems.spookyFlour, 'y', Block.sand);

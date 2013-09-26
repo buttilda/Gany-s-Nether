@@ -28,6 +28,7 @@ public class ModIDs {
 	public static int SOUL_GLASS_STAIRS_ID;
 	public static int[] COLOURED_QUARTZ_PILLARS_IDS = new int[ModBlocks.colouredQuartzPillar.length];
 	public static int REPRODUCER_ID;
+	public static int UNDERTAKER_ID;
 
 	// Items
 	public static int QUARZ_BERRY_SEEDS_ID;

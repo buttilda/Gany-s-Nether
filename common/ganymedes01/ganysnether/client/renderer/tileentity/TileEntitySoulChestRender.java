@@ -1,7 +1,5 @@
 package ganymedes01.ganysnether.client.renderer.tileentity;
 
-import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -24,6 +22,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class TileEntitySoulChestRender extends TileEntitySpecialRenderer {
 
+	private final ResourceLocation texture;
+
+	public TileEntitySoulChestRender(ResourceLocation texture) {
+		this.texture = texture;
+	}
+
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float angle) {
 		TileEntitySoulChest soulChestTile = (TileEntitySoulChest) tile;
@@ -35,7 +39,7 @@ public class TileEntitySoulChestRender extends TileEntitySpecialRenderer {
 			i = soulChestTile.getBlockMetadata();
 
 		ModelChest modelchest = new ModelChest();
-		bindTexture(Utils.getResource(Utils.getEntityTexture(Strings.SOUL_CHEST_NAME)));
+		bindTexture(texture);
 
 		GL11.glPushMatrix();
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);

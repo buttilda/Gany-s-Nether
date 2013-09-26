@@ -36,6 +36,7 @@ public class ModBlocks {
 	public static Block soulGlassStairs;
 	public static Block[] colouredQuartzPillar = new Block[4];
 	public static Block reproducer;
+	public static Block undertaker;
 
 	public static void init() {
 		tilledNetherrack = new TilledNetherrack(ModIDs.TILLED_NETHERRACK_ID);
@@ -56,7 +57,7 @@ public class ModBlocks {
 		for (int i = 0; i < colouredQuartzPillar.length; i++)
 			colouredQuartzPillar[i] = new ColouredQuartzPillar(ModIDs.COLOURED_QUARTZ_PILLARS_IDS[i], i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_PILLARS_NAME) + i);
 		reproducer = new Reproducer(ModIDs.REPRODUCER_ID);
-
+		undertaker = new Undertaker(ModIDs.UNDERTAKER_ID);
 		registerNames();
 	}
 
@@ -79,5 +80,6 @@ public class ModBlocks {
 		for (int i = 0; i < colouredQuartzPillar.length; i++)
 			GameRegistry.registerBlock(colouredQuartzPillar[i], ItemColouredQuartzPillars.class, Strings.COLOURED_QUARTZ_PILLARS_NAME + i);
 		GameRegistry.registerBlock(reproducer, Strings.REPRODUCER_NAME);
+		GameRegistry.registerBlock(undertaker, Strings.UNDERTAKER_NAME);
 	}
 }

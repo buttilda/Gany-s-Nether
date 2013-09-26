@@ -59,6 +59,7 @@ public class ConfigurationHandler {
 			for (int i = 0; i < ModIDs.COLOURED_QUARTZ_PILLARS_IDS.length; i++)
 				ModIDs.COLOURED_QUARTZ_PILLARS_IDS[i] = configBlock(Strings.COLOURED_QUARTZ_PILLARS_NAME + i);
 			ModIDs.REPRODUCER_ID = configBlock(Strings.REPRODUCER_NAME);
+			ModIDs.UNDERTAKER_ID = configBlock(Strings.UNDERTAKER_NAME);
 
 			// Stairs
 			for (int i = 0; i < ModIDs.COLOURED_QUARTZ_STAIRS_IDS.length; i++)

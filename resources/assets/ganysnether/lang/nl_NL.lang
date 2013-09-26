@@ -124,6 +124,8 @@ tile.ganysnether.whiteQuartzStairs.name=Witte Quartz Trap
 # GUI localizations
 container.ganysnether:volcanicFurnace=Vulkaan Fornuis
 container.ganysnether:reproducer=Reproducer
+container.ganysnether:soulChest=Zielen Klist
+container.ganysnether:undertaker=Undertaker
 fluidtogo=Klaar voor Gebruik:
 
 # Creative Tab localizations

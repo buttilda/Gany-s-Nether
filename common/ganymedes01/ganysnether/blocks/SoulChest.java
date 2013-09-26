@@ -6,21 +6,19 @@ import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
+import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -40,8 +38,8 @@ public class SoulChest extends BlockContainer {
 		setHardness(2.5F);
 		setStepSound(soundSandFootstep);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SOUL_CHEST_NAME));
 		setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SOUL_CHEST_NAME));
 	}
 
 	@Override
@@ -179,7 +177,7 @@ public class SoulChest extends BlockContainer {
 
 		if (object == null)
 			return null;
-		else if (isOcelotBlockingChest(world, x, y, z))
+		else if (BlockChest.isOcelotBlockingChest(world, x, y, z))
 			return null;
 
 		return (IInventory) object;
@@ -188,21 +186,6 @@ public class SoulChest extends BlockContainer {
 	@Override
 	public TileEntity createNewTileEntity(World world) {
 		return new TileEntitySoulChest();
-	}
-
-	public static boolean isOcelotBlockingChest(World world, int x, int y, int z) {
-		Iterator iterator = world.getEntitiesWithinAABB(EntityOcelot.class, AxisAlignedBB.getAABBPool().getAABB(x, y + 1, z, x + 1, y + 2, z + 1)).iterator();
-		EntityOcelot entityocelot;
-
-		do {
-			if (!iterator.hasNext())
-				return false;
-
-			EntityOcelot entityocelot1 = (EntityOcelot) iterator.next();
-			entityocelot = entityocelot1;
-		} while (!entityocelot.isSitting());
-
-		return true;
 	}
 
 	@Override

@@ -1,18 +1,13 @@
 package ganymedes01.ganysnether.tileentities;
 
-import ganymedes01.ganysnether.blocks.SoulChest;
-
-import java.util.Iterator;
-import java.util.List;
-
+import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 
 /**
  * Gany's Nether
@@ -22,19 +17,24 @@ import net.minecraft.util.AxisAlignedBB;
  */
 
 public class TileEntitySoulChest extends TileEntity implements IInventory {
-	private ItemStack[] chestContents = new ItemStack[36];
 
+	private ItemStack[] chestContents;
 	public float lidAngle;
 	public float prevLidAngle;
 	public int numUsingPlayers;
-	private int ticksSinceSync;
+	protected int ticksSinceSync;
 
 	public TileEntitySoulChest() {
+		this(27);
+	}
+
+	public TileEntitySoulChest(int size) {
+		chestContents = new ItemStack[size];
 	}
 
 	@Override
 	public int getSizeInventory() {
-		return 27;
+		return chestContents.length;
 	}
 
 	@Override
@@ -43,26 +43,21 @@ public class TileEntitySoulChest extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public ItemStack decrStackSize(int slot, int num) {
+	public ItemStack decrStackSize(int slot, int size) {
 		if (chestContents[slot] != null) {
 			ItemStack itemstack;
-
-			if (chestContents[slot].stackSize <= num) {
+			if (chestContents[slot].stackSize <= size) {
 				itemstack = chestContents[slot];
 				chestContents[slot] = null;
-				onInventoryChanged();
 				return itemstack;
 			} else {
-				itemstack = chestContents[slot].splitStack(num);
-
+				itemstack = chestContents[slot].splitStack(size);
 				if (chestContents[slot].stackSize == 0)
 					chestContents[slot] = null;
-
-				onInventoryChanged();
 				return itemstack;
 			}
-		}
-		return null;
+		} else
+			return null;
 	}
 
 	@Override
@@ -71,8 +66,8 @@ public class TileEntitySoulChest extends TileEntity implements IInventory {
 			ItemStack itemstack = chestContents[slot];
 			chestContents[slot] = null;
 			return itemstack;
-		}
-		return null;
+		} else
+			return null;
 	}
 
 	@Override
@@ -81,33 +76,31 @@ public class TileEntitySoulChest extends TileEntity implements IInventory {
 
 		if (stack != null && stack.stackSize > getInventoryStackLimit())
 			stack.stackSize = getInventoryStackLimit();
-
-		onInventoryChanged();
 	}
 
 	@Override
 	public String getInvName() {
-		return "Soul Chest";
+		return Utils.getConainerName(Strings.SOUL_CHEST_NAME);
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
-		super.readFromNBT(par1NBTTagCompound);
-		NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
+	public void readFromNBT(NBTTagCompound data) {
+		super.readFromNBT(data);
+		NBTTagList nbttaglist = data.getTagList("Items");
 		chestContents = new ItemStack[getSizeInventory()];
 
 		for (int i = 0; i < nbttaglist.tagCount(); ++i) {
 			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
-			int j = nbttagcompound1.getByte("Slot") & 255;
+			byte b0 = nbttagcompound1.getByte("Slot");
 
-			if (j >= 0 && j < chestContents.length)
-				chestContents[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+			if (b0 >= 0 && b0 < chestContents.length)
+				chestContents[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 		}
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-		super.writeToNBT(par1NBTTagCompound);
+	public void writeToNBT(NBTTagCompound data) {
+		super.writeToNBT(data);
 		NBTTagList nbttaglist = new NBTTagList();
 
 		for (int i = 0; i < chestContents.length; ++i)
@@ -118,7 +111,7 @@ public class TileEntitySoulChest extends TileEntity implements IInventory {
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 
-		par1NBTTagCompound.setTag("Items", nbttaglist);
+		data.setTag("Items", nbttaglist);
 	}
 
 	@Override
@@ -133,23 +126,11 @@ public class TileEntitySoulChest extends TileEntity implements IInventory {
 
 	@Override
 	public void updateEntity() {
-		super.updateEntity();
-		++ticksSinceSync;
+		ticksSinceSync++;
+
 		float f;
-
-		if (!worldObj.isRemote && numUsingPlayers != 0 && (ticksSinceSync + xCoord + yCoord + zCoord) % 200 == 0) {
+		if (!worldObj.isRemote && numUsingPlayers != 0 && (ticksSinceSync + xCoord + yCoord + zCoord) % 200 == 0)
 			numUsingPlayers = 0;
-			f = 5.0F;
-			List list = worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getAABBPool().getAABB(xCoord - f, yCoord - f, zCoord - f, xCoord + 1 + f, yCoord + 1 + f, zCoord + 1 + f));
-			Iterator iterator = list.iterator();
-
-			while (iterator.hasNext()) {
-				EntityPlayer entityplayer = (EntityPlayer) iterator.next();
-
-				if (entityplayer.openContainer instanceof ContainerChest)
-					((ContainerChest) entityplayer.openContainer).getLowerChestInventory();
-			}
-		}
 
 		prevLidAngle = lidAngle;
 		f = 0.1F;
@@ -188,12 +169,12 @@ public class TileEntitySoulChest extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public boolean receiveClientEvent(int par1, int par2) {
-		if (par1 == 1) {
-			numUsingPlayers = par2;
+	public boolean receiveClientEvent(int eventType, int arg) {
+		if (eventType == 1) {
+			numUsingPlayers = arg;
 			return true;
 		}
-		return super.receiveClientEvent(par1, par2);
+		return false;
 	}
 
 	@Override
@@ -201,31 +182,19 @@ public class TileEntitySoulChest extends TileEntity implements IInventory {
 		if (numUsingPlayers < 0)
 			numUsingPlayers = 0;
 
-		++numUsingPlayers;
+		numUsingPlayers++;
 		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType().blockID, 1, numUsingPlayers);
-		worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, getBlockType().blockID);
-		worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord - 1, zCoord, getBlockType().blockID);
 	}
 
 	@Override
 	public void closeChest() {
-		if (getBlockType() != null && getBlockType() instanceof SoulChest) {
-			--numUsingPlayers;
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType().blockID, 1, numUsingPlayers);
-			worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, getBlockType().blockID);
-			worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord - 1, zCoord, getBlockType().blockID);
-		}
+		numUsingPlayers--;
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType().blockID, 1, numUsingPlayers);
 	}
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return true;
-	}
-
-	@Override
-	public void invalidate() {
-		super.invalidate();
-		updateContainingBlockInfo();
 	}
 
 	@Override
