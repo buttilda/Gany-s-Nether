@@ -3,7 +3,7 @@ package ganymedes01.ganysnether;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.configuration.ConfigurationHandler;
 import ganymedes01.ganysnether.core.handlers.HoeEvent;
-import ganymedes01.ganysnether.core.handlers.MobDeathEvent;
+import ganymedes01.ganysnether.core.handlers.EntityDeathEvent;
 import ganymedes01.ganysnether.core.handlers.VersionCheckTickHandler;
 import ganymedes01.ganysnether.core.proxy.CommonProxy;
 import ganymedes01.ganysnether.core.utils.VersionHelper;
@@ -72,7 +72,7 @@ public class GanysNether {
 	public void load(FMLInitializationEvent event) {
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		MinecraftForge.EVENT_BUS.register(new HoeEvent());
-		MinecraftForge.EVENT_BUS.register(new MobDeathEvent());
+		MinecraftForge.EVENT_BUS.register(new EntityDeathEvent());
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
 		if (shouldGenerateCrops)
