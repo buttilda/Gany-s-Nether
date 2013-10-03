@@ -1,4 +1,4 @@
-package ganymedes01.ganysnether.items;
+package ganymedes01.ganysnether.items.blocks;
 
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.ItemStack;

@@ -39,6 +39,13 @@ public class ModItems {
 	public static Item blazeBoots;
 
 	public static void init() {
+		// Armour
+		blazeHelmet = new BlazeHelmet(ModIDs.BLAZE_HELMET_ID);
+		blazeChestplate = new BlazeChestplate(ModIDs.BLAZE_CHESTPLATE_ID);
+		blazeLeggings = new BlazeLeggings(ModIDs.BLAZE_LEGGINGS_ID);
+		blazeBoots = new BlazeBoots(ModIDs.BLAZE_BOOTS_ID);
+
+		// Items
 		quarzBerrySeeds = new QuarzBerrySeeds(ModIDs.QUARZ_BERRY_SEEDS_ID);
 		quarzBerry = new QuarzBerry(ModIDs.QUARZ_BERRY_ID);
 		ghostSeeds = new GhostSeeds(ModIDs.GHOST_SEEDS_ID);
@@ -55,12 +62,6 @@ public class ModItems {
 		cookedBatWing = new CookedBatWing(ModIDs.COOKED_BAT_WING_ID);
 		wolfTeeth = new WolfTeeth(ModIDs.WOLF_TEETH_ID);
 		blazeIngot = new BlazeIngot(ModIDs.BLAZE_INGOT_ID);
-
-		// Armour
-		blazeHelmet = new BlazeHelmet(ModIDs.BLAZE_HELMET_ID);
-		blazeChestplate = new BlazeChestplate(ModIDs.BLAZE_CHESTPLATE_ID);
-		blazeLeggings = new BlazeLeggings(ModIDs.BLAZE_LEGGINGS_ID);
-		blazeBoots = new BlazeBoots(ModIDs.BLAZE_BOOTS_ID);
 
 		registerNames();
 	}

@@ -1,12 +1,11 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.items.ItemColouredChiselledQuartzBlock;
-import ganymedes01.ganysnether.items.ItemColouredQuartzBlock;
-import ganymedes01.ganysnether.items.ItemColouredQuartzPillars;
-import ganymedes01.ganysnether.items.ItemGlowBox;
-import ganymedes01.ganysnether.items.ItemSoulGlass;
-import ganymedes01.ganysnether.items.ItemUndertakerBlock;
+import ganymedes01.ganysnether.items.blocks.ItemColouredChiselledQuartzBlock;
+import ganymedes01.ganysnether.items.blocks.ItemColouredQuartzBlock;
+import ganymedes01.ganysnether.items.blocks.ItemColouredQuartzPillars;
+import ganymedes01.ganysnether.items.blocks.ItemGlowBox;
+import ganymedes01.ganysnether.items.blocks.ItemSoulGlass;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.block.Block;
@@ -81,6 +80,6 @@ public class ModBlocks {
 		for (int i = 0; i < colouredQuartzPillar.length; i++)
 			GameRegistry.registerBlock(colouredQuartzPillar[i], ItemColouredQuartzPillars.class, Strings.COLOURED_QUARTZ_PILLARS_NAME + i);
 		GameRegistry.registerBlock(reproducer, Strings.REPRODUCER_NAME);
-		GameRegistry.registerBlock(undertaker, ItemUndertakerBlock.class, Strings.UNDERTAKER_NAME);
+		GameRegistry.registerBlock(undertaker, Strings.UNDERTAKER_NAME);
 	}
 }
