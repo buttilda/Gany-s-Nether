@@ -4,9 +4,6 @@ import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
-
-import java.util.ArrayList;
-
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -46,35 +43,11 @@ public class SoulChest extends BlockContainer {
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		if (entity instanceof EntityItem && !world.isRemote) {
 			TileEntitySoulChest tile = (TileEntitySoulChest) world.getBlockTileEntity(x, y, z);
-			addEntitytoInventory(tile, (EntityItem) entity);
+			Utils.addEntitytoInventory(tile, (EntityItem) entity);
 		} else {
 			entity.motionX *= 0.4D;
 			entity.motionZ *= 0.4D;
 		}
-	}
-
-	private void addEntitytoInventory(IInventory iinventory, EntityItem item) {
-		ArrayList<Integer> slots = getStackSlots(iinventory, item.getEntityItem());
-
-		while (slots.size() > 0 && item.getEntityItem().stackSize > 0) {
-			for (Integer slot : slots)
-				while (iinventory.getStackInSlot(slot).stackSize < iinventory.getStackInSlot(slot).getMaxStackSize() && item.getEntityItem().stackSize > 0) {
-					++iinventory.getStackInSlot(slot).stackSize;
-					--item.getEntityItem().stackSize;
-				}
-			slots = getStackSlots(iinventory, item.getEntityItem());
-		}
-		if (item.getEntityItem().stackSize <= 0) {
-			item.setDead();
-			return;
-		}
-
-		for (int i = 0; i < iinventory.getSizeInventory(); i++)
-			if (iinventory.getStackInSlot(i) == null) {
-				iinventory.setInventorySlotContents(i, item.getEntityItem());
-				item.setDead();
-				return;
-			}
 	}
 
 	@Override
@@ -129,47 +102,12 @@ public class SoulChest extends BlockContainer {
 		if (world.isRemote)
 			return true;
 		IInventory iinventory = getInventory(world, x, y, z);
-		if (player.inventory.getCurrentItem() == null) {
+		if (!Utils.addStacktoInventory(iinventory, player.inventory.getCurrentItem())) {
 			if (iinventory != null)
 				player.displayGUIChest(iinventory);
 			return true;
-		} else
-			addStacktoInventory(iinventory, player);
-		return true;
-	}
-
-	private void addStacktoInventory(IInventory iinventory, EntityPlayer player) {
-		ArrayList<Integer> slots = getStackSlots(iinventory, player.inventory.getCurrentItem());
-
-		while (slots.size() > 0 && player.inventory.getCurrentItem().stackSize > 0) {
-			for (Integer slot : slots)
-				while (iinventory.getStackInSlot(slot).stackSize < iinventory.getStackInSlot(slot).getMaxStackSize() && player.inventory.getCurrentItem().stackSize > 0) {
-					++iinventory.getStackInSlot(slot).stackSize;
-					--player.inventory.getCurrentItem().stackSize;
-				}
-			slots = getStackSlots(iinventory, player.inventory.getCurrentItem());
 		}
-		if (player.inventory.getCurrentItem().stackSize <= 0)
-			return;
-
-		for (int i = 0; i < iinventory.getSizeInventory(); i++)
-			if (iinventory.getStackInSlot(i) == null) {
-				iinventory.setInventorySlotContents(i, player.inventory.getCurrentItem());
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-				return;
-			}
-	}
-
-	private static ArrayList<Integer> getStackSlots(IInventory iinventory, ItemStack stack) {
-		ArrayList<Integer> slots = new ArrayList<Integer>();
-		if (stack.stackSize > 0)
-			for (int i = 0; i < iinventory.getSizeInventory(); i++)
-				if (iinventory.getStackInSlot(i) != null && stack != null)
-					if (iinventory.getStackInSlot(i).getItem() == stack.getItem())
-						if (iinventory.getStackInSlot(i).isItemEqual(stack))
-							if (iinventory.getStackInSlot(i).stackSize < iinventory.getStackInSlot(i).getMaxStackSize())
-								slots.add(i);
-		return slots;
+		return true;
 	}
 
 	public IInventory getInventory(World world, int x, int y, int z) {
