@@ -102,7 +102,7 @@ public class SoulChest extends BlockContainer {
 		if (world.isRemote)
 			return true;
 		IInventory iinventory = getInventory(world, x, y, z);
-		if (!Utils.addStacktoInventory(iinventory, player.inventory.getCurrentItem())) {
+		if (!Utils.addStackToInventory(iinventory, player.inventory.getCurrentItem())) {
 			if (iinventory != null)
 				player.displayGUIChest(iinventory);
 			return true;

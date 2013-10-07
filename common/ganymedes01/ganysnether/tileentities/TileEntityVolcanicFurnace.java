@@ -150,7 +150,7 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 
 		VolcanicFurnace.updateFurnaceBlockState(tank.getFluidAmount() > 0, worldObj, xCoord, yCoord, zCoord);
 		if (meltTime <= 0) {
-			if (itemIsFuel(furnaceItemStacks[0]) && (tank.getFluidAmount() < tank.getCapacity())) {
+			if (itemIsFuel(furnaceItemStacks[0]) && tank.getFluidAmount() < tank.getCapacity()) {
 				currentItemMeltTime = meltTime = getItemBurnTime(furnaceItemStacks[0]);
 				if (furnaceItemStacks[0].stackSize == 1)
 					furnaceItemStacks[0] = null;
@@ -382,6 +382,6 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 	}
 
 	public int getScaledFluidAmount(int scale) {
-		return tank.getFluid() != null ? (int) (((float) tank.getFluid().amount / (float) (tank.getCapacity())) * scale) : 0;
+		return tank.getFluid() != null ? (int) ((float) tank.getFluid().amount / (float) tank.getCapacity() * scale) : 0;
 	}
 }
