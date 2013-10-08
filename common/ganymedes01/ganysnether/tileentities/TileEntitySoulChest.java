@@ -22,7 +22,6 @@ public class TileEntitySoulChest extends TileEntity implements IInventory {
 	public float lidAngle;
 	public float prevLidAngle;
 	public int numUsingPlayers;
-	protected int ticksSinceSync;
 
 	public TileEntitySoulChest() {
 		this(27);
@@ -126,45 +125,26 @@ public class TileEntitySoulChest extends TileEntity implements IInventory {
 
 	@Override
 	public void updateEntity() {
-		ticksSinceSync++;
-
-		float f;
-		if (!worldObj.isRemote && numUsingPlayers != 0 && (ticksSinceSync + xCoord + yCoord + zCoord) % 200 == 0)
-			numUsingPlayers = 0;
-
 		prevLidAngle = lidAngle;
-		f = 0.1F;
-		double d0;
 
-		if (numUsingPlayers > 0 && lidAngle == 0.0F) {
-			double d1 = xCoord + 0.5D;
-			d0 = zCoord + 0.5D;
-
-			worldObj.playSoundEffect(d1, yCoord + 0.5D, d0, "random.chestopen", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
-		}
+		if (numUsingPlayers > 0 && lidAngle == 0.0F)
+			worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.chestopen", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
 
 		if (numUsingPlayers <= 0 && lidAngle > 0.0F || numUsingPlayers > 0 && lidAngle < 1.0F) {
-			float f1 = lidAngle;
+			float initialLidAngle = lidAngle;
 
 			if (numUsingPlayers > 0)
-				lidAngle += f;
+				lidAngle += 0.1F;
 			else
-				lidAngle -= f;
+				lidAngle -= 0.1F;
 
 			if (lidAngle > 1.0F)
 				lidAngle = 1.0F;
-
-			float f2 = 0.5F;
-
-			if (lidAngle < f2 && f1 >= f2) {
-				d0 = xCoord + 0.5D;
-				double d2 = zCoord + 0.5D;
-
-				worldObj.playSoundEffect(d0, yCoord + 0.5D, d2, "random.chestclosed", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
-			}
-
-			if (lidAngle < 0.0F)
+			else if (lidAngle < 0.0F)
 				lidAngle = 0.0F;
+
+			if (lidAngle < 0.5F && initialLidAngle >= 0.5F)
+				worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.chestclosed", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
 		}
 	}
 
@@ -189,6 +169,9 @@ public class TileEntitySoulChest extends TileEntity implements IInventory {
 	@Override
 	public void closeChest() {
 		numUsingPlayers--;
+		if (numUsingPlayers < 0)
+			numUsingPlayers = 0;
+
 		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType().blockID, 1, numUsingPlayers);
 	}
 

@@ -30,13 +30,7 @@ public class TileEntitySoulChestRender extends TileEntitySpecialRenderer {
 
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float angle) {
-		TileEntitySoulChest soulChestTile = (TileEntitySoulChest) tile;
-		int i;
-
-		if (!soulChestTile.hasWorldObj())
-			i = 0;
-		else
-			i = soulChestTile.getBlockMetadata();
+		TileEntitySoulChest soulChest = (TileEntitySoulChest) tile;
 
 		ModelChest modelchest = new ModelChest();
 		bindTexture(texture);
@@ -47,26 +41,25 @@ public class TileEntitySoulChestRender extends TileEntitySpecialRenderer {
 		GL11.glTranslatef((float) x, (float) y + 1.0F, (float) z + 1.0F);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
-		short short1 = 0;
 
-		if (i == 2)
-			short1 = 180;
+		short rotation = 0;
+		switch (soulChest.getBlockMetadata()) {
+			case 2:
+				rotation = 180;
+				break;
+			case 4:
+				rotation = 90;
+				break;
+			case 5:
+				rotation = -90;
+				break;
+		}
 
-		if (i == 3)
-			short1 = 0;
-
-		if (i == 4)
-			short1 = 90;
-
-		if (i == 5)
-			short1 = -90;
-
-		GL11.glRotatef(short1, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(rotation, 0.0F, 1.0F, 0.0F);
 		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
-		float f1 = soulChestTile.prevLidAngle + (soulChestTile.lidAngle - soulChestTile.prevLidAngle) * angle;
-		f1 = 1.0F - f1;
-		f1 = 1.0F - f1 * f1 * f1;
-		modelchest.chestLid.rotateAngleX = -(f1 * (float) Math.PI / 2.0F);
+		float lidRotation = 1.0F - (soulChest.prevLidAngle + (soulChest.lidAngle - soulChest.prevLidAngle) * angle);
+		lidRotation = 1.0F - lidRotation * lidRotation * lidRotation;
+		modelchest.chestLid.rotateAngleX = -(lidRotation * (float) Math.PI / 2.0F);
 		modelchest.renderAll();
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 		GL11.glPopMatrix();
