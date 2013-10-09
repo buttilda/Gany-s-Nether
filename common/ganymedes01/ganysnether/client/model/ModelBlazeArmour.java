@@ -57,7 +57,7 @@ public class ModelBlazeArmour extends ModelBiped {
 			++f6;
 		}
 
-		f6 = ((float) Math.PI / 4F) + par3 * (float) Math.PI * 0.03F;
+		f6 = (float) Math.PI / 4F + par3 * (float) Math.PI * 0.03F;
 
 		for (i = 4; i < 8; ++i) {
 			blazeSticks[i].rotationPointY = 2.0F + MathHelper.cos((i * 2 + par3) * 0.25F);
