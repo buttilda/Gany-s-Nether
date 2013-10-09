@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class SoulGlass extends Block {
 	@SideOnly(Side.CLIENT)
 	private Icon block, brick;
 
-	protected SoulGlass(int id) {
-		super(id, Material.glass);
+	protected SoulGlass() {
+		super(ModIDs.SOUL_GLASS_ID, Material.glass);
 		setHardness(0.3F);
 		setLightOpacity(3);
 		setStepSound(soundGlassFootstep);

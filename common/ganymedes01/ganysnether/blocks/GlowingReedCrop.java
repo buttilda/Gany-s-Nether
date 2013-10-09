@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.ModItems;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.Random;
@@ -23,8 +24,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class GlowingReedCrop extends BlockReed {
 
-	public GlowingReedCrop(int id) {
-		super(id);
+	public GlowingReedCrop() {
+		super(ModIDs.GLOWING_REED_CROP_ID);
 		disableStats();
 		setHardness(0.0F);
 		setLightValue(0.5F);
@@ -40,8 +41,8 @@ public class GlowingReedCrop extends BlockReed {
 			return false;
 		else if (block.blockID == blockID)
 			return true;
-		boolean isBeach = (block.blockID == Block.netherrack.blockID || block.blockID == Block.slowSand.blockID);
-		boolean hasLava = (world.getBlockMaterial(x - 1, y - 1, z) == Material.lava || world.getBlockMaterial(x + 1, y - 1, z) == Material.lava || world.getBlockMaterial(x, y - 1, z - 1) == Material.lava || world.getBlockMaterial(x, y - 1, z + 1) == Material.lava);
+		boolean isBeach = block.blockID == Block.netherrack.blockID || block.blockID == Block.slowSand.blockID;
+		boolean hasLava = world.getBlockMaterial(x - 1, y - 1, z) == Material.lava || world.getBlockMaterial(x + 1, y - 1, z) == Material.lava || world.getBlockMaterial(x, y - 1, z - 1) == Material.lava || world.getBlockMaterial(x, y - 1, z + 1) == Material.lava;
 		return isBeach && hasLava;
 	}
 

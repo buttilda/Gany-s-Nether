@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.ModItems;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
@@ -20,8 +21,8 @@ public class SpectreWheatCrop extends NetherCrop {
 	@SideOnly(Side.CLIENT)
 	private Icon[] iconArray;
 
-	public SpectreWheatCrop(int id) {
-		super(id);
+	public SpectreWheatCrop() {
+		super(ModIDs.SPECTRE_WHEAT_CROP_ID);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SPECTRE_WHEAT_BLOCK_NAME));
 	}
 

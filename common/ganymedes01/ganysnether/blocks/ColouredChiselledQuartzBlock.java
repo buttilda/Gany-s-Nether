@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.List;
@@ -27,8 +28,8 @@ public class ColouredChiselledQuartzBlock extends Block {
 	@SideOnly(Side.CLIENT)
 	private Icon[] blockTop, blockSide;
 
-	public ColouredChiselledQuartzBlock(int id) {
-		super(id, Material.rock);
+	public ColouredChiselledQuartzBlock() {
+		super(ModIDs.COLOURED_CHISELLED_QUARTZ_BLOCK_ID, Material.rock);
 		setHardness(0.8F);
 		setStepSound(soundStoneFootstep);
 		setCreativeTab(GanysNether.netherTab);

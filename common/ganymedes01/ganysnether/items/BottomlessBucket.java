@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,8 +24,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BottomlessBucket extends ItemSimpleFoiled {
 
-	public BottomlessBucket(int id) {
-		super(id);
+	public BottomlessBucket() {
+		super(ModIDs.BOTTOMLESS_BUCKET_ID);
 		setMaxStackSize(1);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.BOTTOMLESS_BUCKET_NAME));

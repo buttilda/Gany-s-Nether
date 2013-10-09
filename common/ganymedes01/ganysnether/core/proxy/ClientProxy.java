@@ -1,14 +1,17 @@
 package ganymedes01.ganysnether.core.proxy;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.client.renderer.entity.EntityLightningBallRenderer;
 import ganymedes01.ganysnether.client.renderer.item.ItemSoulChestRender;
 import ganymedes01.ganysnether.client.renderer.tileentity.TileEntitySoulChestRender;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.entities.EntityLightningBall;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 
 /**
  * Gany's Nether
@@ -30,5 +33,7 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenderers() {
 		MinecraftForgeClient.registerItemRenderer(ModBlocks.soulChest.blockID, new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.SOUL_CHEST_NAME))));
 		MinecraftForgeClient.registerItemRenderer(ModBlocks.undertaker.blockID, new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.UNDERTAKER_NAME))));
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityLightningBall.class, new EntityLightningBallRenderer());
 	}
 }

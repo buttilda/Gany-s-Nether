@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.List;
@@ -27,8 +28,8 @@ public class GlowBox extends Block {
 	@SideOnly(Side.CLIENT)
 	private Icon[] blockSide, blockTop;
 
-	public GlowBox(int id) {
-		super(id, Material.glass);
+	public GlowBox() {
+		super(ModIDs.GLOW_BOX_ID, Material.glass);
 		setLightValue(1F);
 		setHardness(0.2F);
 		setStepSound(soundGlassFootstep);

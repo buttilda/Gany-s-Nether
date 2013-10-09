@@ -88,9 +88,14 @@ public class ConfigurationHandler {
 			ModIDs.COOKED_BAT_WING_ID = configItem(Strings.COOKED_BAT_WING_NAME);
 			ModIDs.WOLF_TEETH_ID = configItem(Strings.WOLF_TEETH_NAME);
 			ModIDs.BLAZE_INGOT_ID = configItem(Strings.BLAZE_INGOT_NAME);
+			ModIDs.SCEPTRE_OF_FIRE_CHARGING_ID = configItem(Strings.SCEPTRE_OF_FIRE_CHARGING_NAME);
+			ModIDs.SCEPTRE_OF_LIGHTNING_ID = configItem(Strings.SCEPTRE_OF_LIGHTNING_NAME);
+			ModIDs.SCEPTRE_CAP_ID = configItem(Strings.SCEPTRE_CAP_NAME);
 
 			// Others
 			GanysNether.sceptreOfConcealmentDurability = configuration.get("Durability", Strings.SCEPTRE_OF_CONCEALMENT_NAME, 128).getInt(128);
+			GanysNether.sceptreOfLightningDurability = configuration.get("Durability", Strings.SCEPTRE_OF_LIGHTNING_NAME, 128).getInt(128);
+			GanysNether.sceptreOfFireCharging = configuration.get("Durability", Strings.SCEPTRE_OF_FIRE_CHARGING_NAME, 32).getInt(32);
 			GanysNether.baseballBatDurability = configuration.get("Durability", Strings.BASEBALL_BAT_NAME, 256).getInt(256);
 			GanysNether.shouldGenerateCrops = configuration.get("Others", Strings.SHOULD_GENERATE_CROPS, true).getBoolean(true);
 			GanysNether.shouldDoVersionCheck = configuration.get("Others", Strings.SHOULD_DO_VERSION_CHECK, true).getBoolean(true);

@@ -1,6 +1,5 @@
 package ganymedes01.ganysnether.items;
 
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -31,6 +30,9 @@ public class ModItems {
 	public static Item cookedBatWing;
 	public static Item wolfTeeth;
 	public static Item blazeIngot;
+	public static Item sceptreOfFireCharging;
+	public static Item sceptreOfLightning;
+	public static Item sceptreCap;
 
 	// Armour
 	public static Item blazeHelmet;
@@ -40,28 +42,31 @@ public class ModItems {
 
 	public static void init() {
 		// Armour
-		blazeHelmet = new BlazeHelmet(ModIDs.BLAZE_HELMET_ID);
-		blazeChestplate = new BlazeChestplate(ModIDs.BLAZE_CHESTPLATE_ID);
-		blazeLeggings = new BlazeLeggings(ModIDs.BLAZE_LEGGINGS_ID);
-		blazeBoots = new BlazeBoots(ModIDs.BLAZE_BOOTS_ID);
+		blazeHelmet = new BlazeHelmet();
+		blazeChestplate = new BlazeChestplate();
+		blazeLeggings = new BlazeLeggings();
+		blazeBoots = new BlazeBoots();
 
 		// Items
-		quarzBerrySeeds = new QuarzBerrySeeds(ModIDs.QUARZ_BERRY_SEEDS_ID);
-		quarzBerry = new QuarzBerry(ModIDs.QUARZ_BERRY_ID);
-		ghostSeeds = new GhostSeeds(ModIDs.GHOST_SEEDS_ID);
-		spectreWheat = new SpectreWheat(ModIDs.SPECTRE_WHEAT_ITEM_ID);
-		spookyFlour = new SpookyFlour(ModIDs.SPOOKY_FLOUR_ID);
-		glowingReed = new GlowingReed(ModIDs.GLOWING_REED_ITEM_ID);
-		bottomlessBucket = new BottomlessBucket(ModIDs.BOTTOMLESS_BUCKET_ID);
-		dimensionalBread = new DimensionalBread(ModIDs.DIMENSIONAL_BREAD_ID);
-		baseballBat = new BaseballBat(ModIDs.BASEBALL_BAT_ID);
-		sceptreOfConcealment = new SceptreOfConcealment(ModIDs.SCEPTRE_OF_CONCEALMENT_ID);
-		skeletonSpawner = new SkeletonSpawner(ModIDs.SKELETON_SPAWNER_ID);
-		silverfishScale = new SilverfishScale(ModIDs.SILVERFISH_SCALE_ID);
-		batWing = new BatWing(ModIDs.BAT_WING_ID);
-		cookedBatWing = new CookedBatWing(ModIDs.COOKED_BAT_WING_ID);
-		wolfTeeth = new WolfTeeth(ModIDs.WOLF_TEETH_ID);
-		blazeIngot = new BlazeIngot(ModIDs.BLAZE_INGOT_ID);
+		quarzBerrySeeds = new QuarzBerrySeeds();
+		quarzBerry = new QuarzBerry();
+		ghostSeeds = new GhostSeeds();
+		spectreWheat = new SpectreWheat();
+		spookyFlour = new SpookyFlour();
+		glowingReed = new GlowingReed();
+		bottomlessBucket = new BottomlessBucket();
+		dimensionalBread = new DimensionalBread();
+		baseballBat = new BaseballBat();
+		sceptreOfConcealment = new SceptreOfConcealment();
+		skeletonSpawner = new SkeletonSpawner();
+		silverfishScale = new SilverfishScale();
+		batWing = new BatWing();
+		cookedBatWing = new CookedBatWing();
+		wolfTeeth = new WolfTeeth();
+		blazeIngot = new BlazeIngot();
+		sceptreOfFireCharging = new SceptreOfFireCharging();
+		sceptreOfLightning = new SceptreOfLightning();
+		sceptreCap = new SceptreCap();
 
 		registerNames();
 	}
@@ -83,6 +88,9 @@ public class ModItems {
 		GameRegistry.registerItem(cookedBatWing, Strings.COOKED_BAT_WING_NAME);
 		GameRegistry.registerItem(wolfTeeth, Strings.WOLF_TEETH_NAME);
 		GameRegistry.registerItem(blazeIngot, Strings.BLAZE_INGOT_NAME);
+		GameRegistry.registerItem(sceptreOfFireCharging, Strings.SCEPTRE_OF_FIRE_CHARGING_NAME);
+		GameRegistry.registerItem(sceptreOfLightning, Strings.SCEPTRE_OF_LIGHTNING_NAME);
+		GameRegistry.registerItem(sceptreCap, Strings.SCEPTRE_CAP_NAME);
 
 		// Armour
 		GameRegistry.registerItem(blazeHelmet, Strings.BLAZE_HELMET_NAME);

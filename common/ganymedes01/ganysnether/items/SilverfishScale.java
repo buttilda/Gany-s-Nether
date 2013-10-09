@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.Item;
 
@@ -14,8 +15,8 @@ import net.minecraft.item.Item;
 
 public class SilverfishScale extends Item {
 
-	public SilverfishScale(int id) {
-		super(id);
+	public SilverfishScale() {
+		super(ModIDs.SILVERFISH_SCALE_ID);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.SILVERFISH_SCALE_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SILVERFISH_SCALE_NAME));

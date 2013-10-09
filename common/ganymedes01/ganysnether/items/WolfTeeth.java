@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.Item;
 
@@ -14,8 +15,8 @@ import net.minecraft.item.Item;
 
 public class WolfTeeth extends Item {
 
-	public WolfTeeth(int id) {
-		super(id);
+	public WolfTeeth() {
+		super(ModIDs.WOLF_TEETH_ID);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.WOLF_TEETH_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.WOLF_TEETH_NAME));

@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import net.minecraft.block.BlockChest;
@@ -30,8 +31,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class SoulChest extends BlockContainer {
 
-	protected SoulChest(int id) {
-		super(id, Material.sand);
+	protected SoulChest() {
+		super(ModIDs.SOUL_CHEST_ID, Material.sand);
 		setHardness(2.5F);
 		setStepSound(soundSandFootstep);
 		setCreativeTab(GanysNether.netherTab);
@@ -107,18 +108,19 @@ public class SoulChest extends BlockContainer {
 				player.displayGUIChest(iinventory);
 			return true;
 		}
+
 		return true;
 	}
 
 	public IInventory getInventory(World world, int x, int y, int z) {
-		Object object = world.getBlockTileEntity(x, y, z);
+		TileEntity tile = world.getBlockTileEntity(x, y, z);
 
-		if (object == null)
+		if (tile == null)
 			return null;
 		else if (BlockChest.isOcelotBlockingChest(world, x, y, z))
 			return null;
 
-		return (IInventory) object;
+		return (IInventory) tile;
 	}
 
 	@Override

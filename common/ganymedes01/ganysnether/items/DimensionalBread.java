@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemFood;
@@ -19,8 +20,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class DimensionalBread extends ItemFood {
 
-	public DimensionalBread(int id) {
-		super(id, 2, false);
+	public DimensionalBread() {
+		super(ModIDs.DIMENSIONAL_BREAD_ID, 2, false);
 		setCreativeTab(GanysNether.netherTab);
 		setPotionEffect(Potion.invisibility.id, 60, 0, 0.5F);
 		setTextureName(Utils.getItemTexture(Strings.DIMENSIONAL_BREAD_NAME));

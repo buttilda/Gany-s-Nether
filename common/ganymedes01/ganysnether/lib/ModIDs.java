@@ -47,6 +47,9 @@ public class ModIDs {
 	public static int COOKED_BAT_WING_ID;
 	public static int WOLF_TEETH_ID;
 	public static int BLAZE_INGOT_ID;
+	public static int SCEPTRE_OF_FIRE_CHARGING_ID;
+	public static int SCEPTRE_OF_LIGHTNING_ID;
+	public static int SCEPTRE_CAP_ID;
 
 	// Armour
 	public static int BLAZE_HELMET_ID;

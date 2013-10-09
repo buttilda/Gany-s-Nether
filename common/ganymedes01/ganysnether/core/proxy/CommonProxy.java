@@ -1,8 +1,10 @@
 package ganymedes01.ganysnether.core.proxy;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.client.gui.inventory.GuiReproducer;
 import ganymedes01.ganysnether.client.gui.inventory.GuiUndertaker;
 import ganymedes01.ganysnether.client.gui.inventory.GuiVolcanicFurnace;
+import ganymedes01.ganysnether.entities.EntityLightningBall;
 import ganymedes01.ganysnether.inventory.ContainerReproducer;
 import ganymedes01.ganysnether.inventory.ContainerUndertaker;
 import ganymedes01.ganysnether.inventory.ContainerVolcanicFurnace;
@@ -16,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
@@ -34,6 +37,10 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileEntityUndertaker.class, Strings.UNDERTAKER_NAME);
 	}
 
+	public void registerEntities() {
+		EntityRegistry.registerModEntity(EntityLightningBall.class, "EntityLightningBall", EntityRegistry.findGlobalUniqueEntityId(), GanysNether.instance, 64, 1, true);
+	}
+
 	public void registerRenderers() {
 
 	}
@@ -42,7 +49,7 @@ public class CommonProxy implements IGuiHandler {
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		switch (ID) {
-			case (GUIsID.VOLCANIC_FURNACE):
+			case GUIsID.VOLCANIC_FURNACE:
 				TileEntityVolcanicFurnace tileVolcanicFurnace = (TileEntityVolcanicFurnace) tile;
 				return new ContainerVolcanicFurnace(player.inventory, tileVolcanicFurnace);
 			case GUIsID.REPRODUCER:
@@ -60,7 +67,7 @@ public class CommonProxy implements IGuiHandler {
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		switch (ID) {
-			case (GUIsID.VOLCANIC_FURNACE):
+			case GUIsID.VOLCANIC_FURNACE:
 				TileEntityVolcanicFurnace tileVolcanicFurnace = (TileEntityVolcanicFurnace) tile;
 				return new GuiVolcanicFurnace(player.inventory, tileVolcanicFurnace);
 			case GUIsID.REPRODUCER:

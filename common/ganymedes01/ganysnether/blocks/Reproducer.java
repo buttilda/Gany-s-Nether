@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.blocks;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.GUIsID;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityReproducer;
 import net.minecraft.block.BlockContainer;
@@ -30,8 +31,8 @@ public class Reproducer extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	private Icon blockSide, blockBottom, blockTop;
 
-	public Reproducer(int id) {
-		super(id, Material.rock);
+	public Reproducer() {
+		super(ModIDs.REPRODUCER_ID, Material.rock);
 		setHardness(2.5F);
 		setStepSound(soundStoneFootstep);
 		setCreativeTab(GanysNether.netherTab);
@@ -41,7 +42,7 @@ public class Reproducer extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Icon getIcon(int side, int meta) {
-		return side == 0 ? blockBottom : (side == 1 ? blockTop : blockSide);
+		return side == 0 ? blockBottom : side == 1 ? blockTop : blockSide;
 	}
 
 	@Override

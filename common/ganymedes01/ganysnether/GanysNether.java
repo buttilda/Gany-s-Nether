@@ -2,8 +2,8 @@ package ganymedes01.ganysnether;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.configuration.ConfigurationHandler;
-import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.EntityDeathEvent;
+import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.VersionCheckTickHandler;
 import ganymedes01.ganysnether.core.proxy.CommonProxy;
 import ganymedes01.ganysnether.core.utils.VersionHelper;
@@ -50,6 +50,8 @@ public class GanysNether {
 
 	public static CreativeTabs netherTab = new CreativeTabNether();
 	public static int sceptreOfConcealmentDurability = 128;
+	public static int sceptreOfLightningDurability = 128;
+	public static int sceptreOfFireCharging = 32;
 	public static int baseballBatDurability = 256;
 	public static boolean shouldGenerateCrops = true;
 	public static boolean shouldDoVersionCheck = true;
@@ -75,6 +77,7 @@ public class GanysNether {
 		MinecraftForge.EVENT_BUS.register(new EntityDeathEvent());
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
+		proxy.registerEntities();
 		if (shouldGenerateCrops)
 			GameRegistry.registerWorldGenerator(new CropsGenerator());
 		BuildCraftFacadeManager.registerFacades();

@@ -49,6 +49,9 @@ public class Strings {
 	public static final String BLAZE_CHESTPLATE_NAME = "blazeChestplate";
 	public static final String BLAZE_LEGGINGS_NAME = "blazeLeggings";
 	public static final String BLAZE_BOOTS_NAME = "blazeBoots";
+	public static final String SCEPTRE_OF_FIRE_CHARGING_NAME = "sceptreOfFireCharging";
+	public static final String SCEPTRE_OF_LIGHTNING_NAME = "sceptreOfLightning";
+	public static final String SCEPTRE_CAP_NAME = "sceptreCap";
 
 	// Others
 	public static final String SHOULD_GENERATE_CROPS = "shouldGenerateCrops";

@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.List;
@@ -48,8 +49,8 @@ public class SkeletonSpawner extends ItemMonsterPlacer {
 	@SideOnly(Side.CLIENT)
 	private Icon theIcon;
 
-	public SkeletonSpawner(int id) {
-		super(id);
+	public SkeletonSpawner() {
+		super(ModIDs.SKELETON_SPAWNER_ID);
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setTextureName("spawn_egg");
@@ -236,8 +237,8 @@ public class SkeletonSpawner extends ItemMonsterPlacer {
 	public int getColorFromItemStack(ItemStack stack, int meta) {
 		EntityEggInfo entityegginfo = (EntityEggInfo) EntityList.entityEggs.get(Integer.valueOf(51));
 		if (stack.getItemDamage() == 0)
-			return entityegginfo != null ? (meta == 0 ? entityegginfo.primaryColor : entityegginfo.secondaryColor) : 16777215;
+			return entityegginfo != null ? meta == 0 ? entityegginfo.primaryColor : entityegginfo.secondaryColor : 16777215;
 		else
-			return entityegginfo != null ? (meta == 0 ? entityegginfo.secondaryColor : entityegginfo.primaryColor) : 16777215;
+			return entityegginfo != null ? meta == 0 ? entityegginfo.secondaryColor : entityegginfo.primaryColor : 16777215;
 	}
 }

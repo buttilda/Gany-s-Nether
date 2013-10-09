@@ -53,16 +53,35 @@ public class ModRecipes {
 		ItemStack knockBackBookII = new ItemStack(Item.enchantedBook);
 		knockBackBookII.addEnchantment(Enchantment.knockback, 2);
 		GameRegistry.addRecipe(new ItemStack(ModItems.baseballBat), " zx", " y ", "y  ", 'x', Item.diamond, 'y', Item.netherrackBrick, 'z', knockBackBookII);
-		GameRegistry.addRecipe(new ItemStack(ModItems.sceptreOfConcealment, 1, GanysNether.sceptreOfConcealmentDurability), "  x", " y ", "z  ", 'x', Item.netherStar, 'y', Item.ingotGold, 'z', Item.netherrackBrick);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sceptreOfConcealment), new ItemStack(Item.netherStar), new ItemStack(ModItems.sceptreOfConcealment, 1, GanysNether.sceptreOfConcealmentDurability));
 		GameRegistry.addSmelting(ModItems.batWing.itemID, new ItemStack(ModItems.cookedBatWing), 0.0F);
 		FurnaceRecipes.smelting().addSmelting(ModItems.blazeIngot.itemID, 0, new ItemStack(ModItems.blazeIngot, 1, 1), 0.0F);
 		GameRegistry.addRecipe(new ItemStack(ModItems.blazeIngot, 1, 0), "x", "x", "x", 'x', Item.blazeRod);
+
+		createCapRecipe(0, new ItemStack(Block.tnt), new ItemStack(ModItems.blazeIngot, 1, 1), Item.fireballCharge);
+		createCapRecipe(1, new ItemStack(Item.netherQuartz), new ItemStack(Item.netherStalkSeeds), Item.netherStar);
+		createCapRecipe(2, new ItemStack(Item.egg), Item.netherStar);
+
+		createSceptreRecipe(ModItems.sceptreOfFireCharging, 0, Item.magmaCream, GanysNether.sceptreOfFireCharging);
+		createSceptreRecipe(ModItems.sceptreOfLightning, 1, Item.ingotGold, GanysNether.sceptreOfLightningDurability);
+		createSceptreRecipe(ModItems.sceptreOfConcealment, 2, Item.ingotGold, GanysNether.sceptreOfConcealmentDurability);
 
 		// Vanilla
 		GameRegistry.addShapelessRecipe(new ItemStack(Item.glowstone, 2), new ItemStack(ModItems.glowingReed));
 		GameRegistry.addRecipe(new ItemStack(Item.netherQuartz, 6), "xxx", "yyy", "xxx", 'x', ModItems.quarzBerry, 'y', Block.glass);
 		GameRegistry.addRecipe(new ItemStack(Item.arrow, 16), "x", "y", "z", 'x', ModItems.wolfTeeth, 'y', Item.stick, 'z', Item.feather);
+	}
+
+	private static void createSceptreRecipe(Item sceptre, int capMeta, Item handle, int durability) {
+		GameRegistry.addRecipe(new ItemStack(sceptre, 1, durability), "  x", " y ", "z  ", 'x', new ItemStack(ModItems.sceptreCap, 1, capMeta), 'y', handle, 'z', Item.netherrackBrick);
+		GameRegistry.addShapelessRecipe(new ItemStack(sceptre), new ItemStack(ModItems.sceptreCap, 1, capMeta), new ItemStack(sceptre, 1, durability));
+	}
+
+	private static void createCapRecipe(int capMeta, ItemStack capMaterial, Item capCore) {
+		createCapRecipe(capMeta, capMaterial, capMaterial, capCore);
+	}
+
+	private static void createCapRecipe(int capMeta, ItemStack capMaterial, ItemStack capMaterialSec, Item capCore) {
+		GameRegistry.addRecipe(new ItemStack(ModItems.sceptreCap, 1, capMeta), "yxy", "xzx", "yxy", 'x', capMaterial, 'y', capMaterialSec, 'z', capCore);
 	}
 
 	private static void registerBlockRecipes() {

@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class ColouredQuartzPillar extends BlockRotatedPillar {
 
 	private int startIndex;
 
-	public ColouredQuartzPillar(int id, int startIndex) {
-		super(id, Material.rock);
+	public ColouredQuartzPillar(int startIndex) {
+		super(ModIDs.COLOURED_QUARTZ_PILLARS_IDS[startIndex], Material.rock);
 		setHardness(0.8F);
 		this.startIndex = startIndex;
 		setStepSound(soundStoneFootstep);

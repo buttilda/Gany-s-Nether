@@ -39,25 +39,25 @@ public class ModBlocks {
 	public static Block undertaker;
 
 	public static void init() {
-		tilledNetherrack = new TilledNetherrack(ModIDs.TILLED_NETHERRACK_ID);
-		quarzBerryBush = new QuarzBerryBush(ModIDs.QUARZ_BERRY_BUSH_ID);
-		spectreWheat = new SpectreWheatCrop(ModIDs.SPECTRE_WHEAT_CROP_ID);
-		glowingReed = new GlowingReedCrop(ModIDs.GLOWING_REED_CROP_ID);
-		soulGlass = new SoulGlass(ModIDs.SOUL_GLASS_ID);
-		soulChest = new SoulChest(ModIDs.SOUL_CHEST_ID);
-		volcanicFurnaceIdle = new VolcanicFurnace(ModIDs.VOLCANIC_FURNACE_IDLE_ID, false);
-		volcanicFurnaceActive = new VolcanicFurnace(ModIDs.VOLCANIC_FURNACE_ACTIVE_ID, true);
-		denseLavaCell = new DenseLavaCell(ModIDs.DENSE_LAVA_CELL_ID);
-		glowBox = new GlowBox(ModIDs.GLOW_BOX_ID);
-		colouredQuartzBlock = new ColouredQuartzBlock(ModIDs.COLOURED_QUARTZ_BLOCK_ID);
-		colouredChiselledQuartzBlock = new ColouredChiselledQuartzBlock(ModIDs.COLOURED_CHISELLED_QUARTZ_BLOCK_ID);
+		tilledNetherrack = new TilledNetherrack();
+		quarzBerryBush = new QuarzBerryBush();
+		spectreWheat = new SpectreWheatCrop();
+		glowingReed = new GlowingReedCrop();
+		soulGlass = new SoulGlass();
+		soulChest = new SoulChest();
+		volcanicFurnaceIdle = new VolcanicFurnace(false);
+		volcanicFurnaceActive = new VolcanicFurnace(true);
+		denseLavaCell = new DenseLavaCell();
+		glowBox = new GlowBox();
+		colouredQuartzBlock = new ColouredQuartzBlock();
+		colouredChiselledQuartzBlock = new ColouredChiselledQuartzBlock();
 		for (int i = 0; i < colouredQuartzBlockStairs.length; i++)
-			colouredQuartzBlockStairs[i] = new ColouredQuartzStairs(ModIDs.COLOURED_QUARTZ_STAIRS_IDS[i], colouredQuartzBlock, i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_STAIRS_NAMES[i]));
+			colouredQuartzBlockStairs[i] = new ColouredQuartzStairs(i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_STAIRS_NAMES[i]));
 		soulGlassStairs = new SoulGlassStairs(ModIDs.SOUL_GLASS_STAIRS_ID);
 		for (int i = 0; i < colouredQuartzPillar.length; i++)
-			colouredQuartzPillar[i] = new ColouredQuartzPillar(ModIDs.COLOURED_QUARTZ_PILLARS_IDS[i], i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_PILLARS_NAME) + i);
-		reproducer = new Reproducer(ModIDs.REPRODUCER_ID);
-		undertaker = new Undertaker(ModIDs.UNDERTAKER_ID);
+			colouredQuartzPillar[i] = new ColouredQuartzPillar(i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_PILLARS_NAME) + i);
+		reproducer = new Reproducer();
+		undertaker = new Undertaker();
 		registerNames();
 	}
 

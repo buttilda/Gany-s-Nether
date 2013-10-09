@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.Random;
@@ -21,8 +22,8 @@ import net.minecraft.world.World;
 
 public class DenseLavaCell extends Block {
 
-	public DenseLavaCell(int id) {
-		super(id, Material.iron);
+	public DenseLavaCell() {
+		super(ModIDs.DENSE_LAVA_CELL_ID, Material.iron);
 		setHardness(5F);
 		setLightValue(1F);
 		setTickRandomly(true);

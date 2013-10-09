@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.Random;
@@ -32,8 +33,8 @@ public class TilledNetherrack extends BlockFarmland {
 	@SideOnly(Side.CLIENT)
 	private Icon dryIcon;
 
-	protected TilledNetherrack(int id) {
-		super(id);
+	protected TilledNetherrack() {
+		super(ModIDs.TILLED_NETHERRACK_ID);
 		setHardness(0.5F);
 		setStepSound(soundGravelFootstep);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.TILLED_NETHERRACK_NAME));
@@ -120,6 +121,6 @@ public class TilledNetherrack extends BlockFarmland {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Icon getIcon(int par1, int par2) {
-		return par1 == 1 ? (par2 > 0 ? wetIcon : dryIcon) : Block.netherrack.getBlockTextureFromSide(par1);
+		return par1 == 1 ? par2 > 0 ? wetIcon : dryIcon : Block.netherrack.getBlockTextureFromSide(par1);
 	}
 }

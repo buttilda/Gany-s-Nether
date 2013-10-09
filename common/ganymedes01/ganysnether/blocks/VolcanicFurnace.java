@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.blocks;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.GUIsID;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
 
@@ -29,8 +30,8 @@ public class VolcanicFurnace extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	private Icon blockSide, blockBottom, blockTop;
 
-	protected VolcanicFurnace(int id, boolean isActive) {
-		super(id, Material.rock);
+	protected VolcanicFurnace(boolean isActive) {
+		super(isActive ? ModIDs.VOLCANIC_FURNACE_ACTIVE_ID : ModIDs.VOLCANIC_FURNACE_IDLE_ID, Material.rock);
 		this.isActive = isActive;
 		if (!isActive)
 			setCreativeTab(GanysNether.netherTab);
@@ -114,7 +115,7 @@ public class VolcanicFurnace extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Icon getIcon(int side, int meta) {
-		return side == 0 ? blockBottom : (side == 1 ? blockTop : blockSide);
+		return side == 0 ? blockBottom : side == 1 ? blockTop : blockSide;
 	}
 
 	@Override

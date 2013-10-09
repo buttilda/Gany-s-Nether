@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.blocks;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.GUIsID;
+import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 
@@ -23,8 +24,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class Undertaker extends BlockContainer {
 
-	public Undertaker(int id) {
-		super(id, Material.rock);
+	public Undertaker() {
+		super(ModIDs.UNDERTAKER_ID, Material.rock);
 		setHardness(2.5F);
 		setCreativeTab(GanysNether.netherTab);
 		setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);

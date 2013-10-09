@@ -17,6 +17,11 @@ item.ganysnether.cookedBatWing.name=Cooked Bat Wing
 item.ganysnether.wolfTeeth.name=Wolf Teeth
 item.ganysnether.blazeIngot0.name=Blaze Mesh
 item.ganysnether.blazeIngot1.name=Blaze Ingot
+item.ganysnether.sceptreOfFireCharging.name=Sceptre of Fire Charging
+item.ganysnether.sceptreOfLightning.name=Sceptre of Lightning
+item.ganysnether.sceptreCap_0.name=Fire Charging Cap
+item.ganysnether.sceptreCap_1.name=Lightning Cap
+item.ganysnether.sceptreCap_2.name=Concealment Cap
 
 item.ganysnether.blazeHelmet.name=Blaze Helmet
 item.ganysnether.blazeChestplate.name=Blaze Chestplate
