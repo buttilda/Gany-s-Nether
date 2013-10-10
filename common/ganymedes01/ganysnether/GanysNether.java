@@ -13,7 +13,7 @@ import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.recipes.BuildCraftFacadeManager;
 import ganymedes01.ganysnether.recipes.ModRecipes;
-import ganymedes01.ganysnether.world.CropsGenerator;
+import ganymedes01.ganysnether.world.NetherWorldGen;
 
 import java.io.File;
 
@@ -54,7 +54,6 @@ public class GanysNether {
 	public static int sceptreOfLightningDurability;
 	public static int sceptreOfFireCharging;
 	public static int baseballBatDurability;
-	public static int chanceOfGrowingHead;
 	public static boolean shouldGenerateCrops = true;
 	public static boolean shouldDoVersionCheck = true;
 
@@ -82,7 +81,7 @@ public class GanysNether {
 		proxy.registerRenderers();
 		proxy.registerEntities();
 		if (shouldGenerateCrops)
-			GameRegistry.registerWorldGenerator(new CropsGenerator());
+			GameRegistry.registerWorldGenerator(new NetherWorldGen());
 		BuildCraftFacadeManager.registerFacades();
 	}
 

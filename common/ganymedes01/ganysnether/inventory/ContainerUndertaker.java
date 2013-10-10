@@ -47,7 +47,7 @@ public class ContainerUndertaker extends Container {
 			itemStack = slotItemStack.copy();
 
 			if (slotIndex < 40) {
-				if (!mergeItemStack(slotItemStack, 1, inventorySlots.size(), true))
+				if (!mergeItemStack(slotItemStack, 40, inventorySlots.size(), true))
 					return null;
 			} else
 				return null;

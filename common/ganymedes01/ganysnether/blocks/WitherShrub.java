@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
-import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
@@ -32,28 +32,76 @@ public class WitherShrub extends NetherCrop {
 	@SideOnly(Side.CLIENT)
 	private Icon disconnected, connected;
 
-	public static final int DEFAULT_CHANCE = 26;
+	public static final int DEFAULT_CHANCE = 100;
 
 	public WitherShrub() {
 		super(ModIDs.WITHER_SHRUB_ID);
 		setHardness(0.0F);
+		setTickRandomly(true);
 		setBlockBounds(0.375F, 0.0F, 0.375F, 0.625F, 0.25F, 0.625F);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.WITHER_SHRUB_NAME));
 	}
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
-		super.updateTick(world, x, y, z, rand);
 		if (world.isRemote)
 			return;
-
-		if (rand.nextInt(GanysNether.chanceOfGrowingHead > 0 ? GanysNether.chanceOfGrowingHead : DEFAULT_CHANCE) == 0 && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z))) {
+		int random = rand.nextInt(DEFAULT_CHANCE);
+		System.out.println(random);
+		if (random == DEFAULT_CHANCE / 2 && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z))) {
 			int meta = world.getBlockMetadata(x, y, z);
 
 			if (meta < 7)
 				world.setBlockMetadataWithNotify(x, y, z, ++meta, 2);
 			else
 				growSkull(world, x, y, z, rand);
+		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getRenderColor(int meta) {
+		int r = 255 - meta * 32;
+		int g = 255 - (255 - meta * 8) - 50;
+		int b = 255 - meta * 4 - 100;
+		return Utils.getColour(r, g, b);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int colorMultiplier(IBlockAccess access, int x, int y, int z) {
+		return getRenderColor(access.getBlockMetadata(x, y, z));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
+		for (int direction : Utils.getRandomizedList(0, 4)) {
+			int skullX = x;
+			int skullZ = z;
+
+			switch (direction) {
+				case 0:
+					skullZ--;
+					break;
+				case 1:
+					skullZ++;
+					break;
+				case 2:
+					skullX--;
+					break;
+				case 3:
+					skullX++;
+					break;
+			}
+			if (world.getBlockId(skullX, y, skullZ) == Block.skull.blockID) {
+				float offX = rand.nextFloat() * 0.6F - 0.3F;
+				float offY = rand.nextFloat() * 6.0F / 16.0F;
+				float offZ = rand.nextFloat() * 0.6F - 0.3F;
+
+				world.spawnParticle("smoke", skullX + 0.5F + offX, y + offY, skullZ + 0.5F + offZ, 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("flame", skullX + 0.5F + offX, y + offY, skullZ + 0.5F + offZ, 0.0D, 0.0D, 0.0D);
+			}
 		}
 	}
 
@@ -67,52 +115,41 @@ public class WitherShrub extends NetherCrop {
 	}
 
 	private void growSkull(World world, int x, int y, int z, Random rand) {
-		int skullX = x;
-		int skullZ = z;
-		int direction = rand.nextInt(4);
+		for (int direction : Utils.getRandomizedList(0, 4)) {
+			int skullX = x;
+			int skullZ = z;
 
-		switch (direction) {
-			case 0:
-				skullZ--;
-				break;
-			case 1:
-				skullZ++;
-				break;
-			case 2:
-				skullX--;
-				break;
-			case 3:
-				skullX++;
-				break;
-		}
-
-		if (world.isAirBlock(skullX, y, skullZ)) {
-			world.setBlock(skullX, y, skullZ, Block.skull.blockID, direction + 2, 2);
-			TileEntity tileentity = world.getBlockTileEntity(skullX, y, skullZ);
-			if (tileentity != null && tileentity instanceof TileEntitySkull) {
-				((TileEntitySkull) tileentity).setSkullType(1, "");
-				world.notifyBlockChange(skullX, y, skullZ, blockID);
+			switch (direction) {
+				case 0:
+					skullZ--;
+					break;
+				case 1:
+					skullZ++;
+					break;
+				case 2:
+					skullX--;
+					break;
+				case 3:
+					skullX++;
+					break;
+			}
+			if (world.isAirBlock(skullX, y, skullZ)) {
+				world.setBlock(skullX, y, skullZ, Block.skull.blockID, direction + 2, 2);
+				TileEntity tileentity = world.getBlockTileEntity(skullX, y, skullZ);
+				if (tileentity != null && tileentity instanceof TileEntitySkull) {
+					((TileEntitySkull) tileentity).setSkullType(1, "");
+					world.notifyBlockChange(skullX, y, skullZ, blockID);
+				}
+				return;
 			}
 		}
 	}
 
-	/* DEBUG */
-	// @Override
-	// public boolean onBlockActivated(World world, int x, int y, int z,
-	// EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-	// if (world.isRemote)
-	// return true;
-	// int meta = world.getBlockMetadata(x, y, z);
-	// if (meta < 7)
-	// world.setBlockMetadataWithNotify(x, y, z, ++meta, 2);
-	// else
-	// growSkull(world, x, y, z, new Random());
-	// return true;
-	// }
-
 	@Override
 	public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune) {
-		return new ArrayList<ItemStack>();
+		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+		list.add(new ItemStack(ModItems.witherShrubSeeds));
+		return list;
 	}
 
 	@Override
@@ -137,7 +174,7 @@ public class WitherShrub extends NetherCrop {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
-		disconnected = reg.registerIcon(Utils.getBlockTexture(Strings.WITHER_SHRUB_NAME, true) + "disconnected");
-		connected = reg.registerIcon(Utils.getBlockTexture(Strings.WITHER_SHRUB_NAME, true) + "connected");
+		disconnected = reg.registerIcon("pumpkin_stem_disconnected");
+		connected = reg.registerIcon(Utils.getBlockTexture(Strings.WITHER_SHRUB_NAME, false));
 	}
 }

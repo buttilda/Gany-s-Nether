@@ -1,7 +1,6 @@
 package ganymedes01.ganysnether.configuration;
 
 import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.blocks.WitherShrub;
 import ganymedes01.ganysnether.core.utils.IdGenerator;
 import ganymedes01.ganysnether.items.BaseballBat;
 import ganymedes01.ganysnether.items.SceptreOfConcealment;
@@ -106,7 +105,6 @@ public class ConfigurationHandler {
 			GanysNether.baseballBatDurability = configuration.get("Durability", Strings.BASEBALL_BAT_NAME, BaseballBat.DEFAULT_DUR).getInt(BaseballBat.DEFAULT_DUR);
 			GanysNether.shouldGenerateCrops = configuration.get("Others", Strings.SHOULD_GENERATE_CROPS, true).getBoolean(true);
 			GanysNether.shouldDoVersionCheck = configuration.get("Others", Strings.SHOULD_DO_VERSION_CHECK, true).getBoolean(true);
-			GanysNether.chanceOfGrowingHead = configuration.get("Others", "Chances of growing head for Wither Shrub. e.g.: X means chance of 1 in X", WitherShrub.DEFAULT_CHANCE).getInt(WitherShrub.DEFAULT_CHANCE);
 
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");
