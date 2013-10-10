@@ -24,10 +24,18 @@ public class NetherCrop extends BlockCrops {
 	}
 
 	@Override
-	public void dropBlockAsItemWithChance(World world, int x, int y, int z, int meta, float par6, int fortune) {
-		super.dropBlockAsItemWithChance(world, x, y, z, meta, par6, fortune);
+	public void dropBlockAsItemWithChance(World world, int x, int y, int z, int meta, float dropChance, int fortune) {
+		super.dropBlockAsItemWithChance(world, x, y, z, meta, dropChance, fortune);
 		if (!world.isRemote)
-			if (meta >= 7 && world.rand.nextInt(50) == 0)
+			if (world.rand.nextInt(50) == 25)
 				dropBlockAsItem_do(world, x, y, z, new ItemStack(Item.rottenFlesh));
+	}
+
+	@Override
+	public void fertilize(World world, int x, int y, int z) {
+		int meta = world.getBlockMetadata(x, y, z);
+
+		if (meta < 7)
+			world.setBlockMetadataWithNotify(x, y, z, ++meta, 2);
 	}
 }

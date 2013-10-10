@@ -2,7 +2,6 @@ package ganymedes01.ganysnether;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.configuration.ConfigurationHandler;
-import ganymedes01.ganysnether.core.handlers.BonemealOnWitherShrubEvent;
 import ganymedes01.ganysnether.core.handlers.EntityDeathEvent;
 import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.VersionCheckTickHandler;
@@ -76,7 +75,6 @@ public class GanysNether {
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		MinecraftForge.EVENT_BUS.register(new HoeEvent());
 		MinecraftForge.EVENT_BUS.register(new EntityDeathEvent());
-		MinecraftForge.EVENT_BUS.register(new BonemealOnWitherShrubEvent());
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
 		proxy.registerEntities();
