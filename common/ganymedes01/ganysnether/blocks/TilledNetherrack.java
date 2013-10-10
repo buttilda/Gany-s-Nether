@@ -42,10 +42,15 @@ public class TilledNetherrack extends BlockFarmland {
 
 	@Override
 	public boolean canSustainPlant(World world, int x, int y, int z, ForgeDirection direction, IPlantable plant) {
+		if (direction != ForgeDirection.UP)
+			return false;
+
 		int plantID = plant.getPlantID(world, x, y + 1, z);
 		if (plantID == ModBlocks.quarzBerryBush.blockID)
 			return true;
 		else if (plantID == ModBlocks.spectreWheat.blockID)
+			return true;
+		else if (plantID == ModBlocks.witherShrub.blockID)
 			return true;
 		return false;
 	}

@@ -5,7 +5,7 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemSimpleFoiled;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 
@@ -16,16 +16,18 @@ import net.minecraft.util.MathHelper;
  * 
  */
 
-public class BaseballBat extends ItemSimpleFoiled {
+public class BaseballBat extends Item {
+
+	public static final int DEFAULT_DUR = 256;
 
 	public BaseballBat() {
 		super(ModIDs.BASEBALL_BAT_ID);
 		setFull3D();
 		setMaxStackSize(1);
 		setCreativeTab(GanysNether.netherTab);
-		setMaxDamage(GanysNether.baseballBatDurability);
 		setTextureName(Utils.getItemTexture(Strings.BASEBALL_BAT_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.BASEBALL_BAT_NAME));
+		setMaxDamage(GanysNether.baseballBatDurability > 0 ? GanysNether.baseballBatDurability : DEFAULT_DUR);
 	}
 
 	@Override

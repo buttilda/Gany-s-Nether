@@ -29,6 +29,7 @@ public class ModIDs {
 	public static int[] COLOURED_QUARTZ_PILLARS_IDS = new int[ModBlocks.colouredQuartzPillar.length];
 	public static int REPRODUCER_ID;
 	public static int UNDERTAKER_ID;
+	public static int WITHER_SHRUB_ID;
 
 	// Items
 	public static int QUARZ_BERRY_SEEDS_ID;
@@ -50,6 +51,7 @@ public class ModIDs {
 	public static int SCEPTRE_OF_FIRE_CHARGING_ID;
 	public static int SCEPTRE_OF_LIGHTNING_ID;
 	public static int SCEPTRE_CAP_ID;
+	public static int WITHER_SHRUB_SEEDS_ID;
 
 	// Armour
 	public static int BLAZE_HELMET_ID;

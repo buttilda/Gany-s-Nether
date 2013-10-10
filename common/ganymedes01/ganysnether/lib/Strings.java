@@ -27,6 +27,7 @@ public class Strings {
 	public static final String COLOURED_QUARTZ_PILLARS_NAME = "colouredQuartzPillar";
 	public static final String REPRODUCER_NAME = "reproducer";
 	public static final String UNDERTAKER_NAME = "undertaker";
+	public static final String WITHER_SHRUB_NAME = "witherShrub";
 
 	// Item names
 	public static final String QUARZ_BERRY_SEEDS_NAME = "quarzBerrySeeds";
@@ -52,6 +53,7 @@ public class Strings {
 	public static final String SCEPTRE_OF_FIRE_CHARGING_NAME = "sceptreOfFireCharging";
 	public static final String SCEPTRE_OF_LIGHTNING_NAME = "sceptreOfLightning";
 	public static final String SCEPTRE_CAP_NAME = "sceptreCap";
+	public static final String WITHER_SHRUB_SEEDS_NAME = "witherShrubSeeds";
 
 	// Others
 	public static final String SHOULD_GENERATE_CROPS = "shouldGenerateCrops";

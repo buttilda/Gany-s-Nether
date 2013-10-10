@@ -22,6 +22,7 @@ item.ganysnether.sceptreOfLightning.name=Sceptre of Lightning
 item.ganysnether.sceptreCap_0.name=Fire Charging Cap
 item.ganysnether.sceptreCap_1.name=Lightning Cap
 item.ganysnether.sceptreCap_2.name=Concealment Cap
+item.ganysnether.witherShrubSeeds.name=Wither Shrub Seeds
 
 item.ganysnether.blazeHelmet.name=Blaze Helmet
 item.ganysnether.blazeChestplate.name=Blaze Chestplate
@@ -41,6 +42,7 @@ tile.ganysnether.volcanicFurnace.name=Volcanic Furnace
 tile.ganysnether.denseLavaCell.name=Dense Lava Cell
 tile.ganysnether.reproducer.name=Reproducer
 tile.ganysnether.undertaker.name=Undertaker
+tile.ganysnether.witherShrub.name=Wither Shrub
 
 tile.ganysnether.glowBoxBlack.name=Black Glow Box
 tile.ganysnether.glowBoxRed.name=Red Glow Box

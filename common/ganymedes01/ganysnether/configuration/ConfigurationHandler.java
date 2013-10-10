@@ -1,7 +1,12 @@
 package ganymedes01.ganysnether.configuration;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.blocks.WitherShrub;
 import ganymedes01.ganysnether.core.utils.IdGenerator;
+import ganymedes01.ganysnether.items.BaseballBat;
+import ganymedes01.ganysnether.items.SceptreOfConcealment;
+import ganymedes01.ganysnether.items.SceptreOfFireCharging;
+import ganymedes01.ganysnether.items.SceptreOfLightning;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
@@ -60,6 +65,7 @@ public class ConfigurationHandler {
 				ModIDs.COLOURED_QUARTZ_PILLARS_IDS[i] = configBlock(Strings.COLOURED_QUARTZ_PILLARS_NAME + i);
 			ModIDs.REPRODUCER_ID = configBlock(Strings.REPRODUCER_NAME);
 			ModIDs.UNDERTAKER_ID = configBlock(Strings.UNDERTAKER_NAME);
+			ModIDs.WITHER_SHRUB_ID = configBlock(Strings.WITHER_SHRUB_NAME);
 
 			// Stairs
 			for (int i = 0; i < ModIDs.COLOURED_QUARTZ_STAIRS_IDS.length; i++)
@@ -91,14 +97,16 @@ public class ConfigurationHandler {
 			ModIDs.SCEPTRE_OF_FIRE_CHARGING_ID = configItem(Strings.SCEPTRE_OF_FIRE_CHARGING_NAME);
 			ModIDs.SCEPTRE_OF_LIGHTNING_ID = configItem(Strings.SCEPTRE_OF_LIGHTNING_NAME);
 			ModIDs.SCEPTRE_CAP_ID = configItem(Strings.SCEPTRE_CAP_NAME);
+			ModIDs.WITHER_SHRUB_SEEDS_ID = configItem(Strings.WITHER_SHRUB_SEEDS_NAME);
 
 			// Others
-			GanysNether.sceptreOfConcealmentDurability = configuration.get("Durability", Strings.SCEPTRE_OF_CONCEALMENT_NAME, 128).getInt(128);
-			GanysNether.sceptreOfLightningDurability = configuration.get("Durability", Strings.SCEPTRE_OF_LIGHTNING_NAME, 128).getInt(128);
-			GanysNether.sceptreOfFireCharging = configuration.get("Durability", Strings.SCEPTRE_OF_FIRE_CHARGING_NAME, 32).getInt(32);
-			GanysNether.baseballBatDurability = configuration.get("Durability", Strings.BASEBALL_BAT_NAME, 256).getInt(256);
+			GanysNether.sceptreOfConcealmentDurability = configuration.get("Durability", Strings.SCEPTRE_OF_CONCEALMENT_NAME, SceptreOfConcealment.DEFAULT_DUR).getInt(SceptreOfConcealment.DEFAULT_DUR);
+			GanysNether.sceptreOfLightningDurability = configuration.get("Durability", Strings.SCEPTRE_OF_LIGHTNING_NAME, SceptreOfLightning.DEFAULT_DUR).getInt(SceptreOfLightning.DEFAULT_DUR);
+			GanysNether.sceptreOfFireCharging = configuration.get("Durability", Strings.SCEPTRE_OF_FIRE_CHARGING_NAME, SceptreOfFireCharging.DEFAULT_DUR).getInt(SceptreOfFireCharging.DEFAULT_DUR);
+			GanysNether.baseballBatDurability = configuration.get("Durability", Strings.BASEBALL_BAT_NAME, BaseballBat.DEFAULT_DUR).getInt(BaseballBat.DEFAULT_DUR);
 			GanysNether.shouldGenerateCrops = configuration.get("Others", Strings.SHOULD_GENERATE_CROPS, true).getBoolean(true);
 			GanysNether.shouldDoVersionCheck = configuration.get("Others", Strings.SHOULD_DO_VERSION_CHECK, true).getBoolean(true);
+			GanysNether.chanceOfGrowingHead = configuration.get("Others", "Chances of growing head for Wither Shrub. e.g.: X means chance of 1 in X", WitherShrub.DEFAULT_CHANCE).getInt(WitherShrub.DEFAULT_CHANCE);
 
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");

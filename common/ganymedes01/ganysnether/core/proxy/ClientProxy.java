@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.core.proxy;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.client.renderer.block.BlockWitherShrubRender;
 import ganymedes01.ganysnether.client.renderer.entity.EntityLightningBallRenderer;
 import ganymedes01.ganysnether.client.renderer.item.ItemSoulChestRender;
 import ganymedes01.ganysnether.client.renderer.tileentity.TileEntitySoulChestRender;
@@ -33,6 +34,8 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenderers() {
 		MinecraftForgeClient.registerItemRenderer(ModBlocks.soulChest.blockID, new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.SOUL_CHEST_NAME))));
 		MinecraftForgeClient.registerItemRenderer(ModBlocks.undertaker.blockID, new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.UNDERTAKER_NAME))));
+
+		RenderingRegistry.registerBlockHandler(ganymedes01.ganysnether.lib.RenderIDs.WITHER_SHRUB, new BlockWitherShrubRender());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityLightningBall.class, new EntityLightningBallRenderer());
 	}

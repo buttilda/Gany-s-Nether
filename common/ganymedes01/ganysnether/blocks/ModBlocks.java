@@ -37,6 +37,7 @@ public class ModBlocks {
 	public static Block[] colouredQuartzPillar = new Block[4];
 	public static Block reproducer;
 	public static Block undertaker;
+	public static Block witherShrub;
 
 	public static void init() {
 		tilledNetherrack = new TilledNetherrack();
@@ -58,6 +59,8 @@ public class ModBlocks {
 			colouredQuartzPillar[i] = new ColouredQuartzPillar(i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_PILLARS_NAME) + i);
 		reproducer = new Reproducer();
 		undertaker = new Undertaker();
+		witherShrub = new WitherShrub();
+
 		registerNames();
 	}
 
@@ -81,5 +84,6 @@ public class ModBlocks {
 			GameRegistry.registerBlock(colouredQuartzPillar[i], ItemColouredQuartzPillars.class, Strings.COLOURED_QUARTZ_PILLARS_NAME + i);
 		GameRegistry.registerBlock(reproducer, Strings.REPRODUCER_NAME);
 		GameRegistry.registerBlock(undertaker, Strings.UNDERTAKER_NAME);
+		GameRegistry.registerBlock(witherShrub, Strings.WITHER_SHRUB_NAME);
 	}
 }
