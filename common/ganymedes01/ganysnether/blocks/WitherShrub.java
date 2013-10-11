@@ -47,7 +47,6 @@ public class WitherShrub extends NetherCrop {
 		if (world.isRemote)
 			return;
 		int random = rand.nextInt(DEFAULT_CHANCE);
-		System.out.println(random);
 		if (random == DEFAULT_CHANCE / 2 && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z))) {
 			int meta = world.getBlockMetadata(x, y, z);
 
@@ -160,6 +159,12 @@ public class WitherShrub extends NetherCrop {
 	@Override
 	public int getRenderType() {
 		return RenderIDs.WITHER_SHRUB;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int idPicked(World world, int x, int y, int z) {
+		return ModItems.witherShrubSeeds.itemID;
 	}
 
 	@Override
