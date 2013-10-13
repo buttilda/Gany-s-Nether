@@ -32,10 +32,15 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class CommonProxy implements IGuiHandler {
 
 	public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileEntitySoulChest.class, Utils.getUnlocalizedName(Strings.SOUL_CHEST_NAME));
-		GameRegistry.registerTileEntity(TileEntityVolcanicFurnace.class, Utils.getUnlocalizedName(Strings.VOLCANIC_FURNACE_NAME));
-		GameRegistry.registerTileEntity(TileEntityReproducer.class, Utils.getUnlocalizedName(Strings.REPRODUCER_NAME));
-		GameRegistry.registerTileEntity(TileEntityUndertaker.class, Utils.getUnlocalizedName(Strings.UNDERTAKER_NAME));
+//		GameRegistry.registerTileEntity(TileEntitySoulChest.class, Utils.getUnlocalizedName(Strings.SOUL_CHEST_NAME));
+//		GameRegistry.registerTileEntity(TileEntityVolcanicFurnace.class, Utils.getUnlocalizedName(Strings.VOLCANIC_FURNACE_NAME));
+//		GameRegistry.registerTileEntity(TileEntityReproducer.class, Utils.getUnlocalizedName(Strings.REPRODUCER_NAME));
+//		GameRegistry.registerTileEntity(TileEntityUndertaker.class, Utils.getUnlocalizedName(Strings.UNDERTAKER_NAME));
+
+		GameRegistry.registerTileEntity(TileEntitySoulChest.class, Strings.SOUL_CHEST_NAME);
+		GameRegistry.registerTileEntity(TileEntityVolcanicFurnace.class, Strings.VOLCANIC_FURNACE_NAME);
+		GameRegistry.registerTileEntity(TileEntityReproducer.class, Strings.REPRODUCER_NAME);
+		GameRegistry.registerTileEntity(TileEntityUndertaker.class, Strings.UNDERTAKER_NAME);
 	}
 
 	public void registerEntities() {

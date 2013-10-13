@@ -45,6 +45,9 @@ public class RandomItemStackList {
 		randomItemsList.add(new ItemStack(Block.netherBrick));
 		randomItemsList.add(new ItemStack(Item.netherStalkSeeds, 1 + rand.nextInt(4)));
 		randomItemsList.add(new ItemStack(Block.whiteStone));
+		randomItemsList.add(new ItemStack(Block.wood, 1, 16));
+		randomItemsList.add(new ItemStack(Block.dirt, 1, 16));
+		randomItemsList.add(new ItemStack(Block.sand, 1, 16));
 	}
 
 	public void shuffle() {
