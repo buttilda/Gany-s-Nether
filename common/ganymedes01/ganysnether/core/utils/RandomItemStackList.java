@@ -48,6 +48,7 @@ public class RandomItemStackList {
 		randomItemsList.add(new ItemStack(Block.wood, 1, 16));
 		randomItemsList.add(new ItemStack(Block.dirt, 1, 16));
 		randomItemsList.add(new ItemStack(Block.sand, 1, 16));
+		randomItemsList.add(new ItemStack(Item.seeds, 1, 16));
 	}
 
 	public void shuffle() {
