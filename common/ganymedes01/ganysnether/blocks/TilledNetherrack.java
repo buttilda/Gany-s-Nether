@@ -10,8 +10,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -29,9 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TilledNetherrack extends BlockFarmland {
 
 	@SideOnly(Side.CLIENT)
-	private Icon wetIcon;
-	@SideOnly(Side.CLIENT)
-	private Icon dryIcon;
+	private Icon wetIcon, dryIcon;
 
 	protected TilledNetherrack() {
 		super(ModIDs.TILLED_NETHERRACK_ID);
@@ -57,23 +53,14 @@ public class TilledNetherrack extends BlockFarmland {
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
-		if (!isLavaNearby(world, x + 1, y, z) && !world.canLightningStrikeAt(x, y + 1, z)) {
-			int l = world.getBlockMetadata(x, y, z);
-			if (l > 0)
-				world.setBlockMetadataWithNotify(x, y, z, l - 1, 2);
+		if (!isLavaNearby(world, x, y, z) && !world.canLightningStrikeAt(x, y + 1, z)) {
+			int meta = world.getBlockMetadata(x, y, z);
+			if (meta > 0)
+				world.setBlockMetadataWithNotify(x, y, z, --meta, 2);
 			else if (!isCropsNearby(world, x, y, z))
 				world.setBlock(x, y, z, Block.netherrack.blockID);
 		} else
 			world.setBlockMetadataWithNotify(x, y, z, 7, 2);
-	}
-
-	@Override
-	public void onFallenUpon(World world, int x, int y, int z, Entity entity, float hit) {
-		if (!world.isRemote && world.rand.nextFloat() < hit - 0.5F) {
-			if (!(entity instanceof EntityPlayer) && !world.getGameRules().getGameRuleBooleanValue("mobGriefing"))
-				return;
-			world.setBlock(x, y, z, Block.netherrack.blockID);
-		}
 	}
 
 	@Override
@@ -89,31 +76,30 @@ public class TilledNetherrack extends BlockFarmland {
 		return Block.netherrack.idDropped(0, rand, fortune);
 	}
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public int idPicked(World world, int x, int y, int z) {
-		return Block.netherrack.blockID;
-	}
-
 	private boolean isLavaNearby(World world, int x, int y, int z) {
-		for (int l = x - 4; l <= x + 4; ++l)
-			for (int i1 = y; i1 <= y + 1; ++i1)
-				for (int j1 = z - 4; j1 <= z + 4; ++j1)
-					if (world.getBlockMaterial(l, i1, j1) == Material.lava)
+		for (int i = x - 4; i <= x + 4; i++)
+			for (int j = y; j <= y + 1; j++)
+				for (int k = z - 4; k <= z + 4; k++)
+					if (world.getBlockMaterial(i, j, k) == Material.lava)
 						return true;
 		return false;
 	}
 
 	private boolean isCropsNearby(World world, int x, int y, int z) {
-		byte b0 = 0;
-		for (int l = x - b0; l <= x + b0; ++l)
-			for (int i1 = z - b0; i1 <= z + b0; ++i1) {
-				int j1 = world.getBlockId(l, y + 1, i1);
-				Block plant = blocksList[j1];
-				if (plant instanceof IPlantable && canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) plant))
+		for (int i = x; i <= x; i++)
+			for (int j = z; j <= z; j++) {
+				int blockID = world.getBlockId(i, y + 1, j);
+				Block plant = blocksList[blockID];
+				if (plant instanceof NetherCrop && canSustainPlant(world, x, y, z, ForgeDirection.UP, (NetherCrop) plant))
 					return true;
 			}
 		return false;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int idPicked(World world, int x, int y, int z) {
+		return Block.netherrack.blockID;
 	}
 
 	@Override
@@ -125,7 +111,7 @@ public class TilledNetherrack extends BlockFarmland {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int par1, int par2) {
-		return par1 == 1 ? par2 > 0 ? wetIcon : dryIcon : Block.netherrack.getBlockTextureFromSide(par1);
+	public Icon getIcon(int side, int meta) {
+		return side == 1 ? meta > 0 ? wetIcon : dryIcon : Block.netherrack.getBlockTextureFromSide(side);
 	}
 }
