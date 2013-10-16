@@ -19,27 +19,37 @@ import net.minecraft.item.ItemStack;
 public class ContainerMagmaticCentrifuge extends Container {
 
 	private TileEntityMagmaticCentrifuge centrifuge;
-	private float angle;
-	private int posX, posY;
+	private final int centerX = 87 - 7, centerY = 78 - 7;
+	private final int posX1, posY1, posX2, posY2;
 
 	public ContainerMagmaticCentrifuge(InventoryPlayer inventory, TileEntityMagmaticCentrifuge tile) {
 		centrifuge = tile;
-		angle = 0;
-		addSlotToContainer(new MonsterPlacerSlot(tile, 0, 36, 33));
-		addSlotToContainer(new MonsterPlacerSlot(tile, 1, 72, 33));
-		addSlotToContainer(new InvalidSlot(tile, 2, 130, 33));
-		addSlotToContainer(new Slot(tile, 3, 54, 15));
-		addSlotToContainer(new Slot(tile, 4, 54, 51));
+		addSlotToContainer(new FullContainerSlot(tile, 0, 155, 31));
+		addSlotToContainer(new EmptyContainerSlot(tile, 1, 155, 111));
 
-		for (int i = 0; i < 3; ++i)
-			for (int j = 0; j < 9; ++j)
-				addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+		addSlotToContainer(new Slot(tile, 2, 30, 69));
+		addSlotToContainer(new Slot(tile, 3, 128, 69));
 
-		for (int i = 0; i < 9; ++i)
-			addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 142));
+		addSlotToContainer(new InvalidSlot(tile, 4, 71, 62));
+		addSlotToContainer(new InvalidSlot(tile, 5, 71 + 18, 62));
+		addSlotToContainer(new InvalidSlot(tile, 6, 71, 62 + 18));
+		addSlotToContainer(new InvalidSlot(tile, 7, 71 + 18, 62 + 18));
 
-		posX = ((Slot) inventorySlots.get(0)).xDisplayPosition;
-		posY = ((Slot) inventorySlots.get(0)).yDisplayPosition;
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 9; j++)
+				addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 156 + i * 18));
+
+		for (int i = 0; i < 9; i++)
+			addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 214));
+
+		posX1 = ((Slot) inventorySlots.get(2)).xDisplayPosition;
+		posY1 = ((Slot) inventorySlots.get(2)).yDisplayPosition;
+		posX2 = ((Slot) inventorySlots.get(3)).xDisplayPosition;
+		posY2 = ((Slot) inventorySlots.get(3)).yDisplayPosition;
+	}
+
+	public TileEntityMagmaticCentrifuge getCentrifuge() {
+		return centrifuge;
 	}
 
 	@Override
@@ -50,14 +60,16 @@ public class ContainerMagmaticCentrifuge extends Container {
 	}
 
 	@Override
-	public void updateProgressBar(int i, int j) {
-		centrifuge.getGUIData(i, j);
+	public void updateProgressBar(int id, int value) {
+		centrifuge.getGUIData(id, value);
 
-		((Slot) inventorySlots.get(0)).xDisplayPosition = (int) (posX * Math.cos(angle * (Math.PI / 180)) - posY * Math.sin(angle * (Math.PI / 180)));
-		((Slot) inventorySlots.get(0)).yDisplayPosition = (int) (posX * Math.sin(angle * (Math.PI / 180)) + posY * Math.cos(angle * (Math.PI / 180)));
-		angle++;
-		if (angle >= 360)
-			angle = 0;
+		float angle = centrifuge.getAngle();
+
+		((Slot) inventorySlots.get(2)).xDisplayPosition = (int) (centerX + (posX1 - centerX) * Math.cos(angle) - (posY1 - centerY) * Math.sin(angle));
+		((Slot) inventorySlots.get(2)).yDisplayPosition = (int) (centerY + (posX1 - centerX) * Math.sin(angle) + (posY1 - centerY) * Math.cos(angle));
+
+		((Slot) inventorySlots.get(3)).xDisplayPosition = (int) (centerX + (posX2 - centerX) * Math.cos(angle) - (posY2 - centerY) * Math.sin(angle));
+		((Slot) inventorySlots.get(3)).yDisplayPosition = (int) (centerY + (posX2 - centerX) * Math.sin(angle) + (posY2 - centerY) * Math.cos(angle));
 	}
 
 	@Override

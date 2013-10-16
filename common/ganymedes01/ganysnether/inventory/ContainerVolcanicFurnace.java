@@ -23,7 +23,7 @@ public class ContainerVolcanicFurnace extends Container {
 	public ContainerVolcanicFurnace(InventoryPlayer inventory, TileEntityVolcanicFurnace tile) {
 		furnace = tile;
 		addSlotToContainer(new VolcanicFurnaceSlot(tile, 0, 48, 36));
-		addSlotToContainer(new ContainerSlot(tile, 1, 136, 17));
+		addSlotToContainer(new EmptyContainerSlot(tile, 1, 136, 17));
 		addSlotToContainer(new InvalidSlot(tile, 2, 136, 53));
 
 		for (int i = 0; i < 3; i++)
@@ -42,8 +42,8 @@ public class ContainerVolcanicFurnace extends Container {
 	}
 
 	@Override
-	public void updateProgressBar(int i, int j) {
-		furnace.getGUIData(i, j);
+	public void updateProgressBar(int id, int value) {
+		furnace.getGUIData(id, value);
 	}
 
 	@Override

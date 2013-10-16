@@ -19,27 +19,21 @@ import net.minecraft.item.ItemStack;
 public class ContainerReproducer extends Container {
 
 	private TileEntityReproducer reproducer;
-	private float angle;
-	private int posX, posY;
 
 	public ContainerReproducer(InventoryPlayer inventory, TileEntityReproducer tile) {
 		reproducer = tile;
-		angle = 0;
 		addSlotToContainer(new MonsterPlacerSlot(tile, 0, 36, 33));
 		addSlotToContainer(new MonsterPlacerSlot(tile, 1, 72, 33));
 		addSlotToContainer(new InvalidSlot(tile, 2, 130, 33));
 		addSlotToContainer(new Slot(tile, 3, 54, 15));
 		addSlotToContainer(new Slot(tile, 4, 54, 51));
 
-		for (int i = 0; i < 3; ++i)
-			for (int j = 0; j < 9; ++j)
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 9; j++)
 				addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 
-		for (int i = 0; i < 9; ++i)
+		for (int i = 0; i < 9; i++)
 			addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 142));
-
-		posX = ((Slot) inventorySlots.get(0)).xDisplayPosition;
-		posY = ((Slot) inventorySlots.get(0)).yDisplayPosition;
 	}
 
 	@Override
@@ -50,15 +44,8 @@ public class ContainerReproducer extends Container {
 	}
 
 	@Override
-	public void updateProgressBar(int i, int j) {
-		reproducer.getGUIData(i, j);
-
-		((Slot) inventorySlots.get(0)).xDisplayPosition = (int) (posX * Math.cos(angle * (Math.PI / 180)) - posY * Math.sin(angle * (Math.PI / 180)));
-		((Slot) inventorySlots.get(0)).yDisplayPosition = (int) (posX * Math.sin(angle * (Math.PI / 180)) + posY * Math.cos(angle * (Math.PI / 180)));
-		angle++;
-		if (angle >= 360)
-			angle = 0;
-		System.out.println(angle);
+	public void updateProgressBar(int id, int value) {
+		reproducer.getGUIData(id, value);
 	}
 
 	@Override

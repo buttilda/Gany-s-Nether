@@ -80,7 +80,7 @@ public class GuiGanysNether extends GuiContainer {
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 	}
 
-	protected void displayGauge(Fluid fluid, int j, int k, int line, int col, int scaled) {
+	protected void displayGauge(Fluid fluid, int j, int k, int u, int v, int scaled) {
 		int start = 0;
 		mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 		while (true) {
@@ -92,7 +92,7 @@ public class GuiGanysNether extends GuiContainer {
 				x = scaled;
 				scaled = 0;
 			}
-			drawTexturedModelRectFromIcon(j + col, k + line + 58 - x - start, fluid.getStillIcon(), 16, 16 - (16 - x));
+			drawTexturedModelRectFromIcon(j + u, k + v + 52 - x - start, fluid.getStillIcon(), 16, 16 - (16 - x));
 			start += 16;
 			if (x == 0 || scaled == 0)
 				break;

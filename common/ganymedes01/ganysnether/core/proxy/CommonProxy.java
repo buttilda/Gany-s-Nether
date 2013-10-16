@@ -93,7 +93,7 @@ public class CommonProxy implements IGuiHandler {
 				return new GuiUndertaker(player.inventory, tileUndertaker);
 			case GUIsID.MAGMATIC_CENTRIFUGE:
 				TileEntityMagmaticCentrifuge tileCentrifuge = (TileEntityMagmaticCentrifuge) tile;
-				return new GuiMagmaticCentrifuge(player.inventory, tileCentrifuge);
+				return new GuiMagmaticCentrifuge(new ContainerMagmaticCentrifuge(player.inventory, tileCentrifuge));
 			default:
 				return null;
 		}

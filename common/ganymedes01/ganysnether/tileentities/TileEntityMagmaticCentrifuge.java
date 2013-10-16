@@ -32,6 +32,9 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	private ItemStack[] inventory = new ItemStack[8];
 	private FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
 
+	private int angle = 0;
+	private int turnsCount = 0;
+
 	private final int FULL_BUCKET_SLOT = 0;
 	private final int EMPTY_BUCKET_SLOT = 1;
 	private final int MATERIAL_SLOT_1 = 2;
@@ -49,8 +52,20 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	public void updateEntity() {
 		if (worldObj.isRemote)
 			return;
+		if (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord))
+			return;
+
+		angle++;
+		if (angle >= 360) {
+			angle = 0;
+			turnsCount++;
+		}
 
 		fillTankFromContainer();
+		if (turnsCount >= 3) {
+			centrifuge();
+			turnsCount = 0;
+		}
 	}
 
 	private void fillTankFromContainer() {
@@ -60,15 +75,20 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 				for (FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData())
 					if (data != null && inventory[FULL_BUCKET_SLOT] != null)
 						if (data.filledContainer.itemID == inventory[FULL_BUCKET_SLOT].itemID && data.filledContainer.getItemDamage() == inventory[FULL_BUCKET_SLOT].getItemDamage()) {
-							if (inventory[EMPTY_BUCKET_SLOT] != null && inventory[EMPTY_BUCKET_SLOT].itemID == data.emptyContainer.itemID && inventory[EMPTY_BUCKET_SLOT].getItemDamage() == data.emptyContainer.getItemDamage())
-								inventory[EMPTY_BUCKET_SLOT].stackSize++;
-							else
+							if (inventory[EMPTY_BUCKET_SLOT] != null) {
+								if (inventory[EMPTY_BUCKET_SLOT].itemID == data.emptyContainer.itemID && inventory[EMPTY_BUCKET_SLOT].getItemDamage() == data.emptyContainer.getItemDamage())
+									inventory[EMPTY_BUCKET_SLOT].stackSize++;
+							} else
 								inventory[EMPTY_BUCKET_SLOT] = data.emptyContainer.copy();
 							inventory[FULL_BUCKET_SLOT].stackSize--;
 							if (inventory[FULL_BUCKET_SLOT].stackSize <= 0)
 								inventory[FULL_BUCKET_SLOT] = null;
 						}
 			}
+	}
+
+	private void centrifuge() {
+		// TODO
 	}
 
 	@Override
@@ -152,7 +172,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return slot == EMPTY_BUCKET_SLOT ? FluidContainerRegistry.isEmptyContainer(stack) : slot == FULL_BUCKET_SLOT ? FluidContainerRegistry.isFilledContainer(stack) : slot == MATERIAL_SLOT_1 || slot == MATERIAL_SLOT_2;
+		return slot == FULL_BUCKET_SLOT ? FluidContainerRegistry.isFilledContainer(stack) : slot == MATERIAL_SLOT_1 || slot == MATERIAL_SLOT_2;
 	}
 
 	@Override
@@ -162,7 +182,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 
 	@Override
 	public boolean canExtractItem(int slot, ItemStack stack, int side) {
-		return slot != MATERIAL_SLOT_1 || slot != MATERIAL_SLOT_2 || slot != EMPTY_BUCKET_SLOT;
+		return slot != MATERIAL_SLOT_1 || slot != MATERIAL_SLOT_2 || slot != FULL_BUCKET_SLOT;
 	}
 
 	@Override
@@ -179,6 +199,8 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 			if (b0 >= 0 && b0 < inventory.length)
 				inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 		}
+
+		angle = data.getInteger("angle");
 	}
 
 	@Override
@@ -195,6 +217,8 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 			}
 
 		data.setTag("Items", nbttaglist);
+
+		data.setInteger("angle", angle);
 	}
 
 	public int getScaledFluidAmount(int scale) {
@@ -205,6 +229,10 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 		return tank.getFluidAmount();
 	}
 
+	public float getAngle() {
+		return (float) (angle * (Math.PI / 180));
+	}
+
 	public void getGUIData(int id, int value) {
 		switch (id) {
 			case 1:
@@ -213,11 +241,15 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 				else
 					tank.getFluid().amount = value;
 				break;
+			case 2:
+				angle = value;
+				break;
 		}
 	}
 
 	public void sendGUIData(ContainerMagmaticCentrifuge containerMagmaticCentrifuge, ICrafting craft) {
 		craft.sendProgressBarUpdate(containerMagmaticCentrifuge, 1, tank.getFluid() != null ? tank.getFluid().amount : 0);
+		craft.sendProgressBarUpdate(containerMagmaticCentrifuge, 2, angle);
 	}
 
 	@Override

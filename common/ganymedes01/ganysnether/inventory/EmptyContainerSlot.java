@@ -12,9 +12,9 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
  * 
  */
 
-public class ContainerSlot extends Slot {
+public class EmptyContainerSlot extends Slot {
 
-	public ContainerSlot(IInventory inventory, int slot, int posX, int posY) {
+	public EmptyContainerSlot(IInventory inventory, int slot, int posX, int posY) {
 		super(inventory, slot, posX, posY);
 	}
 

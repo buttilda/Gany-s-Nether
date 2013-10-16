@@ -1,5 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
+import java.util.Random;
+
 import net.minecraft.block.BlockCrops;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -32,10 +34,20 @@ public class NetherCrop extends BlockCrops {
 	}
 
 	@Override
+	public void updateTick(World world, int x, int y, int z, Random rand) {
+		checkFlowerChange(world, x, y, z);
+
+		int meta = world.getBlockMetadata(x, y, z);
+		if (meta < 7)
+			if (rand.nextInt(40) == 20)
+				world.setBlockMetadataWithNotify(x, y, z, ++meta, 3);
+	}
+
+	@Override
 	public void fertilize(World world, int x, int y, int z) {
 		int meta = world.getBlockMetadata(x, y, z);
 
 		if (meta < 7)
-			world.setBlockMetadataWithNotify(x, y, z, ++meta, 2);
+			world.setBlockMetadataWithNotify(x, y, z, ++meta, 3);
 	}
 }

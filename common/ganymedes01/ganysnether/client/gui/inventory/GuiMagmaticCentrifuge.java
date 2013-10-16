@@ -4,7 +4,7 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -25,11 +25,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GuiMagmaticCentrifuge extends GuiGanysNether {
 
 	private TileEntityMagmaticCentrifuge centrifuge;
+	private ContainerMagmaticCentrifuge container;
 	private int tankXMin, tankYMin, tankXMax, tankYMax;
 
-	public GuiMagmaticCentrifuge(InventoryPlayer inventory, TileEntityMagmaticCentrifuge tile) {
-		super(new ContainerMagmaticCentrifuge(inventory, tile));
-		centrifuge = tile;
+	public GuiMagmaticCentrifuge(ContainerMagmaticCentrifuge container) {
+		super(container);
+		this.container = container;
+		centrifuge = container.getCentrifuge();
+		ySize = 238;
 	}
 
 	@Override
@@ -46,14 +49,17 @@ public class GuiMagmaticCentrifuge extends GuiGanysNether {
 		int k = (height - ySize) / 2;
 
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
-		displayGauge(FluidRegistry.LAVA, j, k, 11, 104, centrifuge.getScaledFluidAmount(52));
+
+		drawTexturedModalRect(j + ((Slot) container.inventorySlots.get(2)).xDisplayPosition - 1, k + ((Slot) container.inventorySlots.get(2)).yDisplayPosition - 1, 176, 3, 18, 18);
+		drawTexturedModalRect(j + ((Slot) container.inventorySlots.get(3)).xDisplayPosition - 1, k + ((Slot) container.inventorySlots.get(3)).yDisplayPosition - 1, 176, 3, 18, 18);
+		displayGauge(FluidRegistry.LAVA, j, k, 155, 53, centrifuge.getScaledFluidAmount(52));
 	}
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float f) {
 		super.drawScreen(mouseX, mouseY, f);
-		tankXMin = (width - xSize) / 2 + 104;
-		tankYMin = (height - ySize) / 2 + 17;
+		tankXMin = (width - xSize) / 2 + 156;
+		tankYMin = (height - ySize) / 2 + 53;
 		tankXMax = tankXMin + 16;
 		tankYMax = tankYMin + 52;
 		if (mouseX >= tankXMin && mouseX <= tankXMax)
