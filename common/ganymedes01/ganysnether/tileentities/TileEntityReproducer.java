@@ -166,7 +166,7 @@ public class TileEntityReproducer extends TileEntity implements ISidedInventory 
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
-		return side == 0 ? new int[] { 2 } : side == 1 ? new int[] { 0 } : new int[] { 1 };
+		return side == 0 ? new int[] { RESULT_SLOT } : side == 1 ? new int[] { BASE_SLOT, REPLACE_SLOT } : new int[] { BASE_DROP_SLOT, REPLACE_DROP_SLOT };
 	}
 
 	@Override
@@ -245,7 +245,7 @@ public class TileEntityReproducer extends TileEntity implements ISidedInventory 
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return slot == 2 ? false : stack != null && stack.getItem() instanceof ItemMonsterPlacer;
+		return slot == RESULT_SLOT ? false : slot == BASE_SLOT || slot == RESULT_SLOT ? stack != null && stack.getItem() instanceof ItemMonsterPlacer : true;
 	}
 
 	@Override
@@ -264,7 +264,7 @@ public class TileEntityReproducer extends TileEntity implements ISidedInventory 
 		NBTTagList nbttaglist = data.getTagList("Items");
 		inventory = new ItemStack[getSizeInventory()];
 
-		for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
 			byte b0 = nbttagcompound1.getByte("Slot");
 
@@ -278,7 +278,7 @@ public class TileEntityReproducer extends TileEntity implements ISidedInventory 
 	public void writeToNBT(NBTTagCompound data) {
 		super.writeToNBT(data);
 		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < inventory.length; ++i)
+		for (int i = 0; i < inventory.length; i++)
 			if (inventory[i] != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);

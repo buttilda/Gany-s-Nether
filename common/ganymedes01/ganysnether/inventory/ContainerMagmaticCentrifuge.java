@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.inventory;
 
-import ganymedes01.ganysnether.tileentities.TileEntityReproducer;
+import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -16,14 +16,14 @@ import net.minecraft.item.ItemStack;
  * 
  */
 
-public class ContainerReproducer extends Container {
+public class ContainerMagmaticCentrifuge extends Container {
 
-	private TileEntityReproducer reproducer;
+	private TileEntityMagmaticCentrifuge centrifuge;
 	private float angle;
 	private int posX, posY;
 
-	public ContainerReproducer(InventoryPlayer inventory, TileEntityReproducer tile) {
-		reproducer = tile;
+	public ContainerMagmaticCentrifuge(InventoryPlayer inventory, TileEntityMagmaticCentrifuge tile) {
+		centrifuge = tile;
 		angle = 0;
 		addSlotToContainer(new MonsterPlacerSlot(tile, 0, 36, 33));
 		addSlotToContainer(new MonsterPlacerSlot(tile, 1, 72, 33));
@@ -46,19 +46,18 @@ public class ContainerReproducer extends Container {
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 		for (int i = 0; i < crafters.size(); i++)
-			reproducer.sendGUIData(this, (ICrafting) crafters.get(i));
+			centrifuge.sendGUIData(this, (ICrafting) crafters.get(i));
 	}
 
 	@Override
 	public void updateProgressBar(int i, int j) {
-		reproducer.getGUIData(i, j);
+		centrifuge.getGUIData(i, j);
 
 		((Slot) inventorySlots.get(0)).xDisplayPosition = (int) (posX * Math.cos(angle * (Math.PI / 180)) - posY * Math.sin(angle * (Math.PI / 180)));
 		((Slot) inventorySlots.get(0)).yDisplayPosition = (int) (posX * Math.sin(angle * (Math.PI / 180)) + posY * Math.cos(angle * (Math.PI / 180)));
 		angle++;
 		if (angle >= 360)
 			angle = 0;
-		System.out.println(angle);
 	}
 
 	@Override
@@ -75,8 +74,8 @@ public class ContainerReproducer extends Container {
 			ItemStack slotItemStack = slot.getStack();
 			itemStack = slotItemStack.copy();
 
-			if (slotIndex < 5) {
-				if (!mergeItemStack(slotItemStack, 5, inventorySlots.size(), true))
+			if (slotIndex < centrifuge.getSizeInventory()) {
+				if (!mergeItemStack(slotItemStack, centrifuge.getSizeInventory(), inventorySlots.size(), true))
 					return null;
 			} else if (slotItemStack.getItem() instanceof ItemMonsterPlacer) {
 				if (!mergeItemStack(slotItemStack, 0, 2, false))

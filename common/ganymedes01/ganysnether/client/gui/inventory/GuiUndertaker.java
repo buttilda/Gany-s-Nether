@@ -4,7 +4,6 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerUndertaker;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -22,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 
 @SideOnly(Side.CLIENT)
-public class GuiUndertaker extends GuiContainer {
+public class GuiUndertaker extends GuiGanysNether {
 
 	TileEntityUndertaker undertaker;
 
@@ -33,13 +32,13 @@ public class GuiUndertaker extends GuiContainer {
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-		fontRenderer.drawString(StatCollector.translateToLocal(undertaker.getInvName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(undertaker.getInvName())) / 2, 6, 4210752);
-		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		fontRenderer.drawString(StatCollector.translateToLocal(undertaker.getInvName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(undertaker.getInvName())) / 2, 6, BLACK);
+		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
+	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.UNDERTAKER_NAME)));
 		int x = (width - xSize) / 2;

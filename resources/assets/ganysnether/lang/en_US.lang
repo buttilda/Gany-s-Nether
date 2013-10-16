@@ -43,6 +43,7 @@ tile.ganysnether.denseLavaCell.name=Dense Lava Cell
 tile.ganysnether.reproducer.name=Reproducer
 tile.ganysnether.undertaker.name=Undertaker
 tile.ganysnether.witherShrub.name=Wither Shrub
+tile.ganysnether.magmaticCentrifuge.name=Magmatic Centrifuge
 
 tile.ganysnether.glowBoxBlack.name=Black Glow Box
 tile.ganysnether.glowBoxRed.name=Red Glow Box
@@ -134,6 +135,7 @@ container.ganysnether:volcanicFurnace=Volcanic Furnace
 container.ganysnether:reproducer=Reproducer
 container.ganysnether:soulChest=Soul Chest
 container.ganysnether:undertaker=Undertaker
+container.ganysnether:magmaticCentrifuge=Magmatic Centrifuge
 fluidtogo=Fluid to go:
 
 # Creative Tab localizations

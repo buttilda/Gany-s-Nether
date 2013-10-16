@@ -90,7 +90,7 @@ public class VolcanicFurnace extends BlockContainer {
 		if (!keepFurnaceInventory) {
 			TileEntityVolcanicFurnace tile = (TileEntityVolcanicFurnace) world.getBlockTileEntity(x, y, z);
 			if (tile != null) {
-				for (int i = 0; i < tile.getSizeInventory(); ++i) {
+				for (int i = 0; i < tile.getSizeInventory(); i++) {
 					ItemStack stack = tile.getStackInSlot(i);
 					if (stack != null)
 						Utils.dropStack(world, x, y, z, stack);

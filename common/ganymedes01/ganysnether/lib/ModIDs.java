@@ -30,6 +30,8 @@ public class ModIDs {
 	public static int REPRODUCER_ID;
 	public static int UNDERTAKER_ID;
 	public static int WITHER_SHRUB_ID;
+	public static int SOUL_GLASS_PANE_ID;
+	public static int MAGMATIC_CENTRIFUGE_ID;
 
 	// Items
 	public static int QUARZ_BERRY_SEEDS_ID;
@@ -58,4 +60,7 @@ public class ModIDs {
 	public static int BLAZE_CHESTPLATE_ID;
 	public static int BLAZE_LEGGINGS_ID;
 	public static int BLAZE_BOOTS_ID;
+
+	// Entities
+	public static final int ENTITY_LIGHTNING_BALL_ID = 0;
 }

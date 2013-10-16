@@ -39,7 +39,7 @@ import cpw.mods.fml.relauncher.Side;
  */
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES)
-@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = true)
 public class GanysNether {
 
 	@Instance(Reference.MOD_ID)
@@ -65,6 +65,8 @@ public class GanysNether {
 			TickRegistry.registerTickHandler(new VersionCheckTickHandler(), Side.CLIENT);
 		}
 
+		proxy.registerEntities();
+
 		ModBlocks.init();
 		ModItems.init();
 		ModRecipes.init();
@@ -77,7 +79,6 @@ public class GanysNether {
 		MinecraftForge.EVENT_BUS.register(new EntityDeathEvent());
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
-		proxy.registerEntities();
 		if (shouldGenerateCrops)
 			GameRegistry.registerWorldGenerator(new NetherWorldGen());
 		BuildCraftFacadeManager.registerFacades();

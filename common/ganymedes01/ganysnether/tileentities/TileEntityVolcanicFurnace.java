@@ -315,7 +315,7 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 		NBTTagList nbttaglist = data.getTagList("Items");
 		furnaceItemStacks = new ItemStack[getSizeInventory()];
 
-		for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
 			byte b0 = nbttagcompound1.getByte("Slot");
 
@@ -335,7 +335,7 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 		data.setInteger("currentItemMeltTime", currentItemMeltTime);
 		NBTTagList nbttaglist = new NBTTagList();
 
-		for (int i = 0; i < furnaceItemStacks.length; ++i)
+		for (int i = 0; i < furnaceItemStacks.length; i++)
 			if (furnaceItemStacks[i] != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);

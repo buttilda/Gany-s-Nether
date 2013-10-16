@@ -28,6 +28,8 @@ public class Strings {
 	public static final String REPRODUCER_NAME = "reproducer";
 	public static final String UNDERTAKER_NAME = "undertaker";
 	public static final String WITHER_SHRUB_NAME = "witherShrub";
+	public static final String SOUL_GLASS_PANE_NAME = "soulGlassPane";
+	public static final String MAGMATIC_CENTRIFUGE_NAME = "magmaticCentrifuge";
 
 	// Item names
 	public static final String QUARZ_BERRY_SEEDS_NAME = "quarzBerrySeeds";

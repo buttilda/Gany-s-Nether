@@ -27,39 +27,41 @@ public class NetherWorldGen implements IWorldGenerator {
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		if (world.provider.dimensionId == -1)
 			for (int x = 0; x < 16; x++)
-				for (int y = 0; y < 64; y++)
+				for (int y = 20; y < 84; y++)
 					for (int z = 0; z < 16; z++) {
 						int blockX = chunkX * 16 + x;
 						int blockY = y + 1;
 						int blockZ = chunkZ * 16 + z;
 
 						if (rand.nextInt(20) == 10)
-							if (world.getBlockId(blockX, blockY - 1, blockZ) == Block.netherrack.blockID)
-								if (world.isAirBlock(blockX, blockY, blockZ))
-									if (hasLavaNearby(world, blockX, blockY - 1, blockZ))
-										switch (rand.nextInt(4)) {
-											case 0:
-												world.setBlock(blockX, blockY, blockZ, ModBlocks.glowingReed.blockID);
-												if (rand.nextInt(10) == 5)
-													world.setBlock(blockX, blockY + 1, blockZ, ModBlocks.glowingReed.blockID);
-												return;
-											case 1:
-												world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
-												world.setBlock(blockX, blockY, blockZ, ModBlocks.spectreWheat.blockID, rand.nextInt(7), 2);
-												return;
-											case 2:
-												world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
-												world.setBlock(blockX, blockY, blockZ, ModBlocks.quarzBerryBush.blockID, rand.nextInt(7), 2);
-												return;
-											case 3:
-												if (rand.nextInt(50) == 25) {
+							if (!world.isAirBlock(blockX, blockY - 1, blockZ))
+								if (world.getBlockMaterial(blockX, blockY - 1, blockZ) != Material.lava)
+									if (world.isAirBlock(blockX, blockY, blockZ))
+										if (hasLavaNearby(world, blockX, blockY - 1, blockZ))
+											switch (rand.nextInt(4)) {
+												case 0:
+													world.setBlock(blockX, blockY - 1, blockZ, Block.netherrack.blockID);
+													world.setBlock(blockX, blockY, blockZ, ModBlocks.glowingReed.blockID);
+													if (rand.nextInt(10) == 5)
+														world.setBlock(blockX, blockY + 1, blockZ, ModBlocks.glowingReed.blockID);
+													return;
+												case 1:
 													world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
-													world.setBlock(blockX, blockY, blockZ, ModBlocks.witherShrub.blockID, rand.nextInt(6), 2);
-												}
-												return;
-										}
-									else if (rand.nextInt(250) == 125)
-										generateUndertakerWithRandomContents(world, blockX, blockY, blockZ, rand);
+													world.setBlock(blockX, blockY, blockZ, ModBlocks.spectreWheat.blockID, rand.nextInt(7), 2);
+													return;
+												case 2:
+													world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
+													world.setBlock(blockX, blockY, blockZ, ModBlocks.quarzBerryBush.blockID, rand.nextInt(7), 2);
+													return;
+												case 3:
+													if (rand.nextInt(50) == 25) {
+														world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
+														world.setBlock(blockX, blockY, blockZ, ModBlocks.witherShrub.blockID, rand.nextInt(6), 2);
+													}
+													return;
+											}
+										else if (rand.nextInt(250) == 125)
+											generateUndertakerWithRandomContents(world, blockX, blockY, blockZ, rand);
 						continue;
 					}
 	}
@@ -69,12 +71,17 @@ public class NetherWorldGen implements IWorldGenerator {
 	}
 
 	private void generateUndertakerWithRandomContents(World world, int x, int y, int z, Random rand) {
-		world.setBlock(x, y, z, ModBlocks.undertaker.blockID);
-		TileEntityUndertaker undertaker = (TileEntityUndertaker) world.getBlockTileEntity(x, y, z);
-		randomList.shuffle();
-		if (undertaker != null)
-			for (int i = 0; i < 36; i++)
-				if (rand.nextInt(10) == 5)
-					undertaker.setInventorySlotContents(i, randomList.getListItem(rand));
+		if (y < 30)
+			return;
+		if (world.isAirBlock(x, y + 1, z))
+			if (world.isAirBlock(x, y + 2, z)) {
+				world.setBlock(x, y, z, ModBlocks.undertaker.blockID);
+				TileEntityUndertaker undertaker = (TileEntityUndertaker) world.getBlockTileEntity(x, y, z);
+				randomList.shuffle();
+				if (undertaker != null)
+					for (int i = 0; i < 36; i++)
+						if (rand.nextInt(8) == 4)
+							undertaker.setInventorySlotContents(i, randomList.getListItem(rand));
+			}
 	}
 }
