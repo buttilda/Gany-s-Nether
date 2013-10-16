@@ -26,7 +26,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class SceptreCap extends ItemSimpleFoiled {
 
 	@SideOnly(Side.CLIENT)
-	private Icon[] icon = new Icon[3];
+	private Icon[] icon;
 
 	public SceptreCap() {
 		super(ModIDs.SCEPTRE_CAP_ID);
@@ -63,6 +63,7 @@ public class SceptreCap extends ItemSimpleFoiled {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
+		icon = new Icon[3];
 		for (int i = 0; i < icon.length; i++)
 			icon[i] = reg.registerIcon(Utils.getItemTexture(Strings.SCEPTRE_CAP_NAME) + "_" + i);
 	}
