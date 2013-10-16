@@ -1,8 +1,13 @@
 package ganymedes01.ganysnether.tileentities;
 
+import ganymedes01.ganysnether.core.utils.MagmaticCentrifugeRecipes;
+import ganymedes01.ganysnether.core.utils.MagmaticCentrifugeRecipes.CentrifugeRecipe;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.lib.Strings;
+
+import java.util.ArrayList;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.ISidedInventory;
@@ -35,6 +40,8 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	private int angle = 0;
 	private int turnsCount = 0;
 
+	private boolean isRecipeValid;
+
 	private final int FULL_BUCKET_SLOT = 0;
 	private final int EMPTY_BUCKET_SLOT = 1;
 	private final int MATERIAL_SLOT_1 = 2;
@@ -46,6 +53,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 
 	public TileEntityMagmaticCentrifuge() {
 		tank.setFluid(new FluidStack(FluidRegistry.LAVA, 0));
+		checkRecipe();
 	}
 
 	@Override
@@ -55,40 +63,129 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 		if (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord))
 			return;
 
-		angle++;
-		if (angle >= 360) {
-			angle = 0;
-			turnsCount++;
+		if (isRecipeValid) {
+			angle++;
+			if (angle >= 360) {
+				angle = 0;
+				turnsCount++;
+			}
+		} else if (angle != 0) {
+			angle -= 6;
+			if (angle < 0)
+				angle = 0;
 		}
 
 		fillTankFromContainer();
+
 		if (turnsCount >= 3) {
 			centrifuge();
 			turnsCount = 0;
 		}
 	}
 
+	@Override
+	public void onInventoryChanged() {
+		checkRecipe();
+	}
+
 	private void fillTankFromContainer() {
 		if (tank.getFluidAmount() <= tank.getCapacity() - FluidContainerRegistry.BUCKET_VOLUME)
 			if (FluidContainerRegistry.isFilledContainer(inventory[FULL_BUCKET_SLOT])) {
-				tank.fill(FluidContainerRegistry.getFluidForFilledItem(inventory[FULL_BUCKET_SLOT]), true);
-				for (FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData())
-					if (data != null && inventory[FULL_BUCKET_SLOT] != null)
-						if (data.filledContainer.itemID == inventory[FULL_BUCKET_SLOT].itemID && data.filledContainer.getItemDamage() == inventory[FULL_BUCKET_SLOT].getItemDamage()) {
-							if (inventory[EMPTY_BUCKET_SLOT] != null) {
-								if (inventory[EMPTY_BUCKET_SLOT].itemID == data.emptyContainer.itemID && inventory[EMPTY_BUCKET_SLOT].getItemDamage() == data.emptyContainer.getItemDamage())
-									inventory[EMPTY_BUCKET_SLOT].stackSize++;
-							} else
-								inventory[EMPTY_BUCKET_SLOT] = data.emptyContainer.copy();
+				ItemStack emptyContainer = getEmptyContainer();
+				if (inventory[EMPTY_BUCKET_SLOT] == null || emptyContainer != null && emptyContainer.itemID == inventory[EMPTY_BUCKET_SLOT].itemID && emptyContainer.getItemDamage() == inventory[EMPTY_BUCKET_SLOT].getItemDamage())
+					if (FluidContainerRegistry.getFluidForFilledItem(inventory[FULL_BUCKET_SLOT]).getFluid() == FluidRegistry.LAVA) {
+						tank.fill(FluidContainerRegistry.getFluidForFilledItem(inventory[FULL_BUCKET_SLOT]), true);
+						boolean flag = false;
+						if (inventory[EMPTY_BUCKET_SLOT] == null) {
+							inventory[EMPTY_BUCKET_SLOT] = emptyContainer;
+							flag = true;
+						} else if (inventory[EMPTY_BUCKET_SLOT].stackSize < inventory[EMPTY_BUCKET_SLOT].getMaxStackSize()) {
+							inventory[EMPTY_BUCKET_SLOT].stackSize++;
+							flag = true;
+						}
+						if (flag) {
 							inventory[FULL_BUCKET_SLOT].stackSize--;
 							if (inventory[FULL_BUCKET_SLOT].stackSize <= 0)
 								inventory[FULL_BUCKET_SLOT] = null;
 						}
+					}
 			}
 	}
 
+	private ItemStack getEmptyContainer() {
+		for (FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData())
+			if (data != null && inventory[FULL_BUCKET_SLOT] != null)
+				if (data.filledContainer.itemID == inventory[FULL_BUCKET_SLOT].itemID && data.filledContainer.getItemDamage() == inventory[FULL_BUCKET_SLOT].getItemDamage())
+					return data.emptyContainer.copy();
+		return null;
+	}
+
 	private void centrifuge() {
-		// TODO
+		if (tank.getFluidAmount() < FluidContainerRegistry.BUCKET_VOLUME / 10)
+			return;
+
+		ItemStack[] resultContents = MagmaticCentrifugeRecipes.getResult(new CentrifugeRecipe(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]));
+		ArrayList<Integer> slotsTaken = new ArrayList<Integer>();
+		if (resultContents != null && resultContents.length <= 4) {
+			for (ItemStack result : resultContents) {
+				ArrayList<Integer> availableSlots = getAvailableSlots(result, slotsTaken);
+				if (availableSlots.isEmpty())
+					return;
+				else
+					slotsTaken.add(availableSlots.get(0));
+			}
+			if (slotsTaken.size() >= resultContents.length) {
+				for (int i = 0; i < resultContents.length; i++) {
+					ItemStack result = resultContents[i];
+					ItemStack resultSlot = inventory[slotsTaken.get(i)];
+					if (result == null)
+						break;
+					if (resultSlot != null) {
+						if (result.itemID == resultSlot.itemID && result.getItemDamage() == result.getItemDamage())
+							if (resultSlot.stackSize + result.stackSize <= resultSlot.getMaxStackSize())
+								resultSlot.stackSize += result.stackSize;
+					} else
+						inventory[slotsTaken.get(i)] = result.copy();
+				}
+
+				tank.drain(FluidContainerRegistry.BUCKET_VOLUME / 10, true);
+				inventory[MATERIAL_SLOT_1].stackSize--;
+				inventory[MATERIAL_SLOT_2].stackSize--;
+				if (inventory[MATERIAL_SLOT_1].stackSize <= 0)
+					inventory[MATERIAL_SLOT_1] = null;
+				if (inventory[MATERIAL_SLOT_2].stackSize <= 0)
+					inventory[MATERIAL_SLOT_2] = null;
+				onInventoryChanged();
+			}
+		}
+	}
+
+	private ArrayList<Integer> getAvailableSlots(ItemStack stack, ArrayList<Integer> ignore) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		for (int i = 4; i < 8; i++) {
+			if (inventory[i] == null) {
+				if (ignore.contains(i))
+					continue;
+				list.add(i);
+				continue;
+			}
+			if (stack.itemID == inventory[i].itemID && stack.getItemDamage() == inventory[i].getItemDamage())
+				if (inventory[i].stackSize + stack.stackSize <= inventory[i].getMaxStackSize()) {
+					if (ignore.contains(i))
+						continue;
+					list.add(i);
+					continue;
+				}
+		}
+		return list;
+	}
+
+	private void checkRecipe() {
+		if (inventory[MATERIAL_SLOT_1] == null || inventory[MATERIAL_SLOT_2] == null) {
+			isRecipeValid = false;
+			return;
+		}
+		isRecipeValid = MagmaticCentrifugeRecipes.isValidRecipe(new CentrifugeRecipe(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]));
 	}
 
 	@Override
@@ -199,8 +296,10 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 			if (b0 >= 0 && b0 < inventory.length)
 				inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 		}
+		onInventoryChanged();
 
 		angle = data.getInteger("angle");
+		turnsCount = data.getInteger("turnsCount");
 	}
 
 	@Override
@@ -219,6 +318,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 		data.setTag("Items", nbttaglist);
 
 		data.setInteger("angle", angle);
+		data.setInteger("turnsCount", turnsCount);
 	}
 
 	public int getScaledFluidAmount(int scale) {

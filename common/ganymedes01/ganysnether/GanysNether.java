@@ -4,8 +4,10 @@ import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.configuration.ConfigurationHandler;
 import ganymedes01.ganysnether.core.handlers.EntityDeathEvent;
 import ganymedes01.ganysnether.core.handlers.HoeEvent;
+import ganymedes01.ganysnether.core.handlers.InterModComms;
 import ganymedes01.ganysnether.core.handlers.VersionCheckTickHandler;
 import ganymedes01.ganysnether.core.proxy.CommonProxy;
+import ganymedes01.ganysnether.core.utils.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.core.utils.VersionHelper;
 import ganymedes01.ganysnether.creativetab.CreativeTabNether;
 import ganymedes01.ganysnether.items.ModItems;
@@ -23,6 +25,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
@@ -70,6 +73,7 @@ public class GanysNether {
 		ModBlocks.init();
 		ModItems.init();
 		ModRecipes.init();
+		MagmaticCentrifugeRecipes.initRecipes();
 	}
 
 	@EventHandler
@@ -86,5 +90,10 @@ public class GanysNether {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+	}
+
+	@EventHandler
+	public void processIMCRequests(IMCEvent event) {
+		InterModComms.processIMC(event);
 	}
 }

@@ -6,8 +6,8 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 
 /**
  * Gany's Nether
@@ -89,10 +89,10 @@ public class ContainerMagmaticCentrifuge extends Container {
 			if (slotIndex < centrifuge.getSizeInventory()) {
 				if (!mergeItemStack(slotItemStack, centrifuge.getSizeInventory(), inventorySlots.size(), true))
 					return null;
-			} else if (slotItemStack.getItem() instanceof ItemMonsterPlacer) {
-				if (!mergeItemStack(slotItemStack, 0, 2, false))
+			} else if (FluidContainerRegistry.isFilledContainer(slotItemStack)) {
+				if (!mergeItemStack(slotItemStack, 0, 1, false))
 					return null;
-			} else if (!mergeItemStack(slotItemStack, 3, 5, false))
+			} else if (!mergeItemStack(slotItemStack, 2, 4, false))
 				return null;
 
 			if (slotItemStack.stackSize == 0)
