@@ -56,6 +56,7 @@ public class Strings {
 	public static final String SCEPTRE_OF_LIGHTNING_NAME = "sceptreOfLightning";
 	public static final String SCEPTRE_CAP_NAME = "sceptreCap";
 	public static final String WITHER_SHRUB_SEEDS_NAME = "witherShrubSeeds";
+	public static final String LIVING_SOUL_NAME = "livingSoul";
 
 	// Others
 	public static final String SHOULD_GENERATE_CROPS = "shouldGenerateCrops";

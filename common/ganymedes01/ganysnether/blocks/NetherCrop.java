@@ -37,10 +37,8 @@ public class NetherCrop extends BlockCrops {
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		checkFlowerChange(world, x, y, z);
 
-		int meta = world.getBlockMetadata(x, y, z);
-		if (meta < 7)
-			if (rand.nextInt(40) == 20)
-				world.setBlockMetadataWithNotify(x, y, z, ++meta, 3);
+		if (rand.nextInt(40) == 20)
+			fertilize(world, x, y, z);
 	}
 
 	@Override

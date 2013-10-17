@@ -54,9 +54,6 @@ public class QuarzBerryBush extends NetherCrop {
 			case 6:
 				setBlockBounds(1F * f, 0.0F, 1F * f, 1F - 1F * f, 6F * f, 1F - 1F * f);
 				break;
-			case 7:
-				setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
-				break;
 			default:
 				setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
 		}
@@ -93,7 +90,7 @@ public class QuarzBerryBush extends NetherCrop {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
 		iconArray = new Icon[4];
-		for (int i = 0; i < iconArray.length; ++i)
+		for (int i = 0; i < iconArray.length; i++)
 			iconArray[i] = reg.registerIcon(Utils.getBlockTexture(Strings.QUARZ_BERRY_BUSH_NAME + "_stage", true) + i);
 	}
 }

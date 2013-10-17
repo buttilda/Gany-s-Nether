@@ -66,7 +66,7 @@ public class ConfigurationHandler {
 			ModIDs.UNDERTAKER_ID = configBlock(Strings.UNDERTAKER_NAME);
 			ModIDs.WITHER_SHRUB_ID = configBlock(Strings.WITHER_SHRUB_NAME);
 			// ModIDs.SOUL_GLASS_PANE_ID = configBlock(Strings.SOUL_GLASS_PANE_NAME);
-			ModIDs.MAGMATIC_CENTRIFUGE_ID = configBlock(Strings.MAGMATIC_CENTRIFUGE_NAME);
+			// ModIDs.MAGMATIC_CENTRIFUGE_ID = configBlock(Strings.MAGMATIC_CENTRIFUGE_NAME);
 
 			// Stairs
 			for (int i = 0; i < ModIDs.COLOURED_QUARTZ_STAIRS_IDS.length; i++)
@@ -99,6 +99,7 @@ public class ConfigurationHandler {
 			ModIDs.SCEPTRE_OF_LIGHTNING_ID = configItem(Strings.SCEPTRE_OF_LIGHTNING_NAME);
 			ModIDs.SCEPTRE_CAP_ID = configItem(Strings.SCEPTRE_CAP_NAME);
 			ModIDs.WITHER_SHRUB_SEEDS_ID = configItem(Strings.WITHER_SHRUB_SEEDS_NAME);
+			ModIDs.LIVING_SOUL_ID = configItem(Strings.LIVING_SOUL_NAME);
 
 			// Others
 			GanysNether.sceptreOfConcealmentDurability = configuration.get("Durability", Strings.SCEPTRE_OF_CONCEALMENT_NAME, SceptreOfConcealment.DEFAULT_DUR).getInt(SceptreOfConcealment.DEFAULT_DUR);

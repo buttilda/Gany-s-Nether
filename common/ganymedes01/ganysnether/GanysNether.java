@@ -2,6 +2,7 @@ package ganymedes01.ganysnether;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.configuration.ConfigurationHandler;
+import ganymedes01.ganysnether.core.handlers.BonemealOnNetherCrops;
 import ganymedes01.ganysnether.core.handlers.EntityDeathEvent;
 import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.InterModComms;
@@ -79,10 +80,14 @@ public class GanysNether {
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
+
 		MinecraftForge.EVENT_BUS.register(new HoeEvent());
 		MinecraftForge.EVENT_BUS.register(new EntityDeathEvent());
+		MinecraftForge.EVENT_BUS.register(new BonemealOnNetherCrops());
+
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
+
 		if (shouldGenerateCrops)
 			GameRegistry.registerWorldGenerator(new NetherWorldGen());
 		BuildCraftFacadeManager.registerFacades();
