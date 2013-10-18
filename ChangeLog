@@ -39,3 +39,7 @@ v1.4
 -Added: Sceptre of Lightning
 -Change: New recipe for Sceptre of Concealment
 -Added: Wither Shrub
+
+v1.4.1
+-Fix: SMP again
+-Added: New items will spawn inside the undertaker
