@@ -1,12 +1,12 @@
 package ganymedes01.ganysnether.tileentities;
 
-import ganymedes01.ganysnether.core.utils.MagmaticCentrifugeRecipes;
-import ganymedes01.ganysnether.core.utils.MagmaticCentrifugeRecipes.CentrifugeRecipe;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.lib.Strings;
+import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ICrafting;
@@ -124,7 +124,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 		if (tank.getFluidAmount() < FluidContainerRegistry.BUCKET_VOLUME / 10)
 			return;
 
-		ItemStack[] resultContents = MagmaticCentrifugeRecipes.getResult(new CentrifugeRecipe(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]));
+		ItemStack[] resultContents = MagmaticCentrifugeRecipes.getResult(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]);
 		ArrayList<Integer> slotsTaken = new ArrayList<Integer>();
 		if (resultContents != null && resultContents.length <= 4) {
 			for (ItemStack result : resultContents) {
@@ -148,7 +148,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 						inventory[slotsTaken.get(i)] = result.copy();
 				}
 
-				tank.drain(FluidContainerRegistry.BUCKET_VOLUME / 10, true);
+				tank.drain(new Random().nextInt(51) + FluidContainerRegistry.BUCKET_VOLUME / 10, true);
 				inventory[MATERIAL_SLOT_1].stackSize--;
 				inventory[MATERIAL_SLOT_2].stackSize--;
 				if (inventory[MATERIAL_SLOT_1].stackSize <= 0)
@@ -185,7 +185,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 			isRecipeValid = false;
 			return;
 		}
-		isRecipeValid = MagmaticCentrifugeRecipes.isValidRecipe(new CentrifugeRecipe(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]));
+		isRecipeValid = MagmaticCentrifugeRecipes.isValidRecipe(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]);
 	}
 
 	@Override

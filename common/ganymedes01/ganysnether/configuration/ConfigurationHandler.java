@@ -66,7 +66,7 @@ public class ConfigurationHandler {
 			ModIDs.UNDERTAKER_ID = configBlock(Strings.UNDERTAKER_NAME);
 			ModIDs.WITHER_SHRUB_ID = configBlock(Strings.WITHER_SHRUB_NAME);
 			// ModIDs.SOUL_GLASS_PANE_ID = configBlock(Strings.SOUL_GLASS_PANE_NAME);
-			// ModIDs.MAGMATIC_CENTRIFUGE_ID = configBlock(Strings.MAGMATIC_CENTRIFUGE_NAME);
+			ModIDs.MAGMATIC_CENTRIFUGE_ID = configBlock(Strings.MAGMATIC_CENTRIFUGE_NAME);
 
 			// Stairs
 			for (int i = 0; i < ModIDs.COLOURED_QUARTZ_STAIRS_IDS.length; i++)

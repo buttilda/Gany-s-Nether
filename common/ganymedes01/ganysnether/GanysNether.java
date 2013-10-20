@@ -8,12 +8,12 @@ import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.InterModComms;
 import ganymedes01.ganysnether.core.handlers.VersionCheckTickHandler;
 import ganymedes01.ganysnether.core.proxy.CommonProxy;
-import ganymedes01.ganysnether.core.utils.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.core.utils.VersionHelper;
 import ganymedes01.ganysnether.creativetab.CreativeTabNether;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.recipes.BuildCraftFacadeManager;
+import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ModRecipes;
 import ganymedes01.ganysnether.world.NetherWorldGen;
 

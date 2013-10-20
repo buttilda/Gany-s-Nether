@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.core.handlers;
 
-import ganymedes01.ganysnether.core.utils.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.lib.Reference;
+import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
