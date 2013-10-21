@@ -54,9 +54,9 @@ public class ClientProxy extends CommonProxy {
 		if (tileEntity != null)
 			if (tileEntity instanceof TileEntityMagmaticCentrifuge) {
 				ItemStack material1 = null, material2 = null;
-				if (itemID1 > 0)
+				if (itemID1 > 0 && meta1 > -1 && stackSize1 > -1)
 					material1 = new ItemStack(itemID1, meta1, stackSize1);
-				if (itemID2 > 0)
+				if (itemID2 > 0 && meta2 > -1 && stackSize2 > -1)
 					material2 = new ItemStack(itemID2, meta2, stackSize2);
 
 				((TileEntityMagmaticCentrifuge) tileEntity).setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_1, material1);
