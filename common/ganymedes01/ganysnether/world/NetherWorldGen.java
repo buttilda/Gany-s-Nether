@@ -60,7 +60,7 @@ public class NetherWorldGen implements IWorldGenerator {
 													}
 													return;
 											}
-										else if (rand.nextInt(250) == 125)
+										else if (rand.nextInt(300) == 150)
 											generateUndertakerWithRandomContents(world, blockX, blockY, blockZ, rand);
 						continue;
 					}
