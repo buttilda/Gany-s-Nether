@@ -29,10 +29,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRenderer {
 
 	private RenderItem customRenderItem;
-	private float rotationAngle;
 
 	public TileEntityMagmaticCentrifugeRender() {
-		rotationAngle = 0.0F;
 		customRenderItem = new RenderItem() {
 			@Override
 			public boolean shouldBob() {
@@ -57,15 +55,12 @@ public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRendere
 		TileEntityMagmaticCentrifuge centrifuge = (TileEntityMagmaticCentrifuge) tile;
 		ModelMagmaticCentrifuge modelCentrifuge = new ModelMagmaticCentrifuge();
 
-		if (centrifuge.isRecipeValid)
-			rotationAngle = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);
-		else
-			rotationAngle -= rotationAngle > 0 ? 2 : 0;
+		float rotationAngle = centrifuge.getCoreRenderAngle();
 
 		ItemStack material1 = centrifuge.getStackInSlot(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_1);
 		ItemStack material2 = centrifuge.getStackInSlot(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_2);
-		renderItem(centrifuge.worldObj, x, y, z, material1, false);
-		renderItem(centrifuge.worldObj, x, y, z, material2, true);
+		renderItem(centrifuge.worldObj, x, y, z, material1, rotationAngle, false);
+		renderItem(centrifuge.worldObj, x, y, z, material2, rotationAngle, true);
 
 		bindTexture(Utils.getResource(Utils.getEntityTexture(Strings.MAGMATIC_CENTRIFUGE_NAME)));
 		GL11.glPushMatrix();
@@ -82,7 +77,7 @@ public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRendere
 
 	}
 
-	private void renderItem(World world, double x, double y, double z, ItemStack stack, boolean stackOffset) {
+	private void renderItem(World world, double x, double y, double z, ItemStack stack, float rotationAngle, boolean stackOffset) {
 		if (stack != null) {
 			GL11.glPushMatrix();
 			float scaleFactor, translate, offset = 0.4F;

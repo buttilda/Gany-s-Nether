@@ -1,8 +1,11 @@
 package ganymedes01.ganysnether.tileentities;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.lib.Strings;
+import ganymedes01.ganysnether.network.PacketTypeHandler;
+import ganymedes01.ganysnether.network.packet.PacketTileMagmaticCentrifuge;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 
 import java.util.ArrayList;
@@ -24,6 +27,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
@@ -38,6 +43,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	private FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
 
 	private int angle = 0;
+	private float rotationAngle = 0.0F;
 	private int turnsCount = 0;
 
 	public boolean isRecipeValid = false;
@@ -79,6 +85,28 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	@Override
 	public void onInventoryChanged() {
 		checkRecipe();
+	}
+
+	private void update() {
+		ItemStack material1 = inventory[MATERIAL_SLOT_1];
+		ItemStack material2 = inventory[MATERIAL_SLOT_2];
+
+		int itemID1 = -1, meta1 = -1, stackSize1 = -1;
+		int itemID2 = -1, meta2 = -1, stackSize2 = -1;
+
+		if (material1 != null) {
+			itemID1 = material1.itemID;
+			meta1 = material1.getItemDamage();
+			stackSize1 = material1.stackSize;
+		}
+
+		if (material2 != null) {
+			itemID2 = material2.itemID;
+			meta2 = material2.getItemDamage();
+			stackSize2 = material2.stackSize;
+		}
+
+		GanysNether.proxy.handleTileMagmaticCentrifugePacket(xCoord, yCoord, zCoord, itemID1, meta1, stackSize1, itemID2, meta2, stackSize2, isRecipeValid);
 	}
 
 	private void fillTankFromContainer() {
@@ -150,6 +178,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 				if (inventory[MATERIAL_SLOT_2].stackSize <= 0)
 					inventory[MATERIAL_SLOT_2] = null;
 				onInventoryChanged();
+				update();
 			}
 		}
 	}
@@ -277,9 +306,17 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 
 	@Override
 	public Packet getDescriptionPacket() {
-		//		if (inventory[MATERIAL_SLOT_1] != null && inventory[MATERIAL_SLOT_2] != null)
-		//			return PacketTypeHandler.populatePacket(new PacketTileMagmaticCentrifuge(xCoord, yCoord, zCoord, inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2], isRecipeValid));
-		return null;
+		return PacketTypeHandler.populatePacket(new PacketTileMagmaticCentrifuge(xCoord, yCoord, zCoord, inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2], isRecipeValid));
+	}
+
+	@SideOnly(Side.CLIENT)
+	public float getCoreRenderAngle() {
+		if (isRecipeValid)
+			rotationAngle = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);
+		else
+			rotationAngle -= rotationAngle > 0 ? 2 : 0;
+
+		return rotationAngle;
 	}
 
 	@Override
@@ -300,6 +337,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 
 		angle = data.getInteger("angle");
 		turnsCount = data.getInteger("turnsCount");
+		rotationAngle = data.getFloat("rotationAngle");
 	}
 
 	@Override
@@ -319,6 +357,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 
 		data.setInteger("angle", angle);
 		data.setInteger("turnsCount", turnsCount);
+		data.setFloat("rotationAngle", rotationAngle);
 	}
 
 	public int getScaledFluidAmount(int scale) {

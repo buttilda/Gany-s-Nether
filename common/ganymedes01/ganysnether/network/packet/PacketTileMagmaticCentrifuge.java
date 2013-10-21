@@ -19,9 +19,13 @@ import net.minecraft.item.ItemStack;
 public class PacketTileMagmaticCentrifuge extends CustomPacket {
 
 	private int x, y, z;
-	private int itemID1, meta1, stackSize1;
-	private int itemID2, meta2, stackSize2;
+	private int itemID1 = -1, meta1, stackSize1;
+	private int itemID2 = -1, meta2, stackSize2;
 	private boolean isRecipeValid;
+
+	public PacketTileMagmaticCentrifuge() {
+		super(PacketTypeHandler.TILE_MAGMATIC_CENTRIFUGE);
+	}
 
 	public PacketTileMagmaticCentrifuge(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
 		super(PacketTypeHandler.TILE_MAGMATIC_CENTRIFUGE);
@@ -29,13 +33,17 @@ public class PacketTileMagmaticCentrifuge extends CustomPacket {
 		this.y = y;
 		this.z = z;
 
-		itemID1 = material1.itemID;
-		meta1 = material1.getItemDamage();
-		stackSize1 = material1.stackSize;
+		if (material1 != null) {
+			itemID1 = material1.itemID;
+			meta1 = material1.getItemDamage();
+			stackSize1 = material1.stackSize;
+		}
 
-		itemID2 = material2.itemID;
-		meta2 = material2.getItemDamage();
-		stackSize2 = material2.stackSize;
+		if (material2 != null) {
+			itemID2 = material2.itemID;
+			meta2 = material2.getItemDamage();
+			stackSize2 = material2.stackSize;
+		}
 
 		this.isRecipeValid = isRecipeValid;
 	}
@@ -76,6 +84,6 @@ public class PacketTileMagmaticCentrifuge extends CustomPacket {
 
 	@Override
 	public void execute() {
-		GanysNether.proxy.handleTileMagmaticCentrifugePacket(x, y, z, new ItemStack(itemID1, meta1, stackSize1), new ItemStack(itemID2, meta2, stackSize2), isRecipeValid);
+		GanysNether.proxy.handleTileMagmaticCentrifugePacket(x, y, z, itemID1, meta1, stackSize1, itemID2, meta2, stackSize2, isRecipeValid);
 	}
 }

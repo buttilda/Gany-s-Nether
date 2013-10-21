@@ -48,11 +48,17 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@Override
-	public void handleTileMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
+	public void handleTileMagmaticCentrifugePacket(int x, int y, int z, int itemID1, int meta1, int stackSize1, int itemID2, int meta2, int stackSize2, boolean isRecipeValid) {
 		World world = FMLClientHandler.instance().getClient().theWorld;
 		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 		if (tileEntity != null)
 			if (tileEntity instanceof TileEntityMagmaticCentrifuge) {
+				ItemStack material1 = null, material2 = null;
+				if (itemID1 > 0)
+					material1 = new ItemStack(itemID1, meta1, stackSize1);
+				if (itemID2 > 0)
+					material2 = new ItemStack(itemID2, meta2, stackSize2);
+
 				((TileEntityMagmaticCentrifuge) tileEntity).setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_1, material1);
 				((TileEntityMagmaticCentrifuge) tileEntity).setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_2, material2);
 				((TileEntityMagmaticCentrifuge) tileEntity).isRecipeValid = isRecipeValid;

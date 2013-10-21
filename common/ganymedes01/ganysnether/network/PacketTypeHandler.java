@@ -18,7 +18,6 @@ import net.minecraft.network.packet.Packet250CustomPayload;
  */
 
 public enum PacketTypeHandler {
-
 	TILE_MAGMATIC_CENTRIFUGE(PacketTileMagmaticCentrifuge.class);
 
 	private Class<? extends CustomPacket> clazz;
@@ -41,18 +40,6 @@ public enum PacketTypeHandler {
 		}
 
 		packet.readPopulate(dis);
-
-		return packet;
-	}
-
-	public static CustomPacket buildPacket(PacketTypeHandler type) {
-		CustomPacket packet = null;
-
-		try {
-			packet = values()[type.ordinal()].clazz.newInstance();
-		} catch (Exception e) {
-			e.printStackTrace(System.err);
-		}
 
 		return packet;
 	}
