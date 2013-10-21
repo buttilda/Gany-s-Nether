@@ -12,6 +12,7 @@ import ganymedes01.ganysnether.core.utils.VersionHelper;
 import ganymedes01.ganysnether.creativetab.CreativeTabNether;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
+import ganymedes01.ganysnether.network.PacketHandler;
 import ganymedes01.ganysnether.recipes.BuildCraftFacadeManager;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ModRecipes;
@@ -43,7 +44,7 @@ import cpw.mods.fml.relauncher.Side;
  */
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES)
-@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = true)
+@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
 public class GanysNether {
 
 	@Instance(Reference.MOD_ID)

@@ -6,7 +6,6 @@ import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ICrafting;
@@ -14,6 +13,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
@@ -40,16 +40,9 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	private int angle = 0;
 	private int turnsCount = 0;
 
-	private boolean isRecipeValid;
+	public boolean isRecipeValid = false;
 
-	private final int FULL_BUCKET_SLOT = 0;
-	private final int EMPTY_BUCKET_SLOT = 1;
-	private final int MATERIAL_SLOT_1 = 2;
-	private final int MATERIAL_SLOT_2 = 3;
-	private final int RESULT_SLOT_1 = 4;
-	private final int RESULT_SLOT_2 = 5;
-	private final int RESULT_SLOT_3 = 6;
-	private final int RESULT_SLOT_4 = 7;
+	public static final int FULL_BUCKET_SLOT = 0, EMPTY_BUCKET_SLOT = 1, MATERIAL_SLOT_1 = 2, MATERIAL_SLOT_2 = 3, RESULT_SLOT_1 = 4, RESULT_SLOT_2 = 5, RESULT_SLOT_3 = 6, RESULT_SLOT_4 = 7;
 
 	public TileEntityMagmaticCentrifuge() {
 		tank.setFluid(new FluidStack(FluidRegistry.LAVA, 0));
@@ -107,6 +100,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 							inventory[FULL_BUCKET_SLOT].stackSize--;
 							if (inventory[FULL_BUCKET_SLOT].stackSize <= 0)
 								inventory[FULL_BUCKET_SLOT] = null;
+							onInventoryChanged();
 						}
 					}
 			}
@@ -148,7 +142,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 						inventory[slotsTaken.get(i)] = result.copy();
 				}
 
-				tank.drain(new Random().nextInt(51) + FluidContainerRegistry.BUCKET_VOLUME / 10, true);
+				tank.drain(FluidContainerRegistry.BUCKET_VOLUME / 10, true);
 				inventory[MATERIAL_SLOT_1].stackSize--;
 				inventory[MATERIAL_SLOT_2].stackSize--;
 				if (inventory[MATERIAL_SLOT_1].stackSize <= 0)
@@ -181,11 +175,10 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	}
 
 	private void checkRecipe() {
-		if (inventory[MATERIAL_SLOT_1] == null || inventory[MATERIAL_SLOT_2] == null) {
+		if (inventory[MATERIAL_SLOT_1] == null || inventory[MATERIAL_SLOT_2] == null)
 			isRecipeValid = false;
-			return;
-		}
-		isRecipeValid = MagmaticCentrifugeRecipes.isValidRecipe(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]);
+		else
+			isRecipeValid = MagmaticCentrifugeRecipes.isRegisteredRecipe(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]) && tank.getFluidAmount() >= FluidContainerRegistry.BUCKET_VOLUME / 10;
 	}
 
 	@Override
@@ -280,6 +273,13 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	@Override
 	public boolean canExtractItem(int slot, ItemStack stack, int side) {
 		return slot != MATERIAL_SLOT_1 || slot != MATERIAL_SLOT_2 || slot != FULL_BUCKET_SLOT;
+	}
+
+	@Override
+	public Packet getDescriptionPacket() {
+		//		if (inventory[MATERIAL_SLOT_1] != null && inventory[MATERIAL_SLOT_2] != null)
+		//			return PacketTypeHandler.populatePacket(new PacketTileMagmaticCentrifuge(xCoord, yCoord, zCoord, inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2], isRecipeValid));
+		return null;
 	}
 
 	@Override

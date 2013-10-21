@@ -52,7 +52,7 @@ public class EntityDeathEvent {
 					for (int i = 0; i < player.inventory.mainInventory.length; i++)
 						undertaker.setInventorySlotContents(i, player.inventory.mainInventory[i]);
 					for (int i = 0; i < player.inventory.armorInventory.length; i++)
-						undertaker.setInventorySlotContents(i + player.inventory.mainInventory.length, player.inventory.armorInventory[i]);
+						undertaker.setInventorySlotContents(i + player.inventory.mainInventory.length, player.inventory.armorInventory[player.inventory.armorInventory.length - 1 - i]);
 					event.setCanceled(true);
 				}
 			}

@@ -15,10 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelSoulChest extends ModelBase {
 
-	private final ModelRenderer chestLidLeft;
-	private final ModelRenderer chestLidRight;
-	private final ModelRenderer chestBottom;
-	private final ModelRenderer chestKnob;
+	private final ModelRenderer chestLidLeft, chestLidRight, chestBottom, chestKnob;
 
 	public ModelSoulChest() {
 		textureHeight = 64;

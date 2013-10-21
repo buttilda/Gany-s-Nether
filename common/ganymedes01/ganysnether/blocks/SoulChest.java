@@ -32,7 +32,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class SoulChest extends BlockContainer {
 
 	protected SoulChest() {
-		super(ModIDs.SOUL_CHEST_ID, Material.sand);
+		this(ModIDs.SOUL_CHEST_ID);
+	}
+
+	protected SoulChest(int id) {
+		super(id, Material.sand);
 		setHardness(2.5F);
 		setStepSound(soundSandFootstep);
 		setCreativeTab(GanysNether.netherTab);
@@ -64,7 +68,7 @@ public class SoulChest extends BlockContainer {
 
 	@Override
 	public int getRenderType() {
-		return 22;
+		return -1;
 	}
 
 	@Override

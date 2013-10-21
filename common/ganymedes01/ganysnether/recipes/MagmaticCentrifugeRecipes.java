@@ -47,8 +47,8 @@ public class MagmaticCentrifugeRecipes {
 	}
 
 	public static void addRecipe(String sender, ItemStack material1, ItemStack material2, ItemStack... result) {
-		if (result.length > 4 && material1 != null && material2 != null) {
-			Logger.getLogger(Reference.MOD_ID).log(Level.INFO, sender + " attempted to add an invalid recipe to the Magmatic Centrifuge.");
+		if (result != null && result.length > 4 && material1 != null && material2 != null) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, sender + " attempted to add an invalid recipe to the Magmatic Centrifuge.");
 			return;
 		} else {
 			for (ItemStack stack : result)
@@ -57,20 +57,20 @@ public class MagmaticCentrifugeRecipes {
 			CentrifugeRecipe newRecipe = new CentrifugeRecipe(material1, material2, result);
 			if (isValidRecipe(newRecipe)) {
 				recipes.add(newRecipe);
-				Logger.getLogger(Reference.MOD_ID).log(Level.INFO, sender + " successfully added a recipe to the Magmatic Centrifuge.");
+				Logger.getLogger(Reference.MOD_ID).log(Level.FINE, sender + " successfully added a recipe to the Magmatic Centrifuge.");
 			} else
-				Logger.getLogger(Reference.MOD_ID).log(Level.INFO, sender + " attempted to add an existing recipe to the Magmatic Centrifuge.");
+				Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, sender + " attempted to add an existing recipe to the Magmatic Centrifuge.");
 		}
 	}
 
-	public static boolean isValidRecipe(ItemStack material1, ItemStack material2, ItemStack... result) {
-		if (material1 != null && material2 != null)
-			return isValidRecipe(new CentrifugeRecipe(material1, material2, result));
-		return false;
+	public static boolean isRegisteredRecipe(ItemStack material1, ItemStack material2, ItemStack... result) {
+		return recipes.contains(new CentrifugeRecipe(material1, material2, result));
 	}
 
 	public static boolean isValidRecipe(CentrifugeRecipe recipe) {
-		return !recipes.contains(recipe);
+		if (recipe.getMaterial(1) != null && recipe.getMaterial(2) != null && recipe.getResult() == null || recipe.getResult().length <= 4)
+			return !recipes.contains(recipe);
+		return false;
 	}
 
 	public static ItemStack[] getResult(ItemStack material1, ItemStack material2) {

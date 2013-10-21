@@ -20,6 +20,7 @@ import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -45,7 +46,7 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileEntityVolcanicFurnace.class, Strings.VOLCANIC_FURNACE_NAME);
 		GameRegistry.registerTileEntity(TileEntityReproducer.class, Strings.REPRODUCER_NAME);
 		GameRegistry.registerTileEntity(TileEntityUndertaker.class, Strings.UNDERTAKER_NAME);
-		// GameRegistry.registerTileEntity(TileEntityMagmaticCentrifuge.class, Utils.getUnlocalizedName(Strings.MAGMATIC_CENTRIFUGE_NAME));
+		GameRegistry.registerTileEntity(TileEntityMagmaticCentrifuge.class, Utils.getUnlocalizedName(Strings.MAGMATIC_CENTRIFUGE_NAME));
 	}
 
 	public void registerEntities() {
@@ -54,6 +55,10 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	public void registerRenderers() {
+
+	}
+
+	public void handleTileMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
 
 	}
 
