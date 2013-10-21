@@ -14,7 +14,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -57,50 +56,58 @@ public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRendere
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float angle) {
 		TileEntityMagmaticCentrifuge centrifuge = (TileEntityMagmaticCentrifuge) tile;
 		ModelMagmaticCentrifuge modelCentrifuge = new ModelMagmaticCentrifuge();
-		bindTexture(Utils.getResource(Utils.getEntityTexture(Strings.MAGMATIC_CENTRIFUGE_NAME)));
 
 		if (centrifuge.isRecipeValid)
-			rotationAngle = (float) (720.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);
-
-		GL11.glPushMatrix();
-		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-		GL11.glTranslatef((float) x, (float) y + 1.5F, (float) z + 1.0F);
-		GL11.glScalef(1.0F, -1.0F, -1.0F);
-		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
-		modelCentrifuge.setCoreAngle(rotationAngle);
-		modelCentrifuge.renderAll();
-		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-		GL11.glPopMatrix();
+			rotationAngle = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);
+		else
+			rotationAngle -= rotationAngle > 0 ? 2 : 0;
 
 		ItemStack material1 = centrifuge.getStackInSlot(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_1);
 		ItemStack material2 = centrifuge.getStackInSlot(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_2);
-		renderItem(centrifuge.worldObj, x, y, z, material1, 0.4F);
-		renderItem(centrifuge.worldObj, x, y, z, material2, -0.4F);
+		renderItem(centrifuge.worldObj, x, y, z, material1, false);
+		renderItem(centrifuge.worldObj, x, y, z, material2, true);
+
+		bindTexture(Utils.getResource(Utils.getEntityTexture(Strings.MAGMATIC_CENTRIFUGE_NAME)));
+		GL11.glPushMatrix();
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glTranslatef((float) x, (float) y + 1.5F, (float) z + 1.0F);
+		GL11.glScalef(1.0F, -1.0F, -1.0F);
+		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+		GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
+		modelCentrifuge.setCoreAngle(rotationAngle);
+		modelCentrifuge.renderAll();
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glPopMatrix();
+
 	}
 
-	private void renderItem(World world, double x, double y, double z, ItemStack stack, float offset) {
-		GL11.glPushMatrix();
+	private void renderItem(World world, double x, double y, double z, ItemStack stack, boolean stackOffset) {
 		if (stack != null) {
-			float scaleFactor, translate;
+			GL11.glPushMatrix();
+			float scaleFactor, translate, offset = 0.4F;
 			if (stack.getItem() instanceof ItemBlock) {
 				scaleFactor = 0.75F;
 				translate = 0.5F;
 			} else {
 				scaleFactor = 0.75F * 0.6F;
 				translate = 0.4F;
+				offset += 0.3F;
 			}
+			if (stackOffset)
+				offset *= -1;
 
 			EntityItem ghostEntityItem = new EntityItem(world);
 			ghostEntityItem.hoverStart = 0.0F;
 			ghostEntityItem.setEntityItemStack(stack);
 			GL11.glTranslatef((float) x + 0.5F, (float) (y + translate), (float) z + 0.5F);
 			GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
-			GL11.glRotatef(rotationAngle, 0.0F, 1.0F, 0.0F);
+			GL11.glRotatef(90.0F + rotationAngle, 0.0F, 1.0F, 0.0F);
 
 			customRenderItem.doRenderItem(ghostEntityItem, 0, 0, offset, 0, 0);
+			GL11.glEnable(GL11.GL_CULL_FACE);
+			GL11.glEnable(GL11.GL_LIGHTING);
+			GL11.glPopMatrix();
 		}
-		GL11.glEnable(GL11.GL_CULL_FACE);
-		GL11.glEnable(GL11.GL_LIGHTING);
-		GL11.glPopMatrix();
 	}
 }

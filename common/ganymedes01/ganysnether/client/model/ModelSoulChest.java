@@ -20,19 +20,19 @@ public class ModelSoulChest extends ModelBase {
 	public ModelSoulChest() {
 		textureHeight = 64;
 
-		chestLidRight = new ModelRenderer(this, 0, 0).setTextureSize(64, 64);
+		chestLidRight = new ModelRenderer(this, 0, 0);
 		chestLidRight.addBox(0F, -5F, -7F, 7, 5, 14, 0.05F);
 		chestLidRight.setRotationPoint(-7F, 15F, 0F);
 
-		chestLidLeft = new ModelRenderer(this, 0, 45).setTextureSize(64, 64);
+		chestLidLeft = new ModelRenderer(this, 0, 45);
 		chestLidLeft.addBox(-7F, -5F, -7F, 7, 5, 14, 0.05F);
 		chestLidLeft.setRotationPoint(7F, 15F, 0F);
 
-		chestBottom = new ModelRenderer(this, 0, 20).setTextureSize(64, 64);
+		chestBottom = new ModelRenderer(this, 0, 20);
 		chestBottom.addBox(-7F, -10F, -7F, 14, 10, 14);
 		chestBottom.setRotationPoint(0F, 24F, 0F);
 
-		chestKnob = new ModelRenderer(this, 0, 0).setTextureSize(64, 64);
+		chestKnob = new ModelRenderer(this, 0, 0);
 		chestKnob.addBox(6F, -6F, -2F, 2, 1, 4);
 		chestKnob.setRotationPoint(-7F, 15F, 0F);
 	}
