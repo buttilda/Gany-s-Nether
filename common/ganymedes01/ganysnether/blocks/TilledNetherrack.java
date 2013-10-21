@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -74,6 +75,11 @@ public class TilledNetherrack extends BlockFarmland {
 	@Override
 	public int idDropped(int meta, Random rand, int fortune) {
 		return Block.netherrack.idDropped(0, rand, fortune);
+	}
+
+	@Override
+	public void onFallenUpon(World world, int x, int y, int z, Entity entity, float chance) {
+
 	}
 
 	private boolean isLavaNearby(World world, int x, int y, int z) {

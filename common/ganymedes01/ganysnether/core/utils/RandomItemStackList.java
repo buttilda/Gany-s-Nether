@@ -32,27 +32,29 @@ public class RandomItemStackList {
 		randomItemsList.add(new ItemStack(ModItems.quarzBerrySeeds, 1, 1 + rand.nextInt(8)));
 		randomItemsList.add(new ItemStack(ModItems.ghostSeeds, 1, 1 + rand.nextInt(8)));
 		randomItemsList.add(new ItemStack(ModItems.sceptreOfLightning, 1, 1 - GanysNether.sceptreOfLightningDurability > 0 ? GanysNether.sceptreOfLightningDurability : SceptreOfLightning.DEFAULT_DUR));
+
 		randomItemsList.add(new ItemStack(Block.torchWood));
-		randomItemsList.add(new ItemStack(Item.coal, 1 + rand.nextInt(8)));
-		randomItemsList.add(new ItemStack(Item.stick, 1 + rand.nextInt(16)));
-		randomItemsList.add(new ItemStack(Item.beefCooked, 1 + rand.nextInt(8)));
-		randomItemsList.add(new ItemStack(Item.bakedPotato, 1 + rand.nextInt(16)));
-		randomItemsList.add(new ItemStack(Item.goldNugget, 1 + rand.nextInt(16)));
-		randomItemsList.add(new ItemStack(Item.rottenFlesh));
-		randomItemsList.add(new ItemStack(Item.rottenFlesh));
-		randomItemsList.add(new ItemStack(Item.rottenFlesh));
-		randomItemsList.add(new ItemStack(Item.rottenFlesh));
+		randomItemsList.add(new ItemStack(Item.coal));
+		randomItemsList.add(new ItemStack(Item.stick));
+		randomItemsList.add(new ItemStack(Item.beefCooked));
+		randomItemsList.add(new ItemStack(Item.bakedPotato));
+		randomItemsList.add(new ItemStack(Item.goldNugget));
+		randomItemsList.add(new ItemStack(Item.rottenFlesh, 64));
+		randomItemsList.add(new ItemStack(Item.rottenFlesh, 64));
+		randomItemsList.add(new ItemStack(Item.rottenFlesh, 64));
+		randomItemsList.add(new ItemStack(Item.rottenFlesh, 64));
 		randomItemsList.add(new ItemStack(Block.netherBrick));
-		randomItemsList.add(new ItemStack(Item.netherStalkSeeds, 1 + rand.nextInt(4)));
-		randomItemsList.add(new ItemStack(Block.whiteStone));
-		randomItemsList.add(new ItemStack(Block.wood, 1, 16));
-		randomItemsList.add(new ItemStack(Block.dirt, 1, 16));
-		randomItemsList.add(new ItemStack(Block.sand, 1, 16));
-		randomItemsList.add(new ItemStack(Item.seeds, 1, 16));
-		randomItemsList.add(new ItemStack(Block.cobblestone, 1, 16));
-		randomItemsList.add(new ItemStack(Block.cobblestone, 1, 16));
-		randomItemsList.add(new ItemStack(Block.cobblestone, 1, 16));
-		randomItemsList.add(new ItemStack(Block.cobblestone, 1, 16));
+		randomItemsList.add(new ItemStack(Item.netherStalkSeeds));
+		randomItemsList.add(new ItemStack(Block.whiteStone, 64));
+		randomItemsList.add(new ItemStack(Block.wood, 64));
+		randomItemsList.add(new ItemStack(Block.dirt, 64));
+		randomItemsList.add(new ItemStack(Block.sand, 64));
+		randomItemsList.add(new ItemStack(Item.seeds));
+		randomItemsList.add(new ItemStack(Item.leather));
+		randomItemsList.add(new ItemStack(Block.cobblestone, 64));
+		randomItemsList.add(new ItemStack(Block.cobblestone, 64));
+		randomItemsList.add(new ItemStack(Block.cobblestone, 64));
+		randomItemsList.add(new ItemStack(Block.cobblestone, 64));
 	}
 
 	public void shuffle() {
@@ -61,10 +63,14 @@ public class RandomItemStackList {
 
 	public ItemStack getListItem(Random rand) {
 		ItemStack stack = randomItemsList.get(rand.nextInt(randomItemsList.size()));
-		if (stack.stackSize == 1)
-			stack.stackSize = rand.nextInt(stack.getMaxStackSize() == 64 ? 16 : stack.getMaxStackSize());
+		if (stack.stackSize >= stack.getMaxStackSize())
+			stack.stackSize = 1 + rand.nextInt(stack.getMaxStackSize());
+		else if (stack.stackSize <= 1)
+			stack.stackSize = 1 + rand.nextInt(16);
+
+		System.out.println(stack.stackSize);
 		if (stack.getItem() == ModItems.witherShrubSeeds)
-			return rand.nextInt(50) == 25 ? stack : new ItemStack(Item.ghastTear, rand.nextInt(2));
+			return rand.nextInt(50) == 25 ? new ItemStack(ModItems.witherShrubSeeds) : new ItemStack(Item.ghastTear, 1 + rand.nextInt(2));
 		else
 			return stack;
 	}

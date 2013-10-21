@@ -21,7 +21,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class NetherWorldGen implements IWorldGenerator {
 
-	RandomItemStackList randomList = new RandomItemStackList();
+	private RandomItemStackList randomList = new RandomItemStackList();
 
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
