@@ -1,0 +1,143 @@
+# Item localizations
+item.ganysnether.quarzBerrySeeds.name=Quarz Bær Frø
+item.ganysnether.quarzBerry.name=Quarz Bær
+item.ganysnether.ghostSeeds.name=Spøgelses Frø
+item.ganysnether.spectreWheatItem.name=Spøgelses Hvede
+item.ganysnether.glowingReedItem.name=Glødende Sukkerrør
+item.ganysnether.spookyFlour.name=Uhyggeligt Mel
+item.ganysnether.bottomlessBucket.name=Bundløs Spand
+item.ganysnether.dimensionalBread.name=Dimensional Brød
+item.ganysnether.baseballBat.name=Baseball Bat
+item.ganysnether.sceptreOfConcealment.name=Scepter af Fortielse
+item.ganysnether.skeletonSpawner0.name=Spawn Normalt Skelet
+item.ganysnether.skeletonSpawner1.name=Spawn Wither Skelet
+item.ganysnether.silverfishScale.name=Sølvfiske Hud
+item.ganysnether.batWing.name=Flagermusse Vinge
+item.ganysnether.cookedBatWing.name=Stegt Flagermusse Vinge
+item.ganysnether.wolfTeeth.name=Ulve Tænder
+item.ganysnether.blazeIngot0.name=Blaze Stof
+item.ganysnether.blazeIngot1.name=Blazebarre
+item.ganysnether.sceptreOfFireCharging.name=Scepter af Brand Opladning
+item.ganysnether.sceptreOfLightning.name=Lyn Scepter
+item.ganysnether.sceptreCap_0.name=Ildkugle Cap
+item.ganysnether.sceptreCap_1.name=Lyn Cap
+item.ganysnether.sceptreCap_2.name=Fortielses Cap
+item.ganysnether.witherShrubSeeds.name=Wither Busk Frø
+item.ganysnether.livingSoul.name=Levende Sjæl
+
+item.ganysnether.blazeHelmet.name=Blaze Hjelm
+item.ganysnether.blazeChestplate.name=Blaze Brystplade
+item.ganysnether.blazeLeggings.name=Blaze Bukser
+item.ganysnether.blazeBoots.name=Blaze Sko
+
+# Block localizations
+tile.ganysnether.tilledNetherrack.name=Dyrket Nethersten
+tile.ganysnether.quarzBerryBush.name=Quarz-Bær Busk
+tile.ganysnether.spectreWheat.name=Spøgelses Hvede
+tile.ganysnether.glowingReed.name=Glødende Sukkerrør
+tile.ganysnether.soulGlass.name=Sjæle Glas
+tile.ganysnether.soulGlassBrick.name=Sjæle Glas Mursten
+tile.ganysnether.soulGlassStairs.name=Sjæle Glas Murstentrappe
+tile.ganysnether.soulChest.name=Sjæle Kiste
+tile.ganysnether.volcanicFurnace.name=Vulkan Ovn
+tile.ganysnether.denseLavaCell.name=Tæt Lava Celle
+tile.ganysnether.reproducer.name=Gengiver
+tile.ganysnether.undertaker.name=Undertager
+tile.ganysnether.witherShrub.name=Wither Busk
+tile.ganysnether.magmaticCentrifuge.name=Magmatisk Centrifuge
+
+tile.ganysnether.glowBoxBlack.name=Sort Gløde Boks
+tile.ganysnether.glowBoxRed.name=Rød Gløde Boks
+tile.ganysnether.glowBoxGreen.name=Grøn Gløde Boks
+tile.ganysnether.glowBoxBrown.name=Brun Gløde Boks
+tile.ganysnether.glowBoxBlue.name=Blå Gløde Boks
+tile.ganysnether.glowBoxPurple.name=Lilla Gløde Boks
+tile.ganysnether.glowBoxCyan.name=Turkis Gløde Boks
+tile.ganysnether.glowBoxLightGrey.name=Lysegrå Gløde Boks
+tile.ganysnether.glowBoxGrey.name=Grå Gløde Boks
+tile.ganysnether.glowBoxPink.name=Pink Gløde Boks
+tile.ganysnether.glowBoxLime.name=Lime Gløde Boks
+tile.ganysnether.glowBoxYellow.name=Gul Gløde Boks
+tile.ganysnether.glowBoxLightBlue.name=Lyseblå Gløde Boks
+tile.ganysnether.glowBoxMagenta.name=Magenta Gløde Boks
+tile.ganysnether.glowBoxOrange.name=Orange Gløde Boks
+tile.ganysnether.glowBoxWhite.name=Hvid Gløde Boks
+
+tile.ganysnether.colouredQuartzBlockBlack.name=Sort Kvarts Blok
+tile.ganysnether.colouredQuartzBlockRed.name=Rød Kvarts Blok
+tile.ganysnether.colouredQuartzBlockGreen.name=Grøn Kvarts Blok
+tile.ganysnether.colouredQuartzBlockBrown.name=Brun Kvarts Blok
+tile.ganysnether.colouredQuartzBlockBlue.name=Blå Kvarts Blok
+tile.ganysnether.colouredQuartzBlockPurple.name=Lilla Kvarts Blok
+tile.ganysnether.colouredQuartzBlockCyan.name=Turkis Kvarts Blok
+tile.ganysnether.colouredQuartzBlockLightGrey.name=Lysegrå Kvarts Blok
+tile.ganysnether.colouredQuartzBlockGrey.name=Grå Kvarts Blok
+tile.ganysnether.colouredQuartzBlockPink.name=Pink Kvarts Blok
+tile.ganysnether.colouredQuartzBlockLime.name=Lime Kvarts Blok
+tile.ganysnether.colouredQuartzBlockYellow.name=Gul Kvarts Blok
+tile.ganysnether.colouredQuartzBlockLightBlue.name=Lyseblå Kvarts Blok
+tile.ganysnether.colouredQuartzBlockMagenta.name=Magenta Kvarts Blok
+tile.ganysnether.colouredQuartzBlockOrange.name=Orange Kvarts Blok
+tile.ganysnether.colouredQuartzBlockWhite.name=Hvid Kvarts Blok
+
+tile.ganysnether.colouredChiselledQuartzBlockBlack.name=Sort Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockRed.name=Rød Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockGreen.name=Grøn Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockBrown.name=Brun Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockBlue.name=Blå Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockPurple.name=Lilla Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockCyan.name=Turkis Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockLightGrey.name=Lysegrå Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockGrey.name=Grå Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockPink.name=Pink Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockLime.name=Lime Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockYellow.name=Gul Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockLightBlue.name=Lyseblå Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockMagenta.name=Magenta Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockOrange.name=Orange Mejslet Kvarts Blok
+tile.ganysnether.colouredChiselledQuartzBlockWhite.name=Hvid Mejslet Kvarts Blok
+
+tile.ganysnether.colouredQuartzPillar00.name=Sort Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar01.name=Rød Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar02.name=Grøn Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar03.name=Brun Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar10.name=Blå Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar11.name=Lilla Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar12.name=Turkis Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar13.name=Lysegrå Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar20.name=Grå Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar21.name=Pink Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar22.name=Lime Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar23.name=Gul Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar30.name=Lyseblå Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar31.name=Magenta Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar32.name=Orange Søjle Kvarts Blok
+tile.ganysnether.colouredQuartzPillar33.name=Hvid Søjle Kvarts Blok
+
+tile.ganysnether.blackQuartzStairs.name=Sort Kvarts Trappe
+tile.ganysnether.redQuartzStairs.name=Rød Kvarts Trappe
+tile.ganysnether.greenQuartzStairs.name=Grøn Kvarts Trappe
+tile.ganysnether.brownQuartzStairs.name=Brun Kvarts Trappe
+tile.ganysnether.blueQuartzStairs.name=Blå Kvarts Trappe
+tile.ganysnether.purpleQuartzStairs.name=Lilla Kvarts Trappe
+tile.ganysnether.cyanQuartzStairs.name=Turkis Kvarts Trappe
+tile.ganysnether.lightGreyQuartzStairs.name=Lysegrå Kvarts Trappe
+tile.ganysnether.greyQuartzStairs.name=Grå Kvarts Trappe
+tile.ganysnether.pinkQuartzStairs.name=Pink Kvarts Trappe
+tile.ganysnether.limeQuartzStairs.name=Lime Kvarts Trappe
+tile.ganysnether.yellowQuartzStairs.name=Gul Kvarts Trappe
+tile.ganysnether.lightBlueQuartzStairs.name=Lyseblå Kvarts Trappe
+tile.ganysnether.magentaQuartzStairs.name=Magenta Kvarts Trappe
+tile.ganysnether.orangeQuartzStairs.name=Orange Kvarts Trappe
+tile.ganysnether.whiteQuartzStairs.name=Hvid Kvarts Trappe
+
+# GUI localizations
+container.ganysnether:volcanicFurnace=Vulkan Ovn
+container.ganysnether:reproducer=Gengiver
+container.ganysnether:soulChest=Sjæle Kiste
+container.ganysnether:undertaker=Undertager
+container.ganysnether:magmaticCentrifuge=Magmatisk Centrifuge
+fluidtogo=Fluid to go:
+
+# Creative Tab localizations
+itemGroup.ganysnether=Gany's Nether
