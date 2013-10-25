@@ -70,6 +70,8 @@ public class ModRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(Item.glowstone, 2), new ItemStack(ModItems.glowingReed));
 		GameRegistry.addRecipe(new ItemStack(Item.netherQuartz, 6), "xxx", "yyy", "xxx", 'x', ModItems.quarzBerry, 'y', Block.glass);
 		GameRegistry.addRecipe(new ItemStack(Item.arrow, 16), "x", "y", "z", 'x', ModItems.wolfTeeth, 'y', Item.stick, 'z', Item.feather);
+		GameRegistry.addRecipe(new ItemStack(Item.ingotIron), "xxx", "xxx", "xxx", 'x', ModItems.ironNugget);
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.ironNugget, 9), Item.ingotIron);
 	}
 
 	private static void createSceptreRecipe(Item sceptre, int capMeta, Item handle, int durability) {
@@ -141,5 +143,7 @@ public class ModRecipes {
 		}
 		OreDictionary.registerOre("ganysNetherSpawnEggs", new ItemStack(ModItems.skeletonSpawner, 1, 0));
 		OreDictionary.registerOre("ganysNetherSpawnEggs", new ItemStack(ModItems.skeletonSpawner, 1, 1));
+
+		OreDictionary.registerOre("nuggetIron", ModItems.ironNugget);
 	}
 }

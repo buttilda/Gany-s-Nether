@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Gany's Nether
@@ -23,10 +24,13 @@ public class MagmaticCentrifugeRecipes {
 
 	private static ArrayList<CentrifugeRecipe> recipes;
 
-	public static void initRecipes() {
+	public static void clearRecipeList() {
 		recipes = new ArrayList<CentrifugeRecipe>();
+	}
 
-		addRecipe(new ItemStack(Item.glowstone), new ItemStack(Block.netherrack), new ItemStack(Item.redstone));
+	public static void initRecipes() {
+
+		addRecipe(new ItemStack(Item.glowstone), new ItemStack(Block.netherrack), new ItemStack(Item.redstone, 2));
 		addRecipe(new ItemStack(Item.magmaCream), new ItemStack(Item.magmaCream), new ItemStack(Item.blazePowder, 2), new ItemStack(Item.slimeBall, 2));
 		addRecipe(new ItemStack(ModItems.glowingReed), new ItemStack(ModItems.glowingReed), new ItemStack(Item.glowstone, 2), new ItemStack(Item.sugar, 2));
 		addRecipe(new ItemStack(ModItems.quarzBerry), new ItemStack(Item.glassBottle), new ItemStack(Item.potion));
@@ -38,13 +42,54 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe(new ItemStack(Block.sand), new ItemStack(Block.sand), new ItemStack(Block.glass, 2));
 		addRecipe(new ItemStack(Block.glass), new ItemStack(Block.glass), new ItemStack(Block.sand, 2));
 		for (int i = 0; i < 16; i++)
-			addRecipe(new ItemStack(Block.cloth, 1, i), new ItemStack(Item.flint));
-		addRecipe(new ItemStack(Item.reed), new ItemStack(Item.reed), new ItemStack(Item.silk, 4));
+			addRecipe(new ItemStack(Block.cloth, 1, i), new ItemStack(Item.flint), new ItemStack(Item.silk, 4));
 		addRecipe(new ItemStack(Item.rottenFlesh), new ItemStack(Item.rottenFlesh), new ItemStack(Item.leather));
 		addRecipe(new ItemStack(ModBlocks.soulGlass), new ItemStack(ModBlocks.soulGlass), new ItemStack(Block.slowSand, 2));
 		addRecipe(new ItemStack(Block.slowSand), new ItemStack(Block.slowSand), new ItemStack(ModBlocks.soulGlass, 2));
-		addRecipe(new ItemStack(Block.oreGold), new ItemStack(Block.oreGold), new ItemStack(Item.ingotGold, 2), new ItemStack(Item.goldNugget));
-		addRecipe(new ItemStack(Block.cloth, 1, 4), new ItemStack(Item.dyePowder), new ItemStack(Block.sponge));
+		addOreDictRecipe("oreGold", "oreGold", new ItemStack(Item.ingotGold, 2), new ItemStack(Item.goldNugget));
+		addOreDictRecipe("oreIron", "oreIron", new ItemStack(Item.ingotIron, 2), new ItemStack(ModItems.ironNugget));
+		addOreDictRecipe(new ItemStack(Block.cloth, 1, 4), "dyeBlack", new ItemStack(Block.sponge));
+		addRecipe(new ItemStack(Item.bucketEmpty), new ItemStack(Item.flint), new ItemStack(Item.ingotIron, 3));
+		addRecipe(new ItemStack(Item.arrow), new ItemStack(Item.arrow), new ItemStack(Item.flint, 2), new ItemStack(Item.stick, 2), new ItemStack(Item.feather, 2));
+		addRecipe(new ItemStack(Item.coal), new ItemStack(Item.blazePowder), new ItemStack(Item.gunpowder));
+		addRecipe(new ItemStack(Block.stoneBrick), new ItemStack(Block.vine), new ItemStack(Block.stoneBrick, 1));
+		addRecipe(new ItemStack(Block.stoneBrick), new ItemStack(Item.flint), new ItemStack(Block.stoneBrick, 2));
+		addRecipe(new ItemStack(Block.cobblestone), new ItemStack(Block.vine), new ItemStack(Block.cobblestoneMossy));
+		addRecipe(new ItemStack(Block.pumpkin), new ItemStack(Block.pumpkin), new ItemStack(Item.pumpkinSeeds, 12));
+		addRecipe(new ItemStack(Item.melon), new ItemStack(Item.melon), new ItemStack(Item.melonSeeds, 3));
+		addRecipe(new ItemStack(Block.sandStone), new ItemStack(Item.flint), new ItemStack(Block.sand, 4));
+		addRecipe(new ItemStack(Block.dirt), new ItemStack(Item.dyePowder, 15), new ItemStack(Block.grass));
+		addRecipe(new ItemStack(Block.vine), new ItemStack(Block.vine), new ItemStack(Item.silk, 2));
+		addRecipe(new ItemStack(Item.horseArmorIron), new ItemStack(Item.flint), new ItemStack(Item.ingotIron, 6));
+		addRecipe(new ItemStack(Item.horseArmorGold), new ItemStack(Item.flint), new ItemStack(Item.ingotGold, 6));
+		addRecipe(new ItemStack(Item.horseArmorDiamond), new ItemStack(Item.flint), new ItemStack(Item.diamond, 6));
+		addRecipe(new ItemStack(Block.bookShelf), new ItemStack(Item.flint), new ItemStack(Block.planks, 6), new ItemStack(Item.book, 3));
+		addRecipe(new ItemStack(Item.leather), new ItemStack(Item.flint), new ItemStack(Item.silk, 3));
+	}
+
+	public static void addOreDictRecipe(String material1, String material2, ItemStack... result) {
+		ArrayList<ItemStack> materials1 = OreDictionary.getOres(material1);
+		ArrayList<ItemStack> materials2 = OreDictionary.getOres(material2);
+		if (!materials1.isEmpty() && !materials2.isEmpty())
+			for (ItemStack mat1 : materials1)
+				for (ItemStack mat2 : materials2)
+					if (isValidRecipe(new CentrifugeRecipe(mat1, mat2, result)))
+						addRecipe(mat1, mat2, result);
+	}
+
+	public static void addOreDictRecipe(ItemStack material1, String material2, ItemStack... result) {
+		ArrayList<ItemStack> materials2 = OreDictionary.getOres(material2);
+		if (!materials2.isEmpty())
+			for (ItemStack mat2 : materials2)
+				if (isValidRecipe(new CentrifugeRecipe(material1, mat2, result)))
+					addRecipe(material1, mat2, result);
+	}
+
+	public static void addOreDictRecipe(String material1, ItemStack material2, ItemStack... result) {
+		ArrayList<ItemStack> materials1 = OreDictionary.getOres(material1);
+		if (!materials1.isEmpty())
+			for (ItemStack mat1 : materials1)
+				addRecipe(mat1, material2, result);
 	}
 
 	public static void addRecipe(ItemStack material1, ItemStack material2, ItemStack... result) {
@@ -64,7 +109,7 @@ public class MagmaticCentrifugeRecipes {
 				recipes.add(newRecipe);
 				Logger.getLogger(Reference.MOD_ID).log(Level.FINE, sender + " successfully added a recipe to the Magmatic Centrifuge.");
 			} else
-				Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, sender + " attempted to add an existing recipe to the Magmatic Centrifuge.");
+				Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, sender + " attempted to add an existing recipe to the Magmatic Centrifuge: " + newRecipe.toString());
 		}
 	}
 
@@ -125,6 +170,17 @@ public class MagmaticCentrifugeRecipes {
 				}
 			}
 			return false;
+		}
+
+		@Override
+		public String toString() {
+			StringBuffer buffer = new StringBuffer();
+			buffer.append(material1.getUnlocalizedName() + " + " + material2.getUnlocalizedName() + " = ");
+			for (ItemStack stack : result)
+				buffer.append(stack.getUnlocalizedName() + ", ");
+			buffer.deleteCharAt(buffer.length() - 1);
+			buffer.deleteCharAt(buffer.length() - 1);
+			return buffer.toString();
 		}
 	}
 }

@@ -55,6 +55,7 @@ public class ModIDs {
 	public static int SCEPTRE_CAP_ID;
 	public static int WITHER_SHRUB_SEEDS_ID;
 	public static int LIVING_SOUL_ID;
+	public static int IRON_NUGGET_ID;
 
 	// Armour
 	public static int BLAZE_HELMET_ID;

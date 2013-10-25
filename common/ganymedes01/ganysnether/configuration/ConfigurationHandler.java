@@ -100,6 +100,7 @@ public class ConfigurationHandler {
 			ModIDs.SCEPTRE_CAP_ID = configItem(Strings.SCEPTRE_CAP_NAME);
 			ModIDs.WITHER_SHRUB_SEEDS_ID = configItem(Strings.WITHER_SHRUB_SEEDS_NAME);
 			ModIDs.LIVING_SOUL_ID = configItem(Strings.LIVING_SOUL_NAME);
+			ModIDs.IRON_NUGGET_ID = configItem(Strings.IRON_NUGGET_NAME);
 
 			// Others
 			GanysNether.sceptreOfConcealmentDurability = configuration.get("Durability", Strings.SCEPTRE_OF_CONCEALMENT_NAME, SceptreOfConcealment.DEFAULT_DUR).getInt(SceptreOfConcealment.DEFAULT_DUR);
