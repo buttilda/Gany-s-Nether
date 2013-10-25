@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.recipes;
 
+import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
 
@@ -34,12 +35,16 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe(new ItemStack(Item.eyeOfEnder), new ItemStack(Item.eyeOfEnder), new ItemStack(Item.blazePowder, 2), new ItemStack(Item.enderPearl, 2));
 		addRecipe(new ItemStack(ModItems.glowingReed), new ItemStack(Item.potion), new ItemStack(Item.reed), new ItemStack(Item.glassBottle));
 		addRecipe(new ItemStack(Block.dirt), new ItemStack(Block.sand), new ItemStack(Item.clay));
-		addRecipe(new ItemStack(Block.sand), new ItemStack(Block.sand), new ItemStack(Block.glass, 3));
+		addRecipe(new ItemStack(Block.sand), new ItemStack(Block.sand), new ItemStack(Block.glass, 2));
 		addRecipe(new ItemStack(Block.glass), new ItemStack(Block.glass), new ItemStack(Block.sand, 2));
 		for (int i = 0; i < 16; i++)
 			addRecipe(new ItemStack(Block.cloth, 1, i), new ItemStack(Item.flint));
 		addRecipe(new ItemStack(Item.reed), new ItemStack(Item.reed), new ItemStack(Item.silk, 4));
 		addRecipe(new ItemStack(Item.rottenFlesh), new ItemStack(Item.rottenFlesh), new ItemStack(Item.leather));
+		addRecipe(new ItemStack(ModBlocks.soulGlass), new ItemStack(ModBlocks.soulGlass), new ItemStack(Block.slowSand, 2));
+		addRecipe(new ItemStack(Block.slowSand), new ItemStack(Block.slowSand), new ItemStack(ModBlocks.soulGlass, 2));
+		addRecipe(new ItemStack(Block.oreGold), new ItemStack(Block.oreGold), new ItemStack(Item.ingotGold, 2), new ItemStack(Item.goldNugget));
+		addRecipe(new ItemStack(Block.cloth, 1, 4), new ItemStack(Item.dyePowder), new ItemStack(Block.sponge));
 	}
 
 	public static void addRecipe(ItemStack material1, ItemStack material2, ItemStack... result) {
