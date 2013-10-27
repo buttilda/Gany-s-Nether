@@ -7,6 +7,7 @@ import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -38,7 +39,7 @@ public class SceptreOfConcealment extends Sceptre {
 		if (((EntityLivingBase) target).isChild())
 			return false;
 		int id = EntityList.getEntityID(target);
-		if (id >= 50 && id != 63 && id != 64 && id < 200)
+		if (EntityList.entityEggs.get(id) != null && !(target instanceof IBossDisplayData))
 			if (player instanceof EntityPlayer)
 				if (player.inventory.consumeInventoryItem(Item.egg.itemID)) {
 					if (!player.worldObj.isRemote) {
@@ -47,7 +48,7 @@ public class SceptreOfConcealment extends Sceptre {
 						if (target instanceof EntitySkeleton)
 							target.entityDropItem(new ItemStack(ModItems.skeletonSpawner, 1, ((EntitySkeleton) target).getSkeletonType()), 1.0F);
 						else
-							target.entityDropItem(new ItemStack(Item.monsterPlacer, 1, EntityList.getEntityID(target)), 1.0F);
+							target.entityDropItem(new ItemStack(Item.monsterPlacer, 1, id), 1.0F);
 						stack.damageItem(1, player);
 					}
 					return true;

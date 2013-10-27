@@ -4,6 +4,7 @@ import ganymedes01.ganysnether.GanysNether;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemSimpleFoiled;
 import net.minecraft.item.ItemStack;
+import thaumcraft.api.IRepairable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -14,7 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  */
 
-public class Sceptre extends ItemSimpleFoiled {
+public class Sceptre extends ItemSimpleFoiled implements IRepairable {
 
 	public Sceptre(int id) {
 		super(id);
@@ -27,5 +28,10 @@ public class Sceptre extends ItemSimpleFoiled {
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack) {
 		return EnumRarity.epic;
+	}
+
+	@Override
+	public int getItemEnchantability() {
+		return 22;
 	}
 }
