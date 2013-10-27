@@ -43,16 +43,16 @@ public class BlazeIngot extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIconFromDamage(int i) {
-		return icon[i];
+	public Icon getIconFromDamage(int meta) {
+		return icon[meta];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
-		icon = new Icon[2];
+		icon = new Icon[3];
 
-		for (int i = 0; i <= 1; ++i)
+		for (int i = 0; i < icon.length; i++)
 			icon[i] = reg.registerIcon(Utils.getItemTexture(Strings.BLAZE_INGOT_NAME) + "_" + i);
 	}
 
@@ -61,5 +61,6 @@ public class BlazeIngot extends Item {
 	public void getSubItems(int itemID, CreativeTabs tab, List list) {
 		list.add(new ItemStack(itemID, 1, 0));
 		list.add(new ItemStack(itemID, 1, 1));
+		list.add(new ItemStack(itemID, 1, 2));
 	}
 }

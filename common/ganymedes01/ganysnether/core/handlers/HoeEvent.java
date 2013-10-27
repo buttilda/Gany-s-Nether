@@ -20,7 +20,7 @@ public class HoeEvent {
 	public void onHoeUseEvent(UseHoeEvent event) {
 		if (event.world.getBlockId(event.x, event.y, event.z) == Block.netherrack.blockID) {
 			ItemHoe item = (ItemHoe) event.current.getItem();
-			if (item.getMaterialName() == "EMERALD" || item.getMaterialName() == "GOLD") {
+			if (item.getMaterialName() == "EMERALD" || item.getMaterialName() == "GOLD" || item.getMaterialName() == "THAUMIUM") {
 				event.world.setBlock(event.x, event.y, event.z, ModBlocks.tilledNetherrack.blockID);
 				event.setResult(Result.ALLOW);
 			}

@@ -16,6 +16,7 @@ import ganymedes01.ganysnether.network.PacketHandler;
 import ganymedes01.ganysnether.recipes.BuildCraftFacadeManager;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ModRecipes;
+import ganymedes01.ganysnether.recipes.ThaumCraftManager;
 import ganymedes01.ganysnether.world.NetherWorldGen;
 
 import java.io.File;
@@ -92,6 +93,7 @@ public class GanysNether {
 		if (shouldGenerateCrops)
 			GameRegistry.registerWorldGenerator(new NetherWorldGen());
 		BuildCraftFacadeManager.registerFacades();
+		ThaumCraftManager.init();
 	}
 
 	@EventHandler

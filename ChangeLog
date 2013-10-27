@@ -44,3 +44,6 @@ v1.4.1
 -Fix: SMP again
 -Added: Living Soul
 -Added: New items will spawn inside the undertaker
+
+Next version
+-Added: Inproved compatibility with Thaumcraft (all items have aspects, and cooking blaze mesh on the infernal furnace gives you nuggets)
