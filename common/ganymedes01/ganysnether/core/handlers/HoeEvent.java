@@ -18,12 +18,13 @@ public class HoeEvent {
 
 	@ForgeSubscribe
 	public void onHoeUseEvent(UseHoeEvent event) {
-		if (event.world.getBlockId(event.x, event.y, event.z) == Block.netherrack.blockID) {
-			ItemHoe item = (ItemHoe) event.current.getItem();
-			if (item.getMaterialName() == "EMERALD" || item.getMaterialName() == "GOLD" || item.getMaterialName() == "THAUMIUM") {
-				event.world.setBlock(event.x, event.y, event.z, ModBlocks.tilledNetherrack.blockID);
-				event.setResult(Result.ALLOW);
+		if (event.world.getBlockId(event.x, event.y, event.z) == Block.netherrack.blockID)
+			if (event.current.getItem() instanceof ItemHoe) {
+				ItemHoe item = (ItemHoe) event.current.getItem();
+				if (item.getMaterialName() == "EMERALD" || item.getMaterialName() == "GOLD" || item.getMaterialName() == "THAUMIUM") {
+					event.world.setBlock(event.x, event.y, event.z, ModBlocks.tilledNetherrack.blockID);
+					event.setResult(Result.ALLOW);
+				}
 			}
-		}
 	}
 }
