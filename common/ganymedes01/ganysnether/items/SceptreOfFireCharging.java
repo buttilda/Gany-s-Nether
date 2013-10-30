@@ -36,6 +36,7 @@ public class SceptreOfFireCharging extends Sceptre {
 			stack.damageItem(1, player);
 		player.swingItem();
 		spawnFireCharge(world, player);
+		world.playAuxSFX(1009, (int) player.posX, (int) player.posY, (int) player.posZ, 0);
 		return stack;
 	}
 
@@ -47,9 +48,9 @@ public class SceptreOfFireCharging extends Sceptre {
 		entitylargefireball.field_92057_e = 1;
 
 		Vec3 targetPos = player.getLook(1.0F);
-		entitylargefireball.posX = player.posX + targetPos.xCoord * 4.0D;
-		entitylargefireball.posY = player.posY + player.height / 2.0F + 0.5D;
-		entitylargefireball.posZ = player.posZ + targetPos.zCoord * 4.0D;
+		entitylargefireball.posX = player.posX + targetPos.xCoord;
+		entitylargefireball.posY = player.posY + targetPos.yCoord + 1.0D;
+		entitylargefireball.posZ = player.posZ + targetPos.zCoord;
 
 		double factor = MathHelper.sqrt_double(targetPos.xCoord * targetPos.xCoord + targetPos.yCoord * targetPos.yCoord + targetPos.zCoord * targetPos.zCoord);
 		entitylargefireball.accelerationX = targetPos.xCoord / factor * 0.1D;
