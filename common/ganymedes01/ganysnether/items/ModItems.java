@@ -1,6 +1,10 @@
 package ganymedes01.ganysnether.items;
 
+import ganymedes01.ganysnether.dispenser.DispenserBehaviorBottomlessBucket;
+import ganymedes01.ganysnether.dispenser.DispenserBehaviorLivingSoul;
+import ganymedes01.ganysnether.dispenser.DispenserBehaviorSkeletonSpawner;
 import ganymedes01.ganysnether.lib.Strings;
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -75,6 +79,7 @@ public class ModItems {
 		ironNugget = new IronNugget();
 
 		registerNames();
+		registerDispenserActions();
 	}
 
 	private static void registerNames() {
@@ -106,5 +111,11 @@ public class ModItems {
 		GameRegistry.registerItem(blazeChestplate, Strings.BLAZE_CHESTPLATE_NAME);
 		GameRegistry.registerItem(blazeLeggings, Strings.BLAZE_LEGGINGS_NAME);
 		GameRegistry.registerItem(blazeBoots, Strings.BLAZE_BOOTS_NAME);
+	}
+
+	private static void registerDispenserActions() {
+		BlockDispenser.dispenseBehaviorRegistry.putObject(skeletonSpawner, new DispenserBehaviorSkeletonSpawner());
+		BlockDispenser.dispenseBehaviorRegistry.putObject(livingSoul, new DispenserBehaviorLivingSoul());
+		BlockDispenser.dispenseBehaviorRegistry.putObject(bottomlessBucket, new DispenserBehaviorBottomlessBucket());
 	}
 }

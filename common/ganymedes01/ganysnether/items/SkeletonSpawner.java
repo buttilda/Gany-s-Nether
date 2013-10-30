@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -27,11 +26,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.Facing;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -144,65 +141,26 @@ public class SkeletonSpawner extends ItemMonsterPlacer {
 		if (world.isRemote)
 			return true;
 		else {
-			int i1 = world.getBlockId(x, y, z);
+			int id = world.getBlockId(x, y, z);
 			x += Facing.offsetsXForSide[side];
 			y += Facing.offsetsYForSide[side];
 			z += Facing.offsetsZForSide[side];
-			double d0 = 0.0D;
+			double yOffSet = 0.0D;
 
-			if (side == 1 && Block.blocksList[i1] != null && Block.blocksList[i1].getRenderType() == 11)
-				d0 = 0.5D;
+			if (side == 1 && Block.blocksList[id] != null && Block.blocksList[id].getRenderType() == 11)
+				yOffSet = 0.5D;
 
-			Entity entity = spawnSkeleton(world, x + 0.5D, y + d0, z + 0.5D, stack.getItemDamage());
+			Entity entity = spawnSkeleton(world, x + 0.5D, y + yOffSet, z + 0.5D, stack.getItemDamage());
 
 			if (entity != null) {
 				if (entity instanceof EntityLivingBase && stack.hasDisplayName())
 					((EntityLiving) entity).setCustomNameTag(stack.getDisplayName());
 
 				if (!player.capabilities.isCreativeMode)
-					--stack.stackSize;
+					stack.stackSize--;
 			}
 
 			return true;
-		}
-	}
-
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (world.isRemote)
-			return stack;
-		else {
-			MovingObjectPosition movingobjectposition = getMovingObjectPositionFromPlayer(world, player, true);
-
-			if (movingobjectposition == null)
-				return stack;
-			else {
-				if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
-					int i = movingobjectposition.blockX;
-					int j = movingobjectposition.blockY;
-					int k = movingobjectposition.blockZ;
-
-					if (!world.canMineBlock(player, i, j, k))
-						return stack;
-
-					if (!player.canPlayerEdit(i, j, k, movingobjectposition.sideHit, stack))
-						return stack;
-
-					if (world.getBlockMaterial(i, j, k) == Material.water) {
-						Entity entity = spawnSkeleton(world, i, j, k, stack.getItemDamage());
-
-						if (entity != null) {
-							if (entity instanceof EntityLivingBase && stack.hasDisplayName())
-								((EntityLiving) entity).setCustomNameTag(stack.getDisplayName());
-
-							if (!player.capabilities.isCreativeMode)
-								--stack.stackSize;
-						}
-					}
-				}
-
-				return stack;
-			}
 		}
 	}
 
@@ -221,8 +179,8 @@ public class SkeletonSpawner extends ItemMonsterPlacer {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIconFromDamageForRenderPass(int par1, int par2) {
-		return par2 > 0 ? theIcon : super.getIconFromDamageForRenderPass(par1, par2);
+	public Icon getIconFromDamageForRenderPass(int meta, int pass) {
+		return pass > 0 ? theIcon : super.getIconFromDamageForRenderPass(meta, pass);
 	}
 
 	@Override

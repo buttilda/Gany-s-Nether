@@ -45,11 +45,11 @@ public class BottomlessBucket extends ItemSimpleFoiled {
 			if (movingobjectposition == null)
 				return stack;
 			else if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
-				int i = movingobjectposition.blockX;
-				int j = movingobjectposition.blockY;
-				int k = movingobjectposition.blockZ;
-				if (world.getBlockMaterial(i, j, k) == Material.water || world.getBlockMaterial(i, j, k) == Material.lava)
-					world.setBlockToAir(i, j, k);
+				int x = movingobjectposition.blockX;
+				int y = movingobjectposition.blockY;
+				int z = movingobjectposition.blockZ;
+				if (world.getBlockMaterial(x, y, z) == Material.water || world.getBlockMaterial(x, y, z) == Material.lava)
+					world.setBlockToAir(x, y, z);
 			}
 		}
 		return stack;

@@ -47,7 +47,7 @@ public class LivingSoul extends Item {
 		return false;
 	}
 
-	private boolean applyBonemeal(ItemStack stack, World world, int x, int y, int z, EntityPlayer player) {
+	public static boolean applyBonemeal(ItemStack stack, World world, int x, int y, int z, EntityPlayer player) {
 		BonemealEvent event = new BonemealEvent(player, world, world.getBlockId(x, y, z), x, y, z);
 		if (MinecraftForge.EVENT_BUS.post(event))
 			return false;
