@@ -7,11 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.minecraft.item.ItemStack;
-
-import com.google.common.base.Splitter;
-import com.google.common.collect.Iterables;
-import com.google.common.primitives.Ints;
-
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
 import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
 
@@ -25,97 +22,37 @@ import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
 public class InterModComms {
 
 	public static void processIMC(IMCEvent event) {
-		for (IMCMessage m : event.getMessages())
-			if ("addCentrifugeRecipe".equals(m.key))
-				addCentrifugeRecipe(m);
+		for (IMCMessage message : event.getMessages())
+			if ("addCentrifugeRecipe".equals(message.key))
+				addCentrifugeRecipe(message);
 	}
 
-	public static void addCentrifugeRecipe(IMCMessage m) {
-		ItemStack material1 = null;
-		ItemStack material2 = null;
+	public static void addCentrifugeRecipe(IMCMessage message) {
+		NBTTagCompound data = message.getNBTValue();
+		NBTTagList tagList = data.getTagList("Recipe");
+		ItemStack material1 = null, material2 = null;
+		ItemStack[] result = new ItemStack[tagList.tagCount() - 2];
 
-		ItemStack result1 = null;
-
-		try {
-			Splitter splitter = Splitter.on("@").trimResults();
-
-			String[] array = Iterables.toArray(splitter.split(m.getStringValue()), String.class);
-			if (array.length != 7 && array.length != 10 && array.length != 13 && array.length != 16)
-				Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s tried to add a recipe of invalid size.", m.getSender()));
-			else {
-				Integer mat1ID = Ints.tryParse(array[0]);
-				Integer mat1META = Ints.tryParse(array[1]);
-
-				Integer mat2ID = Ints.tryParse(array[2]);
-				Integer mat2META = Ints.tryParse(array[3]);
-
-				Integer res1ID = Ints.tryParse(array[4]);
-				Integer res1SIZE = Ints.tryParse(array[5]);
-				Integer res1META = Ints.tryParse(array[6]);
-
-				if (mat1ID == null || mat1META == null || mat2ID == null || mat2META == null || res1ID == null || res1SIZE == null || res1META == null) {
-					Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s tried to add an invalid recipe.", m.getSender()));
-					return;
-				}
-				material1 = new ItemStack(mat1ID, 1, mat1META);
-				material2 = new ItemStack(mat2ID, 1, mat2META);
-				result1 = new ItemStack(res1ID, res1SIZE, res1META);
-
-				if (array.length == 7)
-					MagmaticCentrifugeRecipes.addRecipe(m.getSender(), material1, material2, result1);
-				else if (array.length == 10) {
-					Integer res2ID = Ints.tryParse(array[7]);
-					Integer res2SIZE = Ints.tryParse(array[8]);
-					Integer res2META = Ints.tryParse(array[9]);
-
-					if (res2ID == null || res2SIZE == null || res2META == null) {
-						Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s tried to add an invalid recipe.", m.getSender()));
-						return;
-					}
-
-					MagmaticCentrifugeRecipes.addRecipe(m.getSender(), material1, material2, result1, new ItemStack(res2ID, res2SIZE, res2META));
-				} else if (array.length == 13) {
-					Integer res2ID = Ints.tryParse(array[7]);
-					Integer res2SIZE = Ints.tryParse(array[8]);
-					Integer res2META = Ints.tryParse(array[9]);
-
-					Integer res3ID = Ints.tryParse(array[10]);
-					Integer res3SIZE = Ints.tryParse(array[11]);
-					Integer res3META = Ints.tryParse(array[12]);
-
-					if (res2ID == null || res2SIZE == null || res2META == null || res3ID == null || res3SIZE == null || res3META == null) {
-						Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s tried to add an invalid recipe.", m.getSender()));
-						return;
-					}
-
-					MagmaticCentrifugeRecipes.addRecipe(m.getSender(), material1, material2, result1, new ItemStack(res2ID, res2SIZE, res2META), new ItemStack(res3ID, res3SIZE, res3META));
-
-				} else if (array.length == 16) {
-					Integer res2ID = Ints.tryParse(array[7]);
-					Integer res2SIZE = Ints.tryParse(array[8]);
-					Integer res2META = Ints.tryParse(array[9]);
-
-					Integer res3ID = Ints.tryParse(array[10]);
-					Integer res3SIZE = Ints.tryParse(array[11]);
-					Integer res3META = Ints.tryParse(array[12]);
-
-					Integer res4ID = Ints.tryParse(array[13]);
-					Integer res4SIZE = Ints.tryParse(array[14]);
-					Integer res4META = Ints.tryParse(array[15]);
-
-					if (res2ID == null || res2SIZE == null || res2META == null || res3ID == null || res3SIZE == null || res3META == null || res4ID == null || res4SIZE == null || res4META == null) {
-						Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s tried to add an invalid recipe.", m.getSender()));
-						return;
-					}
-
-					MagmaticCentrifugeRecipes.addRecipe(m.getSender(), material1, material2, result1, new ItemStack(res2ID, res2SIZE, res2META), new ItemStack(res3ID, res3SIZE, res3META), new ItemStack(res4ID, res4SIZE, res4META));
-				} else {
-					Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s tried to add an invalid recipe.", m.getSender()));
-					return;
-				}
-			}
-		} catch (Exception ex) {
-
+		if (result.length > 4 || result.length <= 0) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s tried to add an invalid recipe.", message.getSender()));
+			return;
 		}
+
+		NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(0);
+		if (tagCompound.getByte("material1") == 0)
+			material1 = ItemStack.loadItemStackFromNBT(tagCompound);
+
+		tagCompound = (NBTTagCompound) tagList.tagAt(1);
+		if (tagCompound.getByte("material2") == 1)
+			material2 = ItemStack.loadItemStackFromNBT(tagCompound);
+
+		for (int i = 2; i < tagList.tagCount(); i++) {
+			tagCompound = (NBTTagCompound) tagList.tagAt(i);
+			byte slot = (byte) (tagCompound.getByte("result") - 2);
+			if (slot >= 0 && slot < result.length)
+				result[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
+		}
+
+		MagmaticCentrifugeRecipes.addRecipe(message.getSender(), material1, material2, result);
 	}
 }

@@ -97,17 +97,19 @@ public class MagmaticCentrifugeRecipes {
 	}
 
 	public static void addRecipe(String sender, ItemStack material1, ItemStack material2, ItemStack... result) {
-		if (result != null && result.length > 4 && material1 != null && material2 != null) {
-			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, sender + " attempted to add an invalid recipe to the Magmatic Centrifuge.");
+		if (result != null && result.length > 4 || material1 == null || material2 == null) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, sender + " attempted to add an invalid recipe to the Magmatic Centrifuge: Null material or invalid sized result array");
 			return;
 		} else {
 			for (ItemStack stack : result)
-				if (stack == null)
+				if (stack == null) {
+					Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, sender + " attempted to add an invalid recipe to the Magmatic Centrifuge: Null result");
 					return;
+				}
 			CentrifugeRecipe newRecipe = new CentrifugeRecipe(material1, material2, result);
 			if (isValidRecipe(newRecipe)) {
 				recipes.add(newRecipe);
-				Logger.getLogger(Reference.MOD_ID).log(Level.FINE, sender + " successfully added a recipe to the Magmatic Centrifuge.");
+				Logger.getLogger(Reference.MOD_ID).log(Level.INFO, sender + " successfully added a recipe to the Magmatic Centrifuge.");
 			} else
 				Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, sender + " attempted to add an existing recipe to the Magmatic Centrifuge: " + newRecipe.toString());
 		}

@@ -76,7 +76,9 @@ public class GanysNether {
 		ModBlocks.init();
 		ModItems.init();
 		ModRecipes.init();
+
 		MagmaticCentrifugeRecipes.clearRecipeList();
+		MagmaticCentrifugeRecipes.initRecipes();
 	}
 
 	@EventHandler
@@ -98,7 +100,6 @@ public class GanysNether {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		MagmaticCentrifugeRecipes.initRecipes();
 	}
 
 	@EventHandler
