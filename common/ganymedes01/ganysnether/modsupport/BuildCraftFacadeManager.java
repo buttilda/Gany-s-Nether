@@ -1,4 +1,4 @@
-package ganymedes01.ganysnether.recipes;
+package ganymedes01.ganysnether.modsupport;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import net.minecraft.block.Block;

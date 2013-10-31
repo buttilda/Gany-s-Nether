@@ -29,6 +29,7 @@ public class MagmaticCentrifugeRecipes {
 	}
 
 	public static void initRecipes() {
+		clearRecipeList();
 
 		addRecipe(new ItemStack(Item.glowstone), new ItemStack(Block.netherrack), new ItemStack(Item.redstone, 2));
 		addRecipe(new ItemStack(Item.magmaCream), new ItemStack(Item.magmaCream), new ItemStack(Item.blazePowder, 2), new ItemStack(Item.slimeBall, 2));
@@ -109,7 +110,10 @@ public class MagmaticCentrifugeRecipes {
 			CentrifugeRecipe newRecipe = new CentrifugeRecipe(material1, material2, result);
 			if (isValidRecipe(newRecipe)) {
 				recipes.add(newRecipe);
-				Logger.getLogger(Reference.MOD_ID).log(Level.INFO, sender + " successfully added a recipe to the Magmatic Centrifuge.");
+				Level lvl = Level.INFO;
+				if (sender.equalsIgnoreCase(Reference.MOD_ID))
+					lvl = Level.FINE;
+				Logger.getLogger(Reference.MOD_ID).log(lvl, sender + " successfully added a recipe to the Magmatic Centrifuge.");
 			} else
 				Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, sender + " attempted to add an existing recipe to the Magmatic Centrifuge: " + newRecipe.toString());
 		}

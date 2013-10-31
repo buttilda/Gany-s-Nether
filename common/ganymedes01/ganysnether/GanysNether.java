@@ -8,15 +8,17 @@ import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.InterModComms;
 import ganymedes01.ganysnether.core.handlers.VersionCheckTickHandler;
 import ganymedes01.ganysnether.core.proxy.CommonProxy;
+import ganymedes01.ganysnether.core.utils.HoeList;
 import ganymedes01.ganysnether.core.utils.VersionHelper;
 import ganymedes01.ganysnether.creativetab.CreativeTabNether;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
+import ganymedes01.ganysnether.modsupport.BuildCraftFacadeManager;
+import ganymedes01.ganysnether.modsupport.EE3Manager;
+import ganymedes01.ganysnether.modsupport.ThaumCraftManager;
 import ganymedes01.ganysnether.network.PacketHandler;
-import ganymedes01.ganysnether.recipes.BuildCraftFacadeManager;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ModRecipes;
-import ganymedes01.ganysnether.recipes.ThaumCraftManager;
 import ganymedes01.ganysnether.world.NetherWorldGen;
 
 import java.io.File;
@@ -77,8 +79,8 @@ public class GanysNether {
 		ModItems.init();
 		ModRecipes.init();
 
-		MagmaticCentrifugeRecipes.clearRecipeList();
 		MagmaticCentrifugeRecipes.initRecipes();
+		HoeList.init();
 	}
 
 	@EventHandler
@@ -94,8 +96,11 @@ public class GanysNether {
 
 		if (shouldGenerateCrops)
 			GameRegistry.registerWorldGenerator(new NetherWorldGen());
+
+		HoeList.registerThaumcraftHoes();
 		BuildCraftFacadeManager.registerFacades();
 		ThaumCraftManager.init();
+		EE3Manager.init();
 	}
 
 	@EventHandler

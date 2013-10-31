@@ -1,5 +1,7 @@
 package ganymedes01.ganysnether.core.handlers;
 
+import ganymedes01.ganysnether.core.utils.HoeList;
+import ganymedes01.ganysnether.lib.IMCKeys;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 
@@ -23,11 +25,13 @@ public class InterModComms {
 
 	public static void processIMC(IMCEvent event) {
 		for (IMCMessage message : event.getMessages())
-			if ("addCentrifugeRecipe".equals(message.key))
+			if (message.key.equals(IMCKeys.CENTRIFUGE_RECIPE))
 				addCentrifugeRecipe(message);
+			else if (message.key.equals(IMCKeys.NETHERRACK_HOE))
+				addHoeThatCanTillNetherrack(message);
 	}
 
-	public static void addCentrifugeRecipe(IMCMessage message) {
+	private static void addCentrifugeRecipe(IMCMessage message) {
 		NBTTagCompound data = message.getNBTValue();
 		NBTTagList tagList = data.getTagList("Recipe");
 		ItemStack material1 = null, material2 = null;
@@ -54,5 +58,9 @@ public class InterModComms {
 		}
 
 		MagmaticCentrifugeRecipes.addRecipe(message.getSender(), material1, material2, result);
+	}
+
+	private static void addHoeThatCanTillNetherrack(IMCMessage message) {
+		HoeList.addHoe(message.getItemStackValue());
 	}
 }
