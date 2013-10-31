@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityEggInfo;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,12 +23,10 @@ import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Facing;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -41,10 +38,10 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  */
 
-public class SkeletonSpawner extends ItemMonsterPlacer {
+public class SkeletonSpawner extends Item {
 
 	@SideOnly(Side.CLIENT)
-	private Icon theIcon;
+	private Icon overlay;
 
 	public SkeletonSpawner() {
 		super(ModIDs.SKELETON_SPAWNER_ID);
@@ -60,40 +57,35 @@ public class SkeletonSpawner extends ItemMonsterPlacer {
 		return "item." + Utils.getUnlocalizedName(Strings.SKELETON_SPAWNER_NAME) + stack.getItemDamage();
 	}
 
-	@Override
-	public String getItemDisplayName(ItemStack par1ItemStack) {
-		return ("" + StatCollector.translateToLocal(getUnlocalizedNameInefficiently(par1ItemStack) + ".name")).trim();
-	}
-
 	public static Entity spawnSkeleton(World world, double x, double y, double z, int type) {
 		if (!EntityList.entityEggs.containsKey(Integer.valueOf(51)))
 			return null;
 		else {
-			EntitySkeleton entity = null;
-			if (EntityList.createEntityByID(51, world) instanceof EntitySkeleton) {
-				entity = (EntitySkeleton) EntityList.createEntityByID(51, world);
-				if (entity != null) {
-					EntityLiving entityliving = entity;
-					entity.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
-					entityliving.rotationYawHead = entityliving.rotationYaw;
-					entityliving.renderYawOffset = entityliving.rotationYaw;
-					entityliving.onSpawnWithEgg((EntityLivingData) null);
-					entity.setSkeletonType(type);
+			EntitySkeleton skeleton = null;
+			Entity entity = EntityList.createEntityByID(51, world);
+			if (entity instanceof EntitySkeleton) {
+				skeleton = (EntitySkeleton) entity;
+				if (skeleton != null) {
+					skeleton.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
+					skeleton.rotationYawHead = skeleton.rotationYaw;
+					skeleton.renderYawOffset = skeleton.rotationYaw;
+					skeleton.onSpawnWithEgg((EntityLivingData) null);
+					skeleton.setSkeletonType(type);
 					if (type == 1) {
-						entity.tasks.addTask(4, new EntityAIAttackOnCollide(entity, EntityPlayer.class, 1.2D, false));
-						entity.setCurrentItemOrArmor(0, new ItemStack(Item.swordStone));
-						entity.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(4.0D);
+						skeleton.tasks.addTask(4, new EntityAIAttackOnCollide(skeleton, EntityPlayer.class, 1.2D, false));
+						skeleton.setCurrentItemOrArmor(0, new ItemStack(Item.swordStone));
+						skeleton.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(4.0D);
 					} else if (type == 0) {
-						entity.tasks.addTask(4, new EntityAIArrowAttack(entity, 1.0D, 20, 60, 15.0F));
-						addRandomArmor(entity);
-						enchantEquipment(entity);
+						skeleton.tasks.addTask(4, new EntityAIArrowAttack(skeleton, 1.0D, 20, 60, 15.0F));
+						addRandomArmor(skeleton);
+						enchantEquipment(skeleton);
 					}
-					entity.setSkeletonType(type);
-					world.spawnEntityInWorld(entity);
-					entityliving.playLivingSound();
+					skeleton.setSkeletonType(type);
+					world.spawnEntityInWorld(skeleton);
+					skeleton.playLivingSound();
 				}
 			}
-			return entity;
+			return skeleton;
 		}
 	}
 
@@ -174,13 +166,13 @@ public class SkeletonSpawner extends ItemMonsterPlacer {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
 		super.registerIcons(reg);
-		theIcon = reg.registerIcon("spawn_egg_overlay");
+		overlay = reg.registerIcon("spawn_egg_overlay");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Icon getIconFromDamageForRenderPass(int meta, int pass) {
-		return pass > 0 ? theIcon : super.getIconFromDamageForRenderPass(meta, pass);
+		return pass > 0 ? overlay : super.getIconFromDamageForRenderPass(meta, pass);
 	}
 
 	@Override
@@ -192,11 +184,10 @@ public class SkeletonSpawner extends ItemMonsterPlacer {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(ItemStack stack, int meta) {
-		EntityEggInfo entityegginfo = (EntityEggInfo) EntityList.entityEggs.get(Integer.valueOf(51));
+	public int getColorFromItemStack(ItemStack stack, int pass) {
 		if (stack.getItemDamage() == 0)
-			return entityegginfo != null ? meta == 0 ? entityegginfo.primaryColor : entityegginfo.secondaryColor : 16777215;
+			return pass == 0 ? 12698049 : 4802889;
 		else
-			return entityegginfo != null ? meta == 0 ? entityegginfo.secondaryColor : entityegginfo.primaryColor : 16777215;
+			return pass == 0 ? 4802889 : 12698049;
 	}
 }
