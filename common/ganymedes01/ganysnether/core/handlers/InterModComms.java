@@ -1,13 +1,20 @@
 package ganymedes01.ganysnether.core.handlers;
 
+import ganymedes01.ganysnether.core.utils.ConcealableHandler;
 import ganymedes01.ganysnether.core.utils.HoeList;
+import ganymedes01.ganysnether.core.utils.ReproducerHandler;
 import ganymedes01.ganysnether.lib.IMCKeys;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 
+import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -29,6 +36,14 @@ public class InterModComms {
 				addCentrifugeRecipe(message);
 			else if (message.key.equals(IMCKeys.NETHERRACK_HOE))
 				addHoeThatCanTillNetherrack(message);
+			else if (message.key.equals(IMCKeys.BLACK_LIST_ENTITY))
+				blackListEntity(message);
+			else if (message.key.equals(IMCKeys.ADD_CUSTOM_SPAWN_EGG))
+				addCustomSpawnEgg(message);
+			else if (message.key.equals(IMCKeys.ADD_MOB_DROP_AND_EGG_TUPLE))
+				addMobDropAndEggTuple(message);
+			else if (message.key.equals(IMCKeys.ADD_MOB_DROP_AND_ENTITY_TUPLE))
+				addMobDropAndEntityTuple(message);
 	}
 
 	private static void addCentrifugeRecipe(IMCMessage message) {
@@ -61,6 +76,66 @@ public class InterModComms {
 	}
 
 	private static void addHoeThatCanTillNetherrack(IMCMessage message) {
-		HoeList.addHoe(message.getItemStackValue());
+		ItemStack hoe = message.getItemStackValue();
+		if (hoe != null)
+			HoeList.addHoe(hoe);
+		else
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to register a hoe.", message.getSender()));
+	}
+
+	private static void blackListEntity(IMCMessage message) {
+		String entityClass = message.getStringValue();
+		try {
+			ConcealableHandler.blackListEntity((Class<? extends EntityLivingBase>) Class.forName(entityClass));
+		} catch (ClassNotFoundException e) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to black list an entity: Wrong class name", message.getSender()));
+		} catch (Exception e) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to black list an entity: Class is probably not EntityLivingBase", message.getSender()));
+		}
+	}
+
+	private static void addCustomSpawnEgg(IMCMessage message) {
+		NBTTagCompound data = message.getNBTValue();
+		try {
+			Class<? extends EntityLivingBase> entityClass = (Class<? extends EntityLivingBase>) Class.forName(data.getString("entityClass"));
+			ItemStack spawnEgg = ItemStack.loadItemStackFromNBT(data.getCompoundTag("spawnEgg"));
+
+			ConcealableHandler.addCustomEggDropForEntity(entityClass, spawnEgg);
+		} catch (ClassNotFoundException e) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to register a custom spawn egg to a class: Class not found", message.getSender()));
+		} catch (Exception e) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to register a custom spawn egg to a class: Probably formatted the message wrong", message.getSender()));
+		}
+	}
+
+	private static void addMobDropAndEggTuple(IMCMessage message) {
+		try {
+			NBTTagCompound data = message.getNBTValue();
+
+			ItemStack spawnEgg = ItemStack.loadItemStackFromNBT(data.getCompoundTag("spawnEgg"));
+			ItemStack mobDrop = ItemStack.loadItemStackFromNBT(data.getCompoundTag("mobDrop"));
+
+			ReproducerHandler.addMobDropAndEggTuple(spawnEgg, mobDrop);
+		} catch (Exception e) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to register a tuple to the Reproducer", message.getSender()));
+		}
+	}
+
+	private static void addMobDropAndEntityTuple(IMCMessage message) {
+		try {
+			NBTTagCompound data = message.getNBTValue();
+			String entityName = (String) EntityList.classToStringMapping.get(Class.forName(data.getString("entityClass")));
+
+			Field field = EntityList.class.getDeclaredField("stringToIDMapping");
+			field.setAccessible(true);
+			Map stringToIDMapping = (Map) field.get(null);
+
+			ItemStack spawnEgg = new ItemStack(Item.monsterPlacer, 1, (Integer) stringToIDMapping.get(entityName));
+			ItemStack mobDrop = ItemStack.loadItemStackFromNBT(data.getCompoundTag("mobDrop"));
+
+			ReproducerHandler.addMobDropAndEggTuple(spawnEgg, mobDrop);
+		} catch (Exception e) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to register an entity to the Reproducer", message.getSender()));
+		}
 	}
 }

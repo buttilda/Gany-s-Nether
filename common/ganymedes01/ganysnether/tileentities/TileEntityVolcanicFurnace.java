@@ -312,15 +312,15 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 	public void readFromNBT(NBTTagCompound data) {
 		super.readFromNBT(data);
 		tank.readFromNBT(data);
-		NBTTagList nbttaglist = data.getTagList("Items");
+		NBTTagList list = data.getTagList("Items");
 		furnaceItemStacks = new ItemStack[getSizeInventory()];
 
-		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
-			byte b0 = nbttagcompound1.getByte("Slot");
+		for (int i = 0; i < list.tagCount(); i++) {
+			NBTTagCompound tag = (NBTTagCompound) list.tagAt(i);
+			byte b0 = tag.getByte("Slot");
 
 			if (b0 >= 0 && b0 < furnaceItemStacks.length)
-				furnaceItemStacks[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+				furnaceItemStacks[b0] = ItemStack.loadItemStackFromNBT(tag);
 		}
 
 		meltTime = data.getInteger("meltTime");
@@ -337,10 +337,10 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 
 		for (int i = 0; i < furnaceItemStacks.length; i++)
 			if (furnaceItemStacks[i] != null) {
-				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-				nbttagcompound1.setByte("Slot", (byte) i);
-				furnaceItemStacks[i].writeToNBT(nbttagcompound1);
-				nbttaglist.appendTag(nbttagcompound1);
+				NBTTagCompound tag = new NBTTagCompound();
+				tag.setByte("Slot", (byte) i);
+				furnaceItemStacks[i].writeToNBT(tag);
+				nbttaglist.appendTag(tag);
 			}
 
 		data.setTag("Items", nbttaglist);

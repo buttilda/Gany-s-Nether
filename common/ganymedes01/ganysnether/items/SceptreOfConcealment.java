@@ -1,14 +1,12 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.core.utils.ConcealableHandler;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.IBossDisplayData;
-import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -32,23 +30,20 @@ public class SceptreOfConcealment extends Sceptre {
 	}
 
 	@Override
-	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity target) {
-		if (!(target instanceof EntityLivingBase))
+	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+		if (!(entity instanceof EntityLivingBase))
 			return false;
+		EntityLivingBase target = (EntityLivingBase) entity;
 
-		if (((EntityLivingBase) target).isChild())
+		if (target.isChild())
 			return false;
-		int id = EntityList.getEntityID(target);
-		if (EntityList.entityEggs.get(id) != null && !(target instanceof IBossDisplayData))
+		if (ConcealableHandler.canBeConcealed(target))
 			if (player instanceof EntityPlayer)
 				if (player.inventory.consumeInventoryItem(Item.egg.itemID)) {
 					if (!player.worldObj.isRemote) {
-						target.setDead();
 						player.worldObj.playSoundAtEntity(target, "random.breath", 1.5F, player.worldObj.rand.nextFloat() * 0.1F + 0.9F);
-						if (target instanceof EntitySkeleton)
-							target.entityDropItem(new ItemStack(ModItems.skeletonSpawner, 1, ((EntitySkeleton) target).getSkeletonType()), 1.0F);
-						else
-							target.entityDropItem(new ItemStack(Item.monsterPlacer, 1, id), 1.0F);
+						target.entityDropItem(ConcealableHandler.getEggFromEntity(target), 1.0F);
+						target.setDead();
 						stack.damageItem(1, player);
 					}
 					return true;

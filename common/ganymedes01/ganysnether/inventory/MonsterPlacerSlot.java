@@ -1,8 +1,8 @@
 package ganymedes01.ganysnether.inventory;
 
+import ganymedes01.ganysnether.core.utils.ReproducerHandler;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -20,6 +20,6 @@ public class MonsterPlacerSlot extends Slot {
 
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-		return stack != null && stack.getItem() instanceof ItemMonsterPlacer;
+		return ReproducerHandler.isValidSpawnEgg(stack);
 	}
 }

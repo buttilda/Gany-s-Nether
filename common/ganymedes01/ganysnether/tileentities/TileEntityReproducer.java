@@ -1,16 +1,12 @@
 package ganymedes01.ganysnether.tileentities;
 
+import ganymedes01.ganysnether.core.utils.ReproducerHandler;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerReproducer;
-import ganymedes01.ganysnether.items.ModItems;
-import ganymedes01.ganysnether.items.SkeletonSpawner;
 import ganymedes01.ganysnether.lib.Strings;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -81,72 +77,13 @@ public class TileEntityReproducer extends TileEntity implements ISidedInventory 
 	}
 
 	private boolean hasCorrespondentDrop(int egg, int drop) {
-		if (inventory[drop] == null)
+		ItemStack mobDrop = ReproducerHandler.getMobDropFromEgg(inventory[egg]);
+		if (inventory[drop] == null || mobDrop == null)
 			return false;
-		else if (getMobDropFromEgg(inventory[egg]) != null)
-			if (getMobDropFromEgg(inventory[egg]).getItem() == inventory[drop].getItem())
-				if (getMobDropFromEgg(inventory[egg]).getItemDamage() == inventory[drop].getItemDamage())
-					return true;
+		else if (mobDrop.getItem() == inventory[drop].getItem())
+			if (mobDrop.getItemDamage() == inventory[drop].getItemDamage())
+				return true;
 		return false;
-	}
-
-	private ItemStack getMobDropFromEgg(ItemStack egg) {
-		if (egg.getItem() instanceof SkeletonSpawner)
-			return egg.getItemDamage() == 0 ? new ItemStack(Item.bone) : egg.getItemDamage() == 1 ? new ItemStack(Item.coal, 1, 0) : null;
-		else
-			switch (egg.getItemDamage()) {
-				case 50:
-					return new ItemStack(Item.gunpowder);
-				case 52:
-				case 59:
-					return new ItemStack(Item.spiderEye);
-				case 54:
-					return new ItemStack(Item.rottenFlesh);
-				case 55:
-					return new ItemStack(Item.slimeBall);
-				case 56:
-					return new ItemStack(Item.ghastTear);
-				case 57:
-					return new ItemStack(Item.goldNugget);
-				case 58:
-					return new ItemStack(Item.enderPearl);
-				case 60:
-					return new ItemStack(ModItems.silverfishScale);
-				case 61:
-					return new ItemStack(Item.blazeRod);
-				case 62:
-					return new ItemStack(Item.magmaCream);
-				case 65:
-					return new ItemStack(ModItems.batWing);
-				case 66:
-					return new ItemStack(Item.glowstone);
-				case 90:
-					return new ItemStack(Item.porkRaw);
-				case 91:
-					return new ItemStack(Block.cloth);
-				case 92:
-					return new ItemStack(Item.beefRaw);
-				case 93:
-					return new ItemStack(Item.chickenRaw);
-				case 94:
-					return new ItemStack(Item.dyePowder, 1, 0);
-				case 95:
-					return new ItemStack(ModItems.wolfTeeth);
-				case 96:
-					return new ItemStack(Block.mushroomRed);
-				case 97:
-					return new ItemStack(Item.snowball);
-				case 98:
-					return new ItemStack(Item.fishRaw);
-				case 99:
-					return new ItemStack(Item.ingotIron);
-				case 100:
-					return new ItemStack(Item.leather);
-				case 101:
-					return new ItemStack(Item.emerald);
-				default:
-					return null;
-			}
 	}
 
 	public int getScaledWorkTime(int scale) {
@@ -245,7 +182,7 @@ public class TileEntityReproducer extends TileEntity implements ISidedInventory 
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return slot == RESULT_SLOT ? false : slot == BASE_SLOT || slot == RESULT_SLOT ? stack != null && stack.getItem() instanceof ItemMonsterPlacer : true;
+		return slot == RESULT_SLOT ? false : slot == BASE_SLOT || slot == REPLACE_SLOT ? ReproducerHandler.isValidSpawnEgg(stack) : true;
 	}
 
 	@Override
