@@ -16,6 +16,8 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 
 public class GanysNetherAPI {
 
+	// MAGMATIC CENTRIFUGE //
+
 	/**
 	 * Allows you to register a recipe for the Magmatic Centrifuge
 	 * 
@@ -67,6 +69,8 @@ public class GanysNetherAPI {
 		FMLInterModComms.sendMessage("ganysnether", "addCentrifugeRecipe", data);
 	}
 
+	// TILLING NETHERRACK //
+
 	/**
 	 * Allows you to register an item that will till netherrack.
 	 * 
@@ -80,6 +84,8 @@ public class GanysNetherAPI {
 		if (hoe != null)
 			FMLInterModComms.sendMessage("ganysnether", "addHoeThatCanTillNetherrack", new ItemStack(hoe));
 	}
+
+	// SCEPTRE OF CONCEALMENT //
 
 	/**
 	 * Any entity classes passed to this method WON'T be collected by the
@@ -116,6 +122,8 @@ public class GanysNetherAPI {
 			FMLInterModComms.sendMessage("ganysnether", "addCustomSpawnEgg", data);
 		}
 	}
+
+	// REPRODUCER //
 
 	/**
 	 * You'll be able to duplicate/duplicate other items on the Reproducer using
@@ -168,6 +176,68 @@ public class GanysNetherAPI {
 			data.setCompoundTag("mobDrop", tagCompound);
 
 			FMLInterModComms.sendMessage("ganysnether", "addMobDropAndEntityTuple", data);
+		}
+	}
+
+	// VOLCANIC FURNACE //
+
+	/**
+	 * White-Listing an item/block will force it to be melt down in the Volcanic
+	 * Furnace
+	 * 
+	 * This is metadata sensitive.
+	 * 
+	 * @param stack
+	 *            : ItemStack of item/block to be white-listed
+	 */
+	public static final void whiteListMeltingItem(ItemStack stack) {
+		if (stack != null)
+			FMLInterModComms.sendMessage("ganysnether", "whiteListMeltingItem", stack);
+	}
+
+	/**
+	 * Block-Listing an item/block will force it NOT to be melt down in the
+	 * Volcanic Furnace
+	 * 
+	 * This is metadata sensitive.
+	 * 
+	 * @param stack
+	 *            : ItemStack of item/block to be black-listed
+	 */
+	public static final void blackListMeltingItem(ItemStack stack) {
+		if (stack != null)
+			FMLInterModComms.sendMessage("ganysnether", "blackListMeltingItem", stack);
+	}
+
+	/**
+	 * Sets a custom burnTime of an specific item/block. Keep in mind that the
+	 * burnTime is directly related to the amount of lava produced by an item.
+	 * 
+	 * This is metadata sensitive.
+	 * 
+	 * DO NOT SET THE BURNTIME TO ZERO. If you wish to block an item from being
+	 * melted use the blackListMeltingItem method.
+	 * 
+	 * Default is between 16 and 20
+	 * 
+	 * 1 Bucket of lava = 1000
+	 * 
+	 * @param stack
+	 *            : ItemStack of item/block
+	 * @param burnTime
+	 *            : Burn time / Amount of lava produced by stack
+	 */
+	public static final void addBurnTimeForItem(ItemStack stack, int burnTime) {
+		if (stack != null && burnTime > 0) {
+			NBTTagCompound data = new NBTTagCompound();
+
+			data.setInteger("burnTime", burnTime);
+
+			NBTTagCompound tagCompound = new NBTTagCompound();
+			stack.writeToNBT(tagCompound);
+			data.setCompoundTag("stack", tagCompound);
+
+			FMLInterModComms.sendMessage("ganysnether", "addBurnTimeForItem", data);
 		}
 	}
 }

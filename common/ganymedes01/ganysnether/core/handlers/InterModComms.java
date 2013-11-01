@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.core.handlers;
 import ganymedes01.ganysnether.core.utils.ConcealableHandler;
 import ganymedes01.ganysnether.core.utils.HoeList;
 import ganymedes01.ganysnether.core.utils.ReproducerHandler;
+import ganymedes01.ganysnether.core.utils.VolcanicFurnaceHandler;
 import ganymedes01.ganysnether.lib.IMCKeys;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
@@ -44,6 +45,12 @@ public class InterModComms {
 				addMobDropAndEggTuple(message);
 			else if (message.key.equals(IMCKeys.ADD_MOB_DROP_AND_ENTITY_TUPLE))
 				addMobDropAndEntityTuple(message);
+			else if (message.key.equals(IMCKeys.WHITE_LIST_MELTING_ITEM))
+				whiteListMeltingItem(message);
+			else if (message.key.equals(IMCKeys.BLACK_LIST_MELTING_ITEM))
+				blackListMeltingItem(message);
+			else if (message.key.equals(IMCKeys.ADD_BURN_TIME_FOR_ITEM))
+				addBurnTimeForItem(message);
 	}
 
 	private static void addCentrifugeRecipe(IMCMessage message) {
@@ -136,6 +143,52 @@ public class InterModComms {
 			ReproducerHandler.addMobDropAndEggTuple(spawnEgg, mobDrop);
 		} catch (Exception e) {
 			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to register an entity to the Reproducer", message.getSender()));
+		}
+	}
+
+	public static void whiteListMeltingItem(IMCMessage message) {
+		try {
+			ItemStack stack = message.getItemStackValue();
+			if (stack != null) {
+				if (stack.stackSize > 1)
+					stack.stackSize = 1;
+
+				VolcanicFurnaceHandler.whiteListItem(stack);
+			}
+		} catch (Exception e) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to white-list and item for the Volcanic Furnace", message.getSender()));
+		}
+	}
+
+	public static void blackListMeltingItem(IMCMessage message) {
+		try {
+			ItemStack stack = message.getItemStackValue();
+			if (stack != null) {
+				if (stack.stackSize > 1)
+					stack.stackSize = 1;
+
+				VolcanicFurnaceHandler.blackListItem(stack);
+			}
+		} catch (Exception e) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to black-list and item for the Volcanic Furnace", message.getSender()));
+		}
+	}
+
+	public static void addBurnTimeForItem(IMCMessage message) {
+		try {
+			NBTTagCompound data = message.getNBTValue();
+
+			int burnTime = data.getInteger("burnTime");
+			if (burnTime <= 0)
+				return;
+
+			ItemStack stack = ItemStack.loadItemStackFromNBT(data.getCompoundTag("stack"));
+			if (stack.stackSize > 1)
+				stack.stackSize = 1;
+
+			VolcanicFurnaceHandler.addBurnTimeForItem(stack, burnTime);
+		} catch (Exception e) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to set a custom burn time for an item on the Volcanic Furnace", message.getSender()));
 		}
 	}
 }

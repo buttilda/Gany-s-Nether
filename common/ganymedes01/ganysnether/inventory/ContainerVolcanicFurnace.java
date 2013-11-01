@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.inventory;
 
+import ganymedes01.ganysnether.core.utils.VolcanicFurnaceHandler;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -66,7 +67,7 @@ public class ContainerVolcanicFurnace extends Container {
 			} else if (FluidContainerRegistry.isEmptyContainer(slotItemStack)) {
 				if (!mergeItemStack(slotItemStack, 1, 2, false))
 					return null;
-			} else if (TileEntityVolcanicFurnace.itemIsFuel(slotItemStack)) {
+			} else if (VolcanicFurnaceHandler.itemIsFuel(slotItemStack)) {
 				if (!mergeItemStack(slotItemStack, 0, 1, false))
 					return null;
 			} else

@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.inventory;
 
-import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
+import ganymedes01.ganysnether.core.utils.VolcanicFurnaceHandler;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -20,6 +20,6 @@ public class VolcanicFurnaceSlot extends Slot {
 
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-		return TileEntityVolcanicFurnace.itemIsFuel(stack);
+		return VolcanicFurnaceHandler.itemIsFuel(stack);
 	}
 }

@@ -2,26 +2,12 @@ package ganymedes01.ganysnether.tileentities;
 
 import ganymedes01.ganysnether.blocks.VolcanicFurnace;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.core.utils.VolcanicFurnaceHandler;
 import ganymedes01.ganysnether.inventory.ContainerVolcanicFurnace;
 import ganymedes01.ganysnether.lib.Strings;
-
-import java.util.ArrayList;
-import java.util.Random;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.block.BlockHalfSlab;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockSapling;
-import net.minecraft.block.BlockStairs;
-import net.minecraft.block.BlockTorch;
-import net.minecraft.block.BlockWood;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -34,7 +20,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
-import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -150,8 +135,8 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 
 		VolcanicFurnace.updateFurnaceBlockState(tank.getFluidAmount() > 0, worldObj, xCoord, yCoord, zCoord);
 		if (meltTime <= 0) {
-			if (itemIsFuel(furnaceItemStacks[0]) && tank.getFluidAmount() < tank.getCapacity()) {
-				currentItemMeltTime = meltTime = getItemBurnTime(furnaceItemStacks[0]);
+			if (VolcanicFurnaceHandler.itemIsFuel(furnaceItemStacks[0]) && tank.getFluidAmount() < tank.getCapacity()) {
+				currentItemMeltTime = meltTime = VolcanicFurnaceHandler.getItemBurnTime(furnaceItemStacks[0]);
 				if (furnaceItemStacks[0].stackSize == 1)
 					furnaceItemStacks[0] = null;
 				else
@@ -187,94 +172,6 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 		craft.sendProgressBarUpdate(furnace, 3, meltTime);
 	}
 
-	// 1000 = 1 bucket
-	// Default - 20 (50 Items/Blocks = 1 Bucket)
-	public static int getItemBurnTime(ItemStack stack) {
-		if (stack == null || !itemIsFuel(stack))
-			return 0;
-		Item item = stack.getItem();
-		Block block = null;
-		if (stack.itemID < Block.blocksList.length)
-			block = Block.blocksList[stack.itemID];
-
-		if (item == Item.blazePowder || item == Item.dyePowder)
-			return 7;
-		else if (stack.getUnlocalizedName().toLowerCase().contains("nugget"))
-			return 2;
-		else if (item == Item.netherStar)
-			return 10000;
-		else if (block != null)
-			if (block == Block.carpet)
-				return 12;
-			else if (block == Block.dragonEgg)
-				return 1000000;
-			else if (block == Block.netherrack)
-				return 35 + new Random().nextInt(5);
-			else if (block == Block.thinGlass || block == Block.fenceIron)
-				return 7;
-			else if (block instanceof BlockWood)
-				return 5;
-			else if (block instanceof BlockHalfSlab)
-				return 2;
-			else if (block instanceof BlockStairs)
-				return 7;
-			else if (block instanceof BlockSapling)
-				return 10;
-			else if (block instanceof BlockLeaves)
-				return 10;
-			else if (block instanceof BlockTorch)
-				return 5;
-			else if (block instanceof BlockFlower)
-				return 10;
-
-		for (ItemStack logs : OreDictionary.getOres("plankWood"))
-			if (logs.getItem() == item)
-				return 5;
-		for (ItemStack logs : OreDictionary.getOres("slabWood"))
-			if (logs.getItem() == item)
-				return 2;
-		for (ItemStack logs : OreDictionary.getOres("stairWood"))
-			if (logs.getItem() == item)
-				return 7;
-		for (ItemStack logs : OreDictionary.getOres("treeSapling"))
-			if (logs.getItem() == item)
-				return 10;
-		for (ItemStack logs : OreDictionary.getOres("treeLeaves"))
-			if (logs.getItem() == item)
-				return 10;
-		for (ItemStack logs : OreDictionary.getOres("stickWood"))
-			if (logs.getItem() == item)
-				return 2;
-
-		return 16 + new Random().nextInt(5);
-	}
-
-	public static boolean itemIsFuel(ItemStack stack) {
-		if (stack != null) {
-			if (FluidContainerRegistry.isFilledContainer(stack))
-				return FluidContainerRegistry.getFluidForFilledItem(stack) != null && FluidContainerRegistry.getFluidForFilledItem(stack).isFluidEqual(new FluidStack(FluidRegistry.LAVA, FluidContainerRegistry.BUCKET_VOLUME));
-			for (ItemStack item : getItemsThatCantBeMelted())
-				if (item.getItem() == stack.getItem())
-					return false;
-			if (stack.getItem() instanceof ItemBlock)
-				if (stack.itemID < Block.blocksList.length) {
-					Material material = Block.blocksList[stack.itemID].blockMaterial;
-					if (material == Material.snow || material == Material.craftedSnow || material == Material.ice || material == Material.water)
-						return false;
-				}
-			return true;
-		}
-		return false;
-	}
-
-	private static ArrayList<ItemStack> getItemsThatCantBeMelted() {
-		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-		items.add(new ItemStack(Item.potion));
-		items.add(new ItemStack(Item.expBottle));
-		items.add(new ItemStack(Item.snowball));
-		return items;
-	}
-
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
 		return true;
@@ -290,7 +187,7 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return slot == 0 ? itemIsFuel(stack) : slot == 1 ? FluidContainerRegistry.isEmptyContainer(stack) : false;
+		return slot == 0 ? VolcanicFurnaceHandler.itemIsFuel(stack) : slot == 1 ? FluidContainerRegistry.isEmptyContainer(stack) : false;
 	}
 
 	@Override

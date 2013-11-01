@@ -2,8 +2,6 @@ package ganymedes01.ganysnether.core.utils;
 
 import ganymedes01.ganysnether.items.ModItems;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import net.minecraft.block.Block;
@@ -19,48 +17,9 @@ import net.minecraft.item.ItemStack;
 
 public class ReproducerHandler {
 
-	private static Map<ItemStack, ItemStack> eggDropTuple = new HashMap<ItemStack, ItemStack>() {
-
-		@Override
-		public boolean containsKey(Object key) {
-			if (key instanceof ItemStack) {
-				Iterator iterator = eggDropTuple.keySet().iterator();
-				while (iterator.hasNext())
-					if (areItemsEqual((ItemStack) iterator.next(), (ItemStack) key))
-						return true;
-			}
-			return false;
-		}
-
-		@Override
-		public ItemStack get(Object key) {
-			if (containsKey(key)) {
-				Iterator<Map.Entry<ItemStack, ItemStack>> iterator = entrySet().iterator();
-				while (iterator.hasNext()) {
-					Map.Entry<ItemStack, ItemStack> mapEntry = iterator.next();
-					if (areItemsEqual(mapEntry.getKey(), (ItemStack) key))
-						return mapEntry.getValue();
-				}
-			}
-			return null;
-		}
-
-		private boolean areItemsEqual(ItemStack stack1, ItemStack stack2) {
-			if (stack1 == null || stack2 == null)
-				return false;
-
-			ItemStack stack1Single = stack1.copy();
-			stack1Single.stackSize = 1;
-
-			ItemStack stack2Single = stack2.copy();
-			stack2Single.stackSize = 1;
-
-			return ItemStack.areItemStacksEqual(stack1Single, stack2Single);
-		}
-	};
+	private static Map<ItemStack, ItemStack> eggDropTuple = new ItemStackMap<ItemStack>();
 
 	static {
-		System.out.println("ADDING EGGS");
 		addMobDropAndEggTuple(new ItemStack(ModItems.skeletonSpawner), new ItemStack(Item.bone));
 		addMobDropAndEggTuple(new ItemStack(ModItems.skeletonSpawner, 1, 1), new ItemStack(Item.coal));
 
