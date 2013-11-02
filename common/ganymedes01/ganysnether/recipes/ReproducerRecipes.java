@@ -1,5 +1,6 @@
-package ganymedes01.ganysnether.core.utils;
+package ganymedes01.ganysnether.recipes;
 
+import ganymedes01.ganysnether.core.utils.ItemStackMap;
 import ganymedes01.ganysnether.items.ModItems;
 
 import java.util.Map;
@@ -15,7 +16,7 @@ import net.minecraft.item.ItemStack;
  * 
  */
 
-public class ReproducerHandler {
+public class ReproducerRecipes {
 
 	private static Map<ItemStack, ItemStack> eggDropTuple = new ItemStackMap<ItemStack>();
 

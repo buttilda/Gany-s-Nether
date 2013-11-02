@@ -2,11 +2,11 @@ package ganymedes01.ganysnether.core.handlers;
 
 import ganymedes01.ganysnether.core.utils.ConcealableHandler;
 import ganymedes01.ganysnether.core.utils.HoeList;
-import ganymedes01.ganysnether.core.utils.ReproducerHandler;
-import ganymedes01.ganysnether.core.utils.VolcanicFurnaceHandler;
 import ganymedes01.ganysnether.lib.IMCKeys;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
+import ganymedes01.ganysnether.recipes.ReproducerRecipes;
+import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -122,7 +122,7 @@ public class InterModComms {
 			ItemStack spawnEgg = ItemStack.loadItemStackFromNBT(data.getCompoundTag("spawnEgg"));
 			ItemStack mobDrop = ItemStack.loadItemStackFromNBT(data.getCompoundTag("mobDrop"));
 
-			ReproducerHandler.addMobDropAndEggTuple(spawnEgg, mobDrop);
+			ReproducerRecipes.addMobDropAndEggTuple(spawnEgg, mobDrop);
 		} catch (Exception e) {
 			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to register a tuple to the Reproducer", message.getSender()));
 		}
@@ -140,7 +140,7 @@ public class InterModComms {
 			ItemStack spawnEgg = new ItemStack(Item.monsterPlacer, 1, (Integer) stringToIDMapping.get(entityName));
 			ItemStack mobDrop = ItemStack.loadItemStackFromNBT(data.getCompoundTag("mobDrop"));
 
-			ReproducerHandler.addMobDropAndEggTuple(spawnEgg, mobDrop);
+			ReproducerRecipes.addMobDropAndEggTuple(spawnEgg, mobDrop);
 		} catch (Exception e) {
 			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to register an entity to the Reproducer", message.getSender()));
 		}

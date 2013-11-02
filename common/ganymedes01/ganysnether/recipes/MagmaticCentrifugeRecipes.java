@@ -66,6 +66,9 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe(new ItemStack(Item.horseArmorDiamond), new ItemStack(Item.flint), new ItemStack(Item.diamond, 6));
 		addRecipe(new ItemStack(Block.bookShelf), new ItemStack(Item.flint), new ItemStack(Block.planks, 6), new ItemStack(Item.book, 3));
 		addRecipe(new ItemStack(Item.leather), new ItemStack(Item.flint), new ItemStack(Item.silk, 3));
+		for (int i = 0; i < 2; i++)
+			addRecipe(new ItemStack(Block.silverfish, 1, i), new ItemStack(Item.netherQuartz), new ItemStack(Item.monsterPlacer, 1, 60), new ItemStack(Block.cobblestone));
+		addRecipe(new ItemStack(Item.wheat), new ItemStack(Item.diamond), new ItemStack(ModItems.flour), new ItemStack(Item.diamond));
 	}
 
 	public static void addOreDictRecipe(String material1, String material2, ItemStack... result) {

@@ -73,6 +73,10 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ItemStack(Item.arrow, 16), "x", "y", "z", 'x', ModItems.wolfTeeth, 'y', Item.stick, 'z', Item.feather);
 		GameRegistry.addRecipe(new ItemStack(Item.ingotIron), "xxx", "xxx", "xxx", 'x', ModItems.ironNugget);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.ironNugget, 9), Item.ingotIron);
+		GameRegistry.addRecipe(new ItemStack(Block.silverfish), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', Block.stone);
+		GameRegistry.addRecipe(new ItemStack(Block.silverfish, 1, 1), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', Block.cobblestone);
+		GameRegistry.addRecipe(new ItemStack(Block.silverfish, 1, 2), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', new ItemStack(Block.stoneBrick));
+		GameRegistry.addSmelting(ModItems.flour.itemID, new ItemStack(Item.bread), 0.0F);
 	}
 
 	private static void createSceptreRecipe(Item sceptre, int capMeta, Item handle, int durability) {

@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.inventory;
 
-import ganymedes01.ganysnether.core.utils.ReproducerHandler;
+import ganymedes01.ganysnether.recipes.ReproducerRecipes;
 import ganymedes01.ganysnether.tileentities.TileEntityReproducer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -65,7 +65,7 @@ public class ContainerReproducer extends Container {
 			if (slotIndex < 5) {
 				if (!mergeItemStack(slotItemStack, 5, inventorySlots.size(), true))
 					return null;
-			} else if (ReproducerHandler.isValidSpawnEgg(slotItemStack)) {
+			} else if (ReproducerRecipes.isValidSpawnEgg(slotItemStack)) {
 				if (!mergeItemStack(slotItemStack, 0, 2, false))
 					return null;
 			} else if (!mergeItemStack(slotItemStack, 3, 5, false))

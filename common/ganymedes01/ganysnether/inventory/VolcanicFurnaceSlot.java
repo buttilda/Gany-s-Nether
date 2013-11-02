@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.inventory;
 
-import ganymedes01.ganysnether.core.utils.VolcanicFurnaceHandler;
+import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;

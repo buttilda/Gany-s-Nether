@@ -1,9 +1,9 @@
 package ganymedes01.ganysnether.tileentities;
 
-import ganymedes01.ganysnether.core.utils.ReproducerHandler;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerReproducer;
 import ganymedes01.ganysnether.lib.Strings;
+import ganymedes01.ganysnether.recipes.ReproducerRecipes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.ISidedInventory;
@@ -77,7 +77,7 @@ public class TileEntityReproducer extends TileEntity implements ISidedInventory 
 	}
 
 	private boolean hasCorrespondentDrop(int egg, int drop) {
-		ItemStack mobDrop = ReproducerHandler.getMobDropFromEgg(inventory[egg]);
+		ItemStack mobDrop = ReproducerRecipes.getMobDropFromEgg(inventory[egg]);
 		if (inventory[drop] == null || mobDrop == null)
 			return false;
 		else if (mobDrop.getItem() == inventory[drop].getItem())
@@ -182,7 +182,7 @@ public class TileEntityReproducer extends TileEntity implements ISidedInventory 
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return slot == RESULT_SLOT ? false : slot == BASE_SLOT || slot == REPLACE_SLOT ? ReproducerHandler.isValidSpawnEgg(stack) : true;
+		return slot == RESULT_SLOT ? false : slot == BASE_SLOT || slot == REPLACE_SLOT ? ReproducerRecipes.isValidSpawnEgg(stack) : true;
 	}
 
 	@Override

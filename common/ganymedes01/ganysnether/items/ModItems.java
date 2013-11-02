@@ -42,6 +42,7 @@ public class ModItems {
 	public static Item witherShrubSeeds;
 	public static Item livingSoul;
 	public static Item ironNugget;
+	public static Item flour;
 
 	// Armour
 	public static Item blazeHelmet;
@@ -79,6 +80,7 @@ public class ModItems {
 		witherShrubSeeds = new WitherShrubSeeds();
 		livingSoul = new LivingSoul();
 		ironNugget = new IronNugget();
+		flour = new Flour();
 
 		registerNames();
 		registerDispenserActions();
@@ -107,6 +109,7 @@ public class ModItems {
 		GameRegistry.registerItem(witherShrubSeeds, Strings.WITHER_SHRUB_SEEDS_NAME);
 		GameRegistry.registerItem(livingSoul, Strings.LIVING_SOUL_NAME);
 		GameRegistry.registerItem(ironNugget, Strings.IRON_NUGGET_NAME);
+		GameRegistry.registerItem(flour, Strings.FLOUR_NAME);
 
 		// Armour
 		GameRegistry.registerItem(blazeHelmet, Strings.BLAZE_HELMET_NAME);

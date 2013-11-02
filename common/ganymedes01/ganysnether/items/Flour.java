@@ -16,18 +16,18 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  */
 
-public class SpookyFlour extends Item {
+public class Flour extends Item {
 
-	public SpookyFlour() {
-		super(ModIDs.SPOOKY_FLOUR_ID);
+	public Flour() {
+		super(ModIDs.FLOUR_ID);
 		setTextureName("sugar");
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SPOOKY_FLOUR_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.FLOUR_NAME));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int meta) {
-		return Utils.getColour(133, 149, 218);
+		return Utils.getColour(226, 224, 208);
 	}
 }

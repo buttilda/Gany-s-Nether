@@ -2,9 +2,9 @@ package ganymedes01.ganysnether.tileentities;
 
 import ganymedes01.ganysnether.blocks.VolcanicFurnace;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.core.utils.VolcanicFurnaceHandler;
 import ganymedes01.ganysnether.inventory.ContainerVolcanicFurnace;
 import ganymedes01.ganysnether.lib.Strings;
+import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.ISidedInventory;

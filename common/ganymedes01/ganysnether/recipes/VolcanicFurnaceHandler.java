@@ -1,5 +1,7 @@
-package ganymedes01.ganysnether.core.utils;
+package ganymedes01.ganysnether.recipes;
 
+import ganymedes01.ganysnether.core.utils.ItemStackArray;
+import ganymedes01.ganysnether.core.utils.ItemStackMap;
 import ganymedes01.ganysnether.items.ModItems;
 
 import java.util.ArrayList;
