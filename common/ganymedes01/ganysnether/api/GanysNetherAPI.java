@@ -1,10 +1,14 @@
 package ganymedes01.ganysnether.api;
 
+import java.lang.reflect.Field;
+
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
@@ -238,6 +242,85 @@ public class GanysNetherAPI {
 			data.setCompoundTag("stack", tagCompound);
 
 			FMLInterModComms.sendMessage("ganysnether", "addBurnTimeForItem", data);
+		}
+	}
+
+	// BLOCKS
+	/*
+	 * Here's a list of the blocks that can/should be retrieved by this method
+	 * 
+	 * tilledNetherrack
+	 * quarzBerryBush
+	 * spectreWheat
+	 * glowingReed 
+	 * soulGlass
+	 * soulChest
+	 * volcanicFurnaceIdle
+	 * volcanicFurnaceActive
+	 * denseLavaCell
+	 * glowBox
+	 * colouredQuartzBlock
+	 * colouredChiselledQuartzBlock
+	 * soulGlassStairs;
+	 * reproducer
+	 * undertaker
+	 * witherShrub
+	 * magmaticCentrifuge
+	 * 
+	 */
+	public static final Block getBlock(String blockName, int metadata) {
+		try {
+			Class<?> modBlocks = Class.forName("ganymedes01.ganysnether.blocks.ModBlocks");
+			Field block = modBlocks.getField(blockName);
+			return (Block) block.get(null);
+		} catch (Exception e) {
+			FMLLog.warning("[ganysnether] Problems retrieving block: " + blockName);
+			return null;
+		}
+	}
+
+	// ITEMS
+	/*
+	 * Here's a list of the items that can/should be retrieved by this method
+	 * 
+	 * quarzBerrySeeds
+	 * quarzBerry
+	 * ghostSeeds
+	 * spectreWheat
+	 * spookyFlour
+	 * glowingReed
+	 * bottomlessBucket
+	 * dimensionalBread
+	 * baseballBat
+	 * sceptreOfConcealment
+	 * skeletonSpawner
+	 * silverfishScale 
+	 * batWing 
+	 * cookedBatWing
+	 * wolfTeeth
+	 * blazeIngot
+	 * sceptreOfFireCharging
+	 * sceptreOfLightning
+	 * sceptreCap
+	 * witherShrubSeeds
+	 * livingSoul
+	 * ironNugget
+	 * flour
+	 * 
+	 * blazeHelmet
+	 * blazeChestplate
+	 * blazeLeggings
+	 * blazeBoots
+	 * 
+	 */
+	public static final Item getItem(String itemName, int metadata) {
+		try {
+			Class<?> modBlocks = Class.forName("ganymedes01.ganysnether.items.ModItems");
+			Field item = modBlocks.getField(itemName);
+			return (Item) item.get(null);
+		} catch (Exception e) {
+			FMLLog.warning("[ganysnether] Problems retrieving item: " + itemName);
+			return null;
 		}
 	}
 }
