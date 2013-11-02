@@ -47,9 +47,6 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe(new ItemStack(Item.rottenFlesh), new ItemStack(Item.rottenFlesh), new ItemStack(Item.leather));
 		addRecipe(new ItemStack(ModBlocks.soulGlass), new ItemStack(ModBlocks.soulGlass), new ItemStack(Block.slowSand, 2));
 		addRecipe(new ItemStack(Block.slowSand), new ItemStack(Block.slowSand), new ItemStack(ModBlocks.soulGlass, 2));
-		addOreDictRecipe("oreGold", "oreGold", new ItemStack(Item.ingotGold, 2), new ItemStack(Item.goldNugget));
-		addOreDictRecipe("oreIron", "oreIron", new ItemStack(Item.ingotIron, 2), new ItemStack(ModItems.ironNugget));
-		addOreDictRecipe(new ItemStack(Block.cloth, 1, 4), "dyeBlack", new ItemStack(Block.sponge));
 		addRecipe(new ItemStack(Item.bucketEmpty), new ItemStack(Item.flint), new ItemStack(Item.ingotIron, 3));
 		addRecipe(new ItemStack(Item.arrow), new ItemStack(Item.arrow), new ItemStack(Item.flint, 2), new ItemStack(Item.stick, 2), new ItemStack(Item.feather, 2));
 		addRecipe(new ItemStack(Item.coal), new ItemStack(Item.blazePowder), new ItemStack(Item.gunpowder));
@@ -69,9 +66,16 @@ public class MagmaticCentrifugeRecipes {
 		for (int i = 0; i < 2; i++)
 			addRecipe(new ItemStack(Block.silverfish, 1, i), new ItemStack(Item.netherQuartz), new ItemStack(Item.monsterPlacer, 1, 60), new ItemStack(Block.cobblestone));
 		addRecipe(new ItemStack(Item.wheat), new ItemStack(Item.diamond), new ItemStack(ModItems.flour), new ItemStack(Item.diamond));
+		addRecipe(new ItemStack(ModItems.spectreWheat), new ItemStack(Item.diamond), new ItemStack(ModItems.spookyFlour), new ItemStack(Item.diamond));
 	}
 
-	public static void addOreDictRecipe(String material1, String material2, ItemStack... result) {
+	public static void initOreDictRecipes() {
+		addOreDictRecipe("oreGold", "oreGold", new ItemStack(Item.ingotGold, 2), new ItemStack(Item.goldNugget));
+		addOreDictRecipe("oreIron", "oreIron", new ItemStack(Item.ingotIron, 2), new ItemStack(ModItems.ironNugget));
+		addOreDictRecipe("dyeBlack", new ItemStack(Block.cloth, 1, 4), new ItemStack(Block.sponge));
+	}
+
+	private static void addOreDictRecipe(String material1, String material2, ItemStack... result) {
 		ArrayList<ItemStack> materials1 = OreDictionary.getOres(material1);
 		ArrayList<ItemStack> materials2 = OreDictionary.getOres(material2);
 		if (!materials1.isEmpty() && !materials2.isEmpty())
@@ -81,26 +85,18 @@ public class MagmaticCentrifugeRecipes {
 						addRecipe(mat1, mat2, result);
 	}
 
-	public static void addOreDictRecipe(ItemStack material1, String material2, ItemStack... result) {
-		ArrayList<ItemStack> materials2 = OreDictionary.getOres(material2);
-		if (!materials2.isEmpty())
-			for (ItemStack mat2 : materials2)
-				if (isValidRecipe(new CentrifugeRecipe(material1, mat2, result)))
-					addRecipe(material1, mat2, result);
-	}
-
-	public static void addOreDictRecipe(String material1, ItemStack material2, ItemStack... result) {
+	private static void addOreDictRecipe(String material1, ItemStack material2, ItemStack... result) {
 		ArrayList<ItemStack> materials1 = OreDictionary.getOres(material1);
 		if (!materials1.isEmpty())
 			for (ItemStack mat1 : materials1)
 				addRecipe(mat1, material2, result);
 	}
 
-	public static void addRecipe(ItemStack material1, ItemStack material2, ItemStack... result) {
-		addRecipe(Reference.MOD_ID, material1, material2, result);
+	private static void addRecipe(ItemStack material1, ItemStack material2, ItemStack... result) {
+		addRecipeExternal(Reference.MOD_ID, material1, material2, result);
 	}
 
-	public static void addRecipe(String sender, ItemStack material1, ItemStack material2, ItemStack... result) {
+	public static void addRecipeExternal(String sender, ItemStack material1, ItemStack material2, ItemStack... result) {
 		if (result != null && result.length > 4 || material1 == null || material2 == null) {
 			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, sender + " attempted to add an invalid recipe to the Magmatic Centrifuge: Null material or invalid sized result array");
 			return;

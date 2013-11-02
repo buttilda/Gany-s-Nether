@@ -24,7 +24,7 @@ public class GanysNetherAPI {
 	 * The order of materials is not important!
 	 * 
 	 * Result must not be null and must contain 4 or less items. If you try to
-	 * create a recipe that is already registered it will be denyed.
+	 * create a recipe that is already registered it will be denied.
 	 * 
 	 * Both materials must not be null.
 	 * 

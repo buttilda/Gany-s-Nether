@@ -105,6 +105,7 @@ public class GanysNether {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+		MagmaticCentrifugeRecipes.initOreDictRecipes();
 	}
 
 	@EventHandler

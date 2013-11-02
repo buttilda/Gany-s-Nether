@@ -60,7 +60,7 @@ public class InterModComms {
 		ItemStack[] result = new ItemStack[tagList.tagCount() - 2];
 
 		if (result.length > 4 || result.length <= 0) {
-			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s tried to add an invalid recipe.", message.getSender()));
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s tried to add an invalid recipe to the Magmatic Centrifuge.", message.getSender()));
 			return;
 		}
 
@@ -79,7 +79,7 @@ public class InterModComms {
 				result[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
 		}
 
-		MagmaticCentrifugeRecipes.addRecipe(message.getSender(), material1, material2, result);
+		MagmaticCentrifugeRecipes.addRecipeExternal(message.getSender(), material1, material2, result);
 	}
 
 	private static void addHoeThatCanTillNetherrack(IMCMessage message) {

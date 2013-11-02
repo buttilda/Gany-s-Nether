@@ -393,6 +393,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 
 	@Override
 	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+		checkRecipe();
 		return tank.fill(resource, doFill);
 	}
 

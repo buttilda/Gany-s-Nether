@@ -44,9 +44,7 @@ public class ModRecipes {
 	}
 
 	private static void registerItemRecipes() {
-		GameRegistry.addRecipe(new ItemStack(ModItems.spookyFlour, 6), "xxx", 'x', ModItems.spectreWheat);
 		GameRegistry.addRecipe(new ItemStack(ModItems.bottomlessBucket), "xxx", "zxz", "yzy", 'x', Item.bucketEmpty, 'y', Block.slowSand, 'z', Item.netherrackBrick);
-		GameRegistry.addRecipe(new ItemStack(ModItems.dimensionalBread), "xxx", 'x', ModItems.spookyFlour);
 		ItemStack knockBackBookI = new ItemStack(Item.enchantedBook);
 		knockBackBookI.addEnchantment(Enchantment.knockback, 1);
 		GameRegistry.addRecipe(new ItemStack(ModItems.baseballBat), " zx", " yz", "y  ", 'x', Item.diamond, 'y', Item.netherrackBrick, 'z', knockBackBookI);
@@ -58,6 +56,7 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ItemStack(ModItems.blazeIngot, 1, 0), "x", "x", "x", 'x', Item.blazeRod);
 		GameRegistry.addRecipe(new ItemStack(ModItems.livingSoul, 4), "zxz", "xyx", "zyz", 'x', Item.rottenFlesh, 'y', Item.bone, 'z', Block.slowSand);
 		GameRegistry.addRecipe(new ItemStack(ModItems.blazeIngot, 1, 1), "xxx", "xxx", "xxx", 'x', new ItemStack(ModItems.blazeIngot, 1, 2));
+		GameRegistry.addSmelting(ModItems.spookyFlour.itemID, new ItemStack(ModItems.dimensionalBread), 0.0F);
 
 		createCapRecipe(0, new ItemStack(Block.tnt), new ItemStack(ModItems.blazeIngot, 1, 1), Item.fireballCharge);
 		createCapRecipe(1, new ItemStack(Item.netherQuartz), new ItemStack(Item.netherStalkSeeds), Item.netherStar);
