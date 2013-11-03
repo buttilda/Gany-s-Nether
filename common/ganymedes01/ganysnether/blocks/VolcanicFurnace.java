@@ -39,7 +39,7 @@ public class VolcanicFurnace extends BlockContainer {
 			setLightValue(1.0F);
 		setHardness(3.5F);
 		setStepSound(soundStoneFootstep);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.VOLCANIC_FURNACE_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.VOLCANIC_FURNACE_NAME + "_" + isActive));
 	}
 
 	@Override
