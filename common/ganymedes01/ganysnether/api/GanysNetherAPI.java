@@ -268,7 +268,7 @@ public class GanysNetherAPI {
 	 * magmaticCentrifuge
 	 * 
 	 */
-	public static final Block getBlock(String blockName, int metadata) {
+	public static final Block getBlock(String blockName) {
 		try {
 			Class<?> modBlocks = Class.forName("ganymedes01.ganysnether.blocks.ModBlocks");
 			Field block = modBlocks.getField(blockName);
@@ -313,7 +313,7 @@ public class GanysNetherAPI {
 	 * blazeBoots
 	 * 
 	 */
-	public static final Item getItem(String itemName, int metadata) {
+	public static final Item getItem(String itemName) {
 		try {
 			Class<?> modBlocks = Class.forName("ganymedes01.ganysnether.items.ModItems");
 			Field item = modBlocks.getField(itemName);

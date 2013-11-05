@@ -33,7 +33,7 @@ public class ConcealableHandler {
 		if (canBeConcealed(entity))
 			if (entityEggs.containsKey(entity.getClass()))
 				return entityEggs.get(entity.getClass()).copy();
-			else if (entity instanceof EntitySkeleton)
+			else if (entity.getClass() == EntitySkeleton.class)
 				return new ItemStack(ModItems.skeletonSpawner, 1, ((EntitySkeleton) entity).getSkeletonType());
 			else
 				return new ItemStack(Item.monsterPlacer, 1, EntityList.getEntityID(entity));
