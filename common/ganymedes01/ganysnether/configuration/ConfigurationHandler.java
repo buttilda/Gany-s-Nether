@@ -67,6 +67,7 @@ public class ConfigurationHandler {
 			ModIDs.WITHER_SHRUB_ID = configBlock(Strings.WITHER_SHRUB_NAME);
 			// ModIDs.SOUL_GLASS_PANE_ID = configBlock(Strings.SOUL_GLASS_PANE_NAME);
 			ModIDs.MAGMATIC_CENTRIFUGE_ID = configBlock(Strings.MAGMATIC_CENTRIFUGE_NAME);
+			ModIDs.WEEPING_POD_ID = configBlock(Strings.WEEPING_POD_NAME);
 
 			// Stairs
 			for (int i = 0; i < ModIDs.COLOURED_QUARTZ_STAIRS_IDS.length; i++)
@@ -110,6 +111,7 @@ public class ConfigurationHandler {
 			GanysNether.baseballBatDurability = configuration.get("Durability", Strings.BASEBALL_BAT_NAME, BaseballBat.DEFAULT_DUR).getInt(BaseballBat.DEFAULT_DUR);
 			GanysNether.shouldGenerateCrops = configuration.get("Others", Strings.SHOULD_GENERATE_CROPS, true).getBoolean(true);
 			GanysNether.shouldDoVersionCheck = configuration.get("Others", Strings.SHOULD_DO_VERSION_CHECK, true).getBoolean(true);
+			GanysNether.shouldGhastTearHaveDispenserAction = configuration.get("Others", Strings.SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION, true).getBoolean(true);
 
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");

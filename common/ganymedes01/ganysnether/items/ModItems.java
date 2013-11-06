@@ -1,10 +1,12 @@
 package ganymedes01.ganysnether.items;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorBottomlessBucket;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorLivingSoul;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorSceptreOfFireCharging;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorSceptreOfLightning;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorSkeletonSpawner;
+import ganymedes01.ganysnether.dispenser.DispenserBehaviorWeepingPod;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.item.Item;
@@ -124,5 +126,7 @@ public class ModItems {
 		BlockDispenser.dispenseBehaviorRegistry.putObject(bottomlessBucket, new DispenserBehaviorBottomlessBucket());
 		BlockDispenser.dispenseBehaviorRegistry.putObject(sceptreOfFireCharging, new DispenserBehaviorSceptreOfFireCharging());
 		BlockDispenser.dispenseBehaviorRegistry.putObject(sceptreOfLightning, new DispenserBehaviorSceptreOfLightning());
+		if (GanysNether.shouldGhastTearHaveDispenserAction)
+			BlockDispenser.dispenseBehaviorRegistry.putObject(Item.ghastTear, new DispenserBehaviorWeepingPod());
 	}
 }

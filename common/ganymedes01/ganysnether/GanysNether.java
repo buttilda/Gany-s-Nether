@@ -6,6 +6,7 @@ import ganymedes01.ganysnether.core.handlers.BonemealOnNetherCrops;
 import ganymedes01.ganysnether.core.handlers.EntityDeathEvent;
 import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.InterModComms;
+import ganymedes01.ganysnether.core.handlers.PlayerRightClickEvent;
 import ganymedes01.ganysnether.core.handlers.VersionCheckTickHandler;
 import ganymedes01.ganysnether.core.proxy.CommonProxy;
 import ganymedes01.ganysnether.core.utils.HoeList;
@@ -64,6 +65,7 @@ public class GanysNether {
 	public static int baseballBatDurability;
 	public static boolean shouldGenerateCrops = true;
 	public static boolean shouldDoVersionCheck = true;
+	public static boolean shouldGhastTearHaveDispenserAction = true;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -91,6 +93,7 @@ public class GanysNether {
 		MinecraftForge.EVENT_BUS.register(new HoeEvent());
 		MinecraftForge.EVENT_BUS.register(new EntityDeathEvent());
 		MinecraftForge.EVENT_BUS.register(new BonemealOnNetherCrops());
+		MinecraftForge.EVENT_BUS.register(new PlayerRightClickEvent());
 
 		proxy.registerTileEntities();
 		proxy.registerRenderers();

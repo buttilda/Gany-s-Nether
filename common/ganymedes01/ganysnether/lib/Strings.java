@@ -30,6 +30,7 @@ public class Strings {
 	public static final String WITHER_SHRUB_NAME = "witherShrub";
 	public static final String SOUL_GLASS_PANE_NAME = "soulGlassPane";
 	public static final String MAGMATIC_CENTRIFUGE_NAME = "magmaticCentrifuge";
+	public static final String WEEPING_POD_NAME = "weepingPod";
 
 	// Item names
 	public static final String QUARZ_BERRY_SEEDS_NAME = "quarzBerrySeeds";
@@ -63,6 +64,7 @@ public class Strings {
 	// Others
 	public static final String SHOULD_GENERATE_CROPS = "shouldGenerateCrops";
 	public static final String SHOULD_DO_VERSION_CHECK = "shouldDoVersionCheck";
+	public static final String SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION = "shouldGhastTearHaveDispenserAction";
 	public static final String[] COLOURS = new String[] { "Black", "Red", "Green", "Brown", "Blue", "Purple", "Cyan", "LightGrey", "Grey", "Pink", "Lime", "Yellow", "LightBlue", "Magenta", "Orange", "White" };
 
 	// Version check

@@ -54,7 +54,7 @@ public class ModRecipes {
 		GameRegistry.addSmelting(ModItems.batWing.itemID, new ItemStack(ModItems.cookedBatWing), 0.0F);
 		FurnaceRecipes.smelting().addSmelting(ModItems.blazeIngot.itemID, 0, new ItemStack(ModItems.blazeIngot, 1, 1), 0.0F);
 		GameRegistry.addRecipe(new ItemStack(ModItems.blazeIngot, 1, 0), "x", "x", "x", 'x', Item.blazeRod);
-		GameRegistry.addRecipe(new ItemStack(ModItems.livingSoul, 4), "zxz", "xyx", "zyz", 'x', Item.rottenFlesh, 'y', Item.bone, 'z', Block.slowSand);
+		GameRegistry.addRecipe(new ItemStack(ModItems.livingSoul, 2), "zxz", "xyx", "zyz", 'x', Item.rottenFlesh, 'y', Item.bone, 'z', Block.slowSand);
 		GameRegistry.addRecipe(new ItemStack(ModItems.blazeIngot, 1, 1), "xxx", "xxx", "xxx", 'x', new ItemStack(ModItems.blazeIngot, 1, 2));
 		GameRegistry.addSmelting(ModItems.spookyFlour.itemID, new ItemStack(ModItems.dimensionalBread), 0.0F);
 

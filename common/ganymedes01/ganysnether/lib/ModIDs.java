@@ -32,6 +32,7 @@ public class ModIDs {
 	public static int WITHER_SHRUB_ID;
 	public static int SOUL_GLASS_PANE_ID;
 	public static int MAGMATIC_CENTRIFUGE_ID;
+	public static int WEEPING_POD_ID;
 
 	// Items
 	public static int QUARZ_BERRY_SEEDS_ID;
