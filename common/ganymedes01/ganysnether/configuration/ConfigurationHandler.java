@@ -32,10 +32,6 @@ public class ConfigurationHandler {
 		return configuration.getBlock(name, idGen.getNextBlockID()).getInt(idGen.getLastBlockID());
 	}
 
-	private static int configStairs(String name) {
-		return configuration.get("Coloured Quartz Stairs", name, idGen.getNextBlockID()).getInt(idGen.getLastBlockID());
-	}
-
 	private static int configItem(String name) {
 		return configuration.getItem(name, idGen.getNextItemID()).getInt(idGen.getLastItemID());
 	}
@@ -59,6 +55,8 @@ public class ConfigurationHandler {
 			ModIDs.GLOW_BOX_ID = configBlock(Strings.GLOW_BOX_NAME);
 			ModIDs.COLOURED_QUARTZ_BLOCK_ID = configBlock(Strings.COLOURED_QUARTZ_BLOCK_NAME);
 			ModIDs.COLOURED_CHISELLED_QUARTZ_BLOCK_ID = configBlock(Strings.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME);
+			for (int i = 0; i < ModIDs.COLOURED_QUARTZ_STAIRS_IDS.length; i++)
+				ModIDs.COLOURED_QUARTZ_STAIRS_IDS[i] = configBlock(Strings.COLOURED_QUARTZ_STAIRS_NAMES[i]);
 			ModIDs.SOUL_GLASS_STAIRS_ID = configBlock(Strings.SOUL_GLASS_STAIRS_NAME);
 			for (int i = 0; i < ModIDs.COLOURED_QUARTZ_PILLARS_IDS.length; i++)
 				ModIDs.COLOURED_QUARTZ_PILLARS_IDS[i] = configBlock(Strings.COLOURED_QUARTZ_PILLARS_NAME + i);
@@ -68,10 +66,6 @@ public class ConfigurationHandler {
 			// ModIDs.SOUL_GLASS_PANE_ID = configBlock(Strings.SOUL_GLASS_PANE_NAME);
 			ModIDs.MAGMATIC_CENTRIFUGE_ID = configBlock(Strings.MAGMATIC_CENTRIFUGE_NAME);
 			ModIDs.WEEPING_POD_ID = configBlock(Strings.WEEPING_POD_NAME);
-
-			// Stairs
-			for (int i = 0; i < ModIDs.COLOURED_QUARTZ_STAIRS_IDS.length; i++)
-				ModIDs.COLOURED_QUARTZ_STAIRS_IDS[i] = configStairs(Strings.COLOURED_QUARTZ_STAIRS_NAMES[i]);
 
 			// Armour
 			ModIDs.BLAZE_HELMET_ID = configItem(Strings.BLAZE_HELMET_NAME);

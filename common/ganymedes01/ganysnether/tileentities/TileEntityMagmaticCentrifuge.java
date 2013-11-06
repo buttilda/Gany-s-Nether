@@ -1,6 +1,5 @@
 package ganymedes01.ganysnether.tileentities;
 
-import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.lib.Strings;
@@ -27,6 +26,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -106,7 +106,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 			stackSize2 = material2.stackSize;
 		}
 
-		GanysNether.proxy.handleTileMagmaticCentrifugePacket(xCoord, yCoord, zCoord, itemID1, meta1, stackSize1, itemID2, meta2, stackSize2, isRecipeValid);
+		PacketDispatcher.sendPacketToAllPlayers(PacketTypeHandler.populatePacket(new PacketTileMagmaticCentrifuge(xCoord, yCoord, zCoord, material1, material2, isRecipeValid)));
 	}
 
 	private void fillTankFromContainer() {

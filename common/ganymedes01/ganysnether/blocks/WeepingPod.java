@@ -1,6 +1,5 @@
 package ganymedes01.ganysnether.blocks;
 
-import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
@@ -35,7 +34,6 @@ public class WeepingPod extends BlockCocoa {
 		setHardness(0.2F);
 		setResistance(5.0F);
 		setStepSound(soundWoodFootstep);
-		setCreativeTab(GanysNether.netherTab);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.WEEPING_POD_NAME));
 	}
 

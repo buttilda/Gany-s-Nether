@@ -77,8 +77,11 @@ public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRendere
 
 	}
 
-	private void renderItem(World world, double x, double y, double z, ItemStack stack, float rotationAngle, boolean stackOffset) {
-		if (stack != null) {
+	private void renderItem(World world, double x, double y, double z, ItemStack centrifugeStack, float rotationAngle, boolean stackOffset) {
+		if (centrifugeStack != null) {
+			ItemStack stack = centrifugeStack.copy();
+
+			stack.stackSize = 1;
 			GL11.glPushMatrix();
 			float scaleFactor, translate, offset = 0.4F;
 			if (stack.getItem() instanceof ItemBlock) {
