@@ -67,6 +67,7 @@ public class MagmaticCentrifugeRecipes {
 			addRecipe(new ItemStack(Block.silverfish, 1, i), new ItemStack(Item.netherQuartz), new ItemStack(Item.monsterPlacer, 1, 60), new ItemStack(Block.cobblestone));
 		addRecipe(new ItemStack(Item.wheat), new ItemStack(Item.diamond), new ItemStack(ModItems.flour), new ItemStack(Item.diamond));
 		addRecipe(new ItemStack(ModItems.spectreWheat), new ItemStack(Item.diamond), new ItemStack(ModItems.spookyFlour), new ItemStack(Item.diamond));
+		addRecipe(new ItemStack(Block.dirt), new ItemStack(Item.dyePowder, 1, 15), new ItemStack(Block.grass));
 	}
 
 	public static void initOreDictRecipes() {
@@ -123,9 +124,7 @@ public class MagmaticCentrifugeRecipes {
 	}
 
 	public static boolean isValidRecipe(CentrifugeRecipe recipe) {
-		if (recipe.getMaterial(1) != null && recipe.getMaterial(2) != null && recipe.getResult() == null || recipe.getResult().length <= 4)
-			return !recipes.contains(recipe);
-		return false;
+		return !recipes.contains(recipe) && CentrifugeRecipe.isValidRecipe(recipe);
 	}
 
 	public static ItemStack[] getResult(ItemStack material1, ItemStack material2) {
@@ -149,8 +148,12 @@ public class MagmaticCentrifugeRecipes {
 			this.result = result;
 		}
 
-		public ItemStack getMaterial(int num) {
+		private ItemStack getMaterial(int num) {
 			return num == 1 ? material1.copy() : num == 2 ? material2.copy() : null;
+		}
+
+		public static boolean isValidRecipe(CentrifugeRecipe recipe) {
+			return recipe.getMaterial(1) != null && recipe.getMaterial(2) != null && recipe.getResult() != null && recipe.getResult().length <= 4;
 		}
 
 		public ItemStack[] getResult() {
@@ -159,18 +162,21 @@ public class MagmaticCentrifugeRecipes {
 
 		@Override
 		public boolean equals(Object obj) {
-			if (obj != null && obj instanceof CentrifugeRecipe) {
+			if (obj == null)
+				return false;
+
+			if (obj instanceof CentrifugeRecipe) {
 				CentrifugeRecipe recipe = (CentrifugeRecipe) obj;
 				ItemStack material1 = recipe.getMaterial(1);
 				ItemStack material2 = recipe.getMaterial(2);
 				if (material1 == null || material2 == null)
 					return false;
 				else {
-					if (material1.itemID == this.material1.itemID && material1.getItemDamage() == this.material1.getItemDamage())
-						if (material2.itemID == this.material2.itemID && material2.getItemDamage() == this.material2.getItemDamage())
+					if (material1.itemID == getMaterial(1).itemID && material1.getItemDamage() == getMaterial(1).getItemDamage())
+						if (material2.itemID == getMaterial(2).itemID && material2.getItemDamage() == getMaterial(2).getItemDamage())
 							return true;
-					if (material2.itemID == this.material1.itemID && material2.getItemDamage() == this.material1.getItemDamage())
-						if (material1.itemID == this.material2.itemID && material1.getItemDamage() == this.material2.getItemDamage())
+					if (material2.itemID == getMaterial(1).itemID && material2.getItemDamage() == getMaterial(1).getItemDamage())
+						if (material1.itemID == getMaterial(2).itemID && material1.getItemDamage() == getMaterial(2).getItemDamage())
 							return true;
 				}
 			}
@@ -181,7 +187,7 @@ public class MagmaticCentrifugeRecipes {
 		public String toString() {
 			StringBuffer buffer = new StringBuffer();
 			buffer.append(material1.getUnlocalizedName() + " + " + material2.getUnlocalizedName() + " = ");
-			for (ItemStack stack : result)
+			for (ItemStack stack : getResult())
 				buffer.append(stack.getUnlocalizedName() + ", ");
 			buffer.deleteCharAt(buffer.length() - 1);
 			buffer.deleteCharAt(buffer.length() - 1);
