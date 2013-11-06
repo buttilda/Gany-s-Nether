@@ -204,6 +204,8 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	}
 
 	private void checkRecipe() {
+		PacketDispatcher.sendPacketToAllPlayers(PacketTypeHandler.populatePacket(new PacketTileMagmaticCentrifuge(xCoord, yCoord, zCoord, inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2], isRecipeValid)));
+
 		if (inventory[MATERIAL_SLOT_1] == null || inventory[MATERIAL_SLOT_2] == null)
 			isRecipeValid = false;
 		else
