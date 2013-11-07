@@ -14,7 +14,6 @@ import ganymedes01.ganysnether.core.utils.VersionHelper;
 import ganymedes01.ganysnether.creativetab.CreativeTabNether;
 import ganymedes01.ganysnether.integration.BuildCraftFacadeManager;
 import ganymedes01.ganysnether.integration.EE3Manager;
-import ganymedes01.ganysnether.integration.NEIManager;
 import ganymedes01.ganysnether.integration.ThaumCraftManager;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
@@ -110,8 +109,6 @@ public class GanysNether {
 			ThaumCraftManager.init();
 		if (Loader.isModLoaded("EE3"))
 			EE3Manager.init();
-		if (Loader.isModLoaded("NotEnoughItems"))
-			NEIManager.init();
 	}
 
 	@EventHandler

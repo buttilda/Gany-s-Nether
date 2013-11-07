@@ -53,6 +53,9 @@ public class GuiMagmaticCentrifuge extends GuiGanysNether {
 		drawTexturedModalRect(j + ((Slot) container.inventorySlots.get(2)).xDisplayPosition - 1, k + ((Slot) container.inventorySlots.get(2)).yDisplayPosition - 1, 176, 3, 18, 18);
 		drawTexturedModalRect(j + ((Slot) container.inventorySlots.get(3)).xDisplayPosition - 1, k + ((Slot) container.inventorySlots.get(3)).yDisplayPosition - 1, 176, 3, 18, 18);
 		displayGauge(FluidRegistry.LAVA, j, k, 155, 53, centrifuge.getScaledFluidAmount(52));
+
+		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.MAGMATIC_CENTRIFUGE_NAME)));
+		drawTexturedModalRect(j + 155, k + 53, 176, 21, 16, 52);
 	}
 
 	@Override

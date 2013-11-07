@@ -41,14 +41,18 @@ public class ReproducerRecipes {
 		addMobDropAndEggTuple(91, Block.cloth);
 		addMobDropAndEggTuple(92, Item.beefRaw);
 		addMobDropAndEggTuple(93, Item.chickenRaw);
-		addMobDropAndEggTuple(94, new ItemStack(Item.dyePowder, 1, 0));
+		addMobDropAndEggTuple(94, Item.dyePowder);
 		addMobDropAndEggTuple(95, ModItems.wolfTeeth);
 		addMobDropAndEggTuple(96, Block.mushroomRed);
 		addMobDropAndEggTuple(97, Item.snowball);
 		addMobDropAndEggTuple(98, Item.fishRaw);
 		addMobDropAndEggTuple(99, Item.ingotIron);
 		addMobDropAndEggTuple(100, Item.leather);
-		addMobDropAndEggTuple(101, Item.emerald);
+		addMobDropAndEggTuple(120, Item.emerald);
+	}
+
+	public static Map<ItemStack, ItemStack> getTupes() {
+		return eggDropTuple;
 	}
 
 	public static boolean isValidSpawnEgg(ItemStack stack) {

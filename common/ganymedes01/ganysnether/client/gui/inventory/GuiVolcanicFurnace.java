@@ -48,9 +48,16 @@ public class GuiVolcanicFurnace extends GuiGanysNether {
 		int k = (height - ySize) / 2;
 
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
-		if (furnace.getMeltTimeRemainingScaled(24) > 0)
-			drawTexturedModalRect(j + 73, k + 35, 177, 13, 24 - furnace.getMeltTimeRemainingScaled(24), 16);
+
 		displayGauge(FluidRegistry.LAVA, j, k, 104, 17, furnace.getScaledFluidAmount(52));
+		if (furnace.getMeltTimeRemainingScaled(24) > 0)
+			drawTexturedModelRectFromIcon(j + 73, k + 36, FluidRegistry.LAVA.getStillIcon(), 22 - furnace.getMeltTimeRemainingScaled(24), 15);
+
+		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.VOLCANIC_FURNACE_NAME)));
+
+		drawTexturedModalRect(j + 73, k + 35, 177, 13, 24, 16);
+		drawTexturedModalRect(j + 104, k + 17, 176, 31, 16, 52);
+
 		String fluidAmount = Integer.toString(furnace.meltTime) + " mB";
 		fontRenderer.drawString(fluidAmount, j + 10 + fontRenderer.getStringWidth(FLUID_TO_GO) / 2 - fontRenderer.getStringWidth(fluidAmount) / 2, k + 25, BLACK);
 	}

@@ -30,6 +30,6 @@ public class BuildCraftFacadeManager {
 	}
 
 	private static void addFacade(int blockID, int meta) {
-		FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", String.format("%d@%d", blockID, meta));
+		FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", blockID + "@" + meta);
 	}
 }

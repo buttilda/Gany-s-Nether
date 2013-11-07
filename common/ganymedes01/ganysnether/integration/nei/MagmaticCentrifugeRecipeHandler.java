@@ -58,6 +58,9 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GuiDraw.changeTexture(getGuiTexture());
 		GuiDraw.drawTexturedModalRect(0, 0, 5, 50, 140, 65);
+
+		GuiDraw.drawTexturedModalRect(29, 19, 176, 3, 18, 18);
+		GuiDraw.drawTexturedModalRect(119, 19, 176, 3, 18, 18);
 	}
 
 	@Override
@@ -112,19 +115,17 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 		}
 
 		public CachedCentrifugeRecipe(CentrifugeRecipe recipe) {
-			materials.add(new PositionedStack(recipe.getMaterial(1), 66 - 36, 20));
-			materials.add(new PositionedStack(recipe.getMaterial(2), 84 + 36, 20));
+			materials.add(new PositionedStack(recipe.getMaterial(1), 30, 20));
+			materials.add(new PositionedStack(recipe.getMaterial(2), 120, 20));
 
 			ItemStack[] results = recipe.getResult();
 
-			if (results.length >= 1)
-				result.add(new PositionedStack(results[0], 66, 12));
-			if (results.length >= 2)
-				result.add(new PositionedStack(results[1], 66 + 18, 12));
-			if (results.length >= 3)
-				result.add(new PositionedStack(results[2], 66, 12 + 18));
-			if (results.length == 4)
-				result.add(new PositionedStack(results[3], 66 + 18, 12 + 18));
+			for (int i = 0; i < 2; i++)
+				for (int j = 0; j < 2; j++) {
+					int index = j + 2 * i;
+					if (index < results.length)
+						result.add(new PositionedStack(results[index], 66 + 18 * i, 12 + 18 * j));
+				}
 		}
 	}
 }
