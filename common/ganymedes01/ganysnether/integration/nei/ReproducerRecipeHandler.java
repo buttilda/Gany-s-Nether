@@ -29,7 +29,8 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
 
 public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 
-	public static float ticks;
+	private static float ticks;
+	private int progressBar;
 
 	@Override
 	public Class<? extends GuiContainer> getGuiClass() {
@@ -59,6 +60,8 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 	public void onUpdate() {
 		super.onUpdate();
 		ticks += 0.05F;
+		progressBar++;
+
 		if (ticks > ReproducerRecipes.getTupes().size())
 			ticks = 0.0F;
 	}
@@ -68,6 +71,13 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GuiDraw.changeTexture(getGuiTexture());
 		GuiDraw.drawTexturedModalRect(0, 0, 5, 9, 148, 65);
+	}
+
+	@Override
+	public void drawExtras(int recipe) {
+		float prog = progressBar >= 20 ? (progressBar - 20) % 20 / 20.0F : 0.0F;
+
+		drawProgressBar(98, 26, 181, 14, 13, 16, prog, 0);
 	}
 
 	@Override
