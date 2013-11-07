@@ -24,6 +24,10 @@ public class MagmaticCentrifugeRecipes {
 
 	private static ArrayList<CentrifugeRecipe> recipes;
 
+	public static ArrayList<CentrifugeRecipe> getRecipes() {
+		return recipes;
+	}
+
 	public static void clearRecipeList() {
 		recipes = new ArrayList<CentrifugeRecipe>();
 	}
@@ -31,7 +35,7 @@ public class MagmaticCentrifugeRecipes {
 	public static void initRecipes() {
 		clearRecipeList();
 
-		addRecipe(new ItemStack(Item.glowstone), new ItemStack(Block.netherrack), new ItemStack(Item.redstone, 2));
+		addRecipe(new ItemStack(Item.glowstone), new ItemStack(Block.netherrack), new ItemStack(Item.redstone, 4));
 		addRecipe(new ItemStack(Item.magmaCream), new ItemStack(Item.magmaCream), new ItemStack(Item.blazePowder, 2), new ItemStack(Item.slimeBall, 2));
 		addRecipe(new ItemStack(ModItems.glowingReed), new ItemStack(ModItems.glowingReed), new ItemStack(Item.glowstone, 2), new ItemStack(Item.sugar, 2));
 		addRecipe(new ItemStack(ModItems.quarzBerry), new ItemStack(Item.glassBottle), new ItemStack(Item.potion));
@@ -39,7 +43,6 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe(new ItemStack(Block.gravel), new ItemStack(Block.gravel), new ItemStack(Item.flint, 2));
 		addRecipe(new ItemStack(Item.eyeOfEnder), new ItemStack(Item.eyeOfEnder), new ItemStack(Item.blazePowder, 2), new ItemStack(Item.enderPearl, 2));
 		addRecipe(new ItemStack(ModItems.glowingReed), new ItemStack(Item.potion), new ItemStack(Item.reed), new ItemStack(Item.glassBottle));
-		addRecipe(new ItemStack(Block.dirt), new ItemStack(Block.sand), new ItemStack(Item.clay));
 		addRecipe(new ItemStack(Block.sand), new ItemStack(Block.sand), new ItemStack(Block.glass, 2));
 		addRecipe(new ItemStack(Block.glass), new ItemStack(Block.glass), new ItemStack(Block.sand, 2));
 		for (int i = 0; i < 16; i++)
@@ -56,7 +59,7 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe(new ItemStack(Block.pumpkin), new ItemStack(Block.pumpkin), new ItemStack(Item.pumpkinSeeds, 12));
 		addRecipe(new ItemStack(Item.melon), new ItemStack(Item.melon), new ItemStack(Item.melonSeeds, 3));
 		addRecipe(new ItemStack(Block.sandStone), new ItemStack(Item.flint), new ItemStack(Block.sand, 4));
-		addRecipe(new ItemStack(Block.dirt), new ItemStack(Item.dyePowder, 15), new ItemStack(Block.grass));
+		addRecipe(new ItemStack(Block.dirt), new ItemStack(Item.dyePowder, 1, 15), new ItemStack(Block.grass));
 		addRecipe(new ItemStack(Block.vine), new ItemStack(Block.vine), new ItemStack(Item.silk, 2));
 		addRecipe(new ItemStack(Item.horseArmorIron), new ItemStack(Item.flint), new ItemStack(Item.ingotIron, 6));
 		addRecipe(new ItemStack(Item.horseArmorGold), new ItemStack(Item.flint), new ItemStack(Item.ingotGold, 6));
@@ -67,7 +70,6 @@ public class MagmaticCentrifugeRecipes {
 			addRecipe(new ItemStack(Block.silverfish, 1, i), new ItemStack(Item.netherQuartz), new ItemStack(Item.monsterPlacer, 1, 60), new ItemStack(Block.cobblestone));
 		addRecipe(new ItemStack(Item.wheat), new ItemStack(Item.diamond), new ItemStack(ModItems.flour), new ItemStack(Item.diamond));
 		addRecipe(new ItemStack(ModItems.spectreWheat), new ItemStack(Item.diamond), new ItemStack(ModItems.spookyFlour), new ItemStack(Item.diamond));
-		addRecipe(new ItemStack(Block.dirt), new ItemStack(Item.dyePowder, 1, 15), new ItemStack(Block.grass));
 	}
 
 	public static void initOreDictRecipes() {
@@ -148,8 +150,25 @@ public class MagmaticCentrifugeRecipes {
 			this.result = result;
 		}
 
-		private ItemStack getMaterial(int num) {
+		public ItemStack getMaterial(int num) {
 			return num == 1 ? material1.copy() : num == 2 ? material2.copy() : null;
+		}
+
+		public boolean containsMaterial(ItemStack material) {
+			if (material == null)
+				return false;
+
+			return material.itemID == material1.itemID && material.getItemDamage() == material1.getItemDamage() || material.itemID == material2.itemID && material.getItemDamage() == material2.getItemDamage();
+		}
+
+		public boolean isPartOfResult(ItemStack result) {
+			if (result == null)
+				return false;
+
+			for (ItemStack res : this.result)
+				if (res.itemID == result.itemID && res.getItemDamage() == result.getItemDamage())
+					return true;
+			return false;
 		}
 
 		public static boolean isValidRecipe(CentrifugeRecipe recipe) {

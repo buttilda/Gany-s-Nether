@@ -12,11 +12,12 @@ import ganymedes01.ganysnether.core.proxy.CommonProxy;
 import ganymedes01.ganysnether.core.utils.HoeList;
 import ganymedes01.ganysnether.core.utils.VersionHelper;
 import ganymedes01.ganysnether.creativetab.CreativeTabNether;
+import ganymedes01.ganysnether.integration.BuildCraftFacadeManager;
+import ganymedes01.ganysnether.integration.EE3Manager;
+import ganymedes01.ganysnether.integration.NEIManager;
+import ganymedes01.ganysnether.integration.ThaumCraftManager;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
-import ganymedes01.ganysnether.modsupport.BuildCraftFacadeManager;
-import ganymedes01.ganysnether.modsupport.EE3Manager;
-import ganymedes01.ganysnether.modsupport.ThaumCraftManager;
 import ganymedes01.ganysnether.network.PacketHandler;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ModRecipes;
@@ -109,6 +110,8 @@ public class GanysNether {
 			ThaumCraftManager.init();
 		if (Loader.isModLoaded("EE3"))
 			EE3Manager.init();
+		if (Loader.isModLoaded("NotEnoughItems"))
+			NEIManager.init();
 	}
 
 	@EventHandler

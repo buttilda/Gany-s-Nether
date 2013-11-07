@@ -1,4 +1,4 @@
-package ganymedes01.ganysnether.modsupport;
+package ganymedes01.ganysnether.integration;
 
 /**
  * Gany's Nether
