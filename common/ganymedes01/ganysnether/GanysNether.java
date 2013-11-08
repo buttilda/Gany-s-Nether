@@ -12,9 +12,7 @@ import ganymedes01.ganysnether.core.proxy.CommonProxy;
 import ganymedes01.ganysnether.core.utils.HoeList;
 import ganymedes01.ganysnether.core.utils.VersionHelper;
 import ganymedes01.ganysnether.creativetab.CreativeTabNether;
-import ganymedes01.ganysnether.integration.BuildCraftFacadeManager;
-import ganymedes01.ganysnether.integration.EE3Manager;
-import ganymedes01.ganysnether.integration.ThaumCraftManager;
+import ganymedes01.ganysnether.integration.ModIntegrator;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.network.PacketHandler;
@@ -26,7 +24,6 @@ import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -101,14 +98,7 @@ public class GanysNether {
 		if (shouldGenerateCrops)
 			GameRegistry.registerWorldGenerator(new NetherWorldGen());
 
-		HoeList.registerThaumcraftHoes();
-
-		if (Loader.isModLoaded("BuildCraft|Transport"))
-			BuildCraftFacadeManager.registerFacades();
-		if (Loader.isModLoaded("Thaumcraft"))
-			ThaumCraftManager.init();
-		if (Loader.isModLoaded("EE3"))
-			EE3Manager.init();
+		ModIntegrator.integrateMods();
 	}
 
 	@EventHandler
