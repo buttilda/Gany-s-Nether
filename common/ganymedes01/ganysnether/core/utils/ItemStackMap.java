@@ -49,6 +49,9 @@ public class ItemStackMap<T> extends HashMap<ItemStack, T> {
 		ItemStack stack2Single = stack2.copy();
 		stack2Single.stackSize = 1;
 
+		if (stack1.getItem().getMaxDamage() > 0 || stack2.getItem().getMaxDamage() > 0)
+			return stack1.itemID == stack2.itemID;
+
 		return ItemStack.areItemStacksEqual(stack1Single, stack2Single);
 	}
 }

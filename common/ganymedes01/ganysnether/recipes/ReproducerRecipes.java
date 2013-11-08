@@ -18,7 +18,7 @@ import net.minecraft.item.ItemStack;
 
 public class ReproducerRecipes {
 
-	private static Map<ItemStack, ItemStack> eggDropTuple = new ItemStackMap<ItemStack>();
+	private static ItemStackMap<ItemStack> eggDropTuple = new ItemStackMap<ItemStack>();
 
 	static {
 		addMobDropAndEggTuple(new ItemStack(ModItems.skeletonSpawner), new ItemStack(Item.bone));

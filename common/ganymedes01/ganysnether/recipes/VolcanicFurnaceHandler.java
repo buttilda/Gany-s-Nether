@@ -5,7 +5,6 @@ import ganymedes01.ganysnether.core.utils.ItemStackMap;
 import ganymedes01.ganysnether.items.ModItems;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -38,27 +37,27 @@ public class VolcanicFurnaceHandler {
 
 	private static ArrayList<ItemStack> meltingBlackList = new ItemStackArray();
 	private static ArrayList<ItemStack> meltingWhiteList = new ItemStackArray();
-	private static Map<ItemStack, Integer> burnTimes = new ItemStackMap<Integer>();
+	private static ItemStackMap<Integer> burnTimes = new ItemStackMap<Integer>();
 
 	static {
-		meltingBlackList.add(new ItemStack(Item.expBottle));
-		meltingBlackList.add(new ItemStack(Item.snowball));
+		blackListItem(new ItemStack(Item.expBottle));
+		blackListItem(new ItemStack(Item.snowball));
 
-		burnTimes.put(new ItemStack(Item.netherStar), 10000);
-		burnTimes.put(new ItemStack(ModItems.blazeIngot, 1, 2), 2);
-		burnTimes.put(new ItemStack(Item.goldNugget), 2);
-		burnTimes.put(new ItemStack(ModItems.ironNugget), 2);
-		burnTimes.put(new ItemStack(Block.dragonEgg), 1000000);
-		burnTimes.put(new ItemStack(Item.blazePowder), 7);
-		burnTimes.put(new ItemStack(Block.netherrack), 35);
+		addBurnTimeForItem(new ItemStack(Item.netherStar), 10000);
+		addBurnTimeForItem(new ItemStack(ModItems.blazeIngot, 1, 2), 2);
+		addBurnTimeForItem(new ItemStack(Item.goldNugget), 2);
+		addBurnTimeForItem(new ItemStack(ModItems.ironNugget), 2);
+		addBurnTimeForItem(new ItemStack(Block.dragonEgg), 1000000);
+		addBurnTimeForItem(new ItemStack(Item.blazePowder), 7);
+		addBurnTimeForItem(new ItemStack(Block.netherrack), 35);
 		for (int i = 0; i < 16; i++) {
-			burnTimes.put(new ItemStack(Block.carpet), 12);
-			burnTimes.put(new ItemStack(Item.dyePowder), 7);
+			addBurnTimeForItem(new ItemStack(Block.carpet), 12);
+			addBurnTimeForItem(new ItemStack(Item.dyePowder), 7);
 		}
 	}
 
 	public static void addBurnTimeForItem(ItemStack stack, int burnTime) {
-		if (stack != null) {
+		if (stack != null && !burnTimes.containsKey(stack)) {
 			if (stack.stackSize > 1)
 				stack.stackSize = 1;
 			if (burnTime <= 0)
