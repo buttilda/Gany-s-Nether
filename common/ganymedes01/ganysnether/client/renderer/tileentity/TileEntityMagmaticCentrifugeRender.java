@@ -62,6 +62,7 @@ public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRendere
 		renderItem(centrifuge.worldObj, x, y, z, material1, rotationAngle, false);
 		renderItem(centrifuge.worldObj, x, y, z, material2, rotationAngle, true);
 
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		bindTexture(Utils.getResource(Utils.getEntityTexture(Strings.MAGMATIC_CENTRIFUGE_NAME)));
 		GL11.glPushMatrix();
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);

@@ -68,7 +68,6 @@ public class RandomItemStackList {
 		else if (stack.stackSize <= 1)
 			stack.stackSize = 1 + rand.nextInt(16);
 
-		System.out.println(stack.stackSize);
 		if (stack.getItem() == ModItems.witherShrubSeeds)
 			return rand.nextInt(50) == 25 ? new ItemStack(ModItems.witherShrubSeeds) : new ItemStack(Item.ghastTear, 1 + rand.nextInt(2));
 		else
