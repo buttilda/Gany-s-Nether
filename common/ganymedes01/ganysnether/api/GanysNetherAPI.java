@@ -245,6 +245,38 @@ public class GanysNetherAPI {
 		}
 	}
 
+	// UNDERTAKER //
+
+	/**
+	 * Adds an ItemStack to the list of stacks that can be found inside
+	 * Undertakers that generate around in the nether.
+	 * 
+	 * The bigger the weight value the rarer the stack will be! The maximum
+	 * stackSize will be the stackSize of the stack you pass.
+	 * 
+	 * e.g.: addStackToUndertakers(new ItemStack(Item.apple,24),50); There will
+	 * be a chance of 1 in 50 to find a stack of apples of size up to 24 inside
+	 * any Undertaker generated in the nether.
+	 * 
+	 * @param stack
+	 *            : ItemStack of item/block
+	 * @param weight
+	 *            : chance of finding the stack
+	 */
+	public static final void addStackToUndertakers(ItemStack stack, int weight) {
+		if (stack != null && stack.stackSize > 0 && weight > 0) {
+			NBTTagCompound data = new NBTTagCompound();
+
+			data.setInteger("weight", weight);
+
+			NBTTagCompound tagCompound = new NBTTagCompound();
+			stack.writeToNBT(tagCompound);
+			data.setCompoundTag("stack", tagCompound);
+
+			FMLInterModComms.sendMessage("ganysnether", "addStackToUndertakers", data);
+		}
+	}
+
 	// BLOCKS
 	/*
 	 * Here's a list of the blocks that can/should be retrieved by this method

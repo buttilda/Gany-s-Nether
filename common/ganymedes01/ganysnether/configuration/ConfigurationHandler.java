@@ -104,6 +104,7 @@ public class ConfigurationHandler {
 			GanysNether.sceptreOfFireCharging = configuration.get("Durability", Strings.SCEPTRE_OF_FIRE_CHARGING_NAME, SceptreOfFireCharging.DEFAULT_DUR).getInt(SceptreOfFireCharging.DEFAULT_DUR);
 			GanysNether.baseballBatDurability = configuration.get("Durability", Strings.BASEBALL_BAT_NAME, BaseballBat.DEFAULT_DUR).getInt(BaseballBat.DEFAULT_DUR);
 			GanysNether.shouldGenerateCrops = configuration.get("Others", Strings.SHOULD_GENERATE_CROPS, true).getBoolean(true);
+			GanysNether.shouldGenerateUndertakers = configuration.get("Others", Strings.SHOULD_GENERATE_UNDERTAKERS, true).getBoolean(true);
 			GanysNether.shouldDoVersionCheck = configuration.get("Others", Strings.SHOULD_DO_VERSION_CHECK, true).getBoolean(true);
 			GanysNether.shouldGhastTearHaveDispenserAction = configuration.get("Others", Strings.SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION, true).getBoolean(true);
 

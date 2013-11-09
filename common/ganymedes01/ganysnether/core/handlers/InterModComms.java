@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.core.handlers;
 
 import ganymedes01.ganysnether.core.utils.ConcealableHandler;
 import ganymedes01.ganysnether.core.utils.HoeList;
+import ganymedes01.ganysnether.core.utils.RandomItemStackList;
 import ganymedes01.ganysnether.lib.IMCKeys;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
@@ -51,43 +52,56 @@ public class InterModComms {
 				blackListMeltingItem(message);
 			else if (message.key.equals(IMCKeys.ADD_BURN_TIME_FOR_ITEM))
 				addBurnTimeForItem(message);
+			else if (message.key.equals(IMCKeys.ADD_STACK_TO_UNDERTAKERS))
+				addStackToUndertakers(message);
 	}
 
 	private static void addCentrifugeRecipe(IMCMessage message) {
-		NBTTagCompound data = message.getNBTValue();
-		NBTTagList tagList = data.getTagList("Recipe");
-		ItemStack material1 = null, material2 = null;
-		ItemStack[] result = new ItemStack[tagList.tagCount() - 2];
+		try {
+			NBTTagCompound data = message.getNBTValue();
+			NBTTagList tagList = data.getTagList("Recipe");
+			ItemStack material1 = null, material2 = null;
+			ItemStack[] result = new ItemStack[tagList.tagCount() - 2];
 
-		if (result.length > 4 || result.length <= 0) {
-			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s tried to add an invalid recipe to the Magmatic Centrifuge.", message.getSender()));
-			return;
+			if (result.length > 4 || result.length <= 0) {
+				Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s tried to add an invalid recipe to the Magmatic Centrifuge.", message.getSender()));
+				return;
+			}
+
+			NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(0);
+			if (tagCompound.getByte("material1") == 0)
+				material1 = ItemStack.loadItemStackFromNBT(tagCompound);
+
+			tagCompound = (NBTTagCompound) tagList.tagAt(1);
+			if (tagCompound.getByte("material2") == 1)
+				material2 = ItemStack.loadItemStackFromNBT(tagCompound);
+
+			for (int i = 2; i < tagList.tagCount(); i++) {
+				tagCompound = (NBTTagCompound) tagList.tagAt(i);
+				byte slot = (byte) (tagCompound.getByte("result") - 2);
+				if (slot >= 0 && slot < result.length)
+					result[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
+			}
+
+			MagmaticCentrifugeRecipes.addRecipeExternal(message.getSender(), material1, material2, result);
+		} catch (Exception e) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to add a recipe to the Magmatic Centrifuge.", message.getSender()));
 		}
-
-		NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(0);
-		if (tagCompound.getByte("material1") == 0)
-			material1 = ItemStack.loadItemStackFromNBT(tagCompound);
-
-		tagCompound = (NBTTagCompound) tagList.tagAt(1);
-		if (tagCompound.getByte("material2") == 1)
-			material2 = ItemStack.loadItemStackFromNBT(tagCompound);
-
-		for (int i = 2; i < tagList.tagCount(); i++) {
-			tagCompound = (NBTTagCompound) tagList.tagAt(i);
-			byte slot = (byte) (tagCompound.getByte("result") - 2);
-			if (slot >= 0 && slot < result.length)
-				result[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
-		}
-
-		MagmaticCentrifugeRecipes.addRecipeExternal(message.getSender(), material1, material2, result);
 	}
 
 	private static void addHoeThatCanTillNetherrack(IMCMessage message) {
-		ItemStack hoe = message.getItemStackValue();
-		if (hoe != null)
-			HoeList.addHoe(hoe);
-		else
+		try {
+			ItemStack hoe = message.getItemStackValue();
+			if (hoe != null)
+				HoeList.addHoe(hoe);
+			else {
+				Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to register a hoe: Null Stack", message.getSender()));
+				return;
+			}
+
+		} catch (Exception e) {
 			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to register a hoe.", message.getSender()));
+		}
 	}
 
 	private static void blackListEntity(IMCMessage message) {
@@ -189,6 +203,20 @@ public class InterModComms {
 			VolcanicFurnaceHandler.addBurnTimeForItem(stack, burnTime);
 		} catch (Exception e) {
 			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to set a custom burn time for an item on the Volcanic Furnace", message.getSender()));
+		}
+	}
+
+	private static void addStackToUndertakers(IMCMessage message) {
+		try {
+			NBTTagCompound data = message.getNBTValue();
+			ItemStack stack = ItemStack.loadItemStackFromNBT(data.getCompoundTag("stack"));
+			int weight = data.getInteger("weight");
+			if (stack != null && stack.stackSize > 0 && weight > 0)
+				RandomItemStackList.insertStackOnList(stack, weight);
+			else
+				Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to add a custom stack to the Undertakers: Stack null, stacksize 0 or weight smaller than 0", message.getSender()));
+		} catch (Exception e) {
+			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to add a custom stack to the Undertakers", message.getSender()));
 		}
 	}
 }

@@ -1,14 +1,12 @@
 package ganymedes01.ganysnether.core.utils;
 
-import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.items.ModItems;
-import ganymedes01.ganysnether.items.SceptreOfLightning;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Map.Entry;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -21,56 +19,54 @@ import net.minecraft.item.ItemStack;
 
 public class RandomItemStackList {
 
-	private ArrayList<ItemStack> randomItemsList;
+	private static ItemStackMap<Integer> weightedStackList = new ItemStackMap<Integer>();
+	private static Random rand = new Random();
 
-	public RandomItemStackList() {
-		Random rand = new Random();
-		randomItemsList = new ArrayList<ItemStack>();
-		randomItemsList.add(new ItemStack(ModItems.witherShrubSeeds));
-		randomItemsList.add(new ItemStack(ModItems.skeletonSpawner, 1, 1));
-		randomItemsList.add(new ItemStack(ModItems.dimensionalBread, 1, 1 + rand.nextInt(4)));
-		randomItemsList.add(new ItemStack(ModItems.quarzBerrySeeds, 1, 1 + rand.nextInt(8)));
-		randomItemsList.add(new ItemStack(ModItems.ghostSeeds, 1, 1 + rand.nextInt(8)));
-		randomItemsList.add(new ItemStack(ModItems.sceptreOfLightning, 1, 1 - GanysNether.sceptreOfLightningDurability > 0 ? GanysNether.sceptreOfLightningDurability : SceptreOfLightning.DEFAULT_DUR));
+	static {
+		insertStackOnList(new ItemStack(ModItems.witherShrubSeeds), 200);
+		insertStackOnList(new ItemStack(ModItems.skeletonSpawner), 45);
+		insertStackOnList(new ItemStack(ModItems.skeletonSpawner, 1, 1), 50);
+		insertStackOnList(new ItemStack(ModItems.dimensionalBread, 18), 10);
+		insertStackOnList(new ItemStack(ModItems.quarzBerrySeeds, 12), 40);
+		insertStackOnList(new ItemStack(ModItems.ghostSeeds, 16), 40);
 
-		randomItemsList.add(new ItemStack(Block.torchWood));
-		randomItemsList.add(new ItemStack(Item.coal));
-		randomItemsList.add(new ItemStack(Item.stick));
-		randomItemsList.add(new ItemStack(Item.beefCooked));
-		randomItemsList.add(new ItemStack(Item.bakedPotato));
-		randomItemsList.add(new ItemStack(Item.goldNugget));
-		randomItemsList.add(new ItemStack(Item.rottenFlesh, 64));
-		randomItemsList.add(new ItemStack(Item.rottenFlesh, 64));
-		randomItemsList.add(new ItemStack(Item.rottenFlesh, 64));
-		randomItemsList.add(new ItemStack(Item.rottenFlesh, 64));
-		randomItemsList.add(new ItemStack(Block.netherBrick));
-		randomItemsList.add(new ItemStack(Item.netherStalkSeeds));
-		randomItemsList.add(new ItemStack(Block.whiteStone, 64));
-		randomItemsList.add(new ItemStack(Block.wood, 64));
-		randomItemsList.add(new ItemStack(Block.dirt, 64));
-		randomItemsList.add(new ItemStack(Block.sand, 64));
-		randomItemsList.add(new ItemStack(Item.seeds));
-		randomItemsList.add(new ItemStack(Item.leather));
-		randomItemsList.add(new ItemStack(Block.cobblestone, 64));
-		randomItemsList.add(new ItemStack(Block.cobblestone, 64));
-		randomItemsList.add(new ItemStack(Block.cobblestone, 64));
-		randomItemsList.add(new ItemStack(Block.cobblestone, 64));
+		insertStackOnList(new ItemStack(Block.torchWood, 32), 30);
+		insertStackOnList(new ItemStack(Item.coal, 32), 10);
+		insertStackOnList(new ItemStack(Item.stick, 32), 4);
+		insertStackOnList(new ItemStack(Item.beefCooked, 10), 10);
+		insertStackOnList(new ItemStack(Item.bakedPotato, 20), 7);
+		insertStackOnList(new ItemStack(Item.goldNugget, 14), 30);
+		insertStackOnList(new ItemStack(Item.rottenFlesh, 64), 5);
+		insertStackOnList(new ItemStack(Block.netherBrick, 64), 15);
+		insertStackOnList(new ItemStack(Item.netherStalkSeeds, 11), 8);
+		insertStackOnList(new ItemStack(Block.whiteStone, 40), 20);
+		insertStackOnList(new ItemStack(Block.wood, 32), 10);
+		insertStackOnList(new ItemStack(Block.dirt, 64), 5);
+		insertStackOnList(new ItemStack(Block.sand, 64), 5);
+		insertStackOnList(new ItemStack(Item.seeds, 20), 25);
+		insertStackOnList(new ItemStack(Item.leather, 10), 30);
+		insertStackOnList(new ItemStack(Block.cobblestone, 64), 5);
+		insertStackOnList(new ItemStack(Item.redstone, 24), 25);
 	}
 
-	public void shuffle() {
-		Collections.shuffle(randomItemsList);
+	public static void insertStackOnList(ItemStack stack, int weight) {
+		if (stack != null && stack.stackSize > 0 && weight > 0)
+			weightedStackList.put(stack, weight);
 	}
 
-	public ItemStack getListItem(Random rand) {
-		ItemStack stack = randomItemsList.get(rand.nextInt(randomItemsList.size()));
-		if (stack.stackSize >= stack.getMaxStackSize())
-			stack.stackSize = 1 + rand.nextInt(stack.getMaxStackSize());
-		else if (stack.stackSize <= 1)
-			stack.stackSize = 1 + rand.nextInt(16);
+	public static void fillInventory(IInventory inventory, int maxSlot) {
+		for (int i = 0; i < maxSlot; i++)
+			for (Entry<ItemStack, Integer> entry : weightedStackList.entrySet())
+				if (rand.nextInt(entry.getValue()) == 0 && rand.nextInt(10) == 0) {
+					int stackSize = rand.nextInt(entry.getKey().stackSize);
+					if (stackSize <= 0)
+						stackSize = 1;
 
-		if (stack.getItem() == ModItems.witherShrubSeeds)
-			return rand.nextInt(50) == 25 ? new ItemStack(ModItems.witherShrubSeeds) : new ItemStack(Item.ghastTear, 1 + rand.nextInt(2));
-		else
-			return stack;
+					ItemStack stack = new ItemStack(entry.getKey().itemID, stackSize, entry.getKey().getItemDamage());
+					if (entry.getKey().hasTagCompound())
+						stack.setTagCompound(entry.getKey().stackTagCompound);
+
+					inventory.setInventorySlotContents(i, stack);
+				}
 	}
 }

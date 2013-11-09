@@ -61,6 +61,7 @@ public class GanysNether {
 	public static int sceptreOfFireCharging;
 	public static int baseballBatDurability;
 	public static boolean shouldGenerateCrops = true;
+	public static boolean shouldGenerateUndertakers = true;
 	public static boolean shouldDoVersionCheck = true;
 	public static boolean shouldGhastTearHaveDispenserAction = true;
 
@@ -95,7 +96,7 @@ public class GanysNether {
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
 
-		if (shouldGenerateCrops)
+		if (shouldGenerateCrops || shouldGenerateUndertakers)
 			GameRegistry.registerWorldGenerator(new NetherWorldGen());
 
 		ModIntegrator.integrateMods();
