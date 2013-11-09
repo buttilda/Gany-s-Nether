@@ -99,7 +99,7 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
 		for (Entry<ItemStack, ItemStack> tuple : ReproducerRecipes.getTupes().entrySet())
-			if (tuple.getKey().itemID == ingredient.itemID && tuple.getKey().getItemDamage() == ingredient.getItemDamage())
+			if (tuple.getKey().itemID == ingredient.itemID && tuple.getKey().getItemDamage() == ingredient.getItemDamage() || tuple.getValue().itemID == ingredient.itemID && tuple.getValue().getItemDamage() == ingredient.getItemDamage())
 				arecipes.add(new CachedReproducerRecipe(tuple.getKey(), tuple.getValue()));
 	}
 
