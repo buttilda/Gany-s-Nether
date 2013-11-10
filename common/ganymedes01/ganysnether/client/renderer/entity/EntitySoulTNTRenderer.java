@@ -25,11 +25,7 @@ public class EntitySoulTNTRenderer extends Render {
 
 	private RenderBlocks blockRenderer = new RenderBlocks();
 
-	public EntitySoulTNTRenderer() {
-		super();
-	}
-
-	public void renderPrimedTNT(EntitySlowTNT tnt, double x, double y, double z, float rotation, float scale) {
+	public void renderSlowTNT(EntitySlowTNT tnt, double x, double y, double z, float rotation, float scale) {
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) x, (float) y, (float) z);
 		float f2;
@@ -70,12 +66,12 @@ public class EntitySoulTNTRenderer extends Render {
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(Entity par1Entity) {
+	protected ResourceLocation getEntityTexture(Entity entity) {
 		return TextureMap.locationBlocksTexture;
 	}
 
 	@Override
-	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
-		renderPrimedTNT((EntitySlowTNT) par1Entity, par2, par4, par6, par8, par9);
+	public void doRender(Entity entity, double x, double y, double z, float rotation, float scale) {
+		renderSlowTNT((EntitySlowTNT) entity, x, y, z, rotation, scale);
 	}
 }
