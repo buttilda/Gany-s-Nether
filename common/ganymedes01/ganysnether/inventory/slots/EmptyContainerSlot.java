@@ -1,4 +1,4 @@
-package ganymedes01.ganysnether.inventory;
+package ganymedes01.ganysnether.inventory.slots;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -12,14 +12,14 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
  * 
  */
 
-public class FullContainerSlot extends Slot {
+public class EmptyContainerSlot extends Slot {
 
-	public FullContainerSlot(IInventory inventory, int slot, int posX, int posY) {
+	public EmptyContainerSlot(IInventory inventory, int slot, int posX, int posY) {
 		super(inventory, slot, posX, posY);
 	}
 
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-		return FluidContainerRegistry.isFilledContainer(stack);
+		return FluidContainerRegistry.isEmptyContainer(stack);
 	}
 }

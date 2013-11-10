@@ -1,5 +1,8 @@
 package ganymedes01.ganysnether.inventory;
 
+import ganymedes01.ganysnether.inventory.slots.EmptyContainerSlot;
+import ganymedes01.ganysnether.inventory.slots.InvalidSlot;
+import ganymedes01.ganysnether.inventory.slots.VolcanicFurnaceSlot;
 import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
 import net.minecraft.entity.player.EntityPlayer;

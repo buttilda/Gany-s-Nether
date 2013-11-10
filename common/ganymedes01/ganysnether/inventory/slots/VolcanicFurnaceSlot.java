@@ -1,4 +1,4 @@
-package ganymedes01.ganysnether.inventory;
+package ganymedes01.ganysnether.inventory.slots;
 
 import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import net.minecraft.inventory.IInventory;

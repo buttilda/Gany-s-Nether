@@ -1,5 +1,7 @@
 package ganymedes01.ganysnether.inventory;
 
+import ganymedes01.ganysnether.inventory.slots.InvalidSlot;
+import ganymedes01.ganysnether.inventory.slots.MonsterPlacerSlot;
 import ganymedes01.ganysnether.recipes.ReproducerRecipes;
 import ganymedes01.ganysnether.tileentities.TileEntityReproducer;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,5 +1,8 @@
 package ganymedes01.ganysnether.inventory;
 
+import ganymedes01.ganysnether.inventory.slots.EmptyContainerSlot;
+import ganymedes01.ganysnether.inventory.slots.FullContainerSlot;
+import ganymedes01.ganysnether.inventory.slots.InvalidSlot;
 import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

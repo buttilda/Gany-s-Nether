@@ -10,6 +10,7 @@ import ganymedes01.ganysnether.client.renderer.tileentity.TileEntityMagmaticCent
 import ganymedes01.ganysnether.client.renderer.tileentity.TileEntitySoulChestRender;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.entities.EntityLightningBall;
+import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
@@ -47,7 +48,7 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(ModBlocks.soulGlass.blockID, new ItemSoulGlassRender());
 		MinecraftForgeClient.registerItemRenderer(ModBlocks.soulGlassStairs.blockID, new ItemSoulGlassRender());
 
-		RenderingRegistry.registerBlockHandler(ganymedes01.ganysnether.lib.RenderIDs.WITHER_SHRUB, new BlockWitherShrubRender());
+		RenderingRegistry.registerBlockHandler(RenderIDs.WITHER_SHRUB, new BlockWitherShrubRender());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityLightningBall.class, new EntityLightningBallRenderer());
 	}
