@@ -41,7 +41,7 @@ public class ModBlocks {
 	public static Block soulGlassPane;
 	public static Block magmaticCentrifuge;
 	public static Block weepingPod;
-	public static Block slowTNT;
+	public static Block soulTNT;
 
 	public static void init() {
 		tilledNetherrack = new TilledNetherrack();
@@ -67,7 +67,7 @@ public class ModBlocks {
 		soulGlassPane = new SoulGlassPane();
 		magmaticCentrifuge = new MagmaticCentrifuge();
 		weepingPod = new WeepingPod();
-		slowTNT = new SlowTNT();
+		soulTNT = new SoulTNT();
 
 		registerNames();
 	}
@@ -96,6 +96,6 @@ public class ModBlocks {
 		GameRegistry.registerBlock(soulGlassPane, Strings.SOUL_GLASS_PANE_NAME);
 		GameRegistry.registerBlock(magmaticCentrifuge, Strings.MAGMATIC_CENTRIFUGE_NAME);
 		GameRegistry.registerBlock(weepingPod, Strings.WEEPING_POD_NAME);
-		GameRegistry.registerBlock(slowTNT, Strings.SLOW_TNT_NAME);
+		GameRegistry.registerBlock(soulTNT, Strings.SOUL_TNT_NAME);
 	}
 }

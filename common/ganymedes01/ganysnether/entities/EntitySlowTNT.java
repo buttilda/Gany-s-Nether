@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.entities;
 
-import ganymedes01.ganysnether.world.SlowExplosion;
+import ganymedes01.ganysnether.world.SoulExplosion;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.world.World;
@@ -49,7 +49,7 @@ public class EntitySlowTNT extends EntityTNTPrimed {
 	}
 
 	private void explode() {
-		SlowExplosion explosion = new SlowExplosion(worldObj, this, posX, posY, posZ, 4.0F);
+		SoulExplosion explosion = new SoulExplosion(worldObj, this, posX, posY, posZ, 4.0F);
 		explosion.isFlaming = true;
 		explosion.isSmoking = true;
 		explosion.doExplosionA();

@@ -21,18 +21,18 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  */
 
-public class SlowTNT extends BlockTNT {
+public class SoulTNT extends BlockTNT {
 
 	@SideOnly(Side.CLIENT)
 	private Icon blockTop, blockBottom;
 
-	public SlowTNT() {
-		super(ModIDs.SLOW_TNT_ID);
+	public SoulTNT() {
+		super(ModIDs.SOUL_TNT_ID);
 		setHardness(0.0F);
 		setStepSound(soundGrassFootstep);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getBlockTexture(Strings.SLOW_TNT_NAME, true));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SLOW_TNT_NAME));
+		setTextureName(Utils.getBlockTexture(Strings.SOUL_TNT_NAME, true));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SOUL_TNT_NAME));
 	}
 
 	@Override

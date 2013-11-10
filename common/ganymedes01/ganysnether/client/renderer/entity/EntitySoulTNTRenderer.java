@@ -21,11 +21,11 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 
 @SideOnly(Side.CLIENT)
-public class EntitySlowTNTRenderer extends Render {
+public class EntitySoulTNTRenderer extends Render {
 
 	private RenderBlocks blockRenderer = new RenderBlocks();
 
-	public EntitySlowTNTRenderer() {
+	public EntitySoulTNTRenderer() {
 		super();
 	}
 
@@ -51,7 +51,7 @@ public class EntitySlowTNTRenderer extends Render {
 
 		f2 = (1.0F - (tnt.fuse - scale + 1.0F) / 100.0F) * 0.8F;
 		bindEntityTexture(tnt);
-		blockRenderer.renderBlockAsItem(ModBlocks.slowTNT, 0, tnt.getBrightness(scale));
+		blockRenderer.renderBlockAsItem(ModBlocks.soulTNT, 0, tnt.getBrightness(scale));
 
 		if (tnt.fuse / 5 % 2 == 0) {
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
@@ -59,7 +59,7 @@ public class EntitySlowTNTRenderer extends Render {
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_DST_ALPHA);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, f2);
-			blockRenderer.renderBlockAsItem(ModBlocks.slowTNT, 0, 1.0F);
+			blockRenderer.renderBlockAsItem(ModBlocks.soulTNT, 0, 1.0F);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glEnable(GL11.GL_LIGHTING);

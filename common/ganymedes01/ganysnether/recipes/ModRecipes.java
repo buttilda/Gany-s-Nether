@@ -120,7 +120,7 @@ public class ModRecipes {
 		GameRegistry.addSmelting(ModBlocks.soulChest.blockID, new ItemStack(ModBlocks.undertaker), 1F);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.magmaticCentrifuge), "zyz", "wxw", "zyz", 'x', Block.obsidian, 'y', Block.netherBrick, 'z', Item.blazeRod, 'w', Block.glass);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.magmaticCentrifuge), "zyz", "wxw", "zyz", 'x', Block.obsidian, 'y', Block.netherBrick, 'z', Item.blazeRod, 'w', ModBlocks.soulGlass);
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.slowTNT), "xyx", "yxy", "xyx", 'x', Item.gunpowder, 'y', Block.slowSand);
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulTNT), "xyx", "yxy", "xyx", 'x', Item.gunpowder, 'y', Block.slowSand);
 
 		// Vanilla
 		GameRegistry.addRecipe(new ItemStack(Block.slowSand, 6), "xxx", "yyy", "xxx", 'x', ModItems.spookyFlour, 'y', Block.sand);

@@ -20,12 +20,12 @@ import net.minecraft.world.World;
  * 
  */
 
-public class SlowExplosion extends Explosion {
+public class SoulExplosion extends Explosion {
 
 	private final ArrayList<EntityLivingBase> entitiesInRange = new ArrayList<EntityLivingBase>();
 	private final World worldObj;
 
-	public SlowExplosion(World world, Entity entity, double x, double y, double z, float power) {
+	public SoulExplosion(World world, Entity entity, double x, double y, double z, float power) {
 		super(world, entity, x, y, z, power);
 		worldObj = world;
 	}
