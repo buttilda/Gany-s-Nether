@@ -63,9 +63,10 @@ public class ConfigurationHandler {
 			ModIDs.REPRODUCER_ID = configBlock(Strings.REPRODUCER_NAME);
 			ModIDs.UNDERTAKER_ID = configBlock(Strings.UNDERTAKER_NAME);
 			ModIDs.WITHER_SHRUB_ID = configBlock(Strings.WITHER_SHRUB_NAME);
-			// ModIDs.SOUL_GLASS_PANE_ID = configBlock(Strings.SOUL_GLASS_PANE_NAME);
+			ModIDs.SOUL_GLASS_PANE_ID = configBlock(Strings.SOUL_GLASS_PANE_NAME);
 			ModIDs.MAGMATIC_CENTRIFUGE_ID = configBlock(Strings.MAGMATIC_CENTRIFUGE_NAME);
 			ModIDs.WEEPING_POD_ID = configBlock(Strings.WEEPING_POD_NAME);
+			ModIDs.SLOW_TNT_ID = configBlock(Strings.SLOW_TNT_NAME);
 
 			// Armour
 			ModIDs.BLAZE_HELMET_ID = configItem(Strings.BLAZE_HELMET_NAME);

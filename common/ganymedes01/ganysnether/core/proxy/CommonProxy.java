@@ -7,6 +7,7 @@ import ganymedes01.ganysnether.client.gui.inventory.GuiUndertaker;
 import ganymedes01.ganysnether.client.gui.inventory.GuiVolcanicFurnace;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.entities.EntityLightningBall;
+import ganymedes01.ganysnether.entities.EntitySlowTNT;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.inventory.ContainerReproducer;
 import ganymedes01.ganysnether.inventory.ContainerUndertaker;
@@ -49,8 +50,8 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	public void registerEntities() {
-		EntityRegistry.registerGlobalEntityID(EntityLightningBall.class, Utils.getUnlocalizedName("EntityLightningBall"), EntityRegistry.findGlobalUniqueEntityId());
-		EntityRegistry.registerModEntity(EntityLightningBall.class, Utils.getUnlocalizedName("EntityLightningBall"), ModIDs.ENTITY_LIGHTNING_BALL_ID, GanysNether.instance, 64, 1, true);
+		EntityRegistry.registerModEntity(EntityLightningBall.class, Utils.getUnlocalizedName(Strings.ENTITY_LIGHTNING_BALL_NAME), ModIDs.ENTITY_LIGHTNING_BALL_ID, GanysNether.instance, 160, 5, true);
+		EntityRegistry.registerModEntity(EntitySlowTNT.class, Utils.getUnlocalizedName(Strings.ENTITY_SLOW_TNT_NAME), ModIDs.ENTITY_SLOW_TNT_ID, GanysNether.instance, 160, 5, true);
 	}
 
 	public void registerRenderers() {

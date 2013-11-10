@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.core.proxy;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.client.renderer.block.BlockWitherShrubRender;
 import ganymedes01.ganysnether.client.renderer.entity.EntityLightningBallRenderer;
+import ganymedes01.ganysnether.client.renderer.entity.EntitySlowTNTRenderer;
 import ganymedes01.ganysnether.client.renderer.item.ItemMagmaticCentrifugeRender;
 import ganymedes01.ganysnether.client.renderer.item.ItemSoulChestRender;
 import ganymedes01.ganysnether.client.renderer.item.ItemSoulGlassRender;
@@ -10,6 +11,7 @@ import ganymedes01.ganysnether.client.renderer.tileentity.TileEntityMagmaticCent
 import ganymedes01.ganysnether.client.renderer.tileentity.TileEntitySoulChestRender;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.entities.EntityLightningBall;
+import ganymedes01.ganysnether.entities.EntitySlowTNT;
 import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
@@ -51,6 +53,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerBlockHandler(RenderIDs.WITHER_SHRUB, new BlockWitherShrubRender());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityLightningBall.class, new EntityLightningBallRenderer());
+		RenderingRegistry.registerEntityRenderingHandler(EntitySlowTNT.class, new EntitySlowTNTRenderer());
 	}
 
 	@Override

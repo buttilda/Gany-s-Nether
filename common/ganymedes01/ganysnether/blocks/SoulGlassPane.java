@@ -1,6 +1,5 @@
 package ganymedes01.ganysnether.blocks;
 
-import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
@@ -22,13 +21,13 @@ public class SoulGlassPane extends BlockPane {
 
 	public SoulGlassPane() {
 		super(ModIDs.SOUL_GLASS_PANE_ID, textureName, textureName, Material.glass, false);
-		setCreativeTab(GanysNether.netherTab);
+		// setCreativeTab(GanysNether.netherTab); TODO Add after 1.7
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SOUL_GLASS_PANE_NAME));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass() {
-		return 1;
+		return 0; // TODO Change to 1 after 1.7
 	}
 }
