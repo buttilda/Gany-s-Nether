@@ -99,12 +99,13 @@ public class GanysNether {
 		if (shouldGenerateCrops || shouldGenerateUndertakers)
 			GameRegistry.registerWorldGenerator(new NetherWorldGen());
 
-		ModIntegrator.integrateMods();
+		ModIntegrator.init();
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		MagmaticCentrifugeRecipes.initOreDictRecipes();
+		ModIntegrator.postInit();
 	}
 
 	@EventHandler

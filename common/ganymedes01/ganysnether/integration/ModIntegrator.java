@@ -12,7 +12,7 @@ import cpw.mods.fml.common.Loader;
 
 public class ModIntegrator {
 
-	public static void integrateMods() {
+	public static void init() {
 		// BuildCraft
 		if (Loader.isModLoaded("BuildCraft|Transport"))
 			BuildCraftFacadeManager.registerFacades();
@@ -30,5 +30,15 @@ public class ModIntegrator {
 		// Gany's Surface
 		if (Loader.isModLoaded("ganyssurface"))
 			GanysSurfaceManager.init();
+
+		// Industrial Craft 2
+		if (Loader.isModLoaded("IC2"))
+			IC2Manager.init();
+	}
+
+	public static void postInit() {
+		// Applied Energistics
+		if (Loader.isModLoaded("AppliedEnergistics"))
+			AppEnerManager.init();
 	}
 }

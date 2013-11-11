@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import cpw.mods.fml.common.Loader;
 
 /**
  * Gany's Nether
@@ -68,17 +69,20 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe(new ItemStack(Item.leather), new ItemStack(Item.flint), new ItemStack(Item.silk, 3));
 		for (int i = 0; i < 2; i++)
 			addRecipe(new ItemStack(Block.silverfish, 1, i), new ItemStack(Item.netherQuartz), new ItemStack(Item.monsterPlacer, 1, 60), new ItemStack(Block.cobblestone));
-		addRecipe(new ItemStack(Item.wheat), new ItemStack(Item.diamond), new ItemStack(ModItems.flour), new ItemStack(Item.diamond));
+		if (!Loader.isModLoaded("AppliedEnergistics"))
+			addRecipe(new ItemStack(Item.wheat), new ItemStack(Item.diamond), new ItemStack(ModItems.flour), new ItemStack(Item.diamond));
 		addRecipe(new ItemStack(ModItems.spectreWheat), new ItemStack(Item.diamond), new ItemStack(ModItems.spookyFlour), new ItemStack(Item.diamond));
 	}
 
 	public static void initOreDictRecipes() {
-		addOreDictRecipe("oreGold", "oreGold", new ItemStack(Item.ingotGold, 2), new ItemStack(Item.goldNugget));
-		addOreDictRecipe("oreIron", "oreIron", new ItemStack(Item.ingotIron, 2), new ItemStack(ModItems.ironNugget));
+		if (!Loader.isModLoaded("IC2")) {
+			addOreDictRecipe("oreGold", "oreGold", new ItemStack(Item.ingotGold, 2), new ItemStack(Item.goldNugget));
+			addOreDictRecipe("oreIron", "oreIron", new ItemStack(Item.ingotIron, 2), new ItemStack(ModItems.ironNugget));
+		}
 		addOreDictRecipe("dyeBlack", new ItemStack(Block.cloth, 1, 4), new ItemStack(Block.sponge));
 	}
 
-	private static void addOreDictRecipe(String material1, String material2, ItemStack... result) {
+	public static void addOreDictRecipe(String material1, String material2, ItemStack... result) {
 		ArrayList<ItemStack> materials1 = OreDictionary.getOres(material1);
 		ArrayList<ItemStack> materials2 = OreDictionary.getOres(material2);
 		if (!materials1.isEmpty() && !materials2.isEmpty())
@@ -88,7 +92,7 @@ public class MagmaticCentrifugeRecipes {
 						addRecipe(mat1, mat2, result);
 	}
 
-	private static void addOreDictRecipe(String material1, ItemStack material2, ItemStack... result) {
+	public static void addOreDictRecipe(String material1, ItemStack material2, ItemStack... result) {
 		ArrayList<ItemStack> materials1 = OreDictionary.getOres(material1);
 		if (!materials1.isEmpty())
 			for (ItemStack mat1 : materials1)
