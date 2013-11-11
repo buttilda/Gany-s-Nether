@@ -9,9 +9,11 @@ import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
@@ -66,7 +68,7 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 
 		int prog = (int) (22 * (cycleticks >= 20 ? (cycleticks - 20) % 20 / 20.0F : 0.0F));
 		changeTexture(TextureMap.locationBlocksTexture);
-		GuiDraw.gui.drawTexturedModelRectFromIcon(68, 25, Block.lavaStill.getIcon(0, 0), prog, 15);
+		drawTexturedModelRectFromIcon(68, 25, Block.lavaStill.getIcon(0, 0), prog, 15);
 
 		changeTexture(getGuiTexture());
 		drawTexturedModalRect(68, 25, 177, 14, 22, 15);
@@ -77,6 +79,16 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 			GuiDraw.fontRenderer.drawString(yieldRecipe.getYield() + " mB", 100, 28, Utils.getColour(0, 0, 0));
 			GuiDraw.fontRenderer.drawString("1000 mB = 1 " + StatCollector.translateToLocal(Item.bucketLava.getUnlocalizedName() + ".name"), 20, 46, Utils.getColour(0, 0, 0));
 		}
+	}
+
+	private void drawTexturedModelRectFromIcon(int x, int y, Icon icon, int width, int height) {
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.addVertexWithUV(x + 0, y + height, 0.0F, icon.getMinU(), icon.getMaxV());
+		tessellator.addVertexWithUV(x + width, y + height, 0.0F, icon.getMaxU(), icon.getMaxV());
+		tessellator.addVertexWithUV(x + width, y + 0, 0.0F, icon.getMaxU(), icon.getMinV());
+		tessellator.addVertexWithUV(x + 0, y + 0, 0.0F, icon.getMinU(), icon.getMinV());
+		tessellator.draw();
 	}
 
 	@Override
