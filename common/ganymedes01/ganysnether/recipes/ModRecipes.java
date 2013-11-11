@@ -76,6 +76,7 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ItemStack(Block.silverfish, 1, 1), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', Block.cobblestone);
 		GameRegistry.addRecipe(new ItemStack(Block.silverfish, 1, 2), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', new ItemStack(Block.stoneBrick));
 		GameRegistry.addSmelting(ModItems.flour.itemID, new ItemStack(Item.bread), 0.0F);
+		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 8), "x", "y", 'x', Block.fire, 'y', Item.stick);
 	}
 
 	private static void createSceptreRecipe(Item sceptre, int capMeta, Item handle, int durability) {
@@ -96,7 +97,7 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlass, 4, 1), "xx", "xx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 0));
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulChest), "xyx", "x x", "xxx", 'x', Block.slowSand, 'y', Item.netherQuartz);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.volcanicFurnaceIdle), "yxy", "wyw", "zwz", 'x', Item.cauldron, 'y', Block.netherBrick, 'z', Block.obsidian, 'w', ModBlocks.denseLavaCell);
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.denseLavaCell), "yxy", "xxx", "yxy", 'x', Item.bucketLava, 'y', Item.diamond);
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.denseLavaCell), "yxy", "xzx", "yxy", 'x', Item.bucketLava, 'y', Item.diamond, 'z', Block.fire);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.glowBox, 4, 11), " y ", "yxy", " y ", 'x', Block.glowStone, 'y', Block.thinGlass);
 
 		for (int i = 0; i < dyes.length; i++) {

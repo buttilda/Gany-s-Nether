@@ -72,6 +72,7 @@ public class MagmaticCentrifugeRecipes {
 		if (!Loader.isModLoaded("AppliedEnergistics"))
 			addRecipe(new ItemStack(Item.wheat), new ItemStack(Item.diamond), new ItemStack(ModItems.flour), new ItemStack(Item.diamond));
 		addRecipe(new ItemStack(ModItems.spectreWheat), new ItemStack(Item.diamond), new ItemStack(ModItems.spookyFlour), new ItemStack(Item.diamond));
+		addRecipe(new ItemStack(Item.netherQuartz), new ItemStack(Item.netherQuartz), new ItemStack(Block.fire, 2));
 	}
 
 	public static void initOreDictRecipes() {

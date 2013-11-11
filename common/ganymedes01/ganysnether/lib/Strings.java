@@ -71,6 +71,7 @@ public class Strings {
 	public static final String SHOULD_GENERATE_UNDERTAKERS = "shouldGenerateUndertakers";
 	public static final String SHOULD_DO_VERSION_CHECK = "shouldDoVersionCheck";
 	public static final String SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION = "shouldGhastTearHaveDispenserAction";
+	public static final String INFINITE_UNDERTAKER = "infiniteUndertaker";
 	public static final String[] COLOURS = new String[] { "Black", "Red", "Green", "Brown", "Blue", "Purple", "Cyan", "LightGrey", "Grey", "Pink", "Lime", "Yellow", "LightBlue", "Magenta", "Orange", "White" };
 
 	// Version check

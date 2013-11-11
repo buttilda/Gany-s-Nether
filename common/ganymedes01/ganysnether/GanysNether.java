@@ -4,6 +4,7 @@ import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.configuration.ConfigurationHandler;
 import ganymedes01.ganysnether.core.handlers.BonemealOnNetherCrops;
 import ganymedes01.ganysnether.core.handlers.EntityDeathEvent;
+import ganymedes01.ganysnether.core.handlers.FuelHandler;
 import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.InterModComms;
 import ganymedes01.ganysnether.core.handlers.PlayerRightClickEvent;
@@ -64,6 +65,7 @@ public class GanysNether {
 	public static boolean shouldGenerateUndertakers = true;
 	public static boolean shouldDoVersionCheck = true;
 	public static boolean shouldGhastTearHaveDispenserAction = true;
+	public static boolean infiniteUndertaker = false;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -87,6 +89,7 @@ public class GanysNether {
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
+		GameRegistry.registerFuelHandler(new FuelHandler());
 
 		MinecraftForge.EVENT_BUS.register(new HoeEvent());
 		MinecraftForge.EVENT_BUS.register(new EntityDeathEvent());

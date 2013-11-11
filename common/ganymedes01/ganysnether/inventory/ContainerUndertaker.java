@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.inventory;
 
+import ganymedes01.ganysnether.inventory.slots.InvalidArmourSlot;
 import ganymedes01.ganysnether.inventory.slots.InvalidSlot;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +30,7 @@ public class ContainerUndertaker extends Container {
 		for (int i = 0; i < 9; i++)
 			addSlotToContainer(new InvalidSlot(tileUndertaker, i, 8 + i * 18, 92));
 		for (int i = 0; i < 4; i++)
-			addSlotToContainer(new InvalidSlot(tileUndertaker, i + 36, 8 + i * 18, 16));
+			addSlotToContainer(new InvalidArmourSlot(tileUndertaker, i + 36, 8 + i * 18, 16, i));
 
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 9; j++)
