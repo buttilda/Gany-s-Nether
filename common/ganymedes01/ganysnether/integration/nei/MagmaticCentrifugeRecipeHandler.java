@@ -91,6 +91,20 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 		private ArrayList<PositionedStack> materials = new ArrayList<PositionedStack>();
 		private ArrayList<PositionedStack> result = new ArrayList<PositionedStack>();
 
+		public CachedCentrifugeRecipe(CentrifugeRecipe recipe) {
+			materials.add(new PositionedStack(recipe.getMaterial(1), 30, 20));
+			materials.add(new PositionedStack(recipe.getMaterial(2), 120, 20));
+
+			ItemStack[] results = recipe.getResult();
+
+			for (int i = 0; i < 2; i++)
+				for (int j = 0; j < 2; j++) {
+					int index = j + 2 * i;
+					if (index < results.length)
+						result.add(new PositionedStack(results[index], 66 + 18 * i, 12 + 18 * j));
+				}
+		}
+
 		@Override
 		public List<PositionedStack> getIngredients() {
 			return materials;
@@ -112,20 +126,6 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 				result.add(this.result.get(3));
 
 			return result;
-		}
-
-		public CachedCentrifugeRecipe(CentrifugeRecipe recipe) {
-			materials.add(new PositionedStack(recipe.getMaterial(1), 30, 20));
-			materials.add(new PositionedStack(recipe.getMaterial(2), 120, 20));
-
-			ItemStack[] results = recipe.getResult();
-
-			for (int i = 0; i < 2; i++)
-				for (int j = 0; j < 2; j++) {
-					int index = j + 2 * i;
-					if (index < results.length)
-						result.add(new PositionedStack(results[index], 66 + 18 * i, 12 + 18 * j));
-				}
 		}
 	}
 }

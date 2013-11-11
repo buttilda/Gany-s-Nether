@@ -30,7 +30,6 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
 public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 
 	private static float ticks;
-	private int progressBar;
 
 	@Override
 	public Class<? extends GuiContainer> getGuiClass() {
@@ -60,7 +59,6 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 	public void onUpdate() {
 		super.onUpdate();
 		ticks += 0.05F;
-		progressBar++;
 
 		if (ticks > ReproducerRecipes.getTupes().size())
 			ticks = 0.0F;
@@ -75,7 +73,7 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void drawExtras(int recipe) {
-		float prog = progressBar >= 20 ? (progressBar - 20) % 20 / 20.0F : 0.0F;
+		float prog = cycleticks >= 20 ? (cycleticks - 20) % 20 / 20.0F : 0.0F;
 
 		drawProgressBar(98, 26, 181, 14, 13, 16, prog, 0);
 	}
@@ -108,6 +106,13 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 		private ArrayList<PositionedStack> materials = new ArrayList<PositionedStack>();
 		private PositionedStack result;
 
+		public CachedReproducerRecipe(ItemStack egg, ItemStack drop) {
+			materials.add(new PositionedStack(egg, 31, 24));
+			materials.add(new PositionedStack(drop, 49, 6));
+
+			result = new PositionedStack(egg, 125, 24);
+		}
+
 		@Override
 		public List<PositionedStack> getIngredients() {
 			return materials;
@@ -135,13 +140,6 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 		@Override
 		public PositionedStack getResult() {
 			return result;
-		}
-
-		public CachedReproducerRecipe(ItemStack egg, ItemStack drop) {
-			materials.add(new PositionedStack(egg, 31, 24));
-			materials.add(new PositionedStack(drop, 49, 6));
-
-			result = new PositionedStack(egg, 125, 24);
 		}
 	}
 }

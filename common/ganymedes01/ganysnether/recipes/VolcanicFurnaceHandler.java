@@ -5,7 +5,6 @@ import ganymedes01.ganysnether.core.utils.ItemStackMap;
 import ganymedes01.ganysnether.items.ModItems;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
@@ -17,9 +16,13 @@ import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.BlockWood;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemPotion;
+import net.minecraft.item.ItemSeeds;
+import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -118,6 +121,17 @@ public class VolcanicFurnaceHandler {
 			return 0;
 
 		Item item = stack.getItem();
+		if (item instanceof ItemSeeds || item instanceof ItemFood)
+			return 5;
+		else if (item instanceof ItemSkull)
+			return 32;
+		else if (item.getRarity(stack) == EnumRarity.epic)
+			return 50;
+		else if (item.getRarity(stack) == EnumRarity.rare)
+			return 30;
+		else if (item.getRarity(stack) == EnumRarity.uncommon)
+			return 24;
+
 		Block block = null;
 		if (stack.itemID < Block.blocksList.length)
 			block = Block.blocksList[stack.itemID];
@@ -161,6 +175,6 @@ public class VolcanicFurnaceHandler {
 			if (logs.getItem() == item)
 				return 2;
 
-		return 16 + new Random().nextInt(5);
+		return 16;
 	}
 }
