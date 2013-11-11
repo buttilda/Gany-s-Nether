@@ -65,7 +65,6 @@ public class GanysNether {
 	public static boolean shouldGenerateUndertakers = true;
 	public static boolean shouldDoVersionCheck = true;
 	public static boolean shouldGhastTearHaveDispenserAction = true;
-	public static boolean infiniteUndertaker = false;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {

@@ -108,7 +108,6 @@ public class ConfigurationHandler {
 			GanysNether.shouldGenerateUndertakers = configuration.get("Others", Strings.SHOULD_GENERATE_UNDERTAKERS, true).getBoolean(true);
 			GanysNether.shouldDoVersionCheck = configuration.get("Others", Strings.SHOULD_DO_VERSION_CHECK, true).getBoolean(true);
 			GanysNether.shouldGhastTearHaveDispenserAction = configuration.get("Others", Strings.SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION, true).getBoolean(true);
-			GanysNether.infiniteUndertaker = configuration.get("Others", Strings.INFINITE_UNDERTAKER, false).getBoolean(false);
 
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");

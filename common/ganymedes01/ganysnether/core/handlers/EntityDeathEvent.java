@@ -1,6 +1,5 @@
 package ganymedes01.ganysnether.core.handlers;
 
-import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
@@ -39,9 +38,8 @@ public class EntityDeathEvent {
 				return;
 			} else if (event.entityLiving instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) event.entityLiving;
-				if (!GanysNether.infiniteUndertaker)
-					if (!player.inventory.consumeInventoryItem(ModBlocks.undertaker.blockID))
-						return;
+				if (!player.inventory.consumeInventoryItem(ModBlocks.undertaker.blockID))
+					return;
 
 				int x = (int) player.posX;
 				int y = (int) player.posY;

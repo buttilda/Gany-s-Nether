@@ -75,7 +75,6 @@ public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRendere
 		modelCentrifuge.renderAll();
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glPopMatrix();
-
 	}
 
 	private void renderItem(World world, double x, double y, double z, ItemStack centrifugeStack, float rotationAngle, boolean stackOffset) {
