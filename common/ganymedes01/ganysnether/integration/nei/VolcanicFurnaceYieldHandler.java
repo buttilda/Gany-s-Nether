@@ -10,6 +10,7 @@ import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
@@ -74,6 +75,7 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 		if (recipe instanceof CachedLavaYield) {
 			CachedLavaYield yieldRecipe = (CachedLavaYield) recipe;
 			GuiDraw.fontRenderer.drawString(yieldRecipe.getYield() + " mB", 100, 28, Utils.getColour(0, 0, 0));
+			GuiDraw.fontRenderer.drawString("1000 mB = 1 " + StatCollector.translateToLocal(Item.bucketLava.getUnlocalizedName() + ".name"), 20, 46, Utils.getColour(0, 0, 0));
 		}
 	}
 

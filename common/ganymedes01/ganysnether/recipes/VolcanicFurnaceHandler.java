@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.recipes;
 
+import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.core.utils.ItemStackArray;
 import ganymedes01.ganysnether.core.utils.ItemStackMap;
 import ganymedes01.ganysnether.items.ModItems;
@@ -46,7 +47,10 @@ public class VolcanicFurnaceHandler {
 		blackListItem(new ItemStack(Item.expBottle));
 		blackListItem(new ItemStack(Item.snowball));
 
+		addBurnTimeForItem(new ItemStack(ModBlocks.denseLavaCell), 6000);
 		addBurnTimeForItem(new ItemStack(Item.netherStar), 10000);
+		addBurnTimeForItem(new ItemStack(Block.lavaMoving), 1000);
+		addBurnTimeForItem(new ItemStack(Block.lavaStill), 1000);
 		addBurnTimeForItem(new ItemStack(ModItems.blazeIngot, 1, 2), 2);
 		addBurnTimeForItem(new ItemStack(Item.goldNugget), 2);
 		addBurnTimeForItem(new ItemStack(ModItems.ironNugget), 2);
@@ -101,7 +105,7 @@ public class VolcanicFurnaceHandler {
 			if (stack.getItem() instanceof ItemPotion)
 				return false;
 			if (FluidContainerRegistry.isFilledContainer(stack))
-				return FluidContainerRegistry.getFluidForFilledItem(stack) != null && FluidContainerRegistry.getFluidForFilledItem(stack).isFluidEqual(new FluidStack(FluidRegistry.LAVA, FluidContainerRegistry.BUCKET_VOLUME));
+				return FluidContainerRegistry.getFluidForFilledItem(stack) != null && FluidContainerRegistry.getFluidForFilledItem(stack).isFluidEqual(new FluidStack(FluidRegistry.LAVA, 1));
 			if (stack.getItem() instanceof ItemBlock)
 				if (stack.itemID < Block.blocksList.length) {
 					Material material = Block.blocksList[stack.itemID].blockMaterial;
@@ -131,6 +135,8 @@ public class VolcanicFurnaceHandler {
 			return 30;
 		else if (item.getRarity(stack) == EnumRarity.uncommon)
 			return 24;
+		else if (FluidContainerRegistry.isFilledContainer(stack))
+			return FluidContainerRegistry.getFluidForFilledItem(stack).amount;
 
 		Block block = null;
 		if (stack.itemID < Block.blocksList.length)
