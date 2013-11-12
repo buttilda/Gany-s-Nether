@@ -14,12 +14,19 @@ import net.minecraft.world.World;
 
 public class EntitySlowTNT extends EntityTNTPrimed {
 
+	public int fuse;
+
 	public EntitySlowTNT(World world) {
 		super(world);
 	}
 
 	public EntitySlowTNT(World world, float x, float y, float z, EntityLivingBase entity) {
 		super(world, x, y, z, entity);
+	}
+
+	@Override
+	protected void entityInit() {
+		dataWatcher.addObject(16, 80);
 	}
 
 	@Override
@@ -38,14 +45,23 @@ public class EntitySlowTNT extends EntityTNTPrimed {
 			motionZ *= 0.699999988079071D;
 			motionY *= -0.5D;
 		}
-
-		if (fuse-- <= 0) {
+		tickFuse();
+		if (getFuse() <= 0) {
 			setDead();
 
 			if (!worldObj.isRemote)
 				explode();
 		} else
 			worldObj.spawnParticle("smoke", posX, posY + 0.5D, posZ, 0.0D, 0.0D, 0.0D);
+	}
+
+	public int getFuse() {
+		return dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void tickFuse() {
+		int fuse = dataWatcher.getWatchableObjectInt(16) - 1;
+		dataWatcher.updateObject(16, fuse);
 	}
 
 	private void explode() {
