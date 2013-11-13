@@ -56,3 +56,7 @@ v1.5.0
 -Added: SoulTNT
 -Added: IC2 Integration
 -Added: AppliedEnergistis Integration
+
+v1.5.1
+-Added: CraftGuide integration
+-Added: Magmatic Furnace will drain lava automatically from a Volcanic Furnace placed underneath it
