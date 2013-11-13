@@ -21,6 +21,7 @@ import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -58,7 +59,7 @@ public class CommonProxy implements IGuiHandler {
 
 	}
 
-	public void handleTileMagmaticCentrifugePacket(int x, int y, int z, int itemID1, int meta1, int stackSize1, int itemID2, int meta2, int stackSize2, boolean isRecipeValid) {
+	public void handleTileMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
 
 	}
 

@@ -57,21 +57,17 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@Override
-	public void handleTileMagmaticCentrifugePacket(int x, int y, int z, int itemID1, int meta1, int stackSize1, int itemID2, int meta2, int stackSize2, boolean isRecipeValid) {
+	public void handleTileMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
 		World world = FMLClientHandler.instance().getClient().theWorld;
 		if (world != null) {
-			TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-			if (tileEntity != null)
-				if (tileEntity instanceof TileEntityMagmaticCentrifuge) {
-					ItemStack material1 = null, material2 = null;
-					if (itemID1 > 0 && meta1 > -1 && stackSize1 > -1)
-						material1 = new ItemStack(itemID1, stackSize1, meta1);
-					if (itemID2 > 0 && meta2 > -1 && stackSize2 > -1)
-						material2 = new ItemStack(itemID2, stackSize2, meta2);
+			TileEntity tile = world.getBlockTileEntity(x, y, z);
+			if (tile != null)
+				if (tile instanceof TileEntityMagmaticCentrifuge) {
+					TileEntityMagmaticCentrifuge centrifuge = (TileEntityMagmaticCentrifuge) tile;
 
-					((TileEntityMagmaticCentrifuge) tileEntity).setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_1, material1);
-					((TileEntityMagmaticCentrifuge) tileEntity).setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_2, material2);
-					((TileEntityMagmaticCentrifuge) tileEntity).isRecipeValid = isRecipeValid;
+					centrifuge.setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_1, material1);
+					centrifuge.setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_2, material2);
+					centrifuge.isRecipeValid = isRecipeValid;
 				}
 		}
 	}

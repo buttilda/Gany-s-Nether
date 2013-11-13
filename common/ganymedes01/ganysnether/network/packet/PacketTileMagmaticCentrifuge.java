@@ -8,6 +8,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.Packet;
 
 /**
  * Gany's Nether
@@ -19,8 +20,7 @@ import net.minecraft.item.ItemStack;
 public class PacketTileMagmaticCentrifuge extends CustomPacket {
 
 	private int x, y, z;
-	private int itemID1 = -1, meta1, stackSize1;
-	private int itemID2 = -1, meta2, stackSize2;
+	private ItemStack material1, material2;
 	private boolean isRecipeValid;
 
 	public PacketTileMagmaticCentrifuge() {
@@ -33,17 +33,8 @@ public class PacketTileMagmaticCentrifuge extends CustomPacket {
 		this.y = y;
 		this.z = z;
 
-		if (material1 != null) {
-			itemID1 = material1.itemID;
-			meta1 = material1.getItemDamage();
-			stackSize1 = material1.stackSize;
-		}
-
-		if (material2 != null) {
-			itemID2 = material2.itemID;
-			meta2 = material2.getItemDamage();
-			stackSize2 = material2.stackSize;
-		}
+		this.material1 = material1;
+		this.material2 = material2;
 
 		this.isRecipeValid = isRecipeValid;
 	}
@@ -54,13 +45,8 @@ public class PacketTileMagmaticCentrifuge extends CustomPacket {
 		data.writeInt(y);
 		data.writeInt(z);
 
-		data.writeInt(itemID1);
-		data.writeInt(meta1);
-		data.writeInt(stackSize1);
-
-		data.writeInt(itemID2);
-		data.writeInt(meta2);
-		data.writeInt(stackSize2);
+		Packet.writeItemStack(material1, data);
+		Packet.writeItemStack(material2, data);
 
 		data.writeBoolean(isRecipeValid);
 	}
@@ -71,19 +57,14 @@ public class PacketTileMagmaticCentrifuge extends CustomPacket {
 		y = data.readInt();
 		z = data.readInt();
 
-		itemID1 = data.readInt();
-		meta1 = data.readInt();
-		stackSize1 = data.readInt();
-
-		itemID2 = data.readInt();
-		meta2 = data.readInt();
-		stackSize2 = data.readInt();
+		material1 = Packet.readItemStack(data);
+		material2 = Packet.readItemStack(data);
 
 		isRecipeValid = data.readBoolean();
 	}
 
 	@Override
 	public void execute() {
-		GanysNether.proxy.handleTileMagmaticCentrifugePacket(x, y, z, itemID1, meta1, stackSize1, itemID2, meta2, stackSize2, isRecipeValid);
+		GanysNether.proxy.handleTileMagmaticCentrifugePacket(x, y, z, material1, material2, isRecipeValid);
 	}
 }

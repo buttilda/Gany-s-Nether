@@ -87,28 +87,6 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 		checkRecipe();
 	}
 
-	private void update() {
-		ItemStack material1 = inventory[MATERIAL_SLOT_1];
-		ItemStack material2 = inventory[MATERIAL_SLOT_2];
-
-		int itemID1 = -1, meta1 = -1, stackSize1 = -1;
-		int itemID2 = -1, meta2 = -1, stackSize2 = -1;
-
-		if (material1 != null) {
-			itemID1 = material1.itemID;
-			meta1 = material1.getItemDamage();
-			stackSize1 = material1.stackSize;
-		}
-
-		if (material2 != null) {
-			itemID2 = material2.itemID;
-			meta2 = material2.getItemDamage();
-			stackSize2 = material2.stackSize;
-		}
-
-		PacketDispatcher.sendPacketToAllPlayers(PacketTypeHandler.populatePacket(new PacketTileMagmaticCentrifuge(xCoord, yCoord, zCoord, material1, material2, isRecipeValid)));
-	}
-
 	private void fillTankFromContainer() {
 		TileEntity tile = worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord);
 		if (tile instanceof TileEntityVolcanicFurnace) {
@@ -184,7 +162,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 				if (inventory[MATERIAL_SLOT_2].stackSize <= 0)
 					inventory[MATERIAL_SLOT_2] = null;
 				onInventoryChanged();
-				update();
+				checkRecipe();
 			}
 		}
 	}
