@@ -34,6 +34,10 @@ public class ModIntegrator {
 		// Industrial Craft 2
 		if (Loader.isModLoaded("IC2"))
 			IC2Manager.init();
+
+		// CraftGuide
+		if (Loader.isModLoaded("craftguide"))
+			GanysNetherCraftGuideConfig.init();
 	}
 
 	public static void postInit() {

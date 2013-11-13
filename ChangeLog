@@ -50,6 +50,7 @@ v1.5.0
 -Added: Sceptres are now enchantable (with unbreaking and repair(thaumcraft 4))
 -Change: Sceptres now will work on mobs from other mods (not all mobs, depends on how the modder made his mob, if it doesn't work with some mob that isn't from vanilla mc, don't bother reporting it to me. There's nothing I can do). 
 -Added: Magmatic Centrifuge
+-Added: Weeping Pod
 -Added: API
 -Added: Disperser actions for Bottomless Bucket, Living Soul, Sceptre of Fire Charging and Lightning, skeleton spawn eggs
 -Added: SoulTNT
