@@ -50,6 +50,7 @@ public class VolcanicFurnaceHandler {
 		addBurnTimeForItem(new ItemStack(ModBlocks.denseLavaCell), 5000);
 		addBurnTimeForItem(new ItemStack(Item.netherStar), 10000);
 		addBurnTimeForItem(new ItemStack(Block.fire), 200);
+		addBurnTimeForItem(new ItemStack(Block.bedrock), 8000);
 		addBurnTimeForItem(new ItemStack(Block.lavaMoving), 1000);
 		addBurnTimeForItem(new ItemStack(Block.lavaStill), 1000);
 		addBurnTimeForItem(new ItemStack(ModItems.blazeIngot, 1, 2), 2);
