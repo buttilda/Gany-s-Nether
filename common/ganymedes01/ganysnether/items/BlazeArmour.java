@@ -24,7 +24,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlazeArmour extends ItemArmor {
 
-	private final int MAX_COOL_DOWN = 40;
+	private final int MAX_COOL_DOWN = 160;
 	private int coolDown = MAX_COOL_DOWN;
 
 	public BlazeArmour(int id, int type) {
@@ -40,16 +40,29 @@ public class BlazeArmour extends ItemArmor {
 
 	@Override
 	public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack stack) {
-		if (!world.isRemote) {
-			coolDown--;
-			if (coolDown == 0) {
-				if (stack.getItemDamage() > 0)
-					stack.setItemDamage(stack.getItemDamage() - 1);
-				if (stack.getItemDamage() < 0)
-					stack.setItemDamage(0);
-				coolDown = MAX_COOL_DOWN;
-			}
+		coolDown--;
+		if (coolDown == 0) {
+			if (stack.getItemDamage() > 0)
+				stack.setItemDamage(stack.getItemDamage() - 1);
+			else if (stack.getItemDamage() < 0)
+				stack.setItemDamage(0);
+			coolDown = MAX_COOL_DOWN;
 		}
+		if (player.isInWater())
+			stack.damageItem(1, player);
+		else if (player.handleLavaMovement() || player.isBurning())
+			if (stack.getItemDamage() > 0)
+				stack.setItemDamage(stack.getItemDamage() - 2);
+
+		if (stack.getItemDamage() < 0)
+			stack.setItemDamage(0);
+		else if (stack.getItemDamage() >= this.getMaxDamage())
+			for (int i = 0; i < player.inventory.armorInventory.length; i++)
+				if (player.inventory.armorInventory[i] != null)
+					if (player.inventory.armorInventory[i].getItemDamage() >= this.getMaxDamage()) {
+						player.inventory.armorInventory[i] = null;
+						player.renderBrokenItemStack(stack);
+					}
 	}
 
 	@Override
