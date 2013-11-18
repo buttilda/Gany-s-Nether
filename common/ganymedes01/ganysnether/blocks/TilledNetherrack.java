@@ -65,6 +65,11 @@ public class TilledNetherrack extends BlockFarmland {
 	}
 
 	@Override
+	public boolean isFertile(World world, int x, int y, int z) {
+		return world.getBlockMetadata(x, y, z) > 0;
+	}
+
+	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, int id) {
 		super.onNeighborBlockChange(world, x, y, z, id);
 		Material material = world.getBlockMaterial(x, y + 1, z);

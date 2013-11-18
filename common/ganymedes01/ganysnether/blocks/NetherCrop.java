@@ -1,7 +1,5 @@
 package ganymedes01.ganysnether.blocks;
 
-import java.util.Random;
-
 import net.minecraft.block.BlockCrops;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,16 +27,8 @@ public class NetherCrop extends BlockCrops {
 	public void dropBlockAsItemWithChance(World world, int x, int y, int z, int meta, float dropChance, int fortune) {
 		super.dropBlockAsItemWithChance(world, x, y, z, meta, dropChance, fortune);
 		if (!world.isRemote)
-			if (world.rand.nextInt(50) == 25)
+			if (world.rand.nextInt(30) == 15)
 				dropBlockAsItem_do(world, x, y, z, new ItemStack(Item.rottenFlesh));
-	}
-
-	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand) {
-		checkFlowerChange(world, x, y, z);
-
-		if (rand.nextInt(40) == 20)
-			fertilize(world, x, y, z);
 	}
 
 	@Override

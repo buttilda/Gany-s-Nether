@@ -7,6 +7,7 @@ import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes.CentrifugeRecipe;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +55,12 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 	}
 
 	@Override
+	public void loadTransferRects() {
+		transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(51, 24, 10, 8), getRecipeId(), new Object[0]));
+		transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(105, 24, 10, 8), getRecipeId(), new Object[0]));
+	}
+
+	@Override
 	public void drawBackground(int recipe) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GuiDraw.changeTexture(getGuiTexture());
@@ -61,6 +68,9 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 
 		GuiDraw.drawTexturedModalRect(29, 19, 176, 3, 18, 18);
 		GuiDraw.drawTexturedModalRect(119, 19, 176, 3, 18, 18);
+
+		GuiDraw.drawTexturedModalRect(47, 19, 194, 3, 18, 18);
+		GuiDraw.drawTexturedModalRect(101, 19, 213, 3, 18, 18);
 	}
 
 	@Override

@@ -54,8 +54,8 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe(new ItemStack(Item.bucketEmpty), new ItemStack(Item.flint), new ItemStack(Item.ingotIron, 3));
 		addRecipe(new ItemStack(Item.arrow), new ItemStack(Item.arrow), new ItemStack(Item.flint, 2), new ItemStack(Item.stick, 2), new ItemStack(Item.feather, 2));
 		addRecipe(new ItemStack(Item.coal), new ItemStack(Item.blazePowder), new ItemStack(Item.gunpowder));
-		addRecipe(new ItemStack(Block.stoneBrick), new ItemStack(Block.vine), new ItemStack(Block.stoneBrick, 1));
-		addRecipe(new ItemStack(Block.stoneBrick), new ItemStack(Item.flint), new ItemStack(Block.stoneBrick, 2));
+		addRecipe(new ItemStack(Block.stoneBrick), new ItemStack(Block.vine), new ItemStack(Block.stoneBrick, 1, 1));
+		addRecipe(new ItemStack(Block.stoneBrick), new ItemStack(Item.flint), new ItemStack(Block.stoneBrick, 1, 2));
 		addRecipe(new ItemStack(Block.cobblestone), new ItemStack(Block.vine), new ItemStack(Block.cobblestoneMossy));
 		addRecipe(new ItemStack(Block.pumpkin), new ItemStack(Block.pumpkin), new ItemStack(Item.pumpkinSeeds, 12));
 		addRecipe(new ItemStack(Item.melon), new ItemStack(Item.melon), new ItemStack(Item.melonSeeds, 3));
@@ -100,7 +100,7 @@ public class MagmaticCentrifugeRecipes {
 				addRecipe(mat1, material2, result);
 	}
 
-	private static void addRecipe(ItemStack material1, ItemStack material2, ItemStack... result) {
+	public static void addRecipe(ItemStack material1, ItemStack material2, ItemStack... result) {
 		addRecipeExternal(Reference.MOD_ID, material1, material2, result);
 	}
 

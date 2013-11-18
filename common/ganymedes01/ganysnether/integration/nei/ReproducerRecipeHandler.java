@@ -6,6 +6,7 @@ import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.ReproducerRecipes;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -53,6 +54,11 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public String getOverlayIdentifier() {
 		return Strings.REPRODUCER_NAME;
+	}
+
+	@Override
+	public void loadTransferRects() {
+		transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(98, 26, 13, 16), getRecipeId(), new Object[0]));
 	}
 
 	@Override

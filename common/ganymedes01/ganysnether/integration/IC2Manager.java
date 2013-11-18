@@ -20,6 +20,9 @@ public class IC2Manager {
 		registerOre("lead");
 		registerOre("iron", new ItemStack(Item.ingotIron, 2));
 		registerOre("gold", new ItemStack(Item.ingotGold, 2));
+
+		MagmaticCentrifugeRecipes.addOreDictRecipe("ingotCopper", "ingotTin", getItem("bronzeIngot", 2));
+		MagmaticCentrifugeRecipes.addRecipe(getItem("copperDust"), getItem("tinDust"), getItem("bronzeDust", 2));
 	}
 
 	private static void registerOre(String ore) {
