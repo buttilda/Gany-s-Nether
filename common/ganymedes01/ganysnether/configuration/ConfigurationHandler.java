@@ -66,7 +66,6 @@ public class ConfigurationHandler {
 			ModIDs.MAGMATIC_CENTRIFUGE_ID = configBlock(Strings.MAGMATIC_CENTRIFUGE_NAME);
 			ModIDs.WEEPING_POD_ID = configBlock(Strings.WEEPING_POD_NAME);
 			ModIDs.SOUL_TNT_ID = configBlock(Strings.SOUL_TNT_NAME);
-			ModIDs.SOUL_GLASS_PANE_ID = configBlock(Strings.SOUL_GLASS_PANE_NAME);
 
 			// Armour
 			ModIDs.BLAZE_HELMET_ID = configItem(Strings.BLAZE_HELMET_NAME);

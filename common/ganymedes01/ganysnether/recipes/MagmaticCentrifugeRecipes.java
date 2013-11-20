@@ -47,7 +47,7 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe(new ItemStack(Block.sand), new ItemStack(Block.sand), new ItemStack(Block.glass, 2));
 		addRecipe(new ItemStack(Block.glass), new ItemStack(Block.glass), new ItemStack(Block.sand, 2));
 		for (int i = 0; i < 16; i++)
-			addRecipe(new ItemStack(Block.cloth, 1, i), new ItemStack(Item.flint), new ItemStack(Item.silk, 4));
+			addRecipe(new ItemStack(Block.cloth, 1, i), new ItemStack(Item.flint), new ItemStack(Item.silk, 6));
 		addRecipe(new ItemStack(Item.rottenFlesh), new ItemStack(Item.rottenFlesh), new ItemStack(Item.leather));
 		addRecipe(new ItemStack(ModBlocks.soulGlass), new ItemStack(ModBlocks.soulGlass), new ItemStack(Block.slowSand, 2));
 		addRecipe(new ItemStack(Block.slowSand), new ItemStack(Block.slowSand), new ItemStack(ModBlocks.soulGlass, 2));
@@ -73,6 +73,7 @@ public class MagmaticCentrifugeRecipes {
 			addRecipe(new ItemStack(Item.wheat), new ItemStack(Item.diamond), new ItemStack(ModItems.flour), new ItemStack(Item.diamond));
 		addRecipe(new ItemStack(ModItems.spectreWheat), new ItemStack(Item.diamond), new ItemStack(ModItems.spookyFlour), new ItemStack(Item.diamond));
 		addRecipe(new ItemStack(Item.netherQuartz), new ItemStack(Item.netherQuartz), new ItemStack(Block.fire, 2));
+		addRecipe(new ItemStack(Item.dyePowder, 1, 2), new ItemStack(Item.dyePowder, 1, 2), new ItemStack(Item.slimeBall));
 	}
 
 	public static void initOreDictRecipes() {

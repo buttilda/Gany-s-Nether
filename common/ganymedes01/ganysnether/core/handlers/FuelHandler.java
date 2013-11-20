@@ -16,7 +16,7 @@ public class FuelHandler implements IFuelHandler {
 	@Override
 	public int getBurnTime(ItemStack fuel) {
 		if (fuel.itemID == Block.fire.blockID)
-			return 4000;
+			return 8000;
 		return 0;
 	}
 }
