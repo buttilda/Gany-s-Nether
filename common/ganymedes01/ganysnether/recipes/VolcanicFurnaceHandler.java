@@ -17,7 +17,6 @@ import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.BlockWood;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFood;
@@ -131,12 +130,6 @@ public class VolcanicFurnaceHandler {
 			return 5;
 		else if (item instanceof ItemSkull)
 			return 32;
-		else if (item.getRarity(stack) == EnumRarity.epic)
-			return 50;
-		else if (item.getRarity(stack) == EnumRarity.rare)
-			return 30;
-		else if (item.getRarity(stack) == EnumRarity.uncommon)
-			return 24;
 		else if (FluidContainerRegistry.isFilledContainer(stack))
 			return FluidContainerRegistry.getFluidForFilledItem(stack).amount;
 

@@ -5,6 +5,7 @@ import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCocoa;
@@ -35,6 +36,22 @@ public class WeepingPod extends BlockCocoa {
 		setResistance(5.0F);
 		setStepSound(soundWoodFootstep);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.WEEPING_POD_NAME));
+	}
+
+	@Override
+	public void updateTick(World world, int x, int y, int z, Random rand) {
+		if (!canBlockStay(world, x, y, z)) {
+			dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+			world.setBlock(x, y, z, 0, 0, 2);
+		} else if (world.rand.nextInt(10) == 5) {
+			int meta = world.getBlockMetadata(x, y, z);
+			int dirMeta = func_72219_c(meta);
+
+			if (dirMeta < 2) {
+				dirMeta++;
+				world.setBlockMetadataWithNotify(x, y, z, dirMeta << 2 | getDirection(meta), 2);
+			}
+		}
 	}
 
 	@Override
