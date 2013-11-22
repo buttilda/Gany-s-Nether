@@ -93,7 +93,8 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
-		if (VolcanicFurnaceHandler.getItemBurnTime(ingredient) > 0)
+		int lavaYield = VolcanicFurnaceHandler.getItemBurnTime(ingredient);
+		if (lavaYield != 16 && lavaYield > 0)
 			arecipes.add(new CachedLavaYield(ingredient.copy().splitStack(1)));
 	}
 
