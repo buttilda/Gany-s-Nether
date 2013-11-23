@@ -32,51 +32,53 @@ public class GanysNetherCraftGuideConfig extends CraftGuideAPIObject implements 
 
 	@Override
 	public void generateRecipes(RecipeGenerator generator) {
-		for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.getRecipes())
-			addMagmaticCentrifugeRecipe(generator, recipe);
-		for (Entry<ItemStack, ItemStack> tuple : ReproducerRecipes.getTupes().entrySet())
-			addReproducerRecipe(generator, tuple.getKey(), tuple.getValue());
-
+		addMagmaticCentrifugeRecipes(generator);
+		addReproducerRecipes(generator);
 	}
 
-	private void addMagmaticCentrifugeRecipe(RecipeGenerator generator, CentrifugeRecipe recipe) {
+	private void addMagmaticCentrifugeRecipes(RecipeGenerator generator) {
 		Slot[] recipeSlots = new Slot[7];
 		recipeSlots[0] = new ItemSlot(3, 23, 16, 16).setSlotType(SlotType.INPUT_SLOT).drawOwnBackground();
 		recipeSlots[1] = new ItemSlot(59, 23, 16, 16).setSlotType(SlotType.INPUT_SLOT).drawOwnBackground();
 
-		recipeSlots[2] = new ItemSlot(22, 15, 16, 16).setSlotType(SlotType.OUTPUT_SLOT).drawOwnBackground();
-		recipeSlots[3] = new ItemSlot(22 + 18, 15, 16, 16).setSlotType(SlotType.OUTPUT_SLOT).drawOwnBackground();
-		recipeSlots[4] = new ItemSlot(22, 15 + 18, 16, 16).setSlotType(SlotType.OUTPUT_SLOT).drawOwnBackground();
-		recipeSlots[5] = new ItemSlot(22 + 18, 15 + 18, 16, 16).setSlotType(SlotType.OUTPUT_SLOT).drawOwnBackground();
+		recipeSlots[2] = new ItemSlot(22, 15, 16, 16, true).setSlotType(SlotType.OUTPUT_SLOT).drawOwnBackground();
+		recipeSlots[3] = new ItemSlot(22 + 18, 15, 16, 16, true).setSlotType(SlotType.OUTPUT_SLOT).drawOwnBackground();
+		recipeSlots[4] = new ItemSlot(22, 15 + 18, 16, 16, true).setSlotType(SlotType.OUTPUT_SLOT).drawOwnBackground();
+		recipeSlots[5] = new ItemSlot(22 + 18, 15 + 18, 16, 16, true).setSlotType(SlotType.OUTPUT_SLOT).drawOwnBackground();
+
 		recipeSlots[6] = new ExtraSlot(60, 2, 16, 16, new ItemStack(ModBlocks.magmaticCentrifuge)).clickable().showName().setSlotType(SlotType.MACHINE_SLOT);
 
-		RecipeTemplate template = generator.createRecipeTemplate(recipeSlots, recipe.getResult()[0]);
+		RecipeTemplate template = generator.createRecipeTemplate(recipeSlots, new ItemStack(ModBlocks.magmaticCentrifuge));
 		template.setSize(79, 63);
 
-		ItemStack[] contents = new ItemStack[7];
-		contents[0] = recipe.getMaterial(1);
-		contents[1] = recipe.getMaterial(2);
-		for (int i = 0; i < recipe.getResult().length; i++)
-			contents[2 + i] = recipe.getResult()[i];
-		contents[6] = new ItemStack(ModBlocks.magmaticCentrifuge);
+		for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.getRecipes()) {
+			ItemStack[] contents = new ItemStack[7];
+			contents[0] = recipe.getMaterial(1).copy();
+			contents[1] = recipe.getMaterial(2).copy();
+			for (int i = 0; i < recipe.getResult().length; i++)
+				contents[2 + i] = recipe.getResult()[i].copy();
+			contents[6] = new ItemStack(ModBlocks.magmaticCentrifuge);
 
-		generator.addRecipe(template, contents);
+			generator.addRecipe(template, contents);
+		}
 	}
 
-	private void addReproducerRecipe(RecipeGenerator generator, ItemStack egg, ItemStack drop) {
+	private void addReproducerRecipes(RecipeGenerator generator) {
 		Slot[] recipeSlots = new Slot[3];
 		recipeSlots[0] = new ItemSlot(3, 23, 16, 16).setSlotType(SlotType.INPUT_SLOT).drawOwnBackground();
 		recipeSlots[1] = new ItemSlot(3 + 18, 23 - 18, 16, 16).setSlotType(SlotType.OUTPUT_SLOT).drawOwnBackground();
 		recipeSlots[2] = new ExtraSlot(42, 2, 16, 16, new ItemStack(ModBlocks.reproducer)).clickable().showName().setSlotType(SlotType.MACHINE_SLOT);
 
-		RecipeTemplate template = generator.createRecipeTemplate(recipeSlots, drop);
+		RecipeTemplate template = generator.createRecipeTemplate(recipeSlots, new ItemStack(ModBlocks.reproducer));
 		template.setSize(61, 45);
 
-		ItemStack[] contents = new ItemStack[3];
-		contents[0] = egg;
-		contents[1] = drop;
-		contents[2] = new ItemStack(ModBlocks.reproducer);
+		for (Entry<ItemStack, ItemStack> tuple : ReproducerRecipes.getTupes().entrySet()) {
+			ItemStack[] contents = new ItemStack[3];
+			contents[0] = tuple.getKey().copy();
+			contents[1] = tuple.getValue().copy();
+			contents[2] = new ItemStack(ModBlocks.reproducer);
 
-		generator.addRecipe(template, contents);
+			generator.addRecipe(template, contents);
+		}
 	}
 }
