@@ -62,3 +62,6 @@ v1.5.1
 -Added: Magmatic Furnace will drain lava automatically from a Volcanic Furnace placed underneath it
 -Fix: Crash with Volcanic Furnace when running on a server
 -Change: Blaze armour now heals slower, unless the player is on fire and will take damage if player is on water
+
+v1.5.2
+-Fix: CraftGuide integration now works as it should...
