@@ -8,6 +8,7 @@ import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -42,6 +43,9 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 	public TileEntityVolcanicFurnace() {
 		tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
 		tank.setFluid(new FluidStack(FluidRegistry.LAVA, 0));
+
+		// Initiates the registry
+		VolcanicFurnaceHandler.getItemBurnTime(new ItemStack(Item.appleGold));
 	}
 
 	@Override
@@ -123,30 +127,29 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 			return;
 		if (furnaceItemStacks[1] != null)
 			if (FluidContainerRegistry.isContainer(furnaceItemStacks[1]) && tank.getFluidAmount() >= FluidContainerRegistry.BUCKET_VOLUME && furnaceItemStacks[2] == null) {
-				furnaceItemStacks[2] = FluidContainerRegistry.fillFluidContainer(new FluidStack(FluidRegistry.LAVA, FluidContainerRegistry.BUCKET_VOLUME), furnaceItemStacks[1]);
+				furnaceItemStacks[2] = FluidContainerRegistry.fillFluidContainer(tank.drain(FluidContainerRegistry.BUCKET_VOLUME, true), furnaceItemStacks[1]);
 				if (furnaceItemStacks[2] != null) {
-					if (furnaceItemStacks[1].stackSize == 1)
+					furnaceItemStacks[1].stackSize--;
+					if (furnaceItemStacks[1].stackSize <= 0)
 						furnaceItemStacks[1] = null;
-					else
-						--furnaceItemStacks[1].stackSize;
-					tank.drain(FluidContainerRegistry.BUCKET_VOLUME, true);
 				}
 			}
 
 		VolcanicFurnace.updateFurnaceBlockState(tank.getFluidAmount() > 0, worldObj, xCoord, yCoord, zCoord);
 		if (meltTime <= 0) {
-			if (VolcanicFurnaceHandler.itemIsFuel(furnaceItemStacks[0]) && tank.getFluidAmount() < tank.getCapacity()) {
-				currentItemMeltTime = meltTime = VolcanicFurnaceHandler.getItemBurnTime(furnaceItemStacks[0]);
-				if (furnaceItemStacks[0].stackSize == 1)
-					furnaceItemStacks[0] = null;
-				else
-					--furnaceItemStacks[0].stackSize;
+			if (furnaceItemStacks[0] != null && tank.getFluidAmount() < tank.getCapacity()) {
+				int burnTime = VolcanicFurnaceHandler.getItemBurnTime(furnaceItemStacks[0]);
+				if (burnTime > 0) {
+					currentItemMeltTime = meltTime = burnTime;
+					furnaceItemStacks[0].stackSize--;
+					if (furnaceItemStacks[0].stackSize <= 0)
+						furnaceItemStacks[0] = null;
+				}
 			}
 		} else if (meltTime > 0 && tank.getFluidAmount() < tank.getCapacity()) {
 			meltTime--;
 			tank.fill(new FluidStack(FluidRegistry.LAVA, FILL_RATE), true);
 		}
-
 	}
 
 	public void getGUIData(int id, int value) {

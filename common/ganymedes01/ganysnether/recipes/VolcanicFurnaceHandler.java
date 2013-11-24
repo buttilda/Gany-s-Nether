@@ -8,9 +8,6 @@ import ganymedes01.ganysnether.items.ModItems;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.block.BlockHalfSlab;
-import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.BlockStairs;
@@ -25,8 +22,8 @@ import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
@@ -45,6 +42,11 @@ public class VolcanicFurnaceHandler {
 	static {
 		blackListItem(new ItemStack(Item.expBottle));
 		blackListItem(new ItemStack(Item.snowball));
+		blackListItem(new ItemStack(Block.snow));
+		blackListItem(new ItemStack(Block.ice));
+		blackListItem(new ItemStack(Block.blockSnow));
+		blackListItem(new ItemStack(Block.vine));
+		blackListItem(new ItemStack(Block.cactus));
 
 		addBurnTimeForItem(new ItemStack(ModBlocks.denseLavaCell), 5000);
 		addBurnTimeForItem(new ItemStack(Item.netherStar), 10000);
@@ -58,10 +60,38 @@ public class VolcanicFurnaceHandler {
 		addBurnTimeForItem(new ItemStack(Block.dragonEgg), 1000000);
 		addBurnTimeForItem(new ItemStack(Item.blazePowder), 7);
 		addBurnTimeForItem(new ItemStack(Block.netherrack), 35);
-		for (int i = 0; i < 16; i++) {
-			addBurnTimeForItem(new ItemStack(Block.carpet), 12);
+		for (int i = 0; i < 16; i++)
 			addBurnTimeForItem(new ItemStack(Item.dyePowder), 7);
-		}
+
+		addBurnTimeForItem(new ItemStack(Item.goldNugget), 2);
+		addBurnTimeForItem(new ItemStack(ModItems.blazeIngot), 2);
+		for (ItemStack log : OreDictionary.getOres("plankWood"))
+			addBurnTimeForItem(log, 5);
+		for (ItemStack slab : OreDictionary.getOres("slabWood"))
+			addBurnTimeForItem(slab, 2);
+		for (ItemStack stair : OreDictionary.getOres("stairWood"))
+			addBurnTimeForItem(stair, 7);
+		for (ItemStack sapling : OreDictionary.getOres("treeSapling"))
+			addBurnTimeForItem(sapling, 5);
+		for (ItemStack leave : OreDictionary.getOres("treeLeaves"))
+			addBurnTimeForItem(leave, 5);
+		for (ItemStack stick : OreDictionary.getOres("stickWood"))
+			addBurnTimeForItem(stick, 2);
+		for (ItemStack nugget : OreDictionary.getOres("nuggetIron"))
+			addBurnTimeForItem(nugget, 2);
+		for (ItemStack nugget : OreDictionary.getOres("nuggetCopper"))
+			addBurnTimeForItem(nugget, 2);
+		for (ItemStack nugget : OreDictionary.getOres("nuggetTin"))
+			addBurnTimeForItem(nugget, 2);
+		for (ItemStack nugget : OreDictionary.getOres("nuggetLead"))
+			addBurnTimeForItem(nugget, 2);
+		for (ItemStack nugget : OreDictionary.getOres("nuggetSilver"))
+			addBurnTimeForItem(nugget, 2);
+
+		for (FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData())
+			if (data != null)
+				if (data.fluid != null && data.fluid.getFluid() == FluidRegistry.LAVA)
+					addBurnTimeForItem(data.filledContainer, data.fluid.amount);
 	}
 
 	public static void addBurnTimeForItem(ItemStack stack, int burnTime) {
@@ -103,15 +133,17 @@ public class VolcanicFurnaceHandler {
 			if (meltingBlackList.contains(stack))
 				return false;
 
-			if (stack.getItem() instanceof ItemPotion)
+			if (stack.getItem() instanceof ItemPotion) {
+				blackListItem(stack);
 				return false;
-			if (FluidContainerRegistry.isFilledContainer(stack))
-				return FluidContainerRegistry.getFluidForFilledItem(stack) != null && FluidContainerRegistry.getFluidForFilledItem(stack).isFluidEqual(new FluidStack(FluidRegistry.LAVA, 1));
+			}
 			if (stack.getItem() instanceof ItemBlock)
 				if (stack.itemID < Block.blocksList.length) {
 					Material material = Block.blocksList[stack.itemID].blockMaterial;
-					if (material == Material.snow || material == Material.craftedSnow || material == Material.ice || material == Material.water)
+					if (material == Material.snow || material == Material.craftedSnow || material == Material.ice || material == Material.water || material == Material.vine) {
+						blackListItem(stack);
 						return false;
+					}
 				}
 			return true;
 		}
@@ -126,56 +158,56 @@ public class VolcanicFurnaceHandler {
 			return 0;
 
 		Item item = stack.getItem();
-		if (item instanceof ItemSeeds || item instanceof ItemFood)
+		if (item instanceof ItemBlock) {
+			Block block = null;
+			if (stack.itemID < Block.blocksList.length)
+				block = Block.blocksList[stack.itemID];
+
+			if (block != null)
+				if (block instanceof BlockPane)
+					return 7;
+				else if (block instanceof BlockWood)
+					return 5;
+				else if (block instanceof BlockStairs)
+					return 7;
+				else if (block instanceof BlockSapling)
+					return 5;
+				else if (block instanceof BlockTorch)
+					return 5;
+
+			return getBlockVolume(block, stack);
+		} else if (item instanceof ItemSeeds || item instanceof ItemFood)
 			return 5;
 		else if (item instanceof ItemSkull)
 			return 32;
-		else if (FluidContainerRegistry.isFilledContainer(stack))
-			return FluidContainerRegistry.getFluidForFilledItem(stack).amount;
+		else
+			return 16;
+	}
 
-		Block block = null;
-		if (stack.itemID < Block.blocksList.length)
-			block = Block.blocksList[stack.itemID];
+	private static int getBlockVolume(Block block, ItemStack stack) {
+		if (block == null)
+			return 0;
 
-		if (stack.getUnlocalizedName().toLowerCase().contains("nugget"))
-			return 2;
-		else if (block != null)
-			if (block instanceof BlockPane)
-				return 7;
-			else if (block instanceof BlockWood)
-				return 5;
-			else if (block instanceof BlockHalfSlab)
-				return 2;
-			else if (block instanceof BlockStairs)
-				return 7;
-			else if (block instanceof BlockSapling)
-				return 10;
-			else if (block instanceof BlockLeaves)
-				return 10;
-			else if (block instanceof BlockTorch)
-				return 5;
-			else if (block instanceof BlockFlower)
-				return 10;
+		double maxX = block.getBlockBoundsMaxX();
+		double maxY = block.getBlockBoundsMaxY();
+		double maxZ = block.getBlockBoundsMaxZ();
 
-		for (ItemStack logs : OreDictionary.getOres("plankWood"))
-			if (logs.getItem() == item)
-				return 5;
-		for (ItemStack logs : OreDictionary.getOres("slabWood"))
-			if (logs.getItem() == item)
-				return 2;
-		for (ItemStack logs : OreDictionary.getOres("stairWood"))
-			if (logs.getItem() == item)
-				return 7;
-		for (ItemStack logs : OreDictionary.getOres("treeSapling"))
-			if (logs.getItem() == item)
-				return 10;
-		for (ItemStack logs : OreDictionary.getOres("treeLeaves"))
-			if (logs.getItem() == item)
-				return 10;
-		for (ItemStack logs : OreDictionary.getOres("stickWood"))
-			if (logs.getItem() == item)
-				return 2;
+		double minX = block.getBlockBoundsMinX();
+		double minY = block.getBlockBoundsMinY();
+		double minZ = block.getBlockBoundsMinZ();
 
-		return 16;
+		double x = maxX - minX;
+		double y = maxY - minY;
+		double z = maxZ - minZ;
+
+		double volume = 16 * x * y * z;
+		int intVolume = (int) volume;
+
+		if (intVolume <= 0)
+			blackListItem(stack);
+		else
+			addBurnTimeForItem(stack, intVolume);
+
+		return intVolume;
 	}
 }

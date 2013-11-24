@@ -62,21 +62,21 @@ public class VolcanicFurnace extends BlockContainer {
 	}
 
 	public static void updateFurnaceBlockState(boolean isActive, World world, int x, int y, int z) {
-		int l = world.getBlockMetadata(x, y, z);
-		TileEntity tileentity = world.getBlockTileEntity(x, y, z);
-		keepFurnaceInventory = true;
+		if (world.getBlockId(x, y, z) == ModBlocks.volcanicFurnaceActive.blockID && isActive)
+			return;
+		else if (world.getBlockId(x, y, z) == ModBlocks.volcanicFurnaceIdle.blockID && !isActive)
+			return;
+		else {
+			TileEntity tile = world.getBlockTileEntity(x, y, z);
 
-		if (isActive)
-			world.setBlock(x, y, z, ModBlocks.volcanicFurnaceActive.blockID);
-		else
-			world.setBlock(x, y, z, ModBlocks.volcanicFurnaceIdle.blockID);
+			keepFurnaceInventory = true;
+			world.setBlock(x, y, z, isActive ? ModBlocks.volcanicFurnaceActive.blockID : ModBlocks.volcanicFurnaceIdle.blockID);
+			keepFurnaceInventory = false;
 
-		keepFurnaceInventory = false;
-		world.setBlockMetadataWithNotify(x, y, z, l, 2);
-
-		if (tileentity != null) {
-			tileentity.validate();
-			world.setBlockTileEntity(x, y, z, tileentity);
+			if (tile != null) {
+				tile.validate();
+				world.setBlockTileEntity(x, y, z, tile);
+			}
 		}
 	}
 
