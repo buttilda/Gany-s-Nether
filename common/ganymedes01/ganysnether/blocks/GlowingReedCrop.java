@@ -30,7 +30,7 @@ public class GlowingReedCrop extends BlockReed {
 		setHardness(0.0F);
 		setLightValue(0.5F);
 		setStepSound(soundGrassFootstep);
-		setTextureName(Utils.getBlockTexture(Strings.GLOWING_REED_BLOCK_NAME, false));
+		setTextureName(Utils.getBlockTexture(Strings.GLOWING_REED_BLOCK_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.GLOWING_REED_BLOCK_NAME));
 	}
 

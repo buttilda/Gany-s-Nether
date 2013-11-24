@@ -99,7 +99,7 @@ public class SoulGlass extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
-		block = reg.registerIcon(Utils.getBlockTexture(Strings.SOUL_GLASS_NAME, true) + 0);
-		brick = reg.registerIcon(Utils.getBlockTexture(Strings.SOUL_GLASS_NAME, true) + 1);
+		block = reg.registerIcon(Utils.getBlockTexture(Strings.SOUL_GLASS_NAME) + "_0");
+		brick = reg.registerIcon(Utils.getBlockTexture(Strings.SOUL_GLASS_NAME) + "_1");
 	}
 }

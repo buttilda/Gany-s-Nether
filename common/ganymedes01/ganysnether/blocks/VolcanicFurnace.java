@@ -121,9 +121,9 @@ public class VolcanicFurnace extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
-		blockTop = reg.registerIcon(Utils.getBlockTexture(Strings.VOLCANIC_FURNACE_NAME, true) + "top_" + (isActive ? "on" : "off"));
-		blockSide = reg.registerIcon(Utils.getBlockTexture(Strings.VOLCANIC_FURNACE_NAME, true) + "side");
-		blockBottom = reg.registerIcon(Utils.getBlockTexture(Strings.VOLCANIC_FURNACE_NAME, true) + "bottom");
+		blockTop = reg.registerIcon(Utils.getBlockTexture(Strings.VOLCANIC_FURNACE_NAME) + "_top_" + (isActive ? "on" : "off"));
+		blockSide = reg.registerIcon(Utils.getBlockTexture(Strings.VOLCANIC_FURNACE_NAME) + "_side");
+		blockBottom = reg.registerIcon(Utils.getBlockTexture(Strings.VOLCANIC_FURNACE_NAME) + "_bottom");
 	}
 
 	@Override

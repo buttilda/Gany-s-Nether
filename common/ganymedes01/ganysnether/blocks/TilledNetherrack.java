@@ -116,8 +116,8 @@ public class TilledNetherrack extends BlockFarmland {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
-		wetIcon = reg.registerIcon(Utils.getBlockTexture(Strings.TILLED_NETHERRACK_NAME, true) + "wet");
-		dryIcon = reg.registerIcon(Utils.getBlockTexture(Strings.TILLED_NETHERRACK_NAME, true) + "dry");
+		wetIcon = reg.registerIcon(Utils.getBlockTexture(Strings.TILLED_NETHERRACK_NAME) + "_wet");
+		dryIcon = reg.registerIcon(Utils.getBlockTexture(Strings.TILLED_NETHERRACK_NAME) + "_dry");
 	}
 
 	@Override

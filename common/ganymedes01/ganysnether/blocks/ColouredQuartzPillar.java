@@ -69,8 +69,8 @@ public class ColouredQuartzPillar extends BlockRotatedPillar {
 		blockSide = new Icon[4];
 		blockTop = new Icon[4];
 		for (int i = 0; i < 4; ++i) {
-			blockSide[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_QUARTZ_PILLARS_NAME, true) + "side_" + (startIndex * 4 + i));
-			blockTop[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_QUARTZ_PILLARS_NAME, true) + "top_" + (startIndex * 4 + i));
+			blockSide[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_QUARTZ_PILLARS_NAME) + "_side_" + (startIndex * 4 + i));
+			blockTop[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_QUARTZ_PILLARS_NAME) + "_top_" + (startIndex * 4 + i));
 		}
 	}
 }

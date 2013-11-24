@@ -48,9 +48,9 @@ public class Reproducer extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
-		blockTop = reg.registerIcon(Utils.getBlockTexture(Strings.REPRODUCER_NAME, true) + "top");
-		blockSide = reg.registerIcon(Utils.getBlockTexture(Strings.REPRODUCER_NAME, true) + "side");
-		blockBottom = reg.registerIcon(Utils.getBlockTexture(Strings.REPRODUCER_NAME, true) + "bottom");
+		blockTop = reg.registerIcon(Utils.getBlockTexture(Strings.REPRODUCER_NAME) + "_top");
+		blockSide = reg.registerIcon(Utils.getBlockTexture(Strings.REPRODUCER_NAME) + "_side");
+		blockBottom = reg.registerIcon(Utils.getBlockTexture(Strings.REPRODUCER_NAME) + "_bottom");
 	}
 
 	@Override

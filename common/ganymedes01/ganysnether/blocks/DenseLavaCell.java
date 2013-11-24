@@ -28,7 +28,7 @@ public class DenseLavaCell extends Block {
 		setLightValue(1F);
 		setTickRandomly(true);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getBlockTexture(Strings.DENSE_LAVA_CELL_NAME, false));
+		setTextureName(Utils.getBlockTexture(Strings.DENSE_LAVA_CELL_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.DENSE_LAVA_CELL_NAME));
 	}
 

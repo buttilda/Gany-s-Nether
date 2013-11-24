@@ -180,6 +180,6 @@ public class WitherShrub extends NetherCrop {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
 		disconnected = reg.registerIcon("pumpkin_stem_disconnected");
-		connected = reg.registerIcon(Utils.getBlockTexture(Strings.WITHER_SHRUB_NAME, false));
+		connected = reg.registerIcon(Utils.getBlockTexture(Strings.WITHER_SHRUB_NAME));
 	}
 }

@@ -58,6 +58,6 @@ public class ColouredQuartzBlock extends Block {
 	public void registerIcons(IconRegister reg) {
 		blockIcon = new Icon[16];
 		for (int i = 0; i < blockIcon.length; i++)
-			blockIcon[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_QUARTZ_BLOCK_NAME, true) + i);
+			blockIcon[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_QUARTZ_BLOCK_NAME) + "_" + i);
 	}
 }

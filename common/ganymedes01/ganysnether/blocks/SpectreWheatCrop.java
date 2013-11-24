@@ -49,6 +49,6 @@ public class SpectreWheatCrop extends NetherCrop {
 	public void registerIcons(IconRegister reg) {
 		iconArray = new Icon[8];
 		for (int i = 0; i < iconArray.length; i++)
-			iconArray[i] = reg.registerIcon(Utils.getBlockTexture(Strings.SPECTRE_WHEAT_BLOCK_NAME + "_stage", true) + i);
+			iconArray[i] = reg.registerIcon(Utils.getBlockTexture(Strings.SPECTRE_WHEAT_BLOCK_NAME + "_stage_") + i);
 	}
 }
