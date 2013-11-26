@@ -2,10 +2,6 @@ package ganymedes01.ganysnether.configuration;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.IdGenerator;
-import ganymedes01.ganysnether.items.BaseballBat;
-import ganymedes01.ganysnether.items.SceptreOfConcealment;
-import ganymedes01.ganysnether.items.SceptreOfFireCharging;
-import ganymedes01.ganysnether.items.SceptreOfLightning;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
@@ -34,6 +30,20 @@ public class ConfigurationHandler {
 
 	private static int configItem(String name) {
 		return configuration.getItem(name, idGen.getNextItemID()).getInt(idGen.getLastItemID());
+	}
+
+	private static int configDurability(String name, int def) {
+		int config = configuration.get("Durability", name, def).getInt(def);
+		return config > 0 ? config : def;
+	}
+
+	private static int configInteger(String name, int def) {
+		int config = configuration.get("Others", name, def).getInt(def);
+		return config > 0 ? config : def;
+	}
+
+	private static boolean configBoolean(String name, boolean def) {
+		return configuration.get("Others", name, def).getBoolean(def);
 	}
 
 	public static void init(File configFile) {
@@ -99,14 +109,19 @@ public class ConfigurationHandler {
 			ModIDs.FLOUR_ID = configItem(Strings.FLOUR_NAME);
 
 			// Others
-			GanysNether.sceptreOfConcealmentDurability = configuration.get("Durability", Strings.SCEPTRE_OF_CONCEALMENT_NAME, SceptreOfConcealment.DEFAULT_DUR).getInt(SceptreOfConcealment.DEFAULT_DUR);
-			GanysNether.sceptreOfLightningDurability = configuration.get("Durability", Strings.SCEPTRE_OF_LIGHTNING_NAME, SceptreOfLightning.DEFAULT_DUR).getInt(SceptreOfLightning.DEFAULT_DUR);
-			GanysNether.sceptreOfFireCharging = configuration.get("Durability", Strings.SCEPTRE_OF_FIRE_CHARGING_NAME, SceptreOfFireCharging.DEFAULT_DUR).getInt(SceptreOfFireCharging.DEFAULT_DUR);
-			GanysNether.baseballBatDurability = configuration.get("Durability", Strings.BASEBALL_BAT_NAME, BaseballBat.DEFAULT_DUR).getInt(BaseballBat.DEFAULT_DUR);
-			GanysNether.shouldGenerateCrops = configuration.get("Others", Strings.SHOULD_GENERATE_CROPS, true).getBoolean(true);
-			GanysNether.shouldGenerateUndertakers = configuration.get("Others", Strings.SHOULD_GENERATE_UNDERTAKERS, true).getBoolean(true);
-			GanysNether.shouldDoVersionCheck = configuration.get("Others", Strings.SHOULD_DO_VERSION_CHECK, true).getBoolean(true);
-			GanysNether.shouldGhastTearHaveDispenserAction = configuration.get("Others", Strings.SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION, true).getBoolean(true);
+			GanysNether.sceptreOfConcealmentDurability = configDurability(Strings.SCEPTRE_OF_CONCEALMENT_NAME, 128);
+			GanysNether.sceptreOfLightningDurability = configDurability(Strings.SCEPTRE_OF_LIGHTNING_NAME, 128);
+			GanysNether.sceptreOfFireCharging = configDurability(Strings.SCEPTRE_OF_FIRE_CHARGING_NAME, 32);
+			GanysNether.baseballBatDurability = configDurability(Strings.BASEBALL_BAT_NAME, 256);
+
+			GanysNether.shouldGenerateCrops = configBoolean(Strings.SHOULD_GENERATE_CROPS, true);
+			GanysNether.shouldGenerateUndertakers = configBoolean(Strings.SHOULD_GENERATE_UNDERTAKERS, true);
+			GanysNether.shouldDoVersionCheck = configBoolean(Strings.SHOULD_DO_VERSION_CHECK, true);
+			GanysNether.shouldGhastTearHaveDispenserAction = configBoolean(Strings.SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION, true);
+
+			GanysNether.netherCropRate = configInteger(Strings.NETHER_CROP_RATE, 20);
+			GanysNether.witherShrubRate = configInteger(Strings.WITHER_SHRUB_RATE, 50);
+			GanysNether.undertakerRate = configInteger(Strings.UNDERTAKER_RATE, 300);
 
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");

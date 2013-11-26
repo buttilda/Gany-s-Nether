@@ -70,6 +70,10 @@ public class Strings {
 	public static final String SHOULD_GENERATE_UNDERTAKERS = "shouldGenerateUndertakers";
 	public static final String SHOULD_DO_VERSION_CHECK = "shouldDoVersionCheck";
 	public static final String SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION = "shouldGhastTearHaveDispenserAction";
+	public static final String NETHER_CROP_RATE = "netherCropSpawnRate (bigger = rarer. smaller = more common)";
+	public static final String WITHER_SHRUB_RATE = "witherShrubSpawnRate (bigger = rarer. smaller = more common)";
+	public static final String UNDERTAKER_RATE = "undertakerSpawnRate (bigger = rarer. smaller = more common)";
+
 	public static final String[] COLOURS = new String[] { "Black", "Red", "Green", "Brown", "Blue", "Purple", "Cyan", "LightGrey", "Grey", "Pink", "Lime", "Yellow", "LightBlue", "Magenta", "Orange", "White" };
 
 	// Version check

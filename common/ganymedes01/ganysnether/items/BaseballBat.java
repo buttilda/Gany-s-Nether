@@ -18,8 +18,6 @@ import net.minecraft.util.MathHelper;
 
 public class BaseballBat extends Item {
 
-	public static final int DEFAULT_DUR = 256;
-
 	public BaseballBat() {
 		super(ModIDs.BASEBALL_BAT_ID);
 		setFull3D();
@@ -27,7 +25,7 @@ public class BaseballBat extends Item {
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.BASEBALL_BAT_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.BASEBALL_BAT_NAME));
-		setMaxDamage(GanysNether.baseballBatDurability > 0 ? GanysNether.baseballBatDurability : DEFAULT_DUR);
+		setMaxDamage(GanysNether.baseballBatDurability);
 	}
 
 	@Override

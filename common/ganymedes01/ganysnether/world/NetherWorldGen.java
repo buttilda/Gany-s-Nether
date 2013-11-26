@@ -32,7 +32,7 @@ public class NetherWorldGen implements IWorldGenerator {
 						int blockY = y + 1;
 						int blockZ = chunkZ * 16 + z;
 
-						if (rand.nextInt(20) == 10)
+						if (rand.nextInt(GanysNether.netherCropRate) == 0)
 							if (!world.isAirBlock(blockX, blockY - 1, blockZ))
 								if (world.getBlockMaterial(blockX, blockY - 1, blockZ) != Material.lava)
 									if (world.isAirBlock(blockX, blockY, blockZ))
@@ -54,13 +54,13 @@ public class NetherWorldGen implements IWorldGenerator {
 														world.setBlock(blockX, blockY, blockZ, ModBlocks.quarzBerryBush.blockID, rand.nextInt(7), 2);
 														return;
 													case 3:
-														if (rand.nextInt(50) == 25) {
+														if (rand.nextInt(GanysNether.witherShrubRate) == 0) {
 															world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
 															world.setBlock(blockX, blockY, blockZ, ModBlocks.witherShrub.blockID, rand.nextInt(6), 2);
 														}
 														return;
 												}
-										} else if (rand.nextInt(300) == 150)
+										} else if (rand.nextInt(GanysNether.undertakerRate) == 0)
 											if (GanysNether.shouldGenerateUndertakers)
 												generateUndertakerWithRandomContents(world, blockX, blockY, blockZ, rand);
 					}

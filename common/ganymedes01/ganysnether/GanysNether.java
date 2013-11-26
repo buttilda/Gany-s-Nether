@@ -65,6 +65,9 @@ public class GanysNether {
 	public static boolean shouldGenerateUndertakers = true;
 	public static boolean shouldDoVersionCheck = true;
 	public static boolean shouldGhastTearHaveDispenserAction = true;
+	public static int netherCropRate = 20;
+	public static int witherShrubRate = 50;
+	public static int undertakerRate = 300;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {

@@ -21,13 +21,11 @@ import net.minecraft.world.World;
 
 public class SceptreOfFireCharging extends Sceptre {
 
-	public static final int DEFAULT_DUR = 32;
-
 	public SceptreOfFireCharging() {
 		super(ModIDs.SCEPTRE_OF_FIRE_CHARGING_ID);
 		setTextureName(Utils.getItemTexture(Strings.SCEPTRE_OF_FIRE_CHARGING_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SCEPTRE_OF_FIRE_CHARGING_NAME));
-		setMaxDamage(GanysNether.sceptreOfFireCharging > 0 ? GanysNether.sceptreOfFireCharging : DEFAULT_DUR);
+		setMaxDamage(GanysNether.sceptreOfFireCharging);
 	}
 
 	@Override

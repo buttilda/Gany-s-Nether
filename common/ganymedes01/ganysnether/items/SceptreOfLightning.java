@@ -18,13 +18,11 @@ import net.minecraft.world.World;
 
 public class SceptreOfLightning extends Sceptre {
 
-	public static final int DEFAULT_DUR = 128;
-
 	public SceptreOfLightning() {
 		super(ModIDs.SCEPTRE_OF_LIGHTNING_ID);
 		setTextureName(Utils.getItemTexture(Strings.SCEPTRE_OF_LIGHTNING_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SCEPTRE_OF_LIGHTNING_NAME));
-		setMaxDamage(GanysNether.sceptreOfLightningDurability > 0 ? GanysNether.sceptreOfLightningDurability : DEFAULT_DUR);
+		setMaxDamage(GanysNether.sceptreOfLightningDurability);
 	}
 
 	@Override

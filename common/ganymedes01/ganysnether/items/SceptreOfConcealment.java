@@ -20,13 +20,11 @@ import net.minecraft.item.ItemStack;
 
 public class SceptreOfConcealment extends Sceptre {
 
-	public static final int DEFAULT_DUR = 128;
-
 	public SceptreOfConcealment() {
 		super(ModIDs.SCEPTRE_OF_CONCEALMENT_ID);
+		setMaxDamage(GanysNether.sceptreOfConcealmentDurability);
 		setTextureName(Utils.getItemTexture(Strings.SCEPTRE_OF_CONCEALMENT_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SCEPTRE_OF_CONCEALMENT_NAME));
-		setMaxDamage(GanysNether.sceptreOfConcealmentDurability > 0 ? GanysNether.sceptreOfConcealmentDurability : DEFAULT_DUR);
 	}
 
 	@Override
