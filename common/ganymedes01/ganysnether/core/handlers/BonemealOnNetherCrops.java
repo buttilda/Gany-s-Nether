@@ -24,33 +24,35 @@ public class BonemealOnNetherCrops {
 		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
 		int meta = event.world.getBlockMetadata(event.X, event.Y, event.Z);
 
-		if (stack != null && stack.getItem() == ModItems.livingSoul)
-			if (Block.blocksList[event.ID] instanceof NetherCrop) {
-				if (meta < 7) {
-					meta += 2;
-					if (meta > 7)
-						meta = 7;
-					event.world.setBlockMetadataWithNotify(event.X, event.Y, event.Z, meta, 3);
-					event.entityPlayer.swingItem();
-					event.setResult(Result.ALLOW);
-					return;
-				}
-			} else if (event.ID == Block.netherStalk.blockID) {
-				if (meta < 3) {
-					event.world.setBlockMetadataWithNotify(event.X, event.Y, event.Z, ++meta, 3);
-					event.entityPlayer.swingItem();
-					event.setResult(Result.ALLOW);
-					return;
-				}
-			} else if (event.ID == ModBlocks.weepingPod.blockID) {
-				int stage = (meta & 12) >> 2;
+		if (stack != null)
+			if (stack.getItem() == ModItems.livingSoul) {
+				if (Block.blocksList[event.ID] instanceof NetherCrop) {
+					if (meta < 7) {
+						event.world.setBlockMetadataWithNotify(event.X, event.Y, event.Z, ++meta, 3);
+						event.entityPlayer.swingItem();
+						event.setResult(Result.ALLOW);
+						return;
+					}
+				} else if (event.ID == Block.netherStalk.blockID) {
+					if (meta < 3) {
+						event.world.setBlockMetadataWithNotify(event.X, event.Y, event.Z, ++meta, 3);
+						event.entityPlayer.swingItem();
+						event.setResult(Result.ALLOW);
+						return;
+					}
+				} else if (event.ID == ModBlocks.weepingPod.blockID) {
+					int stage = (meta & 12) >> 2;
 
-				if (stage < 2) {
-					event.world.setBlockMetadataWithNotify(event.X, event.Y, event.Z, ++stage << 2 | BlockDirectional.getDirection(meta), 2);
-					event.entityPlayer.swingItem();
-					event.setResult(Result.ALLOW);
-					return;
+					if (stage < 2) {
+						event.world.setBlockMetadataWithNotify(event.X, event.Y, event.Z, ++stage << 2 | BlockDirectional.getDirection(meta), 2);
+						event.entityPlayer.swingItem();
+						event.setResult(Result.ALLOW);
+						return;
+					}
 				}
+			} else if (Block.blocksList[event.ID] instanceof NetherCrop || event.ID == ModBlocks.weepingPod.blockID) {
+				event.setCanceled(true);
+				return;
 			}
 	}
 }

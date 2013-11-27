@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
  * Gany's Nether
@@ -19,6 +20,8 @@ public class ThaumCraftManager {
 
 	public static void init() {
 		ThaumcraftApi.addSmeltingBonus(new ItemStack(ModItems.blazeIngot, 1, 1), new ItemStack(ModItems.blazeIngot, 0, 2));
+
+		FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(ModBlocks.witherShrub, 1, 8));
 
 		addAspectsToItem(ModBlocks.soulGlass.blockID, new Aspect[] { Aspect.CRYSTAL, Aspect.SOUL }, new int[] { 1, 1 });
 		addAspectsToItem(ModBlocks.glowBox.blockID, new Aspect[] { Aspect.LIGHT, Aspect.SENSES }, new int[] { 3, 1 });

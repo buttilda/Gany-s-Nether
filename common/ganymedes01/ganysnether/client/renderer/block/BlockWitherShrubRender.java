@@ -41,10 +41,14 @@ public class BlockWitherShrubRender implements ISimpleBlockRenderingHandler {
 			B = (R * 30.0F + B * 70.0F) / 100.0F;
 		}
 
-		tessellator.setColorOpaque_F(R, G, B);
-		Icon icon = block.getIcon(0, access.getBlockMetadata(x, y, z));
+		int meta = access.getBlockMetadata(x, y, z);
+		if (meta > 7)
+			meta = 7;
 
-		float newY = y - (1.0F - (access.getBlockMetadata(x, y, z) * 2 + 2) / 16.0F);
+		tessellator.setColorOpaque_F(R, G, B);
+		Icon icon = block.getIcon(0, meta);
+
+		float newY = y - (1.0F - (meta * 2 + 2) / 16.0F);
 
 		double minU = icon.getMinU();
 		double minV = icon.getMinV();
