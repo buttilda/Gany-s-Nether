@@ -73,6 +73,7 @@ public class Strings {
 	public static final String NETHER_CROP_RATE = "netherCropSpawnRate (bigger = rarer. smaller = more common)";
 	public static final String WITHER_SHRUB_RATE = "witherShrubSpawnRate (bigger = rarer. smaller = more common)";
 	public static final String UNDERTAKER_RATE = "undertakerSpawnRate (bigger = rarer. smaller = more common)";
+	public static final String UNDERTAKER_FILL_SLOT_CHANCE = "undertakerFillSlotChance (bigger = rarer. smaller = more common)";
 
 	public static final String[] COLOURS = new String[] { "Black", "Red", "Green", "Brown", "Blue", "Purple", "Cyan", "LightGrey", "Grey", "Pink", "Lime", "Yellow", "LightBlue", "Magenta", "Orange", "White" };
 
