@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.core.utils;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.items.ModItems;
 
 import java.util.Map.Entry;
@@ -21,7 +22,6 @@ public class RandomItemStackList {
 
 	private static ItemStackMap<Integer> weightedStackList = new ItemStackMap<Integer>();
 	private static Random rand = new Random();
-	public static int undertakerFillSlotChance = 10;
 
 	static {
 		insertStackOnList(new ItemStack(ModItems.witherShrubSeeds), 200);
@@ -58,7 +58,7 @@ public class RandomItemStackList {
 	public static void fillInventory(IInventory inventory, int maxSlot) {
 		for (int i = 0; i < maxSlot; i++)
 			for (Entry<ItemStack, Integer> entry : weightedStackList.entrySet())
-				if (rand.nextInt(entry.getValue()) == 0 && rand.nextInt(RandomItemStackList.undertakerFillSlotChance) == 0) {
+				if (rand.nextInt(entry.getValue()) == 0 && rand.nextInt(GanysNether.undertakerFillSlotChance) == 0) {
 					int stackSize = rand.nextInt(entry.getKey().stackSize);
 					if (stackSize <= 0)
 						stackSize = 1;

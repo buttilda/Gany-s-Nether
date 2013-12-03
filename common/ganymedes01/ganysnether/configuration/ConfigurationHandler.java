@@ -2,7 +2,6 @@ package ganymedes01.ganysnether.configuration;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.IdGenerator;
-import ganymedes01.ganysnether.core.utils.RandomItemStackList;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
@@ -123,7 +122,7 @@ public class ConfigurationHandler {
 			GanysNether.netherCropRate = configInteger(Strings.NETHER_CROP_RATE, 20);
 			GanysNether.witherShrubRate = configInteger(Strings.WITHER_SHRUB_RATE, 50);
 			GanysNether.undertakerRate = configInteger(Strings.UNDERTAKER_RATE, 300);
-			RandomItemStackList.undertakerFillSlotChance = configInteger(Strings.UNDERTAKER_FILL_SLOT_CHANCE, 10);
+			GanysNether.undertakerFillSlotChance = configInteger(Strings.UNDERTAKER_FILL_SLOT_CHANCE, 10);
 
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");
