@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.core.handlers;
 
-import ganymedes01.ganysnether.core.utils.ConcealableHandler;
+import ganymedes01.ganysnether.core.utils.ConcealmentHandler;
 import ganymedes01.ganysnether.core.utils.HoeList;
 import ganymedes01.ganysnether.core.utils.RandomItemStackList;
 import ganymedes01.ganysnether.lib.IMCKeys;
@@ -107,7 +107,7 @@ public class InterModComms {
 	private static void blackListEntity(IMCMessage message) {
 		String entityClass = message.getStringValue();
 		try {
-			ConcealableHandler.blackListEntity((Class<? extends EntityLivingBase>) Class.forName(entityClass));
+			ConcealmentHandler.blackListEntity((Class<? extends EntityLivingBase>) Class.forName(entityClass));
 		} catch (ClassNotFoundException e) {
 			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to black list an entity: Wrong class name", message.getSender()));
 		} catch (Exception e) {
@@ -121,7 +121,7 @@ public class InterModComms {
 			Class<? extends EntityLivingBase> entityClass = (Class<? extends EntityLivingBase>) Class.forName(data.getString("entityClass"));
 			ItemStack spawnEgg = ItemStack.loadItemStackFromNBT(data.getCompoundTag("spawnEgg"));
 
-			ConcealableHandler.addCustomEggDropForEntity(entityClass, spawnEgg);
+			ConcealmentHandler.addCustomEggDropForEntity(entityClass, spawnEgg);
 		} catch (ClassNotFoundException e) {
 			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to register a custom spawn egg to a class: Class not found", message.getSender()));
 		} catch (Exception e) {

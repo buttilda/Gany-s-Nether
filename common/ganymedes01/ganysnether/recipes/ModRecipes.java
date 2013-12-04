@@ -1,21 +1,19 @@
 package ganymedes01.ganysnether.recipes;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.blocks.ColouredChiselledQuartzBlock;
+import ganymedes01.ganysnether.blocks.ColouredQuartzBlock;
+import ganymedes01.ganysnether.blocks.ColouredQuartzPillar;
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.core.utils.ConcealmentHandler;
 import ganymedes01.ganysnether.items.ModItems;
-
-import java.util.Iterator;
-
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.EntityEggInfo;
-import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
@@ -34,6 +32,10 @@ public class ModRecipes {
 		registerBlockRecipes();
 		registerItemRecipes();
 		registerArmourRecipes();
+	}
+
+	public static void postInit() {
+		GameRegistry.addRecipe(MultipleItemsRecipe.createNewRecipe(new ItemStack(ModBlocks.reproducer), "yzy", "wxw", "zwz", 'x', new ItemStack(Block.blockNetherQuartz, 1, 2), 'y', Block.obsidian, 'z', Block.slowSand, 'w', ConcealmentHandler.getEggs()));
 	}
 
 	private static void registerArmourRecipes() {
@@ -101,23 +103,25 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.glowBox, 4, 11), " y ", "yxy", " y ", 'x', Block.glowStone, 'y', Block.thinGlass);
 
 		for (int i = 0; i < dyes.length; i++) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.glowBox, 8, i), "xxx", "xyx", "xxx", 'x', "ganysNetherGlowBox", 'y', dyes[i]));
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.colouredQuartzBlock, 8, i), "xxx", "xyx", "xxx", 'x', "ganysNetherColouredQuartzBlock", 'y', dyes[i]));
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 8, i), "xxx", "xyx", "xxx", 'x', "ganysNetherColouredChiseledQuartz", 'y', dyes[i]));
+			for (ItemStack dye : OreDictionary.getOres(dyes[i])) {
+				GameRegistry.addRecipe(MultipleItemsRecipe.createNewRecipe(new ItemStack(ModBlocks.colouredQuartzBlock, 8, i), "xxx", "xyx", "xxx", 'x', ColouredQuartzBlock.getQuartzBlocksForRecipe(), 'y', dye));
+				GameRegistry.addRecipe(MultipleItemsRecipe.createNewRecipe(new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 8, i), "xxx", "xyx", "xxx", 'x', ColouredChiselledQuartzBlock.getQuartzBlocksForRecipe(), 'y', dye));
+			}
+
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.glowBox, 8, i), "xxx", "xyx", "xxx", 'x', new ItemStack(ModBlocks.glowBox, 1, OreDictionary.WILDCARD_VALUE), 'y', dyes[i]));
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.colouredQuartzBlockStairs[i], 4), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.colouredQuartzBlock, 1, i));
 		}
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Block.blockNetherQuartz, 1, 0), "ganysNetherColouredQuartzBlock", new ItemStack(Item.potion, 1, 0)));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Block.blockNetherQuartz, 1, 1), "ganysNetherColouredChiseledQuartz", new ItemStack(Item.potion, 1, 0)));
+		GameRegistry.addRecipe(MultipleItemsRecipe.createNewRecipe(new ItemStack(Block.blockNetherQuartz, 1, 0), "x", 'x', ColouredQuartzBlock.getQuartzBlocksForRecipe()));
+		GameRegistry.addRecipe(MultipleItemsRecipe.createNewRecipe(new ItemStack(Block.blockNetherQuartz, 1, 1), "x", 'x', ColouredChiselledQuartzBlock.getQuartzBlocksForRecipe()));
+		GameRegistry.addRecipe(MultipleItemsRecipe.createNewRecipe(new ItemStack(Block.blockNetherQuartz, 1, 2), "x", 'x', ColouredQuartzPillar.getQuartzBlocksForRecipe()));
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassStairs), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 1));
 
 		int index = 0;
 		for (Block pillar : ModBlocks.colouredQuartzPillar)
-			for (int i = 0; i < 4; i++) {
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(pillar, 8, i), "xxx", "xyx", "xxx", 'x', "ganysNetherColouredQuartzPillar", 'y', dyes[index]));
-				index++;
-			}
+			for (int i = 0; i < 4; i++)
+				for (ItemStack dye : OreDictionary.getOres(dyes[index++]))
+					GameRegistry.addRecipe(MultipleItemsRecipe.createNewRecipe(new ItemStack(pillar, 8, i), "xxx", "xyx", "xxx", 'x', ColouredQuartzPillar.getQuartzBlocksForRecipe(), 'y', dye));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.reproducer), "yzy", "wxw", "zwz", 'x', new ItemStack(Block.blockNetherQuartz, 1, 2), 'y', Block.obsidian, 'z', Block.slowSand, 'w', "ganysNetherSpawnEggs"));
 		GameRegistry.addSmelting(ModBlocks.soulChest.blockID, new ItemStack(ModBlocks.undertaker), 1F);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.magmaticCentrifuge), "zyz", "wxw", "zyz", 'x', Block.obsidian, 'y', Block.netherBrick, 'z', Item.blazeRod, 'w', Block.glass);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.magmaticCentrifuge), "zyz", "wxw", "zyz", 'x', Block.obsidian, 'y', Block.netherBrick, 'z', Item.blazeRod, 'w', ModBlocks.soulGlass);
@@ -128,28 +132,7 @@ public class ModRecipes {
 	}
 
 	private static void registerOreDictionary() {
-		for (int i = 0; i < 16; i++) {
-			OreDictionary.registerOre("ganysNetherGlowBox", new ItemStack(ModBlocks.glowBox, 1, i));
-			OreDictionary.registerOre("ganysNetherColouredQuartzBlock", new ItemStack(ModBlocks.colouredQuartzBlock, 1, i));
-			OreDictionary.registerOre("ganysNetherColouredChiseledQuartz", new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 1, i));
-		}
-
-		for (Block pillar : ModBlocks.colouredQuartzPillar)
-			for (int i = 0; i < 4; i++)
-				OreDictionary.registerOre("ganysNetherColouredQuartzPillar", new ItemStack(pillar, 1, i));
-
-		OreDictionary.registerOre("ganysNetherColouredQuartzBlock", new ItemStack(Block.blockNetherQuartz, 1, 0));
-		OreDictionary.registerOre("ganysNetherColouredChiseledQuartz", new ItemStack(Block.blockNetherQuartz, 1, 1));
-		OreDictionary.registerOre("ganysNetherColouredQuartzPillar", new ItemStack(Block.blockNetherQuartz, 1, 2));
-
-		Iterator iterator = EntityList.entityEggs.values().iterator();
-		while (iterator.hasNext()) {
-			EntityEggInfo entityegginfo = (EntityEggInfo) iterator.next();
-			OreDictionary.registerOre("ganysNetherSpawnEggs", new ItemStack(Item.monsterPlacer, 1, entityegginfo.spawnedID));
-		}
-		OreDictionary.registerOre("ganysNetherSpawnEggs", new ItemStack(ModItems.skeletonSpawner, 1, 0));
-		OreDictionary.registerOre("ganysNetherSpawnEggs", new ItemStack(ModItems.skeletonSpawner, 1, 1));
-
 		OreDictionary.registerOre("nuggetIron", ModItems.ironNugget);
+		OreDictionary.registerOre("dustWheat", ModItems.flour);
 	}
 }

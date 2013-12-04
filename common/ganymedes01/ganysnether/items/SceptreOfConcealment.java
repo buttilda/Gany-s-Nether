@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.core.utils.ConcealableHandler;
+import ganymedes01.ganysnether.core.utils.ConcealmentHandler;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
@@ -35,12 +35,12 @@ public class SceptreOfConcealment extends Sceptre {
 
 		if (target.isChild())
 			return false;
-		if (ConcealableHandler.canBeConcealed(target))
+		if (ConcealmentHandler.canBeConcealed(target))
 			if (player instanceof EntityPlayer)
 				if (player.inventory.consumeInventoryItem(Item.egg.itemID)) {
 					if (!player.worldObj.isRemote) {
 						player.worldObj.playSoundAtEntity(target, "random.breath", 1.5F, player.worldObj.rand.nextFloat() * 0.1F + 0.9F);
-						target.entityDropItem(ConcealableHandler.getEggFromEntity(target), 1.0F);
+						target.entityDropItem(ConcealmentHandler.getEggFromEntity(target), 1.0F);
 						target.setDead();
 						stack.damageItem(1, player);
 					}

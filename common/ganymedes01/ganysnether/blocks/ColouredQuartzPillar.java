@@ -7,12 +7,14 @@ import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,6 +26,8 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 
 public class ColouredQuartzPillar extends BlockRotatedPillar {
+
+	private static ItemStack[] blocks;
 
 	@SideOnly(Side.CLIENT)
 	private Icon[] blockSide, blockTop;
@@ -68,9 +72,21 @@ public class ColouredQuartzPillar extends BlockRotatedPillar {
 	public void registerIcons(IconRegister reg) {
 		blockSide = new Icon[4];
 		blockTop = new Icon[4];
-		for (int i = 0; i < 4; ++i) {
+		for (int i = 0; i < 4; i++) {
 			blockSide[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_QUARTZ_PILLARS_NAME) + "_side_" + (startIndex * 4 + i));
 			blockTop[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_QUARTZ_PILLARS_NAME) + "_top_" + (startIndex * 4 + i));
 		}
+	}
+
+	public static ItemStack[] getQuartzBlocksForRecipe() {
+		if (blocks == null) {
+			blocks = new ItemStack[ModBlocks.colouredQuartzPillar.length + 1];
+
+			for (int i = 0; i < ModBlocks.colouredQuartzPillar.length; i++)
+				blocks[i] = new ItemStack(ModBlocks.colouredQuartzPillar[i], 1, OreDictionary.WILDCARD_VALUE);
+
+			blocks[ModBlocks.colouredQuartzPillar.length] = new ItemStack(Block.blockNetherQuartz, 1, 2);
+		}
+		return blocks;
 	}
 }
