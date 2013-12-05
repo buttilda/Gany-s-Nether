@@ -79,7 +79,7 @@ public class NetherWorldGen implements IWorldGenerator {
 				world.setBlock(x, y, z, ModBlocks.undertaker.blockID);
 				TileEntityUndertaker undertaker = (TileEntityUndertaker) world.getBlockTileEntity(x, y, z);
 				if (undertaker != null)
-					RandomItemStackList.fillInventory(undertaker, undertaker.getSizeInventory() - 4);
+					RandomItemStackList.fillInventory(undertaker, undertaker.getSizeInventory() - 4, rand);
 			}
 	}
 }

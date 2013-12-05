@@ -21,7 +21,6 @@ import net.minecraft.item.ItemStack;
 public class RandomItemStackList {
 
 	private static ItemStackMap<Integer> weightedStackList = new ItemStackMap<Integer>();
-	private static Random rand = new Random();
 
 	static {
 		insertStackOnList(new ItemStack(ModItems.witherShrubSeeds), 200);
@@ -55,7 +54,7 @@ public class RandomItemStackList {
 			weightedStackList.put(stack, weight);
 	}
 
-	public static void fillInventory(IInventory inventory, int maxSlot) {
+	public static void fillInventory(IInventory inventory, int maxSlot, Random rand) {
 		for (int i = 0; i < maxSlot; i++)
 			for (Entry<ItemStack, Integer> entry : weightedStackList.entrySet())
 				if (rand.nextInt(entry.getValue()) == 0 && rand.nextInt(GanysNether.undertakerFillSlotChance) == 0) {
