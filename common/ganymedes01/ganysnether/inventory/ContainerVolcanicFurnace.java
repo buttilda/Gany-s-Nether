@@ -65,7 +65,7 @@ public class ContainerVolcanicFurnace extends Container {
 			itemStack = slotItemStack.copy();
 
 			if (slotIndex < 3) {
-				if (!mergeItemStack(slotItemStack, 1, inventorySlots.size(), true))
+				if (!mergeItemStack(slotItemStack, 3, inventorySlots.size(), true))
 					return null;
 			} else if (FluidContainerRegistry.isEmptyContainer(slotItemStack)) {
 				if (!mergeItemStack(slotItemStack, 1, 2, false))

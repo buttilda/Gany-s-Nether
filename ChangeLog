@@ -69,3 +69,6 @@ v1.5.2
 -Change: Breaking a Wither Shrub on its last growth stage has a (tiny) chance of dropping two seeds instead of just one
 -Change: Make all the skulls grown by the Wither Shrub drop instantly by right clicking it.
 -Added: Thaumcraft golems can now harvest the skulls
+
+v1.5.3
+-Fix: Volcanic Furnace duplicating buckets
