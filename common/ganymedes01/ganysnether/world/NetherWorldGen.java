@@ -57,6 +57,7 @@ public class NetherWorldGen implements IWorldGenerator {
 														if (rand.nextInt(GanysNether.witherShrubRate) == 0) {
 															world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
 															world.setBlock(blockX, blockY, blockZ, ModBlocks.witherShrub.blockID, rand.nextInt(6), 2);
+															world.setBlock(blockX, blockY + 1, blockZ, Block.glowStone.blockID);
 														}
 														return;
 												}
