@@ -62,9 +62,6 @@ public class ConcealmentHandler {
 		for (Entry<Class<? extends EntityLivingBase>, ItemStack> set : entityEggs.entrySet())
 			eggs[index++] = set.getValue();
 
-		for (ItemStack stack : eggs)
-			System.out.println(stack);
-
 		return eggs;
 	}
 }
