@@ -3,7 +3,6 @@ package ganymedes01.ganysnether.integration;
 import ganymedes01.ganysnether.items.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.common.event.FMLInterModComms;
@@ -33,20 +32,16 @@ public class TE3Manager extends Integration {
 
 	private void addMagmaCruicibleRecipe(int energy, ItemStack input, FluidStack output) {
 		NBTTagCompound data = new NBTTagCompound();
-		NBTTagList tagList = new NBTTagList();
-		NBTTagCompound tagCompound;
 
 		data.setInteger("energy", energy);
 
-		tagCompound = new NBTTagCompound();
-		tagCompound.setByte("input", (byte) 0);
-		input.writeToNBT(tagCompound);
-		tagList.appendTag(tagCompound);
+		NBTTagCompound inputCompound = new NBTTagCompound();
+		input.writeToNBT(inputCompound);
+		data.setCompoundTag("input", inputCompound);
 
-		tagCompound = new NBTTagCompound();
-		tagCompound.setByte("output", (byte) 0);
-		output.writeToNBT(tagCompound);
-		tagList.appendTag(tagCompound);
+		NBTTagCompound outputCompound = new NBTTagCompound();
+		output.writeToNBT(outputCompound);
+		data.setCompoundTag("output", outputCompound);
 
 		FMLInterModComms.sendMessage("ThermalExpansion", "CrucibleRecipe", data);
 	}
