@@ -34,6 +34,7 @@ public class NEIGanysNetherConfig implements IConfigureNEI {
 		API.hideItem(ModBlocks.glowingReed.blockID);
 		API.hideItem(ModBlocks.witherShrub.blockID);
 		API.hideItem(ModBlocks.weepingPod.blockID);
+		API.hideItem(ModBlocks.hellBush.blockID);
 	}
 
 	@Override
