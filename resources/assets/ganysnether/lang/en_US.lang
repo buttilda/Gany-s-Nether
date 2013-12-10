@@ -27,6 +27,9 @@ item.ganysnether.witherShrubSeeds.name=Wither Shrub Seeds
 item.ganysnether.livingSoul.name=Living Soul
 item.ganysnether.ironNugget.name=Iron Nugget
 item.ganysnether.flour.name=Flour
+item.ganysnether.hellBushSeeds.name=Hell Bush Seeds
+item.ganysnether.lavaBerry0.name=Lava Berry
+item.ganysnether.lavaBerry1.name=Dried Lava Berry
 
 item.ganysnether.blazeHelmet.name=Blaze Helmet
 item.ganysnether.blazeChestplate.name=Blaze Chestplate
@@ -52,6 +55,8 @@ tile.ganysnether.magmaticCentrifuge.name=Magmatic Centrifuge
 tile.ganysnether.weepingPod.name=Weeping Pod
 tile.ganysnether.soulGlassPane.name=Soul Glass Pane
 tile.ganysnether.soulTNT.name=Soul TNT
+tile.ganysnether.blazingCactoid.name=Blazing Cactoid
+tile.ganysnether.hellBush.name=Hell Bush
 
 tile.ganysnether.glowBoxBlack.name=Black Glow Box
 tile.ganysnether.glowBoxRed.name=Red Glow Box

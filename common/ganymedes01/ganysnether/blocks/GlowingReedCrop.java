@@ -35,6 +35,12 @@ public class GlowingReedCrop extends BlockReed {
 	}
 
 	@Override
+	public void updateTick(World world, int x, int y, int z, Random rand) {
+		if (rand.nextInt(5) == 0)
+			super.updateTick(world, x, y, z, rand);
+	}
+
+	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		Block block = Block.blocksList[world.getBlockId(x, y - 1, z)];
 		if (block == null)

@@ -49,6 +49,8 @@ public class TilledNetherrack extends BlockFarmland {
 			return true;
 		else if (plantID == ModBlocks.witherShrub.blockID)
 			return true;
+		else if (plantID == ModBlocks.hellBush.blockID)
+			return true;
 		return false;
 	}
 

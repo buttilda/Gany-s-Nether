@@ -41,6 +41,8 @@ public class ModBlocks {
 	public static Block magmaticCentrifuge;
 	public static Block weepingPod;
 	public static Block soulTNT;
+	public static Block blazingCactoid;
+	public static Block hellBush;
 
 	public static void init() {
 		tilledNetherrack = new TilledNetherrack();
@@ -66,6 +68,8 @@ public class ModBlocks {
 		magmaticCentrifuge = new MagmaticCentrifuge();
 		weepingPod = new WeepingPod();
 		soulTNT = new SoulTNT();
+		blazingCactoid = new BlazingCactoid();
+		hellBush = new HellBush();
 
 		registerNames();
 	}
@@ -94,5 +98,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(magmaticCentrifuge, Strings.MAGMATIC_CENTRIFUGE_NAME);
 		GameRegistry.registerBlock(weepingPod, Strings.WEEPING_POD_NAME);
 		GameRegistry.registerBlock(soulTNT, Strings.SOUL_TNT_NAME);
+		GameRegistry.registerBlock(blazingCactoid, Strings.BLAZING_CACTOID_NAME);
+		GameRegistry.registerBlock(hellBush, Strings.HELL_BUSH_NAME);
 	}
 }

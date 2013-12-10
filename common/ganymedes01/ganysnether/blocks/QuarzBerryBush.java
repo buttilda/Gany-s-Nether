@@ -20,10 +20,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class QuarzBerryBush extends NetherCrop {
 
 	@SideOnly(Side.CLIENT)
-	private Icon[] iconArray;
+	protected Icon[] iconArray;
 
-	protected QuarzBerryBush() {
-		super(ModIDs.QUARZ_BERRY_BUSH_ID);
+	public QuarzBerryBush() {
+		this(ModIDs.QUARZ_BERRY_BUSH_ID);
+	}
+
+	protected QuarzBerryBush(int id) {
+		super(id);
 		float f = 1F / 8F;
 		setBlockBounds(3F * f, 0.0F, 3F * f, 1F - 3F * f, 2F * f, 1F - 3F * f);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.QUARZ_BERRY_BUSH_NAME));

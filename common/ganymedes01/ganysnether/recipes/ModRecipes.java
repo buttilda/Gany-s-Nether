@@ -79,6 +79,7 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ItemStack(Block.silverfish, 1, 2), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', new ItemStack(Block.stoneBrick));
 		GameRegistry.addSmelting(ModItems.flour.itemID, new ItemStack(Item.bread), 0.0F);
 		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 8), "x", "y", 'x', Block.fire, 'y', Item.stick);
+		GameRegistry.addSmelting(ModBlocks.blazingCactoid.blockID, new ItemStack(Item.blazeRod), 1F);
 	}
 
 	private static void createSceptreRecipe(Item sceptre, int capMeta, Item handle, int durability) {

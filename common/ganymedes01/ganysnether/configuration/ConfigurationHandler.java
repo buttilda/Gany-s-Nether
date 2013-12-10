@@ -76,6 +76,8 @@ public class ConfigurationHandler {
 			ModIDs.MAGMATIC_CENTRIFUGE_ID = configBlock(Strings.MAGMATIC_CENTRIFUGE_NAME);
 			ModIDs.WEEPING_POD_ID = configBlock(Strings.WEEPING_POD_NAME);
 			ModIDs.SOUL_TNT_ID = configBlock(Strings.SOUL_TNT_NAME);
+			ModIDs.BLAZING_CACTOID_ID = configBlock(Strings.BLAZING_CACTOID_NAME);
+			ModIDs.HELL_BUSH_ID = configBlock(Strings.HELL_BUSH_NAME);
 
 			// Armour
 			ModIDs.BLAZE_HELMET_ID = configItem(Strings.BLAZE_HELMET_NAME);
@@ -107,6 +109,8 @@ public class ConfigurationHandler {
 			ModIDs.LIVING_SOUL_ID = configItem(Strings.LIVING_SOUL_NAME);
 			ModIDs.IRON_NUGGET_ID = configItem(Strings.IRON_NUGGET_NAME);
 			ModIDs.FLOUR_ID = configItem(Strings.FLOUR_NAME);
+			ModIDs.HELL_BUSH_SEEDS_ID = configItem(Strings.HELL_BUSH_SEEDS_NAME);
+			ModIDs.LAVA_BERRY_ID = configItem(Strings.LAVA_BERRY_NAME);
 
 			// Others
 			GanysNether.sceptreOfConcealmentDurability = configDurability(Strings.SCEPTRE_OF_CONCEALMENT_NAME, 128);

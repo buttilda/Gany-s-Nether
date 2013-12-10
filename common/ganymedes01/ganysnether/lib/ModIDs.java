@@ -33,6 +33,8 @@ public class ModIDs {
 	public static int MAGMATIC_CENTRIFUGE_ID;
 	public static int WEEPING_POD_ID;
 	public static int SOUL_TNT_ID;
+	public static int BLAZING_CACTOID_ID;
+	public static int HELL_BUSH_ID;
 
 	// Items
 	public static int QUARZ_BERRY_SEEDS_ID;
@@ -58,6 +60,8 @@ public class ModIDs {
 	public static int LIVING_SOUL_ID;
 	public static int IRON_NUGGET_ID;
 	public static int FLOUR_ID;
+	public static int HELL_BUSH_SEEDS_ID;
+	public static int LAVA_BERRY_ID;
 
 	// Armour
 	public static int BLAZE_HELMET_ID;

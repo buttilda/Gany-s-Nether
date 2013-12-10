@@ -31,6 +31,8 @@ public class Strings {
 	public static final String MAGMATIC_CENTRIFUGE_NAME = "magmaticCentrifuge";
 	public static final String WEEPING_POD_NAME = "weepingPod";
 	public static final String SOUL_TNT_NAME = "soulTNT";
+	public static final String BLAZING_CACTOID_NAME = "blazingCactoid";
+	public static final String HELL_BUSH_NAME = "hellBush";
 
 	// Item names
 	public static final String QUARZ_BERRY_SEEDS_NAME = "quarzBerrySeeds";
@@ -60,6 +62,8 @@ public class Strings {
 	public static final String LIVING_SOUL_NAME = "livingSoul";
 	public static final String IRON_NUGGET_NAME = "ironNugget";
 	public static final String FLOUR_NAME = "flour";
+	public static final String HELL_BUSH_SEEDS_NAME = "hellBushSeeds";
+	public static final String LAVA_BERRY_NAME = "lavaBerry";
 
 	// Entities
 	public static final String ENTITY_LIGHTNING_BALL_NAME = "EntityLightningBall";
