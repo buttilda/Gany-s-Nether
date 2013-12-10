@@ -12,14 +12,24 @@ import net.minecraft.item.ItemStack;
  * 
  */
 
-public class AppEnerManager {
+public class AppEnerManager extends Integration {
 
-	public static void init() {
+	@Override
+	public void init() {
+	}
+
+	@Override
+	public void postInit() {
 		MagmaticCentrifugeRecipes.addRecipeExternal(Reference.MOD_ID, new ItemStack(Item.wheat), new ItemStack(Item.diamond), getItem("matFlour", 1), new ItemStack(Item.diamond));
 		MagmaticCentrifugeRecipes.addRecipeExternal(Reference.MOD_ID, getBlock("blkQuartzOre", 1), getBlock("blkQuartzOre", 1), getItem("matQuartz", 2), getItem("matQuartzDust", 1));
 	}
 
-	private static ItemStack getItem(String name, int size) {
+	@Override
+	public String getModID() {
+		return "AppliedEnergistics";
+	}
+
+	private ItemStack getItem(String name, int size) {
 		try {
 			Class<?> appItems = Class.forName("appeng.api.Materials");
 
@@ -36,7 +46,7 @@ public class AppEnerManager {
 		return null;
 	}
 
-	private static ItemStack getBlock(String name, int size) {
+	private ItemStack getBlock(String name, int size) {
 		try {
 			Class<?> appItems = Class.forName("appeng.api.Blocks");
 

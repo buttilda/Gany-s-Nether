@@ -2,6 +2,8 @@ package ganymedes01.ganysnether.configuration;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.IdGenerator;
+import ganymedes01.ganysnether.integration.Integration;
+import ganymedes01.ganysnether.integration.ModIntegrator;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
@@ -44,6 +46,10 @@ public class ConfigurationHandler {
 
 	private static boolean configBoolean(String name, boolean def) {
 		return configuration.get("Others", name, def).getBoolean(def);
+	}
+
+	private static boolean configIntegrationBoolean(String modID) {
+		return configuration.get("Mod Integration", "Integrate " + modID, true).getBoolean(true);
 	}
 
 	public static void init(File configFile) {
@@ -111,6 +117,10 @@ public class ConfigurationHandler {
 			ModIDs.FLOUR_ID = configItem(Strings.FLOUR_NAME);
 			ModIDs.HELL_BUSH_SEEDS_ID = configItem(Strings.HELL_BUSH_SEEDS_NAME);
 			ModIDs.LAVA_BERRY_ID = configItem(Strings.LAVA_BERRY_NAME);
+
+			// Mod Integration
+			for (Integration integration : ModIntegrator.modIntegrations)
+				integration.setShouldIntegrate(configIntegrationBoolean(integration.getModID()));
 
 			// Others
 			GanysNether.sceptreOfConcealmentDurability = configDurability(Strings.SCEPTRE_OF_CONCEALMENT_NAME, 128);

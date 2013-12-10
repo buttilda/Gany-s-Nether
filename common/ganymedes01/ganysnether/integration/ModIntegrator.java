@@ -1,7 +1,9 @@
 package ganymedes01.ganysnether.integration;
 
-import ganymedes01.ganysnether.core.utils.HoeList;
-import cpw.mods.fml.common.Loader;
+import java.util.ArrayList;
+
+import com.google.common.reflect.ClassPath;
+import com.google.common.reflect.ClassPath.ClassInfo;
 
 /**
  * Gany's Nether
@@ -12,37 +14,30 @@ import cpw.mods.fml.common.Loader;
 
 public class ModIntegrator {
 
-	public static void init() {
-		// BuildCraft
-		if (Loader.isModLoaded("BuildCraft|Transport"))
-			BuildCraftFacadeManager.registerFacades();
+	public static ArrayList<Integration> modIntegrations;
 
-		// ThaumCraft
-		if (Loader.isModLoaded("Thaumcraft")) {
-			HoeList.registerThaumcraftHoes();
-			ThaumCraftManager.init();
+	public static void preInit() {
+		modIntegrations = new ArrayList<Integration>();
+
+		try {
+			for (ClassInfo clazzInfo : ClassPath.from(ModIntegrator.class.getClassLoader()).getTopLevelClasses(ModIntegrator.class.getPackage().getName())) {
+				Class clazz = clazzInfo.load();
+				if (clazz != Integration.class && Integration.class.isAssignableFrom(clazz))
+					modIntegrations.add((Integration) clazz.newInstance());
+			}
+		} catch (Exception e) {
 		}
+	}
 
-		// Equivalent Exchange 3
-		if (Loader.isModLoaded("EE3"))
-			EE3Manager.init();
-
-		// Gany's Surface
-		if (Loader.isModLoaded("ganyssurface"))
-			GanysSurfaceManager.init();
-
-		// Industrial Craft 2
-		if (Loader.isModLoaded("IC2"))
-			IC2Manager.init();
-
-		// CraftGuide
-		if (Loader.isModLoaded("craftguide"))
-			GanysNetherCraftGuideConfig.init();
+	public static void init() {
+		for (Integration integration : modIntegrations)
+			if (integration.shouldIntegrate())
+				integration.init();
 	}
 
 	public static void postInit() {
-		// Applied Energistics
-		if (Loader.isModLoaded("AppliedEnergistics"))
-			AppEnerManager.init();
+		for (Integration integration : modIntegrations)
+			if (integration.shouldIntegrate())
+				integration.postInit();
 	}
 }

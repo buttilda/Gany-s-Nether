@@ -38,7 +38,7 @@ public class NetherWorldGen implements IWorldGenerator {
 									if (world.isAirBlock(blockX, blockY, blockZ))
 										if (hasLavaNearby(world, blockX, blockY - 1, blockZ)) {
 											if (GanysNether.shouldGenerateCrops)
-												switch (rand.nextInt(5)) {
+												switch (rand.nextInt(6)) {
 													case 0:
 														world.setBlock(blockX, blockY - 1, blockZ, Block.netherrack.blockID);
 														world.setBlock(blockX, blockY, blockZ, ModBlocks.glowingReed.blockID);
@@ -64,6 +64,10 @@ public class NetherWorldGen implements IWorldGenerator {
 														world.setBlock(blockX, blockY, blockZ, ModBlocks.blazingCactoid.blockID);
 														if (rand.nextInt(10) == 5)
 															world.setBlock(blockX, blockY + 1, blockZ, ModBlocks.blazingCactoid.blockID);
+														return;
+													case 5:
+														world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
+														world.setBlock(blockX, blockY, blockZ, ModBlocks.hellBush.blockID, rand.nextInt(7), 2);
 														return;
 												}
 										} else if (rand.nextInt(GanysNether.undertakerRate) == 0)

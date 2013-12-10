@@ -10,9 +10,6 @@ import ganymedes01.ganysnether.dispenser.DispenserBehaviorWeepingPod;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
@@ -92,7 +89,6 @@ public class ModItems {
 		lavaBerry = new LavaBerry();
 
 		registerNames();
-		registerForge();
 		registerDispenserActions();
 	}
 
@@ -128,10 +124,6 @@ public class ModItems {
 		GameRegistry.registerItem(blazeChestplate, Strings.BLAZE_CHESTPLATE_NAME);
 		GameRegistry.registerItem(blazeLeggings, Strings.BLAZE_LEGGINGS_NAME);
 		GameRegistry.registerItem(blazeBoots, Strings.BLAZE_BOOTS_NAME);
-	}
-
-	private static void registerForge() {
-		FluidContainerRegistry.registerFluidContainer(FluidRegistry.LAVA, new ItemStack(lavaBerry), new ItemStack(lavaBerry, 1, 1));
 	}
 
 	private static void registerDispenserActions() {

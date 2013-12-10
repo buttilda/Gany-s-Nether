@@ -12,9 +12,10 @@ import cpw.mods.fml.common.event.FMLInterModComms;
  * 
  */
 
-public class GanysSurfaceManager {
+public class GanysSurfaceManager extends Integration {
 
-	public static void init() {
+	@Override
+	public void init() {
 		addYieldForOrganicMatter(new ItemStack(ModItems.quarzBerry), 2);
 		addYieldForOrganicMatter(new ItemStack(ModItems.spectreWheat), 2);
 		addYieldForOrganicMatter(new ItemStack(ModItems.spookyFlour), 1);
@@ -28,7 +29,16 @@ public class GanysSurfaceManager {
 		addYieldForOrganicMatter(new ItemStack(ModItems.flour), 2);
 	}
 
-	private static final void addYieldForOrganicMatter(ItemStack matter, int yield) {
+	@Override
+	public void postInit() {
+	}
+
+	@Override
+	public String getModID() {
+		return "ganyssurface";
+	}
+
+	private void addYieldForOrganicMatter(ItemStack matter, int yield) {
 		if (matter != null) {
 			NBTTagCompound data = new NBTTagCompound();
 

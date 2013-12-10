@@ -80,6 +80,7 @@ public class ModRecipes {
 		GameRegistry.addSmelting(ModItems.flour.itemID, new ItemStack(Item.bread), 0.0F);
 		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 8), "x", "y", 'x', Block.fire, 'y', Item.stick);
 		GameRegistry.addSmelting(ModBlocks.blazingCactoid.blockID, new ItemStack(Item.blazeRod), 1F);
+		GameRegistry.addRecipe(new ItemStack(Item.bucketLava), " x ", "xyx", " x ", 'x', ModItems.lavaBerry, 'y', Item.bucketEmpty);
 	}
 
 	private static void createSceptreRecipe(Item sceptre, int capMeta, Item handle, int durability) {

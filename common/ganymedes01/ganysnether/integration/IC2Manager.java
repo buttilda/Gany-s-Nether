@@ -11,9 +11,10 @@ import net.minecraft.item.ItemStack;
  * 
  */
 
-public class IC2Manager {
+public class IC2Manager extends Integration {
 
-	public static void init() {
+	@Override
+	public void init() {
 		registerOre("copper");
 		registerOre("tin");
 		registerOre("silver");
@@ -25,22 +26,31 @@ public class IC2Manager {
 		MagmaticCentrifugeRecipes.addRecipe(getItem("copperDust"), getItem("tinDust"), getItem("bronzeDust", 2));
 	}
 
-	private static void registerOre(String ore) {
+	@Override
+	public void postInit() {
+	}
+
+	@Override
+	public String getModID() {
+		return "IC2";
+	}
+
+	private void registerOre(String ore) {
 		registerOre(ore, getItem(ore + "Ingot", 2));
 	}
 
-	private static void registerOre(String ore, ItemStack ingot) {
+	private void registerOre(String ore, ItemStack ingot) {
 		char first = Character.toUpperCase(ore.charAt(0));
 		String Ore = first + ore.substring(1);
 
 		MagmaticCentrifugeRecipes.addOreDictRecipe("ore" + Ore, "ore" + Ore, ingot, getItem("small" + Ore + "Dust"));
 	}
 
-	private static ItemStack getItem(String name) {
+	private ItemStack getItem(String name) {
 		return getItem(name, 1);
 	}
 
-	private static ItemStack getItem(String name, int size) {
+	private ItemStack getItem(String name, int size) {
 		try {
 			Class<?> Ic2Items = Class.forName("ic2.core.Ic2Items");
 

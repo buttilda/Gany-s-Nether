@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.integration;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.core.utils.HoeList;
 import ganymedes01.ganysnether.items.ModItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,9 +17,12 @@ import cpw.mods.fml.common.event.FMLInterModComms;
  * 
  */
 
-public class ThaumCraftManager {
+public class ThaumCraftManager extends Integration {
 
-	public static void init() {
+	@Override
+	public void init() {
+		HoeList.registerThaumcraftHoes();
+
 		ThaumcraftApi.addSmeltingBonus(new ItemStack(ModItems.blazeIngot, 1, 1), new ItemStack(ModItems.blazeIngot, 0, 2));
 
 		FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(ModBlocks.witherShrub, 1, 8));
@@ -50,11 +54,20 @@ public class ThaumCraftManager {
 		addAspectsToItem(ModItems.blazeIngot.itemID, 2, new Aspect[] { Aspect.FIRE }, new int[] { 1 });
 	}
 
-	private static void addAspectsToItem(int id, Aspect[] aspects, int[] amounts) {
+	@Override
+	public void postInit() {
+	}
+
+	@Override
+	public String getModID() {
+		return "Thaumcraft";
+	}
+
+	private void addAspectsToItem(int id, Aspect[] aspects, int[] amounts) {
 		addAspectsToItem(id, -1, aspects, amounts);
 	}
 
-	private static void addAspectsToItem(int id, int meta, Aspect[] aspects, int[] amounts) {
+	private void addAspectsToItem(int id, int meta, Aspect[] aspects, int[] amounts) {
 		AspectList list = new AspectList();
 		for (int i = 0; i < aspects.length; i++)
 			list.add(aspects[i], amounts[i]);

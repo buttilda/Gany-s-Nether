@@ -1,4 +1,4 @@
-package ganymedes01.ganysnether.integration;
+package ganymedes01.ganysnether.integration.cg;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
@@ -25,10 +25,6 @@ import uristqwerty.CraftGuide.api.SlotType;
  */
 
 public class GanysNetherCraftGuideConfig extends CraftGuideAPIObject implements RecipeProvider {
-
-	public static void init() {
-		new GanysNetherCraftGuideConfig();
-	}
 
 	@Override
 	public void generateRecipes(RecipeGenerator generator) {

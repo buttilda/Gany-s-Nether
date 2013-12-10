@@ -1,5 +1,7 @@
 package ganymedes01.ganysnether.integration;
 
+import ganymedes01.ganysnether.integration.cg.GanysNetherCraftGuideConfig;
+
 /**
  * Gany's Nether
  * 
@@ -7,10 +9,11 @@ package ganymedes01.ganysnether.integration;
  * 
  */
 
-public class EE3Manager extends Integration {
+public class CraftGuideManager extends Integration {
 
 	@Override
 	public void init() {
+		new GanysNetherCraftGuideConfig();
 	}
 
 	@Override
@@ -19,6 +22,6 @@ public class EE3Manager extends Integration {
 
 	@Override
 	public String getModID() {
-		return "EE3";
+		return "craftguide";
 	}
 }

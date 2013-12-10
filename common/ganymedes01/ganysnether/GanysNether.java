@@ -72,6 +72,8 @@ public class GanysNether {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		ModIntegrator.preInit();
+
 		ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MASTER + File.separator + Reference.MOD_ID + ".cfg"));
 
 		if (shouldDoVersionCheck) {
