@@ -3,8 +3,13 @@ package ganymedes01.ganysnether.items;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.client.model.ModelBlazeArmour;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.integration.GanysEndManager;
 import ganymedes01.ganysnether.lib.ModMaterials;
+
+import java.util.Map;
+
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -48,11 +53,18 @@ public class BlazeArmour extends ItemArmor {
 				stack.setItemDamage(0);
 			coolDown = MAX_COOL_DOWN;
 		}
-		if (player.isInWater())
-			stack.damageItem(1, player);
-		else if (player.handleLavaMovement() || player.isBurning())
-			if (stack.getItemDamage() > 0)
-				stack.setItemDamage(stack.getItemDamage() - 2);
+
+		boolean isWaterproof = false;
+		Map enchs = EnchantmentHelper.getEnchantments(stack);
+		if (!enchs.isEmpty() && enchs.get(GanysEndManager.getImperviousnessID()) != null)
+			isWaterproof = true;
+
+		if (!isWaterproof)
+			if (player.isInWater())
+				stack.damageItem(1, player);
+			else if (player.handleLavaMovement() || player.isBurning())
+				if (stack.getItemDamage() > 0)
+					stack.setItemDamage(stack.getItemDamage() - 2);
 
 		if (stack.getItemDamage() < 0)
 			stack.setItemDamage(0);
