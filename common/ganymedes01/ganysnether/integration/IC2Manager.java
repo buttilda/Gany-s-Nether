@@ -15,12 +15,12 @@ public class IC2Manager extends Integration {
 
 	@Override
 	public void init() {
-		registerOre("copper");
-		registerOre("tin");
-		registerOre("silver");
-		registerOre("lead");
-		registerOre("iron", new ItemStack(Item.ingotIron, 2));
-		registerOre("gold", new ItemStack(Item.ingotGold, 2));
+		addMetalToMagmaticCentrifuge("copper");
+		addMetalToMagmaticCentrifuge("tin");
+		addMetalToMagmaticCentrifuge("silver");
+		addMetalToMagmaticCentrifuge("lead");
+		addMetalToMagmaticCentrifuge("iron", new ItemStack(Item.ingotIron, 2));
+		addMetalToMagmaticCentrifuge("gold", new ItemStack(Item.ingotGold, 2));
 
 		MagmaticCentrifugeRecipes.addOreDictRecipe("ingotCopper", "ingotTin", getItem("bronzeIngot", 2));
 		MagmaticCentrifugeRecipes.addRecipe(getItem("copperDust"), getItem("tinDust"), getItem("bronzeDust", 2));
@@ -35,11 +35,11 @@ public class IC2Manager extends Integration {
 		return "IC2";
 	}
 
-	private void registerOre(String ore) {
-		registerOre(ore, getItem(ore + "Ingot", 2));
+	private void addMetalToMagmaticCentrifuge(String ore) {
+		addMetalToMagmaticCentrifuge(ore, getItem(ore + "Ingot", 2));
 	}
 
-	private void registerOre(String ore, ItemStack ingot) {
+	private void addMetalToMagmaticCentrifuge(String ore, ItemStack ingot) {
 		char first = Character.toUpperCase(ore.charAt(0));
 		String Ore = first + ore.substring(1);
 
