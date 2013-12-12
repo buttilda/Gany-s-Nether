@@ -48,6 +48,7 @@ public class VolcanicFurnaceHandler {
 		blackListItem(new ItemStack(Block.vine));
 		blackListItem(new ItemStack(Block.cactus));
 
+		addBurnTimeForItem(new ItemStack(ModItems.glowingReed), 32);
 		addBurnTimeForItem(new ItemStack(ModBlocks.denseLavaCell), 5000);
 		addBurnTimeForItem(new ItemStack(Item.netherStar), 10000);
 		addBurnTimeForItem(new ItemStack(Block.fire), 600);
