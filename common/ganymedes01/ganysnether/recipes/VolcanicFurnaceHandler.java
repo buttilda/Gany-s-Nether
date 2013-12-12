@@ -21,6 +21,7 @@ import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -202,12 +203,16 @@ public class VolcanicFurnaceHandler {
 		double z = maxZ - minZ;
 
 		double volume = 16 * x * y * z;
+
+		if (block.blockHardness > 0.0F)
+			if (block.blockHardness <= 1.0F || MinecraftForge.getBlockHarvestLevel(block, stack.getItemDamage(), "pickaxe") > 2)
+				volume *= block.blockHardness;
+
 		int intVolume = (int) volume;
 
 		if (intVolume <= 0)
-			blackListItem(stack);
-		else
-			addBurnTimeForItem(stack, intVolume);
+			intVolume = 1;
+		addBurnTimeForItem(stack, intVolume);
 
 		return intVolume;
 	}
