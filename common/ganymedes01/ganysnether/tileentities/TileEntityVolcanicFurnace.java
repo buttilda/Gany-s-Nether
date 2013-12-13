@@ -121,17 +121,41 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 		return tank.getFluidAmount();
 	}
 
+	private boolean areItemStacksEqual(ItemStack stack1, ItemStack stack2) {
+		if (stack1 != null && stack2 != null) {
+			ItemStack one = stack1.copy();
+			ItemStack two = stack2.copy();
+			one.stackSize = 1;
+			two.stackSize = 1;
+
+			return ItemStack.areItemStacksEqual(one, two);
+		}
+		return false;
+	}
+
 	@Override
 	public void updateEntity() {
 		if (worldObj.isRemote)
 			return;
 		if (furnaceItemStacks[1] != null)
-			if (FluidContainerRegistry.isContainer(furnaceItemStacks[1]) && tank.getFluidAmount() >= FluidContainerRegistry.BUCKET_VOLUME && furnaceItemStacks[2] == null) {
-				furnaceItemStacks[2] = FluidContainerRegistry.fillFluidContainer(tank.drain(FluidContainerRegistry.BUCKET_VOLUME, true), furnaceItemStacks[1]);
-				if (furnaceItemStacks[2] != null) {
-					furnaceItemStacks[1].stackSize--;
-					if (furnaceItemStacks[1].stackSize <= 0)
-						furnaceItemStacks[1] = null;
+			if (tank.getFluidAmount() >= FluidContainerRegistry.BUCKET_VOLUME && FluidContainerRegistry.isContainer(furnaceItemStacks[1])) {
+				ItemStack filledContainer = FluidContainerRegistry.fillFluidContainer(tank.drain(FluidContainerRegistry.BUCKET_VOLUME, false), furnaceItemStacks[1]);
+				if (filledContainer != null) {
+					boolean filled = false;
+					if (furnaceItemStacks[2] == null) {
+						furnaceItemStacks[2] = filledContainer;
+						filled = true;
+					} else if (areItemStacksEqual(filledContainer, furnaceItemStacks[2]) && furnaceItemStacks[2].stackSize < furnaceItemStacks[2].getMaxStackSize()) {
+						furnaceItemStacks[2].stackSize++;
+						filled = true;
+					}
+
+					if (filled) {
+						tank.drain(FluidContainerRegistry.BUCKET_VOLUME, true);
+						furnaceItemStacks[1].stackSize--;
+						if (furnaceItemStacks[1].stackSize <= 0)
+							furnaceItemStacks[1] = null;
+					}
 				}
 			}
 
