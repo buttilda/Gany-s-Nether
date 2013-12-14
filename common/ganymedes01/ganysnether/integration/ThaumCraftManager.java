@@ -52,6 +52,10 @@ public class ThaumCraftManager extends Integration {
 		addAspectsToItem(ModItems.spookyFlour.itemID, new Aspect[] { Aspect.SOUL, Aspect.CROP }, new int[] { 1, 1 });
 		addAspectsToItem(ModItems.dimensionalBread.itemID, new Aspect[] { Aspect.SOUL, Aspect.CROP, Aspect.HUNGER }, new int[] { 1, 3, 2 });
 		addAspectsToItem(ModItems.blazeIngot.itemID, 2, new Aspect[] { Aspect.FIRE }, new int[] { 1 });
+		addAspectsToItem(ModItems.flour.itemID, new Aspect[] { Aspect.HUNGER, Aspect.ENTROPY }, new int[] { 1, 1 });
+		addAspectsToItem(ModItems.hellBushSeeds.itemID, new Aspect[] { Aspect.SEED, Aspect.FIRE }, new int[] { 1, 1 });
+		addAspectsToItem(ModItems.lavaBerry.itemID, new Aspect[] { Aspect.FIRE }, new int[] { 3 });
+		addAspectsToItem(ModBlocks.blazingCactoid.blockID, new Aspect[] { Aspect.PLANT, Aspect.ENTROPY, Aspect.FIRE }, new int[] { 3, 1, 1 });
 	}
 
 	@Override
