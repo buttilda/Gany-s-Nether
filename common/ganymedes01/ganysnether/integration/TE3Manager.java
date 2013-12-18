@@ -20,7 +20,7 @@ public class TE3Manager extends Integration {
 
 	@Override
 	public void init() {
-		addMagmaCruicibleRecipe(40000, new ItemStack(ModItems.lavaBerry), new FluidStack(FluidRegistry.LAVA, 500));
+		addMagmaCruicibleRecipe(30000, new ItemStack(ModItems.lavaBerry), new FluidStack(FluidRegistry.LAVA, 250));
 
 		addInductionSmelterRecipe(4000, new ItemStack(ModItems.spookyFlour), new ItemStack(Block.sand), new ItemStack(Block.slowSand));
 		addInductionSmelterRecipe(4000, new ItemStack(ModItems.quarzBerry), new ItemStack(Block.glass), new ItemStack(Item.netherQuartz));
@@ -52,7 +52,7 @@ public class TE3Manager extends Integration {
 		output.writeToNBT(outputCompound);
 		data.setCompoundTag("output", outputCompound);
 
-		FMLInterModComms.sendMessage("ThermalExpansion", "CrucibleRecipe", data);
+		FMLInterModComms.sendMessage(getModID(), "CrucibleRecipe", data);
 	}
 
 	private void addInductionSmelterRecipe(int energy, ItemStack input1, ItemStack input2, ItemStack output) {
@@ -84,7 +84,7 @@ public class TE3Manager extends Integration {
 			data.setInteger("secondaryChance", chance);
 		}
 
-		FMLInterModComms.sendMessage("ThermalExpansion", "SmelterRecipe", data);
+		FMLInterModComms.sendMessage(getModID(), "SmelterRecipe", data);
 	}
 
 	private void addPulveriserRecipe(int energy, ItemStack input, ItemStack output) {
@@ -100,6 +100,6 @@ public class TE3Manager extends Integration {
 		output.writeToNBT(outputCompound);
 		data.setCompoundTag("primaryOutput", outputCompound);
 
-		FMLInterModComms.sendMessage("ThermalExpansion", "PulverizerRecipe", data);
+		FMLInterModComms.sendMessage(getModID(), "PulverizerRecipe", data);
 	}
 }
