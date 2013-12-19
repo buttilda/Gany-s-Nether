@@ -61,6 +61,7 @@ public class WitherShrub extends NetherCrop {
 
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighbourID) {
+		super.onNeighborBlockChange(world, x, y, z, neighbourID);
 		if (world.isRemote)
 			return;
 		int meta = world.getBlockMetadata(x, y, z);
