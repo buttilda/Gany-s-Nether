@@ -14,8 +14,6 @@ import net.minecraft.world.World;
 
 public class EntitySlowTNT extends EntityTNTPrimed {
 
-	public int fuse;
-
 	public EntitySlowTNT(World world) {
 		super(world);
 	}
