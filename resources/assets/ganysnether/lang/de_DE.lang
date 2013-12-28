@@ -1,0 +1,157 @@
+# Item localizations
+item.ganysnether.quarzBerrySeeds.name=Quarzbeerensamen
+item.ganysnether.quarzBerry.name=Quarzbeere
+item.ganysnether.ghostSeeds.name=Geistersamen
+item.ganysnether.spectreWheatItem.name=Gespensterweizen
+item.ganysnether.glowingReedItem.name=Leuchtendes Zuckerrohr
+item.ganysnether.spookyFlour.name=Gruseliges Mehl
+item.ganysnether.bottomlessBucket.name=Bodenloser Eimer
+item.ganysnether.dimensionalBread.name=Dimensionales Brot
+item.ganysnether.baseballBat.name=Baseballschl‰ger
+item.ganysnether.sceptreOfConcealment.name=Zepter der Tarnung
+item.ganysnether.skeletonSpawner0.name=Erschaffe Normales Skelett
+item.ganysnether.skeletonSpawner1.name=Erschaffe Witherskelett
+item.ganysnether.silverfishScale.name=Silberfischschuppe
+item.ganysnether.batWing.name=Fledermausfl¸gel
+item.ganysnether.cookedBatWing.name=Gekochter Fledermausfl¸gel
+item.ganysnether.wolfTeeth.name=Wolfsz‰hne
+item.ganysnether.blazeIngot0.name=Lohengeflecht
+item.ganysnether.blazeIngot1.name=Lohenbarren
+item.ganysnether.blazeIngot2.name=Lohennugget
+item.ganysnether.sceptreOfFireCharging.name=Zepter der Feueraufladung
+item.ganysnether.sceptreOfLightning.name=Zepter des Blitzes
+item.ganysnether.sceptreCap_0.name=Feueraufladungskappe
+item.ganysnether.sceptreCap_1.name=Blitzkappe
+item.ganysnether.sceptreCap_2.name=Tarnungskappe
+item.ganysnether.witherShrubSeeds.name=Witherbuschsamen
+item.ganysnether.livingSoul.name=Lebende Seele
+item.ganysnether.ironNugget.name=Eisennugget
+item.ganysnether.flour.name=Mehl
+item.ganysnether.hellBushSeeds.name=Hˆllenbuschsamen
+item.ganysnether.lavaBerry.name=Lavabeere
+
+item.ganysnether.blazeHelmet.name=Lohenhelm
+item.ganysnether.blazeChestplate.name=Lohenbrustplatte
+item.ganysnether.blazeLeggings.nameLohenhose
+item.ganysnether.blazeBoots.name=Lohenstiefel
+
+# Block localizations
+tile.ganysnether.tilledNetherrack.name=Bestellter Netherstein
+tile.ganysnether.quarzBerryBush.name=Quarzbeerenbusch
+tile.ganysnether.spectreWheat.name=Gespensterweizen
+tile.ganysnether.glowingReed.name=Leuchtendes Zuckerrohr
+tile.ganysnether.soulGlass.name=Seelenglas
+tile.ganysnether.soulGlassBrick.name=Seelenglassteinziegel
+tile.ganysnether.soulGlassStairs.name=Seelenglassteinziegeltreppe
+tile.ganysnether.soulChest.name=Seelentruhe
+tile.ganysnether.volcanicFurnace_true.name=Vulkanofen
+tile.ganysnether.volcanicFurnace_false.name=Vulkanofen
+tile.ganysnether.denseLavaCell.name=Dichte Lavazelle
+tile.ganysnether.reproducer.name=Vervielf‰ltiger
+tile.ganysnether.undertaker.name=Bestatter
+tile.ganysnether.witherShrub.name=Witherbusch
+tile.ganysnether.magmaticCentrifuge.name=Magmatische Zentrifuge
+tile.ganysnether.weepingPod.name=Weinende Schote
+tile.ganysnether.soulGlassPane.name=Seelenglasscheibe
+tile.ganysnether.soulTNT.name=Seelen-TNT
+tile.ganysnether.blazingCactoid.name=Lohenkaktoid
+tile.ganysnether.hellBush.name=Hˆllenbusch
+
+tile.ganysnether.glowBoxBlack.name=Schwarzer Leuchtkasten
+tile.ganysnether.glowBoxRed.name=Roter Leuchtkasten
+tile.ganysnether.glowBoxGreen.name=Gr¸ner Leuchtkasten
+tile.ganysnether.glowBoxBrown.name=Brauner Leuchtkasten
+tile.ganysnether.glowBoxBlue.name=Blauer Leuchtkasten
+tile.ganysnether.glowBoxPurple.name=Violetter Leuchtkasten
+tile.ganysnether.glowBoxCyan.name=T¸rkiser Leuchtkasten
+tile.ganysnether.glowBoxLightGrey.name=Hellgrauer Leuchtkasten
+tile.ganysnether.glowBoxGrey.name=Grauer Leuchtkasten
+tile.ganysnether.glowBoxPink.name=Rosa Leuchtkasten
+tile.ganysnether.glowBoxLime.name=Hellgr¸ner Leuchtkasten
+tile.ganysnether.glowBoxYellow.name=Gelber Leuchtkasten
+tile.ganysnether.glowBoxLightBlue.name=Hellblauer Leuchtkasten
+tile.ganysnether.glowBoxMagenta.name=Magenta Leuchtkasten
+tile.ganysnether.glowBoxOrange.name=Oranger Leuchtkasten
+tile.ganysnether.glowBoxWhite.name=Weiﬂer Leuchtkasten
+
+tile.ganysnether.colouredQuartzBlockBlack.name=Schwarzer Quarzblock
+tile.ganysnether.colouredQuartzBlockRed.name=Roter Quarzblock
+tile.ganysnether.colouredQuartzBlockGreen.name=Gr¸ner Quarzblock
+tile.ganysnether.colouredQuartzBlockBrown.name=Brauner Quarzblock
+tile.ganysnether.colouredQuartzBlockBlue.name=Blauer Quarzblock
+tile.ganysnether.colouredQuartzBlockPurple.name=Violetter Quarzblock
+tile.ganysnether.colouredQuartzBlockCyan.name=T¸rkiser Quarzblock
+tile.ganysnether.colouredQuartzBlockLightGrey.name=Hellgrauer Quarzblock
+tile.ganysnether.colouredQuartzBlockGrey.name=Grauer Quarzblock
+tile.ganysnether.colouredQuartzBlockPink.name=Rosa Quarzblock
+tile.ganysnether.colouredQuartzBlockLime.name=Hellgr¸ner Quarzblock
+tile.ganysnether.colouredQuartzBlockYellow.name=Gelber Quarzblock
+tile.ganysnether.colouredQuartzBlockLightBlue.name=Hellblauer Quarzblock
+tile.ganysnether.colouredQuartzBlockMagenta.name=Magenta Quarzblock
+tile.ganysnether.colouredQuartzBlockOrange.name=Oranger Quarzblock
+tile.ganysnether.colouredQuartzBlockWhite.name=Weiﬂer Quarzblock
+
+tile.ganysnether.colouredChiselledQuartzBlockBlack.name=Schwarzer gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockRed.name=Roter gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockGreen.name=Gr¸ner gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockBrown.name=Brauner gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockBlue.name=Blauer gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockPurple.name=Violetter gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockCyan.name=T¸rkiser gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockLightGrey.name=Hellgrauer gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockGrey.name=Grauer gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockPink.name=Rosa gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockLime.name=Hellgr¸ner gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockYellow.name=Gelber gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockLightBlue.name=Hellblauer gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockMagenta.name=Magenta gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockOrange.name=Oranger gem. Quarzblock
+tile.ganysnether.colouredChiselledQuartzBlockWhite.name=Weiﬂer gem. Quarzblock
+
+tile.ganysnether.colouredQuartzPillar00.name=Schwarze Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar01.name=Rote Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar02.name=Gr¸ne Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar03.name=Braune Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar10.name=Blaue Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar11.name=Violette Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar12.name=T¸rkise Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar13.name=Hellgraue Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar20.name=Graue Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar21.name=Rosa Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar22.name=Hellgr¸ne Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar23.name=Gelbe Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar30.name=Hellblaue Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar31.name=Magenta Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar32.name=Orange Quarzs‰ule
+tile.ganysnether.colouredQuartzPillar33.name=Weiﬂe Quarzs‰ule
+
+tile.ganysnether.blackQuartzStairs.name=Schwarze Quarztreppe
+tile.ganysnether.redQuartzStairs.name=Rote Quarztreppe
+tile.ganysnether.greenQuartzStairs.name=Gr¸ne Quarztreppe
+tile.ganysnether.brownQuartzStairs.name=Braune Quarztreppe
+tile.ganysnether.blueQuartzStairs.name=Blaue Quarztreppe
+tile.ganysnether.purpleQuartzStairs.name=Violette Quarztreppe
+tile.ganysnether.cyanQuartzStairs.name=T¸rkise Quarztreppe
+tile.ganysnether.lightGreyQuartzStairs.name=Hellgraue Quarztreppe
+tile.ganysnether.greyQuartzStairs.name=Graue Quarztreppe
+tile.ganysnether.pinkQuartzStairs.name=Rosa Quarztreppe
+tile.ganysnether.limeQuartzStairs.name=Hellgr¸ne Quarztreppe
+tile.ganysnether.yellowQuartzStairs.name=Gelbe Quarztreppe
+tile.ganysnether.lightBlueQuartzStairs.name=Hellblaue Quarztreppe
+tile.ganysnether.magentaQuartzStairs.name=Magenta Quarztreppe
+tile.ganysnether.orangeQuartzStairs.name=Orange Quarztreppe
+tile.ganysnether.whiteQuartzStairs.name=Weiﬂe Quarztreppe
+
+# GUI localizations
+container.ganysnether:volcanicFurnace=Vulkanofen
+container.ganysnether:reproducer=Vervielf‰ltiger
+container.ganysnether:soulChest=Seelentruhe
+container.ganysnether:undertaker=Bestatter
+container.ganysnether:magmaticCentrifuge=Magmatische Zentrifuge
+fluidtogo=Vorh. Fl¸ssigkeit:
+
+# Creative Tab localizations
+itemGroup.ganysnether=Gany's Nether
+
+# Others
+hotontheinside=Heiﬂ im Innern
