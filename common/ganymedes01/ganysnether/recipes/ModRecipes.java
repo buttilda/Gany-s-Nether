@@ -29,6 +29,7 @@ public class ModRecipes {
 
 	public static void init() {
 		registerOreDictionary();
+
 		registerBlockRecipes();
 		registerItemRecipes();
 		registerArmourRecipes();
@@ -62,7 +63,7 @@ public class ModRecipes {
 
 		createCapRecipe(0, new ItemStack(Block.tnt), new ItemStack(ModItems.blazeIngot, 1, 1), Item.fireballCharge);
 		createCapRecipe(1, new ItemStack(Item.netherQuartz), new ItemStack(Item.netherStalkSeeds), Item.netherStar);
-		createCapRecipe(2, new ItemStack(Item.egg), Item.netherStar);
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.sceptreCap, 1, 2), "xxx", "xyx", "xxx", 'x', "egg", 'y', Item.netherStar));
 
 		createSceptreRecipe(ModItems.sceptreOfFireCharging, 0, Item.magmaCream, GanysNether.sceptreOfFireCharging);
 		createSceptreRecipe(ModItems.sceptreOfLightning, 1, Item.ingotGold, GanysNether.sceptreOfLightningDurability);
@@ -136,5 +137,8 @@ public class ModRecipes {
 	private static void registerOreDictionary() {
 		OreDictionary.registerOre("nuggetIron", ModItems.ironNugget);
 		OreDictionary.registerOre("dustWheat", ModItems.flour);
+
+		if (OreDictionary.getOres("egg").isEmpty())
+			OreDictionary.registerOre("egg", new ItemStack(Item.egg));
 	}
 }
