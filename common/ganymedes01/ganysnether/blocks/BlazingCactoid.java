@@ -44,8 +44,15 @@ public class BlazingCactoid extends BlockCactus {
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
-		if (rand.nextInt(5) == 0)
-			super.updateTick(world, x, y, z, rand);
+		if (!world.isRemote)
+			if (world.isAirBlock(x, y + 1, z) && rand.nextInt(4) == 2) {
+				int height;
+				for (height = 1; world.getBlockId(x, y - height, z) == blockID; height++);
+				if (height < 5) {
+					world.setBlock(x, y + 1, z, blockID);
+					onNeighborBlockChange(world, x, y + 1, z, blockID);
+				}
+			}
 	}
 
 	@Override
