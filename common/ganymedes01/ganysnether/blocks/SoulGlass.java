@@ -73,8 +73,8 @@ public class SoulGlass extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess access, int x, int y, int z, int side) {
-		int i1 = access.getBlockId(x, y, z);
-		return i1 == blockID ? false : super.shouldSideBeRendered(access, x, y, z, side);
+		int id = access.getBlockId(x, y, z);
+		return id == blockID ? false : super.shouldSideBeRendered(access, x, y, z, side);
 	}
 
 	@Override
