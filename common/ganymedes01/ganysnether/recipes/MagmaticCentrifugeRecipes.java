@@ -78,8 +78,8 @@ public class MagmaticCentrifugeRecipes {
 
 	public static void initOreDictRecipes() {
 		if (!Loader.isModLoaded("IC2")) {
-			addOreDictRecipe("oreGold", "oreGold", new ItemStack(Item.ingotGold, 2), new ItemStack(Item.goldNugget));
-			addOreDictRecipe("oreIron", "oreIron", new ItemStack(Item.ingotIron, 2), new ItemStack(ModItems.ironNugget));
+			addOreDictRecipe("oreGold", "oreGold", new ItemStack(Item.ingotGold, 3), new ItemStack(Item.goldNugget));
+			addOreDictRecipe("oreIron", "oreIron", new ItemStack(Item.ingotIron, 3), new ItemStack(ModItems.ironNugget));
 		}
 		addOreDictRecipe("dyeBlack", new ItemStack(Block.cloth, 1, 4), new ItemStack(Block.sponge));
 	}

@@ -19,8 +19,8 @@ public class IC2Manager extends Integration {
 		addMetalToMagmaticCentrifuge("tin");
 		addMetalToMagmaticCentrifuge("silver");
 		addMetalToMagmaticCentrifuge("lead");
-		addMetalToMagmaticCentrifuge("iron", new ItemStack(Item.ingotIron, 2));
-		addMetalToMagmaticCentrifuge("gold", new ItemStack(Item.ingotGold, 2));
+		addMetalToMagmaticCentrifuge("iron", new ItemStack(Item.ingotIron, 3));
+		addMetalToMagmaticCentrifuge("gold", new ItemStack(Item.ingotGold, 3));
 
 		MagmaticCentrifugeRecipes.addOreDictRecipe("ingotCopper", "ingotTin", getItem("bronzeIngot", 2));
 		MagmaticCentrifugeRecipes.addRecipe(getItem("copperDust"), getItem("tinDust"), getItem("bronzeDust", 2));
@@ -36,7 +36,7 @@ public class IC2Manager extends Integration {
 	}
 
 	private void addMetalToMagmaticCentrifuge(String ore) {
-		addMetalToMagmaticCentrifuge(ore, getItem(ore + "Ingot", 2));
+		addMetalToMagmaticCentrifuge(ore, getItem(ore + "Ingot", 3));
 	}
 
 	private void addMetalToMagmaticCentrifuge(String ore, ItemStack ingot) {
