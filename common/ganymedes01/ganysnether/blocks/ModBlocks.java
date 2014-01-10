@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.blocks.ItemColouredChiselledQuartzBlock;
 import ganymedes01.ganysnether.items.blocks.ItemColouredQuartzBlock;
@@ -63,7 +64,8 @@ public class ModBlocks {
 		for (int i = 0; i < colouredQuartzPillar.length; i++)
 			colouredQuartzPillar[i] = new ColouredQuartzPillar(i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_PILLARS_NAME) + i);
 		reproducer = new Reproducer();
-		undertaker = new Undertaker();
+		if (GanysNether.enableUndertaker)
+			undertaker = new Undertaker();
 		witherShrub = new WitherShrub();
 		magmaticCentrifuge = new MagmaticCentrifuge();
 		weepingPod = new WeepingPod();
@@ -93,7 +95,8 @@ public class ModBlocks {
 		for (int i = 0; i < colouredQuartzPillar.length; i++)
 			GameRegistry.registerBlock(colouredQuartzPillar[i], ItemColouredQuartzPillars.class, Strings.COLOURED_QUARTZ_PILLARS_NAME + i);
 		GameRegistry.registerBlock(reproducer, Strings.REPRODUCER_NAME);
-		GameRegistry.registerBlock(undertaker, Strings.UNDERTAKER_NAME);
+		if (GanysNether.enableUndertaker)
+			GameRegistry.registerBlock(undertaker, Strings.UNDERTAKER_NAME);
 		GameRegistry.registerBlock(witherShrub, Strings.WITHER_SHRUB_NAME);
 		GameRegistry.registerBlock(magmaticCentrifuge, Strings.MAGMATIC_CENTRIFUGE_NAME);
 		GameRegistry.registerBlock(weepingPod, Strings.WEEPING_POD_NAME);

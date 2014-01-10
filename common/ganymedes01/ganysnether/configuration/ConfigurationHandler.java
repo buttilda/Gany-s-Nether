@@ -132,6 +132,7 @@ public class ConfigurationHandler {
 			GanysNether.shouldGenerateUndertakers = configBoolean(Strings.SHOULD_GENERATE_UNDERTAKERS, true);
 			GanysNether.shouldDoVersionCheck = configBoolean(Strings.SHOULD_DO_VERSION_CHECK, true);
 			GanysNether.shouldGhastTearHaveDispenserAction = configBoolean(Strings.SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION, true);
+			GanysNether.enableUndertaker = configBoolean(Strings.ENABLE_UNDERTAKER, true);
 
 			GanysNether.netherCropRate = configInteger(Strings.NETHER_CROP_RATE, 20);
 			GanysNether.witherShrubRate = configInteger(Strings.WITHER_SHRUB_RATE, 50);
