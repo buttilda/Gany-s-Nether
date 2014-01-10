@@ -11,6 +11,7 @@ import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
@@ -23,7 +24,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 public class EntityDeathEvent {
 
-	@ForgeSubscribe
+	@ForgeSubscribe(priority = EventPriority.HIGHEST)
 	public void deathEvent(LivingDeathEvent event) {
 		Random rand = new Random();
 		if (!event.entityLiving.worldObj.isRemote)
