@@ -28,6 +28,7 @@ public class TE3Manager extends Integration {
 
 		addPulveriserRecipe(3000, new ItemStack(ModItems.glowingReed), new ItemStack(Item.glowstone, 3));
 		addPulveriserRecipe(6000, new ItemStack(ModItems.spectreWheat), new ItemStack(ModItems.spookyFlour));
+		addPulveriserRecipe(1500, new ItemStack(Item.wheat), new ItemStack(ModItems.flour));
 	}
 
 	@Override

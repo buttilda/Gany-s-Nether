@@ -10,6 +10,7 @@ import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -51,10 +52,16 @@ public class EntityDeathEvent {
 				TileEntity tile = player.worldObj.getBlockTileEntity(x, y, z);
 				if (tile instanceof TileEntityUndertaker) {
 					TileEntityUndertaker undertaker = (TileEntityUndertaker) tile;
-					for (int i = 0; i < player.inventory.mainInventory.length; i++)
-						undertaker.setInventorySlotContents(i, player.inventory.mainInventory[i]);
-					for (int i = 0; i < player.inventory.armorInventory.length; i++)
-						undertaker.setInventorySlotContents(i + player.inventory.mainInventory.length, player.inventory.armorInventory[player.inventory.armorInventory.length - 1 - i]);
+					for (int i = 0; i < player.inventory.mainInventory.length; i++) {
+						ItemStack cont = player.inventory.mainInventory[i];
+						if (cont != null)
+							undertaker.setInventorySlotContents(i, cont.copy());
+					}
+					for (int i = 0; i < player.inventory.armorInventory.length; i++) {
+						ItemStack cont = player.inventory.armorInventory[player.inventory.armorInventory.length - 1 - i];
+						if (cont != null)
+							undertaker.setInventorySlotContents(i + player.inventory.mainInventory.length, cont);
+					}
 					event.setCanceled(true);
 				}
 			}
