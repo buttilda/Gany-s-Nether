@@ -33,6 +33,7 @@ public class TilledNetherrack extends BlockFarmland {
 	protected TilledNetherrack() {
 		super(ModIDs.TILLED_NETHERRACK_ID);
 		setHardness(0.5F);
+		setLightOpacity(0);
 		setStepSound(soundGravelFootstep);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.TILLED_NETHERRACK_NAME));
 	}

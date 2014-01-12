@@ -96,4 +96,15 @@ public class WeepingPod extends BlockCocoa {
 	public Icon getIcon(int side, int meta) {
 		return iconArray[2];
 	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int idPicked(World world, int x, int y, int z) {
+		return Item.ghastTear.itemID;
+	}
+
+	@Override
+	public int getDamageValue(World world, int x, int y, int z) {
+		return 0;
+	}
 }
