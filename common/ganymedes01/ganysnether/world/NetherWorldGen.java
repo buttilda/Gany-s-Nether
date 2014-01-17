@@ -61,7 +61,7 @@ public class NetherWorldGen implements IWorldGenerator {
 														}
 														return;
 													case 4:
-														world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
+														world.setBlock(blockX, blockY - 1, blockZ, Block.netherrack.blockID);
 														world.setBlock(blockX, blockY, blockZ, ModBlocks.blazingCactoid.blockID);
 														if (rand.nextInt(10) == 5)
 															world.setBlock(blockX, blockY + 1, blockZ, ModBlocks.blazingCactoid.blockID);
