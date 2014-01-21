@@ -32,49 +32,57 @@ public class NetherWorldGen implements IWorldGenerator {
 						int blockY = y + 1;
 						int blockZ = chunkZ * 16 + z;
 
-						if (rand.nextInt(GanysNether.netherCropRate) == 0)
-							if (!world.isAirBlock(blockX, blockY - 1, blockZ))
-								if (world.getBlockMaterial(blockX, blockY - 1, blockZ) != Material.lava)
-									if (world.isAirBlock(blockX, blockY, blockZ))
-										if (hasLavaNearby(world, blockX, blockY - 1, blockZ)) {
-											if (GanysNether.shouldGenerateCrops)
-												switch (rand.nextInt(6)) {
-													case 0:
-														world.setBlock(blockX, blockY - 1, blockZ, Block.netherrack.blockID);
-														world.setBlock(blockX, blockY, blockZ, ModBlocks.glowingReed.blockID);
-														if (rand.nextInt(10) == 5)
-															world.setBlock(blockX, blockY + 1, blockZ, ModBlocks.glowingReed.blockID);
-														return;
-													case 1:
-														world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
-														world.setBlock(blockX, blockY, blockZ, ModBlocks.spectreWheat.blockID, rand.nextInt(7), 2);
-														return;
-													case 2:
-														world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
-														world.setBlock(blockX, blockY, blockZ, ModBlocks.quarzBerryBush.blockID, rand.nextInt(7), 2);
-														return;
-													case 3:
-														if (rand.nextInt(GanysNether.witherShrubRate) == 0) {
-															world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
-															world.setBlock(blockX, blockY, blockZ, ModBlocks.witherShrub.blockID, rand.nextInt(6), 2);
-															world.setBlock(blockX, blockY + 1, blockZ, Block.glowStone.blockID);
-														}
-														return;
-													case 4:
-														world.setBlock(blockX, blockY - 1, blockZ, Block.netherrack.blockID);
-														world.setBlock(blockX, blockY, blockZ, ModBlocks.blazingCactoid.blockID);
-														if (rand.nextInt(10) == 5)
-															world.setBlock(blockX, blockY + 1, blockZ, ModBlocks.blazingCactoid.blockID);
-														return;
-													case 5:
-														world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
-														world.setBlock(blockX, blockY, blockZ, ModBlocks.hellBush.blockID, rand.nextInt(7), 2);
-														return;
+						if (GanysNether.shouldGenerateCrops)
+							if (rand.nextInt(GanysNether.netherCropRate) == 0)
+								if (shouldGenerate(world, blockX, blockY, blockZ))
+									if (hasLavaNearby(world, blockX, blockY - 1, blockZ))
+										switch (rand.nextInt(6)) {
+											case 0:
+												world.setBlock(blockX, blockY - 1, blockZ, Block.netherrack.blockID);
+												world.setBlock(blockX, blockY, blockZ, ModBlocks.glowingReed.blockID);
+												if (rand.nextInt(10) == 5)
+													world.setBlock(blockX, blockY + 1, blockZ, ModBlocks.glowingReed.blockID);
+												return;
+											case 1:
+												world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
+												world.setBlock(blockX, blockY, blockZ, ModBlocks.spectreWheat.blockID, rand.nextInt(7), 2);
+												return;
+											case 2:
+												world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
+												world.setBlock(blockX, blockY, blockZ, ModBlocks.quarzBerryBush.blockID, rand.nextInt(7), 2);
+												return;
+											case 3:
+												if (rand.nextInt(GanysNether.witherShrubRate) == 0) {
+													world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
+													world.setBlock(blockX, blockY, blockZ, ModBlocks.witherShrub.blockID, rand.nextInt(6), 2);
+													world.setBlock(blockX, blockY + 1, blockZ, Block.glowStone.blockID);
 												}
-										} else if (rand.nextInt(GanysNether.undertakerRate) == 0)
-											if (GanysNether.shouldGenerateUndertakers)
-												generateUndertakerWithRandomContents(world, blockX, blockY, blockZ, rand);
+												return;
+											case 4:
+												world.setBlock(blockX, blockY - 1, blockZ, Block.netherrack.blockID);
+												world.setBlock(blockX, blockY, blockZ, ModBlocks.blazingCactoid.blockID);
+												if (rand.nextInt(10) == 5)
+													world.setBlock(blockX, blockY + 1, blockZ, ModBlocks.blazingCactoid.blockID);
+												return;
+											case 5:
+												world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
+												world.setBlock(blockX, blockY, blockZ, ModBlocks.hellBush.blockID, rand.nextInt(7), 2);
+												return;
+										}
+
+						if (GanysNether.shouldGenerateUndertakers)
+							if (rand.nextInt(GanysNether.undertakerRate) == 0)
+								if (shouldGenerate(world, blockX, blockY, blockZ))
+									generateUndertakerWithRandomContents(world, blockX, blockY, blockZ, rand);
 					}
+	}
+
+	private boolean shouldGenerate(World world, int x, int y, int z) {
+		if (!world.isAirBlock(x, y - 1, z))
+			if (world.isAirBlock(x, y, z))
+				if (world.getBlockMaterial(x, y - 1, z) != Material.lava)
+					return true;
+		return false;
 	}
 
 	private boolean hasLavaNearby(World world, int x, int y, int z) {
