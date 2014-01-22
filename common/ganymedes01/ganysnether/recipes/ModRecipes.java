@@ -130,6 +130,8 @@ public class ModRecipes {
 	}
 
 	private static void registerOreDictionary() {
+		OreDictionary.registerOre("ingotBlaze", new ItemStack(ModItems.blazeIngot, 1, 1));
+		OreDictionary.registerOre("nuggetBlaze", new ItemStack(ModItems.blazeIngot, 1, 2));
 		OreDictionary.registerOre("nuggetIron", ModItems.ironNugget);
 		OreDictionary.registerOre("dustWheat", ModItems.flour);
 
