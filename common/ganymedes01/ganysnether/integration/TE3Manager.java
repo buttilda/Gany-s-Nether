@@ -1,12 +1,14 @@
 package ganymedes01.ganysnether.integration;
 
 import ganymedes01.ganysnether.items.ModItems;
+import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
@@ -29,6 +31,10 @@ public class TE3Manager extends Integration {
 		addPulveriserRecipe(3000, new ItemStack(ModItems.glowingReed), new ItemStack(Item.glowstone, 3));
 		addPulveriserRecipe(6000, new ItemStack(ModItems.spectreWheat), new ItemStack(ModItems.spookyFlour));
 		addPulveriserRecipe(1500, new ItemStack(Item.wheat), new ItemStack(ModItems.flour));
+
+		ItemStack ingotInvar = OreDictionary.getOres("ingotInvar").get(0).copy();
+		ingotInvar.stackSize = 2;
+		MagmaticCentrifugeRecipes.addOreDictRecipe("ingotIron", "ingotNickel", ingotInvar);
 	}
 
 	@Override

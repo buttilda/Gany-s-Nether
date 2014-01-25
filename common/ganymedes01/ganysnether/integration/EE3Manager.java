@@ -6,10 +6,8 @@ import ganymedes01.ganysnether.items.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import com.pahimar.ee3.addon.AddonHandler;
-import com.pahimar.ee3.api.OreStack;
-import com.pahimar.ee3.emc.EmcValue;
+import net.minecraft.nbt.NBTTagCompound;
+import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
  * Gany's Nether
@@ -35,7 +33,7 @@ public class EE3Manager extends Integration {
 		addEMCValueToItem(ModItems.quarzBerrySeeds, 127.75F);
 		addEMCValueToItem(ModItems.wolfTeeth, 172);
 		addEMCValueToItem(ModItems.glowingReed, 300);
-		addEMCValueToStack(new ItemStack(ModItems.sceptreCap, 1, 2), 24823);
+		addEMCValue(new ItemStack(ModItems.sceptreCap, 1, 2), 24823);
 		addEMCValueToItem(ModItems.lavaBerry, 8);
 		addEMCValueToItem(ModItems.hellBushSeeds, 4);
 		addEMCValueToItem(ModItems.silverfishScale, 32);
@@ -43,28 +41,46 @@ public class EE3Manager extends Integration {
 		addEMCValueToItem(ModItems.cookedBatWing, 10);
 		addEMCValueToItem(ModItems.witherShrubSeeds, 10000);
 
-		addEMCValueToStack(new ItemStack(ModItems.blazeIngot, 1, 2), 512);
-		addEMCValueToOre("dustWheat", 24);
+		addEMCValue(new ItemStack(ModItems.blazeIngot, 1, 2), 512);
+		addEMCValue("dustWheat", 24);
 	}
 
 	private void addEMCValueToBlock(Block block, float value) {
-		addEMCValueToStack(new ItemStack(block), value);
+		addEMCValue(new ItemStack(block), value);
 	}
 
 	private void addEMCValueToItem(Item item, float value) {
-		addEMCValueToStack(new ItemStack(item), value);
+		addEMCValue(new ItemStack(item), value);
 	}
 
-	private void addEMCValueToStack(ItemStack stack, float value) {
-		AddonHandler.sendPreValueAssignment(stack, new EmcValue(value));
+	private void addEMCValue(Object obj, float value) {
+		NBTTagCompound data = new NBTTagCompound();
+
+		data.setFloat("emcValue", value);
+
+		if (obj instanceof ItemStack) {
+			NBTTagCompound stackCompound = new NBTTagCompound();
+			((ItemStack) obj).writeToNBT(stackCompound);
+			data.setCompoundTag("itemStack", stackCompound);
+		} else if (obj instanceof String)
+			data.setString("oreName", (String) obj);
+
+		FMLInterModComms.sendMessage(getModID(), "emc-assign-value-pre", data);
 	}
 
-	private void addEMCValueToOre(String ore, float value) {
-		AddonHandler.sendPreValueAssignment(new OreStack(ore), new EmcValue(value));
-	}
+	private void addPostEMCValue(Object obj, float value) {
+		NBTTagCompound data = new NBTTagCompound();
 
-	private void addPostEMCValueToStack(ItemStack stack, float value) {
-		AddonHandler.sendPostValueAssignment(stack, new EmcValue(value));
+		data.setFloat("emcValue", value);
+
+		if (obj instanceof ItemStack) {
+			NBTTagCompound stackCompound = new NBTTagCompound();
+			((ItemStack) obj).writeToNBT(stackCompound);
+			data.setCompoundTag("itemStack", stackCompound);
+		} else if (obj instanceof String)
+			data.setString("oreName", (String) obj);
+
+		FMLInterModComms.sendMessage(getModID(), "emc-assign-value-post", data);
 	}
 
 	@Override
