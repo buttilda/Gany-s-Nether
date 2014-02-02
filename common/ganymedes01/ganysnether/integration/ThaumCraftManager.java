@@ -5,6 +5,7 @@ import ganymedes01.ganysnether.core.utils.HoeList;
 import ganymedes01.ganysnether.items.ModItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import thaumcraft.api.ItemApi;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -21,7 +22,8 @@ public class ThaumCraftManager extends Integration {
 
 	@Override
 	public void init() {
-		HoeList.registerThaumcraftHoes();
+		HoeList.addHoe(ItemApi.getItem("itemHoeThaumium", 0));
+		HoeList.addHoe(ItemApi.getItem("itemHoeElemental", 0));
 
 		ThaumcraftApi.addSmeltingBonus(new ItemStack(ModItems.blazeIngot, 1, 1), new ItemStack(ModItems.blazeIngot, 0, 2));
 
