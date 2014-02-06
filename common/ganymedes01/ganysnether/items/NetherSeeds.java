@@ -18,7 +18,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class NetherSeeds extends ItemSeeds {
 
-	private int blockType;
+	private final int blockType;
 
 	public NetherSeeds(int id, int cropID) {
 		super(id, cropID, ModBlocks.tilledNetherrack.blockID);
@@ -31,13 +31,13 @@ public class NetherSeeds extends ItemSeeds {
 		if (side != 1)
 			return false;
 		else if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack)) {
-			int i1 = world.getBlockId(x, y, z);
-			if (i1 == ModBlocks.tilledNetherrack.blockID) {
-				Block soil = Block.blocksList[i1];
+			int soilID = world.getBlockId(x, y, z);
+			if (soilID == ModBlocks.tilledNetherrack.blockID) {
+				Block soil = Block.blocksList[soilID];
 
 				if (soil != null && soil.canSustainPlant(world, x, y, z, ForgeDirection.UP, this) && world.isAirBlock(x, y + 1, z)) {
 					world.setBlock(x, y + 1, z, blockType);
-					--stack.stackSize;
+					stack.stackSize--;
 					return true;
 				}
 			}

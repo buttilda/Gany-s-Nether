@@ -102,7 +102,8 @@ public class GanysNether {
 		MinecraftForge.EVENT_BUS.register(new HoeEvent());
 		MinecraftForge.EVENT_BUS.register(new EntityDeathEvent());
 		MinecraftForge.EVENT_BUS.register(new BonemealOnNetherCrops());
-		MinecraftForge.EVENT_BUS.register(new PlayerRightClickEvent());
+		if (shouldGenerateCrops)
+			MinecraftForge.EVENT_BUS.register(new PlayerRightClickEvent());
 
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
