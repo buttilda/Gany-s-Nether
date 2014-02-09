@@ -5,11 +5,12 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
-import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes.CentrifugeRecipe;
+import ganymedes01.ganysnether.recipes.centrifuge.CentrifugeRecipe;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
@@ -29,6 +30,10 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
  */
 
 public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
+
+	private boolean change;
+	private int ticks;
+	private static final Random rand = new Random();
 
 	@Override
 	public Class<? extends GuiContainer> getGuiClass() {
@@ -74,6 +79,25 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 	}
 
 	@Override
+	public void onUpdate() {
+		super.onUpdate();
+		ticks++;
+		if (ticks >= 20) {
+			ticks = 0;
+			change = true;
+		}
+	}
+
+	@Override
+	public void drawExtras(int recipe) {
+		if (change) {
+			for (PositionedStack stack : arecipes.get(recipe).getIngredients())
+				stack.setPermutationToRender(rand.nextInt(stack.items.length));
+			change = false;
+		}
+	}
+
+	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
 		if (outputId.equals(getRecipeId()))
 			for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.getRecipes())
@@ -98,8 +122,8 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 
 	private class CachedCentrifugeRecipe extends CachedRecipe {
 
-		private ArrayList<PositionedStack> materials = new ArrayList<PositionedStack>();
-		private ArrayList<PositionedStack> result = new ArrayList<PositionedStack>();
+		private final ArrayList<PositionedStack> materials = new ArrayList<PositionedStack>();
+		private final ArrayList<PositionedStack> result = new ArrayList<PositionedStack>();
 
 		public CachedCentrifugeRecipe(CentrifugeRecipe recipe) {
 			materials.add(new PositionedStack(recipe.getMaterial(1), 30, 20));

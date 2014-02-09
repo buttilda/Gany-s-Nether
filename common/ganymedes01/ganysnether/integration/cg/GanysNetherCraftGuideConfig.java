@@ -2,9 +2,10 @@ package ganymedes01.ganysnether.integration.cg;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
-import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes.CentrifugeRecipe;
 import ganymedes01.ganysnether.recipes.ReproducerRecipes;
+import ganymedes01.ganysnether.recipes.centrifuge.CentrifugeRecipe;
 
+import java.util.ArrayList;
 import java.util.Map.Entry;
 
 import net.minecraft.item.ItemStack;
@@ -49,14 +50,23 @@ public class GanysNetherCraftGuideConfig extends CraftGuideAPIObject implements 
 
 		for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.getRecipes()) {
 			ItemStack[] contents = new ItemStack[7];
-			contents[0] = recipe.getMaterial(1).copy();
-			contents[1] = recipe.getMaterial(2).copy();
+			contents[0] = getStack(recipe.getMaterial(1));
+			contents[1] = getStack(recipe.getMaterial(2));
 			for (int i = 0; i < recipe.getResult().length; i++)
 				contents[2 + i] = recipe.getResult()[i].copy();
 			contents[6] = new ItemStack(ModBlocks.magmaticCentrifuge);
 
 			generator.addRecipe(template, contents);
 		}
+	}
+
+	private ItemStack getStack(Object obj) {
+		if (obj instanceof ItemStack)
+			return (ItemStack) obj;
+		else if (obj instanceof ArrayList)
+			return ((ArrayList<ItemStack>) obj).get(0);
+		else
+			return null;
 	}
 
 	private void addReproducerRecipes(RecipeGenerator generator) {

@@ -20,7 +20,6 @@ public class TConstructManager extends Integration {
 	public void init() {
 		registerOre("Cobalt");
 		registerOre("Ardite");
-		registerOre("Aluminium");
 	}
 
 	private void registerOre(String ore) {
