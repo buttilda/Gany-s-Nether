@@ -9,6 +9,7 @@ import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.InterModComms;
 import ganymedes01.ganysnether.core.handlers.PlayerRightClickEvent;
 import ganymedes01.ganysnether.core.handlers.RenderCapeHandler;
+import ganymedes01.ganysnether.core.handlers.TooltipEvent;
 import ganymedes01.ganysnether.core.handlers.VersionCheckTickHandler;
 import ganymedes01.ganysnether.core.proxy.CommonProxy;
 import ganymedes01.ganysnether.core.utils.HoeList;
@@ -102,8 +103,10 @@ public class GanysNether {
 		MinecraftForge.EVENT_BUS.register(new HoeEvent());
 		MinecraftForge.EVENT_BUS.register(new EntityDeathEvent());
 		MinecraftForge.EVENT_BUS.register(new BonemealOnNetherCrops());
-		if (shouldGenerateCrops)
+		if (shouldGenerateCrops) {
 			MinecraftForge.EVENT_BUS.register(new PlayerRightClickEvent());
+			MinecraftForge.EVENT_BUS.register(new TooltipEvent());
+		}
 
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
