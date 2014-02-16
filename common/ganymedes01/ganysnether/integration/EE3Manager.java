@@ -1,12 +1,10 @@
 package ganymedes01.ganysnether.integration;
 
-import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.items.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
@@ -22,8 +20,7 @@ public class EE3Manager extends Integration {
 	public void init() {
 		addEMCValueToBlock(ModBlocks.soulGlass, 49);
 		addEMCValueToBlock(Block.fire, 160);
-		if (GanysNether.enableUndertaker)
-			addEMCValueToBlock(ModBlocks.undertaker, 599);
+		addEMCValueToBlock(ModBlocks.undertaker, 599);
 		addEMCValueToBlock(ModBlocks.blazingCactoid, 1200);
 		addEMCValueToItem(ModItems.spectreWheat, 48);
 		addEMCValueToItem(ModItems.spookyFlour, 48.5F);
@@ -46,41 +43,31 @@ public class EE3Manager extends Integration {
 	}
 
 	private void addEMCValueToBlock(Block block, float value) {
-		addEMCValue(new ItemStack(block), value);
+		if (block != null)
+			addEMCValue(new ItemStack(block), value);
 	}
 
 	private void addEMCValueToItem(Item item, float value) {
-		addEMCValue(new ItemStack(item), value);
+		if (item != null)
+			addEMCValue(new ItemStack(item), value);
 	}
 
 	private void addEMCValue(Object obj, float value) {
-		NBTTagCompound data = new NBTTagCompound();
+		String string = "{\"wrappedStack\":{\"className\":\"%s\",\"stackSize\":1,\"wrappedStack\":{%s}},\"emcValue\":{\"OMNI\":0.0,\"CORPOREAL\":%f,\"KINETIC\":0.0,\"TEMPORAL\":0.0,\"ESSENTIA\":0.0,\"AMORPHOUS\":0.0,\"VOID\":0.0}}";
 
-		data.setFloat("emcValue", value);
-
+		String stack = null;
+		String className = null;
 		if (obj instanceof ItemStack) {
-			NBTTagCompound stackCompound = new NBTTagCompound();
-			((ItemStack) obj).writeToNBT(stackCompound);
-			data.setCompoundTag("itemStack", stackCompound);
-		} else if (obj instanceof String)
-			data.setString("oreName", (String) obj);
+			ItemStack s = (ItemStack) obj;
+			stack = "\"stackSize\":" + s.stackSize + ",\"itemID\":" + s.itemID + ",\"itemDamage\":" + s.getItemDamage();
+			className = "ItemStack";
+		} else if (obj instanceof String) {
+			stack = "\"oreName\":\"" + (String) obj + "\",\"stackSize\":1";
+			className = "OreStack";
+		}
 
-		FMLInterModComms.sendMessage(getModID(), "emc-assign-value-pre", data);
-	}
-
-	private void addPostEMCValue(Object obj, float value) {
-		NBTTagCompound data = new NBTTagCompound();
-
-		data.setFloat("emcValue", value);
-
-		if (obj instanceof ItemStack) {
-			NBTTagCompound stackCompound = new NBTTagCompound();
-			((ItemStack) obj).writeToNBT(stackCompound);
-			data.setCompoundTag("itemStack", stackCompound);
-		} else if (obj instanceof String)
-			data.setString("oreName", (String) obj);
-
-		FMLInterModComms.sendMessage(getModID(), "emc-assign-value-post", data);
+		if (stack != null && className != null)
+			FMLInterModComms.sendMessage(getModID(), "emc-assign-value-pre", String.format(string, className, stack, value));
 	}
 
 	@Override
