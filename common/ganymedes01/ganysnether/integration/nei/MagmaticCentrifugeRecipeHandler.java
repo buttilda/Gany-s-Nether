@@ -61,8 +61,8 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void loadTransferRects() {
-		transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(51, 24, 10, 8), getRecipeId(), new Object[0]));
-		transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(105, 24, 10, 8), getRecipeId(), new Object[0]));
+		transferRects.add(new RecipeTransferRect(new Rectangle(51, 24, 10, 8), getRecipeId()));
+		transferRects.add(new RecipeTransferRect(new Rectangle(105, 24, 10, 8), getRecipeId()));
 	}
 
 	@Override
