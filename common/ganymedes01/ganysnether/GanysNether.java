@@ -71,7 +71,7 @@ public class GanysNether {
 	public static boolean enableUndertaker = true;
 	public static int netherCropRate = 20;
 	public static int witherShrubRate = 50;
-	public static int undertakerRate = 300;
+	public static int undertakerRate = 1200;
 	public static int undertakerFillSlotChance = 10;
 
 	@EventHandler

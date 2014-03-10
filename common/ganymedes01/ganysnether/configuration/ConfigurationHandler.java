@@ -134,10 +134,10 @@ public class ConfigurationHandler {
 			GanysNether.shouldGhastTearHaveDispenserAction = configBoolean(Strings.SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION, true);
 			GanysNether.enableUndertaker = configBoolean(Strings.ENABLE_UNDERTAKER, true);
 
-			GanysNether.netherCropRate = configInteger(Strings.NETHER_CROP_RATE, 20);
-			GanysNether.witherShrubRate = configInteger(Strings.WITHER_SHRUB_RATE, 50);
-			GanysNether.undertakerRate = configInteger(Strings.UNDERTAKER_RATE, 300);
-			GanysNether.undertakerFillSlotChance = configInteger(Strings.UNDERTAKER_FILL_SLOT_CHANCE, 10);
+			GanysNether.netherCropRate = configInteger(Strings.NETHER_CROP_RATE, GanysNether.netherCropRate);
+			GanysNether.witherShrubRate = configInteger(Strings.WITHER_SHRUB_RATE, GanysNether.witherShrubRate);
+			GanysNether.undertakerRate = configInteger(Strings.UNDERTAKER_RATE, GanysNether.undertakerRate);
+			GanysNether.undertakerFillSlotChance = configInteger(Strings.UNDERTAKER_FILL_SLOT_CHANCE, GanysNether.undertakerFillSlotChance);
 
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");
