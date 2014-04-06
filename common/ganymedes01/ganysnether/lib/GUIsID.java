@@ -13,5 +13,6 @@ public class GUIsID {
 	public static final int REPRODUCER = 1;
 	public static final int UNDERTAKER = 2;
 	public static final int MAGMATIC_CENTRIFUGE = 3;
+	public static final int THERMAL_SMELTER = 4;
 
 }

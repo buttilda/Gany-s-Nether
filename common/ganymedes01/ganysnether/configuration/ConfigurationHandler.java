@@ -84,6 +84,9 @@ public class ConfigurationHandler {
 			ModIDs.SOUL_TNT_ID = configBlock(Strings.SOUL_TNT_NAME);
 			ModIDs.BLAZING_CACTOID_ID = configBlock(Strings.BLAZING_CACTOID_NAME);
 			ModIDs.HELL_BUSH_ID = configBlock(Strings.HELL_BUSH_NAME);
+			ModIDs.THERMAL_SMELTER_ID = configBlock(Strings.THERMAL_SMELTER_NAME);
+			ModIDs.HORSE_ARMOUR_STAND_ID = configBlock(Strings.HORSE_ARMOUR_STAND_NAME);
+			ModIDs.EXTENDED_SPAWNER_ID = configBlock(Strings.EXTENDED_SPAWNER_NAME);
 
 			// Armour
 			ModIDs.BLAZE_HELMET_ID = configItem(Strings.BLAZE_HELMET_NAME);
@@ -117,6 +120,8 @@ public class ConfigurationHandler {
 			ModIDs.FLOUR_ID = configItem(Strings.FLOUR_NAME);
 			ModIDs.HELL_BUSH_SEEDS_ID = configItem(Strings.HELL_BUSH_SEEDS_NAME);
 			ModIDs.LAVA_BERRY_ID = configItem(Strings.LAVA_BERRY_NAME);
+			ModIDs.NETHER_CORE_ID = configItem(Strings.NETHER_CORE_NAME);
+			ModIDs.SPAWNER_UPGRADE_ID = configItem(Strings.SPAWNER_UPGRADE_NAME);
 
 			// Mod Integration
 			for (Integration integration : ModIntegrator.modIntegrations)

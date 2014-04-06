@@ -21,8 +21,7 @@ public class Strings {
 	public static final String GLOW_BOX_NAME = "glowBox";
 	public static final String COLOURED_QUARTZ_BLOCK_NAME = "colouredQuartzBlock";
 	public static final String COLOURED_CHISELLED_QUARTZ_BLOCK_NAME = "colouredChiselledQuartzBlock";
-	public static final String[] COLOURED_QUARTZ_STAIRS_NAMES = new String[] { "blackQuartzStairs", "redQuartzStairs", "greenQuartzStairs", "brownQuartzStairs", "blueQuartzStairs", "purpleQuartzStairs", "cyanQuartzStairs", "lightGreyQuartzStairs", "greyQuartzStairs", "pinkQuartzStairs",
-	"limeQuartzStairs", "yellowQuartzStairs", "lightBlueQuartzStairs", "magentaQuartzStairs", "orangeQuartzStairs", "whiteQuartzStairs" };
+	public static final String[] COLOURED_QUARTZ_STAIRS_NAMES = new String[] { "blackQuartzStairs", "redQuartzStairs", "greenQuartzStairs", "brownQuartzStairs", "blueQuartzStairs", "purpleQuartzStairs", "cyanQuartzStairs", "lightGreyQuartzStairs", "greyQuartzStairs", "pinkQuartzStairs", "limeQuartzStairs", "yellowQuartzStairs", "lightBlueQuartzStairs", "magentaQuartzStairs", "orangeQuartzStairs", "whiteQuartzStairs" };
 	public static final String SOUL_GLASS_STAIRS_NAME = "soulGlassStairs";
 	public static final String COLOURED_QUARTZ_PILLARS_NAME = "colouredQuartzPillar";
 	public static final String REPRODUCER_NAME = "reproducer";
@@ -33,6 +32,9 @@ public class Strings {
 	public static final String SOUL_TNT_NAME = "soulTNT";
 	public static final String BLAZING_CACTOID_NAME = "blazingCactoid";
 	public static final String HELL_BUSH_NAME = "hellBush";
+	public static final String THERMAL_SMELTER_NAME = "thermalSmelter";
+	public static final String HORSE_ARMOUR_STAND_NAME = "horseArmourStand";
+	public static final String EXTENDED_SPAWNER_NAME = "extendedSpawner";
 
 	// Item names
 	public static final String QUARZ_BERRY_SEEDS_NAME = "quarzBerrySeeds";
@@ -64,6 +66,8 @@ public class Strings {
 	public static final String FLOUR_NAME = "flour";
 	public static final String HELL_BUSH_SEEDS_NAME = "hellBushSeeds";
 	public static final String LAVA_BERRY_NAME = "lavaBerry";
+	public static final String NETHER_CORE_NAME = "netherCore";
+	public static final String SPAWNER_UPGRADE_NAME = "spawnerUpgrade";
 
 	// Entities
 	public static final String ENTITY_LIGHTNING_BALL_NAME = "EntityLightningBall";

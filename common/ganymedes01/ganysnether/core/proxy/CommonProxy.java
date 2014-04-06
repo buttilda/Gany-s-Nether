@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.core.proxy;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.client.gui.inventory.GuiThermalSmelter;
 import ganymedes01.ganysnether.client.gui.inventory.GuiMagmaticCentrifuge;
 import ganymedes01.ganysnether.client.gui.inventory.GuiReproducer;
 import ganymedes01.ganysnether.client.gui.inventory.GuiUndertaker;
@@ -8,6 +9,7 @@ import ganymedes01.ganysnether.client.gui.inventory.GuiVolcanicFurnace;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.entities.EntityLightningBall;
 import ganymedes01.ganysnether.entities.EntitySlowTNT;
+import ganymedes01.ganysnether.inventory.ContainerThermalSmelter;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.inventory.ContainerReproducer;
 import ganymedes01.ganysnether.inventory.ContainerUndertaker;
@@ -15,12 +17,17 @@ import ganymedes01.ganysnether.inventory.ContainerVolcanicFurnace;
 import ganymedes01.ganysnether.lib.GUIsID;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
+import ganymedes01.ganysnether.tileentities.TileEntityHorseArmourStand;
 import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
 import ganymedes01.ganysnether.tileentities.TileEntityReproducer;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
+import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
+import ganymedes01.ganysnether.tileentities.TileEntityThermalSmelter;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -38,16 +45,14 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class CommonProxy implements IGuiHandler {
 
 	public void registerTileEntities() {
-		//		GameRegistry.registerTileEntity(TileEntitySoulChest.class, Utils.getUnlocalizedName(Strings.SOUL_CHEST_NAME));
-		//		GameRegistry.registerTileEntity(TileEntityVolcanicFurnace.class, Utils.getUnlocalizedName(Strings.VOLCANIC_FURNACE_NAME));
-		//		GameRegistry.registerTileEntity(TileEntityReproducer.class, Utils.getUnlocalizedName(Strings.REPRODUCER_NAME));
-		//		GameRegistry.registerTileEntity(TileEntityUndertaker.class, Utils.getUnlocalizedName(Strings.UNDERTAKER_NAME));
-
 		GameRegistry.registerTileEntity(TileEntitySoulChest.class, Strings.SOUL_CHEST_NAME);
 		GameRegistry.registerTileEntity(TileEntityVolcanicFurnace.class, Strings.VOLCANIC_FURNACE_NAME);
 		GameRegistry.registerTileEntity(TileEntityReproducer.class, Strings.REPRODUCER_NAME);
 		GameRegistry.registerTileEntity(TileEntityUndertaker.class, Strings.UNDERTAKER_NAME);
 		GameRegistry.registerTileEntity(TileEntityMagmaticCentrifuge.class, Utils.getUnlocalizedName(Strings.MAGMATIC_CENTRIFUGE_NAME));
+		GameRegistry.registerTileEntity(TileEntityThermalSmelter.class, Utils.getUnlocalizedName(Strings.THERMAL_SMELTER_NAME));
+		GameRegistry.registerTileEntity(TileEntityHorseArmourStand.class, Utils.getUnlocalizedName(Strings.HORSE_ARMOUR_STAND_NAME));
+		GameRegistry.registerTileEntity(TileEntityExtendedSpawner.class, Utils.getUnlocalizedName(Strings.EXTENDED_SPAWNER_NAME));
 	}
 
 	public void registerEntities() {
@@ -56,50 +61,47 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	public void registerRenderers() {
-
 	}
 
 	public void handleTileMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
+	}
 
+	public void handleTileHorseArmourStandPacket(int x, int y, int z, byte type, byte rotation) {
 	}
 
 	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+	public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		switch (ID) {
 			case GUIsID.VOLCANIC_FURNACE:
-				TileEntityVolcanicFurnace tileVolcanicFurnace = (TileEntityVolcanicFurnace) tile;
-				return new ContainerVolcanicFurnace(player.inventory, tileVolcanicFurnace);
+				return new ContainerVolcanicFurnace(player.inventory, (TileEntityVolcanicFurnace) tile);
 			case GUIsID.REPRODUCER:
-				TileEntityReproducer tileReproducer = (TileEntityReproducer) tile;
-				return new ContainerReproducer(player.inventory, tileReproducer);
+				return new ContainerReproducer(player.inventory, (TileEntityReproducer) tile);
 			case GUIsID.UNDERTAKER:
-				TileEntityUndertaker tileUndertaker = (TileEntityUndertaker) tile;
-				return new ContainerUndertaker(player.inventory, tileUndertaker);
+				return new ContainerUndertaker(player.inventory, (TileEntityUndertaker) tile);
 			case GUIsID.MAGMATIC_CENTRIFUGE:
-				TileEntityMagmaticCentrifuge tileCentrifuge = (TileEntityMagmaticCentrifuge) tile;
-				return new ContainerMagmaticCentrifuge(player.inventory, tileCentrifuge);
+				return new ContainerMagmaticCentrifuge(player.inventory, (TileEntityMagmaticCentrifuge) tile);
+			case GUIsID.THERMAL_SMELTER:
+				return new ContainerThermalSmelter(player.inventory, (TileEntityThermalSmelter) tile);
 			default:
 				return null;
 		}
 	}
 
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+	public GuiContainer getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		switch (ID) {
 			case GUIsID.VOLCANIC_FURNACE:
-				TileEntityVolcanicFurnace tileVolcanicFurnace = (TileEntityVolcanicFurnace) tile;
-				return new GuiVolcanicFurnace(player.inventory, tileVolcanicFurnace);
+				return new GuiVolcanicFurnace(player.inventory, (TileEntityVolcanicFurnace) tile);
 			case GUIsID.REPRODUCER:
-				TileEntityReproducer tileReproducer = (TileEntityReproducer) tile;
-				return new GuiReproducer(player.inventory, tileReproducer);
+				return new GuiReproducer(player.inventory, (TileEntityReproducer) tile);
 			case GUIsID.UNDERTAKER:
-				TileEntityUndertaker tileUndertaker = (TileEntityUndertaker) tile;
-				return new GuiUndertaker(player.inventory, tileUndertaker);
+				return new GuiUndertaker(player.inventory, (TileEntityUndertaker) tile);
 			case GUIsID.MAGMATIC_CENTRIFUGE:
-				TileEntityMagmaticCentrifuge tileCentrifuge = (TileEntityMagmaticCentrifuge) tile;
-				return new GuiMagmaticCentrifuge(new ContainerMagmaticCentrifuge(player.inventory, tileCentrifuge));
+				return new GuiMagmaticCentrifuge(player.inventory, (TileEntityMagmaticCentrifuge) tile);
+			case GUIsID.THERMAL_SMELTER:
+				return new GuiThermalSmelter(player.inventory, (TileEntityThermalSmelter) tile);
 			default:
 				return null;
 		}

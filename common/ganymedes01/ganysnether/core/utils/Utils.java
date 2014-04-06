@@ -56,7 +56,7 @@ public class Utils {
 	}
 
 	public static final String getConainerName(String name) {
-		return "container." + Reference.MOD_ID + ":" + name;
+		return "container." + Reference.MOD_ID + "." + name;
 	}
 
 	public static final void dropStack(World world, int x, int y, int z, ItemStack stack) {

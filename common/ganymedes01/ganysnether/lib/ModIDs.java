@@ -35,6 +35,9 @@ public class ModIDs {
 	public static int SOUL_TNT_ID;
 	public static int BLAZING_CACTOID_ID;
 	public static int HELL_BUSH_ID;
+	public static int THERMAL_SMELTER_ID;
+	public static int HORSE_ARMOUR_STAND_ID;
+	public static int EXTENDED_SPAWNER_ID;
 
 	// Items
 	public static int QUARZ_BERRY_SEEDS_ID;
@@ -62,6 +65,8 @@ public class ModIDs {
 	public static int FLOUR_ID;
 	public static int HELL_BUSH_SEEDS_ID;
 	public static int LAVA_BERRY_ID;
+	public static int NETHER_CORE_ID;
+	public static int SPAWNER_UPGRADE_ID;
 
 	// Armour
 	public static int BLAZE_HELMET_ID;

@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ModelHorseArmourStand extends ModelBase {
 
 	private final ModelRenderer head, mouthTop, mouthBottom, leftEar, rightEar, neck, mane;
-	private final ModelRenderer body, tailBase;
+	private final ModelRenderer body, tail;
 	private final ModelRenderer backLeftLeg, backLeftShin;
 	private final ModelRenderer backRightLeg, backRightShin;
 	private final ModelRenderer frontRightLeg, frontLeftShin;
@@ -29,8 +29,8 @@ public class ModelHorseArmourStand extends ModelBase {
 
 		body = new ModelRenderer(this, 0, 34);
 		body.addBox(-5, -8, -19, 10, 10, 24);
-		tailBase = new ModelRenderer(this, 44, 0);
-		tailBase.addBox(-1, -1, 0, 2, 2, 3);
+		tail = new ModelRenderer(this, 44, 0);
+		tail.addBox(-1, -1, 0, 2, 2, 3);
 		backLeftLeg = new ModelRenderer(this, 78, 29);
 		backLeftLeg.addBox(-2.5F, -2, -2.5F, 4, 9, 5);
 		backLeftShin = new ModelRenderer(this, 78, 43);
@@ -79,7 +79,7 @@ public class ModelHorseArmourStand extends ModelBase {
 		frontLeftLeg.render(0.0625F);
 		frontRightShin.render(0.0625F);
 		body.render(0.0625F);
-		tailBase.render(0.0625F);
+		tail.render(0.0625F);
 		neck.render(0.0625F);
 		mane.render(0.0625F);
 		leftEar.render(0.0625F);
@@ -103,7 +103,7 @@ public class ModelHorseArmourStand extends ModelBase {
 		setAngles(0, 0, 0, 0, 0.02F, 0.02F, mouthTop);
 		setAngles(0, 0, 0, 0, 0, 0, mouthBottom, base);
 		setAngles(0, 0, 0, 0, 11, 9, body);
-		setAngles(-1.3089F, 0, 0, 0, 3, 14, tailBase);
+		setAngles(-1.3089F, 0, 0, 0, 3, 14, tail);
 		setAngles(0, 0, 0, 4, 9, 11, backLeftLeg);
 		setAngles(0, 0, 0, 4, 16, 11, backLeftShin);
 		setAngles(0, 0, 0, -4, 9, 11, backRightLeg);

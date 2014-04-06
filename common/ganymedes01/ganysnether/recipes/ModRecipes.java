@@ -6,9 +6,11 @@ import ganymedes01.ganysnether.core.utils.ConcealmentHandler;
 import ganymedes01.ganysnether.items.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -43,14 +45,17 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ItemStack(ModItems.blazeBoots), "x x", "x x", 'x', new ItemStack(ModItems.blazeIngot, 1, 1));
 	}
 
+	private static ItemStack getEchantedStack(Item item, Enchantment enchant, int level) {
+		ItemStack stack = new ItemStack(item);
+		stack.setTagCompound(new NBTTagCompound());
+		Item.enchantedBook.addEnchantment(stack, new EnchantmentData(enchant, level));
+		return stack;
+	}
+
 	private static void registerItemRecipes() {
 		GameRegistry.addRecipe(new ItemStack(ModItems.bottomlessBucket), "xxx", "zxz", "yzy", 'x', Item.bucketEmpty, 'y', Block.slowSand, 'z', Item.netherrackBrick);
-		ItemStack knockBackBookI = new ItemStack(Item.enchantedBook);
-		knockBackBookI.addEnchantment(Enchantment.knockback, 1);
-		GameRegistry.addRecipe(new ItemStack(ModItems.baseballBat), " zx", " yz", "y  ", 'x', Item.diamond, 'y', Item.netherrackBrick, 'z', knockBackBookI);
-		ItemStack knockBackBookII = new ItemStack(Item.enchantedBook);
-		knockBackBookII.addEnchantment(Enchantment.knockback, 2);
-		GameRegistry.addRecipe(new ItemStack(ModItems.baseballBat), " zx", " y ", "y  ", 'x', Item.diamond, 'y', Item.netherrackBrick, 'z', knockBackBookII);
+		GameRegistry.addRecipe(EnchantSensitiveRecipe.makeRecipe(new ItemStack(ModItems.baseballBat), " zx", " yz", "y  ", 'x', Item.diamond, 'y', Item.netherrackBrick, 'z', getEchantedStack(Item.enchantedBook, Enchantment.knockback, 1)));
+		GameRegistry.addRecipe(EnchantSensitiveRecipe.makeRecipe(new ItemStack(ModItems.baseballBat), " zx", " y ", "y  ", 'x', Item.diamond, 'y', Item.netherrackBrick, 'z', getEchantedStack(Item.enchantedBook, Enchantment.knockback, 2)));
 		GameRegistry.addSmelting(ModItems.batWing.itemID, new ItemStack(ModItems.cookedBatWing), 0.0F);
 		FurnaceRecipes.smelting().addSmelting(ModItems.blazeIngot.itemID, 0, new ItemStack(ModItems.blazeIngot, 1, 1), 0.0F);
 		GameRegistry.addRecipe(new ItemStack(ModItems.blazeIngot, 1, 0), "x", "x", "x", 'x', Item.blazeRod);
@@ -65,6 +70,7 @@ public class ModRecipes {
 		createSceptreRecipe(ModItems.sceptreOfFireCharging, 0, Item.magmaCream, GanysNether.sceptreOfFireCharging);
 		createSceptreRecipe(ModItems.sceptreOfLightning, 1, Item.ingotGold, GanysNether.sceptreOfLightningDurability);
 		createSceptreRecipe(ModItems.sceptreOfConcealment, 2, Item.ingotGold, GanysNether.sceptreOfConcealmentDurability);
+		GameRegistry.addRecipe(new ItemStack(ModItems.netherCore), "xyz", "wab", "cde", 'x', Item.magmaCream, 'y', Item.netherStalkSeeds, 'z', Item.netherQuartz, 'w', Item.blazeRod, 'a', Item.glowstone, 'b', Block.slowSand, 'c', Block.netherBrick, 'd', Item.ghastTear, 'e', new ItemStack(Item.skull, 1, 1));
 
 		// Vanilla
 		GameRegistry.addShapelessRecipe(new ItemStack(Item.glowstone, 2), new ItemStack(ModItems.glowingReed));
@@ -84,7 +90,6 @@ public class ModRecipes {
 
 	private static void createSceptreRecipe(Item sceptre, int capMeta, Item handle, int durability) {
 		GameRegistry.addRecipe(new ItemStack(sceptre, 1, durability), "  x", " y ", "z  ", 'x', new ItemStack(ModItems.sceptreCap, 1, capMeta), 'y', handle, 'z', Item.netherrackBrick);
-		GameRegistry.addShapelessRecipe(new ItemStack(sceptre), new ItemStack(ModItems.sceptreCap, 1, capMeta), new ItemStack(sceptre, 1, durability));
 	}
 
 	private static void createCapRecipe(int capMeta, ItemStack capMaterial, Item capCore) {
@@ -124,6 +129,8 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.magmaticCentrifuge), "zyz", "wxw", "zyz", 'x', Block.obsidian, 'y', Block.netherBrick, 'z', Item.blazeRod, 'w', Block.glass);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.magmaticCentrifuge), "zyz", "wxw", "zyz", 'x', Block.obsidian, 'y', Block.netherBrick, 'z', Item.blazeRod, 'w', ModBlocks.soulGlass);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulTNT), "xyx", "yxy", "xyx", 'x', Item.gunpowder, 'y', Block.slowSand);
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.thermalSmelter), "xxx", "yzy", 'x', Item.coal, 'y', Item.bucketLava, 'z', Block.furnaceIdle);
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.horseArmourStand), "xxx", "y y", "y y", 'x', new ItemStack(Block.stoneSingleSlab), 'y', Item.ingotIron);
 
 		// Vanilla
 		GameRegistry.addRecipe(new ItemStack(Block.slowSand, 6), "xxx", "yyy", "xxx", 'x', ModItems.spookyFlour, 'y', Block.sand);

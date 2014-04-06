@@ -1,6 +1,8 @@
 package ganymedes01.ganysnether.core.handlers;
 
+import ganymedes01.ganysnether.blocks.ModBlocks;
 import net.minecraft.item.Item;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -17,5 +19,7 @@ public class TooltipEvent {
 
 		if (id == Item.ghastTear.itemID)
 			event.toolTip.add(StatCollector.translateToLocal("tooltip.ganysnether.ghastTear"));
+		if (id == ModBlocks.extendedSpawner.blockID && event.itemStack.hasTagCompound() && event.itemStack.getTagCompound().hasKey("EntityId"))
+			event.toolTip.add(EnumChatFormatting.GOLD + event.itemStack.getTagCompound().getString("EntityId"));
 	}
 }

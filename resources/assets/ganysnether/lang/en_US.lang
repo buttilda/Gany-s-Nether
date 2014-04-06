@@ -59,7 +59,7 @@ tile.ganysnether.blazingCactoid.name=Blazing Cactoid
 tile.ganysnether.hellBush.name=Hell Bush
 tile.ganysnether.thermalSmelter.name=Thermal Smelter
 tile.ganysnether.horseArmourStand.name=Horse Armour Stand
-tile.ganysnether.spawnerMaintainer.name=Spawner Maintainer
+tile.ganysnether.extendedSpawner.name=Extended Spawner
 
 tile.ganysnether.glowBoxBlack.name=Black Glow Box
 tile.ganysnether.glowBoxRed.name=Red Glow Box
@@ -147,12 +147,12 @@ tile.ganysnether.orangeQuartzStairs.name=Orange Quartz Stairs
 tile.ganysnether.whiteQuartzStairs.name=White Quartz Stairs
 
 # GUI localizations
-container.ganysnether:volcanicFurnace=Volcanic Furnace
-container.ganysnether:reproducer=Reproducer
-container.ganysnether:soulChest=Soul Chest
-container.ganysnether:undertaker=Undertaker
-container.ganysnether:magmaticCentrifuge=Magmatic Centrifuge
-container.ganysnether:lavaSmelter=Lava Smelter
+container.ganysnether.volcanicFurnace=Volcanic Furnace
+container.ganysnether.reproducer=Reproducer
+container.ganysnether.soulChest=Soul Chest
+container.ganysnether.undertaker=Undertaker
+container.ganysnether.magmaticCentrifuge=Magmatic Centrifuge
+container.ganysnether.thermalSmelter=Thermal Smelter
 fluidtogo=Fluid to go:
 
 # Creative Tab localizations

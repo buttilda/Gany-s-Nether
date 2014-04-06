@@ -1,11 +1,11 @@
 package ganymedes01.ganysnether.blocks;
 
-import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.blocks.ItemColouredChiselledQuartzBlock;
 import ganymedes01.ganysnether.items.blocks.ItemColouredQuartzBlock;
 import ganymedes01.ganysnether.items.blocks.ItemColouredQuartzPillars;
 import ganymedes01.ganysnether.items.blocks.ItemGlowBox;
+import ganymedes01.ganysnether.items.blocks.ItemHorseArmourStand;
 import ganymedes01.ganysnether.items.blocks.ItemSoulGlass;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
@@ -44,6 +44,9 @@ public class ModBlocks {
 	public static Block soulTNT;
 	public static Block blazingCactoid;
 	public static Block hellBush;
+	public static Block thermalSmelter;
+	public static Block horseArmourStand;
+	public static Block extendedSpawner;
 
 	public static void init() {
 		tilledNetherrack = new TilledNetherrack();
@@ -64,14 +67,16 @@ public class ModBlocks {
 		for (int i = 0; i < colouredQuartzPillar.length; i++)
 			colouredQuartzPillar[i] = new ColouredQuartzPillar(i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_PILLARS_NAME) + i);
 		reproducer = new Reproducer();
-		if (GanysNether.enableUndertaker)
-			undertaker = new Undertaker();
+		undertaker = new Undertaker();
 		witherShrub = new WitherShrub();
 		magmaticCentrifuge = new MagmaticCentrifuge();
 		weepingPod = new WeepingPod();
 		soulTNT = new SoulTNT();
 		blazingCactoid = new BlazingCactoid();
 		hellBush = new HellBush();
+		thermalSmelter = new ThermalSmelter();
+		horseArmourStand = new HorseArmourStand();
+		extendedSpawner = new ExtendedSpawner();
 
 		registerNames();
 	}
@@ -95,13 +100,15 @@ public class ModBlocks {
 		for (int i = 0; i < colouredQuartzPillar.length; i++)
 			GameRegistry.registerBlock(colouredQuartzPillar[i], ItemColouredQuartzPillars.class, Strings.COLOURED_QUARTZ_PILLARS_NAME + i);
 		GameRegistry.registerBlock(reproducer, Strings.REPRODUCER_NAME);
-		if (GanysNether.enableUndertaker)
-			GameRegistry.registerBlock(undertaker, Strings.UNDERTAKER_NAME);
+		GameRegistry.registerBlock(undertaker, Strings.UNDERTAKER_NAME);
 		GameRegistry.registerBlock(witherShrub, Strings.WITHER_SHRUB_NAME);
 		GameRegistry.registerBlock(magmaticCentrifuge, Strings.MAGMATIC_CENTRIFUGE_NAME);
 		GameRegistry.registerBlock(weepingPod, Strings.WEEPING_POD_NAME);
 		GameRegistry.registerBlock(soulTNT, Strings.SOUL_TNT_NAME);
 		GameRegistry.registerBlock(blazingCactoid, Strings.BLAZING_CACTOID_NAME);
 		GameRegistry.registerBlock(hellBush, Strings.HELL_BUSH_NAME);
+		GameRegistry.registerBlock(thermalSmelter, Strings.THERMAL_SMELTER_NAME);
+		GameRegistry.registerBlock(horseArmourStand, ItemHorseArmourStand.class, Strings.HORSE_ARMOUR_STAND_NAME);
+		GameRegistry.registerBlock(extendedSpawner, Strings.EXTENDED_SPAWNER_NAME);
 	}
 }

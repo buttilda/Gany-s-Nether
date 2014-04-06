@@ -40,6 +40,7 @@ public class ItemHorseArmourStandRender implements IItemRenderer {
 
 		switch (type) {
 			case ENTITY: {
+				GL11.glRotatef(90, 0, 1, 0);
 				render(0.0F, 0.5F, 0.0F);
 				break;
 			}
