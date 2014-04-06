@@ -4,6 +4,7 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -24,14 +25,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiMagmaticCentrifuge extends GuiGanysNether {
 
-	private TileEntityMagmaticCentrifuge centrifuge;
-	private ContainerMagmaticCentrifuge container;
+	private final TileEntityMagmaticCentrifuge centrifuge;
 	private int tankXMin, tankYMin, tankXMax, tankYMax;
 
-	public GuiMagmaticCentrifuge(ContainerMagmaticCentrifuge container) {
-		super(container);
-		this.container = container;
-		centrifuge = container.getCentrifuge();
+	public GuiMagmaticCentrifuge(InventoryPlayer inventory, TileEntityMagmaticCentrifuge centrifuge) {
+		super(new ContainerMagmaticCentrifuge(inventory, centrifuge));
+		this.centrifuge = centrifuge;
 		ySize = 238;
 	}
 
@@ -50,9 +49,10 @@ public class GuiMagmaticCentrifuge extends GuiGanysNether {
 
 		drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
+		ContainerMagmaticCentrifuge container = (ContainerMagmaticCentrifuge) inventorySlots;
 		drawTexturedModalRect(x + ((Slot) container.inventorySlots.get(2)).xDisplayPosition - 1, y + ((Slot) container.inventorySlots.get(2)).yDisplayPosition - 1, 176, 3, 18, 18);
 		drawTexturedModalRect(x + ((Slot) container.inventorySlots.get(3)).xDisplayPosition - 1, y + ((Slot) container.inventorySlots.get(3)).yDisplayPosition - 1, 176, 3, 18, 18);
-		displayGauge(FluidRegistry.LAVA, x, y, 155, 53, centrifuge.getScaledFluidAmount(52));
+		drawFluid(FluidRegistry.LAVA, centrifuge.getScaledFluidAmount(52), x + 155, y + 53, 16, 52);
 
 		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.MAGMATIC_CENTRIFUGE_NAME)));
 		drawTexturedModalRect(x + 155, y + 53, 176, 21, 16, 52);

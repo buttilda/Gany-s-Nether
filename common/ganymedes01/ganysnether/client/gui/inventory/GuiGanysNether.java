@@ -3,8 +3,10 @@ package ganymedes01.ganysnether.client.gui.inventory;
 import ganymedes01.ganysnether.core.utils.Utils;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.inventory.Container;
+import net.minecraft.util.Icon;
 import net.minecraftforge.fluids.Fluid;
 
 import org.lwjgl.opengl.GL11;
@@ -78,22 +80,44 @@ public abstract class GuiGanysNether extends GuiContainer {
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 	}
 
-	protected void displayGauge(Fluid fluid, int j, int k, int u, int v, int scaled) {
-		int start = 0;
+	protected void drawFluid(Fluid fluid, int level, int x, int y, int width, int height) {
+		if (fluid == null)
+			return;
+		Icon icon = fluid.getIcon();
 		mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
-		while (true) {
-			int x;
-			if (scaled > 16) {
-				x = 16;
-				scaled -= 16;
-			} else {
-				x = scaled;
-				scaled = 0;
-			}
-			drawTexturedModelRectFromIcon(j + u, k + v + 52 - x - start, fluid.getStillIcon(), 16, 16 - (16 - x));
-			start += 16;
-			if (x == 0 || scaled == 0)
-				break;
-		}
+		setColour(fluid.getColor());
+		int fullX = width / 16;
+		int fullY = height / 16;
+		int lastX = width - fullX * 16;
+		int lastY = height - fullY * 16;
+		int fullLvl = (height - level) / 16;
+		int lastLvl = height - level - fullLvl * 16;
+		for (int i = 0; i < fullX; i++)
+			for (int j = 0; j < fullY; j++)
+				if (j >= fullLvl)
+					drawCutIcon(icon, x + i * 16, y + j * 16, 16, 16, j == fullLvl ? lastLvl : 0);
+		for (int i = 0; i < fullX; i++)
+			drawCutIcon(icon, x + i * 16, y + fullY * 16, 16, lastY, fullLvl == fullY ? lastLvl : 0);
+		for (int i = 0; i < fullY; i++)
+			if (i >= fullLvl)
+				drawCutIcon(icon, x + fullX * 16, y + i * 16, lastX, 16, i == fullLvl ? lastLvl : 0);
+		drawCutIcon(icon, x + fullX * 16, y + fullY * 16, lastX, lastY, fullLvl == fullY ? lastLvl : 0);
+	}
+
+	private void drawCutIcon(Icon icon, int x, int y, int width, int height, int cut) {
+		Tessellator tess = Tessellator.instance;
+		tess.startDrawingQuads();
+		tess.addVertexWithUV(x, y + height, zLevel, icon.getMinU(), icon.getInterpolatedV(height));
+		tess.addVertexWithUV(x + width, y + height, zLevel, icon.getInterpolatedU(width), icon.getInterpolatedV(height));
+		tess.addVertexWithUV(x + width, y + cut, zLevel, icon.getInterpolatedU(width), icon.getInterpolatedV(cut));
+		tess.addVertexWithUV(x, y + cut, zLevel, icon.getMinU(), icon.getInterpolatedV(cut));
+		tess.draw();
+	}
+
+	protected void setColour(int color) {
+		float red = (color >> 16 & 255) / 255.0F;
+		float green = (color >> 8 & 255) / 255.0F;
+		float blue = (color & 255) / 255.0F;
+		GL11.glColor4f(red, green, blue, 1.0F);
 	}
 }

@@ -19,6 +19,8 @@ public class Undertaker extends SoulChest {
 
 	public Undertaker() {
 		super(ModIDs.UNDERTAKER_ID);
+		if (GanysNether.enableUndertaker)
+			setCreativeTab(GanysNether.netherTab);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.UNDERTAKER_NAME));
 	}
 

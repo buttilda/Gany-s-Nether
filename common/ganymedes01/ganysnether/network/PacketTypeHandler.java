@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.network;
 
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.network.packet.CustomPacket;
+import ganymedes01.ganysnether.network.packet.PacketTileHorseArmourStand;
 import ganymedes01.ganysnether.network.packet.PacketTileMagmaticCentrifuge;
 
 import java.io.ByteArrayInputStream;
@@ -18,7 +19,7 @@ import net.minecraft.network.packet.Packet250CustomPayload;
  */
 
 public enum PacketTypeHandler {
-	TILE_MAGMATIC_CENTRIFUGE(PacketTileMagmaticCentrifuge.class);
+	MAGMATIC_CENTRIFUGE(PacketTileMagmaticCentrifuge.class), HORSE_ARMOUR_STAND(PacketTileHorseArmourStand.class);
 
 	private Class<? extends CustomPacket> clazz;
 

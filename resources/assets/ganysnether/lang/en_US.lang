@@ -29,6 +29,7 @@ item.ganysnether.ironNugget.name=Iron Nugget
 item.ganysnether.flour.name=Flour
 item.ganysnether.hellBushSeeds.name=Hell Bush Seeds
 item.ganysnether.lavaBerry.name=Lava Berry
+item.ganysnether.netherCore.name=Nether Core
 
 item.ganysnether.blazeHelmet.name=Blaze Helmet
 item.ganysnether.blazeChestplate.name=Blaze Chestplate
@@ -56,6 +57,9 @@ tile.ganysnether.soulGlassPane.name=Soul Glass Pane
 tile.ganysnether.soulTNT.name=Soul TNT
 tile.ganysnether.blazingCactoid.name=Blazing Cactoid
 tile.ganysnether.hellBush.name=Hell Bush
+tile.ganysnether.thermalSmelter.name=Thermal Smelter
+tile.ganysnether.horseArmourStand.name=Horse Armour Stand
+tile.ganysnether.spawnerMaintainer.name=Spawner Maintainer
 
 tile.ganysnether.glowBoxBlack.name=Black Glow Box
 tile.ganysnether.glowBoxRed.name=Red Glow Box
@@ -148,6 +152,7 @@ container.ganysnether:reproducer=Reproducer
 container.ganysnether:soulChest=Soul Chest
 container.ganysnether:undertaker=Undertaker
 container.ganysnether:magmaticCentrifuge=Magmatic Centrifuge
+container.ganysnether:lavaSmelter=Lava Smelter
 fluidtogo=Fluid to go:
 
 # Creative Tab localizations

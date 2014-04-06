@@ -47,6 +47,7 @@ public class ModItems {
 	public static Item flour;
 	public static Item hellBushSeeds;
 	public static Item lavaBerry;
+	public static Item netherCore;
 
 	// Armour
 	public static Item blazeHelmet;
@@ -87,6 +88,7 @@ public class ModItems {
 		flour = new Flour();
 		hellBushSeeds = new HellBushSeeds();
 		lavaBerry = new LavaBerry();
+		netherCore = new NetherCore();
 
 		registerNames();
 		registerDispenserActions();
@@ -118,6 +120,7 @@ public class ModItems {
 		GameRegistry.registerItem(flour, Strings.FLOUR_NAME);
 		GameRegistry.registerItem(hellBushSeeds, Strings.HELL_BUSH_SEEDS_NAME);
 		GameRegistry.registerItem(lavaBerry, Strings.LAVA_BERRY_NAME);
+		GameRegistry.registerItem(netherCore, Strings.NETHER_CORE_NAME);
 
 		// Armour
 		GameRegistry.registerItem(blazeHelmet, Strings.BLAZE_HELMET_NAME);

@@ -23,6 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TileEntitySoulChestRender extends TileEntitySpecialRenderer {
 
 	private final ResourceLocation texture;
+	private final ModelSoulChest modelchest = new ModelSoulChest();
 
 	public TileEntitySoulChestRender(ResourceLocation texture) {
 		this.texture = texture;
@@ -32,7 +33,6 @@ public class TileEntitySoulChestRender extends TileEntitySpecialRenderer {
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float angle) {
 		TileEntitySoulChest soulChest = (TileEntitySoulChest) tile;
 
-		ModelSoulChest modelchest = new ModelSoulChest();
 		bindTexture(texture);
 
 		GL11.glPushMatrix();

@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.integration;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.integration.nei.MagmaticCentrifugeRecipeHandler;
 import ganymedes01.ganysnether.integration.nei.ReproducerRecipeHandler;
@@ -35,6 +36,8 @@ public class NEIGanysNetherConfig implements IConfigureNEI {
 		API.hideItem(ModBlocks.witherShrub.blockID);
 		API.hideItem(ModBlocks.weepingPod.blockID);
 		API.hideItem(ModBlocks.hellBush.blockID);
+		if (!GanysNether.enableUndertaker)
+			API.hideItem(ModBlocks.undertaker.blockID);
 	}
 
 	@Override

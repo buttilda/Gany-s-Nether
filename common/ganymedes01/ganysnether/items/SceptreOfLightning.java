@@ -33,4 +33,9 @@ public class SceptreOfLightning extends Sceptre {
 		stack.damageItem(1, player);
 		return stack;
 	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack item, ItemStack material) {
+		return material.itemID == ModItems.sceptreCap.itemID && material.getItemDamage() == 1;
+	}
 }

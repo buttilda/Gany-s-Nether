@@ -57,4 +57,9 @@ public class SceptreOfFireCharging extends Sceptre {
 
 		world.spawnEntityInWorld(entitylargefireball);
 	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack item, ItemStack material) {
+		return material.itemID == ModItems.sceptreCap.itemID && material.getItemDamage() == 0;
+	}
 }

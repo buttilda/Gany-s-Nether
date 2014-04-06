@@ -33,13 +33,13 @@ public class SoulChest extends BlockContainer {
 
 	protected SoulChest() {
 		this(ModIDs.SOUL_CHEST_ID);
+		setCreativeTab(GanysNether.netherTab);
 	}
 
 	protected SoulChest(int id) {
 		super(id, Material.sand);
 		setHardness(2.5F);
 		setStepSound(soundSandFootstep);
-		setCreativeTab(GanysNether.netherTab);
 		setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SOUL_CHEST_NAME));
 	}

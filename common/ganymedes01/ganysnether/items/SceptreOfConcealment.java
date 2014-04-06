@@ -48,4 +48,9 @@ public class SceptreOfConcealment extends Sceptre {
 				}
 		return false;
 	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack item, ItemStack material) {
+		return material.itemID == ModItems.sceptreCap.itemID && material.getItemDamage() == 2;
+	}
 }

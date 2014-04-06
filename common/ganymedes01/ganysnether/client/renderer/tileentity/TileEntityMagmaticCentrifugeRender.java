@@ -29,6 +29,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRenderer {
 
 	private RenderItem customRenderItem;
+	private final ModelMagmaticCentrifuge modelCentrifuge = new ModelMagmaticCentrifuge();
 
 	public TileEntityMagmaticCentrifugeRender() {
 		customRenderItem = new RenderItem() {
@@ -53,7 +54,6 @@ public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRendere
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float angle) {
 		TileEntityMagmaticCentrifuge centrifuge = (TileEntityMagmaticCentrifuge) tile;
-		ModelMagmaticCentrifuge modelCentrifuge = new ModelMagmaticCentrifuge();
 
 		float rotationAngle = centrifuge.getCoreRenderAngle();
 

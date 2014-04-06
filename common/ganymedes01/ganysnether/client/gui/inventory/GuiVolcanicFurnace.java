@@ -24,8 +24,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiVolcanicFurnace extends GuiGanysNether {
 
-	private String FLUID_TO_GO = StatCollector.translateToLocal("fluidtogo") + " ";
-	private TileEntityVolcanicFurnace furnace;
+	private final String FLUID_TO_GO = StatCollector.translateToLocal("fluidtogo") + " ";
+	private final TileEntityVolcanicFurnace furnace;
 	private int tankXMin, tankYMin, tankXMax, tankYMax;
 
 	public GuiVolcanicFurnace(InventoryPlayer inventory, TileEntityVolcanicFurnace tile) {
@@ -44,22 +44,22 @@ public class GuiVolcanicFurnace extends GuiGanysNether {
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.VOLCANIC_FURNACE_NAME)));
-		int j = (width - xSize) / 2;
-		int k = (height - ySize) / 2;
+		int x = (width - xSize) / 2;
+		int y = (height - ySize) / 2;
 
-		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
+		drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
-		displayGauge(FluidRegistry.LAVA, j, k, 104, 17, furnace.getScaledFluidAmount(52));
+		drawFluid(FluidRegistry.LAVA, furnace.getScaledFluidAmount(52), x + 104, y + 17, 16, 52);
 		if (furnace.getMeltTimeRemainingScaled(24) > 0)
-			drawTexturedModelRectFromIcon(j + 73, k + 36, FluidRegistry.LAVA.getStillIcon(), 22 - furnace.getMeltTimeRemainingScaled(24), 15);
+			drawTexturedModelRectFromIcon(x + 73, y + 36, FluidRegistry.LAVA.getStillIcon(), 22 - furnace.getMeltTimeRemainingScaled(24), 15);
 
 		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.VOLCANIC_FURNACE_NAME)));
 
-		drawTexturedModalRect(j + 73, k + 35, 177, 13, 24, 16);
-		drawTexturedModalRect(j + 104, k + 17, 176, 31, 16, 52);
+		drawTexturedModalRect(x + 73, y + 35, 177, 13, 24, 16);
+		drawTexturedModalRect(x + 104, y + 17, 176, 31, 16, 52);
 
 		String fluidAmount = Integer.toString(furnace.meltTime) + " mB";
-		fontRenderer.drawString(fluidAmount, j + 10 + fontRenderer.getStringWidth(FLUID_TO_GO) / 2 - fontRenderer.getStringWidth(fluidAmount) / 2, k + 25, BLACK);
+		fontRenderer.drawString(fluidAmount, x + 10 + fontRenderer.getStringWidth(FLUID_TO_GO) / 2 - fontRenderer.getStringWidth(fluidAmount) / 2, y + 25, BLACK);
 	}
 
 	@Override

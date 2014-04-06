@@ -5,12 +5,16 @@ import ganymedes01.ganysnether.lib.Reference;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.ResourceLocation;
@@ -186,5 +190,18 @@ public class Utils {
 			};
 			return player;
 		}
+	}
+
+	public static final LinkedHashMap<Short, Short> getEnchantments(ItemStack stack) {
+		LinkedHashMap<Short, Short> map = new LinkedHashMap<Short, Short>();
+		NBTTagList list = stack.itemID == Item.enchantedBook.itemID ? Item.enchantedBook.func_92110_g(stack) : stack.getEnchantmentTagList();
+
+		if (list != null)
+			for (int i = 0; i < list.tagCount(); i++) {
+				NBTTagCompound tag = (NBTTagCompound) list.tagAt(i);
+				map.put(tag.getShort("id"), tag.getShort("lvl"));
+			}
+
+		return map;
 	}
 }

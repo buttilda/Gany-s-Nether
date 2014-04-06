@@ -24,11 +24,11 @@ public class PacketTileMagmaticCentrifuge extends CustomPacket {
 	private boolean isRecipeValid;
 
 	public PacketTileMagmaticCentrifuge() {
-		super(PacketTypeHandler.TILE_MAGMATIC_CENTRIFUGE);
+		super(PacketTypeHandler.MAGMATIC_CENTRIFUGE);
 	}
 
 	public PacketTileMagmaticCentrifuge(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
-		super(PacketTypeHandler.TILE_MAGMATIC_CENTRIFUGE);
+		super(PacketTypeHandler.MAGMATIC_CENTRIFUGE);
 		this.x = x;
 		this.y = y;
 		this.z = z;
