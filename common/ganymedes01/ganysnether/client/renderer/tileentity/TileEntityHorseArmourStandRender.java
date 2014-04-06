@@ -14,6 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -53,6 +54,7 @@ public class TileEntityHorseArmourStandRender extends TileEntitySpecialRenderer 
 
 			GL11.glPushMatrix();
 			GL11.glDisable(GL11.GL_CULL_FACE);
+			GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 			GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 1.0F);
 			GL11.glScalef(1.0F, -1.0F, -1.0F);
 
@@ -72,6 +74,7 @@ public class TileEntityHorseArmourStandRender extends TileEntitySpecialRenderer 
 			}
 			bindTexture(getTexture(stand.getArmourType()));
 			model.renderAll();
+			GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 			GL11.glEnable(GL11.GL_CULL_FACE);
 			GL11.glPopMatrix();
 		}

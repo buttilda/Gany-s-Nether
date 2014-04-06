@@ -21,6 +21,7 @@ public class ModelHorseArmourStand extends ModelBase {
 	private final ModelRenderer backRightLeg, backRightShin;
 	private final ModelRenderer frontRightLeg, frontLeftShin;
 	private final ModelRenderer frontLeftLeg, frontRightShin;
+	private final ModelRenderer base;
 
 	public ModelHorseArmourStand() {
 		textureWidth = 128;
@@ -62,6 +63,8 @@ public class ModelHorseArmourStand extends ModelBase {
 		neck.addBox(-2.05F, -9.8F, -2, 4, 14, 8);
 		mane = new ModelRenderer(this, 58, 0);
 		mane.addBox(-1, -11.5F, 5, 2, 16, 4);
+		base = new ModelRenderer(this, 0, 68);
+		base.addBox(-8, 21, -16, 16, 3, 32);
 
 		setAllAngles();
 	}
@@ -82,6 +85,7 @@ public class ModelHorseArmourStand extends ModelBase {
 		leftEar.render(0.0625F);
 		rightEar.render(0.0625F);
 		head.render(0.0625F);
+		base.render(0.0625F);
 	}
 
 	private void setAngles(float x, float y, float z, float px, float py, float pz, ModelRenderer... models) {
@@ -97,7 +101,7 @@ public class ModelHorseArmourStand extends ModelBase {
 	private void setAllAngles() {
 		setAngles(0.5235988F, 0, 0, 0, 4, -10, head, leftEar, rightEar, neck, mane);
 		setAngles(0, 0, 0, 0, 0.02F, 0.02F, mouthTop);
-		setAngles(0, 0, 0, 0, 0, 0, mouthBottom);
+		setAngles(0, 0, 0, 0, 0, 0, mouthBottom, base);
 		setAngles(0, 0, 0, 0, 11, 9, body);
 		setAngles(-1.3089F, 0, 0, 0, 3, 14, tailBase);
 		setAngles(0, 0, 0, 4, 9, 11, backLeftLeg);
