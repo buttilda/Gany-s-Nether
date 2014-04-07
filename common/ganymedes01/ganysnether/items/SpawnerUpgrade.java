@@ -41,9 +41,9 @@ public class SpawnerUpgrade extends Item {
 		tierGold(Utils.getColour(255, 204, 53), new ItemStack(Item.ingotGold), new ItemStack(Block.blockGold)),
 		tierDiamond(Utils.getColour(30, 207, 199), new ItemStack(Item.diamond), new ItemStack(Block.blockDiamond)),
 		tierEmerald(Utils.getColour(63, 213, 102), new ItemStack(Item.emerald), new ItemStack(Block.blockEmerald)),
-		tierNetherStar(Utils.getColour(136, 164, 164), new ItemStack(Item.netherStar), new ItemStack(Item.netherStar)),
+		tierNetherStar(Utils.getColour(136, 164, 164), new ItemStack(Item.ghastTear), new ItemStack(Item.netherStar)),
 		tierDragonEgg(Utils.getColour(87, 2, 98), null,null),
-		redstone(new ItemStack(Item.redstone), new ItemStack(Block.blockRedstone)),
+		redstone(Utils.getColour(181, 31, 10), new ItemStack(Item.redstone), new ItemStack(Block.blockRedstone)),
 		noPlayer(null,null),
 		ignoreConditions(null,null),
 		silky(null,null),
@@ -67,11 +67,11 @@ public class SpawnerUpgrade extends Item {
 		}
 		
 		public ItemStack getMat1() {
-			return mat1.copy();
+			return mat1 == null ? null: mat1.copy();
 		}
 		
 		public ItemStack getMat2() {
-			return mat2.copy();
+			return mat2 == null ? null : mat2.copy();
 		}
 	}
 	//@formatter:on
@@ -132,6 +132,7 @@ public class SpawnerUpgrade extends Item {
 					used = true;
 				} else if (meta == Upgrade.silky.ordinal() && !tile.logic.silkyUpgrade) {
 					tile.logic.silkyUpgrade = true;
+					world.setBlockMetadataWithNotify(x, y, z, 1, 3);
 					used = true;
 				} else if (meta == Upgrade.spawnCount.ordinal()) {
 					tile.logic.spawnCount++;

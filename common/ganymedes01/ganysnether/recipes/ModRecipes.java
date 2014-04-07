@@ -73,8 +73,9 @@ public class ModRecipes {
 		createSceptreRecipe(ModItems.sceptreOfConcealment, 2, Item.ingotGold, GanysNether.sceptreOfConcealmentDurability);
 		GameRegistry.addRecipe(new ItemStack(ModItems.netherCore), "xyz", "wab", "cde", 'x', Item.magmaCream, 'y', Item.netherStalkSeeds, 'z', Item.netherQuartz, 'w', Item.blazeRod, 'a', Item.glowstone, 'b', Block.slowSand, 'c', Block.netherBrick, 'd', Item.ghastTear, 'e', new ItemStack(Item.skull, 1, 1));
 
-		for (int i = 0; i <= Upgrade.tierNetherStar.ordinal(); i++)
-			GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, i), "xyx", "yzy", "xyx", 'x', Upgrade.values()[i].getMat1(), 'y', Upgrade.values()[i].getMat2(), 'z', ModItems.netherCore);
+		for (int i = 0; i < Upgrade.values().length; i++)
+			if (Upgrade.values()[i].getMat1() != null && Upgrade.values()[i].getMat2() != null)
+				GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, i), "xyx", "yzy", "xyx", 'x', Upgrade.values()[i].getMat1(), 'y', Upgrade.values()[i].getMat2(), 'z', ModItems.netherCore);
 		GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.tierDragonEgg.ordinal()), "xyx", "yzy", "xyx", 'x', Item.netherStalkSeeds, 'y', ModItems.netherCore, 'z', Block.dragonEgg);
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.dragonEgg), new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.tierDragonEgg.ordinal()));
 

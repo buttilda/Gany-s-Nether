@@ -37,6 +37,7 @@ public class EE3Manager extends Integration {
 		addEMCValueToItem(ModItems.batWing, 8);
 		addEMCValueToItem(ModItems.cookedBatWing, 10);
 		addEMCValueToItem(ModItems.witherShrubSeeds, 10000);
+		addEMCValueToItem(ModItems.netherCore, 19429);
 
 		addEMCValue(new ItemStack(ModItems.blazeIngot, 1, 2), 512);
 		addEMCValue("dustWheat", 24);
