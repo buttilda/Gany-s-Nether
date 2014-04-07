@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -203,5 +205,11 @@ public class Utils {
 			}
 
 		return map;
+	}
+
+	public static final ItemStack enchantStack(ItemStack stack, Enchantment enchantment, int level) {
+		stack.setTagCompound(new NBTTagCompound());
+		Item.enchantedBook.addEnchantment(stack, new EnchantmentData(enchantment, level));
+		return stack;
 	}
 }

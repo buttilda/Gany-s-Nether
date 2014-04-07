@@ -2,16 +2,14 @@ package ganymedes01.ganysnether.recipes;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.blocks.ModBlocks;
-import ganymedes01.ganysnether.core.utils.ConcealmentHandler;
+import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.Upgrade;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -35,33 +33,22 @@ public class ModRecipes {
 		registerArmourRecipes();
 	}
 
-	public static void postInit() {
-		GameRegistry.addRecipe(MultipleItemsRecipe.createNewRecipe(new ItemStack(ModBlocks.reproducer), "yzy", "wxw", "zwz", 'x', new ItemStack(Block.blockNetherQuartz, 1, 2), 'y', Block.obsidian, 'z', Block.slowSand, 'w', ConcealmentHandler.getEggs()));
-	}
-
 	private static void registerArmourRecipes() {
-		GameRegistry.addRecipe(new ItemStack(ModItems.blazeHelmet), "xxx", "x x", 'x', new ItemStack(ModItems.blazeIngot, 1, 1));
-		GameRegistry.addRecipe(new ItemStack(ModItems.blazeChestplate), "x x", "xxx", "xxx", 'x', new ItemStack(ModItems.blazeIngot, 1, 1));
-		GameRegistry.addRecipe(new ItemStack(ModItems.blazeLeggings), "xxx", "x x", "x x", 'x', new ItemStack(ModItems.blazeIngot, 1, 1));
-		GameRegistry.addRecipe(new ItemStack(ModItems.blazeBoots), "x x", "x x", 'x', new ItemStack(ModItems.blazeIngot, 1, 1));
-	}
-
-	private static ItemStack getEchantedStack(Item item, Enchantment enchant, int level) {
-		ItemStack stack = new ItemStack(item);
-		stack.setTagCompound(new NBTTagCompound());
-		Item.enchantedBook.addEnchantment(stack, new EnchantmentData(enchant, level));
-		return stack;
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeHelmet), "xxx", "x x", 'x', "ingotBlaze"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeChestplate), "x x", "xxx", "xxx", 'x', "ingotBlaze"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeLeggings), "xxx", "x x", "x x", 'x', "ingotBlaze"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeBoots), "x x", "x x", 'x', "ingotBlaze"));
 	}
 
 	private static void registerItemRecipes() {
 		GameRegistry.addRecipe(new ItemStack(ModItems.bottomlessBucket), "xxx", "zxz", "yzy", 'x', Item.bucketEmpty, 'y', Block.slowSand, 'z', Item.netherrackBrick);
-		GameRegistry.addRecipe(EnchantSensitiveRecipe.makeRecipe(new ItemStack(ModItems.baseballBat), " zx", " yz", "y  ", 'x', Item.diamond, 'y', Item.netherrackBrick, 'z', getEchantedStack(Item.enchantedBook, Enchantment.knockback, 1)));
-		GameRegistry.addRecipe(EnchantSensitiveRecipe.makeRecipe(new ItemStack(ModItems.baseballBat), " zx", " y ", "y  ", 'x', Item.diamond, 'y', Item.netherrackBrick, 'z', getEchantedStack(Item.enchantedBook, Enchantment.knockback, 2)));
+		GameRegistry.addRecipe(EnchantSensitiveRecipe.makeRecipe(new ItemStack(ModItems.baseballBat), " zx", " yz", "y  ", 'x', Item.diamond, 'y', Item.netherrackBrick, 'z', Utils.enchantStack(new ItemStack(Item.enchantedBook), Enchantment.knockback, 1)));
+		GameRegistry.addRecipe(EnchantSensitiveRecipe.makeRecipe(new ItemStack(ModItems.baseballBat), " zx", " y ", "y  ", 'x', Item.diamond, 'y', Item.netherrackBrick, 'z', Utils.enchantStack(new ItemStack(Item.enchantedBook), Enchantment.knockback, 2)));
 		GameRegistry.addSmelting(ModItems.batWing.itemID, new ItemStack(ModItems.cookedBatWing), 0.0F);
 		FurnaceRecipes.smelting().addSmelting(ModItems.blazeIngot.itemID, 0, new ItemStack(ModItems.blazeIngot, 1, 1), 0.0F);
 		GameRegistry.addRecipe(new ItemStack(ModItems.blazeIngot, 1, 0), "x", "x", "x", 'x', Item.blazeRod);
 		GameRegistry.addRecipe(new ItemStack(ModItems.livingSoul, 2), "zxz", "xyx", "zyz", 'x', Item.rottenFlesh, 'y', Item.bone, 'z', Block.slowSand);
-		GameRegistry.addRecipe(new ItemStack(ModItems.blazeIngot, 1, 1), "xxx", "xxx", "xxx", 'x', new ItemStack(ModItems.blazeIngot, 1, 2));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeIngot, 1, 1), "xxx", "xxx", "xxx", 'x', "nuggetBlaze"));
 		GameRegistry.addSmelting(ModItems.spookyFlour.itemID, new ItemStack(ModItems.dimensionalBread), 0.0F);
 
 		createCapRecipe(0, new ItemStack(Block.tnt), new ItemStack(ModItems.blazeIngot, 1, 1), Item.fireballCharge);
@@ -76,6 +63,8 @@ public class ModRecipes {
 		for (int i = 0; i < Upgrade.values().length; i++)
 			if (Upgrade.values()[i].getMat1() != null && Upgrade.values()[i].getMat2() != null)
 				GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, i), "xyx", "yzy", "xyx", 'x', Upgrade.values()[i].getMat1(), 'y', Upgrade.values()[i].getMat2(), 'z', ModItems.netherCore);
+
+		GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.silky.ordinal()), "xyx", "yzy", "xyx", 'x', Utils.enchantStack(new ItemStack(Item.enchantedBook), Enchantment.silkTouch, 1), 'y', new ItemStack(Block.oreNetherQuartz), 'z', ModItems.netherCore);
 		GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.tierDragonEgg.ordinal()), "xyx", "yzy", "xyx", 'x', Item.netherStalkSeeds, 'y', ModItems.netherCore, 'z', Block.dragonEgg);
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.dragonEgg), new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.tierDragonEgg.ordinal()));
 
@@ -125,6 +114,7 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Block.blockNetherQuartz, 1, 1), "   ", " x ", "   ", 'x', "blockQuartzChiselled"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Block.blockNetherQuartz, 1, 2), "   ", " x ", "   ", 'x', "blockQuartzPillar"));
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassStairs), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 1));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.reproducer), "yzy", "wxw", "zwz", 'x', new ItemStack(Block.blockNetherQuartz, 1, 2), 'y', Block.obsidian, 'z', Block.slowSand, 'w', "mobEgg"));
 
 		int index = 0;
 		for (Block pillar : ModBlocks.colouredQuartzPillar)
@@ -148,6 +138,8 @@ public class ModRecipes {
 		OreDictionary.registerOre("nuggetBlaze", new ItemStack(ModItems.blazeIngot, 1, 2));
 		OreDictionary.registerOre("nuggetIron", ModItems.ironNugget);
 		OreDictionary.registerOre("dustWheat", ModItems.flour);
+		OreDictionary.registerOre("mobEgg", new ItemStack(Item.monsterPlacer, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("mobEgg", new ItemStack(ModItems.skeletonSpawner, 1, OreDictionary.WILDCARD_VALUE));
 
 		OreDictionary.registerOre("blockQuartz", new ItemStack(ModBlocks.colouredQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("blockQuartz", new ItemStack(Block.blockNetherQuartz, 1, 0));
@@ -161,5 +153,7 @@ public class ModRecipes {
 
 		if (OreDictionary.getOres("egg").isEmpty())
 			OreDictionary.registerOre("egg", new ItemStack(Item.egg));
+		if (OreDictionary.getOres("mobHead").isEmpty())
+			OreDictionary.registerOre("mobHead", new ItemStack(Item.skull, 1, OreDictionary.WILDCARD_VALUE));
 	}
 }

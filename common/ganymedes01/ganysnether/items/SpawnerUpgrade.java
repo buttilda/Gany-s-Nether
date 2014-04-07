@@ -33,8 +33,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class SpawnerUpgrade extends Item {
 
-	//@formatter:off
 	public enum Upgrade {
+		// @formatter:off
 		tierCoal(Utils.getColour(33, 40, 45), new ItemStack(Item.coal), new ItemStack(Block.coalBlock)),
 		tierIron(Utils.getColour(255, 255, 255), new ItemStack(Item.ingotIron), new ItemStack(Block.blockIron)),
 		tierLapis(Utils.getColour(29, 47, 157), new ItemStack(Item.dyePowder, 1, 4), new ItemStack(Block.blockLapis)),
@@ -42,39 +42,36 @@ public class SpawnerUpgrade extends Item {
 		tierDiamond(Utils.getColour(30, 207, 199), new ItemStack(Item.diamond), new ItemStack(Block.blockDiamond)),
 		tierEmerald(Utils.getColour(63, 213, 102), new ItemStack(Item.emerald), new ItemStack(Block.blockEmerald)),
 		tierNetherStar(Utils.getColour(136, 164, 164), new ItemStack(Item.ghastTear), new ItemStack(Item.netherStar)),
-		tierDragonEgg(Utils.getColour(87, 2, 98), null,null),
+		tierDragonEgg(Utils.getColour(87, 2, 98), null, null),
 		redstone(Utils.getColour(181, 31, 10), new ItemStack(Item.redstone), new ItemStack(Block.blockRedstone)),
-		noPlayer(null,null),
-		ignoreConditions(null,null),
-		silky(null,null),
-		spawnCount(null,null),
-		spawnRange(null,null);
-		
+		noPlayer(0, null, null),
+		ignoreConditions(0, null, null),
+		silky(0, null, null),
+		spawnCount(0, null, null),
+		spawnRange(0, new ItemStack(Block.fire), new ItemStack(Block.blockNetherQuartz));
+		// @formatter:on
+
 		private final int colour;
 		private final ItemStack mat1, mat2;
+
 		Upgrade(int colour, ItemStack mat1, ItemStack mat2) {
 			this.colour = colour;
 			this.mat1 = mat1;
 			this.mat2 = mat2;
 		}
-		
-		Upgrade(ItemStack mat1, ItemStack mat2) {
-			this(0, mat1, mat2);
-		}
-		
+
 		public int getColour() {
 			return colour;
 		}
-		
+
 		public ItemStack getMat1() {
-			return mat1 == null ? null: mat1.copy();
+			return mat1 == null ? null : mat1.copy();
 		}
-		
+
 		public ItemStack getMat2() {
 			return mat2 == null ? null : mat2.copy();
 		}
 	}
-	//@formatter:on
 
 	@SideOnly(Side.CLIENT)
 	private Icon inside;
