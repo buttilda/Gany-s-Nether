@@ -7,6 +7,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.packet.Packet;
+
 /**
  * Gany's Nether
  * 
@@ -14,23 +17,22 @@ import java.io.IOException;
  * 
  */
 
-public class PacketTileHorseArmourStand extends CustomPacket {
+public class PacketExtendedSpawner extends CustomPacket {
 
 	private int x, y, z;
-	private byte type, rotation;
+	private NBTTagCompound nbt;
 
-	public PacketTileHorseArmourStand() {
-		super(PacketTypeHandler.HORSE_ARMOUR_STAND);
+	public PacketExtendedSpawner() {
+		super(PacketTypeHandler.EXTENDED_SPAWNER);
 	}
 
-	public PacketTileHorseArmourStand(int x, int y, int z, byte type, byte rotation) {
-		super(PacketTypeHandler.HORSE_ARMOUR_STAND);
+	public PacketExtendedSpawner(int x, int y, int z, NBTTagCompound nbt) {
+		super(PacketTypeHandler.EXTENDED_SPAWNER);
 		this.x = x;
 		this.y = y;
 		this.z = z;
 
-		this.type = type;
-		this.rotation = rotation;
+		this.nbt = nbt;
 	}
 
 	@Override
@@ -39,8 +41,7 @@ public class PacketTileHorseArmourStand extends CustomPacket {
 		data.writeInt(y);
 		data.writeInt(z);
 
-		data.writeByte(type);
-		data.writeByte(rotation);
+		PacketTypeHandler.writeNBTTagCompound(nbt, data);
 	}
 
 	@Override
@@ -49,12 +50,11 @@ public class PacketTileHorseArmourStand extends CustomPacket {
 		y = data.readInt();
 		z = data.readInt();
 
-		type = data.readByte();
-		rotation = data.readByte();
+		nbt = Packet.readNBTTagCompound(data);
 	}
 
 	@Override
 	public void execute() {
-		GanysNether.proxy.handleTileHorseArmourStandPacket(x, y, z, type, rotation);
+		GanysNether.proxy.handleExtendedSpawnerPacket(x, y, z, nbt);
 	}
 }

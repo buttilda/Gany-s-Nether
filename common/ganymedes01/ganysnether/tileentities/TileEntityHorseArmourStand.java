@@ -2,7 +2,7 @@ package ganymedes01.ganysnether.tileentities;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.network.PacketTypeHandler;
-import ganymedes01.ganysnether.network.packet.PacketTileHorseArmourStand;
+import ganymedes01.ganysnether.network.packet.PacketHorseArmourStand;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
@@ -69,7 +69,7 @@ public class TileEntityHorseArmourStand extends TileEntity {
 
 	@Override
 	public Packet getDescriptionPacket() {
-		return PacketTypeHandler.populatePacket(new PacketTileHorseArmourStand(xCoord, yCoord, zCoord, armourType, rotation));
+		return PacketTypeHandler.populatePacket(new PacketHorseArmourStand(xCoord, yCoord, zCoord, armourType, rotation));
 	}
 
 	@Override

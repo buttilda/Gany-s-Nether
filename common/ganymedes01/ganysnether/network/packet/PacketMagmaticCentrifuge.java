@@ -17,17 +17,17 @@ import net.minecraft.network.packet.Packet;
  * 
  */
 
-public class PacketTileMagmaticCentrifuge extends CustomPacket {
+public class PacketMagmaticCentrifuge extends CustomPacket {
 
 	private int x, y, z;
 	private ItemStack material1, material2;
 	private boolean isRecipeValid;
 
-	public PacketTileMagmaticCentrifuge() {
+	public PacketMagmaticCentrifuge() {
 		super(PacketTypeHandler.MAGMATIC_CENTRIFUGE);
 	}
 
-	public PacketTileMagmaticCentrifuge(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
+	public PacketMagmaticCentrifuge(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
 		super(PacketTypeHandler.MAGMATIC_CENTRIFUGE);
 		this.x = x;
 		this.y = y;
@@ -65,6 +65,6 @@ public class PacketTileMagmaticCentrifuge extends CustomPacket {
 
 	@Override
 	public void execute() {
-		GanysNether.proxy.handleTileMagmaticCentrifugePacket(x, y, z, material1, material2, isRecipeValid);
+		GanysNether.proxy.handleMagmaticCentrifugePacket(x, y, z, material1, material2, isRecipeValid);
 	}
 }

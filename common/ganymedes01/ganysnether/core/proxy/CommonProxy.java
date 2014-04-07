@@ -1,27 +1,27 @@
 package ganymedes01.ganysnether.core.proxy;
 
 import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.client.gui.inventory.GuiThermalSmelter;
 import ganymedes01.ganysnether.client.gui.inventory.GuiMagmaticCentrifuge;
 import ganymedes01.ganysnether.client.gui.inventory.GuiReproducer;
+import ganymedes01.ganysnether.client.gui.inventory.GuiThermalSmelter;
 import ganymedes01.ganysnether.client.gui.inventory.GuiUndertaker;
 import ganymedes01.ganysnether.client.gui.inventory.GuiVolcanicFurnace;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.entities.EntityLightningBall;
 import ganymedes01.ganysnether.entities.EntitySlowTNT;
-import ganymedes01.ganysnether.inventory.ContainerThermalSmelter;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.inventory.ContainerReproducer;
+import ganymedes01.ganysnether.inventory.ContainerThermalSmelter;
 import ganymedes01.ganysnether.inventory.ContainerUndertaker;
 import ganymedes01.ganysnether.inventory.ContainerVolcanicFurnace;
 import ganymedes01.ganysnether.lib.GUIsID;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
+import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
 import ganymedes01.ganysnether.tileentities.TileEntityHorseArmourStand;
 import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
 import ganymedes01.ganysnether.tileentities.TileEntityReproducer;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
-import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
 import ganymedes01.ganysnether.tileentities.TileEntityThermalSmelter;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
@@ -29,6 +29,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -63,10 +64,13 @@ public class CommonProxy implements IGuiHandler {
 	public void registerRenderers() {
 	}
 
-	public void handleTileMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
+	public void handleMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
 	}
 
-	public void handleTileHorseArmourStandPacket(int x, int y, int z, byte type, byte rotation) {
+	public void handleHorseArmourStandPacket(int x, int y, int z, byte type, byte rotation) {
+	}
+
+	public void handleExtendedSpawnerPacket(int x, int y, int z, NBTTagCompound data) {
 	}
 
 	@Override

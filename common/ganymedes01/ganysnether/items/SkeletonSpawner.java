@@ -89,7 +89,7 @@ public class SkeletonSpawner extends Item {
 		}
 	}
 
-	private static void enchantEquipment(EntitySkeleton skeleton) {
+	public static void enchantEquipment(EntitySkeleton skeleton) {
 		Random rand = new Random();
 		float f = skeleton.worldObj.getLocationTensionFactor(skeleton.posX, skeleton.posY, skeleton.posZ);
 		if (skeleton.getHeldItem() != null && rand.nextFloat() < 0.25F * f)
@@ -101,7 +101,7 @@ public class SkeletonSpawner extends Item {
 		}
 	}
 
-	private static void addRandomArmor(EntitySkeleton skeleton) {
+	public static void addRandomArmor(EntitySkeleton skeleton) {
 		Random rand = new Random();
 		if (rand.nextFloat() < 0.15F * skeleton.worldObj.getLocationTensionFactor(skeleton.posX, skeleton.posY, skeleton.posZ)) {
 			int i = rand.nextInt(2);

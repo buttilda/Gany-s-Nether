@@ -2,14 +2,24 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.items.SpawnerUpgrade.Upgrade;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
+
+import java.util.Random;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
@@ -24,10 +34,38 @@ public class ExtendedSpawner extends BlockMobSpawner {
 		super(ModIDs.EXTENDED_SPAWNER_ID);
 		disableStats();
 		setHardness(5.0F);
-		setTextureName("mob_spawner");
 		setStepSound(soundMetalFootstep);
 		setCreativeTab(GanysNether.netherTab);
+		setTextureName(Utils.getBlockTexture(Strings.EXTENDED_SPAWNER_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.EXTENDED_SPAWNER_NAME));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
+		TileEntity tile = world.getBlockTileEntity(x, y, z);
+		if (tile instanceof TileEntityExtendedSpawner)
+			return Upgrade.values()[((TileEntityExtendedSpawner) tile).logic.tier].getColour();
+		return super.colorMultiplier(world, x, y, z);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getRenderColor(int meta) {
+		return Upgrade.tierCoal.getColour();
+	}
+
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitz) {
+		if (!world.isRemote)
+			if (player.isSneaking()) {
+				TileEntity tile = world.getBlockTileEntity(x, y, z);
+				if (tile instanceof TileEntityExtendedSpawner)
+					for (String s : ((TileEntityExtendedSpawner) tile).getUpgradeList())
+						player.addChatMessage(s);
+				return true;
+			}
+		return false;
 	}
 
 	@Override
@@ -41,6 +79,7 @@ public class ExtendedSpawner extends BlockMobSpawner {
 		if (tile instanceof TileEntityExtendedSpawner) {
 			TileEntityExtendedSpawner spawner = (TileEntityExtendedSpawner) tile;
 			spawner.logic.isBlockPowered = world.isBlockIndirectlyGettingPowered(x, y, z);
+			PacketDispatcher.sendPacketToAllPlayers(spawner.getDescriptionPacket());
 		}
 	}
 
@@ -70,6 +109,17 @@ public class ExtendedSpawner extends BlockMobSpawner {
 				TileEntityExtendedSpawner spawner = (TileEntityExtendedSpawner) tile;
 				spawner.logic.setMobID(stack.getTagCompound().getString("EntityId"));
 			}
+		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
+		TileEntity tile = world.getBlockTileEntity(x, y, z);
+		if (tile instanceof TileEntityExtendedSpawner) {
+			TileEntityExtendedSpawner spawner = (TileEntityExtendedSpawner) tile;
+			if (spawner.logic.tier == Upgrade.tierDragonEgg.ordinal())
+				Block.enderChest.randomDisplayTick(world, x, y, z, rand);
 		}
 	}
 }

@@ -25,6 +25,7 @@ import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -69,7 +70,7 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@Override
-	public void handleTileMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
+	public void handleMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
 		World world = FMLClientHandler.instance().getClient().theWorld;
 		if (world != null) {
 			TileEntity tile = world.getBlockTileEntity(x, y, z);
@@ -84,7 +85,7 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@Override
-	public void handleTileHorseArmourStandPacket(int x, int y, int z, byte type, byte rotation) {
+	public void handleHorseArmourStandPacket(int x, int y, int z, byte type, byte rotation) {
 		World world = FMLClientHandler.instance().getClient().theWorld;
 		if (world != null) {
 			TileEntity tile = world.getBlockTileEntity(x, y, z);
@@ -94,6 +95,17 @@ public class ClientProxy extends CommonProxy {
 				stand.setArmourType(type);
 				stand.setRotation(rotation);
 			}
+		}
+	}
+
+	@Override
+	public void handleExtendedSpawnerPacket(int x, int y, int z, NBTTagCompound data) {
+		World world = FMLClientHandler.instance().getClient().theWorld;
+		if (world != null) {
+			TileEntity tile = world.getBlockTileEntity(x, y, z);
+			if (tile instanceof TileEntityExtendedSpawner)
+				tile.readFromNBT(data);
+			tile.worldObj.markBlockForRenderUpdate(tile.xCoord, tile.yCoord, tile.zCoord);
 		}
 	}
 }

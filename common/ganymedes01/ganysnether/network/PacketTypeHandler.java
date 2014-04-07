@@ -2,12 +2,17 @@ package ganymedes01.ganysnether.network;
 
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.network.packet.CustomPacket;
-import ganymedes01.ganysnether.network.packet.PacketTileHorseArmourStand;
-import ganymedes01.ganysnether.network.packet.PacketTileMagmaticCentrifuge;
+import ganymedes01.ganysnether.network.packet.PacketExtendedSpawner;
+import ganymedes01.ganysnether.network.packet.PacketHorseArmourStand;
+import ganymedes01.ganysnether.network.packet.PacketMagmaticCentrifuge;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.DataOutput;
+import java.io.IOException;
 
+import net.minecraft.nbt.CompressedStreamTools;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
@@ -19,7 +24,12 @@ import net.minecraft.network.packet.Packet250CustomPayload;
  */
 
 public enum PacketTypeHandler {
-	MAGMATIC_CENTRIFUGE(PacketTileMagmaticCentrifuge.class), HORSE_ARMOUR_STAND(PacketTileHorseArmourStand.class);
+
+	//@formatter:off
+	MAGMATIC_CENTRIFUGE(PacketMagmaticCentrifuge.class),
+	HORSE_ARMOUR_STAND(PacketHorseArmourStand.class),
+	EXTENDED_SPAWNER(PacketExtendedSpawner.class);
+	//@formatter:on
 
 	private Class<? extends CustomPacket> clazz;
 
@@ -54,5 +64,15 @@ public enum PacketTypeHandler {
 		packet250.length = data.length;
 
 		return packet250;
+	}
+
+	public static void writeNBTTagCompound(NBTTagCompound nbt, DataOutput data) throws IOException {
+		if (nbt == null)
+			data.writeShort(-1);
+		else {
+			byte[] array = CompressedStreamTools.compress(nbt);
+			data.writeShort((short) array.length);
+			data.write(array);
+		}
 	}
 }

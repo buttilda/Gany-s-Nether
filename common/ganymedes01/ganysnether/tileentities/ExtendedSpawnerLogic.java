@@ -1,9 +1,19 @@
 package ganymedes01.ganysnether.tileentities;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.items.SkeletonSpawner;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityLivingData;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIArrowAttack;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
@@ -23,18 +33,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 
 	public boolean isBlockPowered;
+	public boolean isWitherSkeleton;
 
 	public boolean redstoneUpgrade;
 	public boolean noPlayerUpgrade;
-	public boolean ignoreLightUpgrade;
+	public boolean ignoreConditionsUpgrade;
 	public boolean silkyUpgrade;
+	public byte tier;
 
 	private final TileEntity tile;
-	private final short maxNearbyEntities = 6;
 	private final short minSpawnDelay = 200;
 	private final short maxSpawnDelay = 800;
-	private short spawnCount = 4;
-	private short spawnRange = 4;
+	public short maxNearbyEntities = 6;
+	public short spawnCount = 4;
+	public short spawnRange = 4;
 
 	public ExtendedSpawnerLogic(TileEntity tile) {
 		this.tile = tile;
@@ -58,8 +70,11 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 
 	@Override
 	public void updateSpawner() {
-		if (!canRun())
+		if (!canRun()) {
+			field_98284_d = 0;
+			field_98287_c = 0;
 			return;
+		}
 
 		World world = getSpawnerWorld();
 		if (world.isRemote) {
@@ -115,9 +130,35 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 
 	private boolean canSpawn(EntityLiving entity) {
 		boolean isNull = entity == null;
-		if (ignoreLightUpgrade)
+		if (ignoreConditionsUpgrade)
 			return isNull || entity.worldObj.checkNoEntityCollision(entity.boundingBox) && entity.worldObj.getCollidingBoundingBoxes(entity, entity.boundingBox).isEmpty() && !entity.worldObj.isAnyLiquid(entity.boundingBox);
 		return isNull || entity.getCanSpawnHere();
+	}
+
+	@Override
+	public Entity func_98265_a(Entity entity) {
+		if (entity instanceof EntityLivingBase && entity.worldObj != null) {
+			((EntityLiving) entity).onSpawnWithEgg((EntityLivingData) null);
+
+			if (entity instanceof EntitySkeleton) {
+				EntitySkeleton skeleton = (EntitySkeleton) entity;
+				skeleton.setSkeletonType(isWitherSkeleton ? 1 : 0);
+				if (isWitherSkeleton) {
+					skeleton.tasks.addTask(4, new EntityAIAttackOnCollide(skeleton, EntityPlayer.class, 1.2D, false));
+					skeleton.setCurrentItemOrArmor(0, new ItemStack(Item.swordStone));
+					skeleton.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(4.0D);
+				} else {
+					skeleton.tasks.addTask(4, new EntityAIArrowAttack(skeleton, 1.0D, 20, 60, 15.0F));
+					SkeletonSpawner.addRandomArmor(skeleton);
+					SkeletonSpawner.enchantEquipment(skeleton);
+				}
+				skeleton.setSkeletonType(isWitherSkeleton ? 1 : 0);
+			}
+
+			getSpawnerWorld().spawnEntityInWorld(entity);
+		}
+
+		return entity;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -174,12 +215,15 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 		super.readFromNBT(data);
 		spawnCount = data.getShort("SpawnCount");
 		spawnRange = data.getShort("SpawnRange");
+		maxNearbyEntities = data.getShort("MaxNearbyEntities");
 
 		isBlockPowered = data.getBoolean("isBlockPowered");
 		redstoneUpgrade = data.getBoolean("redstoneUpgrade");
 		noPlayerUpgrade = data.getBoolean("noPlayerUpgrade");
-		ignoreLightUpgrade = data.getBoolean("ignoreLightUpgrade");
+		ignoreConditionsUpgrade = data.getBoolean("ignoreLightUpgrade");
 		silkyUpgrade = data.getBoolean("silkyUpgrade");
+		tier = data.getByte("tier");
+		isWitherSkeleton = data.getBoolean("isWitherSkeleton");
 	}
 
 	@Override
@@ -187,11 +231,14 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 		super.writeToNBT(data);
 		data.setShort("SpawnCount", spawnCount);
 		data.setShort("SpawnRange", spawnRange);
+		data.setShort("MaxNearbyEntities", maxNearbyEntities);
 
 		data.setBoolean("isBlockPowered", isBlockPowered);
 		data.setBoolean("redstoneUpgrade", redstoneUpgrade);
 		data.setBoolean("noPlayerUpgrade", noPlayerUpgrade);
-		data.setBoolean("ignoreLightUpgrade", ignoreLightUpgrade);
+		data.setBoolean("ignoreLightUpgrade", ignoreConditionsUpgrade);
 		data.setBoolean("silkyUpgrade", silkyUpgrade);
+		data.setByte("tier", tier);
+		data.setBoolean("isWitherSkeleton", isWitherSkeleton);
 	}
 }

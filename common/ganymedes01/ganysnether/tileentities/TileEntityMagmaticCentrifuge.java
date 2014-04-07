@@ -4,7 +4,7 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.network.PacketTypeHandler;
-import ganymedes01.ganysnether.network.packet.PacketTileMagmaticCentrifuge;
+import ganymedes01.ganysnether.network.packet.PacketMagmaticCentrifuge;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 
 import java.util.ArrayList;
@@ -188,7 +188,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	}
 
 	private void checkRecipe() {
-		PacketDispatcher.sendPacketToAllPlayers(PacketTypeHandler.populatePacket(new PacketTileMagmaticCentrifuge(xCoord, yCoord, zCoord, inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2], isRecipeValid)));
+		PacketDispatcher.sendPacketToAllPlayers(PacketTypeHandler.populatePacket(new PacketMagmaticCentrifuge(xCoord, yCoord, zCoord, inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2], isRecipeValid)));
 
 		if (inventory[MATERIAL_SLOT_1] == null || inventory[MATERIAL_SLOT_2] == null)
 			isRecipeValid = false;
@@ -292,7 +292,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 
 	@Override
 	public Packet getDescriptionPacket() {
-		return PacketTypeHandler.populatePacket(new PacketTileMagmaticCentrifuge(xCoord, yCoord, zCoord, inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2], isRecipeValid));
+		return PacketTypeHandler.populatePacket(new PacketMagmaticCentrifuge(xCoord, yCoord, zCoord, inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2], isRecipeValid));
 	}
 
 	@SideOnly(Side.CLIENT)
