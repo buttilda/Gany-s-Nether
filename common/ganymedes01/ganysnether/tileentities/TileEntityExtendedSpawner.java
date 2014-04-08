@@ -76,7 +76,7 @@ public class TileEntityExtendedSpawner extends TileEntity {
 	}
 
 	public int getSlots() {
-		return logic.tier == 0 ? 0 : (int) Math.pow(2, logic.tier);
+		return logic.tier * 2;
 	}
 
 	public int getSlotsUsed() {

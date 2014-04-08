@@ -124,7 +124,10 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 	}
 
 	private void resetDelay() {
-		spawnDelay = minSpawnDelay + getSpawnerWorld().rand.nextInt(maxSpawnDelay - minSpawnDelay);
+		int min = (int) (minSpawnDelay - Math.pow(2, tier));
+		int max = (int) (maxSpawnDelay - 4 * Math.pow(2, tier));
+
+		spawnDelay = min + getSpawnerWorld().rand.nextInt(max - min);
 		func_98267_a(1);
 	}
 
