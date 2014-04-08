@@ -1,10 +1,12 @@
 package ganymedes01.ganysnether.client.renderer.tileentity;
 
+import ganymedes01.ganysnether.items.SpawnerUpgrade.Upgrade;
+import ganymedes01.ganysnether.tileentities.ExtendedSpawnerLogic;
 import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.MobSpawnerBaseLogic;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
@@ -30,16 +32,22 @@ public class TileEntityExtendedSpawnerRender extends TileEntitySpecialRenderer {
 		GL11.glPopMatrix();
 	}
 
-	private void renderLogic(MobSpawnerBaseLogic logic, double x, double y, double z, float partialTick) {
+	private void renderLogic(ExtendedSpawnerLogic logic, double x, double y, double z, float partialTick) {
 		Entity entity = logic.func_98281_h();
 
 		if (entity != null) {
 			entity.setWorld(logic.getSpawnerWorld());
 			GL11.glTranslatef(0.0F, 0.4F, 0.0F);
 			GL11.glRotatef((float) (logic.field_98284_d + (logic.field_98287_c - logic.field_98284_d) * partialTick) * 10.0F, 0.0F, 1.0F, 0.0F);
-			GL11.glRotatef(-30.0F, 1.0F, 0.0F, 0.0F);
-			GL11.glTranslatef(0.0F, -0.4F, 0.0F);
-			GL11.glScalef(0.4375F, 0.4375F, 0.4375F);
+			if (logic.tier != Upgrade.tierDragonEgg.ordinal()) {
+				GL11.glRotatef(-30.0F, 1.0F, 0.0F, 0.0F);
+				GL11.glTranslatef(0.0F, -0.4F, 0.0F);
+				GL11.glScalef(0.4375F, 0.4375F, 0.4375F);
+			} else {
+				((EntityItem) entity).hoverStart = 0.0F;
+				GL11.glTranslatef(0.0F, -0.1F, 0.0F);
+				GL11.glScalef(3, 3, 3);
+			}
 			entity.setLocationAndAngles(x, y, z, 0.0F, 0.0F);
 			RenderManager.instance.renderEntityWithPosYaw(entity, 0.0D, 0.0D, 0.0D, 0.0F, partialTick);
 		}

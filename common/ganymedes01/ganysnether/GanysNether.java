@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.command.GanysNetherCommand;
 import ganymedes01.ganysnether.configuration.ConfigurationHandler;
 import ganymedes01.ganysnether.core.handlers.BonemealOnNetherCrops;
 import ganymedes01.ganysnether.core.handlers.EntityDeathEvent;
@@ -36,6 +37,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -127,6 +129,11 @@ public class GanysNether {
 	public void postInit(FMLPostInitializationEvent event) {
 		MagmaticCentrifugeRecipes.initOreDictRecipes();
 		ModIntegrator.postInit();
+	}
+
+	@EventHandler
+	public void serverStarting(FMLServerStartingEvent event) {
+		event.registerServerCommand(new GanysNetherCommand());
 	}
 
 	@EventHandler

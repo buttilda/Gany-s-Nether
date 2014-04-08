@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.Upgrade;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
@@ -13,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
@@ -66,6 +68,26 @@ public class ExtendedSpawner extends BlockMobSpawner {
 				return true;
 			}
 		return false;
+	}
+
+	@Override
+	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
+		if (world.isRemote)
+			return;
+		ItemStack stack = player.getCurrentEquippedItem();
+		if (stack == null)
+			return;
+		if (stack.itemID == Item.monsterPlacer.itemID || stack.itemID == ModItems.skeletonSpawner.itemID) {
+			TileEntity tile = world.getBlockTileEntity(x, y, z);
+			if (tile instanceof TileEntityExtendedSpawner) {
+				TileEntityExtendedSpawner spawner = (TileEntityExtendedSpawner) tile;
+				if (spawner.logic.addEgg(stack)) {
+					stack.stackSize--;
+					if (stack.stackSize <= 0)
+						player.setCurrentItemOrArmor(0, null);
+				}
+			}
+		}
 	}
 
 	@Override

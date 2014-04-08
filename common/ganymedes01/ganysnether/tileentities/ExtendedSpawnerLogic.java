@@ -1,7 +1,14 @@
 package ganymedes01.ganysnether.tileentities;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.SkeletonSpawner;
+import ganymedes01.ganysnether.items.SpawnerUpgrade.Upgrade;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
@@ -10,15 +17,19 @@ import net.minecraft.entity.EntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.WeightedRandomMinecart;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -44,6 +55,7 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 	private final TileEntity tile;
 	private final short minSpawnDelay = 200;
 	private final short maxSpawnDelay = 800;
+	private final ItemStack[] fifo = new ItemStack[3];
 	public short maxNearbyEntities = 6;
 	public short spawnCount = 4;
 	public short spawnRange = 4;
@@ -66,6 +78,36 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 
 	public int getSpawnRangeUpgradeCount() {
 		return spawnRange - 4;
+	}
+
+	public ItemStack[] getFifo() {
+		return fifo;
+	}
+
+	public boolean addEgg(ItemStack egg) {
+		if (tier != Upgrade.tierDragonEgg.ordinal())
+			return false;
+		ItemStack stack = egg == null ? null : egg.copy().splitStack(1);
+
+		if (egg != null && egg.getItem() instanceof SkeletonSpawner)
+			isWitherSkeleton = egg.getItemDamage() == 1;
+
+		for (int i = 0; i < fifo.length; i++)
+			if (fifo[i] == null) {
+				fifo[i] = stack;
+				return true;
+			}
+		Utils.dropStack(getSpawnerWorld(), getSpawnerX(), getSpawnerY() + 1, getSpawnerZ(), fifo[0]);
+		for (int i = 0; i < fifo.length - 1; i++)
+			fifo[i] = fifo[i + 1];
+		fifo[fifo.length - 1] = stack;
+
+		for (int i = 0; i < fifo.length; i++) {
+			if (fifo[i] == null || !(fifo[i].getItem() instanceof SkeletonSpawner))
+				continue;
+			isWitherSkeleton = fifo[i].getItemDamage() == 1;
+		}
+		return true;
 	}
 
 	@Override
@@ -91,7 +133,7 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 
 		boolean reset = false;
 		for (int i = 0; i < spawnCount; i++) {
-			Entity entity = EntityList.createEntityByName(getEntityNameToSpawn(), world);
+			Entity entity = getEntityToSpawn(world);
 
 			if (entity == null)
 				return;
@@ -102,12 +144,7 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 				return;
 			}
 
-			double x = getSpawnerX() + (world.rand.nextDouble() - world.rand.nextDouble()) * spawnRange;
-			double y = getSpawnerY() + world.rand.nextInt(3) - 1;
-			double z = getSpawnerZ() + (world.rand.nextDouble() - world.rand.nextDouble()) * spawnRange;
 			EntityLiving entityliving = entity instanceof EntityLiving ? (EntityLiving) entity : null;
-			entity.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
-
 			if (canSpawn(entityliving)) {
 				func_98265_a(entity);
 				world.playAuxSFX(2004, getSpawnerX(), getSpawnerY(), getSpawnerZ(), 0);
@@ -123,6 +160,45 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 			resetDelay();
 	}
 
+	private Entity getEntityToSpawn(World world) {
+		double x = getSpawnerX() + (world.rand.nextDouble() - world.rand.nextDouble()) * spawnRange;
+		double y = getSpawnerY() + world.rand.nextInt(3) - 1;
+		double z = getSpawnerZ() + (world.rand.nextDouble() - world.rand.nextDouble()) * spawnRange;
+
+		if (tier == Upgrade.tierDragonEgg.ordinal()) {
+			List<Integer> notNull = new ArrayList<Integer>();
+			for (int i = 0; i < fifo.length; i++)
+				if (fifo[i] != null)
+					notNull.add(i);
+
+			if (!notNull.isEmpty()) {
+				ItemStack egg = fifo[notNull.get(world.rand.nextInt(notNull.size()))];
+				if (egg.getItem() instanceof ItemMonsterPlacer)
+					return getEntity(world, egg.getItemDamage(), x, y, z);
+				else if (egg.getItem() instanceof SkeletonSpawner)
+					return getEntity(world, 51, x, y, z);
+			}
+			return null;
+		}
+		Entity entity = EntityList.createEntityByName(getEntityNameToSpawn(), world);
+		if (entity != null)
+			entity.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
+		return entity;
+	}
+
+	public static Entity getEntity(World world, int damage, double x, double y, double z) {
+		Entity entity = EntityList.createEntityByID(damage, world);
+
+		if (entity != null && entity instanceof EntityLivingBase) {
+			EntityLiving entityliving = (EntityLiving) entity;
+			entity.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
+			entityliving.rotationYawHead = entityliving.rotationYaw;
+			entityliving.renderYawOffset = entityliving.rotationYaw;
+		}
+
+		return entity;
+	}
+
 	private void resetDelay() {
 		int min = (int) (minSpawnDelay - Math.pow(2, tier));
 		int max = (int) (maxSpawnDelay - 4 * Math.pow(2, tier));
@@ -132,10 +208,15 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 	}
 
 	private boolean canSpawn(EntityLiving entity) {
-		boolean isNull = entity == null;
+		if (entity == null)
+			return true;
+
 		if (ignoreConditionsUpgrade)
-			return isNull || entity.worldObj.checkNoEntityCollision(entity.boundingBox) && entity.worldObj.getCollidingBoundingBoxes(entity, entity.boundingBox).isEmpty() && !entity.worldObj.isAnyLiquid(entity.boundingBox);
-		return isNull || entity.getCanSpawnHere();
+			return entity.worldObj.checkNoEntityCollision(entity.boundingBox) && entity.worldObj.getCollidingBoundingBoxes(entity, entity.boundingBox).isEmpty() && !entity.worldObj.isAnyLiquid(entity.boundingBox);
+		if (entity instanceof EntitySkeleton)
+			if (((EntitySkeleton) entity).getSkeletonType() == 1 && !entity.worldObj.provider.isHellWorld)
+				return false;
+		return entity.getCanSpawnHere();
 	}
 
 	@Override
@@ -157,7 +238,6 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 				}
 				skeleton.setSkeletonType(isWitherSkeleton ? 1 : 0);
 			}
-
 			getSpawnerWorld().spawnEntityInWorld(entity);
 		}
 
@@ -177,6 +257,12 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 
 		field_98284_d = field_98287_c;
 		field_98287_c = (field_98287_c + 1000.0F / (spawnDelay + 200.0F)) % 360.0D;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Entity func_98281_h() {
+		return tier == Upgrade.tierDragonEgg.ordinal() ? new EntityItem(getSpawnerWorld(), getSpawnerX(), getSpawnerY(), getSpawnerZ(), new ItemStack(Block.dragonEgg)) : super.func_98281_h();
 	}
 
 	@Override
@@ -227,6 +313,13 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 		silkyUpgrade = data.getBoolean("silkyUpgrade");
 		tier = data.getByte("tier");
 		isWitherSkeleton = data.getBoolean("isWitherSkeleton");
+		NBTTagList tagList = data.getTagList("Items");
+		for (int i = 0; i < tagList.tagCount(); i++) {
+			NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
+			byte slot = tagCompound.getByte("Slot");
+			if (slot >= 0 && slot < fifo.length)
+				fifo[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
+		}
 	}
 
 	@Override
@@ -243,5 +336,14 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 		data.setBoolean("silkyUpgrade", silkyUpgrade);
 		data.setByte("tier", tier);
 		data.setBoolean("isWitherSkeleton", isWitherSkeleton);
+		NBTTagList tagList = new NBTTagList();
+		for (int i = 0; i < fifo.length; i++)
+			if (fifo[i] != null) {
+				NBTTagCompound tagCompound = new NBTTagCompound();
+				tagCompound.setByte("Slot", (byte) i);
+				fifo[i].writeToNBT(tagCompound);
+				tagList.appendTag(tagCompound);
+			}
+		data.setTag("Items", tagList);
 	}
 }

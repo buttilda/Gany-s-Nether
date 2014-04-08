@@ -2,18 +2,22 @@ package ganymedes01.ganysnether.tileentities;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.items.ModItems;
+import ganymedes01.ganysnether.items.SkeletonSpawner;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.Upgrade;
 import ganymedes01.ganysnether.network.PacketTypeHandler;
 import ganymedes01.ganysnether.network.packet.PacketExtendedSpawner;
 
 import java.util.ArrayList;
 
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 
 /**
  * Gany's Nether
@@ -47,6 +51,8 @@ public class TileEntityExtendedSpawner extends TileEntity {
 			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.spawnRange.ordinal()));
 		for (int i = 1; i <= logic.tier; i++)
 			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, i));
+		for (ItemStack egg : logic.getFifo())
+			upgrades.add(egg);
 
 		return upgrades.toArray(new ItemStack[0]);
 	}
@@ -70,8 +76,17 @@ public class TileEntityExtendedSpawner extends TileEntity {
 			list.add(EnumChatFormatting.ITALIC + "Ignores Spawn Conditions" + EnumChatFormatting.RESET);
 		if (logic.silkyUpgrade)
 			list.add(EnumChatFormatting.ITALIC + "Silky" + EnumChatFormatting.RESET);
-
 		list.add("");
+		for (ItemStack egg : logic.getFifo())
+			if (egg != null) {
+				String entityName;
+				if (egg.getItem() instanceof SkeletonSpawner)
+					entityName = egg.getItemDamage() == 1 ? "Wither Skeleton" : StatCollector.translateToLocal("entity." + EntityList.classToStringMapping.get(EntitySkeleton.class) + ".name");
+				else
+					entityName = StatCollector.translateToLocal("entity." + EntityList.classToStringMapping.get(EntityList.IDtoClassMapping.get(egg.getItemDamage())) + ".name");
+				list.add(entityName);
+			}
+
 		return list.toArray(new String[0]);
 	}
 
