@@ -87,8 +87,11 @@ public class OreDictionaryHandler extends TemplateRecipeHandler {
 
 		ArrayList<ItemStack> equivalents = new ArrayList<ItemStack>();
 		for (ItemStack stack : OreDictionary.getOres(oreID))
-			if (stack != null)
+			if (stack != null) {
+				if (stack.getItemDamage() != OreDictionary.WILDCARD_VALUE)
+					equivalents.add(stack);
 				equivalents.addAll(getValidStacks(oreID, NEIClientUtils.getValidItems(stack.itemID)));
+			}
 
 		if (equivalents.size() > 0) {
 			if (equivalents.size() > 1)
@@ -124,9 +127,8 @@ public class OreDictionaryHandler extends TemplateRecipeHandler {
 
 	private List<ItemStack> getValidStacks(int oreID, List<ItemStack> list) {
 		ArrayList<ItemStack> valid = new ArrayList<ItemStack>();
-		String name = OreDictionary.getOreName(oreID);
 		for (ItemStack stack : list)
-			if (OreDictionary.getOreName(OreDictionary.getOreID(stack)) == name)
+			if (OreDictionary.getOreID(stack) == oreID)
 				valid.add(stack);
 		return valid;
 	}
