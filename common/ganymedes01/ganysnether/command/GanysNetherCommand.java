@@ -2,14 +2,13 @@ package ganymedes01.ganysnether.command;
 
 import ganymedes01.ganysnether.lib.Reference;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
@@ -18,9 +17,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IntHashMap;
-import net.minecraft.world.WorldServer;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class GanysNetherCommand extends CommandBase {
 
@@ -41,7 +37,14 @@ public class GanysNetherCommand extends CommandBase {
 
 	@Override
 	public List addTabCompletionOptions(ICommandSender sender, String[] args) {
-		return getListOfStringsMatchingLastWord(args, new String[] { "KillAll", "EntityMap" });
+		if (args.length == 2) {
+			String[] array = new String[EntityList.stringToClassMapping.size()];
+			int i = 0;
+			for (Entry<String, Class> entry : (Set<Entry<String, Class>>) EntityList.stringToClassMapping.entrySet())
+				array[i++] = entry.getKey();
+			return getListOfStringsMatchingLastWord(args, array);
+		}
+		return getListOfStringsMatchingLastWord(args, new String[] { "KillAll ", "EntityMap" });
 	}
 
 	@Override
@@ -63,9 +66,8 @@ public class GanysNetherCommand extends CommandBase {
 	}
 
 	private void entityMapCommand(ICommandSender sender) throws Exception {
-		WorldServer world = (WorldServer) sender.getEntityWorld();
 		LinkedHashMap<String, Integer> map = new LinkedHashMap<String, Integer>();
-		for (Entity entity : getAllEntities(world)) {
+		for (Entity entity : (List<Entity>) sender.getEntityWorld().loadedEntityList) {
 			String name = (String) EntityList.classToStringMapping.get(entity.getClass());
 			if (name != null) {
 				Integer count = map.get(name);
@@ -90,13 +92,12 @@ public class GanysNetherCommand extends CommandBase {
 	}
 
 	private void killAllCommand(ICommandSender sender, String arg) throws Exception {
-		WorldServer world = (WorldServer) sender.getEntityWorld();
 		if (arg.equals("Horse"))
 			arg = "EntityHorse";
 		Class cls = (Class) EntityList.stringToClassMapping.get(arg);
 		if (cls != null) {
 			int count = 0;
-			for (Entity entity : getAllEntities(world))
+			for (Entity entity : (List<Entity>) sender.getEntityWorld().loadedEntityList)
 				if (entity != null)
 					if (cls.isAssignableFrom(entity.getClass())) {
 						entity.setDead();
@@ -105,33 +106,5 @@ public class GanysNetherCommand extends CommandBase {
 			sender.sendChatToPlayer(ChatMessageComponent.createFromText(EnumChatFormatting.GOLD + "Removed " + count + " entities of type " + arg));
 		} else
 			sender.sendChatToPlayer(ChatMessageComponent.createFromText(EnumChatFormatting.RED + "Entity class not found: " + arg));
-	}
-
-	private Method findMethod(Class cls, String... names) {
-		for (String name : names)
-			try {
-				Method method = cls.getMethod(name);
-				method.setAccessible(true);
-				return method;
-			} catch (Exception e) {
-				continue;
-			}
-		return null;
-	}
-
-	private Entity[] getAllEntities(WorldServer world) throws Exception {
-		ArrayList<Entity> list = new ArrayList<Entity>();
-		Field entityIdMap = ReflectionHelper.findField(WorldServer.class, "entityIdMap", "field_73066_T");
-		entityIdMap.setAccessible(true);
-		Field slots = ReflectionHelper.findField(IntHashMap.class, "slots", "field_76055_a");
-		slots.setAccessible(true);
-
-		int count = 0;
-		for (Object obj : (Object[]) slots.get(entityIdMap.get(world)))
-			if (obj != null) {
-				Method m = findMethod(obj.getClass(), "func_76030_b", "getValue");
-				list.add((Entity) m.invoke(obj));
-			}
-		return list.toArray(new Entity[0]);
 	}
 }
