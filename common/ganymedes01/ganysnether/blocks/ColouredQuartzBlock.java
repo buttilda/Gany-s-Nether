@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
-import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,8 +23,6 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  */
 public class ColouredQuartzBlock extends Block {
-
-	private static ItemStack[] blocks;
 
 	@SideOnly(Side.CLIENT)
 	private Icon[] blockIcon;
@@ -62,11 +59,5 @@ public class ColouredQuartzBlock extends Block {
 		blockIcon = new Icon[16];
 		for (int i = 0; i < blockIcon.length; i++)
 			blockIcon[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_QUARTZ_BLOCK_NAME) + "_" + i);
-	}
-
-	public static ItemStack[] getQuartzBlocksForRecipe() {
-		if (blocks == null)
-			blocks = new ItemStack[] { new ItemStack(ModBlocks.colouredQuartzBlock, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(Block.blockNetherQuartz, 1, 0) };
-		return blocks;
 	}
 }

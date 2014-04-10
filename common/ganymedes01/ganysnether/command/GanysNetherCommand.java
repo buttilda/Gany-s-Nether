@@ -44,7 +44,7 @@ public class GanysNetherCommand extends CommandBase {
 				array[i++] = entry.getKey();
 			return getListOfStringsMatchingLastWord(args, array);
 		}
-		return getListOfStringsMatchingLastWord(args, new String[] { "KillAll ", "EntityMap" });
+		return getListOfStringsMatchingLastWord(args, new String[] { "KillAll", "EntityMap" });
 	}
 
 	@Override

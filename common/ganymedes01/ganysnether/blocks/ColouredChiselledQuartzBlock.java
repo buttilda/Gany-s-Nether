@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
-import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -25,8 +24,6 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 
 public class ColouredChiselledQuartzBlock extends Block {
-
-	private static ItemStack[] blocks;
 
 	@SideOnly(Side.CLIENT)
 	private Icon[] blockTop, blockSide;
@@ -68,11 +65,5 @@ public class ColouredChiselledQuartzBlock extends Block {
 			blockTop[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME) + "_top_" + i);
 			blockSide[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME) + "_" + i);
 		}
-	}
-
-	public static ItemStack[] getQuartzBlocksForRecipe() {
-		if (blocks == null)
-			blocks = new ItemStack[] { new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(Block.blockNetherQuartz, 1, 1) };
-		return blocks;
 	}
 }
