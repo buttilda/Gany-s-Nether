@@ -31,8 +31,8 @@ public class SoulTNT extends BlockTNT {
 		setHardness(0.0F);
 		setStepSound(soundGrassFootstep);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getBlockTexture(Strings.SOUL_TNT_NAME) + "_");
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SOUL_TNT_NAME));
+		setTextureName(Utils.getBlockTexture(Strings.Blocks.SOUL_TNT_NAME) + "_");
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_TNT_NAME));
 	}
 
 	@Override

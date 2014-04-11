@@ -20,9 +20,9 @@ public class SceptreOfLightning extends Sceptre {
 
 	public SceptreOfLightning() {
 		super(ModIDs.SCEPTRE_OF_LIGHTNING_ID);
-		setTextureName(Utils.getItemTexture(Strings.SCEPTRE_OF_LIGHTNING_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SCEPTRE_OF_LIGHTNING_NAME));
 		setMaxDamage(GanysNether.sceptreOfLightningDurability);
+		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_LIGHTNING_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SCEPTRE_OF_LIGHTNING_NAME));
 	}
 
 	@Override

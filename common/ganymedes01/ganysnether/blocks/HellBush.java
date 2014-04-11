@@ -20,7 +20,7 @@ public class HellBush extends QuarzBerryBush {
 
 	protected HellBush() {
 		super(ModIDs.HELL_BUSH_ID);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.HELL_BUSH_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.HELL_BUSH_NAME));
 	}
 
 	@Override
@@ -38,6 +38,6 @@ public class HellBush extends QuarzBerryBush {
 	public void registerIcons(IconRegister reg) {
 		iconArray = new Icon[4];
 		for (int i = 0; i < iconArray.length; i++)
-			iconArray[i] = reg.registerIcon(Utils.getBlockTexture(Strings.HELL_BUSH_NAME + "_stage_") + i);
+			iconArray[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.HELL_BUSH_NAME + "_stage_") + i);
 	}
 }

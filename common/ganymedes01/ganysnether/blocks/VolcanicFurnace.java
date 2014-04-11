@@ -39,7 +39,7 @@ public class VolcanicFurnace extends BlockContainer {
 			setLightValue(1.0F);
 		setHardness(3.5F);
 		setStepSound(soundStoneFootstep);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.VOLCANIC_FURNACE_NAME + "_" + isActive));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.VOLCANIC_FURNACE_NAME + "_" + isActive));
 	}
 
 	@Override
@@ -121,9 +121,9 @@ public class VolcanicFurnace extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
-		blockTop = reg.registerIcon(Utils.getBlockTexture(Strings.VOLCANIC_FURNACE_NAME) + "_top_" + (isActive ? "on" : "off"));
-		blockSide = reg.registerIcon(Utils.getBlockTexture(Strings.VOLCANIC_FURNACE_NAME) + "_side");
-		blockBottom = reg.registerIcon(Utils.getBlockTexture(Strings.VOLCANIC_FURNACE_NAME) + "_bottom");
+		blockTop = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.VOLCANIC_FURNACE_NAME) + "_top_" + (isActive ? "on" : "off"));
+		blockSide = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.VOLCANIC_FURNACE_NAME) + "_side");
+		blockBottom = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.VOLCANIC_FURNACE_NAME) + "_bottom");
 	}
 
 	@Override

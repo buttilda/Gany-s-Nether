@@ -43,7 +43,7 @@ public class GuiMagmaticCentrifuge extends GuiGanysNether {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.MAGMATIC_CENTRIFUGE_NAME)));
+		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME)));
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 
@@ -54,7 +54,7 @@ public class GuiMagmaticCentrifuge extends GuiGanysNether {
 		drawTexturedModalRect(x + ((Slot) container.inventorySlots.get(3)).xDisplayPosition - 1, y + ((Slot) container.inventorySlots.get(3)).yDisplayPosition - 1, 176, 3, 18, 18);
 		drawFluid(FluidRegistry.LAVA, centrifuge.getScaledFluidAmount(52), x + 155, y + 53, 16, 52);
 
-		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.MAGMATIC_CENTRIFUGE_NAME)));
+		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME)));
 		drawTexturedModalRect(x + 155, y + 53, 176, 21, 16, 52);
 	}
 

@@ -45,8 +45,8 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerTileEntities() {
 		super.registerTileEntities();
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoulChest.class, new TileEntitySoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.SOUL_CHEST_NAME))));
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUndertaker.class, new TileEntitySoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.UNDERTAKER_NAME))));
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoulChest.class, new TileEntitySoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.SOUL_CHEST_NAME))));
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUndertaker.class, new TileEntitySoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.UNDERTAKER_NAME))));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMagmaticCentrifuge.class, new TileEntityMagmaticCentrifugeRender());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHorseArmourStand.class, new TileEntityHorseArmourStandRender());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityExtendedSpawner.class, new TileEntityExtendedSpawnerRender());
@@ -54,8 +54,8 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void registerRenderers() {
-		MinecraftForgeClient.registerItemRenderer(ModBlocks.soulChest.blockID, new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.SOUL_CHEST_NAME))));
-		MinecraftForgeClient.registerItemRenderer(ModBlocks.undertaker.blockID, new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.UNDERTAKER_NAME))));
+		MinecraftForgeClient.registerItemRenderer(ModBlocks.soulChest.blockID, new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.SOUL_CHEST_NAME))));
+		MinecraftForgeClient.registerItemRenderer(ModBlocks.undertaker.blockID, new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.UNDERTAKER_NAME))));
 		MinecraftForgeClient.registerItemRenderer(ModBlocks.magmaticCentrifuge.blockID, new ItemMagmaticCentrifugeRender());
 		MinecraftForgeClient.registerItemRenderer(ModBlocks.soulGlass.blockID, new ItemSoulGlassRender());
 		MinecraftForgeClient.registerItemRenderer(ModBlocks.soulGlassStairs.blockID, new ItemSoulGlassRender());

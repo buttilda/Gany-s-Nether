@@ -36,7 +36,7 @@ public class Reproducer extends BlockContainer {
 		setHardness(2.5F);
 		setStepSound(soundStoneFootstep);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.REPRODUCER_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.REPRODUCER_NAME));
 	}
 
 	@Override
@@ -48,9 +48,9 @@ public class Reproducer extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
-		blockTop = reg.registerIcon(Utils.getBlockTexture(Strings.REPRODUCER_NAME) + "_top");
-		blockSide = reg.registerIcon(Utils.getBlockTexture(Strings.REPRODUCER_NAME) + "_side");
-		blockBottom = reg.registerIcon(Utils.getBlockTexture(Strings.REPRODUCER_NAME) + "_bottom");
+		blockTop = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.REPRODUCER_NAME) + "_top");
+		blockSide = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.REPRODUCER_NAME) + "_side");
+		blockBottom = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.REPRODUCER_NAME) + "_bottom");
 	}
 
 	@Override

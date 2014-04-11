@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 public class ItemColouredQuartzPillars extends ItemBlockBase {
 
 	public ItemColouredQuartzPillars(int id) {
-		super(id, Strings.COLOURED_QUARTZ_PILLARS_NAME + "item_");
+		super(id, Strings.Blocks.COLOURED_QUARTZ_PILLARS_NAME + "item_");
 	}
 
 	@Override

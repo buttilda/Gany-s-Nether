@@ -81,8 +81,8 @@ public class SpawnerUpgrade extends Item {
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getItemTexture(Strings.SPAWNER_UPGRADE_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SPAWNER_UPGRADE_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.SPAWNER_UPGRADE_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SPAWNER_UPGRADE_NAME));
 	}
 
 	@Override

@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 public class ItemSoulGlass extends ItemBlockBase {
 
 	public ItemSoulGlass(int id) {
-		super(id, Strings.SOUL_GLASS_NAME + "_item_");
+		super(id, Strings.Blocks.SOUL_GLASS_NAME + "_item_");
 	}
 
 	@Override

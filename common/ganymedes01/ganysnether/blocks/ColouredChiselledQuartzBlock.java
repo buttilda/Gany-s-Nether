@@ -33,7 +33,7 @@ public class ColouredChiselledQuartzBlock extends Block {
 		setHardness(0.8F);
 		setStepSound(soundStoneFootstep);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME));
 	}
 
 	@Override
@@ -62,8 +62,8 @@ public class ColouredChiselledQuartzBlock extends Block {
 		blockTop = new Icon[16];
 		blockSide = new Icon[16];
 		for (int i = 0; i < blockSide.length; i++) {
-			blockTop[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME) + "_top_" + i);
-			blockSide[i] = reg.registerIcon(Utils.getBlockTexture(Strings.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME) + "_" + i);
+			blockTop[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME) + "_top_" + i);
+			blockSide[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME) + "_" + i);
 		}
 	}
 }

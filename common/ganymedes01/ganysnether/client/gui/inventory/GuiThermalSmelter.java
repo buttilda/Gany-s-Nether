@@ -39,7 +39,7 @@ public class GuiThermalSmelter extends GuiGanysNether {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.THERMAL_SMELTER_NAME)));
+		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.THERMAL_SMELTER_NAME)));
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 		drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

@@ -28,8 +28,8 @@ public class BottomlessBucket extends ItemSimpleFoiled {
 		super(ModIDs.BOTTOMLESS_BUCKET_ID);
 		setMaxStackSize(1);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getItemTexture(Strings.BOTTOMLESS_BUCKET_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.BOTTOMLESS_BUCKET_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.BOTTOMLESS_BUCKET_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.BOTTOMLESS_BUCKET_NAME));
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class SpectreWheat extends Item {
 	public SpectreWheat() {
 		super(ModIDs.SPECTRE_WHEAT_ITEM_ID);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getItemTexture(Strings.SPECTRE_WHEAT_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SPECTRE_WHEAT_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.SPECTRE_WHEAT_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SPECTRE_WHEAT_NAME));
 	}
 }

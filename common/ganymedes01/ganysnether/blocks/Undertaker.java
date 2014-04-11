@@ -21,12 +21,12 @@ public class Undertaker extends SoulChest {
 		super(ModIDs.UNDERTAKER_ID);
 		if (GanysNether.enableUndertaker)
 			setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.UNDERTAKER_NAME));
+		setResistance(2000.0F);
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.UNDERTAKER_NAME));
 	}
 
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-
 	}
 
 	@Override

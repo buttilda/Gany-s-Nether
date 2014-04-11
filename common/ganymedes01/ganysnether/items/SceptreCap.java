@@ -33,7 +33,7 @@ public class SceptreCap extends ItemSimpleFoiled {
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SCEPTRE_CAP_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SCEPTRE_CAP_NAME));
 	}
 
 	@Override
@@ -65,6 +65,6 @@ public class SceptreCap extends ItemSimpleFoiled {
 	public void registerIcons(IconRegister reg) {
 		icon = new Icon[3];
 		for (int i = 0; i < icon.length; i++)
-			icon[i] = reg.registerIcon(Utils.getItemTexture(Strings.SCEPTRE_CAP_NAME) + "_" + i);
+			icon[i] = reg.registerIcon(Utils.getItemTexture(Strings.Items.SCEPTRE_CAP_NAME) + "_" + i);
 	}
 }

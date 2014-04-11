@@ -62,10 +62,10 @@ public class ModBlocks {
 		colouredQuartzBlock = new ColouredQuartzBlock();
 		colouredChiselledQuartzBlock = new ColouredChiselledQuartzBlock();
 		for (int i = 0; i < colouredQuartzBlockStairs.length; i++)
-			colouredQuartzBlockStairs[i] = new ColouredQuartzStairs(i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_STAIRS_NAMES[i]));
+			colouredQuartzBlockStairs[i] = new ColouredQuartzStairs(i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.COLOURED_QUARTZ_STAIRS_NAMES[i]));
 		soulGlassStairs = new SoulGlassStairs(ModIDs.SOUL_GLASS_STAIRS_ID);
 		for (int i = 0; i < colouredQuartzPillar.length; i++)
-			colouredQuartzPillar[i] = new ColouredQuartzPillar(i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.COLOURED_QUARTZ_PILLARS_NAME) + i);
+			colouredQuartzPillar[i] = new ColouredQuartzPillar(i).setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.COLOURED_QUARTZ_PILLARS_NAME) + i);
 		reproducer = new Reproducer();
 		undertaker = new Undertaker();
 		witherShrub = new WitherShrub();
@@ -82,33 +82,33 @@ public class ModBlocks {
 	}
 
 	private static void registerNames() {
-		GameRegistry.registerBlock(tilledNetherrack, Strings.TILLED_NETHERRACK_NAME);
-		GameRegistry.registerBlock(quarzBerryBush, Strings.QUARZ_BERRY_BUSH_NAME);
-		GameRegistry.registerBlock(spectreWheat, Strings.SPECTRE_WHEAT_BLOCK_NAME);
-		GameRegistry.registerBlock(glowingReed, Strings.GLOWING_REED_BLOCK_NAME);
-		GameRegistry.registerBlock(soulGlass, ItemSoulGlass.class, Strings.SOUL_GLASS_NAME);
-		GameRegistry.registerBlock(soulGlassStairs, Strings.SOUL_GLASS_STAIRS_NAME);
-		GameRegistry.registerBlock(soulChest, Strings.SOUL_CHEST_NAME);
-		GameRegistry.registerBlock(volcanicFurnaceIdle, Strings.VOLCANIC_FURNACE_NAME);
-		GameRegistry.registerBlock(volcanicFurnaceActive, Strings.VOLCANIC_FURNACE_NAME + "_on");
-		GameRegistry.registerBlock(denseLavaCell, Strings.DENSE_LAVA_CELL_NAME);
-		GameRegistry.registerBlock(glowBox, ItemGlowBox.class, Strings.GLOW_BOX_NAME);
-		GameRegistry.registerBlock(colouredQuartzBlock, ItemColouredQuartzBlock.class, Strings.COLOURED_QUARTZ_BLOCK_NAME);
-		GameRegistry.registerBlock(colouredChiselledQuartzBlock, ItemColouredChiselledQuartzBlock.class, Strings.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME);
+		GameRegistry.registerBlock(tilledNetherrack, Strings.Blocks.TILLED_NETHERRACK_NAME);
+		GameRegistry.registerBlock(quarzBerryBush, Strings.Blocks.QUARZ_BERRY_BUSH_NAME);
+		GameRegistry.registerBlock(spectreWheat, Strings.Blocks.SPECTRE_WHEAT_BLOCK_NAME);
+		GameRegistry.registerBlock(glowingReed, Strings.Blocks.GLOWING_REED_BLOCK_NAME);
+		GameRegistry.registerBlock(soulGlass, ItemSoulGlass.class, Strings.Blocks.SOUL_GLASS_NAME);
+		GameRegistry.registerBlock(soulGlassStairs, Strings.Blocks.SOUL_GLASS_STAIRS_NAME);
+		GameRegistry.registerBlock(soulChest, Strings.Blocks.SOUL_CHEST_NAME);
+		GameRegistry.registerBlock(volcanicFurnaceIdle, Strings.Blocks.VOLCANIC_FURNACE_NAME);
+		GameRegistry.registerBlock(volcanicFurnaceActive, Strings.Blocks.VOLCANIC_FURNACE_NAME + "_on");
+		GameRegistry.registerBlock(denseLavaCell, Strings.Blocks.DENSE_LAVA_CELL_NAME);
+		GameRegistry.registerBlock(glowBox, ItemGlowBox.class, Strings.Blocks.GLOW_BOX_NAME);
+		GameRegistry.registerBlock(colouredQuartzBlock, ItemColouredQuartzBlock.class, Strings.Blocks.COLOURED_QUARTZ_BLOCK_NAME);
+		GameRegistry.registerBlock(colouredChiselledQuartzBlock, ItemColouredChiselledQuartzBlock.class, Strings.Blocks.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME);
 		for (int i = 0; i < Strings.COLOURS.length; i++)
-			GameRegistry.registerBlock(colouredQuartzBlockStairs[i], Strings.COLOURED_QUARTZ_STAIRS_NAMES[i]);
+			GameRegistry.registerBlock(colouredQuartzBlockStairs[i], Strings.Blocks.COLOURED_QUARTZ_STAIRS_NAMES[i]);
 		for (int i = 0; i < colouredQuartzPillar.length; i++)
-			GameRegistry.registerBlock(colouredQuartzPillar[i], ItemColouredQuartzPillars.class, Strings.COLOURED_QUARTZ_PILLARS_NAME + i);
-		GameRegistry.registerBlock(reproducer, Strings.REPRODUCER_NAME);
-		GameRegistry.registerBlock(undertaker, Strings.UNDERTAKER_NAME);
-		GameRegistry.registerBlock(witherShrub, Strings.WITHER_SHRUB_NAME);
-		GameRegistry.registerBlock(magmaticCentrifuge, Strings.MAGMATIC_CENTRIFUGE_NAME);
-		GameRegistry.registerBlock(weepingPod, Strings.WEEPING_POD_NAME);
-		GameRegistry.registerBlock(soulTNT, Strings.SOUL_TNT_NAME);
-		GameRegistry.registerBlock(blazingCactoid, Strings.BLAZING_CACTOID_NAME);
-		GameRegistry.registerBlock(hellBush, Strings.HELL_BUSH_NAME);
-		GameRegistry.registerBlock(thermalSmelter, Strings.THERMAL_SMELTER_NAME);
-		GameRegistry.registerBlock(horseArmourStand, ItemHorseArmourStand.class, Strings.HORSE_ARMOUR_STAND_NAME);
-		GameRegistry.registerBlock(extendedSpawner, Strings.EXTENDED_SPAWNER_NAME);
+			GameRegistry.registerBlock(colouredQuartzPillar[i], ItemColouredQuartzPillars.class, Strings.Blocks.COLOURED_QUARTZ_PILLARS_NAME + i);
+		GameRegistry.registerBlock(reproducer, Strings.Blocks.REPRODUCER_NAME);
+		GameRegistry.registerBlock(undertaker, Strings.Blocks.UNDERTAKER_NAME);
+		GameRegistry.registerBlock(witherShrub, Strings.Blocks.WITHER_SHRUB_NAME);
+		GameRegistry.registerBlock(magmaticCentrifuge, Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME);
+		GameRegistry.registerBlock(weepingPod, Strings.Blocks.WEEPING_POD_NAME);
+		GameRegistry.registerBlock(soulTNT, Strings.Blocks.SOUL_TNT_NAME);
+		GameRegistry.registerBlock(blazingCactoid, Strings.Blocks.BLAZING_CACTOID_NAME);
+		GameRegistry.registerBlock(hellBush, Strings.Blocks.HELL_BUSH_NAME);
+		GameRegistry.registerBlock(thermalSmelter, Strings.Blocks.THERMAL_SMELTER_NAME);
+		GameRegistry.registerBlock(horseArmourStand, ItemHorseArmourStand.class, Strings.Blocks.HORSE_ARMOUR_STAND_NAME);
+		GameRegistry.registerBlock(extendedSpawner, Strings.Blocks.EXTENDED_SPAWNER_NAME);
 	}
 }

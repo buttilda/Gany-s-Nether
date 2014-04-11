@@ -23,8 +23,8 @@ public class BaseballBat extends Item {
 		setFull3D();
 		setMaxStackSize(1);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getItemTexture(Strings.BASEBALL_BAT_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.BASEBALL_BAT_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.BASEBALL_BAT_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.BASEBALL_BAT_NAME));
 		setMaxDamage(GanysNether.baseballBatDurability);
 	}
 

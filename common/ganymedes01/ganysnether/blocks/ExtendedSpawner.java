@@ -38,8 +38,8 @@ public class ExtendedSpawner extends BlockMobSpawner {
 		setHardness(5.0F);
 		setStepSound(soundMetalFootstep);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getBlockTexture(Strings.EXTENDED_SPAWNER_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.EXTENDED_SPAWNER_NAME));
+		setTextureName(Utils.getBlockTexture(Strings.Blocks.EXTENDED_SPAWNER_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.EXTENDED_SPAWNER_NAME));
 	}
 
 	@Override

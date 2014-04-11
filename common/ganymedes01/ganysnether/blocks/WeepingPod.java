@@ -35,7 +35,7 @@ public class WeepingPod extends BlockCocoa {
 		setHardness(0.2F);
 		setResistance(5.0F);
 		setStepSound(soundWoodFootstep);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.WEEPING_POD_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.WEEPING_POD_NAME));
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class WeepingPod extends BlockCocoa {
 	public void registerIcons(IconRegister reg) {
 		iconArray = new Icon[3];
 		for (int i = 0; i < iconArray.length; i++)
-			iconArray[i] = reg.registerIcon(Utils.getBlockTexture(Strings.WEEPING_POD_NAME) + "_stage_" + i);
+			iconArray[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.WEEPING_POD_NAME) + "_stage_" + i);
 	}
 
 	@Override

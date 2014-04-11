@@ -12,6 +12,6 @@ import ganymedes01.ganysnether.lib.Strings;
 public class ItemGlowBox extends ItemBlockBase {
 
 	public ItemGlowBox(int id) {
-		super(id, Strings.GLOW_BOX_NAME + "_item_");
+		super(id, Strings.Blocks.GLOW_BOX_NAME + "_item_");
 	}
 }

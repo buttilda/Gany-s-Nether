@@ -20,8 +20,8 @@ public class WitherShrubSeeds extends NetherSeeds {
 
 	public WitherShrubSeeds() {
 		super(ModIDs.WITHER_SHRUB_SEEDS_ID, ModBlocks.witherShrub.blockID);
-		setTextureName(Utils.getItemTexture(Strings.WITHER_SHRUB_SEEDS_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.WITHER_SHRUB_SEEDS_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.WITHER_SHRUB_SEEDS_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.WITHER_SHRUB_SEEDS_NAME));
 	}
 
 	@Override

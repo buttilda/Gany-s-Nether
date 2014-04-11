@@ -1,7 +1,6 @@
 package ganymedes01.ganysnether.core.utils;
 
 import ganymedes01.ganysnether.lib.Reference;
-import ganymedes01.ganysnether.lib.Strings;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -85,25 +84,24 @@ public class VersionHelper implements Runnable {
 	public static String getResultMessage() {
 		switch (result) {
 			case UNINITIALIZED:
-				return Strings.VERSION_CHECK_FAIL;
+				return "Version check failed.";
 			case CURRENT:
-				return Strings.CURRENT_MESSAGE;
+				return "The version " + Reference.VERSION_NUMBER + " is the current version.";
 			case OUTDATED:
 				if (remoteVersion != null && updateURL != null)
-					return Strings.OUTDATED_MESSAGE;
+					return "The version " + Reference.VERSION_NUMBER + " is outdated. Current version: " + Reference.LATEST_VERSION;
 			case ERROR:
-				return Strings.VERSION_CHECK_FAIL_CONNECT;
+				return "Failed to connect to version check URL. Trying again...";
 			case FINAL_ERROR:
-				return Strings.VERSION_CHECK_FAIL_CONNECT_FINAL;
+				return "Version check stopped after too many unsuccessful attempts.";
 			default:
 				result = ERROR;
-				return Strings.VERSION_CHECK_FAIL_CONNECT;
+				return "Failed to connect to version check URL. Trying again...";
 		}
 	}
 
 	public static String getResultMessageForClient() {
-		return EnumChatFormatting.GOLD + Reference.MOD_NAME + EnumChatFormatting.WHITE + " is " + EnumChatFormatting.RED + "outdated" + EnumChatFormatting.WHITE + ". Get " + EnumChatFormatting.GOLD + Reference.LATEST_VERSION + EnumChatFormatting.WHITE + " at: " + EnumChatFormatting.GREEN +
-		updateURL;
+		return EnumChatFormatting.GOLD + Reference.MOD_NAME + EnumChatFormatting.WHITE + " is " + EnumChatFormatting.RED + "outdated" + EnumChatFormatting.WHITE + ". Get " + EnumChatFormatting.GOLD + Reference.LATEST_VERSION + EnumChatFormatting.WHITE + " at: " + EnumChatFormatting.GREEN + updateURL;
 	}
 
 	public static byte getResult() {
@@ -114,7 +112,7 @@ public class VersionHelper implements Runnable {
 	public void run() {
 		int count = 0;
 		logger.setParent(FMLLog.getLogger());
-		logger.log(Level.INFO, Strings.VERSION_CHECK_INIT);
+		logger.log(Level.INFO, "Starting version check.");
 
 		try {
 			while (count < 3 - 1 && (result == UNINITIALIZED || result == ERROR)) {

@@ -18,7 +18,7 @@ public class BatWing extends Item {
 	public BatWing() {
 		super(ModIDs.BAT_WING_ID);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getItemTexture(Strings.BAT_WING_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.BAT_WING_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.BAT_WING_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.BAT_WING_NAME));
 	}
 }

@@ -24,8 +24,8 @@ public class LavaBerry extends Item {
 	public LavaBerry() {
 		super(ModIDs.LAVA_BERRY_ID);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getItemTexture(Strings.LAVA_BERRY_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.LAVA_BERRY_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.LAVA_BERRY_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.LAVA_BERRY_NAME));
 	}
 
 	@Override

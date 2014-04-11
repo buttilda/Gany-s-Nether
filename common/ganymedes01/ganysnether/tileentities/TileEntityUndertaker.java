@@ -19,7 +19,7 @@ public class TileEntityUndertaker extends TileEntitySoulChest {
 
 	@Override
 	public String getInvName() {
-		return Utils.getConainerName(Strings.UNDERTAKER_NAME);
+		return Utils.getConainerName(Strings.Blocks.UNDERTAKER_NAME);
 	}
 
 	@Override

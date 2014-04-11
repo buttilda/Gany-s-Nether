@@ -23,7 +23,7 @@ public class SoulGlassStairs extends BlockStairs {
 		setLightOpacity(3);
 		setStepSound(soundGlassFootstep);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SOUL_GLASS_STAIRS_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_GLASS_STAIRS_NAME));
 	}
 
 	@Override

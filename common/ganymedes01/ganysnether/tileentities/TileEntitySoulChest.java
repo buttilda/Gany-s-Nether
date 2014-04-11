@@ -79,7 +79,7 @@ public class TileEntitySoulChest extends TileEntity implements IInventory {
 
 	@Override
 	public String getInvName() {
-		return Utils.getConainerName(Strings.SOUL_CHEST_NAME);
+		return Utils.getConainerName(Strings.Blocks.SOUL_CHEST_NAME);
 	}
 
 	@Override

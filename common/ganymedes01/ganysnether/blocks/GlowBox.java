@@ -35,8 +35,8 @@ public class GlowBox extends Block {
 		setStepSound(soundGlassFootstep);
 		setCreativeTab(GanysNether.netherTab);
 		setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);
-		setTextureName(Utils.getBlockTexture(Strings.GLOW_BOX_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.GLOW_BOX_NAME));
+		setTextureName(Utils.getBlockTexture(Strings.Blocks.GLOW_BOX_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.GLOW_BOX_NAME));
 	}
 
 	@Override
@@ -74,8 +74,8 @@ public class GlowBox extends Block {
 		blockTop = new Icon[16];
 		blockSide = new Icon[16];
 		for (int i = 0; i < 16; i++) {
-			blockTop[i] = reg.registerIcon(Utils.getBlockTexture(Strings.GLOW_BOX_NAME) + "_top_" + i);
-			blockSide[i] = reg.registerIcon(Utils.getBlockTexture(Strings.GLOW_BOX_NAME) + "_side_" + i);
+			blockTop[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.GLOW_BOX_NAME) + "_top_" + i);
+			blockSide[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.GLOW_BOX_NAME) + "_side_" + i);
 		}
 	}
 }

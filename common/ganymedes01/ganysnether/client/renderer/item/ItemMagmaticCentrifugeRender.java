@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ItemMagmaticCentrifugeRender implements IItemRenderer {
 
-	private ModelMagmaticCentrifuge model;
+	private final ModelMagmaticCentrifuge model;
 
 	public ItemMagmaticCentrifugeRender() {
 		model = new ModelMagmaticCentrifuge();
@@ -63,7 +63,7 @@ public class ItemMagmaticCentrifugeRender implements IItemRenderer {
 	}
 
 	private void renderCentrifuge(float x, float y, float z) {
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Utils.getResource(Utils.getEntityTexture(Strings.MAGMATIC_CENTRIFUGE_NAME)));
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME)));
 		GL11.glPushMatrix();
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GL11.glEnable(GL11.GL_BLEND);

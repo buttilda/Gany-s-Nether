@@ -154,7 +154,7 @@ public class TileEntityReproducer extends TileEntity implements ISidedInventory 
 
 	@Override
 	public String getInvName() {
-		return Utils.getConainerName(Strings.REPRODUCER_NAME);
+		return Utils.getConainerName(Strings.Blocks.REPRODUCER_NAME);
 	}
 
 	@Override

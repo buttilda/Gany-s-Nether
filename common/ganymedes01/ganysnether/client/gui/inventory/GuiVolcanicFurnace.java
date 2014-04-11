@@ -43,7 +43,7 @@ public class GuiVolcanicFurnace extends GuiGanysNether {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.VOLCANIC_FURNACE_NAME)));
+		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.VOLCANIC_FURNACE_NAME)));
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 
@@ -53,7 +53,7 @@ public class GuiVolcanicFurnace extends GuiGanysNether {
 		if (furnace.getMeltTimeRemainingScaled(24) > 0)
 			drawTexturedModelRectFromIcon(x + 73, y + 36, FluidRegistry.LAVA.getStillIcon(), 22 - furnace.getMeltTimeRemainingScaled(24), 15);
 
-		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.VOLCANIC_FURNACE_NAME)));
+		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.VOLCANIC_FURNACE_NAME)));
 
 		drawTexturedModalRect(x + 73, y + 35, 177, 13, 24, 16);
 		drawTexturedModalRect(x + 104, y + 17, 176, 31, 16, 52);

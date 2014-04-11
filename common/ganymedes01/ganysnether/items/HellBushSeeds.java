@@ -16,7 +16,7 @@ public class HellBushSeeds extends NetherSeeds {
 
 	public HellBushSeeds() {
 		super(ModIDs.HELL_BUSH_SEEDS_ID, ModBlocks.hellBush.blockID);
-		setTextureName(Utils.getItemTexture(Strings.HELL_BUSH_SEEDS_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.HELL_BUSH_SEEDS_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.HELL_BUSH_SEEDS_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.HELL_BUSH_SEEDS_NAME));
 	}
 }

@@ -15,7 +15,7 @@ public class BlazeChestplate extends BlazeArmour {
 
 	public BlazeChestplate() {
 		super(ModIDs.BLAZE_CHESTPLATE_ID, 1);
-		setTextureName(Utils.getItemTexture(Strings.BLAZE_CHESTPLATE_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.BLAZE_CHESTPLATE_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.BLAZE_CHESTPLATE_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.BLAZE_CHESTPLATE_NAME));
 	}
 }

@@ -22,7 +22,7 @@ public class Flour extends Item {
 		super(ModIDs.FLOUR_ID);
 		setTextureName("sugar");
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.FLOUR_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.FLOUR_NAME));
 	}
 
 	@Override

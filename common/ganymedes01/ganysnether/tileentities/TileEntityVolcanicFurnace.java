@@ -34,7 +34,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInventory, IFluidHandler {
 
 	private ItemStack[] furnaceItemStacks = new ItemStack[3];
-	private FluidTank tank;
+	private final FluidTank tank;
 
 	public int meltTime;
 	public int currentItemMeltTime;
@@ -96,7 +96,7 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 
 	@Override
 	public String getInvName() {
-		return Utils.getConainerName(Strings.VOLCANIC_FURNACE_NAME);
+		return Utils.getConainerName(Strings.Blocks.VOLCANIC_FURNACE_NAME);
 	}
 
 	@Override

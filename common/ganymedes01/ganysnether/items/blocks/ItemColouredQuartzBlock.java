@@ -12,6 +12,6 @@ import ganymedes01.ganysnether.lib.Strings;
 public class ItemColouredQuartzBlock extends ItemBlockBase {
 
 	public ItemColouredQuartzBlock(int id) {
-		super(id, Strings.COLOURED_QUARTZ_BLOCK_NAME + "_item_");
+		super(id, Strings.Blocks.COLOURED_QUARTZ_BLOCK_NAME + "_item_");
 	}
 }

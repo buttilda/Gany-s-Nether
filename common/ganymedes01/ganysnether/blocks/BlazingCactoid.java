@@ -38,8 +38,8 @@ public class BlazingCactoid extends BlockCactus {
 		setStepSound(ModSounds.soundBlaze);
 		setCreativeTab(GanysNether.netherTab);
 		setBlockBounds(0.375F, 0.0F, 0.375F, 0.625F, 1.0F, 0.625F);
-		setTextureName(Utils.getBlockTexture(Strings.BLAZING_CACTOID_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.BLAZING_CACTOID_NAME));
+		setTextureName(Utils.getBlockTexture(Strings.Blocks.BLAZING_CACTOID_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.BLAZING_CACTOID_NAME));
 	}
 
 	@Override

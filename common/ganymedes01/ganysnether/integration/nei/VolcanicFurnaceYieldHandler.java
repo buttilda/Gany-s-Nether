@@ -38,21 +38,21 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getRecipeName() {
-		return StatCollector.translateToLocal(Utils.getConainerName(Strings.VOLCANIC_FURNACE_NAME));
+		return StatCollector.translateToLocal(Utils.getConainerName(Strings.Blocks.VOLCANIC_FURNACE_NAME));
 	}
 
 	public String getRecipeId() {
-		return Reference.MOD_ID + "." + Strings.VOLCANIC_FURNACE_NAME;
+		return Reference.MOD_ID + "." + Strings.Blocks.VOLCANIC_FURNACE_NAME;
 	}
 
 	@Override
 	public String getGuiTexture() {
-		return Utils.getGUITexture(Strings.VOLCANIC_FURNACE_NAME);
+		return Utils.getGUITexture(Strings.Blocks.VOLCANIC_FURNACE_NAME);
 	}
 
 	@Override
 	public String getOverlayIdentifier() {
-		return Strings.VOLCANIC_FURNACE_NAME;
+		return Strings.Blocks.VOLCANIC_FURNACE_NAME;
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 
 	private class CachedLavaYield extends CachedRecipe {
 
-		private PositionedStack material;
+		private final PositionedStack material;
 
 		public CachedLavaYield(ItemStack stack) {
 			material = new PositionedStack(stack, 43, 25);

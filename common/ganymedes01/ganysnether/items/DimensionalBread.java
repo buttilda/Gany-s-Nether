@@ -24,8 +24,8 @@ public class DimensionalBread extends ItemFood {
 		super(ModIDs.DIMENSIONAL_BREAD_ID, 5, false);
 		setCreativeTab(GanysNether.netherTab);
 		setPotionEffect(Potion.invisibility.id, 60, 0, 0.5F);
-		setTextureName(Utils.getItemTexture(Strings.DIMENSIONAL_BREAD_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.DIMENSIONAL_BREAD_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.DIMENSIONAL_BREAD_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.DIMENSIONAL_BREAD_NAME));
 	}
 
 	@Override

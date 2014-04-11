@@ -18,7 +18,7 @@ public class QuarzBerry extends Item {
 	public QuarzBerry() {
 		super(ModIDs.QUARZ_BERRY_ID);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getItemTexture(Strings.QUARZ_BERRY_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.QUARZ_BERRY_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.QUARZ_BERRY_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.QUARZ_BERRY_NAME));
 	}
 }

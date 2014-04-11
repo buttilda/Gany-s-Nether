@@ -32,13 +32,11 @@ public class BlazeIngot extends Item {
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getItemTexture(Strings.BLAZE_INGOT_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.BLAZE_INGOT_NAME));
 	}
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return "item." + Utils.getUnlocalizedName(Strings.BLAZE_INGOT_NAME) + stack.getItemDamage();
+		return "item." + Utils.getUnlocalizedName(Strings.Items.BLAZE_INGOT_NAME) + stack.getItemDamage();
 	}
 
 	@Override
@@ -53,7 +51,7 @@ public class BlazeIngot extends Item {
 		icon = new Icon[3];
 
 		for (int i = 0; i < icon.length; i++)
-			icon[i] = reg.registerIcon(Utils.getItemTexture(Strings.BLAZE_INGOT_NAME) + "_" + i);
+			icon[i] = reg.registerIcon(Utils.getItemTexture(Strings.Items.BLAZE_INGOT_NAME) + "_" + i);
 	}
 
 	@Override

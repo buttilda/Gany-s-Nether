@@ -40,7 +40,7 @@ public class ThermalSmelter extends BlockContainer {
 		setHardness(2.5F);
 		setStepSound(soundStoneFootstep);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.THERMAL_SMELTER_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.THERMAL_SMELTER_NAME));
 	}
 
 	@Override
@@ -126,7 +126,7 @@ public class ThermalSmelter extends BlockContainer {
 	public void registerIcons(IconRegister reg) {
 		icons = new Icon[3];
 		for (int i = 0; i < 3; i++)
-			icons[i] = reg.registerIcon(Utils.getBlockTexture(Strings.THERMAL_SMELTER_NAME) + i);
+			icons[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.THERMAL_SMELTER_NAME) + i);
 	}
 
 	@Override

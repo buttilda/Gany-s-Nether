@@ -32,7 +32,7 @@ public class MagmaticCentrifuge extends BlockContainer {
 		setHardness(2.5F);
 		setStepSound(soundStoneFootstep);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.MAGMATIC_CENTRIFUGE_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME));
 	}
 
 	@Override

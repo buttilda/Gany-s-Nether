@@ -39,21 +39,21 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getRecipeName() {
-		return StatCollector.translateToLocal(Utils.getConainerName(Strings.REPRODUCER_NAME));
+		return StatCollector.translateToLocal(Utils.getConainerName(Strings.Blocks.REPRODUCER_NAME));
 	}
 
 	public String getRecipeId() {
-		return Reference.MOD_ID + "." + Strings.REPRODUCER_NAME;
+		return Reference.MOD_ID + "." + Strings.Blocks.REPRODUCER_NAME;
 	}
 
 	@Override
 	public String getGuiTexture() {
-		return Utils.getGUITexture(Strings.REPRODUCER_NAME);
+		return Utils.getGUITexture(Strings.Blocks.REPRODUCER_NAME);
 	}
 
 	@Override
 	public String getOverlayIdentifier() {
-		return Strings.REPRODUCER_NAME;
+		return Strings.Blocks.REPRODUCER_NAME;
 	}
 
 	@Override
@@ -109,8 +109,8 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 
 	private class CachedReproducerRecipe extends CachedRecipe {
 
-		private ArrayList<PositionedStack> materials = new ArrayList<PositionedStack>();
-		private PositionedStack result;
+		private final ArrayList<PositionedStack> materials = new ArrayList<PositionedStack>();
+		private final PositionedStack result;
 
 		public CachedReproducerRecipe(ItemStack egg, ItemStack drop) {
 			materials.add(new PositionedStack(egg, 31, 24));

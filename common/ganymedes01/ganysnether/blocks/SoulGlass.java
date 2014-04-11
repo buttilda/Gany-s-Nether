@@ -36,7 +36,7 @@ public class SoulGlass extends Block {
 		setLightOpacity(3);
 		setStepSound(soundGlassFootstep);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SOUL_GLASS_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_GLASS_NAME));
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class SoulGlass extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
-		block = reg.registerIcon(Utils.getBlockTexture(Strings.SOUL_GLASS_NAME) + "_0");
-		brick = reg.registerIcon(Utils.getBlockTexture(Strings.SOUL_GLASS_NAME) + "_1");
+		block = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SOUL_GLASS_NAME) + "_0");
+		brick = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SOUL_GLASS_NAME) + "_1");
 	}
 }

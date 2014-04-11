@@ -16,7 +16,7 @@ public class GhostSeeds extends NetherSeeds {
 
 	public GhostSeeds() {
 		super(ModIDs.GHOST_SEEDS_ID, ModBlocks.spectreWheat.blockID);
-		setTextureName(Utils.getItemTexture(Strings.GHOST_SEEDS_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.GHOST_SEEDS_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.GHOST_SEEDS_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.GHOST_SEEDS_NAME));
 	}
 }

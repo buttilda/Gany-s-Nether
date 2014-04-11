@@ -28,8 +28,8 @@ public class LivingSoul extends Item {
 		super(ModIDs.LIVING_SOUL_ID);
 		setFull3D();
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getItemTexture(Strings.LIVING_SOUL_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.LIVING_SOUL_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.LIVING_SOUL_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.LIVING_SOUL_NAME));
 	}
 
 	@Override

@@ -40,7 +40,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedInventory, IFluidHandler {
 
 	private ItemStack[] inventory = new ItemStack[8];
-	private FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
+	private final FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
 
 	private int angle = 0;
 	private float rotationAngle = 0.0F;
@@ -249,7 +249,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 
 	@Override
 	public String getInvName() {
-		return Utils.getConainerName(Strings.MAGMATIC_CENTRIFUGE_NAME);
+		return Utils.getConainerName(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME);
 	}
 
 	@Override

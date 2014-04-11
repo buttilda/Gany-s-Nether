@@ -29,7 +29,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class TileEntityHorseArmourStandRender extends TileEntitySpecialRenderer {
 
-	private static final String[] names = new String[] { "iron", "gold", "diamond", Utils.getEntityTexture(Strings.HORSE_ARMOUR_STAND_NAME) };
+	private static final String[] names = new String[] { "iron", "gold", "diamond", Utils.getEntityTexture(Strings.Blocks.HORSE_ARMOUR_STAND_NAME) };
 	private static final HashMap<Byte, ResourceLocation> textures = new HashMap<Byte, ResourceLocation>();
 	private final ModelHorseArmourStand model = new ModelHorseArmourStand();
 
@@ -39,7 +39,7 @@ public class TileEntityHorseArmourStandRender extends TileEntitySpecialRenderer 
 			if (type < 0)
 				resource = new ResourceLocation(names[names.length - 1]);
 			else {
-				resource = new ResourceLocation(Strings.HORSE_ARMOUR_STAND_NAME + "_" + names[type]);
+				resource = new ResourceLocation(Strings.Blocks.HORSE_ARMOUR_STAND_NAME + "_" + names[type]);
 				Minecraft.getMinecraft().getTextureManager().loadTexture(resource, new LayeredTexture(new String[] { names[names.length - 1], "textures/entity/horse/armor/horse_armor_" + names[type] + ".png" }));
 			}
 			textures.put(type, resource);

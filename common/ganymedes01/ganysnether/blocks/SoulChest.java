@@ -41,7 +41,7 @@ public class SoulChest extends BlockContainer {
 		setHardness(2.5F);
 		setStepSound(soundSandFootstep);
 		setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SOUL_CHEST_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_CHEST_NAME));
 	}
 
 	@Override

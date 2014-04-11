@@ -18,7 +18,7 @@ public class SilverfishScale extends Item {
 	public SilverfishScale() {
 		super(ModIDs.SILVERFISH_SCALE_ID);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getItemTexture(Strings.SILVERFISH_SCALE_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SILVERFISH_SCALE_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.SILVERFISH_SCALE_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SILVERFISH_SCALE_NAME));
 	}
 }

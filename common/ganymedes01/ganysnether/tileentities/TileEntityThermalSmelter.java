@@ -28,7 +28,7 @@ public class TileEntityThermalSmelter extends GanysInventory implements ISidedIn
 	public byte dirCheck, speedModifier;
 
 	public TileEntityThermalSmelter() {
-		super(2, Strings.THERMAL_SMELTER_NAME);
+		super(2, Strings.Blocks.THERMAL_SMELTER_NAME);
 	}
 
 	@Override

@@ -42,21 +42,21 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getRecipeName() {
-		return StatCollector.translateToLocal(Utils.getConainerName(Strings.MAGMATIC_CENTRIFUGE_NAME));
+		return StatCollector.translateToLocal(Utils.getConainerName(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME));
 	}
 
 	public String getRecipeId() {
-		return Reference.MOD_ID + "." + Strings.MAGMATIC_CENTRIFUGE_NAME;
+		return Reference.MOD_ID + "." + Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME;
 	}
 
 	@Override
 	public String getGuiTexture() {
-		return Utils.getGUITexture(Strings.MAGMATIC_CENTRIFUGE_NAME);
+		return Utils.getGUITexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME);
 	}
 
 	@Override
 	public String getOverlayIdentifier() {
-		return Strings.MAGMATIC_CENTRIFUGE_NAME;
+		return Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME;
 	}
 
 	@Override

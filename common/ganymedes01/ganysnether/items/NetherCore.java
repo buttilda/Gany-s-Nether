@@ -21,8 +21,8 @@ public class NetherCore extends Item {
 	public NetherCore() {
 		super(ModIDs.NETHER_CORE_ID);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getItemTexture(Strings.NETHER_CORE_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.NETHER_CORE_NAME));
+		setTextureName(Utils.getItemTexture(Strings.Items.NETHER_CORE_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.NETHER_CORE_NAME));
 	}
 
 	@Override

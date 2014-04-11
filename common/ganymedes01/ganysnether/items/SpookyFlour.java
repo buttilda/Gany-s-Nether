@@ -22,7 +22,7 @@ public class SpookyFlour extends Item {
 		super(ModIDs.SPOOKY_FLOUR_ID);
 		setTextureName("sugar");
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.SPOOKY_FLOUR_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SPOOKY_FLOUR_NAME));
 	}
 
 	@Override

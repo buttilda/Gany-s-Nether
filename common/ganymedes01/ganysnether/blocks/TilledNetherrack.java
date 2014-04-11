@@ -35,7 +35,7 @@ public class TilledNetherrack extends BlockFarmland {
 		setHardness(0.5F);
 		setLightOpacity(0);
 		setStepSound(soundGravelFootstep);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.TILLED_NETHERRACK_NAME));
+		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.TILLED_NETHERRACK_NAME));
 	}
 
 	@Override
@@ -119,8 +119,8 @@ public class TilledNetherrack extends BlockFarmland {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
-		wetIcon = reg.registerIcon(Utils.getBlockTexture(Strings.TILLED_NETHERRACK_NAME) + "_wet");
-		dryIcon = reg.registerIcon(Utils.getBlockTexture(Strings.TILLED_NETHERRACK_NAME) + "_dry");
+		wetIcon = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.TILLED_NETHERRACK_NAME) + "_wet");
+		dryIcon = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.TILLED_NETHERRACK_NAME) + "_dry");
 	}
 
 	@Override
