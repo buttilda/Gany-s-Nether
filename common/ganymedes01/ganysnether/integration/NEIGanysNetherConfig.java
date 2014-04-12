@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.integration;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.integration.nei.AnvilHandler;
 import ganymedes01.ganysnether.integration.nei.MagmaticCentrifugeRecipeHandler;
 import ganymedes01.ganysnether.integration.nei.OreDictionaryHandler;
 import ganymedes01.ganysnether.integration.nei.ReproducerRecipeHandler;
@@ -27,8 +28,15 @@ public class NEIGanysNetherConfig implements IConfigureNEI {
 		API.registerRecipeHandler(new ReproducerRecipeHandler());
 		API.registerUsageHandler(new ReproducerRecipeHandler());
 
-		API.registerRecipeHandler(new OreDictionaryHandler());
-		API.registerUsageHandler(new OreDictionaryHandler());
+		if (GanysNether.enableOreDictNEILookUp) {
+			API.registerRecipeHandler(new OreDictionaryHandler());
+			API.registerUsageHandler(new OreDictionaryHandler());
+		}
+
+		if (GanysNether.enableAnvilRepairNEILookUp) {
+			API.registerRecipeHandler(new AnvilHandler());
+			API.registerUsageHandler(new AnvilHandler());
+		}
 
 		API.registerUsageHandler(new VolcanicFurnaceYieldHandler());
 

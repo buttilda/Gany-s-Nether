@@ -88,5 +88,7 @@ public class Strings {
 		public static final String WITHER_SHRUB_RATE = "witherShrubSpawnRate (bigger = rarer. smaller = more common)";
 		public static final String UNDERTAKER_RATE = "undertakerSpawnRate (bigger = rarer. smaller = more common)";
 		public static final String UNDERTAKER_FILL_SLOT_CHANCE = "undertakerFillSlotChance (bigger = rarer. smaller = more common)";
+		public static final String ENABLE_ORE_DICT_LOOK_UP = "enableOreDictNEILookUp";
+		public static final String ENABLE_ANVIL_LOOK_UP = "enableAnvilNEILookUp";
 	}
 }

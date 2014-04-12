@@ -133,11 +133,13 @@ public class ConfigurationHandler {
 			GanysNether.sceptreOfFireCharging = configDurability(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME, 32);
 			GanysNether.baseballBatDurability = configDurability(Strings.Items.BASEBALL_BAT_NAME, 256);
 
-			GanysNether.shouldGenerateCrops = configBoolean(Strings.Others.SHOULD_GENERATE_CROPS, true);
-			GanysNether.shouldGenerateUndertakers = configBoolean(Strings.Others.SHOULD_GENERATE_UNDERTAKERS, true);
-			GanysNether.shouldDoVersionCheck = configBoolean(Strings.Others.SHOULD_DO_VERSION_CHECK, true);
-			GanysNether.shouldGhastTearHaveDispenserAction = configBoolean(Strings.Others.SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION, true);
-			GanysNether.enableUndertaker = configBoolean(Strings.Others.ENABLE_UNDERTAKER, true);
+			GanysNether.shouldGenerateCrops = configBoolean(Strings.Others.SHOULD_GENERATE_CROPS, GanysNether.shouldGenerateCrops);
+			GanysNether.shouldGenerateUndertakers = configBoolean(Strings.Others.SHOULD_GENERATE_UNDERTAKERS, GanysNether.shouldGenerateUndertakers);
+			GanysNether.shouldDoVersionCheck = configBoolean(Strings.Others.SHOULD_DO_VERSION_CHECK, GanysNether.shouldDoVersionCheck);
+			GanysNether.shouldGhastTearHaveDispenserAction = configBoolean(Strings.Others.SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION, GanysNether.shouldGhastTearHaveDispenserAction);
+			GanysNether.enableUndertaker = configBoolean(Strings.Others.ENABLE_UNDERTAKER, GanysNether.enableUndertaker);
+			GanysNether.enableAnvilRepairNEILookUp = configBoolean(Strings.Others.ENABLE_ANVIL_LOOK_UP, GanysNether.enableAnvilRepairNEILookUp);
+			GanysNether.enableOreDictNEILookUp = configBoolean(Strings.Others.ENABLE_ORE_DICT_LOOK_UP, GanysNether.enableOreDictNEILookUp);
 
 			GanysNether.netherCropRate = configInteger(Strings.Others.NETHER_CROP_RATE, GanysNether.netherCropRate);
 			GanysNether.witherShrubRate = configInteger(Strings.Others.WITHER_SHRUB_RATE, GanysNether.witherShrubRate);
