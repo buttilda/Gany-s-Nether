@@ -90,7 +90,14 @@ public class AnvilHandler extends TemplateRecipeHandler {
 
 		@Override
 		public PositionedStack getIngredient() {
-			return stack;
+			ItemStack s = stack.item.copy();
+			s.setItemDamage(cycleticks % s.getMaxDamage());
+			return new PositionedStack(s, 21, 43);
+		}
+
+		@Override
+		public PositionedStack getOtherStack() {
+			return new PositionedStack(stack.item, 128, 43);
 		}
 
 		@Override
