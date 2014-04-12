@@ -91,7 +91,8 @@ public class AnvilHandler extends TemplateRecipeHandler {
 		@Override
 		public PositionedStack getIngredient() {
 			ItemStack s = stack.item.copy();
-			s.setItemDamage(cycleticks % s.getMaxDamage());
+			float ratio = cycleticks % 48 / 48F;
+			s.setItemDamage((int) (s.getMaxDamage() * ratio));
 			return new PositionedStack(s, 21, 43);
 		}
 
