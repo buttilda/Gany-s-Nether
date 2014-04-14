@@ -21,6 +21,8 @@ public class BonemealOnNetherCrops {
 
 	@ForgeSubscribe
 	public void bonemealEvent(BonemealEvent event) {
+		if (event.entityPlayer == null)
+			return;
 		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
 		int meta = event.world.getBlockMetadata(event.X, event.Y, event.Z);
 
