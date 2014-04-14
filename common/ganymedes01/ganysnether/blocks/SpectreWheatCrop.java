@@ -21,7 +21,7 @@ public class SpectreWheatCrop extends NetherCrop {
 	@SideOnly(Side.CLIENT)
 	private Icon[] iconArray;
 
-	public SpectreWheatCrop() {
+	SpectreWheatCrop() {
 		super(ModIDs.SPECTRE_WHEAT_CROP_ID);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.SPECTRE_WHEAT_BLOCK_NAME));
 	}

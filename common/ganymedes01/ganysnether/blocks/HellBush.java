@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class HellBush extends QuarzBerryBush {
 
-	protected HellBush() {
+	HellBush() {
 		super(ModIDs.HELL_BUSH_ID);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.HELL_BUSH_NAME));
 	}

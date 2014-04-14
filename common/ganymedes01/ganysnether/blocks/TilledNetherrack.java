@@ -30,7 +30,7 @@ public class TilledNetherrack extends BlockFarmland {
 	@SideOnly(Side.CLIENT)
 	private Icon wetIcon, dryIcon;
 
-	protected TilledNetherrack() {
+	TilledNetherrack() {
 		super(ModIDs.TILLED_NETHERRACK_ID);
 		setHardness(0.5F);
 		setLightOpacity(0);

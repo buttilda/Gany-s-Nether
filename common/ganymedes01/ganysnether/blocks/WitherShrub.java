@@ -34,7 +34,7 @@ public class WitherShrub extends NetherCrop {
 	@SideOnly(Side.CLIENT)
 	private Icon disconnected, connected;
 
-	public WitherShrub() {
+	WitherShrub() {
 		super(ModIDs.WITHER_SHRUB_ID);
 		setHardness(0.0F);
 		setTickRandomly(true);

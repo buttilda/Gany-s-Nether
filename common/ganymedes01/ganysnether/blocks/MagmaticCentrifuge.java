@@ -27,7 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class MagmaticCentrifuge extends BlockContainer {
 
-	public MagmaticCentrifuge() {
+	MagmaticCentrifuge() {
 		super(ModIDs.MAGMATIC_CENTRIFUGE_ID, Material.rock);
 		setHardness(2.5F);
 		setStepSound(soundStoneFootstep);

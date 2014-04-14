@@ -27,7 +27,7 @@ public class ColouredQuartzBlock extends Block {
 	@SideOnly(Side.CLIENT)
 	private Icon[] blockIcon;
 
-	public ColouredQuartzBlock() {
+	ColouredQuartzBlock() {
 		super(ModIDs.COLOURED_QUARTZ_BLOCK_ID, Material.rock);
 		setHardness(0.8F);
 		setStepSound(soundStoneFootstep);

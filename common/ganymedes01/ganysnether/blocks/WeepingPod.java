@@ -30,7 +30,7 @@ public class WeepingPod extends BlockCocoa {
 	@SideOnly(Side.CLIENT)
 	private Icon[] iconArray;
 
-	public WeepingPod() {
+	WeepingPod() {
 		super(ModIDs.WEEPING_POD_ID);
 		setHardness(0.2F);
 		setResistance(5.0F);

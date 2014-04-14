@@ -30,7 +30,7 @@ public class SoulGlass extends Block {
 	@SideOnly(Side.CLIENT)
 	private Icon block, brick;
 
-	protected SoulGlass() {
+	SoulGlass() {
 		super(ModIDs.SOUL_GLASS_ID, Material.glass);
 		setHardness(0.3F);
 		setLightOpacity(3);

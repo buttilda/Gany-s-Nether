@@ -31,7 +31,7 @@ public class Reproducer extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	private Icon blockSide, blockBottom, blockTop;
 
-	public Reproducer() {
+	Reproducer() {
 		super(ModIDs.REPRODUCER_ID, Material.rock);
 		setHardness(2.5F);
 		setStepSound(soundStoneFootstep);

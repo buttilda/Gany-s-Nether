@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 public class DenseLavaCell extends Block {
 
-	public DenseLavaCell() {
+	DenseLavaCell() {
 		super(ModIDs.DENSE_LAVA_CELL_ID, Material.iron);
 		setHardness(5F);
 		setLightValue(1F);

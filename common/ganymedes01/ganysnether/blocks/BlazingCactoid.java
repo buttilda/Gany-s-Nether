@@ -31,7 +31,7 @@ public class BlazingCactoid extends BlockCactus {
 	@SideOnly(Side.CLIENT)
 	private Icon cactusTopIcon, cactusBottomIcon;
 
-	public BlazingCactoid() {
+	BlazingCactoid() {
 		super(ModIDs.BLAZING_CACTOID_ID);
 		setHardness(0.4F);
 		setLightValue(0.8F);

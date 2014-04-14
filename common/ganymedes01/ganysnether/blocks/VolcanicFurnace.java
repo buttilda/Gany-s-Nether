@@ -30,7 +30,7 @@ public class VolcanicFurnace extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	private Icon blockSide, blockBottom, blockTop;
 
-	protected VolcanicFurnace(boolean isActive) {
+	VolcanicFurnace(boolean isActive) {
 		super(isActive ? ModIDs.VOLCANIC_FURNACE_ACTIVE_ID : ModIDs.VOLCANIC_FURNACE_IDLE_ID, Material.rock);
 		this.isActive = isActive;
 		if (!isActive)

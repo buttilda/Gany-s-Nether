@@ -31,12 +31,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class SoulChest extends BlockContainer {
 
-	protected SoulChest() {
+	SoulChest() {
 		this(ModIDs.SOUL_CHEST_ID);
 		setCreativeTab(GanysNether.netherTab);
 	}
 
-	protected SoulChest(int id) {
+	SoulChest(int id) {
 		super(id, Material.sand);
 		setHardness(2.5F);
 		setStepSound(soundSandFootstep);

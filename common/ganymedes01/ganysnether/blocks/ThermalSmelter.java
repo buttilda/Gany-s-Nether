@@ -35,7 +35,7 @@ public class ThermalSmelter extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	private Icon[] icons;
 
-	public ThermalSmelter() {
+	ThermalSmelter() {
 		super(ModIDs.THERMAL_SMELTER_ID, Material.rock);
 		setHardness(2.5F);
 		setStepSound(soundStoneFootstep);

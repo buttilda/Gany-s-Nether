@@ -26,7 +26,7 @@ public class SoulTNT extends BlockTNT {
 	@SideOnly(Side.CLIENT)
 	private Icon blockTop, blockBottom;
 
-	public SoulTNT() {
+	SoulTNT() {
 		super(ModIDs.SOUL_TNT_ID);
 		setHardness(0.0F);
 		setStepSound(soundGrassFootstep);

@@ -28,7 +28,7 @@ public class ColouredChiselledQuartzBlock extends Block {
 	@SideOnly(Side.CLIENT)
 	private Icon[] blockTop, blockSide;
 
-	public ColouredChiselledQuartzBlock() {
+	ColouredChiselledQuartzBlock() {
 		super(ModIDs.COLOURED_CHISELLED_QUARTZ_BLOCK_ID, Material.rock);
 		setHardness(0.8F);
 		setStepSound(soundStoneFootstep);

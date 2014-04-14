@@ -24,7 +24,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class GlowingReedCrop extends BlockReed {
 
-	public GlowingReedCrop() {
+	GlowingReedCrop() {
 		super(ModIDs.GLOWING_REED_CROP_ID);
 		disableStats();
 		setHardness(0.0F);

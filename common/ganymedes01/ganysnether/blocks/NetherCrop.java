@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 public class NetherCrop extends BlockCrops {
 
-	protected NetherCrop(int id) {
+	NetherCrop(int id) {
 		super(id);
 	}
 

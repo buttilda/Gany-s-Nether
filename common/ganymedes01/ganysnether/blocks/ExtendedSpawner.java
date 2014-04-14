@@ -33,7 +33,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ExtendedSpawner extends BlockMobSpawner {
 
-	public ExtendedSpawner() {
+	ExtendedSpawner() {
 		super(ModIDs.EXTENDED_SPAWNER_ID);
 		disableStats();
 		setHardness(5.0F);

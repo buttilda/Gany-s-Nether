@@ -22,11 +22,11 @@ public class QuarzBerryBush extends NetherCrop {
 	@SideOnly(Side.CLIENT)
 	protected Icon[] iconArray;
 
-	public QuarzBerryBush() {
+	QuarzBerryBush() {
 		this(ModIDs.QUARZ_BERRY_BUSH_ID);
 	}
 
-	protected QuarzBerryBush(int id) {
+	QuarzBerryBush(int id) {
 		super(id);
 		float f = 1F / 8F;
 		setBlockBounds(3F * f, 0.0F, 3F * f, 1F - 3F * f, 2F * f, 1F - 3F * f);

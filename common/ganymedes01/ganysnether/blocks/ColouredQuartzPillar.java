@@ -30,7 +30,7 @@ public class ColouredQuartzPillar extends BlockRotatedPillar {
 
 	private final int startIndex;
 
-	public ColouredQuartzPillar(int startIndex) {
+	ColouredQuartzPillar(int startIndex) {
 		super(ModIDs.COLOURED_QUARTZ_PILLARS_IDS[startIndex], Material.rock);
 		setHardness(0.8F);
 		this.startIndex = startIndex;

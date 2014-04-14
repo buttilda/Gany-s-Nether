@@ -24,7 +24,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class HorseArmourStand extends BlockContainer {
 
-	public HorseArmourStand() {
+	HorseArmourStand() {
 		super(ModIDs.HORSE_ARMOUR_STAND_ID, Material.iron);
 		setHardness(1.0F);
 		setTextureName("stone");

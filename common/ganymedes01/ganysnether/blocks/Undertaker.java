@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 public class Undertaker extends SoulChest {
 
-	public Undertaker() {
+	Undertaker() {
 		super(ModIDs.UNDERTAKER_ID);
 		if (GanysNether.enableUndertaker)
 			setCreativeTab(GanysNether.netherTab);

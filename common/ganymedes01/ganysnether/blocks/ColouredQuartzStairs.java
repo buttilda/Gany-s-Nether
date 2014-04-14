@@ -13,7 +13,7 @@ import net.minecraft.block.BlockStairs;
 
 public class ColouredQuartzStairs extends BlockStairs {
 
-	protected ColouredQuartzStairs(int meta) {
+	ColouredQuartzStairs(int meta) {
 		super(ModIDs.COLOURED_QUARTZ_STAIRS_IDS[meta], ModBlocks.colouredQuartzBlock, meta);
 		setHardness(0.8F);
 		setLightOpacity(0);

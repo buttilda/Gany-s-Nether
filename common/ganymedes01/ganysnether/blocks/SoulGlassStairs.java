@@ -17,7 +17,7 @@ import net.minecraft.block.BlockStairs;
 
 public class SoulGlassStairs extends BlockStairs {
 
-	public SoulGlassStairs(int id) {
+	SoulGlassStairs(int id) {
 		super(id, ModBlocks.soulGlass, 1);
 		setHardness(0.3F);
 		setLightOpacity(3);

@@ -28,7 +28,7 @@ public class GlowBox extends Block {
 	@SideOnly(Side.CLIENT)
 	private Icon[] blockSide, blockTop;
 
-	public GlowBox() {
+	GlowBox() {
 		super(ModIDs.GLOW_BOX_ID, Material.glass);
 		setLightValue(1F);
 		setHardness(0.2F);
