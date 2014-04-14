@@ -18,10 +18,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 /**
@@ -253,5 +255,12 @@ public class Utils {
 		stack.setTagCompound(new NBTTagCompound());
 		Item.enchantedBook.addEnchantment(stack, new EnchantmentData(enchantment, level));
 		return stack;
+	}
+
+	public static <T> T getTileEntity(IBlockAccess world, int x, int y, int z, Class<T> cls) {
+		TileEntity tr = world.getBlockTileEntity(x, y, z);
+		if (!cls.isInstance(tr))
+			return null;
+		return (T) tr;
 	}
 }

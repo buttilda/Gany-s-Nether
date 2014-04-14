@@ -33,6 +33,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class VolcanicFurnaceHandler {
 
+	private static final String[] prefixes = new String[] { "m", "", "k", "M", "G" };
+
 	private static ArrayList<UnsizedStack> meltingBlackList = new ArrayList<UnsizedStack>();
 	private static ArrayList<UnsizedStack> meltingWhiteList = new ArrayList<UnsizedStack>();
 	private static HashMap<UnsizedStack, Integer> burnTimes = new HashMap<UnsizedStack, Integer>();
@@ -49,12 +51,12 @@ public class VolcanicFurnaceHandler {
 
 		addBurnTimeForItem(new ItemStack(ModItems.glowingReed), 32);
 		addBurnTimeForItem(new ItemStack(ModBlocks.denseLavaCell), 5000);
-		addBurnTimeForItem(new ItemStack(Item.netherStar), 10000);
+		addBurnTimeForItem(new ItemStack(Item.netherStar), 10000000);
 		addBurnTimeForItem(new ItemStack(Block.fire), 600);
 		addBurnTimeForItem(new ItemStack(Block.bedrock), 8000);
 		addBurnTimeForItem(new ItemStack(Block.lavaMoving), 1000);
 		addBurnTimeForItem(new ItemStack(Block.lavaStill), 1000);
-		addBurnTimeForItem(new ItemStack(Block.dragonEgg), 1000000);
+		addBurnTimeForItem(new ItemStack(Block.dragonEgg), Integer.MAX_VALUE);
 		addBurnTimeForItem(new ItemStack(Item.blazePowder), 7);
 		addBurnTimeForItem(new ItemStack(Block.netherrack), 35);
 		for (int i = 0; i < 16; i++)
@@ -201,5 +203,17 @@ public class VolcanicFurnaceHandler {
 		addBurnTimeForItem(stack, intVolume);
 
 		return intVolume;
+	}
+
+	public static String getUnitParsedValued(long value, String unit, int prefix) {
+		prefix++;
+
+		float v = value;
+		while (v >= 1000) {
+			prefix++;
+			v /= 1000F;
+		}
+
+		return String.format("%,3.1f", v) + " " + prefixes[prefix] + unit;
 	}
 }

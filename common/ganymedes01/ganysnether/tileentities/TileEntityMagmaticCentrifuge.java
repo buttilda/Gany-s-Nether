@@ -88,12 +88,6 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	}
 
 	private void fillTankFromContainer() {
-		TileEntity tile = worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord);
-		if (tile instanceof TileEntityVolcanicFurnace) {
-			TileEntityVolcanicFurnace furnace = (TileEntityVolcanicFurnace) tile;
-			if (fill(ForgeDirection.DOWN, furnace.drain(ForgeDirection.UP, new FluidStack(FluidRegistry.LAVA, 1), false), true) == 1)
-				furnace.drain(ForgeDirection.UP, new FluidStack(FluidRegistry.LAVA, 1), true);
-		}
 		if (tank.getFluidAmount() <= tank.getCapacity() - FluidContainerRegistry.BUCKET_VOLUME)
 			if (FluidContainerRegistry.isFilledContainer(inventory[FULL_BUCKET_SLOT])) {
 				ItemStack emptyContainer = getEmptyContainer();

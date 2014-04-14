@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.client.gui.inventory;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerVolcanicFurnace;
 import ganymedes01.ganysnether.lib.Strings;
+import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -58,7 +59,7 @@ public class GuiVolcanicFurnace extends GuiGanysNether {
 		drawTexturedModalRect(x + 73, y + 35, 177, 13, 24, 16);
 		drawTexturedModalRect(x + 104, y + 17, 176, 31, 16, 52);
 
-		String fluidAmount = Integer.toString(furnace.meltTime) + " mB";
+		String fluidAmount = VolcanicFurnaceHandler.getUnitParsedValued(furnace.meltTime, "B", 0);
 		fontRenderer.drawString(fluidAmount, x + 10 + fontRenderer.getStringWidth(FLUID_TO_GO) / 2 - fontRenderer.getStringWidth(fluidAmount) / 2, y + 25, BLACK);
 	}
 

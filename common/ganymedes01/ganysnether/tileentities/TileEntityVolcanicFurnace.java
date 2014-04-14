@@ -63,9 +63,26 @@ public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedI
 		if (worldObj.isRemote)
 			return;
 
+		ejectLava();
 		meltItems();
 		fillBuckets();
 		sendUpdates();
+	}
+
+	private void ejectLava() {
+		if (tank.getFluidAmount() <= (int) (tank.getCapacity() / 2F))
+			return;
+		if (worldObj.rand.nextBoolean()) {
+			IFluidHandler fluidHandler = Utils.getTileEntity(worldObj, xCoord, yCoord + 1, zCoord, IFluidHandler.class);
+			if (fluidHandler != null) {
+				FluidStack drained = tank.drain((int) (FILL_RATE * 2F), true);
+				if (drained != null) {
+					drained.amount -= fluidHandler.fill(ForgeDirection.DOWN, drained, true);
+					if (drained.amount > 0)
+						tank.fill(drained, true);
+				}
+			}
+		}
 	}
 
 	private void sendUpdates() {
@@ -73,7 +90,8 @@ public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedI
 	}
 
 	private void meltItems() {
-		if (tank.getFluidAmount() >= tank.getCapacity() + FILL_RATE)
+		int amount = Math.min(FILL_RATE, meltTime);
+		if (tank.getFluidAmount() >= tank.getCapacity() + amount)
 			return;
 		if (meltTime <= 0) {
 			if (inventory[0] != null) {
@@ -86,8 +104,8 @@ public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedI
 				}
 			}
 		} else if (meltTime > 0) {
-			meltTime -= FILL_RATE;
-			tank.fill(new FluidStack(FluidRegistry.LAVA, FILL_RATE), true);
+			meltTime -= amount;
+			tank.fill(new FluidStack(FluidRegistry.LAVA, amount), true);
 		}
 	}
 

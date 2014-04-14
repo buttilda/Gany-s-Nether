@@ -78,9 +78,8 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 		changeTexture(getGuiTexture());
 		drawTexturedModalRect(0, 0, 5, 11, 98, 65);
 
-		int prog = (int) (22 * (cycleticks >= 20 ? (cycleticks - 20) % 20 / 20.0F : 0.0F));
 		changeTexture(TextureMap.locationBlocksTexture);
-		drawTexturedModelRectFromIcon(68, 25, Block.lavaStill.getIcon(0, 0), prog, 15);
+		drawTexturedModelRectFromIcon(68, 25, Block.lavaStill.getIcon(0, 0), cycleticks % 20, 15);
 
 		changeTexture(getGuiTexture());
 		drawTexturedModalRect(68, 25, 177, 14, 22, 15);
@@ -88,8 +87,9 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 		CachedRecipe recipe = arecipes.get(index);
 		if (recipe instanceof CachedLavaYield) {
 			CachedLavaYield yieldRecipe = (CachedLavaYield) recipe;
-			GuiDraw.fontRenderer.drawString(String.format("%,3d", yieldRecipe.getYield()) + " mB", 100, 28, Utils.getColour(0, 0, 0));
+			GuiDraw.fontRenderer.drawString(VolcanicFurnaceHandler.getUnitParsedValued(yieldRecipe.getYield(), "B", 0), 93, 28, Utils.getColour(0, 0, 0));
 			GuiDraw.fontRenderer.drawString("1000 mB = 1 " + StatCollector.translateToLocal(Item.bucketLava.getUnlocalizedName() + ".name"), 20, 46, Utils.getColour(0, 0, 0));
+			GuiDraw.fontRenderer.drawString("1 B = 1 " + StatCollector.translateToLocal(Item.bucketLava.getUnlocalizedName() + ".name"), 20, 55, Utils.getColour(0, 0, 0));
 		}
 	}
 

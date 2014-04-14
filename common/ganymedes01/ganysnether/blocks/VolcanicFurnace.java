@@ -37,7 +37,7 @@ public class VolcanicFurnace extends InventoryBlock {
 
 	@Override
 	public int getLightValue(IBlockAccess world, int x, int y, int z) {
-		TileEntityVolcanicFurnace tile = (TileEntityVolcanicFurnace) world.getBlockTileEntity(x, y, z);
+		TileEntityVolcanicFurnace tile = Utils.getTileEntity(world, x, y, z, TileEntityVolcanicFurnace.class);
 		if (tile == null)
 			return 0;
 		return tile.hasLava ? 13 : 0;
