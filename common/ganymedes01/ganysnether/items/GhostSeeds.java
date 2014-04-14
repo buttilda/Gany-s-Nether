@@ -14,7 +14,7 @@ import ganymedes01.ganysnether.lib.Strings;
 
 public class GhostSeeds extends NetherSeeds {
 
-	public GhostSeeds() {
+	GhostSeeds() {
 		super(ModIDs.GHOST_SEEDS_ID, ModBlocks.spectreWheat.blockID);
 		setTextureName(Utils.getItemTexture(Strings.Items.GHOST_SEEDS_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.GHOST_SEEDS_NAME));

@@ -16,7 +16,7 @@ import net.minecraft.item.ItemReed;
 
 public class GlowingReed extends ItemReed {
 
-	public GlowingReed() {
+	GlowingReed() {
 		super(ModIDs.GLOWING_REED_ITEM_ID, ModBlocks.glowingReed);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.GLOWING_REED_NAME));

@@ -20,7 +20,7 @@ public class NetherSeeds extends ItemSeeds {
 
 	private final int blockType;
 
-	public NetherSeeds(int id, int cropID) {
+	NetherSeeds(int id, int cropID) {
 		super(id, cropID, ModBlocks.tilledNetherrack.blockID);
 		blockType = cropID;
 		setCreativeTab(GanysNether.netherTab);

@@ -24,7 +24,7 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 
 public class LivingSoul extends Item {
 
-	public LivingSoul() {
+	LivingSoul() {
 		super(ModIDs.LIVING_SOUL_ID);
 		setFull3D();
 		setCreativeTab(GanysNether.netherTab);

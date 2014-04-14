@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class NetherCore extends Item {
 
-	public NetherCore() {
+	NetherCore() {
 		super(ModIDs.NETHER_CORE_ID);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.NETHER_CORE_NAME));

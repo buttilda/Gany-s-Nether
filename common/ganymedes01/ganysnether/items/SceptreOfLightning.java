@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class SceptreOfLightning extends Sceptre {
 
-	public SceptreOfLightning() {
+	SceptreOfLightning() {
 		super(ModIDs.SCEPTRE_OF_LIGHTNING_ID);
 		setMaxDamage(GanysNether.sceptreOfLightningDurability);
 		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_LIGHTNING_NAME));

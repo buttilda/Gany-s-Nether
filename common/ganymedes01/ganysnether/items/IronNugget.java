@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 
 public class IronNugget extends Item {
 
-	public IronNugget() {
+	IronNugget() {
 		super(ModIDs.IRON_NUGGET_ID);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.IRON_NUGGET_NAME));

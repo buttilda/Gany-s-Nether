@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 
 public class SilverfishScale extends Item {
 
-	public SilverfishScale() {
+	SilverfishScale() {
 		super(ModIDs.SILVERFISH_SCALE_ID);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.SILVERFISH_SCALE_NAME));

@@ -20,7 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class DimensionalBread extends ItemFood {
 
-	public DimensionalBread() {
+	DimensionalBread() {
 		super(ModIDs.DIMENSIONAL_BREAD_ID, 5, false);
 		setCreativeTab(GanysNether.netherTab);
 		setPotionEffect(Potion.invisibility.id, 60, 0, 0.5F);

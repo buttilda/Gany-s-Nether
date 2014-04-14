@@ -32,7 +32,7 @@ public class BlazeArmour extends ItemArmor {
 	private final int MAX_COOL_DOWN = 160;
 	private int coolDown = MAX_COOL_DOWN;
 
-	public BlazeArmour(int id, int type) {
+	BlazeArmour(int id, int type) {
 		super(id, ModMaterials.BLAZE, 0, type);
 		setMaxStackSize(1);
 		setCreativeTab(GanysNether.netherTab);

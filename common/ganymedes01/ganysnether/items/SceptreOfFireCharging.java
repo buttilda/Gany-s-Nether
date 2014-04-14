@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 public class SceptreOfFireCharging extends Sceptre {
 
-	public SceptreOfFireCharging() {
+	SceptreOfFireCharging() {
 		super(ModIDs.SCEPTRE_OF_FIRE_CHARGING_ID);
 		setMaxDamage(GanysNether.sceptreOfFireCharging);
 		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME));

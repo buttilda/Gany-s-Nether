@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class Sceptre extends ItemSimpleFoiled implements IRepairable {
 
-	public Sceptre(int id) {
+	Sceptre(int id) {
 		super(id);
 		setFull3D();
 		setMaxStackSize(1);

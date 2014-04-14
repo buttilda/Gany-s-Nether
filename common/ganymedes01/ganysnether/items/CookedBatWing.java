@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 
 public class CookedBatWing extends ItemFood {
 
-	public CookedBatWing() {
+	CookedBatWing() {
 		super(ModIDs.COOKED_BAT_WING_ID, 1, true);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.COOKED_BAT_WING_NAME));

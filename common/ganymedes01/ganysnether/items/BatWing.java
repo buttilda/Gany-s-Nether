@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 
 public class BatWing extends Item {
 
-	public BatWing() {
+	BatWing() {
 		super(ModIDs.BAT_WING_ID);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.BAT_WING_NAME));

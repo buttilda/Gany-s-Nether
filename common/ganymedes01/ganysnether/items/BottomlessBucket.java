@@ -24,7 +24,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BottomlessBucket extends ItemSimpleFoiled {
 
-	public BottomlessBucket() {
+	BottomlessBucket() {
 		super(ModIDs.BOTTOMLESS_BUCKET_ID);
 		setMaxStackSize(1);
 		setCreativeTab(GanysNether.netherTab);

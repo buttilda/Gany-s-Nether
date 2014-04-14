@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 
 public class QuarzBerry extends Item {
 
-	public QuarzBerry() {
+	QuarzBerry() {
 		super(ModIDs.QUARZ_BERRY_ID);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.QUARZ_BERRY_NAME));

@@ -27,7 +27,7 @@ public class BlazeIngot extends Item {
 	@SideOnly(Side.CLIENT)
 	private Icon[] icon;
 
-	public BlazeIngot() {
+	BlazeIngot() {
 		super(ModIDs.BLAZE_INGOT_ID);
 		setMaxDamage(0);
 		setHasSubtypes(true);

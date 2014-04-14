@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 
 public class WolfTeeth extends Item {
 
-	public WolfTeeth() {
+	WolfTeeth() {
 		super(ModIDs.WOLF_TEETH_ID);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.WOLF_TEETH_NAME));

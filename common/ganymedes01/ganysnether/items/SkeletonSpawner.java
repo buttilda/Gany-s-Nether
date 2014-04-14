@@ -43,7 +43,7 @@ public class SkeletonSpawner extends Item {
 	@SideOnly(Side.CLIENT)
 	private Icon overlay;
 
-	public SkeletonSpawner() {
+	SkeletonSpawner() {
 		super(ModIDs.SKELETON_SPAWNER_ID);
 		setMaxDamage(0);
 		setHasSubtypes(true);

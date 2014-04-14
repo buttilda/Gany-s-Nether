@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 
 public class SpectreWheat extends Item {
 
-	public SpectreWheat() {
+	SpectreWheat() {
 		super(ModIDs.SPECTRE_WHEAT_ITEM_ID);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.SPECTRE_WHEAT_NAME));

@@ -13,7 +13,7 @@ import ganymedes01.ganysnether.lib.Strings;
 
 public class BlazeLeggings extends BlazeArmour {
 
-	public BlazeLeggings() {
+	BlazeLeggings() {
 		super(ModIDs.BLAZE_LEGGINGS_ID, 2);
 		setTextureName(Utils.getItemTexture(Strings.Items.BLAZE_LEGGINGS_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.BLAZE_LEGGINGS_NAME));

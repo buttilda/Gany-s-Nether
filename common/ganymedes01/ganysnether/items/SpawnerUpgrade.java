@@ -78,7 +78,7 @@ public class SpawnerUpgrade extends Item {
 	@SideOnly(Side.CLIENT)
 	private Icon inside;
 
-	public SpawnerUpgrade() {
+	SpawnerUpgrade() {
 		super(ModIDs.SPAWNER_UPGRADE_ID);
 		setMaxDamage(0);
 		setHasSubtypes(true);

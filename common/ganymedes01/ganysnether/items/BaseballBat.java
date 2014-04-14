@@ -18,7 +18,7 @@ import net.minecraft.util.MathHelper;
 
 public class BaseballBat extends Item {
 
-	public BaseballBat() {
+	BaseballBat() {
 		super(ModIDs.BASEBALL_BAT_ID);
 		setFull3D();
 		setMaxStackSize(1);

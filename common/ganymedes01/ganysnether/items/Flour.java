@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class Flour extends Item {
 
-	public Flour() {
+	Flour() {
 		super(ModIDs.FLOUR_ID);
 		setTextureName("sugar");
 		setCreativeTab(GanysNether.netherTab);

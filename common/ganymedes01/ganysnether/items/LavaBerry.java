@@ -21,7 +21,7 @@ import net.minecraft.util.StatCollector;
 
 public class LavaBerry extends Item {
 
-	public LavaBerry() {
+	LavaBerry() {
 		super(ModIDs.LAVA_BERRY_ID);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.LAVA_BERRY_NAME));

@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class SpookyFlour extends Item {
 
-	public SpookyFlour() {
+	SpookyFlour() {
 		super(ModIDs.SPOOKY_FLOUR_ID);
 		setTextureName("sugar");
 		setCreativeTab(GanysNether.netherTab);

@@ -20,7 +20,7 @@ import net.minecraft.item.ItemStack;
 
 public class SceptreOfConcealment extends Sceptre {
 
-	public SceptreOfConcealment() {
+	SceptreOfConcealment() {
 		super(ModIDs.SCEPTRE_OF_CONCEALMENT_ID);
 		setMaxDamage(GanysNether.sceptreOfConcealmentDurability);
 		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_CONCEALMENT_NAME));

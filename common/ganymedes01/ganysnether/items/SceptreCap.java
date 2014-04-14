@@ -28,7 +28,7 @@ public class SceptreCap extends ItemSimpleFoiled {
 	@SideOnly(Side.CLIENT)
 	private Icon[] icon;
 
-	public SceptreCap() {
+	SceptreCap() {
 		super(ModIDs.SCEPTRE_CAP_ID);
 		setMaxDamage(0);
 		setHasSubtypes(true);
