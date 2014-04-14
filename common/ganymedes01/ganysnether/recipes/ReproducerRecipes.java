@@ -1,8 +1,9 @@
 package ganymedes01.ganysnether.recipes;
 
-import ganymedes01.ganysnether.core.utils.ItemStackMap;
+import ganymedes01.ganysnether.core.utils.UnsizedStack;
 import ganymedes01.ganysnether.items.ModItems;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.block.Block;
@@ -18,7 +19,7 @@ import net.minecraft.item.ItemStack;
 
 public class ReproducerRecipes {
 
-	private static ItemStackMap<ItemStack> eggDropTuple = new ItemStackMap<ItemStack>();
+	private static HashMap<UnsizedStack, ItemStack> eggDropTuple = new HashMap<UnsizedStack, ItemStack>();
 
 	static {
 		addMobDropAndEggTuple(new ItemStack(ModItems.skeletonSpawner), new ItemStack(Item.bone));
@@ -51,7 +52,7 @@ public class ReproducerRecipes {
 		addMobDropAndEggTuple(120, Item.emerald);
 	}
 
-	public static Map<ItemStack, ItemStack> getTupes() {
+	public static Map<UnsizedStack, ItemStack> getTuples() {
 		return eggDropTuple;
 	}
 
@@ -64,7 +65,7 @@ public class ReproducerRecipes {
 			if (!eggDropTuple.containsKey(egg)) {
 				egg.stackSize = 1;
 				drop.stackSize = 1;
-				eggDropTuple.put(egg, drop);
+				eggDropTuple.put(new UnsizedStack(egg), drop);
 			}
 	}
 

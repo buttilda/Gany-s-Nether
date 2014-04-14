@@ -61,15 +61,12 @@ public class AnvilHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
-		if (outputId.equals(Reference.MOD_ID + "AnvilRepair"))
-			try {
-				for (ItemStack stack : ItemList.items)
-					for (ItemStack repair : ItemList.items)
-						if (stack != null && stack.getItem().getIsRepairable(stack, repair))
-							arecipes.add(new CachedRepair(stack, repair));
-			} catch (Exception e) {
-			}
-		else
+		if (outputId.equals(Reference.MOD_ID + "AnvilRepair")) {
+			for (ItemStack stack : ItemList.items)
+				for (ItemStack repair : ItemList.items)
+					if (stack != null && stack.getItem().getIsRepairable(stack, repair))
+						arecipes.add(new CachedRepair(stack, repair));
+		} else
 			super.loadCraftingRecipes(outputId, results);
 	}
 

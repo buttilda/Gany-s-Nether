@@ -6,7 +6,6 @@ import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import net.minecraft.block.BlockChest;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
@@ -29,7 +28,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  */
 
-public class SoulChest extends BlockContainer {
+public class SoulChest extends InventoryBlock {
 
 	SoulChest() {
 		this(ModIDs.SOUL_CHEST_ID);
@@ -86,20 +85,6 @@ public class SoulChest extends BlockContainer {
 			b0 = 4;
 
 		world.setBlockMetadataWithNotify(x, y, z, b0, 3);
-	}
-
-	@Override
-	public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
-		TileEntitySoulChest tile = (TileEntitySoulChest) world.getBlockTileEntity(x, y, z);
-		if (tile != null) {
-			for (int i = 0; i < tile.getSizeInventory(); i++) {
-				ItemStack stack = tile.getStackInSlot(i);
-				if (stack != null)
-					Utils.dropStack(world, x, y, z, stack);
-			}
-			world.func_96440_m(x, y, z, par5);
-		}
-		super.breakBlock(world, x, y, z, par5, par6);
 	}
 
 	@Override

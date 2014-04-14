@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.integration.nei;
 
 import ganymedes01.ganysnether.client.gui.inventory.GuiReproducer;
+import ganymedes01.ganysnether.core.utils.UnsizedStack;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
@@ -66,7 +67,7 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 		super.onUpdate();
 		ticks += 0.05F;
 
-		if (ticks > ReproducerRecipes.getTupes().size())
+		if (ticks > ReproducerRecipes.getTuples().size())
 			ticks = 0.0F;
 	}
 
@@ -87,24 +88,28 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
 		if (outputId.equals(getRecipeId()))
-			for (Entry<ItemStack, ItemStack> tuple : ReproducerRecipes.getTupes().entrySet())
-				arecipes.add(new CachedReproducerRecipe(tuple.getKey(), tuple.getValue()));
+			for (Entry<UnsizedStack, ItemStack> tuple : ReproducerRecipes.getTuples().entrySet())
+				arecipes.add(new CachedReproducerRecipe(tuple.getKey().getStack(), tuple.getValue()));
 		else
 			super.loadCraftingRecipes(outputId, results);
 	}
 
 	@Override
 	public void loadCraftingRecipes(ItemStack result) {
-		for (Entry<ItemStack, ItemStack> tuple : ReproducerRecipes.getTupes().entrySet())
-			if (tuple.getKey().itemID == result.itemID && tuple.getKey().getItemDamage() == result.getItemDamage())
-				arecipes.add(new CachedReproducerRecipe(tuple.getKey(), tuple.getValue()));
+		for (Entry<UnsizedStack, ItemStack> tuple : ReproducerRecipes.getTuples().entrySet()) {
+			ItemStack stack = tuple.getKey().getStack();
+			if (Utils.areStacksTheSame(stack, result, false))
+				arecipes.add(new CachedReproducerRecipe(stack, tuple.getValue()));
+		}
 	}
 
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
-		for (Entry<ItemStack, ItemStack> tuple : ReproducerRecipes.getTupes().entrySet())
-			if (tuple.getKey().itemID == ingredient.itemID && tuple.getKey().getItemDamage() == ingredient.getItemDamage() || tuple.getValue().itemID == ingredient.itemID && tuple.getValue().getItemDamage() == ingredient.getItemDamage())
-				arecipes.add(new CachedReproducerRecipe(tuple.getKey(), tuple.getValue()));
+		for (Entry<UnsizedStack, ItemStack> tuple : ReproducerRecipes.getTuples().entrySet()) {
+			ItemStack stack = tuple.getKey().getStack();
+			if (Utils.areStacksTheSame(stack, ingredient, false) || Utils.areStacksTheSame(tuple.getValue(), ingredient, false))
+				arecipes.add(new CachedReproducerRecipe(stack, tuple.getValue()));
+		}
 	}
 
 	private class CachedReproducerRecipe extends CachedRecipe {
@@ -129,13 +134,13 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 			ArrayList<PositionedStack> extras = new ArrayList<PositionedStack>();
 
 			int i = 0;
-			for (Entry<ItemStack, ItemStack> tuple : ReproducerRecipes.getTupes().entrySet()) {
+			for (Entry<UnsizedStack, ItemStack> tuple : ReproducerRecipes.getTuples().entrySet()) {
 				i++;
-				if (i >= ReproducerRecipes.getTupes().size())
+				if (i >= ReproducerRecipes.getTuples().size())
 					i = 0;
 
 				if (i == (int) ReproducerRecipeHandler.ticks) {
-					extras.add(new PositionedStack(tuple.getKey(), 67, 24));
+					extras.add(new PositionedStack(tuple.getKey().getStack(), 67, 24));
 					extras.add(new PositionedStack(tuple.getValue(), 49, 42));
 					return extras;
 				}

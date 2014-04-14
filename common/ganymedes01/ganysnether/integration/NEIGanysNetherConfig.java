@@ -39,6 +39,7 @@ public class NEIGanysNetherConfig implements IConfigureNEI {
 		}
 
 		API.registerUsageHandler(new VolcanicFurnaceYieldHandler());
+		API.registerRecipeHandler(new VolcanicFurnaceYieldHandler());
 
 		API.hideItem(ModBlocks.tilledNetherrack.blockID);
 		API.hideItem(ModBlocks.volcanicFurnaceActive.blockID);

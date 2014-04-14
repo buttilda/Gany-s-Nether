@@ -10,7 +10,6 @@ import ganymedes01.ganysnether.tileentities.TileEntityThermalSmelter;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,7 +29,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  */
 
-public class ThermalSmelter extends BlockContainer {
+public class ThermalSmelter extends InventoryBlock {
 
 	@SideOnly(Side.CLIENT)
 	private Icon[] icons;
@@ -99,20 +98,6 @@ public class ThermalSmelter extends BlockContainer {
 				player.openGui(GanysNether.instance, GUIsID.THERMAL_SMELTER, world, x, y, z);
 			return true;
 		}
-	}
-
-	@Override
-	public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
-		TileEntityThermalSmelter tile = (TileEntityThermalSmelter) world.getBlockTileEntity(x, y, z);
-		if (tile != null) {
-			for (int i = 0; i < tile.getSizeInventory(); i++) {
-				ItemStack stack = tile.getStackInSlot(i);
-				if (stack != null)
-					Utils.dropStack(world, x, y, z, stack);
-			}
-			world.func_96440_m(x, y, z, par5);
-		}
-		super.breakBlock(world, x, y, z, par5, par6);
 	}
 
 	@Override

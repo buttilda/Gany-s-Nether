@@ -6,13 +6,11 @@ import ganymedes01.ganysnether.lib.GUIsID;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityReproducer;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -26,7 +24,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  */
 
-public class Reproducer extends BlockContainer {
+public class Reproducer extends InventoryBlock {
 
 	@SideOnly(Side.CLIENT)
 	private Icon blockSide, blockBottom, blockTop;
@@ -65,20 +63,6 @@ public class Reproducer extends BlockContainer {
 				player.openGui(GanysNether.instance, GUIsID.REPRODUCER, world, x, y, z);
 			return true;
 		}
-	}
-
-	@Override
-	public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
-		TileEntityReproducer tile = (TileEntityReproducer) world.getBlockTileEntity(x, y, z);
-		if (tile != null) {
-			for (int i = 0; i < tile.getSizeInventory(); i++) {
-				ItemStack stack = tile.getStackInSlot(i);
-				if (stack != null)
-					Utils.dropStack(world, x, y, z, stack);
-			}
-			world.func_96440_m(x, y, z, par5);
-		}
-		super.breakBlock(world, x, y, z, par5, par6);
 	}
 
 	@Override

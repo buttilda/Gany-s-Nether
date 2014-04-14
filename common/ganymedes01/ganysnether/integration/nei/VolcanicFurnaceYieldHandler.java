@@ -3,10 +3,21 @@ package ganymedes01.ganysnether.integration.nei;
 import static codechicken.core.gui.GuiDraw.changeTexture;
 import static codechicken.core.gui.GuiDraw.drawTexturedModalRect;
 import ganymedes01.ganysnether.client.gui.inventory.GuiVolcanicFurnace;
+import ganymedes01.ganysnether.core.utils.UnsizedStack;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
+
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map.Entry;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
@@ -19,6 +30,7 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import codechicken.core.gui.GuiDraw;
+import codechicken.nei.ItemList;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
@@ -57,7 +69,7 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 
 	@Override
 	public int recipiesPerPage() {
-		return 1;
+		return 2;
 	}
 
 	@Override
@@ -76,7 +88,7 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 		CachedRecipe recipe = arecipes.get(index);
 		if (recipe instanceof CachedLavaYield) {
 			CachedLavaYield yieldRecipe = (CachedLavaYield) recipe;
-			GuiDraw.fontRenderer.drawString(yieldRecipe.getYield() + " mB", 100, 28, Utils.getColour(0, 0, 0));
+			GuiDraw.fontRenderer.drawString(String.format("%,3d", yieldRecipe.getYield()) + " mB", 100, 28, Utils.getColour(0, 0, 0));
 			GuiDraw.fontRenderer.drawString("1000 mB = 1 " + StatCollector.translateToLocal(Item.bucketLava.getUnlocalizedName() + ".name"), 20, 46, Utils.getColour(0, 0, 0));
 		}
 	}
@@ -92,22 +104,76 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 	}
 
 	@Override
+	public void loadTransferRects() {
+		transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(67, 26, 25, 16), getRecipeId(), new Object[0]));
+	}
+
+	@Override
+	public void loadCraftingRecipes(String outputId, Object... results) {
+		HashMap<UnsizedStack, Integer> map = new HashMap<UnsizedStack, Integer>();
+		if (outputId.equals(getRecipeId())) {
+			for (ItemStack stack : ItemList.items) {
+				int lavaYield = VolcanicFurnaceHandler.getBurnTime(stack);
+				if (lavaYield != 16 && lavaYield > 0)
+					map.put(new UnsizedStack(stack), lavaYield);
+			}
+			LinkedHashMap<UnsizedStack, Integer> sortedMap = sortHashMapByValues(map);
+			for (Entry<UnsizedStack, Integer> entry : sortedMap.entrySet())
+				arecipes.add(new CachedLavaYield(entry.getKey().getStack(), entry.getValue()));
+		} else
+			super.loadCraftingRecipes(outputId, results);
+	}
+
+	public <T, V> LinkedHashMap<T, V> sortHashMapByValues(HashMap<T, V> map) {
+		List mapKeys = new ArrayList(map.keySet());
+		List mapValues = new ArrayList(map.values());
+		Collections.sort(mapValues);
+		Collections.reverse(mapValues);
+		Collections.sort(mapKeys);
+		Collections.reverse(mapKeys);
+
+		LinkedHashMap sortedMap = new LinkedHashMap();
+
+		Iterator valueIt = mapValues.iterator();
+		while (valueIt.hasNext()) {
+			Object val = valueIt.next();
+			Iterator keyIt = mapKeys.iterator();
+
+			while (keyIt.hasNext()) {
+				Object key = keyIt.next();
+				String comp1 = map.get(key).toString();
+				String comp2 = val.toString();
+
+				if (comp1.equals(comp2)) {
+					map.remove(key);
+					mapKeys.remove(key);
+					sortedMap.put(key, val);
+					break;
+				}
+			}
+		}
+		return sortedMap;
+	}
+
+	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
-		int lavaYield = VolcanicFurnaceHandler.getItemBurnTime(ingredient);
+		int lavaYield = VolcanicFurnaceHandler.getBurnTime(ingredient);
 		if (lavaYield != 16 && lavaYield > 0)
-			arecipes.add(new CachedLavaYield(ingredient.copy().splitStack(1)));
+			arecipes.add(new CachedLavaYield(ingredient.copy().splitStack(1), lavaYield));
 	}
 
 	private class CachedLavaYield extends CachedRecipe {
 
 		private final PositionedStack material;
+		private final int yield;
 
-		public CachedLavaYield(ItemStack stack) {
+		public CachedLavaYield(ItemStack stack, int yield) {
 			material = new PositionedStack(stack, 43, 25);
+			this.yield = yield;
 		}
 
 		public int getYield() {
-			return VolcanicFurnaceHandler.getItemBurnTime(material.item);
+			return yield;
 		}
 
 		@Override

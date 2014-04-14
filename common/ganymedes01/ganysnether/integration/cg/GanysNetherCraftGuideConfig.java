@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.integration.cg;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.core.utils.UnsizedStack;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ReproducerRecipes;
 import ganymedes01.ganysnether.recipes.centrifuge.CentrifugeRecipe;
@@ -78,9 +79,9 @@ public class GanysNetherCraftGuideConfig extends CraftGuideAPIObject implements 
 		RecipeTemplate template = generator.createRecipeTemplate(recipeSlots, new ItemStack(ModBlocks.reproducer));
 		template.setSize(61, 45);
 
-		for (Entry<ItemStack, ItemStack> tuple : ReproducerRecipes.getTupes().entrySet()) {
+		for (Entry<UnsizedStack, ItemStack> tuple : ReproducerRecipes.getTuples().entrySet()) {
 			ItemStack[] contents = new ItemStack[3];
-			contents[0] = tuple.getKey().copy();
+			contents[0] = tuple.getKey().getStack().copy();
 			contents[1] = tuple.getValue().copy();
 			contents[2] = new ItemStack(ModBlocks.reproducer);
 

@@ -1,18 +1,14 @@
 package ganymedes01.ganysnether.tileentities;
 
-import ganymedes01.ganysnether.blocks.VolcanicFurnace;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerVolcanicFurnace;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -31,82 +27,23 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  */
 
-public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInventory, IFluidHandler {
+public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedInventory, IFluidHandler {
 
-	private ItemStack[] furnaceItemStacks = new ItemStack[3];
 	private final FluidTank tank;
 
 	public int meltTime;
 	public int currentItemMeltTime;
 	private final int FILL_RATE = 1;
+	public boolean hasLava = false;
 
 	public TileEntityVolcanicFurnace() {
+		super(3, Strings.Blocks.VOLCANIC_FURNACE_NAME);
+
 		tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
 		tank.setFluid(new FluidStack(FluidRegistry.LAVA, 0));
 
 		// Initiates the registry
-		VolcanicFurnaceHandler.getItemBurnTime(new ItemStack(Item.appleGold));
-	}
-
-	@Override
-	public int getSizeInventory() {
-		return furnaceItemStacks.length;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int slot) {
-		return furnaceItemStacks[slot];
-	}
-
-	@Override
-	public ItemStack decrStackSize(int slot, int size) {
-		if (furnaceItemStacks[slot] != null) {
-			ItemStack itemstack;
-			if (furnaceItemStacks[slot].stackSize <= size) {
-				itemstack = furnaceItemStacks[slot];
-				furnaceItemStacks[slot] = null;
-				return itemstack;
-			} else {
-				itemstack = furnaceItemStacks[slot].splitStack(size);
-				if (furnaceItemStacks[slot].stackSize == 0)
-					furnaceItemStacks[slot] = null;
-				return itemstack;
-			}
-		} else
-			return null;
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
-		if (furnaceItemStacks[slot] != null) {
-			ItemStack itemstack = furnaceItemStacks[slot];
-			furnaceItemStacks[slot] = null;
-			return itemstack;
-		} else
-			return null;
-	}
-
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack) {
-		furnaceItemStacks[slot] = stack;
-
-		if (stack != null && stack.stackSize > getInventoryStackLimit())
-			stack.stackSize = getInventoryStackLimit();
-	}
-
-	@Override
-	public String getInvName() {
-		return Utils.getConainerName(Strings.Blocks.VOLCANIC_FURNACE_NAME);
-	}
-
-	@Override
-	public boolean isInvNameLocalized() {
-		return false;
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 64;
+		VolcanicFurnaceHandler.getBurnTime(new ItemStack(Item.appleGold));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -121,68 +58,85 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 		return tank.getFluidAmount();
 	}
 
-	private boolean areItemStacksEqual(ItemStack stack1, ItemStack stack2) {
-		if (stack1 != null && stack2 != null) {
-			ItemStack one = stack1.copy();
-			ItemStack two = stack2.copy();
-			one.stackSize = 1;
-			two.stackSize = 1;
-
-			return ItemStack.areItemStacksEqual(one, two);
-		}
-		return false;
-	}
-
 	@Override
 	public void updateEntity() {
 		if (worldObj.isRemote)
 			return;
-		if (furnaceItemStacks[1] != null)
-			if (tank.getFluidAmount() >= FluidContainerRegistry.BUCKET_VOLUME && FluidContainerRegistry.isContainer(furnaceItemStacks[1])) {
-				ItemStack filledContainer = FluidContainerRegistry.fillFluidContainer(tank.drain(FluidContainerRegistry.BUCKET_VOLUME, false), furnaceItemStacks[1]);
-				if (filledContainer != null) {
-					boolean filled = false;
-					if (furnaceItemStacks[2] == null) {
-						furnaceItemStacks[2] = filledContainer;
-						filled = true;
-					} else if (areItemStacksEqual(filledContainer, furnaceItemStacks[2]) && furnaceItemStacks[2].stackSize < furnaceItemStacks[2].getMaxStackSize()) {
-						furnaceItemStacks[2].stackSize++;
-						filled = true;
-					}
 
-					if (filled) {
-						tank.drain(FluidContainerRegistry.BUCKET_VOLUME, true);
-						furnaceItemStacks[1].stackSize--;
-						if (furnaceItemStacks[1].stackSize <= 0)
-							furnaceItemStacks[1] = null;
-					}
-				}
-			}
+		meltItems();
+		fillBuckets();
+		sendUpdates();
+	}
 
-		VolcanicFurnace.updateFurnaceBlockState(tank.getFluidAmount() > 0, worldObj, xCoord, yCoord, zCoord);
+	private void sendUpdates() {
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType().blockID, 1, tank.getFluidAmount());
+	}
+
+	private void meltItems() {
+		if (tank.getFluidAmount() >= tank.getCapacity() + FILL_RATE)
+			return;
 		if (meltTime <= 0) {
-			if (furnaceItemStacks[0] != null && tank.getFluidAmount() < tank.getCapacity()) {
-				int burnTime = VolcanicFurnaceHandler.getItemBurnTime(furnaceItemStacks[0]);
+			if (inventory[0] != null) {
+				int burnTime = VolcanicFurnaceHandler.getBurnTime(inventory[0].copy());
 				if (burnTime > 0) {
 					currentItemMeltTime = meltTime = burnTime;
-					furnaceItemStacks[0].stackSize--;
-					if (furnaceItemStacks[0].stackSize <= 0)
-						furnaceItemStacks[0] = null;
+					inventory[0].stackSize--;
+					if (inventory[0].stackSize <= 0)
+						inventory[0] = null;
 				}
 			}
-		} else if (meltTime > 0 && tank.getFluidAmount() < tank.getCapacity()) {
-			meltTime--;
+		} else if (meltTime > 0) {
+			meltTime -= FILL_RATE;
 			tank.fill(new FluidStack(FluidRegistry.LAVA, FILL_RATE), true);
+		}
+	}
+
+	private void fillBuckets() {
+		if (FluidContainerRegistry.isEmptyContainer(inventory[1])) {
+			ItemStack filledContainer = FluidContainerRegistry.fillFluidContainer(tank.getFluid(), inventory[1]);
+			if (filledContainer != null) {
+				boolean shouldDrain = false;
+				if (inventory[2] == null) {
+					inventory[2] = filledContainer.copy();
+					shouldDrain = true;
+				} else if (Utils.areStacksTheSame(filledContainer, inventory[2], false) && inventory[2].stackSize + filledContainer.stackSize <= inventory[2].getMaxStackSize()) {
+					inventory[2].stackSize++;
+					shouldDrain = true;
+				}
+
+				if (shouldDrain) {
+					tank.drain(FluidContainerRegistry.getFluidForFilledItem(filledContainer).amount, true);
+					inventory[1].stackSize--;
+					if (inventory[1].stackSize <= 0)
+						inventory[1] = null;
+				}
+			}
+		}
+	}
+
+	@Override
+	public boolean receiveClientEvent(int eventId, int eventData) {
+		switch (eventId) {
+			case 1:
+				boolean old = hasLava;
+				hasLava = eventData > 0;
+				if (hasLava != old) {
+					worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
+					worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+				}
+				return true;
+			case 2:
+				tank.setFluid(new FluidStack(FluidRegistry.LAVA, eventData));
+				return true;
+			default:
+				return false;
 		}
 	}
 
 	public void getGUIData(int id, int value) {
 		switch (id) {
 			case 1:
-				if (tank.getFluid() == null)
-					tank.setFluid(new FluidStack(0, value));
-				else
-					tank.getFluid().amount = value;
+				tank.setFluid(new FluidStack(FluidRegistry.LAVA, value));
 				break;
 			case 2:
 				currentItemMeltTime = value;
@@ -200,26 +154,13 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		return true;
-	}
-
-	@Override
-	public void openChest() {
-	}
-
-	@Override
-	public void closeChest() {
-	}
-
-	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return slot == 0 ? VolcanicFurnaceHandler.itemIsFuel(stack) : slot == 1 ? FluidContainerRegistry.isEmptyContainer(stack) : false;
 	}
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
-		return side == 0 ? new int[] { 2 } : side == 1 ? new int[] { 0 } : new int[] { 1 };
+		return new int[] { 0, 1, 2 };
 	}
 
 	@Override
@@ -229,24 +170,13 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 
 	@Override
 	public boolean canExtractItem(int slot, ItemStack stack, int side) {
-		return true;
+		return slot == 2;
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound data) {
 		super.readFromNBT(data);
 		tank.readFromNBT(data);
-		NBTTagList list = data.getTagList("Items");
-		furnaceItemStacks = new ItemStack[getSizeInventory()];
-
-		for (int i = 0; i < list.tagCount(); i++) {
-			NBTTagCompound tag = (NBTTagCompound) list.tagAt(i);
-			byte b0 = tag.getByte("Slot");
-
-			if (b0 >= 0 && b0 < furnaceItemStacks.length)
-				furnaceItemStacks[b0] = ItemStack.loadItemStackFromNBT(tag);
-		}
-
 		meltTime = data.getInteger("meltTime");
 		currentItemMeltTime = data.getInteger("currentItemMeltTime");
 	}
@@ -257,17 +187,6 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 		tank.writeToNBT(data);
 		data.setInteger("meltTime", meltTime);
 		data.setInteger("currentItemMeltTime", currentItemMeltTime);
-		NBTTagList nbttaglist = new NBTTagList();
-
-		for (int i = 0; i < furnaceItemStacks.length; i++)
-			if (furnaceItemStacks[i] != null) {
-				NBTTagCompound tag = new NBTTagCompound();
-				tag.setByte("Slot", (byte) i);
-				furnaceItemStacks[i].writeToNBT(tag);
-				nbttaglist.appendTag(tag);
-			}
-
-		data.setTag("Items", nbttaglist);
 	}
 
 	@Override
@@ -277,7 +196,7 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 
 	@Override
 	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-		if (resource != null && !resource.isFluidEqual(tank.getFluid()))
+		if (resource == null)
 			return null;
 		return drain(from, resource.amount, doDrain);
 	}
@@ -299,10 +218,7 @@ public class TileEntityVolcanicFurnace extends TileEntity implements ISidedInven
 
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-		if (!worldObj.isRemote)
-			if (from == ForgeDirection.UP || from == ForgeDirection.DOWN)
-				return new FluidTankInfo[] { tank.getInfo() };
-		return null;
+		return new FluidTankInfo[] { tank.getInfo() };
 	}
 
 	public int getScaledFluidAmount(int scale) {

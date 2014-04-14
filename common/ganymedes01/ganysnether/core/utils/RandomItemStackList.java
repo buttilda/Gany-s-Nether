@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.core.utils;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.items.ModItems;
 
+import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Random;
 
@@ -20,7 +21,7 @@ import net.minecraft.item.ItemStack;
 
 public class RandomItemStackList {
 
-	private static ItemStackMap<Integer> weightedStackList = new ItemStackMap<Integer>();
+	private static HashMap<UnsizedStack, Integer> weightedStackList = new HashMap<UnsizedStack, Integer>();
 
 	static {
 		insertStackOnList(new ItemStack(ModItems.witherShrubSeeds), 200);
@@ -51,21 +52,14 @@ public class RandomItemStackList {
 
 	public static void insertStackOnList(ItemStack stack, int weight) {
 		if (stack != null && stack.stackSize > 0 && weight > 0)
-			weightedStackList.put(stack, weight);
+			weightedStackList.put(new UnsizedStack(stack), weight);
 	}
 
 	public static void fillInventory(IInventory inventory, int maxSlot, Random rand) {
 		for (int i = 0; i < maxSlot; i++)
-			for (Entry<ItemStack, Integer> entry : weightedStackList.entrySet())
+			for (Entry<UnsizedStack, Integer> entry : weightedStackList.entrySet())
 				if (rand.nextInt(entry.getValue()) == 0 && rand.nextInt(GanysNether.undertakerFillSlotChance) == 0) {
-					int stackSize = rand.nextInt(entry.getKey().stackSize);
-					if (stackSize <= 0)
-						stackSize = 1;
-
-					ItemStack stack = new ItemStack(entry.getKey().itemID, stackSize, entry.getKey().getItemDamage());
-					if (entry.getKey().hasTagCompound())
-						stack.setTagCompound(entry.getKey().stackTagCompound);
-
+					ItemStack stack = entry.getKey().getStack(rand.nextInt(entry.getKey().getOldStackSize()));
 					inventory.setInventorySlotContents(i, stack);
 				}
 	}
