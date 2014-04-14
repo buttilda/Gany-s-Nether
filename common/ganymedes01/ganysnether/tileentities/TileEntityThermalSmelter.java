@@ -143,7 +143,7 @@ public class TileEntityThermalSmelter extends GanysInventory implements ISidedIn
 	}
 
 	private int getMaxCookTime() {
-		return 1200 - 100 * speedModifier;
+		return 1300 - 100 * speedModifier;
 	}
 
 	public int getCookTime(int scale) {
