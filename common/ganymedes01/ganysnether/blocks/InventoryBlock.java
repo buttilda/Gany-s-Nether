@@ -21,7 +21,7 @@ public abstract class InventoryBlock extends BlockContainer {
 	}
 
 	@Override
-	public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
+	public void breakBlock(World world, int x, int y, int z, int id, int meta) {
 		IInventory tile = (IInventory) world.getBlockTileEntity(x, y, z);
 		if (tile != null) {
 			for (int i = 0; i < tile.getSizeInventory(); i++) {
@@ -29,8 +29,8 @@ public abstract class InventoryBlock extends BlockContainer {
 				if (stack != null)
 					Utils.dropStack(world, x, y, z, stack);
 			}
-			world.func_96440_m(x, y, z, par5);
+			world.func_96440_m(x, y, z, id);
 		}
-		super.breakBlock(world, x, y, z, par5, par6);
+		super.breakBlock(world, x, y, z, id, meta);
 	}
 }
