@@ -3,7 +3,7 @@ package ganymedes01.ganysnether.tileentities;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.SkeletonSpawner;
-import ganymedes01.ganysnether.items.SpawnerUpgrade.Upgrade;
+import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +85,7 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 	}
 
 	public boolean addEgg(ItemStack egg) {
-		if (tier != Upgrade.tierDragonEgg.ordinal())
+		if (tier != UpgradeType.tierDragonEgg.ordinal())
 			return false;
 		ItemStack stack = egg == null ? null : egg.copy().splitStack(1);
 
@@ -165,7 +165,7 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 		double y = getSpawnerY() + world.rand.nextInt(3) - 1;
 		double z = getSpawnerZ() + (world.rand.nextDouble() - world.rand.nextDouble()) * spawnRange;
 
-		if (tier == Upgrade.tierDragonEgg.ordinal()) {
+		if (tier == UpgradeType.tierDragonEgg.ordinal()) {
 			List<Integer> notNull = new ArrayList<Integer>();
 			for (int i = 0; i < fifo.length; i++)
 				if (fifo[i] != null)
@@ -262,7 +262,7 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Entity func_98281_h() {
-		return tier == Upgrade.tierDragonEgg.ordinal() ? new EntityItem(getSpawnerWorld(), getSpawnerX(), getSpawnerY(), getSpawnerZ(), new ItemStack(Block.dragonEgg)) : super.func_98281_h();
+		return tier == UpgradeType.tierDragonEgg.ordinal() ? new EntityItem(getSpawnerWorld(), getSpawnerX(), getSpawnerY(), getSpawnerZ(), new ItemStack(Block.dragonEgg)) : super.func_98281_h();
 	}
 
 	@Override

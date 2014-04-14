@@ -41,6 +41,8 @@ public class EE3Manager extends Integration {
 
 		addEMCValue(new ItemStack(ModItems.blazeIngot, 1, 2), 512);
 		addEMCValue("dustWheat", 24);
+		addEMCValue("mobEgg", 1024);
+		addEMCValue("blockSpawner", 16384);
 	}
 
 	private void addEMCValueToBlock(Block block, float value) {

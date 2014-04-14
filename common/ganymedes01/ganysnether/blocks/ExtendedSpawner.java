@@ -3,8 +3,9 @@ package ganymedes01.ganysnether.blocks;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.ModItems;
-import ganymedes01.ganysnether.items.SpawnerUpgrade.Upgrade;
+import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import ganymedes01.ganysnether.lib.ModIDs;
+import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
 
@@ -40,21 +41,6 @@ public class ExtendedSpawner extends BlockMobSpawner {
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getBlockTexture(Strings.Blocks.EXTENDED_SPAWNER_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.EXTENDED_SPAWNER_NAME));
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
-		TileEntity tile = world.getBlockTileEntity(x, y, z);
-		if (tile instanceof TileEntityExtendedSpawner)
-			return Upgrade.values()[((TileEntityExtendedSpawner) tile).logic.tier].getColour();
-		return super.colorMultiplier(world, x, y, z);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getRenderColor(int meta) {
-		return Upgrade.tierCoal.getColour();
 	}
 
 	@Override
@@ -135,12 +121,32 @@ public class ExtendedSpawner extends BlockMobSpawner {
 	}
 
 	@Override
+	public int getRenderType() {
+		return RenderIDs.EXTENDED_SPAWNER;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
+		TileEntity tile = world.getBlockTileEntity(x, y, z);
+		if (tile instanceof TileEntityExtendedSpawner)
+			return UpgradeType.values()[((TileEntityExtendedSpawner) tile).logic.tier].getColour();
+		return super.colorMultiplier(world, x, y, z);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getRenderColor(int meta) {
+		return UpgradeType.tierCoal.getColour();
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		if (tile instanceof TileEntityExtendedSpawner) {
 			TileEntityExtendedSpawner spawner = (TileEntityExtendedSpawner) tile;
-			if (spawner.logic.tier == Upgrade.tierDragonEgg.ordinal())
+			if (spawner.logic.tier == UpgradeType.tierDragonEgg.ordinal())
 				Block.enderChest.randomDisplayTick(world, x, y, z, rand);
 		}
 	}

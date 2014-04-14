@@ -7,11 +7,13 @@ import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
 
+import java.awt.Color;
 import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,7 +35,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class SpawnerUpgrade extends Item {
 
-	public enum Upgrade {
+	public enum UpgradeType {
 		// @formatter:off
 		tierCoal(Utils.getColour(33, 40, 45), new ItemStack(Item.coal), new ItemStack(Block.coalBlock)),
 		tierIron(Utils.getColour(255, 255, 255), new ItemStack(Item.ingotIron), new ItemStack(Block.blockIron)),
@@ -44,9 +46,9 @@ public class SpawnerUpgrade extends Item {
 		tierNetherStar(Utils.getColour(136, 164, 164), new ItemStack(Item.ghastTear), new ItemStack(Item.netherStar)),
 		tierDragonEgg(Utils.getColour(87, 2, 98), null, null),
 		redstone(Utils.getColour(181, 31, 10), new ItemStack(Item.redstone), new ItemStack(Block.blockRedstone)),
-		noPlayer(0, null, null),
-		ignoreConditions(0, null, null),
-		silky(0, null, null),
+		noPlayer(Utils.getColour(255, 162, 3), new ItemStack(Item.appleRed), new ItemStack(Item.appleGold, 1, 1)),
+		ignoreConditions(0, new ItemStack(ModItems.sceptreCap), new ItemStack(ModBlocks.denseLavaCell)),
+		silky(0, new ItemStack(Block.oreNetherQuartz), Utils.enchantStack(new ItemStack(Item.enchantedBook), Enchantment.silkTouch, 1)),
 		spawnCount(0, null, null),
 		spawnRange(0, new ItemStack(Block.fire), new ItemStack(Block.blockNetherQuartz));
 		// @formatter:on
@@ -54,14 +56,14 @@ public class SpawnerUpgrade extends Item {
 		private final int colour;
 		private final ItemStack mat1, mat2;
 
-		Upgrade(int colour, ItemStack mat1, ItemStack mat2) {
+		UpgradeType(int colour, ItemStack mat1, ItemStack mat2) {
 			this.colour = colour;
 			this.mat1 = mat1;
 			this.mat2 = mat2;
 		}
 
 		public int getColour() {
-			return colour;
+			return colour == 0 ? new Color(name().hashCode()).getRGB() : colour;
 		}
 
 		public ItemStack getMat1() {
@@ -93,7 +95,7 @@ public class SpawnerUpgrade extends Item {
 		int meta = stack.getItemDamage();
 
 		if (id == Block.mobSpawner.blockID) {
-			if (meta != Upgrade.tierCoal.ordinal())
+			if (meta != UpgradeType.tierCoal.ordinal())
 				return false;
 			NBTTagCompound data = new NBTTagCompound();
 			TileEntityMobSpawner old = (TileEntityMobSpawner) world.getBlockTileEntity(x, y, z);
@@ -110,32 +112,32 @@ public class SpawnerUpgrade extends Item {
 
 		boolean used = false;
 		if (id == ModBlocks.extendedSpawner.blockID) {
-			if (meta == Upgrade.tierCoal.ordinal())
+			if (meta == UpgradeType.tierCoal.ordinal())
 				return false;
 			TileEntityExtendedSpawner tile = (TileEntityExtendedSpawner) world.getBlockTileEntity(x, y, z);
-			if (meta <= Upgrade.tierDragonEgg.ordinal() && tile.logic.tier + 1 == meta) {
+			if (meta <= UpgradeType.tierDragonEgg.ordinal() && tile.logic.tier + 1 == meta) {
 				tile.logic.tier = (byte) meta;
 				used = true;
 			}
 			if (tile.getSlots() - tile.getSlotsUsed() > 0)
-				if (meta == Upgrade.redstone.ordinal() && !tile.logic.redstoneUpgrade) {
+				if (meta == UpgradeType.redstone.ordinal() && !tile.logic.redstoneUpgrade) {
 					tile.logic.redstoneUpgrade = true;
 					used = true;
-				} else if (meta == Upgrade.noPlayer.ordinal() && !tile.logic.noPlayerUpgrade) {
+				} else if (meta == UpgradeType.noPlayer.ordinal() && !tile.logic.noPlayerUpgrade) {
 					tile.logic.noPlayerUpgrade = true;
 					used = true;
-				} else if (meta == Upgrade.ignoreConditions.ordinal() && !tile.logic.ignoreConditionsUpgrade) {
+				} else if (meta == UpgradeType.ignoreConditions.ordinal() && !tile.logic.ignoreConditionsUpgrade) {
 					tile.logic.ignoreConditionsUpgrade = true;
 					used = true;
-				} else if (meta == Upgrade.silky.ordinal() && !tile.logic.silkyUpgrade) {
+				} else if (meta == UpgradeType.silky.ordinal() && !tile.logic.silkyUpgrade) {
 					tile.logic.silkyUpgrade = true;
 					world.setBlockMetadataWithNotify(x, y, z, 1, 3);
 					used = true;
-				} else if (meta == Upgrade.spawnCount.ordinal()) {
+				} else if (meta == UpgradeType.spawnCount.ordinal()) {
 					tile.logic.spawnCount++;
 					tile.logic.maxNearbyEntities++;
 					used = true;
-				} else if (meta == Upgrade.spawnRange.ordinal()) {
+				} else if (meta == UpgradeType.spawnRange.ordinal()) {
 					tile.logic.spawnRange++;
 					tile.logic.maxNearbyEntities += 2;
 					used = true;
@@ -167,7 +169,7 @@ public class SpawnerUpgrade extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int pass) {
-		return pass == 1 ? Upgrade.values()[stack.getItemDamage()].getColour() : Utils.getColour(255, 255, 255);
+		return pass == 1 ? UpgradeType.values()[stack.getItemDamage()].getColour() : Utils.getColour(255, 255, 255);
 	}
 
 	@Override
@@ -192,7 +194,7 @@ public class SpawnerUpgrade extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int id, CreativeTabs tabs, List list) {
-		for (int i = 0; i < Upgrade.values().length; i++)
+		for (int i = 0; i < UpgradeType.values().length; i++)
 			list.add(new ItemStack(itemID, 1, i));
 	}
 }

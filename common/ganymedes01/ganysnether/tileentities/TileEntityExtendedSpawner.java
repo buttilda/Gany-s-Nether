@@ -3,7 +3,7 @@ package ganymedes01.ganysnether.tileentities;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.items.SkeletonSpawner;
-import ganymedes01.ganysnether.items.SpawnerUpgrade.Upgrade;
+import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import ganymedes01.ganysnether.network.PacketTypeHandler;
 import ganymedes01.ganysnether.network.packet.PacketExtendedSpawner;
 
@@ -33,23 +33,23 @@ public class TileEntityExtendedSpawner extends TileEntity {
 	public ItemStack[] getUpgrades() {
 		ArrayList<ItemStack> upgrades = new ArrayList<ItemStack>();
 		if (logic.redstoneUpgrade)
-			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.redstone.ordinal()));
+			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.redstone.ordinal()));
 		if (logic.noPlayerUpgrade)
-			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.noPlayer.ordinal()));
+			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.noPlayer.ordinal()));
 		if (logic.ignoreConditionsUpgrade)
-			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.ignoreConditions.ordinal()));
+			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.ignoreConditions.ordinal()));
 		if (logic.silkyUpgrade) {
 			ItemStack stack = new ItemStack(ModBlocks.extendedSpawner);
 			stack.stackTagCompound = new NBTTagCompound();
 			stack.stackTagCompound.setString("EntityId", logic.getEntityNameToSpawn());
 			upgrades.add(stack);
-			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.silky.ordinal()));
+			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.silky.ordinal()));
 		}
 		for (int i = 0; i < logic.getSpawnCountUpgradeCount(); i++)
-			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.spawnCount.ordinal()));
+			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnCount.ordinal()));
 		for (int i = 0; i < logic.getSpawnRangeUpgradeCount(); i++)
-			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.spawnRange.ordinal()));
-		for (int i = 1; i <= logic.tier; i++)
+			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnRange.ordinal()));
+		for (int i = 0; i <= logic.tier; i++)
 			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, i));
 		for (ItemStack egg : logic.getFifo())
 			upgrades.add(egg);

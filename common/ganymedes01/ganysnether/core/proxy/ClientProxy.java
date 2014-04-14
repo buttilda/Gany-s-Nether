@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.core.proxy;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.client.renderer.block.BlockBlazingCactoidRender;
+import ganymedes01.ganysnether.client.renderer.block.BlockExtendedSpawnerRender;
 import ganymedes01.ganysnether.client.renderer.block.BlockWitherShrubRender;
 import ganymedes01.ganysnether.client.renderer.entity.EntityLightningBallRenderer;
 import ganymedes01.ganysnether.client.renderer.entity.EntitySoulTNTRenderer;
@@ -64,6 +65,7 @@ public class ClientProxy extends CommonProxy {
 
 		RenderingRegistry.registerBlockHandler(RenderIDs.WITHER_SHRUB, new BlockWitherShrubRender());
 		RenderingRegistry.registerBlockHandler(RenderIDs.BLAZING_CACTOID, new BlockBlazingCactoidRender());
+		RenderingRegistry.registerBlockHandler(RenderIDs.EXTENDED_SPAWNER, new BlockExtendedSpawnerRender());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityLightningBall.class, new EntityLightningBallRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySlowTNT.class, new EntitySoulTNTRenderer());

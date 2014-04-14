@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ItemSoulGlassRender implements IItemRenderer {
 
-	private RenderBlocks renderer = new RenderBlocks();
+	private final RenderBlocks renderer = new RenderBlocks();
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {

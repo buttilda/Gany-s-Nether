@@ -4,7 +4,7 @@ import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.ModItems;
-import ganymedes01.ganysnether.items.SpawnerUpgrade.Upgrade;
+import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
@@ -60,13 +60,13 @@ public class ModRecipes {
 		createSceptreRecipe(ModItems.sceptreOfConcealment, 2, Item.ingotGold, GanysNether.sceptreOfConcealmentDurability);
 		GameRegistry.addRecipe(new ItemStack(ModItems.netherCore), "xyz", "wab", "cde", 'x', Item.magmaCream, 'y', Item.netherStalkSeeds, 'z', Item.netherQuartz, 'w', Item.blazeRod, 'a', Item.glowstone, 'b', Block.slowSand, 'c', Block.netherBrick, 'd', Item.ghastTear, 'e', new ItemStack(Item.skull, 1, 1));
 
-		for (int i = 0; i < Upgrade.values().length; i++)
-			if (Upgrade.values()[i].getMat1() != null && Upgrade.values()[i].getMat2() != null)
-				GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, i), "xyx", "yzy", "xyx", 'x', Upgrade.values()[i].getMat1(), 'y', Upgrade.values()[i].getMat2(), 'z', ModItems.netherCore);
+		for (int i = 0; i < UpgradeType.values().length; i++)
+			if (UpgradeType.values()[i].getMat1() != null && UpgradeType.values()[i].getMat2() != null)
+				GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, i), "xyx", "yzy", "xyx", 'x', UpgradeType.values()[i].getMat1(), 'y', UpgradeType.values()[i].getMat2(), 'z', ModItems.netherCore);
 
-		GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.silky.ordinal()), "xyx", "yzy", "xyx", 'x', Utils.enchantStack(new ItemStack(Item.enchantedBook), Enchantment.silkTouch, 1), 'y', new ItemStack(Block.oreNetherQuartz), 'z', ModItems.netherCore);
-		GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.tierDragonEgg.ordinal()), "xyx", "yzy", "xyx", 'x', Item.netherStalkSeeds, 'y', ModItems.netherCore, 'z', Block.dragonEgg);
-		GameRegistry.addShapelessRecipe(new ItemStack(Block.dragonEgg), new ItemStack(ModItems.spawnerUpgrade, 1, Upgrade.tierDragonEgg.ordinal()));
+		GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.tierDragonEgg.ordinal()), "xyx", "yzy", "xyx", 'x', Item.netherStalkSeeds, 'y', ModItems.netherCore, 'z', Block.dragonEgg);
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnCount.ordinal()), "xyx", "yzy", "xyx", 'x', "mobEgg", 'y', "mobEgg", 'z', ModItems.netherCore));
+		GameRegistry.addShapelessRecipe(new ItemStack(Block.dragonEgg), new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.tierDragonEgg.ordinal()));
 
 		// Vanilla
 		GameRegistry.addShapelessRecipe(new ItemStack(Item.glowstone, 2), new ItemStack(ModItems.glowingReed));
@@ -140,6 +140,8 @@ public class ModRecipes {
 		OreDictionary.registerOre("dustWheat", ModItems.flour);
 		OreDictionary.registerOre("mobEgg", new ItemStack(Item.monsterPlacer, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("mobEgg", new ItemStack(ModItems.skeletonSpawner, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("blockSpawner", new ItemStack(Block.mobSpawner, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("blockSpawner", new ItemStack(ModBlocks.extendedSpawner, 1, OreDictionary.WILDCARD_VALUE));
 
 		OreDictionary.registerOre("blockQuartz", new ItemStack(ModBlocks.colouredQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("blockQuartz", new ItemStack(Block.blockNetherQuartz, 1, 0));

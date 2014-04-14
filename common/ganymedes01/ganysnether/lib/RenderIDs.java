@@ -13,4 +13,5 @@ public class RenderIDs {
 
 	public static final int WITHER_SHRUB = RenderingRegistry.getNextAvailableRenderId();
 	public static final int BLAZING_CACTOID = RenderingRegistry.getNextAvailableRenderId();
+	public static final int EXTENDED_SPAWNER = RenderingRegistry.getNextAvailableRenderId();
 }

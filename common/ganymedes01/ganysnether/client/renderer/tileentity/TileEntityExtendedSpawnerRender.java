@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.client.renderer.tileentity;
 
-import ganymedes01.ganysnether.items.SpawnerUpgrade.Upgrade;
+import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import ganymedes01.ganysnether.tileentities.ExtendedSpawnerLogic;
 import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -39,7 +39,7 @@ public class TileEntityExtendedSpawnerRender extends TileEntitySpecialRenderer {
 			entity.setWorld(logic.getSpawnerWorld());
 			GL11.glTranslatef(0.0F, 0.4F, 0.0F);
 			GL11.glRotatef((float) (logic.field_98284_d + (logic.field_98287_c - logic.field_98284_d) * partialTick) * 10.0F, 0.0F, 1.0F, 0.0F);
-			if (logic.tier != Upgrade.tierDragonEgg.ordinal()) {
+			if (logic.tier != UpgradeType.tierDragonEgg.ordinal()) {
 				GL11.glRotatef(-30.0F, 1.0F, 0.0F, 0.0F);
 				GL11.glTranslatef(0.0F, -0.4F, 0.0F);
 				GL11.glScalef(0.4375F, 0.4375F, 0.4375F);
