@@ -87,6 +87,7 @@ public class ConfigurationHandler {
 			ModIDs.THERMAL_SMELTER_ID = configBlock(Strings.Blocks.THERMAL_SMELTER_NAME);
 			ModIDs.HORSE_ARMOUR_STAND_ID = configBlock(Strings.Blocks.HORSE_ARMOUR_STAND_NAME);
 			ModIDs.EXTENDED_SPAWNER_ID = configBlock(Strings.Blocks.EXTENDED_SPAWNER_NAME);
+			ModIDs.FOCUSED_LAVA_CELL_ID = configBlock(Strings.Blocks.FOCUSED_LAVA_CELL_NAME);
 
 			// Armour
 			ModIDs.BLAZE_HELMET_ID = configItem(Strings.Items.BLAZE_HELMET_NAME);

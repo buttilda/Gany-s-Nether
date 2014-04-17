@@ -4,6 +4,7 @@ import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.GUIsID;
 import ganymedes01.ganysnether.lib.ModIDs;
+import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
 
@@ -12,8 +13,6 @@ import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
@@ -63,18 +62,20 @@ public class VolcanicFurnace extends InventoryBlock {
 	}
 
 	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, int neighbour) {
+		TileEntityVolcanicFurnace furnace = Utils.getTileEntity(world, x, y, z, TileEntityVolcanicFurnace.class);
+		if (furnace != null)
+			furnace.cellCount = -1;
+	}
+
+	@Override
 	public TileEntity createNewTileEntity(World world) {
 		return new TileEntityVolcanicFurnace();
 	}
 
 	@Override
-	public boolean hasComparatorInputOverride() {
-		return true;
-	}
-
-	@Override
-	public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
-		return Container.calcRedstoneFromInventory((IInventory) world.getBlockTileEntity(x, y, z));
+	public int getRenderType() {
+		return RenderIDs.VOLCANIC_FURNACE;
 	}
 
 	@Override

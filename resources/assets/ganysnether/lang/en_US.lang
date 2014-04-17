@@ -74,6 +74,7 @@ tile.ganysnether.hellBush.name=Hell Bush
 tile.ganysnether.thermalSmelter.name=Thermal Smelter
 tile.ganysnether.horseArmourStand.name=Horse Armour Stand
 tile.ganysnether.extendedSpawner.name=Extended Spawner
+tile.ganysnether.focusedLavaCell.name=Focused Lava Cell
 
 tile.ganysnether.glowBoxBlack.name=Black Glow Box
 tile.ganysnether.glowBoxRed.name=Red Glow Box

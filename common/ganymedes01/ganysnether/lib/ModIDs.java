@@ -38,6 +38,7 @@ public class ModIDs {
 	public static int THERMAL_SMELTER_ID;
 	public static int HORSE_ARMOUR_STAND_ID;
 	public static int EXTENDED_SPAWNER_ID;
+	public static int FOCUSED_LAVA_CELL_ID;
 
 	// Items
 	public static int QUARZ_BERRY_SEEDS_ID;

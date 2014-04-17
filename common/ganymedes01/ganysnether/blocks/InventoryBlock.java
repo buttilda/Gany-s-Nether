@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.blocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -18,6 +19,16 @@ public abstract class InventoryBlock extends BlockContainer {
 
 	protected InventoryBlock(int id, Material material) {
 		super(id, material);
+	}
+
+	@Override
+	public boolean hasComparatorInputOverride() {
+		return true;
+	}
+
+	@Override
+	public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
+		return Container.calcRedstoneFromInventory((IInventory) world.getBlockTileEntity(x, y, z));
 	}
 
 	@Override

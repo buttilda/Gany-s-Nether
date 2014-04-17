@@ -47,6 +47,7 @@ public class ModBlocks {
 	public static Block thermalSmelter;
 	public static Block horseArmourStand;
 	public static Block extendedSpawner;
+	public static Block focusedLavaCell;
 
 	public static void init() {
 		tilledNetherrack = new TilledNetherrack();
@@ -77,6 +78,7 @@ public class ModBlocks {
 		thermalSmelter = new ThermalSmelter();
 		horseArmourStand = new HorseArmourStand();
 		extendedSpawner = new ExtendedSpawner();
+		focusedLavaCell = new FocusedLavaCell();
 
 		registerNames();
 	}
@@ -110,5 +112,6 @@ public class ModBlocks {
 		GameRegistry.registerBlock(thermalSmelter, Strings.Blocks.THERMAL_SMELTER_NAME);
 		GameRegistry.registerBlock(horseArmourStand, ItemHorseArmourStand.class, Strings.Blocks.HORSE_ARMOUR_STAND_NAME);
 		GameRegistry.registerBlock(extendedSpawner, Strings.Blocks.EXTENDED_SPAWNER_NAME);
+		GameRegistry.registerBlock(focusedLavaCell, Strings.Blocks.FOCUSED_LAVA_CELL_NAME);
 	}
 }

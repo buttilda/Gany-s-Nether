@@ -52,9 +52,12 @@ public class BlockBlazingCactoidRender implements ISimpleBlockRenderingHandler {
 		float B = (colorMult & 255) / 255.0F;
 
 		if (EntityRenderer.anaglyphEnable) {
-			R = (R * 30.0F + G * 59.0F + B * 11.0F) / 100.0F;
-			G = (R * 30.0F + G * 70.0F) / 100.0F;
-			B = (R * 30.0F + B * 70.0F) / 100.0F;
+			float r = (R * 30.0F + G * 59.0F + B * 11.0F) / 100.0F;
+			float g = (R * 30.0F + G * 70.0F) / 100.0F;
+			float b = (R * 30.0F + B * 70.0F) / 100.0F;
+			R = r;
+			G = g;
+			B = b;
 		}
 
 		tessellator.setColorOpaque_F(R, G, B);

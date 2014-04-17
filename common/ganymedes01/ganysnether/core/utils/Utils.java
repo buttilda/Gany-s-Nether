@@ -187,7 +187,7 @@ public class Utils {
 		if (stack1 == null || stack2 == null)
 			return false;
 
-		if (stack1.itemID == stack2.itemID)
+		if (stack1.getItem() == stack2.getItem())
 			if (stack1.getItemDamage() == stack2.getItemDamage())
 				if (!matchSize || stack1.stackSize == stack2.stackSize) {
 					if (stack1.hasTagCompound())

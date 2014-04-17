@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.tileentities;
 
+import ganymedes01.ganysnether.blocks.FocusedLavaCell;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerVolcanicFurnace;
 import ganymedes01.ganysnether.lib.Strings;
@@ -33,8 +34,9 @@ public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedI
 
 	public int meltTime;
 	public int currentItemMeltTime;
-	private final int FILL_RATE = 1;
+	private int FILL_RATE = 1;
 	public boolean hasLava = false;
+	public int cellCount = -1;
 
 	public TileEntityVolcanicFurnace() {
 		super(3, Strings.Blocks.VOLCANIC_FURNACE_NAME);
@@ -62,6 +64,12 @@ public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedI
 	public void updateEntity() {
 		if (worldObj.isRemote)
 			return;
+
+		if (cellCount < 0) {
+			cellCount = FocusedLavaCell.getCellCount(worldObj, xCoord, yCoord, zCoord);
+			FILL_RATE = cellCount > 0 ? 200 * cellCount : 1;
+			return;
+		}
 
 		ejectLava();
 		meltItems();

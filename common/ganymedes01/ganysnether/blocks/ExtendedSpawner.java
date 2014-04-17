@@ -2,7 +2,6 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.RenderIDs;
@@ -15,11 +14,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -63,7 +62,7 @@ public class ExtendedSpawner extends BlockMobSpawner {
 		ItemStack stack = player.getCurrentEquippedItem();
 		if (stack == null)
 			return;
-		if (stack.itemID == Item.monsterPlacer.itemID || stack.itemID == ModItems.skeletonSpawner.itemID) {
+		if (OreDictionary.getOreID(stack) == OreDictionary.getOreID("mobEgg")) {
 			TileEntity tile = world.getBlockTileEntity(x, y, z);
 			if (tile instanceof TileEntityExtendedSpawner) {
 				TileEntityExtendedSpawner spawner = (TileEntityExtendedSpawner) tile;

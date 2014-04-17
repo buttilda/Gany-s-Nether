@@ -128,6 +128,7 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulTNT), "xyx", "yxy", "xyx", 'x', Item.gunpowder, 'y', Block.slowSand);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.thermalSmelter), "xxx", "yzy", 'x', Item.coal, 'y', Item.bucketLava, 'z', Block.furnaceIdle);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.horseArmourStand), "xxx", "y y", "y y", 'x', new ItemStack(Block.stoneSingleSlab), 'y', Item.ingotIron);
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.focusedLavaCell), "zzz", "xyx", "xwx", 'x', ModBlocks.denseLavaCell, 'y', new ItemStack(ModBlocks.colouredChiselledQuartzBlock), 'z', "ingotBlaze", 'w', ModItems.netherCore));
 
 		// Vanilla
 		GameRegistry.addRecipe(new ItemStack(Block.slowSand, 6), "xxx", "yyy", "xxx", 'x', ModItems.spookyFlour, 'y', Block.sand);

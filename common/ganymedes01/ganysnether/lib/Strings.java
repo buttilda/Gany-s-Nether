@@ -37,6 +37,7 @@ public class Strings {
 		public static final String THERMAL_SMELTER_NAME = "thermalSmelter";
 		public static final String HORSE_ARMOUR_STAND_NAME = "horseArmourStand";
 		public static final String EXTENDED_SPAWNER_NAME = "extendedSpawner";
+		public static final String FOCUSED_LAVA_CELL_NAME = "focusedLavaCell";
 	}
 
 	public static class Items {
