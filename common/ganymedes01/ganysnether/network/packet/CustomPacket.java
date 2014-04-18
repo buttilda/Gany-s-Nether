@@ -14,7 +14,7 @@ import java.io.IOException;
  * 
  */
 
-public class CustomPacket {
+public abstract class CustomPacket {
 
 	public PacketTypeHandler packetType;
 
@@ -44,15 +44,9 @@ public class CustomPacket {
 		}
 	}
 
-	public void readData(DataInputStream data) throws IOException {
+	public abstract void readData(DataInputStream data) throws IOException;
 
-	}
+	public abstract void writeData(DataOutputStream dos) throws IOException;
 
-	public void writeData(DataOutputStream dos) throws IOException {
-
-	}
-
-	public void execute() {
-
-	}
+	public abstract void execute();
 }
