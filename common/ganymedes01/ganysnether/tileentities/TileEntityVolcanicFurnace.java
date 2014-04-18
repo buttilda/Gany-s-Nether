@@ -94,7 +94,7 @@ public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedI
 	}
 
 	private void sendUpdates() {
-		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType().blockID, 1, tank.getFluidAmount());
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType().blockID, 0, tank.getFluidAmount());
 	}
 
 	private void meltItems() {
@@ -143,16 +143,13 @@ public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedI
 	@Override
 	public boolean receiveClientEvent(int eventId, int eventData) {
 		switch (eventId) {
-			case 1:
+			case 0:
 				boolean old = hasLava;
 				hasLava = eventData > 0;
 				if (hasLava != old) {
 					worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
 					worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
 				}
-				return true;
-			case 2:
-				tank.setFluid(new FluidStack(FluidRegistry.LAVA, eventData));
 				return true;
 			default:
 				return false;
