@@ -39,18 +39,21 @@ public class TileEntityExtendedSpawner extends TileEntity {
 			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.noPlayer.ordinal()));
 		if (logic.ignoreConditionsUpgrade)
 			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.ignoreConditions.ordinal()));
+
+		int minTier = 0;
 		if (logic.silkyUpgrade) {
 			ItemStack stack = new ItemStack(ModBlocks.extendedSpawner);
 			stack.stackTagCompound = new NBTTagCompound();
 			stack.stackTagCompound.setString("EntityId", logic.getEntityNameToSpawn());
 			upgrades.add(stack);
 			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.silky.ordinal()));
+			minTier = 1;
 		}
 		for (int i = 0; i < logic.getSpawnCountUpgradeCount(); i++)
 			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnCount.ordinal()));
 		for (int i = 0; i < logic.getSpawnRangeUpgradeCount(); i++)
 			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnRange.ordinal()));
-		for (int i = 0; i <= logic.tier; i++)
+		for (int i = minTier; i <= logic.tier; i++)
 			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, i));
 		for (ItemStack egg : logic.getFifo())
 			upgrades.add(egg);
