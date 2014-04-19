@@ -46,7 +46,7 @@ public class SpawnerUpgrade extends Item {
 		tierNetherStar(Utils.getColour(136, 164, 164), new ItemStack(Item.ghastTear), new ItemStack(Item.netherStar)),
 		tierDragonEgg(Utils.getColour(87, 2, 98), null, null),
 		redstone(Utils.getColour(181, 31, 10), new ItemStack(Item.redstone), new ItemStack(Block.blockRedstone)),
-		noPlayer(Utils.getColour(255, 162, 3), new ItemStack(Item.appleRed), new ItemStack(Item.appleGold, 1, 1)),
+		noPlayer(Utils.getColour(255, 162, 3), new ItemStack(Item.appleRed), new ItemStack(Item.appleGold)),
 		ignoreConditions(0, new ItemStack(ModItems.sceptreCap), new ItemStack(ModBlocks.denseLavaCell)),
 		silky(0, new ItemStack(Block.oreNetherQuartz), Utils.enchantStack(new ItemStack(Item.enchantedBook), Enchantment.silkTouch, 1)),
 		spawnCount(0, null, null),

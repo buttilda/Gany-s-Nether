@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.tileentities;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.core.utils.SpawnEggHelper;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.SkeletonSpawner;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
@@ -21,7 +22,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -29,7 +29,6 @@ import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.WeightedRandomMinecart;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -173,29 +172,13 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 
 			if (!notNull.isEmpty()) {
 				ItemStack egg = fifo[notNull.get(world.rand.nextInt(notNull.size()))];
-				if (egg.getItem() instanceof ItemMonsterPlacer)
-					return getEntity(world, egg.getItemDamage(), x, y, z);
-				else if (egg.getItem() instanceof SkeletonSpawner)
-					return getEntity(world, 51, x, y, z);
+				return SpawnEggHelper.getEntity(world, x, y, z, egg);
 			}
 			return null;
 		}
 		Entity entity = EntityList.createEntityByName(getEntityNameToSpawn(), world);
 		if (entity != null)
 			entity.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
-		return entity;
-	}
-
-	public static Entity getEntity(World world, int damage, double x, double y, double z) {
-		Entity entity = EntityList.createEntityByID(damage, world);
-
-		if (entity != null && entity instanceof EntityLivingBase) {
-			EntityLiving entityliving = (EntityLiving) entity;
-			entity.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
-			entityliving.rotationYawHead = entityliving.rotationYaw;
-			entityliving.renderYawOffset = entityliving.rotationYaw;
-		}
-
 		return entity;
 	}
 

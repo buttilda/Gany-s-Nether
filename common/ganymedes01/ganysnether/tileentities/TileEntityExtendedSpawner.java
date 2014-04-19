@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.tileentities;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.core.utils.SpawnEggHelper;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.items.SkeletonSpawner;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
@@ -83,7 +84,7 @@ public class TileEntityExtendedSpawner extends TileEntity {
 				if (egg.getItem() instanceof SkeletonSpawner)
 					entityName = egg.getItemDamage() == 1 ? "Wither Skeleton" : StatCollector.translateToLocal("entity." + EntityList.classToStringMapping.get(EntitySkeleton.class) + ".name");
 				else
-					entityName = StatCollector.translateToLocal("entity." + EntityList.classToStringMapping.get(EntityList.IDtoClassMapping.get(egg.getItemDamage())) + ".name");
+					entityName = StatCollector.translateToLocal("entity." + EntityList.classToStringMapping.get(SpawnEggHelper.getEntity(worldObj, xCoord, yCoord, zCoord, egg).getClass()) + ".name");
 				list.add(entityName);
 			}
 
