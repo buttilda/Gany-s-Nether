@@ -50,7 +50,7 @@ public class SpawnerUpgrade extends Item {
 		ignoreConditions(0, new ItemStack(ModItems.sceptreCap), new ItemStack(ModBlocks.denseLavaCell)),
 		silky(0, new ItemStack(Block.oreNetherQuartz), Utils.enchantStack(new ItemStack(Item.enchantedBook), Enchantment.silkTouch, 1)),
 		spawnCount(0, null, null),
-		spawnRange(0, new ItemStack(Block.fire), new ItemStack(Block.blockNetherQuartz));
+		spawnRange(0, new ItemStack(Item.eyeOfEnder), new ItemStack(Block.fire));
 		// @formatter:on
 
 		private final int colour;

@@ -66,6 +66,7 @@ public class ModRecipes {
 
 		GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.tierDragonEgg.ordinal()), "xyx", "yzy", "xyx", 'x', new ItemStack(Item.appleGold, 1, 1), 'y', ModItems.netherCore, 'z', Block.dragonEgg);
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnCount.ordinal()), "xyx", "yzy", "xyx", 'x', "mobEgg", 'y', "mobEgg", 'z', ModItems.netherCore));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnCount.ordinal()), "xyx", "yzy", "xyx", 'x', "mobHead", 'y', "mobHead", 'z', ModItems.netherCore));
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.dragonEgg), new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.tierDragonEgg.ordinal()));
 
 		// Vanilla

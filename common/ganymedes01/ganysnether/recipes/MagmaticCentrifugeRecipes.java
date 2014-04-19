@@ -70,7 +70,7 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe(new ItemStack(Item.leather), new ItemStack(Item.flint), new ItemStack(Item.silk, 3));
 		addRecipe(new ItemStack(Block.silverfish, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(Item.netherQuartz), new ItemStack(Item.monsterPlacer, 1, 60), new ItemStack(Block.cobblestone));
 		addRecipe(new ItemStack(ModItems.spectreWheat), new ItemStack(Item.diamond), new ItemStack(ModItems.spookyFlour), new ItemStack(Item.diamond));
-		addRecipe(new ItemStack(Item.netherQuartz), new ItemStack(Item.netherQuartz), new ItemStack(Block.fire, 2));
+		addRecipe(new ItemStack(Block.blockNetherQuartz), new ItemStack(Block.blockNetherQuartz), new ItemStack(Block.fire, 6));
 		addRecipe(new ItemStack(Item.dyePowder, 1, 2), new ItemStack(Item.dyePowder, 1, 2), new ItemStack(Item.slimeBall));
 		addRecipe(new ItemStack(Item.wheat), new ItemStack(Item.flint), new ItemStack(ModItems.flour), new ItemStack(Item.flint));
 	}
