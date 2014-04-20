@@ -25,9 +25,7 @@ import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import ganymedes01.ganysnether.tileentities.TileEntityThermalSmelter;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -74,7 +72,7 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	@Override
-	public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		switch (ID) {
 			case GUIsID.VOLCANIC_FURNACE:
@@ -93,7 +91,7 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	@Override
-	public GuiContainer getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		switch (ID) {
 			case GUIsID.VOLCANIC_FURNACE:
