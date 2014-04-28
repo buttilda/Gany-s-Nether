@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -50,14 +51,14 @@ public class BlockVolcanicFurnaceRender implements ISimpleBlockRenderingHandler 
 			}
 
 			tessellator.setColorOpaque_F(R, G, B);
-			renderer.renderFaceYPos(Block.lavaStill, x, y, z, Block.lavaStill.getIcon(0, 0));
+			renderer.renderFaceYPos(Blocks.lava, x, y, z, Blocks.lava.getIcon(0, 0));
 		}
 
 		return renderer.renderStandardBlock(block, x, y, z);
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory() {
+	public boolean shouldRender3DInInventory(int modelId) {
 		return true;
 	}
 

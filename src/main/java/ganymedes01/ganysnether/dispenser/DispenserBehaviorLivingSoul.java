@@ -8,7 +8,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import net.minecraftforge.common.FakePlayerFactory;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.util.FakePlayerFactory;
 
 /**
  * Gany's Nether
@@ -22,12 +23,12 @@ public class DispenserBehaviorLivingSoul extends BehaviorDefaultDispenseItem {
 	@Override
 	public ItemStack dispenseStack(IBlockSource block, ItemStack stack) {
 		World world = block.getWorld();
-		EnumFacing enumfacing = BlockDispenser.getFacing(block.getBlockMetadata());
+		EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
 		int x = block.getXInt() + enumfacing.getFrontOffsetX();
 		int y = block.getYInt() + enumfacing.getFrontOffsetY();
 		int z = block.getZInt() + enumfacing.getFrontOffsetZ();
 
-		EntityPlayer player = FakePlayerFactory.getMinecraft(world);
+		EntityPlayer player = FakePlayerFactory.getMinecraft((WorldServer) world);
 		player.setCurrentItemOrArmor(0, stack);
 
 		if (LivingSoul.applyBonemeal(stack, world, x, y, z, player))

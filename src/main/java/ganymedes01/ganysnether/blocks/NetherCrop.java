@@ -2,8 +2,9 @@ package ganymedes01.ganysnether.blocks;
 
 import java.util.ArrayList;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -16,26 +17,22 @@ import net.minecraft.world.World;
 
 public class NetherCrop extends BlockCrops {
 
-	NetherCrop(int id) {
-		super(id);
+	@Override
+	protected boolean canThisPlantGrowOnThisBlock(Block block) {
+		return block == ModBlocks.tilledNetherrack;
 	}
 
 	@Override
-	protected boolean canThisPlantGrowOnThisBlockID(int id) {
-		return id == ModBlocks.tilledNetherrack.blockID;
-	}
-
-	@Override
-	public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int meta, int fortune) {
-		ArrayList<ItemStack> ret = super.getBlockDropped(world, x, y, z, meta, fortune);
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int meta, int fortune) {
+		ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, meta, fortune);
 		boolean addSeed = true;
 		for (ItemStack drop : ret)
-			if (drop != null && drop.itemID == getSeedItem() && drop.stackSize >= 1) {
+			if (drop != null && drop.getItem() == func_149866_i() && drop.stackSize >= 1) {
 				addSeed = false;
 				break;
 			}
 		if (addSeed)
-			ret.add(new ItemStack(getSeedItem(), 1, 0));
+			ret.add(new ItemStack(func_149866_i(), 1, 0));
 
 		return ret;
 	}
@@ -45,7 +42,7 @@ public class NetherCrop extends BlockCrops {
 		super.dropBlockAsItemWithChance(world, x, y, z, meta, dropChance, fortune);
 		if (!world.isRemote)
 			if (world.rand.nextInt(30) == 15)
-				dropBlockAsItem_do(world, x, y, z, new ItemStack(Item.rottenFlesh));
+				dropBlockAsItem_do(world, x, y, z, new ItemStack(Items.rotten_flesh));
 	}
 
 	@Override

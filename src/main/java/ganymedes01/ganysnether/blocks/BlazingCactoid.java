@@ -2,7 +2,6 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.ModSounds;
 import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
@@ -11,10 +10,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCactus;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,18 +28,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlazingCactoid extends BlockCactus {
 
-	@SideOnly(Side.CLIENT)
-	private Icon cactusTopIcon, cactusBottomIcon;
-
 	BlazingCactoid() {
-		super(ModIDs.BLAZING_CACTOID_ID);
+		super();
 		setHardness(0.4F);
-		setLightValue(0.8F);
+		setLightLevel(0.8F);
 		setStepSound(ModSounds.soundBlaze);
 		setCreativeTab(GanysNether.netherTab);
 		setBlockBounds(0.375F, 0.0F, 0.375F, 0.625F, 1.0F, 0.625F);
-		setTextureName(Utils.getBlockTexture(Strings.Blocks.BLAZING_CACTOID_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.BLAZING_CACTOID_NAME));
+		setBlockTextureName(Utils.getBlockTexture(Strings.Blocks.BLAZING_CACTOID_NAME));
+		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.BLAZING_CACTOID_NAME));
 	}
 
 	@Override
@@ -47,10 +44,10 @@ public class BlazingCactoid extends BlockCactus {
 		if (!world.isRemote)
 			if (world.isAirBlock(x, y + 1, z) && rand.nextInt(4) == 2) {
 				int height;
-				for (height = 1; world.getBlockId(x, y - height, z) == blockID; height++);
+				for (height = 1; world.getBlock(x, y - height, z) == this; height++);
 				if (height < 5) {
-					world.setBlock(x, y + 1, z, blockID);
-					onNeighborBlockChange(world, x, y + 1, z, blockID);
+					world.setBlock(x, y + 1, z, this);
+					onNeighborBlockChange(world, x, y + 1, z, this);
 				}
 			}
 	}
@@ -62,17 +59,17 @@ public class BlazingCactoid extends BlockCactus {
 
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
-		if (world.getBlockMaterial(x - 1, y, z).isSolid())
+		if (world.getBlock(x - 1, y, z).getMaterial().isSolid())
 			return false;
-		else if (world.getBlockMaterial(x + 1, y, z).isSolid())
+		else if (world.getBlock(x + 1, y, z).getMaterial().isSolid())
 			return false;
-		else if (world.getBlockMaterial(x, y, z - 1).isSolid())
+		else if (world.getBlock(x, y, z - 1).getMaterial().isSolid())
 			return false;
-		else if (world.getBlockMaterial(x, y, z + 1).isSolid())
+		else if (world.getBlock(x, y, z + 1).getMaterial().isSolid())
 			return false;
 		else {
-			int blockID = world.getBlockId(x, y - 1, z);
-			return blockID == Block.netherrack.blockID || blockID == this.blockID;
+			Block soil = world.getBlock(x, y - 1, z);
+			return soil == Blocks.netherrack || soil == this;
 		}
 	}
 
@@ -83,7 +80,7 @@ public class BlazingCactoid extends BlockCactus {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int meta) {
+	public IIcon getIcon(int side, int meta) {
 		return blockIcon;
 	}
 
@@ -94,7 +91,7 @@ public class BlazingCactoid extends BlockCactus {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg) {
+	public void registerBlockIcons(IIconRegister reg) {
 		blockIcon = reg.registerIcon(getTextureName());
 	}
 }

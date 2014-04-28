@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items.blocks;
 
 import ganymedes01.ganysnether.lib.Strings;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -12,8 +13,8 @@ import net.minecraft.item.ItemStack;
 
 public class ItemColouredQuartzPillars extends ItemBlockBase {
 
-	public ItemColouredQuartzPillars(int id) {
-		super(id, Strings.Blocks.COLOURED_QUARTZ_PILLARS_NAME + "item_");
+	public ItemColouredQuartzPillars(Block block) {
+		super(block, Strings.Blocks.COLOURED_QUARTZ_PILLARS_NAME + "item_");
 	}
 
 	@Override

@@ -3,12 +3,11 @@ package ganymedes01.ganysnether.items;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.ConcealmentHandler;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -21,7 +20,7 @@ import net.minecraft.item.ItemStack;
 public class SceptreOfConcealment extends Sceptre {
 
 	SceptreOfConcealment() {
-		super(ModIDs.SCEPTRE_OF_CONCEALMENT_ID);
+		super();
 		setMaxDamage(GanysNether.sceptreOfConcealmentDurability);
 		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_CONCEALMENT_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SCEPTRE_OF_CONCEALMENT_NAME));
@@ -37,7 +36,7 @@ public class SceptreOfConcealment extends Sceptre {
 			return false;
 		if (ConcealmentHandler.canBeConcealed(target))
 			if (player instanceof EntityPlayer)
-				if (player.inventory.consumeInventoryItem(Item.egg.itemID)) {
+				if (player.inventory.consumeInventoryItem(Items.egg)) {
 					if (!player.worldObj.isRemote) {
 						player.worldObj.playSoundAtEntity(target, "random.breath", 1.5F, player.worldObj.rand.nextFloat() * 0.1F + 0.9F);
 						target.entityDropItem(ConcealmentHandler.getEggFromEntity(target), 1.0F);
@@ -51,6 +50,6 @@ public class SceptreOfConcealment extends Sceptre {
 
 	@Override
 	public boolean getIsRepairable(ItemStack item, ItemStack material) {
-		return material.itemID == ModItems.sceptreCap.itemID && material.getItemDamage() == 2;
+		return material.getItem() == ModItems.sceptreCap && material.getItemDamage() == 2;
 	}
 }

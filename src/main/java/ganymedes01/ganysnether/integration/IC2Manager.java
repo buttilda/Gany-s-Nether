@@ -27,17 +27,6 @@ public class IC2Manager extends Integration {
 		return "IC2";
 	}
 
-	private void addMetalToMagmaticCentrifuge(String ore) {
-		addMetalToMagmaticCentrifuge(ore, getItem(ore + "Ingot", 3));
-	}
-
-	private void addMetalToMagmaticCentrifuge(String ore, ItemStack ingot) {
-		char first = Character.toUpperCase(ore.charAt(0));
-		String Ore = first + ore.substring(1);
-
-		MagmaticCentrifugeRecipes.addOreDictRecipe("ore" + Ore, "ore" + Ore, ingot, getItem("small" + Ore + "Dust"));
-	}
-
 	private ItemStack getItem(String name) {
 		return getItem(name, 1);
 	}

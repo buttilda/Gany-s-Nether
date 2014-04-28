@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.core.utils;
 
 import java.util.ArrayList;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -18,8 +19,8 @@ public class HoeList {
 
 	public static void init() {
 		hoesThatCanTillNetherrack = new ArrayList<Item>();
-		addHoe(Item.hoeGold);
-		addHoe(Item.hoeDiamond);
+		addHoe(Items.golden_hoe);
+		addHoe(Items.diamond_hoe);
 	}
 
 	public static void addHoe(ItemStack hoe) {

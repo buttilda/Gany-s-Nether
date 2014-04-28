@@ -18,13 +18,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.item.Item;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
@@ -79,7 +79,7 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 		drawTexturedModalRect(0, 0, 5, 11, 98, 65);
 
 		changeTexture(TextureMap.locationBlocksTexture);
-		drawTexturedModelRectFromIcon(68, 25, Block.lavaStill.getIcon(0, 0), cycleticks % 20, 15);
+		drawTexturedModelRectFromIcon(68, 25, Blocks.lava.getIcon(0, 0), cycleticks % 20, 15);
 
 		changeTexture(getGuiTexture());
 		drawTexturedModalRect(68, 25, 177, 14, 22, 15);
@@ -88,12 +88,12 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 		if (recipe instanceof CachedLavaYield) {
 			CachedLavaYield yieldRecipe = (CachedLavaYield) recipe;
 			GuiDraw.fontRenderer.drawString(VolcanicFurnaceHandler.getUnitParsedValued(yieldRecipe.getYield(), "B", 0), 93, 28, Utils.getColour(0, 0, 0));
-			GuiDraw.fontRenderer.drawString("1000 mB = 1 " + StatCollector.translateToLocal(Item.bucketLava.getUnlocalizedName() + ".name"), 20, 46, Utils.getColour(0, 0, 0));
-			GuiDraw.fontRenderer.drawString("1 B = 1 " + StatCollector.translateToLocal(Item.bucketLava.getUnlocalizedName() + ".name"), 20, 55, Utils.getColour(0, 0, 0));
+			GuiDraw.fontRenderer.drawString("1000 mB = 1 " + StatCollector.translateToLocal(Items.lava_bucket.getUnlocalizedName() + ".name"), 20, 46, Utils.getColour(0, 0, 0));
+			GuiDraw.fontRenderer.drawString("1 B = 1 " + StatCollector.translateToLocal(Items.lava_bucket.getUnlocalizedName() + ".name"), 20, 55, Utils.getColour(0, 0, 0));
 		}
 	}
 
-	private void drawTexturedModelRectFromIcon(int x, int y, Icon icon, int width, int height) {
+	private void drawTexturedModelRectFromIcon(int x, int y, IIcon icon, int width, int height) {
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
 		tessellator.addVertexWithUV(x + 0, y + height, 0.0F, icon.getMinU(), icon.getMaxV());
@@ -124,6 +124,7 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 			super.loadCraftingRecipes(outputId, results);
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public <T, V> LinkedHashMap<T, V> sortHashMapByValues(HashMap<T, V> map) {
 		List mapKeys = new ArrayList(map.keySet());
 		List mapValues = new ArrayList(map.values());

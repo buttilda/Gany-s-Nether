@@ -1,6 +1,5 @@
 package ganymedes01.ganysnether.world;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,7 +21,6 @@ import net.minecraft.world.World;
 
 public class SoulExplosion extends Explosion {
 
-	private final ArrayList<EntityLivingBase> entitiesInRange = new ArrayList<EntityLivingBase>();
 	private final World worldObj;
 
 	public SoulExplosion(World world, Entity entity, double x, double y, double z, float power) {
@@ -31,11 +29,11 @@ public class SoulExplosion extends Explosion {
 	}
 
 	@Override
+	@SuppressWarnings("rawtypes")
 	public void doExplosionA() {
 		super.doExplosionA();
 
-		List list = worldObj.selectEntitiesWithinAABB(EntityLivingBase.class,
-		AxisAlignedBB.getAABBPool().getAABB(explosionX - 2 * explosionSize, explosionY - 2 * explosionSize, explosionZ - 2 * explosionSize, explosionX + 2 * explosionSize, explosionY + 2 * explosionSize, explosionZ + 2 * explosionSize), IEntitySelector.selectAnything);
+		List list = worldObj.selectEntitiesWithinAABB(EntityLivingBase.class, AxisAlignedBB.getAABBPool().getAABB(explosionX - 2 * explosionSize, explosionY - 2 * explosionSize, explosionZ - 2 * explosionSize, explosionX + 2 * explosionSize, explosionY + 2 * explosionSize, explosionZ + 2 * explosionSize), IEntitySelector.selectAnything);
 		if (!list.isEmpty()) {
 			Iterator iterator = list.iterator();
 			while (iterator.hasNext()) {
@@ -44,7 +42,7 @@ public class SoulExplosion extends Explosion {
 					int duration = 3000;
 					PotionEffect slowness = entity.getActivePotionEffect(Potion.moveSlowdown);
 					if (slowness != null && slowness.getAmplifier() == 2)
-						duration += slowness.duration;
+						duration += slowness.getDuration();
 					entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, duration, 2));
 				}
 			}

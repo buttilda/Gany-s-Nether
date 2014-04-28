@@ -15,7 +15,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
-import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 
 public class GanysNetherCommand extends CommandBase {
@@ -36,6 +36,7 @@ public class GanysNetherCommand extends CommandBase {
 	}
 
 	@Override
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List addTabCompletionOptions(ICommandSender sender, String[] args) {
 		if (args.length == 2) {
 			String[] array = new String[EntityList.stringToClassMapping.size()];
@@ -58,13 +59,14 @@ public class GanysNetherCommand extends CommandBase {
 			else {
 				EnumChatFormatting red = EnumChatFormatting.RED;
 				EnumChatFormatting gold = EnumChatFormatting.GOLD;
-				sender.sendChatToPlayer(ChatMessageComponent.createFromText(red + "Unknown argument: " + type + ". Try " + gold + "KillAll" + red + " or " + gold + "EntityMap" + red + "!"));
+				sender.addChatMessage(new ChatComponentText(red + "Unknown argument: " + type + ". Try " + gold + "KillAll" + red + " or " + gold + "EntityMap" + red + "!"));
 			}
 		} catch (Exception e) {
 			throw new WrongUsageException(getCommandUsage(sender), new Object[0]);
 		}
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void entityMapCommand(ICommandSender sender) throws Exception {
 		LinkedHashMap<String, Integer> map = new LinkedHashMap<String, Integer>();
 		for (Entity entity : (List<Entity>) sender.getEntityWorld().loadedEntityList) {
@@ -88,9 +90,10 @@ public class GanysNetherCommand extends CommandBase {
 		});
 
 		for (Entry<String, Integer> entry : set)
-			sender.sendChatToPlayer(ChatMessageComponent.createFromText(entry.getKey() + ": " + entry.getValue()));
+			sender.addChatMessage(new ChatComponentText(entry.getKey() + ": " + entry.getValue()));
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void killAllCommand(ICommandSender sender, String arg) throws Exception {
 		if (arg.equals("Horse"))
 			arg = "EntityHorse";
@@ -103,8 +106,8 @@ public class GanysNetherCommand extends CommandBase {
 						entity.setDead();
 						count++;
 					}
-			sender.sendChatToPlayer(ChatMessageComponent.createFromText(EnumChatFormatting.GOLD + "Removed " + count + " entities of type " + arg));
+			sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Removed " + count + " entities of type " + arg));
 		} else
-			sender.sendChatToPlayer(ChatMessageComponent.createFromText(EnumChatFormatting.RED + "Entity class not found: " + arg));
+			sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Entity class not found: " + arg));
 	}
 }

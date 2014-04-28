@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.core.handlers;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 
@@ -10,11 +11,11 @@ import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.event.EventPriority;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * Gany's Nether
@@ -25,22 +26,22 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 public class EntityDeathEvent {
 
-	@ForgeSubscribe(priority = EventPriority.HIGHEST)
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void deathEvent(LivingDeathEvent event) {
 		Random rand = new Random();
 		if (!event.entityLiving.worldObj.isRemote)
 			if (event.entityLiving instanceof EntitySilverfish) {
-				event.entityLiving.dropItem(ModItems.silverfishScale.itemID, rand.nextInt(4));
+				event.entityLiving.dropItem(ModItems.silverfishScale, rand.nextInt(4));
 				return;
 			} else if (event.entityLiving instanceof EntityBat) {
-				event.entityLiving.dropItem(ModItems.batWing.itemID, 1 + rand.nextInt(1));
+				event.entityLiving.dropItem(ModItems.batWing, 1 + rand.nextInt(1));
 				return;
 			} else if (event.entityLiving instanceof EntityWolf) {
-				event.entityLiving.dropItem(ModItems.wolfTeeth.itemID, rand.nextInt(2));
+				event.entityLiving.dropItem(ModItems.wolfTeeth, rand.nextInt(2));
 				return;
 			} else if (event.entityLiving instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) event.entityLiving;
-				if (!player.inventory.consumeInventoryItem(ModBlocks.undertaker.blockID))
+				if (!player.inventory.consumeInventoryItem(Item.getItemFromBlock(ModBlocks.undertaker)))
 					return;
 
 				int x = (int) player.posX;
@@ -48,10 +49,9 @@ public class EntityDeathEvent {
 				int z = (int) player.posZ;
 				if (!player.worldObj.isAirBlock(x, y, z))
 					y++;
-				player.worldObj.setBlock(x, y, z, ModBlocks.undertaker.blockID);
-				TileEntity tile = player.worldObj.getBlockTileEntity(x, y, z);
-				if (tile instanceof TileEntityUndertaker) {
-					TileEntityUndertaker undertaker = (TileEntityUndertaker) tile;
+				player.worldObj.setBlock(x, y, z, ModBlocks.undertaker);
+				TileEntityUndertaker undertaker = Utils.getTileEntity(player.worldObj, x, y, z, TileEntityUndertaker.class);
+				if (undertaker != null) {
 					for (int i = 0; i < player.inventory.mainInventory.length; i++) {
 						ItemStack cont = player.inventory.mainInventory[i];
 						if (cont != null)

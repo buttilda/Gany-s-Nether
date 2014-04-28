@@ -54,7 +54,7 @@ public class ItemStackCentrifugeRecipe extends CentrifugeRecipe {
 	}
 
 	private boolean areStacksEqual(ItemStack stack1, ItemStack stack2) {
-		if (stack1.itemID == stack2.itemID)
+		if (stack1.getItem() == stack2.getItem())
 			return stack1.getItemDamage() == OreDictionary.WILDCARD_VALUE ? true : stack1.getItemDamage() == stack2.getItemDamage();
 		return false;
 	}

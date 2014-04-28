@@ -1,16 +1,12 @@
 package ganymedes01.ganysnether.tileentities;
 
-import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerReproducer;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.ReproducerRecipes;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 
 /**
  * Gany's Nether
@@ -19,9 +15,8 @@ import net.minecraft.tileentity.TileEntity;
  * 
  */
 
-public class TileEntityReproducer extends TileEntity implements ISidedInventory {
+public class TileEntityReproducer extends GanysInventory implements ISidedInventory {
 
-	ItemStack[] inventory = new ItemStack[5];
 	private final int BASE_SLOT = 0;
 	private final int REPLACE_SLOT = 1;
 	private final int RESULT_SLOT = 2;
@@ -30,6 +25,10 @@ public class TileEntityReproducer extends TileEntity implements ISidedInventory 
 
 	private int workTime;
 	private final int MAX_WORK_TIME = 200;
+
+	public TileEntityReproducer() {
+		super(5, Strings.Blocks.REPRODUCER_NAME);
+	}
 
 	@Override
 	public void updateEntity() {
@@ -107,80 +106,6 @@ public class TileEntityReproducer extends TileEntity implements ISidedInventory 
 	}
 
 	@Override
-	public int getSizeInventory() {
-		return inventory.length;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int slot) {
-		return inventory[slot];
-	}
-
-	@Override
-	public ItemStack decrStackSize(int slot, int size) {
-		if (inventory[slot] != null) {
-			ItemStack itemstack;
-			if (inventory[slot].stackSize <= size) {
-				itemstack = inventory[slot];
-				inventory[slot] = null;
-				return itemstack;
-			} else {
-				itemstack = inventory[slot].splitStack(size);
-				if (inventory[slot].stackSize == 0)
-					inventory[slot] = null;
-				return itemstack;
-			}
-		} else
-			return null;
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
-		if (inventory[slot] != null) {
-			ItemStack itemstack = inventory[slot];
-			inventory[slot] = null;
-			return itemstack;
-		} else
-			return null;
-	}
-
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack) {
-		inventory[slot] = stack;
-
-		if (stack != null && stack.stackSize > getInventoryStackLimit())
-			stack.stackSize = getInventoryStackLimit();
-	}
-
-	@Override
-	public String getInvName() {
-		return Utils.getConainerName(Strings.Blocks.REPRODUCER_NAME);
-	}
-
-	@Override
-	public boolean isInvNameLocalized() {
-		return false;
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 64;
-	}
-
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		return true;
-	}
-
-	@Override
-	public void openChest() {
-	}
-
-	@Override
-	public void closeChest() {
-	}
-
-	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return slot == RESULT_SLOT ? false : slot == BASE_SLOT || slot == REPLACE_SLOT ? ReproducerRecipes.isValidSpawnEgg(stack) : true;
 	}
@@ -192,38 +117,18 @@ public class TileEntityReproducer extends TileEntity implements ISidedInventory 
 
 	@Override
 	public boolean canExtractItem(int slot, ItemStack stack, int side) {
-		return true;
+		return slot == RESULT_SLOT;
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound data) {
 		super.readFromNBT(data);
-		NBTTagList nbttaglist = data.getTagList("Items");
-		inventory = new ItemStack[getSizeInventory()];
-
-		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
-			byte b0 = nbttagcompound1.getByte("Slot");
-
-			if (b0 >= 0 && b0 < inventory.length)
-				inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
-		}
 		workTime = data.getInteger("workTime");
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound data) {
 		super.writeToNBT(data);
-		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < inventory.length; i++)
-			if (inventory[i] != null) {
-				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-				nbttagcompound1.setByte("Slot", (byte) i);
-				inventory[i].writeToNBT(nbttagcompound1);
-				nbttaglist.appendTag(nbttagcompound1);
-			}
-
-		data.setTag("Items", nbttaglist);
 		data.setInteger("workTime", workTime);
 	}
 }

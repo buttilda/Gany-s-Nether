@@ -100,8 +100,8 @@ public class BlockExtendedSpawnerRender implements ISimpleBlockRenderingHandler 
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory() {
-		return true;
+	public boolean shouldRender3DInInventory(int modelId) {
+		return false;
 	}
 
 	@Override

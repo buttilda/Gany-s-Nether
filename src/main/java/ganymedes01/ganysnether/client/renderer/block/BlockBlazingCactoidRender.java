@@ -5,7 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.Icon;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -29,12 +30,12 @@ public class BlockBlazingCactoidRender implements ISimpleBlockRenderingHandler {
 	public boolean renderWorldBlock(IBlockAccess access, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		renderer.renderCrossedSquares(block, x, y, z);
 		renderCross(access, x, y, z, block);
-		renderer.renderBlockFire(Block.fire, x, y, z);
+		renderer.renderBlockFire(Blocks.fire, x, y, z);
 		return renderer.renderStandardBlock(block, x, y, z);
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory() {
+	public boolean shouldRender3DInInventory(int modelId) {
 		return false;
 	}
 
@@ -61,7 +62,7 @@ public class BlockBlazingCactoidRender implements ISimpleBlockRenderingHandler {
 		}
 
 		tessellator.setColorOpaque_F(R, G, B);
-		Icon icon = block.getIcon(0, 0);
+		IIcon icon = block.getIcon(0, 0);
 
 		double minU = icon.getMinU();
 		double minV = icon.getMinV();

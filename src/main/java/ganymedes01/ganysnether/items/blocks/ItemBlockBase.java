@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.items.blocks;
 
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
@@ -14,8 +15,8 @@ import net.minecraft.item.ItemStack;
 
 public class ItemBlockBase extends ItemBlock {
 
-	public ItemBlockBase(int id, String name) {
-		super(id);
+	public ItemBlockBase(Block block, String name) {
+		super(block);
 		setHasSubtypes(true);
 		setUnlocalizedName(Utils.getUnlocalizedName(name));
 	}

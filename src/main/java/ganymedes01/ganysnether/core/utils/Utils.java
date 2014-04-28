@@ -11,20 +11,23 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.InventoryLargeChest;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import com.mojang.authlib.GameProfile;
 
 /**
  * Gany's Nether
@@ -37,39 +40,36 @@ public class Utils {
 
 	private static EntityPlayer player;
 
-	public static final String getUnlocalizedName(String name) {
+	public static String getUnlocalizedName(String name) {
 		return Reference.MOD_ID + "." + name;
 	}
 
-	public static final String getBlockTexture(String name) {
+	public static String getBlockTexture(String name) {
 		return Reference.ITEM_BLOCK_TEXTURE_PATH + name;
 	}
 
-	public static final String getItemTexture(String name) {
+	public static String getItemTexture(String name) {
 		return Reference.ITEM_BLOCK_TEXTURE_PATH + name;
 	}
 
-	public static final String getArmourTexture(String name, int layer) {
+	public static String getArmourTexture(String name, int layer) {
 		return Reference.ARMOUR_TEXTURE_PATH + name.toLowerCase() + "_layer_" + layer + ".png";
 	}
 
-	public static final String getGUITexture(String name) {
+	public static String getGUITexture(String name) {
 		return Reference.GUI_TEXTURE_PATH + name + ".png";
 	}
 
-	public static final String getEntityTexture(String name) {
+	public static String getEntityTexture(String name) {
 		return Reference.ENTITY_TEXTURE_PATH + name + ".png";
 	}
 
-	public static final String getConainerName(String name) {
-		return "container." + Reference.MOD_ID + "." + name;
+	public static String getConainerName(String name) {
+		return "container." + Reference.MOD_ID + ":" + name;
 	}
 
-	public static final void dropStack(World world, int x, int y, int z, ItemStack stack) {
+	public static void dropStack(World world, int x, int y, int z, ItemStack stack) {
 		if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doTileDrops")) {
-			if (stack == null)
-				return;
-
 			float f = 0.7F;
 			double d0 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
 			double d1 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
@@ -80,15 +80,15 @@ public class Utils {
 		}
 	}
 
-	public static final int getColour(int R, int G, int B) {
+	public static int getColour(int R, int G, int B) {
 		return new Color(R < 0 ? 0 : R, G < 0 ? 0 : G, B < 0 ? 0 : B).getRGB() & 0x00ffffff;
 	}
 
-	public static final ResourceLocation getResource(String path) {
+	public static ResourceLocation getResource(String path) {
 		return new ResourceLocation(path);
 	}
 
-	public static final ArrayList<Integer> getRandomizedList(int min, int max) {
+	public static ArrayList<Integer> getRandomizedList(int min, int max) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		for (int i = min; i < max; i++)
 			list.add(i);
@@ -96,7 +96,7 @@ public class Utils {
 		return list;
 	}
 
-	public static final int[] getSlotsFromSide(IInventory iinventory, int side) {
+	public static int[] getSlotsFromSide(IInventory iinventory, int side) {
 		if (iinventory == null)
 			return null;
 
@@ -110,7 +110,7 @@ public class Utils {
 		}
 	}
 
-	public static final ItemStack extractFromInventory(IInventory iinventory, int side) {
+	public static ItemStack extractFromInventory(IInventory iinventory, int side) {
 		if (iinventory instanceof TileEntityChest)
 			return extractFromInventory(getInventoryFromChest((TileEntityChest) iinventory), side);
 		return extractFromSlots(iinventory, side, getSlotsFromSide(iinventory, side));
@@ -130,21 +130,23 @@ public class Utils {
 		return null;
 	}
 
-	public static final boolean addEntitytoInventory(IInventory iinventory, EntityItem item) {
-		if (item == null)
+	public static boolean addEntitytoInventory(IInventory iinventory, EntityItem entity) {
+		if (entity == null)
 			return false;
 
-		boolean flag = addStackToInventory(iinventory, item.getEntityItem());
-		if (item.getEntityItem().stackSize <= 0)
-			item.setDead();
+		boolean flag = addStackToInventory(iinventory, entity.getEntityItem());
+		if (flag)
+			entity.setDead();
+		else if (entity.getEntityItem().stackSize <= 0)
+			entity.setDead();
 		return flag;
 	}
 
-	public static final boolean addStackToInventory(IInventory iinventory, ItemStack stack) {
+	public static boolean addStackToInventory(IInventory iinventory, ItemStack stack) {
 		return addStackToInventory(iinventory, stack, 0);
 	}
 
-	public static final boolean addStackToInventory(IInventory iinventory, ItemStack stack, int side) {
+	public static boolean addStackToInventory(IInventory iinventory, ItemStack stack, int side) {
 		if (iinventory == null)
 			return false;
 
@@ -156,7 +158,7 @@ public class Utils {
 		return addToSlots(iinventory, stack, side, getSlotsFromSide(iinventory, side));
 	}
 
-	private static final boolean addToSlots(IInventory iinventory, ItemStack stack, int side, int[] slots) {
+	private static boolean addToSlots(IInventory iinventory, ItemStack stack, int side, int[] slots) {
 		for (int slot : slots) {
 			if (iinventory instanceof ISidedInventory) {
 				if (!((ISidedInventory) iinventory).canInsertItem(slot, stack, side))
@@ -183,7 +185,7 @@ public class Utils {
 		return false;
 	}
 
-	public static final boolean areStacksTheSame(ItemStack stack1, ItemStack stack2, boolean matchSize) {
+	public static boolean areStacksTheSame(ItemStack stack1, ItemStack stack2, boolean matchSize) {
 		if (stack1 == null || stack2 == null)
 			return false;
 
@@ -197,7 +199,7 @@ public class Utils {
 		return false;
 	}
 
-	public static final IInventory getInventoryFromChest(TileEntityChest chest) {
+	public static IInventory getInventoryFromChest(TileEntityChest chest) {
 		TileEntityChest adjacent = null;
 		if (chest.adjacentChestXNeg != null)
 			adjacent = chest.adjacentChestXNeg;
@@ -207,8 +209,8 @@ public class Utils {
 			adjacent = chest.adjacentChestXPos;
 		if (chest.adjacentChestZNeg != null)
 			adjacent = chest.adjacentChestZNeg;
-		if (chest.adjacentChestZPosition != null)
-			adjacent = chest.adjacentChestZPosition;
+		if (chest.adjacentChestZPos != null)
+			adjacent = chest.adjacentChestZPos;
 		if (adjacent != null)
 			return new InventoryLargeChest("", chest, adjacent);
 
@@ -219,10 +221,7 @@ public class Utils {
 		if (player != null)
 			return player;
 		else {
-			player = new EntityPlayer(world, "[" + Reference.CHANNEL_NAME + "]") {
-				@Override
-				public void sendChatToPlayer(ChatMessageComponent var1) {
-				}
+			player = new EntityPlayer(world, new GameProfile(Reference.MOD_ID, "[" + Reference.CHANNEL + "]")) {
 
 				@Override
 				public boolean canCommandSenderUseCommand(int var1, String var2) {
@@ -233,18 +232,43 @@ public class Utils {
 				public ChunkCoordinates getPlayerCoordinates() {
 					return null;
 				}
+
+				@Override
+				public void addChatMessage(IChatComponent var1) {
+				}
 			};
 			return player;
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	public static <T> T getTileEntity(IBlockAccess world, int x, int y, int z, Class<T> cls) {
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if (!cls.isInstance(tile))
+			return null;
+		return (T) tile;
+	}
+
+	public static void dropInventoryContents(TileEntity tile) {
+		if (tile == null || !(tile instanceof IInventory))
+			return;
+		IInventory iinventory = (IInventory) tile;
+		for (int i = 0; i < iinventory.getSizeInventory(); i++) {
+			ItemStack stack = iinventory.getStackInSlot(i);
+			if (stack != null) {
+				dropStack(tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord, stack.copy());
+				iinventory.setInventorySlotContents(i, null);
+			}
+		}
+	}
+
 	public static final LinkedHashMap<Short, Short> getEnchantments(ItemStack stack) {
 		LinkedHashMap<Short, Short> map = new LinkedHashMap<Short, Short>();
-		NBTTagList list = stack.itemID == Item.enchantedBook.itemID ? Item.enchantedBook.func_92110_g(stack) : stack.getEnchantmentTagList();
+		NBTTagList list = stack.getItem() == Items.enchanted_book ? Items.enchanted_book.func_92110_g(stack) : stack.getEnchantmentTagList();
 
 		if (list != null)
 			for (int i = 0; i < list.tagCount(); i++) {
-				NBTTagCompound tag = (NBTTagCompound) list.tagAt(i);
+				NBTTagCompound tag = list.getCompoundTagAt(i);
 				map.put(tag.getShort("id"), tag.getShort("lvl"));
 			}
 
@@ -253,14 +277,11 @@ public class Utils {
 
 	public static final ItemStack enchantStack(ItemStack stack, Enchantment enchantment, int level) {
 		stack.setTagCompound(new NBTTagCompound());
-		Item.enchantedBook.addEnchantment(stack, new EnchantmentData(enchantment, level));
+		Items.enchanted_book.addEnchantment(stack, new EnchantmentData(enchantment, level));
 		return stack;
 	}
 
-	public static <T> T getTileEntity(IBlockAccess world, int x, int y, int z, Class<T> cls) {
-		TileEntity tr = world.getBlockTileEntity(x, y, z);
-		if (!cls.isInstance(tr))
-			return null;
-		return (T) tr;
+	public static void sendMessageToPlayer(EntityPlayer player, Object message) {
+		player.addChatMessage(new ChatComponentText(message.toString()));
 	}
 }

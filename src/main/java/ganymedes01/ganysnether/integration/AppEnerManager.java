@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.integration;
 
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -20,7 +20,7 @@ public class AppEnerManager extends Integration {
 	@Override
 	public void postInit() {
 		MagmaticCentrifugeRecipes.addOreDictRecipe("oreCertusQuartz", "oreCertusQuartz", getItem("matQuartz", 2), getItem("matQuartzDust", 1));
-		MagmaticCentrifugeRecipes.addOreDictRecipe("oreQuartz", "oreQuartz", new ItemStack(Item.netherQuartz, 2), getItem("matQuartzDustNether", 1));
+		MagmaticCentrifugeRecipes.addOreDictRecipe("oreQuartz", "oreQuartz", new ItemStack(Items.quartz, 2), getItem("matQuartzDustNether", 1));
 	}
 
 	@Override
@@ -45,6 +45,7 @@ public class AppEnerManager extends Integration {
 		return null;
 	}
 
+	@SuppressWarnings("unused")
 	private ItemStack getBlock(String name, int size) {
 		try {
 			Class<?> appItems = Class.forName("appeng.api.Blocks");

@@ -2,11 +2,10 @@ package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
@@ -22,7 +21,7 @@ import net.minecraft.world.World;
 public class SceptreOfFireCharging extends Sceptre {
 
 	SceptreOfFireCharging() {
-		super(ModIDs.SCEPTRE_OF_FIRE_CHARGING_ID);
+		super();
 		setMaxDamage(GanysNether.sceptreOfFireCharging);
 		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME));
@@ -30,7 +29,7 @@ public class SceptreOfFireCharging extends Sceptre {
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (!(player.inventory.consumeInventoryItem(Item.fireballCharge.itemID) || player.capabilities.isCreativeMode))
+		if (!(player.inventory.consumeInventoryItem(Items.fire_charge) || player.capabilities.isCreativeMode))
 			stack.damageItem(1, player);
 		player.swingItem();
 		spawnFireCharge(world, player);
@@ -60,6 +59,6 @@ public class SceptreOfFireCharging extends Sceptre {
 
 	@Override
 	public boolean getIsRepairable(ItemStack item, ItemStack material) {
-		return material.itemID == ModItems.sceptreCap.itemID && material.getItemDamage() == 0;
+		return material.getItem() == ModItems.sceptreCap && material.getItemDamage() == 0;
 	}
 }

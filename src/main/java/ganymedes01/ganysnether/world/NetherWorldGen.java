@@ -3,12 +3,13 @@ package ganymedes01.ganysnether.world;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.core.utils.RandomItemStackList;
+import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
@@ -38,35 +39,35 @@ public class NetherWorldGen implements IWorldGenerator {
 									if (hasLavaNearby(world, blockX, blockY - 1, blockZ))
 										switch (rand.nextInt(6)) {
 											case 0:
-												world.setBlock(blockX, blockY - 1, blockZ, Block.netherrack.blockID);
-												world.setBlock(blockX, blockY, blockZ, ModBlocks.glowingReed.blockID);
+												world.setBlock(blockX, blockY - 1, blockZ, Blocks.netherrack);
+												world.setBlock(blockX, blockY, blockZ, ModBlocks.glowingReed);
 												if (rand.nextInt(10) == 5)
-													world.setBlock(blockX, blockY + 1, blockZ, ModBlocks.glowingReed.blockID);
+													world.setBlock(blockX, blockY + 1, blockZ, ModBlocks.glowingReed);
 												return;
 											case 1:
-												world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
-												world.setBlock(blockX, blockY, blockZ, ModBlocks.spectreWheat.blockID, rand.nextInt(7), 2);
+												world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack);
+												world.setBlock(blockX, blockY, blockZ, ModBlocks.spectreWheat, rand.nextInt(7), 2);
 												return;
 											case 2:
-												world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
-												world.setBlock(blockX, blockY, blockZ, ModBlocks.quarzBerryBush.blockID, rand.nextInt(7), 2);
+												world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack);
+												world.setBlock(blockX, blockY, blockZ, ModBlocks.quarzBerryBush, rand.nextInt(7), 2);
 												return;
 											case 3:
 												if (rand.nextInt(GanysNether.witherShrubRate) == 0) {
-													world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
-													world.setBlock(blockX, blockY, blockZ, ModBlocks.witherShrub.blockID, rand.nextInt(6), 2);
-													world.setBlock(blockX, blockY + 1, blockZ, Block.glowStone.blockID);
+													world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack);
+													world.setBlock(blockX, blockY, blockZ, ModBlocks.witherShrub, rand.nextInt(6), 2);
+													world.setBlock(blockX, blockY + 1, blockZ, Blocks.glowstone);
 												}
 												return;
 											case 4:
-												world.setBlock(blockX, blockY - 1, blockZ, Block.netherrack.blockID);
-												world.setBlock(blockX, blockY, blockZ, ModBlocks.blazingCactoid.blockID);
+												world.setBlock(blockX, blockY - 1, blockZ, Blocks.netherrack);
+												world.setBlock(blockX, blockY, blockZ, ModBlocks.blazingCactoid);
 												if (rand.nextInt(10) == 5)
-													world.setBlock(blockX, blockY + 1, blockZ, ModBlocks.blazingCactoid.blockID);
+													world.setBlock(blockX, blockY + 1, blockZ, ModBlocks.blazingCactoid);
 												return;
 											case 5:
-												world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack.blockID);
-												world.setBlock(blockX, blockY, blockZ, ModBlocks.hellBush.blockID, rand.nextInt(7), 2);
+												world.setBlock(blockX, blockY - 1, blockZ, ModBlocks.tilledNetherrack);
+												world.setBlock(blockX, blockY, blockZ, ModBlocks.hellBush, rand.nextInt(7), 2);
 												return;
 										}
 
@@ -80,13 +81,13 @@ public class NetherWorldGen implements IWorldGenerator {
 	private boolean shouldGenerate(World world, int x, int y, int z) {
 		if (!world.isAirBlock(x, y - 1, z))
 			if (world.isAirBlock(x, y, z))
-				if (world.getBlockMaterial(x, y - 1, z) != Material.lava)
+				if (world.getBlock(x, y - 1, z).getMaterial() != Material.lava)
 					return true;
 		return false;
 	}
 
 	private boolean hasLavaNearby(World world, int x, int y, int z) {
-		return world.getBlockMaterial(x + 1, y, z) == Material.lava || world.getBlockMaterial(x - 1, y, z) == Material.lava || world.getBlockMaterial(x, y, z + 1) == Material.lava || world.getBlockMaterial(x, y, z - 1) == Material.lava;
+		return world.getBlock(x + 1, y, z).getMaterial() == Material.lava || world.getBlock(x - 1, y, z).getMaterial() == Material.lava || world.getBlock(x, y, z + 1).getMaterial() == Material.lava || world.getBlock(x, y, z - 1).getMaterial() == Material.lava;
 	}
 
 	private void generateUndertakerWithRandomContents(World world, int x, int y, int z, Random rand) {
@@ -95,8 +96,8 @@ public class NetherWorldGen implements IWorldGenerator {
 
 		if (world.isAirBlock(x, y + 1, z))
 			if (world.isAirBlock(x, y + 2, z)) {
-				world.setBlock(x, y, z, ModBlocks.undertaker.blockID);
-				TileEntityUndertaker undertaker = (TileEntityUndertaker) world.getBlockTileEntity(x, y, z);
+				world.setBlock(x, y, z, ModBlocks.undertaker);
+				TileEntityUndertaker undertaker = Utils.getTileEntity(world, x, y, z, TileEntityUndertaker.class);
 				if (undertaker != null)
 					RandomItemStackList.fillInventory(undertaker, undertaker.getSizeInventory() - 4, rand);
 			}

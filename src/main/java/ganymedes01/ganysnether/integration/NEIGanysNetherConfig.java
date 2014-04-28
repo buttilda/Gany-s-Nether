@@ -8,6 +8,7 @@ import ganymedes01.ganysnether.integration.nei.OreDictionaryHandler;
 import ganymedes01.ganysnether.integration.nei.ReproducerRecipeHandler;
 import ganymedes01.ganysnether.integration.nei.VolcanicFurnaceYieldHandler;
 import ganymedes01.ganysnether.lib.Reference;
+import net.minecraft.item.ItemStack;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 
@@ -41,16 +42,15 @@ public class NEIGanysNetherConfig implements IConfigureNEI {
 		API.registerUsageHandler(new VolcanicFurnaceYieldHandler());
 		API.registerRecipeHandler(new VolcanicFurnaceYieldHandler());
 
-		API.hideItem(ModBlocks.tilledNetherrack.blockID);
-		API.hideItem(ModBlocks.volcanicFurnaceActive.blockID);
-		API.hideItem(ModBlocks.spectreWheat.blockID);
-		API.hideItem(ModBlocks.quarzBerryBush.blockID);
-		API.hideItem(ModBlocks.glowingReed.blockID);
-		API.hideItem(ModBlocks.witherShrub.blockID);
-		API.hideItem(ModBlocks.weepingPod.blockID);
-		API.hideItem(ModBlocks.hellBush.blockID);
+		API.hideItem(new ItemStack(ModBlocks.tilledNetherrack));
+		API.hideItem(new ItemStack(ModBlocks.spectreWheat));
+		API.hideItem(new ItemStack(ModBlocks.quarzBerryBush));
+		API.hideItem(new ItemStack(ModBlocks.glowingReed));
+		API.hideItem(new ItemStack(ModBlocks.witherShrub));
+		API.hideItem(new ItemStack(ModBlocks.weepingPod));
+		API.hideItem(new ItemStack(ModBlocks.hellBush));
 		if (!GanysNether.enableUndertaker)
-			API.hideItem(ModBlocks.undertaker.blockID);
+			API.hideItem(new ItemStack(ModBlocks.undertaker));
 	}
 
 	@Override

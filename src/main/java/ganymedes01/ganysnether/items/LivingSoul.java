@@ -2,7 +2,6 @@ package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.List;
@@ -12,8 +11,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import cpw.mods.fml.common.eventhandler.Event.Result;
 
 /**
  * Gany's Nether
@@ -25,7 +24,6 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 public class LivingSoul extends Item {
 
 	LivingSoul() {
-		super(ModIDs.LIVING_SOUL_ID);
 		setFull3D();
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.LIVING_SOUL_NAME));
@@ -33,6 +31,7 @@ public class LivingSoul extends Item {
 	}
 
 	@Override
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag) {
 		list.add("Boo.");
 	}
@@ -48,7 +47,7 @@ public class LivingSoul extends Item {
 	}
 
 	public static boolean applyBonemeal(ItemStack stack, World world, int x, int y, int z, EntityPlayer player) {
-		BonemealEvent event = new BonemealEvent(player, world, world.getBlockId(x, y, z), x, y, z);
+		BonemealEvent event = new BonemealEvent(player, world, world.getBlock(x, y, z), x, y, z);
 		if (MinecraftForge.EVENT_BUS.post(event))
 			return false;
 

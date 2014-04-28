@@ -36,7 +36,7 @@ public class GuiVolcanicFurnace extends GuiGanysNether {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		fontRenderer.drawString(StatCollector.translateToLocal(furnace.getInvName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(furnace.getInvName())) / 2, 6, BLACK);
+		fontRenderer.drawString(StatCollector.translateToLocal(furnace.getInventoryName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(furnace.getInventoryName())) / 2, 6, BLACK);
 		fontRenderer.drawString(FLUID_TO_GO, 10, 15, BLACK);
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
 	}

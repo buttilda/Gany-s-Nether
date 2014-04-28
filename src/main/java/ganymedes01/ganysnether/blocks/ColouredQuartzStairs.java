@@ -1,7 +1,6 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.lib.ModIDs;
 import net.minecraft.block.BlockStairs;
 
 /**
@@ -14,10 +13,10 @@ import net.minecraft.block.BlockStairs;
 public class ColouredQuartzStairs extends BlockStairs {
 
 	ColouredQuartzStairs(int meta) {
-		super(ModIDs.COLOURED_QUARTZ_STAIRS_IDS[meta], ModBlocks.colouredQuartzBlock, meta);
+		super(ModBlocks.colouredQuartzBlock, meta);
 		setHardness(0.8F);
 		setLightOpacity(0);
-		setStepSound(soundStoneFootstep);
+		setStepSound(soundTypeStone);
 		setCreativeTab(GanysNether.netherTab);
 	}
 }

@@ -3,7 +3,6 @@ package ganymedes01.ganysnether.blocks;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
@@ -14,12 +13,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -33,22 +32,21 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ExtendedSpawner extends BlockMobSpawner {
 
 	ExtendedSpawner() {
-		super(ModIDs.EXTENDED_SPAWNER_ID);
 		disableStats();
 		setHardness(5.0F);
-		setStepSound(soundMetalFootstep);
+		setStepSound(soundTypeMetal);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getBlockTexture(Strings.Blocks.EXTENDED_SPAWNER_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.EXTENDED_SPAWNER_NAME));
+		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.EXTENDED_SPAWNER_NAME));
+		setBlockTextureName(Utils.getBlockTexture(Strings.Blocks.EXTENDED_SPAWNER_NAME));
 	}
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitz) {
 		if (!world.isRemote)
 			if (player.isSneaking()) {
-				TileEntity tile = world.getBlockTileEntity(x, y, z);
-				if (tile instanceof TileEntityExtendedSpawner)
-					for (String s : ((TileEntityExtendedSpawner) tile).getUpgradeList())
+				TileEntityExtendedSpawner tile = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
+				if (tile != null)
+					for (String s : tile.getUpgradeList())
 						player.addChatMessage(s);
 				return true;
 			}
@@ -63,28 +61,25 @@ public class ExtendedSpawner extends BlockMobSpawner {
 		if (stack == null)
 			return;
 		if (OreDictionary.getOreID(stack) == OreDictionary.getOreID("mobEgg")) {
-			TileEntity tile = world.getBlockTileEntity(x, y, z);
-			if (tile instanceof TileEntityExtendedSpawner) {
-				TileEntityExtendedSpawner spawner = (TileEntityExtendedSpawner) tile;
+			TileEntityExtendedSpawner spawner = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
+			if (spawner != null)
 				if (spawner.logic.addEgg(stack)) {
 					stack.stackSize--;
 					if (stack.stackSize <= 0)
 						player.setCurrentItemOrArmor(0, null);
 				}
-			}
 		}
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityExtendedSpawner();
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, int x, int y, int z, int neighbourID) {
-		TileEntity tile = world.getBlockTileEntity(x, y, z);
-		if (tile instanceof TileEntityExtendedSpawner) {
-			TileEntityExtendedSpawner spawner = (TileEntityExtendedSpawner) tile;
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbour) {
+		TileEntityExtendedSpawner spawner = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
+		if (spawner != null) {
 			spawner.logic.isBlockPowered = world.isBlockIndirectlyGettingPowered(x, y, z);
 			PacketDispatcher.sendPacketToAllPlayers(spawner.getDescriptionPacket());
 		}
@@ -96,26 +91,22 @@ public class ExtendedSpawner extends BlockMobSpawner {
 	}
 
 	@Override
-	public void breakBlock(World world, int x, int y, int z, int id, int meta) {
+	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
 		if (!world.isRemote) {
-			TileEntity tile = world.getBlockTileEntity(x, y, z);
-			if (tile instanceof TileEntityExtendedSpawner) {
-				TileEntityExtendedSpawner spawner = (TileEntityExtendedSpawner) tile;
+			TileEntityExtendedSpawner spawner = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
+			if (spawner != null)
 				for (ItemStack stack : spawner.getUpgrades())
 					Utils.dropStack(world, x, y, z, stack);
-			}
 		}
-		super.breakBlock(world, x, y, z, id, meta);
+		super.breakBlock(world, x, y, z, block, meta);
 	}
 
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) {
 		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("EntityId")) {
-			TileEntity tile = world.getBlockTileEntity(x, y, z);
-			if (tile instanceof TileEntityExtendedSpawner) {
-				TileEntityExtendedSpawner spawner = (TileEntityExtendedSpawner) tile;
-				spawner.logic.setMobID(stack.getTagCompound().getString("EntityId"));
-			}
+			TileEntityExtendedSpawner spawner = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
+			if (spawner != null)
+				spawner.logic.setEntityName(stack.getTagCompound().getString("EntityId"));
 		}
 	}
 
@@ -127,9 +118,9 @@ public class ExtendedSpawner extends BlockMobSpawner {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
-		TileEntity tile = world.getBlockTileEntity(x, y, z);
-		if (tile instanceof TileEntityExtendedSpawner)
-			return UpgradeType.values()[((TileEntityExtendedSpawner) tile).logic.tier].getColour();
+		TileEntityExtendedSpawner spawner = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
+		if (spawner != null)
+			return UpgradeType.values()[spawner.logic.tier].getColour();
 		return super.colorMultiplier(world, x, y, z);
 	}
 
@@ -142,11 +133,9 @@ public class ExtendedSpawner extends BlockMobSpawner {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
-		TileEntity tile = world.getBlockTileEntity(x, y, z);
-		if (tile instanceof TileEntityExtendedSpawner) {
-			TileEntityExtendedSpawner spawner = (TileEntityExtendedSpawner) tile;
+		TileEntityExtendedSpawner spawner = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
+		if (spawner != null)
 			if (spawner.logic.tier == UpgradeType.tierDragonEgg.ordinal())
-				Block.enderChest.randomDisplayTick(world, x, y, z, rand);
-		}
+				Blocks.ender_chest.randomDisplayTick(world, x, y, z, rand);
 	}
 }

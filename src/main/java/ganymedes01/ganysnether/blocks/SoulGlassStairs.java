@@ -17,13 +17,13 @@ import net.minecraft.block.BlockStairs;
 
 public class SoulGlassStairs extends BlockStairs {
 
-	SoulGlassStairs(int id) {
-		super(id, ModBlocks.soulGlass, 1);
+	SoulGlassStairs() {
+		super(ModBlocks.soulGlass, 1);
 		setHardness(0.3F);
 		setLightOpacity(3);
-		setStepSound(soundGlassFootstep);
+		setStepSound(soundTypeGlass);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_GLASS_STAIRS_NAME));
+		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_GLASS_STAIRS_NAME));
 	}
 
 	@Override

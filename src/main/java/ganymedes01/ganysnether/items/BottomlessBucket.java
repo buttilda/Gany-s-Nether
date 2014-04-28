@@ -2,15 +2,14 @@ package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemSimpleFoiled;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,7 +24,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BottomlessBucket extends ItemSimpleFoiled {
 
 	BottomlessBucket() {
-		super(ModIDs.BOTTOMLESS_BUCKET_ID);
 		setMaxStackSize(1);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.BOTTOMLESS_BUCKET_NAME));
@@ -44,11 +42,11 @@ public class BottomlessBucket extends ItemSimpleFoiled {
 			MovingObjectPosition movingobjectposition = getMovingObjectPositionFromPlayer(world, player, true);
 			if (movingobjectposition == null)
 				return stack;
-			else if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
+			else if (movingobjectposition.typeOfHit == MovingObjectType.BLOCK) {
 				int x = movingobjectposition.blockX;
 				int y = movingobjectposition.blockY;
 				int z = movingobjectposition.blockZ;
-				if (world.getBlockMaterial(x, y, z) == Material.water || world.getBlockMaterial(x, y, z) == Material.lava)
+				if (world.getBlock(x, y, z).getMaterial() == Material.water || world.getBlock(x, y, z).getMaterial() == Material.lava)
 					world.setBlockToAir(x, y, z);
 			}
 		}

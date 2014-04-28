@@ -2,7 +2,6 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.List;
@@ -10,10 +9,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,15 +28,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class SoulGlass extends Block {
 
 	@SideOnly(Side.CLIENT)
-	private Icon block, brick;
+	private IIcon block, brick;
 
 	SoulGlass() {
-		super(ModIDs.SOUL_GLASS_ID, Material.glass);
+		super(Material.glass);
 		setHardness(0.3F);
 		setLightOpacity(3);
-		setStepSound(soundGlassFootstep);
+		setStepSound(soundTypeGlass);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_GLASS_NAME));
+		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_GLASS_NAME));
 	}
 
 	@Override
@@ -65,16 +65,16 @@ public class SoulGlass extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(int id, CreativeTabs tab, List list) {
-		list.add(new ItemStack(id, 1, 0));
-		list.add(new ItemStack(id, 1, 1));
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+		for (int i = 0; i < 2; i++)
+			list.add(new ItemStack(item, 1, i));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess access, int x, int y, int z, int side) {
-		int id = access.getBlockId(x, y, z);
-		return id == blockID ? false : super.shouldSideBeRendered(access, x, y, z, side);
+		return access.getBlock(x, y, z) == this ? false : super.shouldSideBeRendered(access, x, y, z, side);
 	}
 
 	@Override
@@ -90,7 +90,7 @@ public class SoulGlass extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int meta) {
+	public IIcon getIcon(int side, int meta) {
 		if (meta == 0)
 			return block;
 		return brick;
@@ -98,7 +98,7 @@ public class SoulGlass extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg) {
+	public void registerBlockIcons(IIconRegister reg) {
 		block = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SOUL_GLASS_NAME) + "_0");
 		brick = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SOUL_GLASS_NAME) + "_1");
 	}

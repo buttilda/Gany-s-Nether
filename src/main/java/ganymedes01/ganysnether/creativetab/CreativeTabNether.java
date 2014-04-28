@@ -1,10 +1,9 @@
 package ganymedes01.ganysnether.creativetab;
 
 import ganymedes01.ganysnether.lib.Reference;
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 
 /**
  * Gany's Nether
@@ -20,8 +19,7 @@ public class CreativeTabNether extends CreativeTabs {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public int getTabIconItemIndex() {
-		return Block.netherrack.blockID;
+	public Item getTabIconItem() {
+		return Item.getItemFromBlock(Blocks.netherrack);
 	}
 }

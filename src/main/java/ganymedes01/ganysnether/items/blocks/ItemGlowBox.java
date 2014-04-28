@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items.blocks;
 
 import ganymedes01.ganysnether.lib.Strings;
+import net.minecraft.block.Block;
 
 /**
  * Gany's Nether
@@ -11,7 +12,7 @@ import ganymedes01.ganysnether.lib.Strings;
 
 public class ItemGlowBox extends ItemBlockBase {
 
-	public ItemGlowBox(int id) {
-		super(id, Strings.Blocks.GLOW_BOX_NAME + "_item_");
+	public ItemGlowBox(Block block) {
+		super(block, Strings.Blocks.GLOW_BOX_NAME + "_item_");
 	}
 }

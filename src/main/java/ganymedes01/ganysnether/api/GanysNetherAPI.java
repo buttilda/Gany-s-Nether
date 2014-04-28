@@ -121,7 +121,7 @@ public class GanysNetherAPI {
 
 			NBTTagCompound tagCompound = new NBTTagCompound();
 			egg.writeToNBT(tagCompound);
-			data.setCompoundTag("spawnEgg", tagCompound);
+			data.setTag("spawnEgg", tagCompound);
 
 			FMLInterModComms.sendMessage("ganysnether", "addCustomSpawnEgg", data);
 		}
@@ -148,11 +148,11 @@ public class GanysNetherAPI {
 
 			NBTTagCompound tagCompound = new NBTTagCompound();
 			spawnEgg.writeToNBT(tagCompound);
-			data.setCompoundTag("spawnEgg", tagCompound);
+			data.setTag("spawnEgg", tagCompound);
 
 			tagCompound = new NBTTagCompound();
 			mobDrop.writeToNBT(tagCompound);
-			data.setCompoundTag("mobDrop", tagCompound);
+			data.setTag("mobDrop", tagCompound);
 
 			FMLInterModComms.sendMessage("ganysnether", "addMobDropAndEggTuple", data);
 		}
@@ -177,7 +177,7 @@ public class GanysNetherAPI {
 
 			NBTTagCompound tagCompound = new NBTTagCompound();
 			mobDrop.writeToNBT(tagCompound);
-			data.setCompoundTag("mobDrop", tagCompound);
+			data.setTag("mobDrop", tagCompound);
 
 			FMLInterModComms.sendMessage("ganysnether", "addMobDropAndEntityTuple", data);
 		}
@@ -239,7 +239,7 @@ public class GanysNetherAPI {
 
 			NBTTagCompound tagCompound = new NBTTagCompound();
 			stack.writeToNBT(tagCompound);
-			data.setCompoundTag("stack", tagCompound);
+			data.setTag("stack", tagCompound);
 
 			FMLInterModComms.sendMessage("ganysnether", "addBurnTimeForItem", data);
 		}
@@ -271,7 +271,7 @@ public class GanysNetherAPI {
 
 			NBTTagCompound tagCompound = new NBTTagCompound();
 			stack.writeToNBT(tagCompound);
-			data.setCompoundTag("stack", tagCompound);
+			data.setTag("stack", tagCompound);
 
 			FMLInterModComms.sendMessage("ganysnether", "addStackToUndertakers", data);
 		}

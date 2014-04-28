@@ -3,16 +3,13 @@ package ganymedes01.ganysnether.blocks;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.GUIsID;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityReproducer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -27,25 +24,25 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class Reproducer extends InventoryBlock {
 
 	@SideOnly(Side.CLIENT)
-	private Icon blockSide, blockBottom, blockTop;
+	private IIcon blockSide, blockBottom, blockTop;
 
 	Reproducer() {
-		super(ModIDs.REPRODUCER_ID, Material.rock);
+		super(Material.rock);
 		setHardness(2.5F);
-		setStepSound(soundStoneFootstep);
+		setStepSound(soundTypeStone);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.REPRODUCER_NAME));
+		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.REPRODUCER_NAME));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int meta) {
+	public IIcon getIcon(int side, int meta) {
 		return side == 0 ? blockBottom : side == 1 ? blockTop : blockSide;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg) {
+	public void registerBlockIcons(IIconRegister reg) {
 		blockTop = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.REPRODUCER_NAME) + "_top");
 		blockSide = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.REPRODUCER_NAME) + "_side");
 		blockBottom = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.REPRODUCER_NAME) + "_bottom");
@@ -58,25 +55,15 @@ public class Reproducer extends InventoryBlock {
 		if (player.isSneaking())
 			return false;
 		else {
-			TileEntityReproducer tileReproducer = (TileEntityReproducer) world.getBlockTileEntity(x, y, z);
-			if (tileReproducer != null)
+			TileEntityReproducer tile = Utils.getTileEntity(world, x, y, z, TileEntityReproducer.class);
+			if (tile != null)
 				player.openGui(GanysNether.instance, GUIsID.REPRODUCER, world, x, y, z);
 			return true;
 		}
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityReproducer();
-	}
-
-	@Override
-	public boolean hasComparatorInputOverride() {
-		return true;
-	}
-
-	@Override
-	public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
-		return Container.calcRedstoneFromInventory((IInventory) world.getBlockTileEntity(x, y, z));
 	}
 }

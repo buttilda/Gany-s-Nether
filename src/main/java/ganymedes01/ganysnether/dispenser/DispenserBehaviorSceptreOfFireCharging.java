@@ -9,7 +9,8 @@ import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import net.minecraftforge.common.FakePlayerFactory;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.util.FakePlayerFactory;
 
 /**
  * Gany's Nether
@@ -22,8 +23,8 @@ public class DispenserBehaviorSceptreOfFireCharging extends BehaviorDefaultDispe
 
 	@Override
 	public ItemStack dispenseStack(IBlockSource block, ItemStack stack) {
-		EnumFacing enumfacing = BlockDispenser.getFacing(block.getBlockMetadata());
-		IPosition iposition = BlockDispenser.getIPositionFromBlockSource(block);
+		EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
+		IPosition iposition = BlockDispenser.func_149939_a(block);
 		World world = block.getWorld();
 
 		double x = iposition.getX() + enumfacing.getFrontOffsetX() * 0.3F;
@@ -42,7 +43,7 @@ public class DispenserBehaviorSceptreOfFireCharging extends BehaviorDefaultDispe
 	}
 
 	private void damageStack(World world, ItemStack stack) {
-		EntityPlayer player = FakePlayerFactory.getMinecraft(world);
+		EntityPlayer player = FakePlayerFactory.getMinecraft((WorldServer) world);
 		player.setCurrentItemOrArmor(0, stack);
 		stack.damageItem(1, player);
 	}

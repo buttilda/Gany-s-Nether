@@ -6,12 +6,13 @@ import ganymedes01.ganysnether.lib.Strings;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
@@ -73,7 +74,7 @@ public class TileEntityThermalSmelter extends GanysInventory implements ISidedIn
 	private boolean compareStacks(ItemStack stack1, ItemStack stack2) {
 		if (stack1 == null || stack2 == null)
 			return false;
-		if (stack1.itemID == stack2.itemID)
+		if (stack1.getItem() == stack2.getItem())
 			if (stack1.getItemDamage() == stack2.getItemDamage())
 				return true;
 		return OreDictionary.getOreID(stack1) == OreDictionary.getOreID(stack2);
@@ -94,8 +95,8 @@ public class TileEntityThermalSmelter extends GanysInventory implements ISidedIn
 	}
 
 	private boolean isLavaBlock(ForgeDirection dir) {
-		int id = worldObj.getBlockId(xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ);
-		return id == Block.lavaStill.blockID || id == Block.lavaMoving.blockID;
+		Block block = worldObj.getBlock(xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ);
+		return block == Blocks.lava;
 	}
 
 	@Override

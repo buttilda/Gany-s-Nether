@@ -26,12 +26,8 @@ import ganymedes01.ganysnether.tileentities.TileEntityHorseArmourStand;
 import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
@@ -56,13 +52,13 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void registerRenderers() {
-		MinecraftForgeClient.registerItemRenderer(ModBlocks.soulChest.blockID, new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.SOUL_CHEST_NAME))));
-		MinecraftForgeClient.registerItemRenderer(ModBlocks.undertaker.blockID, new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.UNDERTAKER_NAME))));
-		MinecraftForgeClient.registerItemRenderer(ModBlocks.magmaticCentrifuge.blockID, new ItemMagmaticCentrifugeRender());
-		MinecraftForgeClient.registerItemRenderer(ModBlocks.soulGlass.blockID, new ItemSoulGlassRender());
-		MinecraftForgeClient.registerItemRenderer(ModBlocks.soulGlassStairs.blockID, new ItemSoulGlassRender());
-		MinecraftForgeClient.registerItemRenderer(ModBlocks.thermalSmelter.blockID, new ItemThermalSmelterRender());
-		MinecraftForgeClient.registerItemRenderer(ModBlocks.horseArmourStand.blockID, new ItemHorseArmourStandRender());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.soulChest), new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.SOUL_CHEST_NAME))));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.undertaker), new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.UNDERTAKER_NAME))));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.magmaticCentrifuge), new ItemMagmaticCentrifugeRender());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.soulGlass), new ItemSoulGlassRender());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.soulGlassStairs), new ItemSoulGlassRender());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.thermalSmelter), new ItemThermalSmelterRender());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.horseArmourStand), new ItemHorseArmourStandRender());
 
 		RenderingRegistry.registerBlockHandler(new BlockWitherShrubRender());
 		RenderingRegistry.registerBlockHandler(new BlockBlazingCactoidRender());
@@ -74,43 +70,43 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntitySlowTNT.class, new EntitySoulTNTRenderer());
 	}
 
-	@Override
-	public void handleMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
-		World world = FMLClientHandler.instance().getClient().theWorld;
-		if (world != null) {
-			TileEntity tile = world.getBlockTileEntity(x, y, z);
-			if (tile instanceof TileEntityMagmaticCentrifuge) {
-				TileEntityMagmaticCentrifuge centrifuge = (TileEntityMagmaticCentrifuge) tile;
-
-				centrifuge.setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_1, material1);
-				centrifuge.setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_2, material2);
-				centrifuge.isRecipeValid = isRecipeValid;
-			}
-		}
-	}
-
-	@Override
-	public void handleHorseArmourStandPacket(int x, int y, int z, byte type, byte rotation) {
-		World world = FMLClientHandler.instance().getClient().theWorld;
-		if (world != null) {
-			TileEntity tile = world.getBlockTileEntity(x, y, z);
-			if (tile instanceof TileEntityHorseArmourStand) {
-				TileEntityHorseArmourStand stand = (TileEntityHorseArmourStand) tile;
-
-				stand.setArmourType(type);
-				stand.setRotation(rotation);
-			}
-		}
-	}
-
-	@Override
-	public void handleExtendedSpawnerPacket(int x, int y, int z, NBTTagCompound data) {
-		World world = FMLClientHandler.instance().getClient().theWorld;
-		if (world != null) {
-			TileEntity tile = world.getBlockTileEntity(x, y, z);
-			if (tile instanceof TileEntityExtendedSpawner)
-				tile.readFromNBT(data);
-			tile.worldObj.markBlockForRenderUpdate(tile.xCoord, tile.yCoord, tile.zCoord);
-		}
-	}
+	//	@Override
+	//	public void handleMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
+	//		World world = FMLClientHandler.instance().getClient().theWorld;
+	//		if (world != null) {
+	//			TileEntity tile = world.getBlockTileEntity(x, y, z);
+	//			if (tile instanceof TileEntityMagmaticCentrifuge) {
+	//				TileEntityMagmaticCentrifuge centrifuge = (TileEntityMagmaticCentrifuge) tile;
+	//
+	//				centrifuge.setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_1, material1);
+	//				centrifuge.setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_2, material2);
+	//				centrifuge.isRecipeValid = isRecipeValid;
+	//			}
+	//		}
+	//	}
+	//
+	//	@Override
+	//	public void handleHorseArmourStandPacket(int x, int y, int z, byte type, byte rotation) {
+	//		World world = FMLClientHandler.instance().getClient().theWorld;
+	//		if (world != null) {
+	//			TileEntity tile = world.getBlockTileEntity(x, y, z);
+	//			if (tile instanceof TileEntityHorseArmourStand) {
+	//				TileEntityHorseArmourStand stand = (TileEntityHorseArmourStand) tile;
+	//
+	//				stand.setArmourType(type);
+	//				stand.setRotation(rotation);
+	//			}
+	//		}
+	//	}
+	//
+	//	@Override
+	//	public void handleExtendedSpawnerPacket(int x, int y, int z, NBTTagCompound data) {
+	//		World world = FMLClientHandler.instance().getClient().theWorld;
+	//		if (world != null) {
+	//			TileEntity tile = world.getBlockTileEntity(x, y, z);
+	//			if (tile instanceof TileEntityExtendedSpawner)
+	//				tile.readFromNBT(data);
+	//			tile.worldObj.markBlockForRenderUpdate(tile.xCoord, tile.yCoord, tile.zCoord);
+	//		}
+	//	}
 }

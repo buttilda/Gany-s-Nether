@@ -19,7 +19,6 @@ import ganymedes01.ganysnether.creativetab.CreativeTabNether;
 import ganymedes01.ganysnether.integration.ModIntegrator;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
-import ganymedes01.ganysnether.network.PacketHandler;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ModRecipes;
 import ganymedes01.ganysnether.world.NetherWorldGen;
@@ -28,6 +27,7 @@ import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -38,10 +38,8 @@ import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 /**
@@ -52,7 +50,6 @@ import cpw.mods.fml.relauncher.Side;
  */
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES)
-@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
 public class GanysNether {
 
 	@Instance(Reference.MOD_ID)
@@ -86,7 +83,7 @@ public class GanysNether {
 
 		if (shouldDoVersionCheck) {
 			VersionHelper.execute();
-			TickRegistry.registerTickHandler(new VersionCheckTickHandler(), Side.CLIENT);
+			FMLCommonHandler.instance().bus().register(new VersionCheckTickHandler());
 		}
 
 		proxy.registerEntities();
@@ -101,7 +98,7 @@ public class GanysNether {
 
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
-		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		GameRegistry.registerFuelHandler(new FuelHandler());
 
 		MinecraftForge.EVENT_BUS.register(new HoeEvent());
@@ -116,7 +113,7 @@ public class GanysNether {
 		proxy.registerRenderers();
 
 		if (shouldGenerateCrops || shouldGenerateUndertakers)
-			GameRegistry.registerWorldGenerator(new NetherWorldGen());
+			GameRegistry.registerWorldGenerator(new NetherWorldGen(), 0);
 
 		if (!Loader.isModLoaded("mobsplice"))
 			if (event.getSide() == Side.CLIENT) {

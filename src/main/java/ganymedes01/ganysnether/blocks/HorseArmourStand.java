@@ -2,13 +2,13 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityHorseArmourStand;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -25,11 +25,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class HorseArmourStand extends BlockContainer {
 
 	HorseArmourStand() {
-		super(ModIDs.HORSE_ARMOUR_STAND_ID, Material.iron);
+		super(Material.iron);
 		setHardness(1.0F);
-		setTextureName("stone");
+		setBlockTextureName("stone");
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.HORSE_ARMOUR_STAND_NAME));
+		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.HORSE_ARMOUR_STAND_NAME));
 	}
 
 	@Override
@@ -74,19 +74,19 @@ public class HorseArmourStand extends BlockContainer {
 					break;
 			}
 
-			TileEntityHorseArmourStand tile = (TileEntityHorseArmourStand) world.getBlockTileEntity(x, y, z);
+			TileEntityHorseArmourStand tile = Utils.getTileEntity(world, x, y, z, TileEntityHorseArmourStand.class);
 			if (tile != null)
 				if (tile.getArmourType() < 0) {
 					if (player.getCurrentEquippedItem() != null) {
 						ItemStack stack = player.getCurrentEquippedItem();
 						boolean added = false;
-						if (stack.itemID == Item.horseArmorDiamond.itemID) {
+						if (stack.getItem() == Items.diamond_horse_armor) {
 							tile.setArmourType((byte) 2);
 							added = true;
-						} else if (stack.itemID == Item.horseArmorGold.itemID) {
+						} else if (stack.getItem() == Items.golden_horse_armor) {
 							tile.setArmourType((byte) 1);
 							added = true;
-						} else if (stack.itemID == Item.horseArmorIron.itemID) {
+						} else if (stack.getItem() == Items.iron_horse_armor) {
 							tile.setArmourType((byte) 0);
 							added = true;
 						} else
@@ -98,13 +98,13 @@ public class HorseArmourStand extends BlockContainer {
 					ItemStack stack = null;
 					switch (tile.getArmourType()) {
 						case 0:
-							stack = new ItemStack(Item.horseArmorIron);
+							stack = new ItemStack(Items.iron_horse_armor);
 							break;
 						case 1:
-							stack = new ItemStack(Item.horseArmorGold);
+							stack = new ItemStack(Items.golden_horse_armor);
 							break;
 						case 2:
-							stack = new ItemStack(Item.horseArmorDiamond);
+							stack = new ItemStack(Items.diamond_horse_armor);
 							break;
 					}
 					if (stack != null) {
@@ -118,21 +118,21 @@ public class HorseArmourStand extends BlockContainer {
 	}
 
 	@Override
-	public void breakBlock(World world, int x, int y, int z, int id, int meta) {
+	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
 		switch (meta) {
 			case 0:
-				TileEntity tile = world.getBlockTileEntity(x, y, z);
-				if (tile instanceof TileEntityHorseArmourStand) {
+				TileEntityHorseArmourStand tile = Utils.getTileEntity(world, x, y, z, TileEntityHorseArmourStand.class);
+				if (tile != null) {
 					ItemStack stack = null;
-					switch (((TileEntityHorseArmourStand) tile).getArmourType()) {
+					switch (tile.getArmourType()) {
 						case 0:
-							stack = new ItemStack(Item.horseArmorIron);
+							stack = new ItemStack(Items.iron_horse_armor);
 							break;
 						case 1:
-							stack = new ItemStack(Item.horseArmorGold);
+							stack = new ItemStack(Items.golden_horse_armor);
 							break;
 						case 2:
-							stack = new ItemStack(Item.horseArmorDiamond);
+							stack = new ItemStack(Items.diamond_horse_armor);
 							break;
 					}
 					if (stack != null)
@@ -140,7 +140,7 @@ public class HorseArmourStand extends BlockContainer {
 
 					byte X = 0;
 					byte Z = 0;
-					switch (((TileEntityHorseArmourStand) tile).getRotation()) {
+					switch (tile.getRotation()) {
 						case 0:
 							Z = 1;
 							break;
@@ -158,7 +158,7 @@ public class HorseArmourStand extends BlockContainer {
 					destroyBlock(world, x + X, y, z + Z);
 					destroyBlock(world, x, y + 1, z);
 				}
-				Utils.dropStack(world, x, y, z, new ItemStack(blockID, 1, 0));
+				Utils.dropStack(world, x, y, z, new ItemStack(this, 1, 0));
 				break;
 			case 2:
 			case 3:
@@ -192,16 +192,16 @@ public class HorseArmourStand extends BlockContainer {
 				destroyBlock(world, x, y - 1, z);
 				break;
 		}
-		super.breakBlock(world, x, y, z, id, meta);
+		super.breakBlock(world, x, y, z, block, meta);
 	}
 
 	private void destroyBlock(World world, int x, int y, int z) {
-		world.playAuxSFXAtEntity(null, 2001, x, y, z, world.getBlockId(x, y, z) + (world.getBlockMetadata(x, y, z) << 12));
+		world.playAuxSFXAtEntity(null, 2001, x, y, z, Block.getIdFromBlock(world.getBlock(x, y, z)) + (world.getBlockMetadata(x, y, z) << 12));
 		world.setBlockToAir(x, y, z);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityHorseArmourStand();
 	}
 

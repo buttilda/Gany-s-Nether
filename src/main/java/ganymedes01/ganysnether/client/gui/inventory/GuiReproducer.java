@@ -32,7 +32,7 @@ public class GuiReproducer extends GuiGanysNether {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		fontRenderer.drawString(StatCollector.translateToLocal(reproducer.getInvName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(reproducer.getInvName())) / 2, 6, BLACK);
+		fontRenderer.drawString(StatCollector.translateToLocal(reproducer.getInventoryName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(reproducer.getInventoryName())) / 2, 6, BLACK);
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
 	}
 

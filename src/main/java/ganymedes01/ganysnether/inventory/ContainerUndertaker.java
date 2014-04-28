@@ -18,12 +18,7 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerUndertaker extends Container {
 
-	private TileEntityUndertaker undertaker;
-
 	public ContainerUndertaker(InventoryPlayer inventory, TileEntityUndertaker tileUndertaker) {
-		undertaker = tileUndertaker;
-		tileUndertaker.openChest();
-
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 9; j++)
 				addSlotToContainer(new InvalidSlot(tileUndertaker, j + i * 9 + 9, 8 + j * 18, 34 + i * 18));
@@ -65,11 +60,5 @@ public class ContainerUndertaker extends Container {
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		return true;
-	}
-
-	@Override
-	public void onContainerClosed(EntityPlayer player) {
-		super.onContainerClosed(player);
-		undertaker.closeChest();
 	}
 }

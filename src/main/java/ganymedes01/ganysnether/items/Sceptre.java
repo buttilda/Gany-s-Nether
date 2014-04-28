@@ -17,8 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class Sceptre extends ItemSimpleFoiled implements IRepairable {
 
-	Sceptre(int id) {
-		super(id);
+	Sceptre() {
 		setFull3D();
 		setMaxStackSize(1);
 		setCreativeTab(GanysNether.netherTab);

@@ -1,11 +1,12 @@
 package ganymedes01.ganysnether.items.blocks;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.tileentities.TileEntityHorseArmourStand;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -18,8 +19,8 @@ import net.minecraft.world.World;
 
 public class ItemHorseArmourStand extends ItemBlock {
 
-	public ItemHorseArmourStand(int id) {
-		super(id);
+	public ItemHorseArmourStand(Block block) {
+		super(block);
 	}
 
 	@Override
@@ -52,14 +53,14 @@ public class ItemHorseArmourStand extends ItemBlock {
 
 		if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x + X, y, z + Z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack) && player.canPlayerEdit(x + X, y + 1, z + Z, side, stack)) {
 			if (world.isAirBlock(x, y, z) && world.isAirBlock(x + X, y, z + Z) && world.isAirBlock(x, y + 1, z) && world.isAirBlock(x + X, y + 1, z + Z)) {
-				world.setBlock(x, y, z, ModBlocks.horseArmourStand.blockID);
-				world.setBlock(x, y + 1, z, ModBlocks.horseArmourStand.blockID, 1, 3);
-				world.setBlock(x + X, y, z + Z, ModBlocks.horseArmourStand.blockID, angle + 2, 3);
-				world.setBlock(x + X, y + 1, z + Z, ModBlocks.horseArmourStand.blockID, angle + 6, 3);
+				world.setBlock(x, y, z, ModBlocks.horseArmourStand);
+				world.setBlock(x, y + 1, z, ModBlocks.horseArmourStand, 1, 3);
+				world.setBlock(x + X, y, z + Z, ModBlocks.horseArmourStand, angle + 2, 3);
+				world.setBlock(x + X, y + 1, z + Z, ModBlocks.horseArmourStand, angle + 6, 3);
 
-				TileEntity tile = world.getBlockTileEntity(x, y, z);
-				if (tile instanceof TileEntityHorseArmourStand)
-					((TileEntityHorseArmourStand) tile).setRotation(angle);
+				TileEntityHorseArmourStand tile = Utils.getTileEntity(world, x, y, z, TileEntityHorseArmourStand.class);
+				if (tile != null)
+					tile.setRotation(angle);
 
 				stack.stackSize--;
 				return true;

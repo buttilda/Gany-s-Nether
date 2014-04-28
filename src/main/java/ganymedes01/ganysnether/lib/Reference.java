@@ -11,8 +11,8 @@ public class Reference {
 
 	public static final String MOD_ID = "ganysnether";
 	public static final String MOD_NAME = "Gany's Nether";
-	public static final String DEPENDENCIES = "required-after:Forge@[9.10.1.849,)";
-	public static final String CHANNEL_NAME = "GanysNether";
+	public static final String DEPENDENCIES = "required-after:Forge@[10.12.1.1061,)";
+	public static final String CHANNEL = "GanysNether";
 	public static final String MASTER = "GanysMods";
 	public static final String VERSION_NUMBER = "1.6.2";
 	public static final int RAW_VERSION_NUMBER = 162;
@@ -29,7 +29,4 @@ public class Reference {
 	public static final String CAPE_IMAGE_FILE = "https://dl.dropboxusercontent.com/u/213747910/gany.png";
 	public static final String JEBJEB_CAPE_IMAGE_FILE = "https://dl.dropboxusercontent.com/u/213747910/jade.png";
 	public static final String KPR_CAPE_IMAGE_FILE = "https://dl.dropboxusercontent.com/u/213747910/KingPurpleRaptor.png";
-
-	public static final int ITEM_ID_BASE = 7000;
-	public static final int BLOCK_ID_BASE = 1600;
 }

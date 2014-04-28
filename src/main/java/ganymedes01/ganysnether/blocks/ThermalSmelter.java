@@ -3,7 +3,6 @@ package ganymedes01.ganysnether.blocks;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.GUIsID;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityThermalSmelter;
 
@@ -11,12 +10,12 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -32,18 +31,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ThermalSmelter extends InventoryBlock {
 
 	@SideOnly(Side.CLIENT)
-	private Icon[] icons;
+	private IIcon[] icons;
 
 	ThermalSmelter() {
-		super(ModIDs.THERMAL_SMELTER_ID, Material.rock);
+		super(Material.rock);
 		setHardness(2.5F);
-		setStepSound(soundStoneFootstep);
+		setStepSound(soundTypeStone);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.THERMAL_SMELTER_NAME));
+		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.THERMAL_SMELTER_NAME));
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityThermalSmelter();
 	}
 
@@ -69,20 +68,21 @@ public class ThermalSmelter extends InventoryBlock {
 
 	private void setDefaultDirection(World world, int x, int y, int z) {
 		if (!world.isRemote) {
-			int l = world.getBlockId(x, y, z - 1);
-			int i1 = world.getBlockId(x, y, z + 1);
-			int j1 = world.getBlockId(x - 1, y, z);
-			int k1 = world.getBlockId(x + 1, y, z);
-			byte dir = 3;
+			Block block = world.getBlock(x, y, z - 1);
+			Block block1 = world.getBlock(x, y, z + 1);
+			Block block2 = world.getBlock(x - 1, y, z);
+			Block block3 = world.getBlock(x + 1, y, z);
 
-			if (Block.opaqueCubeLookup[i1] && !Block.opaqueCubeLookup[l])
-				dir = 2;
-			if (Block.opaqueCubeLookup[j1] && !Block.opaqueCubeLookup[k1])
-				dir = 5;
-			if (Block.opaqueCubeLookup[k1] && !Block.opaqueCubeLookup[j1])
-				dir = 4;
+			byte b0 = 3;
 
-			world.setBlockMetadataWithNotify(x, y, z, dir, 2);
+			if (block1.func_149730_j() && !block.func_149730_j())
+				b0 = 2;
+			if (block2.func_149730_j() && !block3.func_149730_j())
+				b0 = 5;
+			if (block3.func_149730_j() && !block2.func_149730_j())
+				b0 = 4;
+
+			world.setBlockMetadataWithNotify(x, y, z, b0, 2);
 		}
 	}
 
@@ -93,7 +93,7 @@ public class ThermalSmelter extends InventoryBlock {
 		if (player.isSneaking())
 			return false;
 		else {
-			TileEntityThermalSmelter tile = (TileEntityThermalSmelter) world.getBlockTileEntity(x, y, z);
+			TileEntityThermalSmelter tile = Utils.getTileEntity(world, x, y, z, TileEntityThermalSmelter.class);
 			if (tile != null)
 				player.openGui(GanysNether.instance, GUIsID.THERMAL_SMELTER, world, x, y, z);
 			return true;
@@ -102,14 +102,14 @@ public class ThermalSmelter extends InventoryBlock {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int meta) {
+	public IIcon getIcon(int side, int meta) {
 		return side <= 1 ? icons[2] : side == meta ? icons[0] : icons[1];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg) {
-		icons = new Icon[3];
+	public void registerBlockIcons(IIconRegister reg) {
+		icons = new IIcon[3];
 		for (int i = 0; i < 3; i++)
 			icons[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.THERMAL_SMELTER_NAME) + i);
 	}

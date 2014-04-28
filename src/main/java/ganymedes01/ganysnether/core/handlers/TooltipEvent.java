@@ -3,27 +3,28 @@ package ganymedes01.ganysnether.core.handlers;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
-import net.minecraftforge.event.EventPriority;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class TooltipEvent {
 
-	@ForgeSubscribe(priority = EventPriority.HIGHEST)
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void getTooltip(ItemTooltipEvent event) {
 		if (event.itemStack == null)
 			return;
 
-		int id = event.itemStack.itemID;
+		Item item = event.itemStack.getItem();
 
-		if (id == Item.ghastTear.itemID)
+		if (item == Items.ghast_tear)
 			event.toolTip.add(StatCollector.translateToLocal("tooltip.ganysnether.ghastTear"));
-		if (id == ModBlocks.extendedSpawner.blockID && event.itemStack.hasTagCompound() && event.itemStack.getTagCompound().hasKey("EntityId"))
+		if (item == Item.getItemFromBlock(ModBlocks.extendedSpawner) && event.itemStack.hasTagCompound() && event.itemStack.getTagCompound().hasKey("EntityId"))
 			event.toolTip.add(EnumChatFormatting.GOLD + event.itemStack.getTagCompound().getString("EntityId"));
-		else if (id == ModItems.spawnerUpgrade.itemID) {
+		else if (item == ModItems.spawnerUpgrade) {
 			int meta = event.itemStack.getItemDamage();
 			if (meta == UpgradeType.tierCoal.ordinal())
 				event.toolTip.add("First Upgrade");

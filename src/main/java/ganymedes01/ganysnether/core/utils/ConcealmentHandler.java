@@ -11,7 +11,7 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -38,7 +38,7 @@ public class ConcealmentHandler {
 			else if (entity.getClass() == EntitySkeleton.class)
 				return new ItemStack(ModItems.skeletonSpawner, 1, ((EntitySkeleton) entity).getSkeletonType());
 			else
-				return new ItemStack(Item.monsterPlacer, 1, EntityList.getEntityID(entity));
+				return new ItemStack(Items.spawn_egg, 1, EntityList.getEntityID(entity));
 		else
 			return null;
 	}
@@ -56,7 +56,7 @@ public class ConcealmentHandler {
 	public static ItemStack[] getEggs() {
 		ItemStack[] eggs = new ItemStack[entityEggs.entrySet().size() + 2];
 		eggs[0] = new ItemStack(ModItems.skeletonSpawner, 1, OreDictionary.WILDCARD_VALUE);
-		eggs[1] = new ItemStack(Item.monsterPlacer, 1, OreDictionary.WILDCARD_VALUE);
+		eggs[1] = new ItemStack(Items.spawn_egg, 1, OreDictionary.WILDCARD_VALUE);
 
 		int index = 2;
 		for (Entry<Class<? extends EntityLivingBase>, ItemStack> set : entityEggs.entrySet())

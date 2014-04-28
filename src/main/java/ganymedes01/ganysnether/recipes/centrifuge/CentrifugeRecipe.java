@@ -23,7 +23,7 @@ public abstract class CentrifugeRecipe {
 			return false;
 
 		for (ItemStack res : this.result)
-			if (res.itemID == result.itemID && res.getItemDamage() == result.getItemDamage())
+			if (res.getItem() == result.getItem() && res.getItemDamage() == result.getItemDamage())
 				return true;
 		return false;
 	}

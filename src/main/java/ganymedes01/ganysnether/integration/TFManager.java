@@ -14,6 +14,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class TFManager extends Integration {
 
 	@Override
+	@SuppressWarnings("rawtypes")
 	public void init() {
 		try {
 			Class TFItems = Class.forName("twilightforest.item.TFItems");

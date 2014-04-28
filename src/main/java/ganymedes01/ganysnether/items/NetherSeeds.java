@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * Gany's Nether
@@ -18,10 +18,10 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class NetherSeeds extends ItemSeeds {
 
-	private final int blockType;
+	private final Block blockType;
 
-	NetherSeeds(int id, int cropID) {
-		super(id, cropID, ModBlocks.tilledNetherrack.blockID);
+	NetherSeeds(Block cropID) {
+		super(cropID, ModBlocks.tilledNetherrack);
 		blockType = cropID;
 		setCreativeTab(GanysNether.netherTab);
 	}
@@ -31,16 +31,13 @@ public class NetherSeeds extends ItemSeeds {
 		if (side != 1)
 			return false;
 		else if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack)) {
-			int soilID = world.getBlockId(x, y, z);
-			if (soilID == ModBlocks.tilledNetherrack.blockID) {
-				Block soil = Block.blocksList[soilID];
-
-				if (soil != null && soil.canSustainPlant(world, x, y, z, ForgeDirection.UP, this) && world.isAirBlock(x, y + 1, z)) {
+			Block soil = world.getBlock(x, y, z);
+			if (soil == ModBlocks.tilledNetherrack)
+				if (soil.canSustainPlant(world, x, y, z, ForgeDirection.UP, this) && world.isAirBlock(x, y + 1, z)) {
 					world.setBlock(x, y + 1, z, blockType);
 					stack.stackSize--;
 					return true;
 				}
-			}
 		}
 		return false;
 	}

@@ -2,7 +2,6 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.ModItems;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.Random;
@@ -10,6 +9,9 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import cpw.mods.fml.relauncher.Side;
@@ -25,13 +27,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GlowingReedCrop extends BlockReed {
 
 	GlowingReedCrop() {
-		super(ModIDs.GLOWING_REED_CROP_ID);
-		disableStats();
+		super();
 		setHardness(0.0F);
-		setLightValue(0.5F);
-		setStepSound(soundGrassFootstep);
-		setTextureName(Utils.getBlockTexture(Strings.Blocks.GLOWING_REED_BLOCK_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.GLOWING_REED_BLOCK_NAME));
+		setLightLevel(0.5F);
+		setStepSound(soundTypeGrass);
+		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.GLOWING_REED_BLOCK_NAME));
+		setBlockTextureName(Utils.getBlockTexture(Strings.Blocks.GLOWING_REED_BLOCK_NAME));
 	}
 
 	@Override
@@ -42,18 +43,18 @@ public class GlowingReedCrop extends BlockReed {
 
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		Block block = Block.blocksList[world.getBlockId(x, y - 1, z)];
+		Block block = world.getBlock(x, y - 1, z);
 		if (block == null)
 			return false;
-		else if (block.blockID == blockID)
+		else if (block == this)
 			return true;
-		boolean isBeach = block.blockID == Block.netherrack.blockID || block.blockID == Block.slowSand.blockID;
-		boolean hasLava = world.getBlockMaterial(x - 1, y - 1, z) == Material.lava || world.getBlockMaterial(x + 1, y - 1, z) == Material.lava || world.getBlockMaterial(x, y - 1, z - 1) == Material.lava || world.getBlockMaterial(x, y - 1, z + 1) == Material.lava;
+		boolean isBeach = block == Blocks.netherrack || block == Blocks.soul_sand;
+		boolean hasLava = world.getBlock(x - 1, y - 1, z).getMaterial() == Material.lava || world.getBlock(x + 1, y - 1, z).getMaterial() == Material.lava || world.getBlock(x, y - 1, z - 1).getMaterial() == Material.lava || world.getBlock(x, y - 1, z + 1).getMaterial() == Material.lava;
 		return isBeach && hasLava;
 	}
 
 	@Override
-	public EnumPlantType getPlantType(World world, int x, int y, int z) {
+	public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
 		return EnumPlantType.Nether;
 	}
 
@@ -63,13 +64,13 @@ public class GlowingReedCrop extends BlockReed {
 	}
 
 	@Override
-	public int idDropped(int id, Random random, int meta) {
-		return ModItems.glowingReed.itemID;
+	public Item idDropped(int id, Random random, int meta) {
+		return ModItems.glowingReed;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int idPicked(World world, int x, int y, int z) {
-		return ModItems.glowingReed.itemID;
+	public Item idPicked(World world, int x, int y, int z) {
+		return ModItems.glowingReed;
 	}
 }

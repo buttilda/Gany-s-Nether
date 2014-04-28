@@ -2,7 +2,6 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.Random;
@@ -10,6 +9,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -23,13 +23,13 @@ import net.minecraft.world.World;
 public class DenseLavaCell extends Block {
 
 	DenseLavaCell() {
-		super(ModIDs.DENSE_LAVA_CELL_ID, Material.iron);
+		super(Material.iron);
 		setHardness(5F);
-		setLightValue(1F);
+		setLightLevel(1F);
 		setTickRandomly(true);
 		setCreativeTab(GanysNether.netherTab);
-		setTextureName(Utils.getBlockTexture(Strings.Blocks.DENSE_LAVA_CELL_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.DENSE_LAVA_CELL_NAME));
+		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.DENSE_LAVA_CELL_NAME));
+		setBlockTextureName(Utils.getBlockTexture(Strings.Blocks.DENSE_LAVA_CELL_NAME));
 	}
 
 	@Override
@@ -44,37 +44,30 @@ public class DenseLavaCell extends Block {
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
-		int l = rand.nextInt(3);
-		int i1;
-		int j1;
+		int num = rand.nextInt(3);
 
-		for (i1 = 0; i1 < l; ++i1) {
+		for (int i = 0; i < num; i++) {
 			x += rand.nextInt(3) - 1;
-			++y;
+			y++;
 			z += rand.nextInt(3) - 1;
-			j1 = world.getBlockId(x, y, z);
 
 			if (isFlammable(world, x - 1, y, z) || isFlammable(world, x + 1, y, z) || isFlammable(world, x, y, z - 1) || isFlammable(world, x, y, z + 1) || isFlammable(world, x, y - 1, z) || isFlammable(world, x, y + 1, z)) {
-				world.setBlock(x, y, z, Block.fire.blockID);
+				world.setBlock(x, y, z, Blocks.fire);
 				return;
 			}
 		}
 
-		if (l == 0) {
-			i1 = x;
-			j1 = z;
-
-			for (int k1 = 0; k1 < 3; ++k1) {
-				x = i1 + rand.nextInt(3) - 1;
-				z = j1 + rand.nextInt(3) - 1;
+		if (num == 0)
+			for (int i = 0; i < 3; i++) {
+				x = x + rand.nextInt(3) - 1;
+				z = z + rand.nextInt(3) - 1;
 
 				if (world.isAirBlock(x, y + 1, z) && isFlammable(world, x, y, z))
-					world.setBlock(x, y + 1, z, Block.fire.blockID);
+					world.setBlock(x, y + 1, z, Blocks.fire);
 			}
-		}
 	}
 
-	private boolean isFlammable(World par1World, int par2, int par3, int par4) {
-		return par1World.getBlockMaterial(par2, par3, par4).getCanBurn();
+	private boolean isFlammable(World world, int x, int y, int z) {
+		return world.getBlock(x, y, z).getMaterial().getCanBurn();
 	}
 }

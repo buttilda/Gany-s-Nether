@@ -32,8 +32,8 @@ public class BlazeArmour extends ItemArmor {
 	private final int MAX_COOL_DOWN = 160;
 	private int coolDown = MAX_COOL_DOWN;
 
-	BlazeArmour(int id, int type) {
-		super(id, ModMaterials.BLAZE, 0, type);
+	BlazeArmour(int type) {
+		super(ModMaterials.BLAZE, 0, type);
 		setMaxStackSize(1);
 		setCreativeTab(GanysNether.netherTab);
 	}
@@ -44,7 +44,8 @@ public class BlazeArmour extends ItemArmor {
 	}
 
 	@Override
-	public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack stack) {
+	@SuppressWarnings("rawtypes")
+	public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
 		coolDown--;
 		if (coolDown == 0) {
 			if (stack.getItemDamage() > 0)
@@ -85,7 +86,7 @@ public class BlazeArmour extends ItemArmor {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer) {
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String layer) {
 		int type = ((ItemArmor) stack.getItem()).armorType;
 		switch (type) {
 			case 0:

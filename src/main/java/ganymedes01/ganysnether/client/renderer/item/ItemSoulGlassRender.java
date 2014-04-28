@@ -34,9 +34,9 @@ public class ItemSoulGlassRender implements IItemRenderer {
 	}
 
 	@Override
-	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-		int meta = item.getItemDamage();
-		Block block = Block.blocksList[item.itemID];
+	public void renderItem(ItemRenderType type, ItemStack stack, Object... data) {
+		int meta = stack.getItemDamage();
+		Block block = Block.getBlockFromItem(stack.getItem());
 
 		switch (type) {
 			case ENTITY: {

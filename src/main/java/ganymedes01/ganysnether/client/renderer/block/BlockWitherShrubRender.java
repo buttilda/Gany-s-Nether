@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -49,7 +49,7 @@ public class BlockWitherShrubRender implements ISimpleBlockRenderingHandler {
 			meta = 7;
 
 		tessellator.setColorOpaque_F(R, G, B);
-		Icon icon = block.getIcon(0, meta);
+		IIcon icon = block.getIcon(0, meta);
 
 		float newY = y - (1.0F - (meta * 2 + 2) / 16.0F);
 
@@ -91,8 +91,8 @@ public class BlockWitherShrubRender implements ISimpleBlockRenderingHandler {
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory() {
-		return false;
+	public boolean shouldRender3DInInventory(int modelId) {
+		return true;
 	}
 
 	@Override

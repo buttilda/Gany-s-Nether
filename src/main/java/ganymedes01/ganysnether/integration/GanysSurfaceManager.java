@@ -46,7 +46,7 @@ public class GanysSurfaceManager extends Integration {
 
 			NBTTagCompound tagCompound = new NBTTagCompound();
 			matter.writeToNBT(tagCompound);
-			data.setCompoundTag("matter", tagCompound);
+			data.setTag("matter", tagCompound);
 
 			FMLInterModComms.sendMessage("ganyssurface", "registerOrganicMatter", data);
 		}

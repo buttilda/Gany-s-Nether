@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 
 public class SpawnEggHelper {
 
+	@SuppressWarnings("unchecked")
 	public static Entity getEntity(World world, double x, double y, double z, ItemStack egg) {
 		if (egg.getItem().getClass() == ItemMonsterPlacer.class)
 			return getEntity(world, egg.getItemDamage(), x, y, z);
@@ -42,6 +43,7 @@ public class SpawnEggHelper {
 			}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static Entity getEntity(World world, int damage, double x, double y, double z) {
 		return createEntity(world, x, y, z, (Class<? extends Entity>) EntityList.IDtoClassMapping.get(damage));
 	}

@@ -1,7 +1,6 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.Random;
@@ -9,12 +8,14 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.Icon;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,29 +29,28 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TilledNetherrack extends BlockFarmland {
 
 	@SideOnly(Side.CLIENT)
-	private Icon wetIcon, dryIcon;
+	private IIcon wetIcon, dryIcon;
 
 	TilledNetherrack() {
-		super(ModIDs.TILLED_NETHERRACK_ID);
 		setHardness(0.5F);
 		setLightOpacity(0);
-		setStepSound(soundGravelFootstep);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.TILLED_NETHERRACK_NAME));
+		setStepSound(soundTypeGravel);
+		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.TILLED_NETHERRACK_NAME));
 	}
 
 	@Override
-	public boolean canSustainPlant(World world, int x, int y, int z, ForgeDirection direction, IPlantable plant) {
+	public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plant) {
 		if (direction != ForgeDirection.UP)
 			return false;
 
-		int plantID = plant.getPlantID(world, x, y + 1, z);
-		if (plantID == ModBlocks.quarzBerryBush.blockID)
+		Block plantID = plant.getPlant(world, x, y + 1, z);
+		if (plantID == ModBlocks.quarzBerryBush)
 			return true;
-		else if (plantID == ModBlocks.spectreWheat.blockID)
+		else if (plantID == ModBlocks.spectreWheat)
 			return true;
-		else if (plantID == ModBlocks.witherShrub.blockID)
+		else if (plantID == ModBlocks.witherShrub)
 			return true;
-		else if (plantID == ModBlocks.hellBush.blockID)
+		else if (plantID == ModBlocks.hellBush)
 			return true;
 		return false;
 	}
@@ -62,7 +62,7 @@ public class TilledNetherrack extends BlockFarmland {
 			if (meta > 0)
 				world.setBlockMetadataWithNotify(x, y, z, --meta, 2);
 			else if (!isCropsNearby(world, x, y, z))
-				world.setBlock(x, y, z, Block.netherrack.blockID);
+				world.setBlock(x, y, z, Blocks.netherrack);
 		} else
 			world.setBlockMetadataWithNotify(x, y, z, 7, 2);
 	}
@@ -73,11 +73,11 @@ public class TilledNetherrack extends BlockFarmland {
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, int x, int y, int z, int id) {
-		super.onNeighborBlockChange(world, x, y, z, id);
-		Material material = world.getBlockMaterial(x, y + 1, z);
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbour) {
+		super.onNeighborBlockChange(world, x, y, z, neighbour);
+		Material material = world.getBlock(x, y + 1, z).getMaterial();
 		if (material.isSolid())
-			world.setBlock(x, y, z, Block.netherrack.blockID);
+			world.setBlock(x, y, z, Blocks.netherrack);
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class TilledNetherrack extends BlockFarmland {
 		for (int i = x - 4; i <= x + 4; i++)
 			for (int j = y; j <= y + 1; j++)
 				for (int k = z - 4; k <= z + 4; k++)
-					if (world.getBlockMaterial(i, j, k) == Material.lava)
+					if (world.getBlock(i, j, k).getMaterial() == Material.lava)
 						return true;
 		return false;
 	}
@@ -102,8 +102,7 @@ public class TilledNetherrack extends BlockFarmland {
 	private boolean isCropsNearby(World world, int x, int y, int z) {
 		for (int i = x; i <= x; i++)
 			for (int j = z; j <= z; j++) {
-				int blockID = world.getBlockId(i, y + 1, j);
-				Block plant = blocksList[blockID];
+				Block plant = world.getBlock(i, y + 1, j);
 				if (plant instanceof NetherCrop && canSustainPlant(world, x, y, z, ForgeDirection.UP, (NetherCrop) plant))
 					return true;
 			}
@@ -118,14 +117,14 @@ public class TilledNetherrack extends BlockFarmland {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg) {
+	public void registerBlockIcons(IIconRegister reg) {
 		wetIcon = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.TILLED_NETHERRACK_NAME) + "_wet");
 		dryIcon = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.TILLED_NETHERRACK_NAME) + "_dry");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int meta) {
-		return side == 1 ? meta > 0 ? wetIcon : dryIcon : Block.netherrack.getBlockTextureFromSide(side);
+	public IIcon getIcon(int side, int meta) {
+		return side == 1 ? meta > 0 ? wetIcon : dryIcon : Blocks.netherrack.getBlockTextureFromSide(side);
 	}
 }

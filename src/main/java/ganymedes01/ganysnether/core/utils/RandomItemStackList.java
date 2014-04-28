@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Random;
 
-import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -31,23 +31,24 @@ public class RandomItemStackList {
 		insertStackOnList(new ItemStack(ModItems.quarzBerrySeeds, 12), 40);
 		insertStackOnList(new ItemStack(ModItems.ghostSeeds, 16), 40);
 
-		insertStackOnList(new ItemStack(Block.torchWood, 32), 30);
-		insertStackOnList(new ItemStack(Item.coal, 32), 10);
-		insertStackOnList(new ItemStack(Item.stick, 32), 4);
-		insertStackOnList(new ItemStack(Item.beefCooked, 10), 10);
-		insertStackOnList(new ItemStack(Item.bakedPotato, 20), 7);
-		insertStackOnList(new ItemStack(Item.goldNugget, 14), 30);
-		insertStackOnList(new ItemStack(Item.rottenFlesh, 64), 5);
-		insertStackOnList(new ItemStack(Block.netherBrick, 64), 15);
-		insertStackOnList(new ItemStack(Item.netherStalkSeeds, 11), 8);
-		insertStackOnList(new ItemStack(Block.whiteStone, 40), 20);
-		insertStackOnList(new ItemStack(Block.wood, 32), 10);
-		insertStackOnList(new ItemStack(Block.dirt, 64), 5);
-		insertStackOnList(new ItemStack(Block.sand, 64), 5);
-		insertStackOnList(new ItemStack(Item.seeds, 20), 25);
-		insertStackOnList(new ItemStack(Item.leather, 10), 30);
-		insertStackOnList(new ItemStack(Block.cobblestone, 64), 5);
-		insertStackOnList(new ItemStack(Item.redstone, 24), 25);
+		insertStackOnList(new ItemStack(Blocks.torch, 32), 30);
+		insertStackOnList(new ItemStack(Items.coal, 32), 10);
+		insertStackOnList(new ItemStack(Items.stick, 32), 4);
+		insertStackOnList(new ItemStack(Items.beef, 10), 10);
+		insertStackOnList(new ItemStack(Items.baked_potato, 20), 7);
+		insertStackOnList(new ItemStack(Items.gold_nugget, 14), 30);
+		insertStackOnList(new ItemStack(Items.rotten_flesh, 64), 5);
+		insertStackOnList(new ItemStack(Blocks.nether_brick, 64), 15);
+		insertStackOnList(new ItemStack(Items.nether_wart, 11), 8);
+		insertStackOnList(new ItemStack(Blocks.end_stone, 40), 20);
+		insertStackOnList(new ItemStack(Blocks.log, 32), 10);
+		insertStackOnList(new ItemStack(Blocks.log2, 32), 10);
+		insertStackOnList(new ItemStack(Blocks.dirt, 64), 5);
+		insertStackOnList(new ItemStack(Blocks.sand, 64), 5);
+		insertStackOnList(new ItemStack(Items.wheat_seeds, 20), 25);
+		insertStackOnList(new ItemStack(Items.leather, 10), 30);
+		insertStackOnList(new ItemStack(Blocks.cobblestone, 64), 5);
+		insertStackOnList(new ItemStack(Items.redstone, 24), 25);
 	}
 
 	public static void insertStackOnList(ItemStack stack, int weight) {

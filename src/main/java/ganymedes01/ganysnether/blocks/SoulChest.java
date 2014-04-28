@@ -2,17 +2,13 @@ package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
-import net.minecraft.block.BlockChest;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -31,23 +27,21 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class SoulChest extends InventoryBlock {
 
 	SoulChest() {
-		this(ModIDs.SOUL_CHEST_ID);
-		setCreativeTab(GanysNether.netherTab);
-	}
-
-	SoulChest(int id) {
-		super(id, Material.sand);
+		super(Material.sand);
 		setHardness(2.5F);
-		setStepSound(soundSandFootstep);
+		setStepSound(soundTypeSand);
+		setBlockTextureName("soul_sand");
+		setCreativeTab(GanysNether.netherTab);
 		setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_CHEST_NAME));
+		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_CHEST_NAME));
 	}
 
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		if (entity instanceof EntityItem && !world.isRemote) {
-			TileEntitySoulChest tile = (TileEntitySoulChest) world.getBlockTileEntity(x, y, z);
-			Utils.addEntitytoInventory(tile, (EntityItem) entity);
+			TileEntitySoulChest tile = Utils.getTileEntity(world, x, y, z, TileEntitySoulChest.class);
+			if (tile != null)
+				Utils.addEntitytoInventory(tile, (EntityItem) entity);
 		} else {
 			entity.motionX *= 0.4D;
 			entity.motionZ *= 0.4D;
@@ -91,7 +85,7 @@ public class SoulChest extends InventoryBlock {
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
 		if (world.isRemote)
 			return true;
-		IInventory iinventory = getInventory(world, x, y, z);
+		IInventory iinventory = Utils.getTileEntity(world, x, y, z, IInventory.class);
 		if (!Utils.addStackToInventory(iinventory, player.inventory.getCurrentItem())) {
 			if (iinventory != null)
 				player.displayGUIChest(iinventory);
@@ -101,35 +95,13 @@ public class SoulChest extends InventoryBlock {
 		return true;
 	}
 
-	public IInventory getInventory(World world, int x, int y, int z) {
-		TileEntity tile = world.getBlockTileEntity(x, y, z);
-
-		if (tile == null)
-			return null;
-		else if (BlockChest.isOcelotBlockingChest(world, x, y, z))
-			return null;
-
-		return (IInventory) tile;
-	}
-
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntitySoulChest();
 	}
 
 	@Override
 	public boolean hasComparatorInputOverride() {
 		return true;
-	}
-
-	@Override
-	public int getComparatorInputOverride(World world, int x, int y, int z, int par5) {
-		return Container.calcRedstoneFromInventory(getInventory(world, x, y, z));
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg) {
-		blockIcon = reg.registerIcon("soul_sand");
 	}
 }

@@ -39,12 +39,12 @@ public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRendere
 			}
 
 			@Override
-			public byte getMiniBlockCount(ItemStack stack) {
+			public byte getMiniBlockCount(ItemStack stack, byte original) {
 				return 1;
 			}
 
 			@Override
-			public byte getMiniItemCount(ItemStack stack) {
+			public byte getMiniItemCount(ItemStack stack, byte original) {
 				return 1;
 			}
 		};
@@ -59,8 +59,8 @@ public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRendere
 
 		ItemStack material1 = centrifuge.getStackInSlot(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_1);
 		ItemStack material2 = centrifuge.getStackInSlot(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_2);
-		renderItem(centrifuge.worldObj, x, y, z, material1, rotationAngle, false);
-		renderItem(centrifuge.worldObj, x, y, z, material2, rotationAngle, true);
+		renderItem(centrifuge.getWorldObj(), x, y, z, material1, rotationAngle, false);
+		renderItem(centrifuge.getWorldObj(), x, y, z, material2, rotationAngle, true);
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		bindTexture(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME)));
@@ -102,7 +102,7 @@ public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRendere
 			GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
 			GL11.glRotatef(90.0F + rotationAngle, 0.0F, 1.0F, 0.0F);
 
-			customRenderItem.doRenderItem(ghostEntityItem, 0, 0, offset, 0, 0);
+			customRenderItem.doRender(ghostEntityItem, 0, 0, offset, 0, 0);
 			GL11.glEnable(GL11.GL_CULL_FACE);
 			GL11.glEnable(GL11.GL_LIGHTING);
 			GL11.glPopMatrix();

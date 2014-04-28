@@ -1,6 +1,5 @@
 package ganymedes01.ganysnether.tileentities;
 
-import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.network.PacketTypeHandler;
@@ -9,15 +8,12 @@ import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 
 import java.util.ArrayList;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraft.network.Packet;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
@@ -26,7 +22,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
-import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,9 +32,8 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  */
 
-public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedInventory, IFluidHandler {
+public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISidedInventory, IFluidHandler {
 
-	private ItemStack[] inventory = new ItemStack[8];
 	private final FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
 
 	private int angle = 0;
@@ -51,6 +45,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	public static final int FULL_BUCKET_SLOT = 0, EMPTY_BUCKET_SLOT = 1, MATERIAL_SLOT_1 = 2, MATERIAL_SLOT_2 = 3, RESULT_SLOT_1 = 4, RESULT_SLOT_2 = 5, RESULT_SLOT_3 = 6, RESULT_SLOT_4 = 7;
 
 	public TileEntityMagmaticCentrifuge() {
+		super(8, Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME);
 		tank.setFluid(new FluidStack(FluidRegistry.LAVA, 0));
 		checkRecipe();
 	}
@@ -83,7 +78,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	}
 
 	@Override
-	public void onInventoryChanged() {
+	public void markDirty() {
 		checkRecipe();
 	}
 
@@ -91,7 +86,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 		if (tank.getFluidAmount() <= tank.getCapacity() - FluidContainerRegistry.BUCKET_VOLUME)
 			if (FluidContainerRegistry.isFilledContainer(inventory[FULL_BUCKET_SLOT])) {
 				ItemStack emptyContainer = getEmptyContainer();
-				if (inventory[EMPTY_BUCKET_SLOT] == null || emptyContainer != null && emptyContainer.itemID == inventory[EMPTY_BUCKET_SLOT].itemID && emptyContainer.getItemDamage() == inventory[EMPTY_BUCKET_SLOT].getItemDamage())
+				if (inventory[EMPTY_BUCKET_SLOT] == null || emptyContainer != null && emptyContainer.getItem() == inventory[EMPTY_BUCKET_SLOT].getItem() && emptyContainer.getItemDamage() == inventory[EMPTY_BUCKET_SLOT].getItemDamage())
 					if (FluidContainerRegistry.getFluidForFilledItem(inventory[FULL_BUCKET_SLOT]).getFluid() == FluidRegistry.LAVA) {
 						tank.fill(FluidContainerRegistry.getFluidForFilledItem(inventory[FULL_BUCKET_SLOT]), true);
 						boolean flag = false;
@@ -106,7 +101,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 							inventory[FULL_BUCKET_SLOT].stackSize--;
 							if (inventory[FULL_BUCKET_SLOT].stackSize <= 0)
 								inventory[FULL_BUCKET_SLOT] = null;
-							onInventoryChanged();
+							markDirty();
 						}
 					}
 			}
@@ -115,7 +110,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	private ItemStack getEmptyContainer() {
 		for (FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData())
 			if (data != null && inventory[FULL_BUCKET_SLOT] != null)
-				if (data.filledContainer.itemID == inventory[FULL_BUCKET_SLOT].itemID && data.filledContainer.getItemDamage() == inventory[FULL_BUCKET_SLOT].getItemDamage())
+				if (data.filledContainer.getItem() == inventory[FULL_BUCKET_SLOT].getItem() && data.filledContainer.getItemDamage() == inventory[FULL_BUCKET_SLOT].getItemDamage())
 					return data.emptyContainer.copy();
 		return null;
 	}
@@ -141,7 +136,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 					if (result == null)
 						break;
 					if (resultSlot != null) {
-						if (result.itemID == resultSlot.itemID && result.getItemDamage() == result.getItemDamage())
+						if (result.getItem() == resultSlot.getItem() && result.getItemDamage() == result.getItemDamage())
 							if (resultSlot.stackSize + result.stackSize <= resultSlot.getMaxStackSize())
 								resultSlot.stackSize += result.stackSize;
 					} else
@@ -155,7 +150,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 					inventory[MATERIAL_SLOT_1] = null;
 				if (inventory[MATERIAL_SLOT_2].stackSize <= 0)
 					inventory[MATERIAL_SLOT_2] = null;
-				onInventoryChanged();
+				markDirty();
 				checkRecipe();
 			}
 		}
@@ -170,7 +165,7 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 				list.add(i);
 				continue;
 			}
-			if (stack.itemID == inventory[i].itemID && stack.getItemDamage() == inventory[i].getItemDamage())
+			if (stack.getItem() == inventory[i].getItem() && stack.getItemDamage() == inventory[i].getItemDamage())
 				if (inventory[i].stackSize + stack.stackSize <= inventory[i].getMaxStackSize()) {
 					if (ignore.contains(i))
 						continue;
@@ -193,80 +188,6 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
 		return side == 0 ? new int[] { RESULT_SLOT_1, RESULT_SLOT_2, RESULT_SLOT_3, RESULT_SLOT_4, EMPTY_BUCKET_SLOT } : side == 1 ? new int[] { MATERIAL_SLOT_1, MATERIAL_SLOT_2 } : new int[] { FULL_BUCKET_SLOT };
-	}
-
-	@Override
-	public int getSizeInventory() {
-		return inventory.length;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int slot) {
-		return inventory[slot];
-	}
-
-	@Override
-	public ItemStack decrStackSize(int slot, int size) {
-		if (inventory[slot] != null) {
-			ItemStack itemstack;
-			if (inventory[slot].stackSize <= size) {
-				itemstack = inventory[slot];
-				inventory[slot] = null;
-				return itemstack;
-			} else {
-				itemstack = inventory[slot].splitStack(size);
-				if (inventory[slot].stackSize == 0)
-					inventory[slot] = null;
-				return itemstack;
-			}
-		} else
-			return null;
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
-		if (inventory[slot] != null) {
-			ItemStack itemstack = inventory[slot];
-			inventory[slot] = null;
-			return itemstack;
-		} else
-			return null;
-	}
-
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack) {
-		inventory[slot] = stack;
-
-		if (stack != null && stack.stackSize > getInventoryStackLimit())
-			stack.stackSize = getInventoryStackLimit();
-	}
-
-	@Override
-	public String getInvName() {
-		return Utils.getConainerName(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME);
-	}
-
-	@Override
-	public boolean isInvNameLocalized() {
-		return false;
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 64;
-	}
-
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		return true;
-	}
-
-	@Override
-	public void openChest() {
-	}
-
-	@Override
-	public void closeChest() {
 	}
 
 	@Override
@@ -303,18 +224,6 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	public void readFromNBT(NBTTagCompound data) {
 		super.readFromNBT(data);
 		tank.readFromNBT(data);
-		NBTTagList nbttaglist = data.getTagList("Items");
-		inventory = new ItemStack[getSizeInventory()];
-
-		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
-			byte b0 = nbttagcompound1.getByte("Slot");
-
-			if (b0 >= 0 && b0 < inventory.length)
-				inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
-		}
-		onInventoryChanged();
-
 		angle = data.getInteger("angle");
 		turnsCount = data.getInteger("turnsCount");
 		rotationAngle = data.getFloat("rotationAngle");
@@ -324,17 +233,6 @@ public class TileEntityMagmaticCentrifuge extends TileEntity implements ISidedIn
 	public void writeToNBT(NBTTagCompound data) {
 		super.writeToNBT(data);
 		tank.writeToNBT(data);
-		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < inventory.length; i++)
-			if (inventory[i] != null) {
-				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-				nbttagcompound1.setByte("Slot", (byte) i);
-				inventory[i].writeToNBT(nbttagcompound1);
-				nbttaglist.appendTag(nbttagcompound1);
-			}
-
-		data.setTag("Items", nbttaglist);
-
 		data.setInteger("angle", angle);
 		data.setInteger("turnsCount", turnsCount);
 		data.setFloat("rotationAngle", rotationAngle);

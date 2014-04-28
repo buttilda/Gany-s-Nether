@@ -9,25 +9,24 @@ import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EntityLivingData;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.WeightedRandomMinecart;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -64,9 +63,9 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 	}
 
 	@Override
-	public boolean canRun() {
+	public boolean isActivated() {
 		boolean redstone = redstoneUpgrade ? !isBlockPowered : true;
-		boolean player = noPlayerUpgrade || super.canRun();
+		boolean player = noPlayerUpgrade || super.isActivated();
 
 		return redstone && player;
 	}
@@ -111,7 +110,7 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 
 	@Override
 	public void updateSpawner() {
-		if (!canRun()) {
+		if (!isActivated()) {
 			field_98284_d = 0;
 			field_98287_c = 0;
 			return;
@@ -205,15 +204,15 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 	@Override
 	public Entity func_98265_a(Entity entity) {
 		if (entity instanceof EntityLivingBase && entity.worldObj != null) {
-			((EntityLiving) entity).onSpawnWithEgg((EntityLivingData) null);
+			((EntityLiving) entity).onSpawnWithEgg((IEntityLivingData) null);
 
 			if (entity instanceof EntitySkeleton) {
 				EntitySkeleton skeleton = (EntitySkeleton) entity;
 				skeleton.setSkeletonType(isWitherSkeleton ? 1 : 0);
 				if (isWitherSkeleton) {
 					skeleton.tasks.addTask(4, new EntityAIAttackOnCollide(skeleton, EntityPlayer.class, 1.2D, false));
-					skeleton.setCurrentItemOrArmor(0, new ItemStack(Item.swordStone));
-					skeleton.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(4.0D);
+					skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.stone_sword));
+					skeleton.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D);
 				} else {
 					skeleton.tasks.addTask(4, new EntityAIArrowAttack(skeleton, 1.0D, 20, 60, 15.0F));
 					SkeletonSpawner.addRandomArmor(skeleton);
@@ -245,17 +244,17 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Entity func_98281_h() {
-		return tier == UpgradeType.tierDragonEgg.ordinal() ? new EntityItem(getSpawnerWorld(), getSpawnerX(), getSpawnerY(), getSpawnerZ(), new ItemStack(Block.dragonEgg)) : super.func_98281_h();
+		return tier == UpgradeType.tierDragonEgg.ordinal() ? new EntityItem(getSpawnerWorld(), getSpawnerX(), getSpawnerY(), getSpawnerZ(), new ItemStack(Blocks.dragon_egg)) : super.func_98281_h();
 	}
 
 	@Override
 	public void func_98267_a(int eventID) {
-		getSpawnerWorld().addBlockEvent(getSpawnerX(), getSpawnerY(), getSpawnerZ(), ModBlocks.extendedSpawner.blockID, eventID, 0);
+		getSpawnerWorld().addBlockEvent(getSpawnerX(), getSpawnerY(), getSpawnerZ(), ModBlocks.extendedSpawner, eventID, 0);
 	}
 
 	@Override
 	public World getSpawnerWorld() {
-		return tile.worldObj;
+		return tile.getWorldObj();
 	}
 
 	@Override
@@ -274,11 +273,11 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 	}
 
 	@Override
-	public void setRandomMinecart(WeightedRandomMinecart minecart) {
+	public void setRandomEntity(WeightedRandomMinecart minecart) {
 	}
 
 	@Override
-	public WeightedRandomMinecart getRandomMinecart() {
+	public WeightedRandomMinecart getRandomEntity() {
 		return null;
 	}
 
@@ -296,6 +295,7 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 		silkyUpgrade = data.getBoolean("silkyUpgrade");
 		tier = data.getByte("tier");
 		isWitherSkeleton = data.getBoolean("isWitherSkeleton");
+
 		NBTTagList tagList = data.getTagList("Items");
 		for (int i = 0; i < tagList.tagCount(); i++) {
 			NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
@@ -319,6 +319,7 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 		data.setBoolean("silkyUpgrade", silkyUpgrade);
 		data.setByte("tier", tier);
 		data.setBoolean("isWitherSkeleton", isWitherSkeleton);
+
 		NBTTagList tagList = new NBTTagList();
 		for (int i = 0; i < fifo.length; i++)
 			if (fifo[i] != null) {

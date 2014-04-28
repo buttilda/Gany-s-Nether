@@ -1,15 +1,13 @@
 package ganymedes01.ganysnether.core.utils;
 
 import ganymedes01.ganysnether.lib.Reference;
+import ganymedes01.ganysnether.lib.Strings;
 
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import net.minecraft.util.EnumChatFormatting;
-import cpw.mods.fml.common.FMLLog;
 
 /**
  * Gany's Nether
@@ -19,7 +17,7 @@ import cpw.mods.fml.common.FMLLog;
  */
 
 public class VersionHelper implements Runnable {
-	private static Logger logger = Logger.getLogger(Reference.MOD_ID.toUpperCase());
+
 	private static VersionHelper instance = new VersionHelper();
 	public static Properties remoteVersionProperties = new Properties();
 
@@ -41,7 +39,7 @@ public class VersionHelper implements Runnable {
 			URL remoteVersionURL = new URL(Reference.VERSION_CHECK_FILE);
 			remoteVersionRepoStream = remoteVersionURL.openStream();
 			remoteVersionProperties.loadFromXML(remoteVersionRepoStream);
-			String remoteVersionProperty = remoteVersionProperties.getProperty(Reference.CHANNEL_NAME);
+			String remoteVersionProperty = remoteVersionProperties.getProperty(Reference.CHANNEL);
 
 			if (remoteVersionProperty != null) {
 				String[] remoteVersionTokens = remoteVersionProperty.split("\\|");
@@ -74,29 +72,22 @@ public class VersionHelper implements Runnable {
 		}
 	}
 
-	public static void logResult() {
-		if (result == CURRENT || result == OUTDATED)
-			logger.log(Level.INFO, getResultMessage());
-		else
-			logger.log(Level.WARNING, getResultMessage());
-	}
-
 	public static String getResultMessage() {
 		switch (result) {
 			case UNINITIALIZED:
-				return "Version check failed.";
+				return Strings.VersionChecks.VERSION_CHECK_FAIL;
 			case CURRENT:
-				return "The version " + Reference.VERSION_NUMBER + " is the current version.";
+				return Strings.VersionChecks.CURRENT_MESSAGE;
 			case OUTDATED:
 				if (remoteVersion != null && updateURL != null)
-					return "The version " + Reference.VERSION_NUMBER + " is outdated. Current version: " + Reference.LATEST_VERSION;
+					return Strings.VersionChecks.OUTDATED_MESSAGE;
 			case ERROR:
-				return "Failed to connect to version check URL. Trying again...";
+				return Strings.VersionChecks.VERSION_CHECK_FAIL_CONNECT;
 			case FINAL_ERROR:
-				return "Version check stopped after too many unsuccessful attempts.";
+				return Strings.VersionChecks.VERSION_CHECK_FAIL_CONNECT_FINAL;
 			default:
 				result = ERROR;
-				return "Failed to connect to version check URL. Trying again...";
+				return Strings.VersionChecks.VERSION_CHECK_FAIL_CONNECT;
 		}
 	}
 
@@ -111,22 +102,17 @@ public class VersionHelper implements Runnable {
 	@Override
 	public void run() {
 		int count = 0;
-		logger.setParent(FMLLog.getLogger());
-		logger.log(Level.INFO, "Starting version check.");
 
 		try {
 			while (count < 3 - 1 && (result == UNINITIALIZED || result == ERROR)) {
 				checkVersion();
 				count++;
-				logResult();
 
 				if (result == UNINITIALIZED || result == ERROR)
 					Thread.sleep(10000);
 			}
-			if (result == ERROR) {
+			if (result == ERROR)
 				result = FINAL_ERROR;
-				logResult();
-			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

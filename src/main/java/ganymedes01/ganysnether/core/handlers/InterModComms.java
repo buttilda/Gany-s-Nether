@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -68,16 +68,16 @@ public class InterModComms {
 				return;
 			}
 
-			NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(0);
+			NBTTagCompound tagCompound = tagList.getCompoundTagAt(0);
 			if (tagCompound.getByte("material1") == 0)
 				material1 = ItemStack.loadItemStackFromNBT(tagCompound);
 
-			tagCompound = (NBTTagCompound) tagList.tagAt(1);
+			tagCompound = tagList.getCompoundTagAt(1);
 			if (tagCompound.getByte("material2") == 1)
 				material2 = ItemStack.loadItemStackFromNBT(tagCompound);
 
 			for (int i = 2; i < tagList.tagCount(); i++) {
-				tagCompound = (NBTTagCompound) tagList.tagAt(i);
+				tagCompound = tagList.getCompoundTagAt(i);
 				byte slot = (byte) (tagCompound.getByte("result") - 2);
 				if (slot >= 0 && slot < result.length)
 					result[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
@@ -104,6 +104,7 @@ public class InterModComms {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private static void blackListEntity(IMCMessage message) {
 		String entityClass = message.getStringValue();
 		try {
@@ -115,6 +116,7 @@ public class InterModComms {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private static void addCustomSpawnEgg(IMCMessage message) {
 		NBTTagCompound data = message.getNBTValue();
 		try {
@@ -142,6 +144,7 @@ public class InterModComms {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	private static void addMobDropAndEntityTuple(IMCMessage message) {
 		try {
 			NBTTagCompound data = message.getNBTValue();
@@ -151,7 +154,7 @@ public class InterModComms {
 			field.setAccessible(true);
 			Map stringToIDMapping = (Map) field.get(null);
 
-			ItemStack spawnEgg = new ItemStack(Item.monsterPlacer, 1, (Integer) stringToIDMapping.get(entityName));
+			ItemStack spawnEgg = new ItemStack(Items.spawn_egg, 1, (Integer) stringToIDMapping.get(entityName));
 			ItemStack mobDrop = ItemStack.loadItemStackFromNBT(data.getCompoundTag("mobDrop"));
 
 			ReproducerRecipes.addMobDropAndEggTuple(spawnEgg, mobDrop);

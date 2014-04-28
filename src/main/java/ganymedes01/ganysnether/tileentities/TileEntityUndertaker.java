@@ -1,6 +1,5 @@
 package ganymedes01.ganysnether.tileentities;
 
-import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.ItemStack;
 
@@ -14,12 +13,7 @@ import net.minecraft.item.ItemStack;
 public class TileEntityUndertaker extends TileEntitySoulChest {
 
 	public TileEntityUndertaker() {
-		super(40);
-	}
-
-	@Override
-	public String getInvName() {
-		return Utils.getConainerName(Strings.Blocks.UNDERTAKER_NAME);
+		super(40, Strings.Blocks.UNDERTAKER_NAME);
 	}
 
 	@Override

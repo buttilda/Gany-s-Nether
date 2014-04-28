@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.integration;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.items.ModItems;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.event.FMLInterModComms;
@@ -19,7 +20,7 @@ public class EE3Manager extends Integration {
 	@Override
 	public void init() {
 		addEMCValueToBlock(ModBlocks.soulGlass, 49);
-		addEMCValueToBlock(Block.fire, 160);
+		addEMCValueToBlock(Blocks.fire, 160);
 		addEMCValueToBlock(ModBlocks.undertaker, 599);
 		addEMCValueToBlock(ModBlocks.blazingCactoid, 1200);
 		addEMCValueToItem(ModItems.spectreWheat, 48);
@@ -62,7 +63,7 @@ public class EE3Manager extends Integration {
 		String className = null;
 		if (obj instanceof ItemStack) {
 			ItemStack s = (ItemStack) obj;
-			stack = "\"stackSize\":" + s.stackSize + ",\"itemID\":" + s.itemID + ",\"itemDamage\":" + s.getItemDamage();
+			stack = "\"stackSize\":" + s.stackSize + ",\"itemID\":" + s.getItem() + ",\"itemDamage\":" + s.getItemDamage();
 			className = "ItemStack";
 		} else if (obj instanceof String) {
 			stack = "\"oreName\":\"" + (String) obj + "\",\"stackSize\":1";

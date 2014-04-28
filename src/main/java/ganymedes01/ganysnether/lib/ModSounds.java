@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.lib;
 
-import net.minecraft.block.StepSound;
+import net.minecraft.block.Block.SoundType;
 
 /**
  * Gany's Nether
@@ -11,9 +11,9 @@ import net.minecraft.block.StepSound;
 
 public class ModSounds {
 
-	public static final StepSound soundBlaze = new CustomSound("mob.blaze.hit");
+	public static final SoundType soundBlaze = new CustomSound("mob.blaze.hit");
 
-	private static final class CustomSound extends StepSound {
+	private static final class CustomSound extends SoundType {
 
 		private final boolean useDefaults;
 
@@ -28,12 +28,12 @@ public class ModSounds {
 
 		@Override
 		public String getBreakSound() {
-			return useDefaults ? super.getBreakSound() : stepSoundName;
+			return useDefaults ? super.getBreakSound() : soundName;
 		}
 
 		@Override
-		public String getStepSound() {
-			return useDefaults ? super.getStepSound() : stepSoundName;
+		public String getStepResourcePath() {
+			return useDefaults ? super.getStepResourcePath() : soundName;
 		}
 	}
 }

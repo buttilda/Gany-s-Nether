@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -22,34 +24,34 @@ public class ReproducerRecipes {
 	private static HashMap<UnsizedStack, ItemStack> eggDropTuple = new HashMap<UnsizedStack, ItemStack>();
 
 	static {
-		addMobDropAndEggTuple(new ItemStack(ModItems.skeletonSpawner), new ItemStack(Item.bone));
-		addMobDropAndEggTuple(new ItemStack(ModItems.skeletonSpawner, 1, 1), new ItemStack(Item.coal));
+		addMobDropAndEggTuple(new ItemStack(ModItems.skeletonSpawner), new ItemStack(Items.bone));
+		addMobDropAndEggTuple(new ItemStack(ModItems.skeletonSpawner, 1, 1), new ItemStack(Items.coal));
 
-		addMobDropAndEggTuple(50, Item.gunpowder);
-		addMobDropAndEggTuple(52, Item.spiderEye);
-		addMobDropAndEggTuple(59, Item.spiderEye);
-		addMobDropAndEggTuple(54, Item.rottenFlesh);
-		addMobDropAndEggTuple(55, Item.slimeBall);
-		addMobDropAndEggTuple(56, Item.ghastTear);
-		addMobDropAndEggTuple(57, Item.goldNugget);
-		addMobDropAndEggTuple(58, Item.enderPearl);
+		addMobDropAndEggTuple(50, Items.gunpowder);
+		addMobDropAndEggTuple(52, Items.spider_eye);
+		addMobDropAndEggTuple(59, Items.spider_eye);
+		addMobDropAndEggTuple(54, Items.rotten_flesh);
+		addMobDropAndEggTuple(55, Items.slime_ball);
+		addMobDropAndEggTuple(56, Items.ghast_tear);
+		addMobDropAndEggTuple(57, Items.gold_nugget);
+		addMobDropAndEggTuple(58, Items.ender_pearl);
 		addMobDropAndEggTuple(60, ModItems.silverfishScale);
-		addMobDropAndEggTuple(61, Item.blazeRod);
-		addMobDropAndEggTuple(62, Item.magmaCream);
+		addMobDropAndEggTuple(61, Items.blaze_rod);
+		addMobDropAndEggTuple(62, Items.magma_cream);
 		addMobDropAndEggTuple(65, ModItems.batWing);
-		addMobDropAndEggTuple(66, Item.glowstone);
-		addMobDropAndEggTuple(90, Item.porkRaw);
-		addMobDropAndEggTuple(91, Block.cloth);
-		addMobDropAndEggTuple(92, Item.beefRaw);
-		addMobDropAndEggTuple(93, Item.chickenRaw);
-		addMobDropAndEggTuple(94, Item.dyePowder);
+		addMobDropAndEggTuple(66, Items.glowstone_dust);
+		addMobDropAndEggTuple(90, Items.porkchop);
+		addMobDropAndEggTuple(91, Blocks.wool);
+		addMobDropAndEggTuple(92, Items.beef);
+		addMobDropAndEggTuple(93, Items.chicken);
+		addMobDropAndEggTuple(94, Items.dye);
 		addMobDropAndEggTuple(95, ModItems.wolfTeeth);
-		addMobDropAndEggTuple(96, Block.mushroomRed);
-		addMobDropAndEggTuple(97, Item.snowball);
-		addMobDropAndEggTuple(98, Item.fishRaw);
-		addMobDropAndEggTuple(99, Item.ingotIron);
-		addMobDropAndEggTuple(100, Item.leather);
-		addMobDropAndEggTuple(120, Item.emerald);
+		addMobDropAndEggTuple(96, Blocks.red_mushroom);
+		addMobDropAndEggTuple(97, Items.snowball);
+		addMobDropAndEggTuple(98, Items.fish);
+		addMobDropAndEggTuple(99, Items.iron_ingot);
+		addMobDropAndEggTuple(100, Items.leather);
+		addMobDropAndEggTuple(120, Items.emerald);
 	}
 
 	public static Map<UnsizedStack, ItemStack> getTuples() {
@@ -69,16 +71,12 @@ public class ReproducerRecipes {
 			}
 	}
 
-	private static void addMobDropAndEggTuple(int eggMeta, ItemStack drop) {
-		addMobDropAndEggTuple(new ItemStack(Item.monsterPlacer, 1, eggMeta), drop);
-	}
-
 	private static void addMobDropAndEggTuple(int eggMeta, Item drop) {
-		addMobDropAndEggTuple(new ItemStack(Item.monsterPlacer, 1, eggMeta), new ItemStack(drop));
+		addMobDropAndEggTuple(new ItemStack(Items.spawn_egg, 1, eggMeta), new ItemStack(drop));
 	}
 
 	private static void addMobDropAndEggTuple(int eggMeta, Block drop) {
-		addMobDropAndEggTuple(new ItemStack(Item.monsterPlacer, 1, eggMeta), new ItemStack(drop));
+		addMobDropAndEggTuple(new ItemStack(Items.spawn_egg, 1, eggMeta), new ItemStack(drop));
 	}
 
 	public static ItemStack getMobDropFromEgg(ItemStack egg) {

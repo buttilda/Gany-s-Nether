@@ -7,10 +7,9 @@ import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -43,9 +42,6 @@ public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedI
 
 		tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
 		tank.setFluid(new FluidStack(FluidRegistry.LAVA, 0));
-
-		// Initiates the registry
-		VolcanicFurnaceHandler.getBurnTime(new ItemStack(Item.appleGold));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -94,7 +90,7 @@ public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedI
 	}
 
 	private void sendUpdates() {
-		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType().blockID, 0, tank.getFluidAmount());
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType(), 0, tank.getFluidAmount());
 	}
 
 	private void meltItems() {

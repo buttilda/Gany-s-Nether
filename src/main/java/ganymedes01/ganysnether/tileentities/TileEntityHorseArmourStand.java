@@ -4,7 +4,7 @@ import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.network.PacketTypeHandler;
 import ganymedes01.ganysnether.network.packet.PacketHorseArmourStand;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import cpw.mods.fml.relauncher.Side;
@@ -33,13 +33,13 @@ public class TileEntityHorseArmourStand extends TileEntity {
 	public void setRotation(byte rotation) {
 		this.rotation = rotation;
 		if (!worldObj.isRemote)
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, ModBlocks.horseArmourStand.blockID, 1, rotation);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, ModBlocks.horseArmourStand, 1, rotation);
 	}
 
 	public void setArmourType(byte armourType) {
 		this.armourType = armourType;
 		if (!worldObj.isRemote)
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, ModBlocks.horseArmourStand.blockID, 0, armourType);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, ModBlocks.horseArmourStand, 0, armourType);
 	}
 
 	@Override

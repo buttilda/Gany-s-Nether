@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.lib;
 
-import net.minecraft.item.EnumArmorMaterial;
-import net.minecraftforge.common.EnumHelper;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraftforge.common.util.EnumHelper;
 
 /**
  * Gany's Nether
@@ -13,7 +13,7 @@ import net.minecraftforge.common.EnumHelper;
 public class ModMaterials {
 
 	// Armour
-	public static final EnumArmorMaterial BLAZE = EnumHelper.addArmorMaterial("BLAZE", 3, new int[] { 2, 6, 5, 2 }, 25);
+	public static final ArmorMaterial BLAZE = EnumHelper.addArmorMaterial("BLAZE", 3, new int[] { 2, 6, 5, 2 }, 25);
 
 	// Item
 }

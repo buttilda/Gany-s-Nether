@@ -12,13 +12,14 @@ import net.minecraft.block.BlockSapling;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -41,27 +42,26 @@ public class VolcanicFurnaceHandler {
 	private static HashMap<Integer, Integer> oreBurnTimes = new HashMap<Integer, Integer>();
 
 	static {
-		blackListItem(new ItemStack(Item.expBottle));
-		blackListItem(new ItemStack(Item.snowball));
-		blackListItem(new ItemStack(Block.snow));
-		blackListItem(new ItemStack(Block.ice));
-		blackListItem(new ItemStack(Block.blockSnow));
-		blackListItem(new ItemStack(Block.vine));
-		blackListItem(new ItemStack(Block.cactus));
+		blackListItem(new ItemStack(Items.experience_bottle));
+		blackListItem(new ItemStack(Items.snowball));
+		blackListItem(new ItemStack(Blocks.snow));
+		blackListItem(new ItemStack(Blocks.ice));
+		blackListItem(new ItemStack(Blocks.snow));
+		blackListItem(new ItemStack(Blocks.vine));
+		blackListItem(new ItemStack(Blocks.cactus));
 
 		addBurnTimeForItem(new ItemStack(ModItems.glowingReed), 32);
 		addBurnTimeForItem(new ItemStack(ModBlocks.denseLavaCell), 5000);
 		addBurnTimeForItem(new ItemStack(ModBlocks.focusedLavaCell), 25000);
-		addBurnTimeForItem(new ItemStack(Item.netherStar), 10000000);
-		addBurnTimeForItem(new ItemStack(Block.fire), 600);
-		addBurnTimeForItem(new ItemStack(Block.bedrock), 8000);
-		addBurnTimeForItem(new ItemStack(Block.lavaMoving), 1000);
-		addBurnTimeForItem(new ItemStack(Block.lavaStill), 1000);
-		addBurnTimeForItem(new ItemStack(Block.dragonEgg), Integer.MAX_VALUE);
-		addBurnTimeForItem(new ItemStack(Item.blazePowder), 7);
-		addBurnTimeForItem(new ItemStack(Block.netherrack), 35);
+		addBurnTimeForItem(new ItemStack(Items.nether_star), 10000000);
+		addBurnTimeForItem(new ItemStack(Blocks.fire), 600);
+		addBurnTimeForItem(new ItemStack(Blocks.bedrock), 8000);
+		addBurnTimeForItem(new ItemStack(Blocks.lava), 1000);
+		addBurnTimeForItem(new ItemStack(Blocks.dragon_egg), Integer.MAX_VALUE);
+		addBurnTimeForItem(new ItemStack(Items.blaze_powder), 7);
+		addBurnTimeForItem(new ItemStack(Blocks.netherrack), 35);
 		for (int i = 0; i < 16; i++)
-			addBurnTimeForItem(new ItemStack(Item.dyePowder), 7);
+			addBurnTimeForItem(new ItemStack(Items.dye), 7);
 
 		addBurnTimeForOre("plankWood", 5);
 		addBurnTimeForOre("slabWood", 2);
@@ -126,18 +126,18 @@ public class VolcanicFurnaceHandler {
 				blackListItem(stack);
 				return false;
 			}
-			if (stack.getItem() instanceof ItemBlock)
-				if (stack.itemID < Block.blocksList.length) {
-					Material material = Block.blocksList[stack.itemID].blockMaterial;
-					if (material == Material.snow || material == Material.craftedSnow || material == Material.ice || material == Material.water || material == Material.vine) {
-						blackListItem(stack);
-						return false;
-					}
-					if (Block.blocksList[stack.itemID].blockHardness <= 0.0F) {
-						blackListItem(stack);
-						return false;
-					}
+			if (stack.getItem() instanceof ItemBlock) {
+				Block block = Block.getBlockFromItem(stack.getItem());
+				Material material = block.getMaterial();
+				if (material == Material.snow || material == Material.craftedSnow || material == Material.ice || material == Material.water || material == Material.vine) {
+					blackListItem(stack);
+					return false;
 				}
+				if (block.blockHardness <= 0.0F) {
+					blackListItem(stack);
+					return false;
+				}
+			}
 			return true;
 		}
 		return false;
@@ -154,12 +154,10 @@ public class VolcanicFurnaceHandler {
 
 		Item item = stack.getItem();
 		if (item instanceof ItemBlock) {
-			Block block = null;
-			if (stack.itemID < Block.blocksList.length)
-				block = Block.blocksList[stack.itemID];
+			Block block = Block.getBlockFromItem(stack.getItem());
 
 			if (block != null)
-				if (block.blockMaterial == Material.wood)
+				if (block.getMaterial() == Material.wood)
 					return 5;
 				else if (block instanceof BlockStairs)
 					return 7;
@@ -194,7 +192,7 @@ public class VolcanicFurnaceHandler {
 		double volume = 16 * x * y * z;
 
 		if (block.blockHardness > 0.0F)
-			if (block.blockHardness <= 1.0F || MinecraftForge.getBlockHarvestLevel(block, stack.getItemDamage(), "pickaxe") > 2)
+			if (block.blockHardness <= 1.0F || block.getHarvestLevel(stack.getItemDamage()) > 2)
 				volume *= block.blockHardness;
 
 		int intVolume = (int) volume;

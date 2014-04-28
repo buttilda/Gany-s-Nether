@@ -19,13 +19,13 @@ public class DispenserBehaviorBottomlessBucket extends BehaviorDefaultDispenseIt
 
 	@Override
 	public ItemStack dispenseStack(IBlockSource block, ItemStack stack) {
-		EnumFacing enumfacing = BlockDispenser.getFacing(block.getBlockMetadata());
+		EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
 		World world = block.getWorld();
 		int x = block.getXInt() + enumfacing.getFrontOffsetX();
 		int y = block.getYInt() + enumfacing.getFrontOffsetY();
 		int z = block.getZInt() + enumfacing.getFrontOffsetZ();
 
-		Material material = world.getBlockMaterial(x, y, z);
+		Material material = world.getBlock(x, y, z).getMaterial();
 		if (material == Material.water || material == Material.lava)
 			world.setBlockToAir(x, y, z);
 

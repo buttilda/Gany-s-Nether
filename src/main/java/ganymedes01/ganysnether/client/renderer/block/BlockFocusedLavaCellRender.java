@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -23,7 +24,7 @@ public class BlockFocusedLavaCellRender implements ISimpleBlockRenderingHandler 
 
 	@Override
 	public void renderInventoryBlock(Block block, int meta, int modelID, RenderBlocks renderer) {
-		RenderingHelper.renderCube(Block.lavaStill, meta, renderer);
+		RenderingHelper.renderCube(Blocks.lava, meta, renderer);
 		RenderingHelper.renderCube(block, meta, renderer);
 	}
 
@@ -46,19 +47,19 @@ public class BlockFocusedLavaCellRender implements ISimpleBlockRenderingHandler 
 		}
 
 		tessellator.setColorOpaque_F(R, G, B);
-		renderer.renderFaceYNeg(Block.lavaStill, x, y, z, Block.lavaStill.getIcon(0, 0));
-		renderer.renderFaceYPos(Block.lavaStill, x, y, z, Block.lavaStill.getIcon(0, 0));
-		renderer.renderFaceXNeg(Block.lavaStill, x, y, z, Block.lavaStill.getIcon(0, 0));
-		renderer.renderFaceXPos(Block.lavaStill, x, y, z, Block.lavaStill.getIcon(0, 0));
-		renderer.renderFaceZNeg(Block.lavaStill, x, y, z, Block.lavaStill.getIcon(0, 0));
-		renderer.renderFaceZPos(Block.lavaStill, x, y, z, Block.lavaStill.getIcon(0, 0));
+		renderer.renderFaceYNeg(Blocks.lava, x, y, z, Blocks.lava.getIcon(0, 0));
+		renderer.renderFaceYPos(Blocks.lava, x, y, z, Blocks.lava.getIcon(0, 0));
+		renderer.renderFaceXNeg(Blocks.lava, x, y, z, Blocks.lava.getIcon(0, 0));
+		renderer.renderFaceXPos(Blocks.lava, x, y, z, Blocks.lava.getIcon(0, 0));
+		renderer.renderFaceZNeg(Blocks.lava, x, y, z, Blocks.lava.getIcon(0, 0));
+		renderer.renderFaceZPos(Blocks.lava, x, y, z, Blocks.lava.getIcon(0, 0));
 
 		return renderer.renderStandardBlock(block, x, y, z);
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory() {
-		return true;
+	public boolean shouldRender3DInInventory(int modelId) {
+		return false;
 	}
 
 	@Override

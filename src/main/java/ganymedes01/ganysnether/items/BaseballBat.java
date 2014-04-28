@@ -2,7 +2,6 @@ package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
@@ -19,7 +18,6 @@ import net.minecraft.util.MathHelper;
 public class BaseballBat extends Item {
 
 	BaseballBat() {
-		super(ModIDs.BASEBALL_BAT_ID);
 		setFull3D();
 		setMaxStackSize(1);
 		setCreativeTab(GanysNether.netherTab);

@@ -3,7 +3,6 @@ package ganymedes01.ganysnether.items;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.ModIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
 
@@ -11,18 +10,19 @@ import java.awt.Color;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,20 +37,20 @@ public class SpawnerUpgrade extends Item {
 
 	public enum UpgradeType {
 		// @formatter:off
-		tierCoal(Utils.getColour(33, 40, 45), new ItemStack(Item.coal), new ItemStack(Block.coalBlock)),
-		tierIron(Utils.getColour(255, 255, 255), new ItemStack(Item.ingotIron), new ItemStack(Block.blockIron)),
-		tierLapis(Utils.getColour(29, 47, 157), new ItemStack(Item.dyePowder, 1, 4), new ItemStack(Block.blockLapis)),
-		tierGold(Utils.getColour(255, 204, 53), new ItemStack(Item.ingotGold), new ItemStack(Block.blockGold)),
-		tierDiamond(Utils.getColour(30, 207, 199), new ItemStack(Item.diamond), new ItemStack(Block.blockDiamond)),
-		tierEmerald(Utils.getColour(63, 213, 102), new ItemStack(Item.emerald), new ItemStack(Block.blockEmerald)),
-		tierNetherStar(Utils.getColour(136, 164, 164), new ItemStack(Item.ghastTear), new ItemStack(Item.netherStar)),
+		tierCoal(Utils.getColour(33, 40, 45), new ItemStack(Items.coal), new ItemStack(Blocks.coal_block)),
+		tierIron(Utils.getColour(255, 255, 255), new ItemStack(Items.iron_ingot), new ItemStack(Blocks.iron_block)),
+		tierLapis(Utils.getColour(29, 47, 157), new ItemStack(Items.dye, 1, 4), new ItemStack(Blocks.lapis_block)),
+		tierGold(Utils.getColour(255, 204, 53), new ItemStack(Items.gold_ingot), new ItemStack(Blocks.gold_block)),
+		tierDiamond(Utils.getColour(30, 207, 199), new ItemStack(Items.diamond), new ItemStack(Blocks.diamond_block)),
+		tierEmerald(Utils.getColour(63, 213, 102), new ItemStack(Items.emerald), new ItemStack(Blocks.emerald_block)),
+		tierNetherStar(Utils.getColour(136, 164, 164), new ItemStack(Items.ghast_tear), new ItemStack(Items.nether_star)),
 		tierDragonEgg(Utils.getColour(87, 2, 98), null, null),
-		redstone(Utils.getColour(181, 31, 10), new ItemStack(Item.redstone), new ItemStack(Block.blockRedstone)),
-		noPlayer(Utils.getColour(255, 162, 3), new ItemStack(Item.appleRed), new ItemStack(Item.appleGold)),
+		redstone(Utils.getColour(181, 31, 10), new ItemStack(Items.redstone), new ItemStack(Blocks.redstone_block)),
+		noPlayer(Utils.getColour(255, 162, 3), new ItemStack(Items.apple), new ItemStack(Items.golden_apple)),
 		ignoreConditions(0, new ItemStack(ModItems.sceptreCap), new ItemStack(ModBlocks.denseLavaCell)),
-		silky(0, new ItemStack(Block.oreNetherQuartz), Utils.enchantStack(new ItemStack(Item.enchantedBook), Enchantment.silkTouch, 1)),
+		silky(0, new ItemStack(Blocks.quartz_ore), Utils.enchantStack(new ItemStack(Items.enchanted_book), Enchantment.silkTouch, 1)),
 		spawnCount(0, null, null),
-		spawnRange(0, new ItemStack(Item.eyeOfEnder), new ItemStack(Block.fire));
+		spawnRange(0, new ItemStack(Items.ender_eye), new ItemStack(Blocks.fire));
 		// @formatter:on
 
 		private final int colour;
@@ -76,10 +76,9 @@ public class SpawnerUpgrade extends Item {
 	}
 
 	@SideOnly(Side.CLIENT)
-	private Icon inside;
+	private IIcon inside;
 
 	SpawnerUpgrade() {
-		super(ModIDs.SPAWNER_UPGRADE_ID);
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setCreativeTab(GanysNether.netherTab);
@@ -91,30 +90,35 @@ public class SpawnerUpgrade extends Item {
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
 		if (world.isRemote || player.isSneaking())
 			return true;
-		int id = world.getBlockId(x, y, z);
+		Block block = world.getBlock(x, y, z);
 		int meta = stack.getItemDamage();
 
-		if (id == Block.mobSpawner.blockID) {
+		if (block == Blocks.mob_spawner) {
 			if (meta != UpgradeType.tierCoal.ordinal())
 				return false;
 			NBTTagCompound data = new NBTTagCompound();
-			TileEntityMobSpawner old = (TileEntityMobSpawner) world.getBlockTileEntity(x, y, z);
-			old.writeToNBT(data);
-			if (old.getSpawnerLogic().getEntityNameToSpawn().equalsIgnoreCase("skeleton"))
-				data.setBoolean("isWitherSkeleton", world.provider.isHellWorld);
-			world.setBlock(x, y, z, ModBlocks.extendedSpawner.blockID);
-			TileEntity tile = world.getBlockTileEntity(x, y, z);
-			tile.readFromNBT(data);
-			PacketDispatcher.sendPacketToAllPlayers(tile.getDescriptionPacket());
-			useItem(stack, player);
-			return true;
+			TileEntityMobSpawner old = Utils.getTileEntity(world, x, y, z, TileEntityMobSpawner.class);
+			if (old != null) {
+				old.writeToNBT(data);
+				if (old.func_145881_a().getEntityNameToSpawn().equalsIgnoreCase("skeleton"))
+					data.setBoolean("isWitherSkeleton", world.provider.isHellWorld);
+				world.setBlock(x, y, z, ModBlocks.extendedSpawner);
+				TileEntity tile = world.getTileEntity(x, y, z);
+				tile.readFromNBT(data);
+				PacketDispatcher.sendPacketToAllPlayers(tile.getDescriptionPacket());
+				useItem(stack, player);
+				return true;
+			}
 		}
 
 		boolean used = false;
-		if (id == ModBlocks.extendedSpawner.blockID) {
+		if (block == ModBlocks.extendedSpawner) {
 			if (meta == UpgradeType.tierCoal.ordinal())
 				return false;
-			TileEntityExtendedSpawner tile = (TileEntityExtendedSpawner) world.getBlockTileEntity(x, y, z);
+			TileEntityExtendedSpawner tile = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
+			if (tile == null)
+				return false;
+
 			if (meta <= UpgradeType.tierDragonEgg.ordinal() && tile.logic.tier + 1 == meta) {
 				tile.logic.tier = (byte) meta;
 				used = true;
@@ -174,13 +178,13 @@ public class SpawnerUpgrade extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIconFromDamageForRenderPass(int meta, int pass) {
+	public IIcon getIconFromDamageForRenderPass(int meta, int pass) {
 		return pass == 1 ? inside : super.getIconFromDamageForRenderPass(meta, pass);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg) {
+	public void registerIcons(IIconRegister reg) {
 		super.registerIcons(reg);
 		inside = reg.registerIcon(getIconString() + "_inside");
 	}
@@ -193,8 +197,9 @@ public class SpawnerUpgrade extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(int id, CreativeTabs tabs, List list) {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void getSubItems(Item item, CreativeTabs tabs, List list) {
 		for (int i = 0; i < UpgradeType.values().length; i++)
-			list.add(new ItemStack(itemID, 1, i));
+			list.add(new ItemStack(item, 1, i));
 	}
 }

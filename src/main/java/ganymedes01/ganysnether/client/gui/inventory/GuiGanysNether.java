@@ -1,12 +1,13 @@
 package ganymedes01.ganysnether.client.gui.inventory;
 
 import ganymedes01.ganysnether.core.utils.Utils;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.inventory.Container;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
 
 import org.lwjgl.opengl.GL11;
@@ -26,6 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public abstract class GuiGanysNether extends GuiContainer {
 
 	protected final int BLACK = Utils.getColour(0, 0, 0);
+	protected FontRenderer fontRenderer = fontRendererObj;
 
 	public GuiGanysNether(Container container) {
 		super(container);
@@ -56,7 +58,7 @@ public abstract class GuiGanysNether extends GuiContainer {
 			j1 = height - k1 - 6;
 
 		zLevel = 300.0F;
-		itemRenderer.zLevel = 300.0F;
+		itemRender.zLevel = 300.0F;
 		int l1 = -267386864;
 		drawGradientRect(i1 - 3, j1 - 4, i1 + k + 3, j1 - 3, l1, l1);
 		drawGradientRect(i1 - 3, j1 + k1 + 3, i1 + k + 3, j1 + k1 + 4, l1, l1);
@@ -73,7 +75,7 @@ public abstract class GuiGanysNether extends GuiContainer {
 		fontRenderer.drawStringWithShadow(text, i1, j1, -1);
 
 		zLevel = 0.0F;
-		itemRenderer.zLevel = 0.0F;
+		itemRender.zLevel = 0.0F;
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		RenderHelper.enableStandardItemLighting();
@@ -83,7 +85,7 @@ public abstract class GuiGanysNether extends GuiContainer {
 	protected void drawFluid(Fluid fluid, int level, int x, int y, int width, int height) {
 		if (fluid == null)
 			return;
-		Icon icon = fluid.getIcon();
+		IIcon icon = fluid.getIcon();
 		mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 		setColour(fluid.getColor());
 		int fullX = width / 16;
@@ -104,7 +106,7 @@ public abstract class GuiGanysNether extends GuiContainer {
 		drawCutIcon(icon, x + fullX * 16, y + fullY * 16, lastX, lastY, fullLvl == fullY ? lastLvl : 0);
 	}
 
-	private void drawCutIcon(Icon icon, int x, int y, int width, int height, int cut) {
+	private void drawCutIcon(IIcon icon, int x, int y, int width, int height, int cut) {
 		Tessellator tess = Tessellator.instance;
 		tess.startDrawingQuads();
 		tess.addVertexWithUV(x, y + height, zLevel, icon.getMinU(), icon.getInterpolatedV(height));

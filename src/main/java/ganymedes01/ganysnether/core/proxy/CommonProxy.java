@@ -26,8 +26,6 @@ import ganymedes01.ganysnether.tileentities.TileEntityThermalSmelter;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -62,18 +60,9 @@ public class CommonProxy implements IGuiHandler {
 	public void registerRenderers() {
 	}
 
-	public void handleMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
-	}
-
-	public void handleHorseArmourStandPacket(int x, int y, int z, byte type, byte rotation) {
-	}
-
-	public void handleExtendedSpawnerPacket(int x, int y, int z, NBTTagCompound data) {
-	}
-
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		TileEntity tile = world.getBlockTileEntity(x, y, z);
+		TileEntity tile = world.getTileEntity(x, y, z);
 		switch (ID) {
 			case GUIsID.VOLCANIC_FURNACE:
 				return new ContainerVolcanicFurnace(player.inventory, (TileEntityVolcanicFurnace) tile);
@@ -92,7 +81,7 @@ public class CommonProxy implements IGuiHandler {
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		TileEntity tile = world.getBlockTileEntity(x, y, z);
+		TileEntity tile = world.getTileEntity(x, y, z);
 		switch (ID) {
 			case GUIsID.VOLCANIC_FURNACE:
 				return new GuiVolcanicFurnace(player.inventory, (TileEntityVolcanicFurnace) tile);

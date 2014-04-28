@@ -107,30 +107,11 @@ public class OreDictionaryHandler extends TemplateRecipeHandler {
 		for (int i = 0; i < list.size(); i++)
 			for (int j = 0; j < list.size(); j++)
 				if (i != j)
-					if (areStacksTheSame(list.get(i), list.get(j))) {
+					if (Utils.areStacksTheSame(list.get(i), list.get(j), false)) {
 						list.remove(j);
 						cleanItemStackArray(list);
 						return;
 					}
-	}
-
-	private boolean areStacksTheSame(ItemStack stack1, ItemStack stack2) {
-		if (stack1.itemID == stack2.itemID)
-			if (stack1.getItemDamage() == stack2.getItemDamage())
-				return checkNBTs(stack1, stack2);
-		return false;
-	}
-
-	private boolean checkNBTs(ItemStack stack1, ItemStack stack2) {
-		return stack1.hasTagCompound() && stack2.hasTagCompound() ? stack1.stackTagCompound.equals(stack2.stackTagCompound) : stack1.hasTagCompound() == stack2.hasTagCompound();
-	}
-
-	private List<ItemStack> getValidStacks(int oreID, List<ItemStack> list) {
-		ArrayList<ItemStack> valid = new ArrayList<ItemStack>();
-		for (ItemStack stack : list)
-			if (OreDictionary.getOreID(stack) == oreID)
-				valid.add(stack);
-		return valid;
 	}
 
 	private <T> List<T[]> splitArray(T[] array, int max) {

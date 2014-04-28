@@ -1,14 +1,11 @@
 package ganymedes01.ganysnether.recipes.centrifuge;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class OreDictCentrifugeRecipe extends CentrifugeRecipe {
-
-	private static final Random rand = new Random();
 
 	public OreDictCentrifugeRecipe(String material1, Object material2, ItemStack... result) {
 		super(material1, material2, result);
@@ -29,7 +26,7 @@ public class OreDictCentrifugeRecipe extends CentrifugeRecipe {
 			return false;
 
 		if (material2 instanceof ItemStack) {
-			if (getStack(material2).itemID == material.itemID && getStack(material2).getItemDamage() == material.getItemDamage())
+			if (getStack(material2).getItem() == material.getItem() && getStack(material2).getItemDamage() == material.getItemDamage())
 				return true;
 		} else if (listContainsStack(OreDictionary.getOres(getString(material2)), material))
 			return true;
@@ -51,7 +48,7 @@ public class OreDictCentrifugeRecipe extends CentrifugeRecipe {
 					if (material2 instanceof String)
 						return getString(recipe.material2).matches(getString(material2));
 					else
-						return getStack(material2).itemID == getStack(recipe.material2).itemID && getStack(material2).getItemDamage() == getStack(recipe.material2).getItemDamage();
+						return getStack(material2).getItem() == getStack(recipe.material2).getItem() && getStack(material2).getItemDamage() == getStack(recipe.material2).getItemDamage();
 		} else if (obj instanceof ItemStackCentrifugeRecipe) {
 			ItemStackCentrifugeRecipe recipe = (ItemStackCentrifugeRecipe) obj;
 			if (listContainsStack(OreDictionary.getOres(getString(material1)), getStack(recipe.material1)) && listContainsStack(OreDictionary.getOres(getString(material2)), getStack(recipe.material2)))
@@ -75,7 +72,7 @@ public class OreDictCentrifugeRecipe extends CentrifugeRecipe {
 
 	private boolean listContainsStack(ArrayList<ItemStack> list, ItemStack stack) {
 		for (ItemStack s : list)
-			if (s.itemID == stack.itemID && s.getItemDamage() == stack.getItemDamage())
+			if (s.getItem() == stack.getItem() && s.getItemDamage() == stack.getItemDamage())
 				return true;
 		return false;
 	}

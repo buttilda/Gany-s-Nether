@@ -33,7 +33,7 @@ public class GuiUndertaker extends GuiGanysNether {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		fontRenderer.drawString(StatCollector.translateToLocal(undertaker.getInvName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(undertaker.getInvName())) / 2, 6, BLACK);
+		fontRenderer.drawString(StatCollector.translateToLocal(undertaker.getInventoryName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(undertaker.getInventoryName())) / 2, 6, BLACK);
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
 	}
 
