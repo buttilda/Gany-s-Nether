@@ -4,6 +4,7 @@ import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.core.utils.UnsizedStack;
 import ganymedes01.ganysnether.items.ModItems;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,6 +25,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 
 /**
  * Gany's Nether
@@ -86,6 +88,11 @@ public class VolcanicFurnaceHandler {
 			if (data != null)
 				if (data.fluid != null && data.fluid.getFluid() == FluidRegistry.LAVA)
 					addBurnTimeForItem(data.filledContainer, data.fluid.amount);
+
+		try {
+			Block.class.getField("blockHardness").setAccessible(true);
+		} catch (Exception e) {
+		}
 	}
 
 	public static void addBurnTimeForItem(ItemStack stack, int burnTime) {
@@ -133,7 +140,8 @@ public class VolcanicFurnaceHandler {
 					blackListItem(stack);
 					return false;
 				}
-				if (block.blockHardness <= 0.0F) {
+
+				if (getHardness(block) <= 0.0F) {
 					blackListItem(stack);
 					return false;
 				}
@@ -191,9 +199,10 @@ public class VolcanicFurnaceHandler {
 
 		double volume = 16 * x * y * z;
 
-		if (block.blockHardness > 0.0F)
-			if (block.blockHardness <= 1.0F || block.getHarvestLevel(stack.getItemDamage()) > 2)
-				volume *= block.blockHardness;
+		float hardness = getHardness(block);
+		if (hardness > 0.0F)
+			if (hardness <= 1.0F || block.getHarvestLevel(2) > 2)
+				volume *= hardness;
 
 		int intVolume = (int) volume;
 
@@ -205,8 +214,6 @@ public class VolcanicFurnaceHandler {
 	}
 
 	public static String getUnitParsedValued(long value, String unit, int prefix) {
-		prefix++;
-
 		float v = value;
 		while (v >= 1000) {
 			prefix++;
@@ -214,5 +221,14 @@ public class VolcanicFurnaceHandler {
 		}
 
 		return String.format("%,3.1f", v) + " " + prefixes[prefix] + unit;
+	}
+
+	private static float getHardness(Block block) {
+		Field hardness = ReflectionHelper.findField(Block.class, "field_149782_v", "blockHardness");
+		try {
+			return hardness.getFloat(block);
+		} catch (Exception e) {
+			return 0.0F;
+		}
 	}
 }

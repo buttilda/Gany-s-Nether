@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.IIcon;
@@ -44,7 +45,7 @@ public class WitherShrub extends NetherCrop {
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		if (world.isRemote)
 			return;
-		if (canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z))) {
+		if (canPlaceBlockOn(world.getBlock(x, y - 1, z))) {
 			int random = rand.nextInt(90);
 			if (random == 45) {
 				int meta = world.getBlockMetadata(x, y, z);
@@ -189,8 +190,8 @@ public class WitherShrub extends NetherCrop {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int idPicked(World world, int x, int y, int z) {
-		return ModItems.witherShrubSeeds.itemID;
+	public Item getItem(World world, int x, int y, int z) {
+		return ModItems.witherShrubSeeds;
 	}
 
 	@Override

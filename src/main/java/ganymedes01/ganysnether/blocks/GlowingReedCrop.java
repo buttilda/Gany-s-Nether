@@ -64,13 +64,13 @@ public class GlowingReedCrop extends BlockReed {
 	}
 
 	@Override
-	public Item idDropped(int id, Random random, int meta) {
+	public Item getItemDropped(int id, Random random, int meta) {
 		return ModItems.glowingReed;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Item idPicked(World world, int x, int y, int z) {
+	public Item getItem(World world, int x, int y, int z) {
 		return ModItems.glowingReed;
 	}
 }

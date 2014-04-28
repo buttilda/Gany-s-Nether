@@ -11,6 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -81,8 +82,8 @@ public class TilledNetherrack extends BlockFarmland {
 	}
 
 	@Override
-	public int idDropped(int meta, Random rand, int fortune) {
-		return Block.netherrack.idDropped(0, rand, fortune);
+	public Item getItemDropped(int meta, Random rand, int fortune) {
+		return Blocks.netherrack.getItemDropped(0, rand, fortune);
 	}
 
 	@Override
@@ -111,8 +112,8 @@ public class TilledNetherrack extends BlockFarmland {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int idPicked(World world, int x, int y, int z) {
-		return Block.netherrack.blockID;
+	public Item getItem(World world, int x, int y, int z) {
+		return Item.getItemFromBlock(Blocks.netherrack);
 	}
 
 	@Override

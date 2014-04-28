@@ -36,9 +36,10 @@ public class GuiVolcanicFurnace extends GuiGanysNether {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		fontRenderer.drawString(StatCollector.translateToLocal(furnace.getInventoryName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(furnace.getInventoryName())) / 2, 6, BLACK);
-		fontRenderer.drawString(FLUID_TO_GO, 10, 15, BLACK);
-		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
+		String name = StatCollector.translateToLocal(furnace.getInventoryName());
+		fontRendererObj.drawString(name, xSize / 2 - fontRendererObj.getStringWidth(name) / 2, 6, BLACK);
+		fontRendererObj.drawString(FLUID_TO_GO, 10, 15, BLACK);
+		fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
 	}
 
 	@Override
@@ -60,7 +61,7 @@ public class GuiVolcanicFurnace extends GuiGanysNether {
 		drawTexturedModalRect(x + 104, y + 17, 176, 31, 16, 52);
 
 		String fluidAmount = VolcanicFurnaceHandler.getUnitParsedValued(furnace.meltTime, "B", 0);
-		fontRenderer.drawString(fluidAmount, x + 10 + fontRenderer.getStringWidth(FLUID_TO_GO) / 2 - fontRenderer.getStringWidth(fluidAmount) / 2, y + 25, BLACK);
+		fontRendererObj.drawString(fluidAmount, x + 10 + fontRendererObj.getStringWidth(FLUID_TO_GO) / 2 - fontRendererObj.getStringWidth(fluidAmount) / 2, y + 25, BLACK);
 	}
 
 	@Override

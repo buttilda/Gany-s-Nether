@@ -57,6 +57,6 @@ public class UnsizedStack implements Comparable<UnsizedStack> {
 
 	@Override
 	public int compareTo(UnsizedStack unStack) {
-		return hashCode() - unStack.hashCode();
+		return Integer.compare(hashCode(), unStack.hashCode());
 	}
 }

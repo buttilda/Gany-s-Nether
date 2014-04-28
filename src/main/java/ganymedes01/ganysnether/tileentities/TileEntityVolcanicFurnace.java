@@ -143,8 +143,8 @@ public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedI
 				boolean old = hasLava;
 				hasLava = eventData > 0;
 				if (hasLava != old) {
-					worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
-					worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+					worldObj.func_147451_t(xCoord, yCoord, zCoord);
+					worldObj.func_147479_m(xCoord, yCoord, zCoord);
 				}
 				return true;
 			default:

@@ -49,6 +49,7 @@ public class SkeletonSpawner extends Item {
 		setHasSubtypes(true);
 		setTextureName("spawn_egg");
 		setCreativeTab(GanysNether.netherTab);
+		setUnlocalizedName(Strings.Items.SKELETON_SPAWNER_NAME);
 	}
 
 	@Override

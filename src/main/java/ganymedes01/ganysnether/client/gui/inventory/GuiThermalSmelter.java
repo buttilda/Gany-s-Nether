@@ -32,8 +32,9 @@ public class GuiThermalSmelter extends GuiGanysNether {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		fontRenderer.drawString(StatCollector.translateToLocal(tile.getInventoryName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(tile.getInventoryName())) / 2, 6, BLACK);
-		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
+		String name = StatCollector.translateToLocal(tile.getInventoryName());
+		fontRendererObj.drawString(name, xSize / 2 - fontRendererObj.getStringWidth(name) / 2, 6, BLACK);
+		fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
 	}
 
 	@Override

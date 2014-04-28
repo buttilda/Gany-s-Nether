@@ -59,7 +59,7 @@ public class InterModComms {
 	private static void addCentrifugeRecipe(IMCMessage message) {
 		try {
 			NBTTagCompound data = message.getNBTValue();
-			NBTTagList tagList = data.getTagList("Recipe");
+			NBTTagList tagList = data.getTagList("Recipe", 10);
 			ItemStack material1 = null, material2 = null;
 			ItemStack[] result = new ItemStack[tagList.tagCount() - 2];
 

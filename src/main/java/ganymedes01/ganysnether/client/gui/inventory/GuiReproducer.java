@@ -23,7 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiReproducer extends GuiGanysNether {
 
-	TileEntityReproducer reproducer;
+	private final TileEntityReproducer reproducer;
 
 	public GuiReproducer(InventoryPlayer inventory, TileEntityReproducer tile) {
 		super(new ContainerReproducer(inventory, tile));
@@ -32,8 +32,9 @@ public class GuiReproducer extends GuiGanysNether {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		fontRenderer.drawString(StatCollector.translateToLocal(reproducer.getInventoryName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(reproducer.getInventoryName())) / 2, 6, BLACK);
-		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
+		String name = StatCollector.translateToLocal(reproducer.getInventoryName());
+		fontRendererObj.drawString(name, xSize / 2 - fontRendererObj.getStringWidth(name) / 2, 6, BLACK);
+		fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
 	}
 
 	@Override

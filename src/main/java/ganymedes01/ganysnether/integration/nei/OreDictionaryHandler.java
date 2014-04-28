@@ -7,17 +7,19 @@ import java.awt.Rectangle;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import org.lwjgl.opengl.GL11;
 
 import codechicken.core.gui.GuiDraw;
-import codechicken.nei.NEIClientUtils;
+import codechicken.nei.ItemList;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
@@ -51,6 +53,7 @@ public class OreDictionaryHandler extends TemplateRecipeHandler {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void loadCraftingRecipes(String outputId, Object... results) {
 		if (outputId.equals(Reference.MOD_ID + "OreDictionary"))
 			try {
@@ -90,7 +93,7 @@ public class OreDictionaryHandler extends TemplateRecipeHandler {
 			if (stack != null) {
 				if (stack.getItemDamage() != OreDictionary.WILDCARD_VALUE)
 					equivalents.add(stack);
-				equivalents.addAll(getValidStacks(oreID, NEIClientUtils.getValidItems(stack.itemID)));
+				equivalents.addAll(getValidStacks(oreID, getValidItems(stack.getItem())));
 			}
 
 		if (equivalents.size() > 0) {
@@ -101,6 +104,21 @@ public class OreDictionaryHandler extends TemplateRecipeHandler {
 		}
 
 		return list;
+	}
+
+	private List<ItemStack> getValidItems(Item item) {
+		List<ItemStack> values = ItemList.itemMap.get(item);
+		if (values == null)
+			return Collections.emptyList();
+		return values;
+	}
+
+	private List<ItemStack> getValidStacks(int oreID, List<ItemStack> list) {
+		ArrayList<ItemStack> valid = new ArrayList<ItemStack>();
+		for (ItemStack stack : list)
+			if (OreDictionary.getOreID(stack) == oreID)
+				valid.add(stack);
+		return valid;
 	}
 
 	private void cleanItemStackArray(ArrayList<ItemStack> list) {

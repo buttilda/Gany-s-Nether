@@ -10,6 +10,7 @@ import java.util.Random;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -29,8 +30,8 @@ public class Undertaker extends SoulChest {
 	}
 
 	@Override
-	public int idDropped(int id, Random rand, int fortune) {
-		return 0;
+	public Item getItemDropped(int id, Random rand, int fortune) {
+		return null;
 	}
 
 	@Override

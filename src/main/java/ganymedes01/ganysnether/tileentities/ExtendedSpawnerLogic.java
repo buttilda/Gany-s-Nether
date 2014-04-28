@@ -296,9 +296,9 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 		tier = data.getByte("tier");
 		isWitherSkeleton = data.getBoolean("isWitherSkeleton");
 
-		NBTTagList tagList = data.getTagList("Items");
+		NBTTagList tagList = data.getTagList("Items", 10);
 		for (int i = 0; i < tagList.tagCount(); i++) {
-			NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
+			NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
 			byte slot = tagCompound.getByte("Slot");
 			if (slot >= 0 && slot < fifo.length)
 				fifo[slot] = ItemStack.loadItemStackFromNBT(tagCompound);

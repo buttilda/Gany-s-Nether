@@ -61,6 +61,7 @@ public class GanysNetherCraftGuideConfig extends CraftGuideAPIObject implements 
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private ItemStack getStack(Object obj) {
 		if (obj instanceof ItemStack)
 			return (ItemStack) obj;

@@ -47,7 +47,7 @@ public class ExtendedSpawner extends BlockMobSpawner {
 				TileEntityExtendedSpawner tile = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
 				if (tile != null)
 					for (String s : tile.getUpgradeList())
-						player.addChatMessage(s);
+						Utils.sendMessageToPlayer(player, s);
 				return true;
 			}
 		return false;
@@ -79,15 +79,15 @@ public class ExtendedSpawner extends BlockMobSpawner {
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbour) {
 		TileEntityExtendedSpawner spawner = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
-		if (spawner != null) {
+		if (spawner != null)
 			spawner.logic.isBlockPowered = world.isBlockIndirectlyGettingPowered(x, y, z);
-			PacketDispatcher.sendPacketToAllPlayers(spawner.getDescriptionPacket());
-		}
+		//FIXME  PacketDispatcher.sendPacketToAllPlayers(spawner.getDescriptionPacket());
 	}
 
 	@Override
-	public int getExpDrop(World world, int meta, int fortune) {
-		return meta == 0 ? 15 + world.rand.nextInt(15) + world.rand.nextInt(15) : 0;
+	public int getExpDrop(IBlockAccess world, int meta, int fortune) {
+		Random rand = new Random();
+		return meta == 0 ? 15 + rand.nextInt(15) + rand.nextInt(15) : 0;
 	}
 
 	@Override

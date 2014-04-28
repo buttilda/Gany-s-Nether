@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="/Users/Andre/Documents/Development/forge17/mods/CodeChickenCore 1.7.2-rc1.jar"/>
 	<classpathentry kind="lib" path="/Users/Andre/Documents/Development/forge17/mods/NotEnoughItems-1.7.2-rc2.jar"/>
 	<classpathentry kind="lib" path="/Users/Andre/Documents/Development/forge17/mods/Thaumcraft-1.7.2-4.1.1.9.jar"/>
+	<classpathentry kind="lib" path="/Users/Andre/Documents/Development/1.7.2Workspace/CraftGuide_API.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

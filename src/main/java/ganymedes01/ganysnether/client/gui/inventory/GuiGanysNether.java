@@ -1,7 +1,6 @@
 package ganymedes01.ganysnether.client.gui.inventory;
 
 import ganymedes01.ganysnether.core.utils.Utils;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -27,7 +26,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public abstract class GuiGanysNether extends GuiContainer {
 
 	protected final int BLACK = Utils.getColour(0, 0, 0);
-	protected FontRenderer fontRenderer = fontRendererObj;
 
 	public GuiGanysNether(Container container) {
 		super(container);
@@ -42,7 +40,7 @@ public abstract class GuiGanysNether extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		int k = 0;
-		int l = fontRenderer.getStringWidth(text);
+		int l = fontRendererObj.getStringWidth(text);
 
 		if (l > k)
 			k = l;
@@ -72,7 +70,7 @@ public abstract class GuiGanysNether extends GuiContainer {
 		drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 - 3 + 1, i2, i2);
 		drawGradientRect(i1 - 3, j1 + k1 + 2, i1 + k + 3, j1 + k1 + 3, j2, j2);
 
-		fontRenderer.drawStringWithShadow(text, i1, j1, -1);
+		fontRendererObj.drawStringWithShadow(text, i1, j1, -1);
 
 		zLevel = 0.0F;
 		itemRender.zLevel = 0.0F;

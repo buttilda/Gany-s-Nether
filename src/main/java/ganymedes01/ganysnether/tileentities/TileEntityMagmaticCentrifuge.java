@@ -2,8 +2,6 @@ package ganymedes01.ganysnether.tileentities;
 
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.lib.Strings;
-import ganymedes01.ganysnether.network.PacketTypeHandler;
-import ganymedes01.ganysnether.network.packet.PacketMagmaticCentrifuge;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 
 import java.util.ArrayList;
@@ -13,6 +11,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -177,7 +176,7 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 	}
 
 	private void checkRecipe() {
-		PacketDispatcher.sendPacketToAllPlayers(PacketTypeHandler.populatePacket(new PacketMagmaticCentrifuge(xCoord, yCoord, zCoord, inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2], isRecipeValid)));
+		//FIXME	PacketDispatcher.sendPacketToAllPlayers(PacketTypeHandler.populatePacket(new PacketMagmaticCentrifuge(xCoord, yCoord, zCoord, inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2], isRecipeValid)));
 
 		if (inventory[MATERIAL_SLOT_1] == null || inventory[MATERIAL_SLOT_2] == null)
 			isRecipeValid = false;
@@ -207,7 +206,9 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 
 	@Override
 	public Packet getDescriptionPacket() {
-		return PacketTypeHandler.populatePacket(new PacketMagmaticCentrifuge(xCoord, yCoord, zCoord, inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2], isRecipeValid));
+		NBTTagCompound nbt = new NBTTagCompound();
+		writeToNBT(nbt);
+		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, nbt);
 	}
 
 	@SideOnly(Side.CLIENT)

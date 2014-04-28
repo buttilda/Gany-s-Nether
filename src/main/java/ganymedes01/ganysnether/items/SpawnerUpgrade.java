@@ -105,7 +105,7 @@ public class SpawnerUpgrade extends Item {
 				world.setBlock(x, y, z, ModBlocks.extendedSpawner);
 				TileEntity tile = world.getTileEntity(x, y, z);
 				tile.readFromNBT(data);
-				PacketDispatcher.sendPacketToAllPlayers(tile.getDescriptionPacket());
+				//FIXME PacketDispatcher.sendPacketToAllPlayers(tile.getDescriptionPacket());
 				useItem(stack, player);
 				return true;
 			}
@@ -149,7 +149,7 @@ public class SpawnerUpgrade extends Item {
 
 			if (used) {
 				useItem(stack, player);
-				PacketDispatcher.sendPacketToAllPlayers(tile.getDescriptionPacket());
+				//FIXME  PacketDispatcher.sendPacketToAllPlayers(tile.getDescriptionPacket());
 				return true;
 			}
 		}

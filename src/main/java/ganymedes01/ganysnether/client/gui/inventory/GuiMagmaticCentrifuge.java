@@ -36,8 +36,9 @@ public class GuiMagmaticCentrifuge extends GuiGanysNether {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		fontRenderer.drawString(StatCollector.translateToLocal(centrifuge.getInventoryName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(centrifuge.getInventoryName())) / 2, 6, BLACK);
-		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
+		String name = StatCollector.translateToLocal(centrifuge.getInventoryName());
+		fontRendererObj.drawString(name, xSize / 2 - fontRendererObj.getStringWidth(name) / 2, 6, BLACK);
+		fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
 	}
 
 	@Override

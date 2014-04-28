@@ -27,7 +27,7 @@ public class ModBlocks {
 	public static final Block glowingReed = new GlowingReedCrop();
 	public static final Block soulGlass = new SoulGlass();
 	public static final Block soulChest = new SoulChest();
-	public static final Block volcanicFurnaceIdle = new VolcanicFurnace(false);
+	public static final Block volcanicFurnaceIdle = new VolcanicFurnace();
 	public static final Block denseLavaCell = new DenseLavaCell();
 	public static final Block glowBox = new GlowBox();
 	public static final Block colouredQuartzBlock = new ColouredQuartzBlock();
@@ -87,10 +87,14 @@ public class ModBlocks {
 	}
 
 	private static void registerBlock(Block block) {
-		GameRegistry.registerBlock(block, block.getUnlocalizedName());
+		String name = block.getUnlocalizedName();
+		String[] strings = name.split("\\.");
+		GameRegistry.registerBlock(block, strings[strings.length - 1]);
 	}
 
 	private static void registerBlock(Block block, Class<? extends ItemBlock> item) {
-		GameRegistry.registerBlock(block, item, block.getUnlocalizedName());
+		String name = block.getUnlocalizedName();
+		String[] strings = name.split("\\.");
+		GameRegistry.registerBlock(block, item, strings[strings.length - 1]);
 	}
 }

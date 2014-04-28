@@ -10,6 +10,7 @@ import net.minecraft.block.BlockCocoa;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIcon;
@@ -96,7 +97,7 @@ public class WeepingPod extends BlockCocoa {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int idPicked(World world, int x, int y, int z) {
+	public Item getItem(World world, int x, int y, int z) {
 		return Items.ghast_tear;
 	}
 

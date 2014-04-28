@@ -23,7 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiUndertaker extends GuiGanysNether {
 
-	TileEntityUndertaker undertaker;
+	private final TileEntityUndertaker undertaker;
 
 	public GuiUndertaker(InventoryPlayer inventory, TileEntityUndertaker tileUndertaker) {
 		super(new ContainerUndertaker(inventory, tileUndertaker));
@@ -33,8 +33,9 @@ public class GuiUndertaker extends GuiGanysNether {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		fontRenderer.drawString(StatCollector.translateToLocal(undertaker.getInventoryName()), xSize / 2 - fontRenderer.getStringWidth(StatCollector.translateToLocal(undertaker.getInventoryName())) / 2, 6, BLACK);
-		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
+		String name = StatCollector.translateToLocal(undertaker.getInventoryName());
+		fontRendererObj.drawString(name, xSize / 2 - fontRendererObj.getStringWidth(name) / 2, 6, BLACK);
+		fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
 	}
 
 	@Override

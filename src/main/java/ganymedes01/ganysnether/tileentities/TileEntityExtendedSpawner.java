@@ -5,8 +5,6 @@ import ganymedes01.ganysnether.core.utils.SpawnEggHelper;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.items.SkeletonSpawner;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
-import ganymedes01.ganysnether.network.PacketTypeHandler;
-import ganymedes01.ganysnether.network.packet.PacketExtendedSpawner;
 
 import java.util.ArrayList;
 
@@ -15,6 +13,7 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumChatFormatting;
@@ -121,10 +120,10 @@ public class TileEntityExtendedSpawner extends TileEntity {
 
 	@Override
 	public Packet getDescriptionPacket() {
-		NBTTagCompound data = new NBTTagCompound();
-		writeToNBT(data);
-		data.removeTag("SpawnPotentials");
-		return PacketTypeHandler.populatePacket(new PacketExtendedSpawner(xCoord, yCoord, zCoord, data));
+		NBTTagCompound nbt = new NBTTagCompound();
+		writeToNBT(nbt);
+		nbt.removeTag("SpawnPotentials");
+		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, nbt);
 	}
 
 	@Override

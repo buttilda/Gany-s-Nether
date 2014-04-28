@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public class NetherCrop extends BlockCrops {
 
 	@Override
-	protected boolean canThisPlantGrowOnThisBlock(Block block) {
+	protected boolean canPlaceBlockOn(Block block) {
 		return block == ModBlocks.tilledNetherrack;
 	}
 
@@ -42,11 +42,11 @@ public class NetherCrop extends BlockCrops {
 		super.dropBlockAsItemWithChance(world, x, y, z, meta, dropChance, fortune);
 		if (!world.isRemote)
 			if (world.rand.nextInt(30) == 15)
-				dropBlockAsItem_do(world, x, y, z, new ItemStack(Items.rotten_flesh));
+				dropBlockAsItem(world, x, y, z, new ItemStack(Items.rotten_flesh));
 	}
 
 	@Override
-	public void fertilize(World world, int x, int y, int z) {
+	public void func_149863_m(World world, int x, int y, int z) {
 		int meta = world.getBlockMetadata(x, y, z);
 
 		if (meta < 7)
