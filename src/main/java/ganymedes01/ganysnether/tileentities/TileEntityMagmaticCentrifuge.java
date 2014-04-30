@@ -78,6 +78,7 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 
 	@Override
 	public void markDirty() {
+		super.markDirty();
 		checkRecipe();
 	}
 
@@ -176,8 +177,6 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 	}
 
 	private void checkRecipe() {
-		//FIXME	PacketDispatcher.sendPacketToAllPlayers(PacketTypeHandler.populatePacket(new PacketMagmaticCentrifuge(xCoord, yCoord, zCoord, inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2], isRecipeValid)));
-
 		if (inventory[MATERIAL_SLOT_1] == null || inventory[MATERIAL_SLOT_2] == null)
 			isRecipeValid = false;
 		else

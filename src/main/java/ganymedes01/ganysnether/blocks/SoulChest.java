@@ -85,14 +85,15 @@ public class SoulChest extends InventoryBlock {
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
 		if (world.isRemote)
 			return true;
-		IInventory iinventory = Utils.getTileEntity(world, x, y, z, IInventory.class);
-		if (!Utils.addStackToInventory(iinventory, player.inventory.getCurrentItem())) {
-			if (iinventory != null)
-				player.displayGUIChest(iinventory);
-			return true;
-		}
 
-		return true;
+		IInventory iinventory = Utils.getTileEntity(world, x, y, z, IInventory.class);
+		if (iinventory != null)
+			if (!Utils.addStackToInventory(iinventory, player.inventory.getCurrentItem())) {
+				player.displayGUIChest(iinventory);
+				return true;
+			}
+
+		return !player.isSneaking();
 	}
 
 	@Override
