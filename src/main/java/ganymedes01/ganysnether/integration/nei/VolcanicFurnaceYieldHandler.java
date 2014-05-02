@@ -1,7 +1,5 @@
 package ganymedes01.ganysnether.integration.nei;
 
-import static codechicken.core.gui.GuiDraw.changeTexture;
-import static codechicken.core.gui.GuiDraw.drawTexturedModalRect;
 import ganymedes01.ganysnether.client.gui.inventory.GuiVolcanicFurnace;
 import ganymedes01.ganysnether.core.utils.UnsizedStack;
 import ganymedes01.ganysnether.core.utils.Utils;
@@ -29,7 +27,7 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
-import codechicken.core.gui.GuiDraw;
+import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
@@ -75,14 +73,14 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 	@Override
 	public void drawBackground(int index) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		changeTexture(getGuiTexture());
-		drawTexturedModalRect(0, 0, 5, 11, 98, 65);
+		GuiDraw.changeTexture(getGuiTexture());
+		GuiDraw.drawTexturedModalRect(0, 0, 5, 11, 98, 65);
 
-		changeTexture(TextureMap.locationBlocksTexture);
+		GuiDraw.changeTexture(TextureMap.locationBlocksTexture);
 		drawTexturedModelRectFromIcon(68, 25, Blocks.lava.getIcon(0, 0), cycleticks % 20, 15);
 
-		changeTexture(getGuiTexture());
-		drawTexturedModalRect(68, 25, 177, 14, 22, 15);
+		GuiDraw.changeTexture(getGuiTexture());
+		GuiDraw.drawTexturedModalRect(68, 25, 177, 14, 22, 15);
 
 		CachedRecipe recipe = arecipes.get(index);
 		if (recipe instanceof CachedLavaYield) {
