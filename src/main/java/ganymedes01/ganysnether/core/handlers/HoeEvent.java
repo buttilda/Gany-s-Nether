@@ -23,7 +23,7 @@ public class HoeEvent {
 			if (event.current != null)
 				if (HoeList.canTillNetherrack(event.current.getItem())) {
 					event.world.setBlock(event.x, event.y, event.z, ModBlocks.tilledNetherrack);
-					event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F, Block.soundTypeGravel.soundName, 1.0F, 0.8F);
+					event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F, Block.soundTypeGravel.getStepResourcePath(), 1.0F, 0.8F);
 					event.setResult(Result.ALLOW);
 				}
 	}

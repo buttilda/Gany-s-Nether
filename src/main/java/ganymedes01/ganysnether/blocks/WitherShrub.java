@@ -45,9 +45,8 @@ public class WitherShrub extends NetherCrop {
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		if (world.isRemote)
 			return;
-		if (canPlaceBlockOn(world.getBlock(x, y - 1, z))) {
-			int random = rand.nextInt(90);
-			if (random == 45) {
+		if (canPlaceBlockOn(world.getBlock(x, y - 1, z)))
+			if (rand.nextInt(60) == 0) {
 				int meta = world.getBlockMetadata(x, y, z);
 
 				if (meta < 7)
@@ -55,7 +54,6 @@ public class WitherShrub extends NetherCrop {
 				else
 					growSkull(world, x, y, z, rand);
 			}
-		}
 	}
 
 	@Override

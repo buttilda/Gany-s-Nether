@@ -1,0 +1,8 @@
+{
+  "breath": {
+    "category": "player",
+    "sounds": [
+      "breath"
+    ]
+  }
+}

@@ -1,6 +1,5 @@
 package ganymedes01.ganysnether.lib;
 
-
 /**
  * Gany's Nether
  * 
@@ -39,6 +38,7 @@ public class Strings {
 		public static final String HORSE_ARMOUR_STAND_NAME = "horseArmourStand";
 		public static final String EXTENDED_SPAWNER_NAME = "extendedSpawner";
 		public static final String FOCUSED_LAVA_CELL_NAME = "focusedLavaCell";
+		public static final String SOUL_GLASS_PANE_NAME = "soulGlassPane";
 	}
 
 	public static class Items {

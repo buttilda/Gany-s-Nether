@@ -125,13 +125,13 @@ public class ModRecipes {
 
 		if (GanysNether.enableUndertaker)
 			GameRegistry.addSmelting(ModBlocks.soulChest, new ItemStack(ModBlocks.undertaker), 1F);
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.magmaticCentrifuge), "zyz", "wxw", "zyz", 'x', Blocks.obsidian, 'y', Blocks.nether_brick, 'z', Items.blaze_rod, 'w', Blocks.glass);
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.magmaticCentrifuge), "zyz", "wxw", "zyz", 'x', Blocks.obsidian, 'y', Blocks.nether_brick, 'z', Items.blaze_rod, 'w', ModBlocks.soulGlass);
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.magmaticCentrifuge), "zyz", "wxw", "zyz", 'x', Blocks.obsidian, 'y', Blocks.nether_brick, 'z', Items.blaze_rod, 'w', "glass"));
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulTNT), "xyx", "yxy", "xyx", 'x', Items.gunpowder, 'y', Blocks.soul_sand);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.thermalSmelter), "xxx", "yzy", 'x', Items.coal, 'y', Items.lava_bucket, 'z', Blocks.furnace);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.horseArmourStand), "x  ", "xxx", "y y", 'x', new ItemStack(Blocks.stone_slab), 'y', Items.iron_ingot);
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.focusedLavaCell), "zzz", "xyx", "xwx", 'x', ModBlocks.denseLavaCell, 'y', new ItemStack(ModBlocks.colouredChiselledQuartzBlock), 'z', "ingotBlaze", 'w', ModItems.netherCore));
-
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassPane0, 16), "xxx", "xxx", 'x', new ItemStack(ModBlocks.soulGlass));
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassPane1, 16), "xxx", "xxx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 1));
 		// Vanilla
 		GameRegistry.addRecipe(new ItemStack(Blocks.soul_sand, 6), "xxx", "yyy", "xxx", 'x', ModItems.spookyFlour, 'y', Blocks.sand);
 	}
@@ -148,6 +148,10 @@ public class ModRecipes {
 
 		OreDictionary.registerOre("blockQuartz", new ItemStack(ModBlocks.colouredQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("blockQuartz", new ItemStack(Blocks.quartz_block, 1, 0));
+
+		OreDictionary.registerOre("glass", new ItemStack(ModBlocks.soulGlass, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("paneGlass", new ItemStack(ModBlocks.soulGlassPane0));
+		OreDictionary.registerOre("paneGlass", new ItemStack(ModBlocks.soulGlassPane1));
 
 		OreDictionary.registerOre("blockQuartzChiselled", new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("blockQuartzChiselled", new ItemStack(Blocks.quartz_block, 1, 1));

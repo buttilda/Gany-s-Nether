@@ -45,7 +45,7 @@ public class BaseballBat extends Item {
 		attacked.motionY += 0.40000000596046448D * dam / max * 2;
 		attacked.motionZ += d1 / f * f1 * dam / max * 10;
 		item.damageItem(1, player);
-		player.playSound("mob.zombie.woodbreak", 0.8F, 0.8F + player.worldObj.rand.nextFloat() * 0.4F);
+		attacked.worldObj.playAuxSFX(1012, (int) attacked.posX, (int) attacked.posY, (int) attacked.posZ, 0);
 
 		return true;
 	}

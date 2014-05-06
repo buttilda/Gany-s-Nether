@@ -47,6 +47,8 @@ public class ModBlocks {
 	public static final Block horseArmourStand = new HorseArmourStand();
 	public static final Block extendedSpawner = new ExtendedSpawner();
 	public static final Block focusedLavaCell = new FocusedLavaCell();
+	public static final Block soulGlassPane0 = new SoulGlassPane(0);
+	public static final Block soulGlassPane1 = new SoulGlassPane(1);
 
 	static {
 		for (int i = 0; i < colouredQuartzBlockStairs.length; i++)
@@ -84,6 +86,8 @@ public class ModBlocks {
 		registerBlock(horseArmourStand, ItemHorseArmourStand.class);
 		registerBlock(extendedSpawner);
 		registerBlock(focusedLavaCell);
+		registerBlock(soulGlassPane0);
+		registerBlock(soulGlassPane1);
 	}
 
 	private static void registerBlock(Block block) {

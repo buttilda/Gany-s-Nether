@@ -55,7 +55,8 @@ public class TileEntityExtendedSpawner extends TileEntity {
 		for (int i = minTier; i <= logic.tier; i++)
 			upgrades.add(new ItemStack(ModItems.spawnerUpgrade, 1, i));
 		for (ItemStack egg : logic.getFifo())
-			upgrades.add(egg);
+			if (egg != null)
+				upgrades.add(egg);
 
 		return upgrades.toArray(new ItemStack[0]);
 	}

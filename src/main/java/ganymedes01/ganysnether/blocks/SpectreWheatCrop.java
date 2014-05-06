@@ -37,6 +37,12 @@ public class SpectreWheatCrop extends NetherCrop {
 
 	@Override
 	@SideOnly(Side.CLIENT)
+	public int getRenderBlockPass() {
+		return 1;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
 		if (meta < 0 || meta > 7)
 			return iconArray[7];

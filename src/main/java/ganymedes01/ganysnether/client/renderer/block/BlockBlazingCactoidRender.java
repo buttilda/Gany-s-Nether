@@ -29,7 +29,7 @@ public class BlockBlazingCactoidRender implements ISimpleBlockRenderingHandler {
 	@Override
 	public boolean renderWorldBlock(IBlockAccess access, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		renderer.renderCrossedSquares(block, x, y, z);
-		renderCross(access, x, y, z, block);
+		renderCross(access, x, y, z, block, renderer);
 		renderer.renderBlockFire(Blocks.fire, x, y, z);
 		return renderer.renderStandardBlock(block, x, y, z);
 	}
@@ -44,7 +44,7 @@ public class BlockBlazingCactoidRender implements ISimpleBlockRenderingHandler {
 		return RenderIDs.BLAZING_CACTOID;
 	}
 
-	private void renderCross(IBlockAccess access, int x, int y, int z, Block block) {
+	private void renderCross(IBlockAccess access, int x, int y, int z, Block block, RenderBlocks renderer) {
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.setBrightness(block.getMixedBrightnessForBlock(access, x, y, z));
 		int colorMult = block.colorMultiplier(access, x, y, z);
@@ -64,38 +64,11 @@ public class BlockBlazingCactoidRender implements ISimpleBlockRenderingHandler {
 		tessellator.setColorOpaque_F(R, G, B);
 		IIcon icon = block.getIcon(0, 0);
 
-		double minU = icon.getMinU();
-		double minV = icon.getMinV();
-		double maxU = icon.getMaxU();
-		double maxV = icon.getMaxV();
-		double minX = x + 0.0D;
-		double maxX = x + 1.0D;
-		double minZ = z + 0.5D;
-		double maxZ = z + 0.5D;
-
-		tessellator.addVertexWithUV(minX, y + 1.0F, minZ, minU, minV);
-		tessellator.addVertexWithUV(minX, y, minZ, minU, maxV);
-		tessellator.addVertexWithUV(maxX, y, maxZ, maxU, maxV);
-		tessellator.addVertexWithUV(maxX, y + 1.0F, maxZ, maxU, minV);
-
-		tessellator.addVertexWithUV(maxX, y + 1.0F, maxZ, minU, minV);
-		tessellator.addVertexWithUV(maxX, y, maxZ, minU, maxV);
-		tessellator.addVertexWithUV(minX, y, minZ, maxU, maxV);
-		tessellator.addVertexWithUV(minX, y + 1.0F, minZ, maxU, minV);
-
-		minX = x + 0.5D;
-		maxX = x + 0.5D;
-		minZ = z + 0.0D;
-		maxZ = z + 1.0D;
-
-		tessellator.addVertexWithUV(minX, y + 1.0F, maxZ, minU, minV);
-		tessellator.addVertexWithUV(minX, y, maxZ, minU, maxV);
-		tessellator.addVertexWithUV(maxX, y, minZ, maxU, maxV);
-		tessellator.addVertexWithUV(maxX, y + 1.0F, minZ, maxU, minV);
-
-		tessellator.addVertexWithUV(maxX, y + 1.0F, minZ, minU, minV);
-		tessellator.addVertexWithUV(maxX, y, minZ, minU, maxV);
-		tessellator.addVertexWithUV(minX, y, maxZ, maxU, maxV);
-		tessellator.addVertexWithUV(minX, y + 1.0F, maxZ, maxU, minV);
+		renderer.setRenderBounds(0, 0, 0, 1, 1, 1);
+		renderer.renderFaceXNeg(block, x + 0.5F, y, z, icon);
+		renderer.renderFaceXPos(block, x - 0.5F, y, z, icon);
+		renderer.renderFaceZNeg(block, x, y, z + 0.5F, icon);
+		renderer.renderFaceZPos(block, x, y, z - 0.5F, icon);
+		renderer.setRenderBoundsFromBlock(block);
 	}
 }

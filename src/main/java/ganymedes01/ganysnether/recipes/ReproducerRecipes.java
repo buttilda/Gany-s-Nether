@@ -59,7 +59,7 @@ public class ReproducerRecipes {
 	}
 
 	public static boolean isValidSpawnEgg(ItemStack stack) {
-		return eggDropTuple.containsKey(stack);
+		return eggDropTuple.containsKey(new UnsizedStack(stack));
 	}
 
 	public static void addMobDropAndEggTuple(ItemStack egg, ItemStack drop) {
@@ -80,6 +80,6 @@ public class ReproducerRecipes {
 	}
 
 	public static ItemStack getMobDropFromEgg(ItemStack egg) {
-		return eggDropTuple.get(egg);
+		return eggDropTuple.get(new UnsizedStack(egg));
 	}
 }
