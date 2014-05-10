@@ -74,16 +74,16 @@ public class TileEntityHorseArmourStand extends TileEntity {
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound data) {
-		super.readFromNBT(data);
-		armourType = data.getByte("armourType");
-		rotation = data.getByte("rotation");
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		armourType = nbt.getByte("armourType");
+		rotation = nbt.getByte("rotation");
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound data) {
-		super.writeToNBT(data);
-		data.setByte("armourType", armourType);
-		data.setByte("rotation", rotation);
+	public void writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		nbt.setByte("armourType", armourType);
+		nbt.setByte("rotation", rotation);
 	}
 }

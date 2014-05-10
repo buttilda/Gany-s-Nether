@@ -36,10 +36,10 @@ public class BlockVolcanicFurnaceRender implements ISimpleBlockRenderingHandler 
 		if (furnace != null && furnace.hasLava) {
 			Tessellator tessellator = Tessellator.instance;
 			tessellator.setBrightness(block.getMixedBrightnessForBlock(blockAccess, x, y, z));
-			int colorMult = block.colorMultiplier(blockAccess, x, y, z);
-			float R = (colorMult >> 16 & 255) / 255.0F;
-			float G = (colorMult >> 8 & 255) / 255.0F;
-			float B = (colorMult & 255) / 255.0F;
+			int colour = block.colorMultiplier(blockAccess, x, y, z);
+			float R = (colour >> 16 & 255) / 255.0F;
+			float G = (colour >> 8 & 255) / 255.0F;
+			float B = (colour & 255) / 255.0F;
 
 			if (EntityRenderer.anaglyphEnable) {
 				float r = (R * 30.0F + G * 59.0F + B * 11.0F) / 100.0F;

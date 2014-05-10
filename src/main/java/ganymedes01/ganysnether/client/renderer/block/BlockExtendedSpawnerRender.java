@@ -87,15 +87,8 @@ public class BlockExtendedSpawnerRender implements ISimpleBlockRenderingHandler 
 	@Override
 	public boolean renderWorldBlock(IBlockAccess access, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		renderer.renderStandardBlock(block, x, y, z);
-		int meta = access.getBlockMetadata(x, y, z);
-
-		renderer.renderFaceXPos(block, x - 1, y, z, renderer.getBlockIconFromSideAndMetadata(block, 5, meta));
-		renderer.renderFaceXNeg(block, x + 1, y, z, renderer.getBlockIconFromSideAndMetadata(block, 4, meta));
-		renderer.renderFaceYPos(block, x, y - 1, z, renderer.getBlockIconFromSideAndMetadata(block, 1, meta));
-		renderer.renderFaceYNeg(block, x, y + 1, z, renderer.getBlockIconFromSideAndMetadata(block, 0, meta));
-		renderer.renderFaceZPos(block, x, y, z - 1, renderer.getBlockIconFromSideAndMetadata(block, 3, meta));
-		renderer.renderFaceZNeg(block, x, y, z + 1, renderer.getBlockIconFromSideAndMetadata(block, 2, meta));
-
+		renderer.setRenderBounds(1, 1, 1, 0, 0, 0);
+		renderer.renderStandardBlock(block, x, y, z);
 		return true;
 	}
 

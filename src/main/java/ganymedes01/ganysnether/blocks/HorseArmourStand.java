@@ -158,7 +158,6 @@ public class HorseArmourStand extends BlockContainer {
 					destroyBlock(world, x + X, y, z + Z);
 					destroyBlock(world, x, y + 1, z);
 				}
-				Utils.dropStack(world, x, y, z, new ItemStack(this, 1, 0));
 				break;
 			case 2:
 			case 3:

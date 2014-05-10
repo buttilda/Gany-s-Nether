@@ -73,4 +73,10 @@ public class GlowingReedCrop extends BlockReed {
 	public Item getItem(World world, int x, int y, int z) {
 		return ModItems.glowingReed;
 	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
+		return Utils.getColour(255, 255, 255);
+	}
 }

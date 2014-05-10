@@ -94,6 +94,7 @@ public class WitherShrub extends NetherCrop {
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
 		if (world.isRemote)
 			return false;
+		boolean flag = false;
 		for (int direction : Utils.getRandomizedList(0, 4)) {
 			int skullX = x;
 			int skullZ = z;
@@ -119,10 +120,11 @@ public class WitherShrub extends NetherCrop {
 						Utils.dropStack(world, skullX, y, skullZ, new ItemStack(Items.skull, 1, 1));
 						world.playAuxSFXAtEntity(null, 2001, skullX, y, skullZ, Block.getIdFromBlock(Blocks.skull) + (world.getBlockMetadata(skullX, y, skullZ) << 12));
 						world.setBlockToAir(skullX, y, skullZ);
+						flag = true;
 					}
 			}
 		}
-		return false;
+		return flag;
 	}
 
 	private void growSkull(World world, int x, int y, int z, Random rand) {
