@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import ganymedes01.ganysnether.lib.RenderIDs;
@@ -96,7 +97,7 @@ public class ExtendedSpawner extends BlockMobSpawner {
 			TileEntityExtendedSpawner spawner = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
 			if (spawner != null)
 				for (ItemStack stack : spawner.getUpgrades())
-					Utils.dropStack(world, x, y, z, stack);
+					InventoryUtils.dropStack(world, x, y, z, stack);
 		}
 		super.breakBlock(world, x, y, z, block, meta);
 	}

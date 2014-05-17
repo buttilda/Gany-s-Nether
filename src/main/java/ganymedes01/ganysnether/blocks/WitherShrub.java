@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.RenderIDs;
@@ -117,7 +118,7 @@ public class WitherShrub extends NetherCrop {
 				TileEntitySkull tile = Utils.getTileEntity(world, skullX, y, skullZ, TileEntitySkull.class);
 				if (tile != null)
 					if (tile.func_145904_a() == 1) {
-						Utils.dropStack(world, skullX, y, skullZ, new ItemStack(Items.skull, 1, 1));
+						InventoryUtils.dropStack(world, skullX, y, skullZ, new ItemStack(Items.skull, 1, 1));
 						world.playAuxSFXAtEntity(null, 2001, skullX, y, skullZ, Block.getIdFromBlock(Blocks.skull) + (world.getBlockMetadata(skullX, y, skullZ) << 12));
 						world.setBlockToAir(skullX, y, skullZ);
 						flag = true;

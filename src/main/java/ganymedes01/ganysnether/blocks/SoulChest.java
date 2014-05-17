@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
@@ -41,7 +42,7 @@ public class SoulChest extends InventoryBlock {
 		if (entity instanceof EntityItem && !world.isRemote) {
 			TileEntitySoulChest tile = Utils.getTileEntity(world, x, y, z, TileEntitySoulChest.class);
 			if (tile != null)
-				Utils.addEntitytoInventory(tile, (EntityItem) entity);
+				InventoryUtils.addEntitytoInventory(tile, (EntityItem) entity);
 		} else {
 			entity.motionX *= 0.4D;
 			entity.motionZ *= 0.4D;
@@ -88,7 +89,7 @@ public class SoulChest extends InventoryBlock {
 
 		IInventory iinventory = Utils.getTileEntity(world, x, y, z, IInventory.class);
 		if (iinventory != null)
-			if (!Utils.addStackToInventory(iinventory, player.inventory.getCurrentItem())) {
+			if (!InventoryUtils.addStackToInventory(iinventory, player.inventory.getCurrentItem())) {
 				player.displayGUIChest(iinventory);
 				return true;
 			}

@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.integration.nei;
 
 import ganymedes01.ganysnether.client.gui.inventory.GuiReproducer;
+import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.UnsizedStack;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
@@ -98,7 +99,7 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 	public void loadCraftingRecipes(ItemStack result) {
 		for (Entry<UnsizedStack, ItemStack> tuple : ReproducerRecipes.getTuples().entrySet()) {
 			ItemStack stack = tuple.getKey().getStack();
-			if (Utils.areStacksTheSame(stack, result, false))
+			if (InventoryUtils.areStacksTheSame(stack, result, false))
 				arecipes.add(new CachedReproducerRecipe(stack, tuple.getValue()));
 		}
 	}
@@ -107,7 +108,7 @@ public class ReproducerRecipeHandler extends TemplateRecipeHandler {
 	public void loadUsageRecipes(ItemStack ingredient) {
 		for (Entry<UnsizedStack, ItemStack> tuple : ReproducerRecipes.getTuples().entrySet()) {
 			ItemStack stack = tuple.getKey().getStack();
-			if (Utils.areStacksTheSame(stack, ingredient, false) || Utils.areStacksTheSame(tuple.getValue(), ingredient, false))
+			if (InventoryUtils.areStacksTheSame(stack, ingredient, false) || InventoryUtils.areStacksTheSame(tuple.getValue(), ingredient, false))
 				arecipes.add(new CachedReproducerRecipe(stack, tuple.getValue()));
 		}
 	}

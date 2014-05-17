@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.integration.nei;
 
+import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
 
@@ -125,7 +126,7 @@ public class OreDictionaryHandler extends TemplateRecipeHandler {
 		for (int i = 0; i < list.size(); i++)
 			for (int j = 0; j < list.size(); j++)
 				if (i != j)
-					if (Utils.areStacksTheSame(list.get(i), list.get(j), false)) {
+					if (InventoryUtils.areStacksTheSame(list.get(i), list.get(j), false)) {
 						list.remove(j);
 						cleanItemStackArray(list);
 						return;

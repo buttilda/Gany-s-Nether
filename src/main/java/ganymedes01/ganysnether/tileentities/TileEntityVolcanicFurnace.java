@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.tileentities;
 
 import ganymedes01.ganysnether.blocks.FocusedLavaCell;
+import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerVolcanicFurnace;
 import ganymedes01.ganysnether.lib.Strings;
@@ -121,7 +122,7 @@ public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedI
 				if (inventory[2] == null) {
 					inventory[2] = filledContainer.copy();
 					shouldDrain = true;
-				} else if (Utils.areStacksTheSame(filledContainer, inventory[2], false) && inventory[2].stackSize + filledContainer.stackSize <= inventory[2].getMaxStackSize()) {
+				} else if (InventoryUtils.areStacksTheSame(filledContainer, inventory[2], false) && inventory[2].stackSize + filledContainer.stackSize <= inventory[2].getMaxStackSize()) {
 					inventory[2].stackSize++;
 					shouldDrain = true;
 				}

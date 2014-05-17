@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityHorseArmourStand;
@@ -109,7 +110,7 @@ public class HorseArmourStand extends BlockContainer {
 					}
 					if (stack != null) {
 						if (!player.capabilities.isCreativeMode && !player.inventory.addItemStackToInventory(stack))
-							Utils.dropStack(world, (int) player.posX, (int) player.posY, (int) player.posZ, stack);
+							InventoryUtils.dropStack(world, (int) player.posX, (int) player.posY, (int) player.posZ, stack);
 						tile.setArmourType((byte) -1);
 					}
 				}
@@ -136,7 +137,7 @@ public class HorseArmourStand extends BlockContainer {
 							break;
 					}
 					if (stack != null)
-						Utils.dropStack(world, x, y + 1, z, stack);
+						InventoryUtils.dropStack(world, x, y + 1, z, stack);
 
 					byte X = 0;
 					byte Z = 0;

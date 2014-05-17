@@ -1,8 +1,8 @@
 package ganymedes01.ganysnether.tileentities;
 
 import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.SpawnEggHelper;
-import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.SkeletonSpawner;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 
@@ -95,7 +95,7 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 				fifo[i] = stack;
 				return true;
 			}
-		Utils.dropStack(getSpawnerWorld(), getSpawnerX(), getSpawnerY() + 1, getSpawnerZ(), fifo[0]);
+		InventoryUtils.dropStack(getSpawnerWorld(), getSpawnerX(), getSpawnerY() + 1, getSpawnerZ(), fifo[0]);
 		for (int i = 0; i < fifo.length - 1; i++)
 			fifo[i] = fifo[i + 1];
 		fifo[fifo.length - 1] = stack;

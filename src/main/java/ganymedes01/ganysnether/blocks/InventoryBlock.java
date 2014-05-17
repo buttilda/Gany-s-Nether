@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -33,7 +34,7 @@ public abstract class InventoryBlock extends BlockContainer {
 
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
-		Utils.dropInventoryContents(world.getTileEntity(x, y, z));
+		InventoryUtils.dropInventoryContents(world.getTileEntity(x, y, z));
 		super.breakBlock(world, x, y, z, block, meta);
 	}
 }
