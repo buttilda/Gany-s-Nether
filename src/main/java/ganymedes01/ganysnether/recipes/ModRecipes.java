@@ -149,9 +149,12 @@ public class ModRecipes {
 		OreDictionary.registerOre("blockQuartz", new ItemStack(ModBlocks.colouredQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("blockQuartz", new ItemStack(Blocks.quartz_block, 1, 0));
 
-		OreDictionary.registerOre("glass", new ItemStack(ModBlocks.soulGlass, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("blockGlass", new ItemStack(ModBlocks.soulGlass, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("blockGlassBrown", new ItemStack(ModBlocks.soulGlass, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("paneGlass", new ItemStack(ModBlocks.soulGlassPane0));
 		OreDictionary.registerOre("paneGlass", new ItemStack(ModBlocks.soulGlassPane1));
+		OreDictionary.registerOre("paneGlassBrown", new ItemStack(ModBlocks.soulGlassPane0));
+		OreDictionary.registerOre("paneGlassBrown", new ItemStack(ModBlocks.soulGlassPane1));
 
 		OreDictionary.registerOre("blockQuartzChiselled", new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("blockQuartzChiselled", new ItemStack(Blocks.quartz_block, 1, 1));
