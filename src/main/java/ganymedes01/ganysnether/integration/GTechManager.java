@@ -42,6 +42,6 @@ public class GTechManager extends Integration {
 
 	@Override
 	public String getModID() {
-		return "gregtech_addon";
+		return "gregtech";
 	}
 }
