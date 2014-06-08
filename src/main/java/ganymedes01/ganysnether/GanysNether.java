@@ -19,6 +19,7 @@ import ganymedes01.ganysnether.creativetab.CreativeTabNether;
 import ganymedes01.ganysnether.integration.ModIntegrator;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
+import ganymedes01.ganysnether.network.PacketHandler;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ModRecipes;
 import ganymedes01.ganysnether.world.NetherWorldGen;
@@ -98,6 +99,7 @@ public class GanysNether {
 
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
+		PacketHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		GameRegistry.registerFuelHandler(new FuelHandler());
 

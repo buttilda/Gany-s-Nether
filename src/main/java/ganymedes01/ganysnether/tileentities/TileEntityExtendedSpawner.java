@@ -5,6 +5,10 @@ import ganymedes01.ganysnether.core.utils.SpawnEggHelper;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.items.SkeletonSpawner;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
+import ganymedes01.ganysnether.network.IPacketHandlingTile;
+import ganymedes01.ganysnether.network.packet.PacketTileEntity;
+import ganymedes01.ganysnether.network.packet.PacketTileEntity.TileData;
+import io.netty.buffer.ByteBuf;
 
 import java.util.ArrayList;
 
@@ -19,6 +23,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
+import cpw.mods.fml.common.network.ByteBufUtils;
 
 /**
  * Gany's Nether
@@ -27,7 +32,7 @@ import net.minecraft.util.StatCollector;
  * 
  */
 
-public class TileEntityExtendedSpawner extends TileEntity {
+public class TileEntityExtendedSpawner extends TileEntity implements IPacketHandlingTile {
 
 	public final ExtendedSpawnerLogic logic = new ExtendedSpawnerLogic(this);
 
@@ -149,5 +154,25 @@ public class TileEntityExtendedSpawner extends TileEntity {
 	public void writeToNBT(NBTTagCompound data) {
 		super.writeToNBT(data);
 		logic.writeToNBT(data);
+	}
+
+	@Override
+	public void readPacketData(ByteBuf buffer) {
+		NBTTagCompound nbt = ByteBufUtils.readTag(buffer);
+		readFromNBT(nbt);
+	}
+
+	@Override
+	public PacketTileEntity getPacket() {
+		return new PacketTileEntity(this, new TileData() {
+
+			@Override
+			public void writeData(ByteBuf buffer) {
+				NBTTagCompound nbt = new NBTTagCompound();
+				writeToNBT(nbt);
+				nbt.removeTag("SpawnPotentials");
+				ByteBufUtils.writeTag(buffer, nbt);
+			}
+		});
 	}
 }

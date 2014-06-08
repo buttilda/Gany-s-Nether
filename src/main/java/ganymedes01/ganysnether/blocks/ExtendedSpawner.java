@@ -6,6 +6,7 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
+import ganymedes01.ganysnether.network.PacketHandler;
 import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
 
 import java.util.Random;
@@ -80,9 +81,10 @@ public class ExtendedSpawner extends BlockMobSpawner {
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbour) {
 		TileEntityExtendedSpawner spawner = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
-		if (spawner != null)
+		if (spawner != null) {
 			spawner.logic.isBlockPowered = world.isBlockIndirectlyGettingPowered(x, y, z);
-		//FIXME  PacketDispatcher.sendPacketToAllPlayers(spawner.getDescriptionPacket());
+			PacketHandler.sendToAll(spawner.getPacket());
+		}
 	}
 
 	@Override
