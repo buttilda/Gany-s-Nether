@@ -5,13 +5,10 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
 
 import java.awt.Rectangle;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -50,22 +47,16 @@ public class OreDictionaryHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
-		arecipes.addAll(getRecipes(OreDictionary.getOreID(ingredient)));
+		for (int id : OreDictionary.getOreIDs(ingredient))
+			arecipes.addAll(getRecipes(OreDictionary.getOreName(id)));
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public void loadCraftingRecipes(String outputId, Object... results) {
 		if (outputId.equals(Reference.MOD_ID + "OreDictionary"))
-			try {
-				Field field = OreDictionary.class.getDeclaredField("oreIDs");
-				field.setAccessible(true);
-				HashMap<String, Integer> oreIDs = (HashMap<String, Integer>) field.get(null);
-				for (Entry<String, Integer> entry : oreIDs.entrySet())
-					arecipes.addAll(getRecipes(entry.getValue()));
-			} catch (Exception e) {
+			for (String name : OreDictionary.getOreNames())
+				arecipes.addAll(getRecipes(name));
 
-			}
 		else
 			super.loadCraftingRecipes(outputId, results);
 	}
@@ -86,7 +77,7 @@ public class OreDictionaryHandler extends TemplateRecipeHandler {
 	public void drawForeground(int recipe) {
 	}
 
-	private List<CachedOres> getRecipes(int oreID) {
+	private List<CachedOres> getRecipes(String oreID) {
 		ArrayList<CachedOres> list = new ArrayList<CachedOres>();
 
 		ArrayList<ItemStack> equivalents = new ArrayList<ItemStack>();
@@ -101,7 +92,7 @@ public class OreDictionaryHandler extends TemplateRecipeHandler {
 			if (equivalents.size() > 1)
 				cleanItemStackArray(equivalents);
 			for (ItemStack[] array : splitArray(equivalents.toArray(new ItemStack[0]), 9 * 6))
-				list.add(new CachedOres(array, OreDictionary.getOreName(oreID)));
+				list.add(new CachedOres(array, oreID));
 		}
 
 		return list;
@@ -114,11 +105,12 @@ public class OreDictionaryHandler extends TemplateRecipeHandler {
 		return values;
 	}
 
-	private List<ItemStack> getValidStacks(int oreID, List<ItemStack> list) {
+	private List<ItemStack> getValidStacks(String oreID, List<ItemStack> list) {
 		ArrayList<ItemStack> valid = new ArrayList<ItemStack>();
 		for (ItemStack stack : list)
-			if (OreDictionary.getOreID(stack) == oreID)
-				valid.add(stack);
+			for (int id : OreDictionary.getOreIDs(stack))
+				if (OreDictionary.getOreName(id).equals(oreID))
+					valid.add(stack);
 		return valid;
 	}
 

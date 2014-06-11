@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Gany's Nether
@@ -77,7 +76,7 @@ public class TileEntityThermalSmelter extends GanysInventory implements ISidedIn
 		if (stack1.getItem() == stack2.getItem())
 			if (stack1.getItemDamage() == stack2.getItemDamage())
 				return true;
-		return OreDictionary.getOreID(stack1) == OreDictionary.getOreID(stack2);
+		return false;
 	}
 
 	private void checkForLava() {

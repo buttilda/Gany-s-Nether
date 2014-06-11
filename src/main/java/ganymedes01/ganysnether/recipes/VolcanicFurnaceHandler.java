@@ -152,11 +152,27 @@ public class VolcanicFurnaceHandler {
 		return false;
 	}
 
+	private static boolean mapContainsKeys(HashMap<Integer, Integer> map, ItemStack stack) {
+		for (int id : OreDictionary.getOreIDs(stack))
+			if (map.containsKey(id))
+				return true;
+		return false;
+	}
+
+	private static int getValue(HashMap<Integer, Integer> map, ItemStack stack) {
+		for (int id : OreDictionary.getOreIDs(stack)) {
+			Integer value = map.get(id);
+			if (value != null)
+				return value;
+		}
+		return -1;
+	}
+
 	public static int getBurnTime(ItemStack stack) {
 		if (burnTimes.containsKey(new UnsizedStack(stack)))
 			return burnTimes.get(new UnsizedStack(stack));
-		if (oreBurnTimes.containsKey(OreDictionary.getOreID(stack)))
-			return oreBurnTimes.get(OreDictionary.getOreID(stack));
+		if (mapContainsKeys(oreBurnTimes, stack))
+			return getValue(oreBurnTimes, stack);
 
 		if (!itemIsFuel(stack))
 			return 0;

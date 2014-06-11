@@ -55,6 +55,14 @@ public class ExtendedSpawner extends BlockMobSpawner {
 		return false;
 	}
 
+	private boolean isMobEgg(ItemStack stack) {
+		int mobEgg = OreDictionary.getOreID("mobEgg");
+		for (int id : OreDictionary.getOreIDs(stack))
+			if (id == mobEgg)
+				return true;
+		return false;
+	}
+
 	@Override
 	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
 		if (world.isRemote)
@@ -62,7 +70,7 @@ public class ExtendedSpawner extends BlockMobSpawner {
 		ItemStack stack = player.getCurrentEquippedItem();
 		if (stack == null)
 			return;
-		if (OreDictionary.getOreID(stack) == OreDictionary.getOreID("mobEgg")) {
+		if (isMobEgg(stack)) {
 			TileEntityExtendedSpawner spawner = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
 			if (spawner != null)
 				if (spawner.logic.addEgg(stack)) {
