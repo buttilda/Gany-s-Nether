@@ -54,7 +54,7 @@ public class BlazingCactoid extends BlockCactus {
 
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-		return AxisAlignedBB.getAABBPool().getAABB(x + 0.375F, y + 0.0F, z + 0.375F, x + 0.625F, y + 1.0F, z + 0.625F);
+		return AxisAlignedBB.getBoundingBox(x + 0.375F, y + 0.0F, z + 0.375F, x + 0.625F, y + 1.0F, z + 0.625F);
 	}
 
 	@Override

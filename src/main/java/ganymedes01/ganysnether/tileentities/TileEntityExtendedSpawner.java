@@ -75,7 +75,7 @@ public class TileEntityExtendedSpawner extends TileEntity implements IPacketHand
 		list.add("");
 
 		list.add(EnumChatFormatting.ITALIC + "Spawn Quantity: " + EnumChatFormatting.RESET + logic.spawnCount);
-		AxisAlignedBB area = AxisAlignedBB.getAABBPool().getAABB(0, 0, 0, 1, 1, 1).expand(logic.spawnRange * 2, 4.0D, logic.spawnRange * 2);
+		AxisAlignedBB area = AxisAlignedBB.getBoundingBox(0, 0, 0, 1, 1, 1).expand(logic.spawnRange * 2, 4.0D, logic.spawnRange * 2);
 		list.add(EnumChatFormatting.ITALIC + "Range: " + EnumChatFormatting.RESET + logic.spawnRange + " (" + (int) (area.maxX - area.minX) + ", " + (int) (area.maxY - area.minY) + ", " + (int) (area.maxZ - area.minZ) + ")");
 
 		if (logic.redstoneUpgrade)

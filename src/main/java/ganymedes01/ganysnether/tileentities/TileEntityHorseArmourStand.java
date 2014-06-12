@@ -45,7 +45,7 @@ public class TileEntityHorseArmourStand extends TileEntity {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public AxisAlignedBB getRenderBoundingBox() {
-		return AxisAlignedBB.getAABBPool().getAABB(xCoord - 2, yCoord, zCoord - 2, xCoord + 2, yCoord + 2, zCoord + 2);
+		return AxisAlignedBB.getBoundingBox(xCoord - 2, yCoord, zCoord - 2, xCoord + 2, yCoord + 2, zCoord + 2);
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class SoulExplosion extends Explosion {
 	public void doExplosionA() {
 		super.doExplosionA();
 
-		List list = worldObj.selectEntitiesWithinAABB(EntityLivingBase.class, AxisAlignedBB.getAABBPool().getAABB(explosionX - 2 * explosionSize, explosionY - 2 * explosionSize, explosionZ - 2 * explosionSize, explosionX + 2 * explosionSize, explosionY + 2 * explosionSize, explosionZ + 2 * explosionSize), IEntitySelector.selectAnything);
+		List list = worldObj.selectEntitiesWithinAABB(EntityLivingBase.class, AxisAlignedBB.getBoundingBox(explosionX - 2 * explosionSize, explosionY - 2 * explosionSize, explosionZ - 2 * explosionSize, explosionX + 2 * explosionSize, explosionY + 2 * explosionSize, explosionZ + 2 * explosionSize), IEntitySelector.selectAnything);
 		if (!list.isEmpty()) {
 			Iterator iterator = list.iterator();
 			while (iterator.hasNext()) {
