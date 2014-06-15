@@ -8,9 +8,9 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ItemBlockBase extends ItemBlock {
@@ -23,7 +23,12 @@ public class ItemBlockBase extends ItemBlock {
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return getUnlocalizedName() + Strings.COLOURS[stack.getItemDamage()];
+		int meta = stack.getItemDamage();
+		if (meta >= Strings.COLOURS.length)
+			meta = Strings.COLOURS.length - 1;
+		if (meta < 0)
+			meta = 0;
+		return getUnlocalizedName() + Strings.COLOURS[meta];
 	}
 
 	@Override
