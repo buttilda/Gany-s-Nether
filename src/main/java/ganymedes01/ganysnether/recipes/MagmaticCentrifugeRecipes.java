@@ -18,9 +18,9 @@ import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class MagmaticCentrifugeRecipes {
@@ -62,7 +62,7 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe(new ItemStack(Items.melon), new ItemStack(Items.melon), new ItemStack(Items.melon_seeds, 3));
 		addRecipe(new ItemStack(Blocks.sandstone), new ItemStack(Items.flint), new ItemStack(Blocks.sand, 4));
 		addRecipe(new ItemStack(Blocks.dirt), new ItemStack(Items.dye, 1, 15), new ItemStack(Blocks.grass));
-		addRecipe(new ItemStack(Blocks.vine), new ItemStack(Blocks.vine), new ItemStack(Items.iron_horse_armor, 2));
+		addRecipe(new ItemStack(Blocks.vine), new ItemStack(Blocks.vine), new ItemStack(Items.string, 2));
 		addRecipe(new ItemStack(Items.iron_horse_armor), new ItemStack(Items.flint), new ItemStack(Items.iron_ingot, 6));
 		addRecipe(new ItemStack(Items.golden_horse_armor), new ItemStack(Items.flint), new ItemStack(Items.gold_ingot, 6));
 		addRecipe(new ItemStack(Items.diamond_horse_armor), new ItemStack(Items.flint), new ItemStack(Items.diamond, 6));
