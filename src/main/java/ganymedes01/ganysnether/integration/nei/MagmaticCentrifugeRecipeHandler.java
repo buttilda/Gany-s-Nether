@@ -24,9 +24,9 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
@@ -61,8 +61,8 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void loadTransferRects() {
-		transferRects.add(new RecipeTransferRect(new Rectangle(51, 24, 10, 8), getRecipeId()));
-		transferRects.add(new RecipeTransferRect(new Rectangle(105, 24, 10, 8), getRecipeId()));
+		transferRects.add(new RecipeTransferRect(new Rectangle(50, 65, 10, 8), getRecipeId()));
+		transferRects.add(new RecipeTransferRect(new Rectangle(107, 65, 10, 8), getRecipeId()));
 	}
 
 	@Override
@@ -73,9 +73,6 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 
 		GuiDraw.drawTexturedModalRect(29, 19, 176, 3, 18, 18);
 		GuiDraw.drawTexturedModalRect(119, 19, 176, 3, 18, 18);
-
-		GuiDraw.drawTexturedModalRect(47, 19, 194, 3, 18, 18);
-		GuiDraw.drawTexturedModalRect(101, 19, 213, 3, 18, 18);
 	}
 
 	@Override

@@ -17,9 +17,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
@@ -53,16 +53,16 @@ public class GuiMagmaticCentrifuge extends GuiGanysNether {
 		ContainerMagmaticCentrifuge container = (ContainerMagmaticCentrifuge) inventorySlots;
 		drawTexturedModalRect(x + ((Slot) container.inventorySlots.get(2)).xDisplayPosition - 1, y + ((Slot) container.inventorySlots.get(2)).yDisplayPosition - 1, 176, 3, 18, 18);
 		drawTexturedModalRect(x + ((Slot) container.inventorySlots.get(3)).xDisplayPosition - 1, y + ((Slot) container.inventorySlots.get(3)).yDisplayPosition - 1, 176, 3, 18, 18);
-		drawFluid(FluidRegistry.LAVA, centrifuge.getScaledFluidAmount(52), x + 155, y + 53, 16, 52);
+		drawFluid(FluidRegistry.LAVA, centrifuge.getScaledFluidAmount(52), x + 153, y + 53, 16, 52);
 
 		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME)));
-		drawTexturedModalRect(x + 155, y + 53, 176, 21, 16, 52);
+		drawTexturedModalRect(x + 153, y + 53, 176, 21, 16, 52);
 	}
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float f) {
 		super.drawScreen(mouseX, mouseY, f);
-		tankXMin = (width - xSize) / 2 + 156;
+		tankXMin = (width - xSize) / 2 + 153;
 		tankYMin = (height - ySize) / 2 + 53;
 		tankXMax = tankXMin + 16;
 		tankYMax = tankYMin + 52;

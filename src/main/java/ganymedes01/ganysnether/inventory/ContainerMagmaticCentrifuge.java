@@ -14,21 +14,21 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ContainerMagmaticCentrifuge extends Container {
 
-	private TileEntityMagmaticCentrifuge centrifuge;
-	private final int centerX = 87 - 7, centerY = 78 - 7;
+	private final TileEntityMagmaticCentrifuge centrifuge;
+	private final int centerX = 80, centerY = 71;
 	private final int posX1, posY1, posX2, posY2;
 
 	public ContainerMagmaticCentrifuge(InventoryPlayer inventory, TileEntityMagmaticCentrifuge tile) {
 		centrifuge = tile;
-		addSlotToContainer(new FullContainerSlot(tile, 0, 155, 31));
-		addSlotToContainer(new EmptyContainerSlot(tile, 1, 155, 111));
+		addSlotToContainer(new FullContainerSlot(tile, 0, 153, 31));
+		addSlotToContainer(new EmptyContainerSlot(tile, 1, 153, 111));
 
 		addSlotToContainer(new Slot(tile, 2, 30, 69));
 		addSlotToContainer(new Slot(tile, 3, 128, 69));

@@ -32,9 +32,9 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ClientProxy extends CommonProxy {
@@ -66,44 +66,4 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityLightningBall.class, new EntityLightningBallRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySlowTNT.class, new EntitySoulTNTRenderer());
 	}
-
-	//	@Override
-	//	public void handleMagmaticCentrifugePacket(int x, int y, int z, ItemStack material1, ItemStack material2, boolean isRecipeValid) {
-	//		World world = FMLClientHandler.instance().getClient().theWorld;
-	//		if (world != null) {
-	//			TileEntity tile = world.getBlockTileEntity(x, y, z);
-	//			if (tile instanceof TileEntityMagmaticCentrifuge) {
-	//				TileEntityMagmaticCentrifuge centrifuge = (TileEntityMagmaticCentrifuge) tile;
-	//
-	//				centrifuge.setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_1, material1);
-	//				centrifuge.setInventorySlotContents(TileEntityMagmaticCentrifuge.MATERIAL_SLOT_2, material2);
-	//				centrifuge.isRecipeValid = isRecipeValid;
-	//			}
-	//		}
-	//	}
-	//
-	//	@Override
-	//	public void handleHorseArmourStandPacket(int x, int y, int z, byte type, byte rotation) {
-	//		World world = FMLClientHandler.instance().getClient().theWorld;
-	//		if (world != null) {
-	//			TileEntity tile = world.getBlockTileEntity(x, y, z);
-	//			if (tile instanceof TileEntityHorseArmourStand) {
-	//				TileEntityHorseArmourStand stand = (TileEntityHorseArmourStand) tile;
-	//
-	//				stand.setArmourType(type);
-	//				stand.setRotation(rotation);
-	//			}
-	//		}
-	//	}
-	//
-	//	@Override
-	//	public void handleExtendedSpawnerPacket(int x, int y, int z, NBTTagCompound data) {
-	//		World world = FMLClientHandler.instance().getClient().theWorld;
-	//		if (world != null) {
-	//			TileEntity tile = world.getBlockTileEntity(x, y, z);
-	//			if (tile instanceof TileEntityExtendedSpawner)
-	//				tile.readFromNBT(data);
-	//			tile.worldObj.markBlockForRenderUpdate(tile.xCoord, tile.yCoord, tile.zCoord);
-	//		}
-	//	}
 }

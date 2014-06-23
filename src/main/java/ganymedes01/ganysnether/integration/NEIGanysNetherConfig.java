@@ -14,9 +14,9 @@ import codechicken.nei.api.IConfigureNEI;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class NEIGanysNetherConfig implements IConfigureNEI {
