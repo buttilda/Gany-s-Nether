@@ -9,7 +9,7 @@ import ganymedes01.ganysnether.core.handlers.FuelHandler;
 import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.InterModComms;
 import ganymedes01.ganysnether.core.handlers.PlayerRightClickEvent;
-import ganymedes01.ganysnether.core.handlers.RenderCapeHandler;
+import ganymedes01.ganysnether.core.handlers.ClientEventsHandler;
 import ganymedes01.ganysnether.core.handlers.TooltipEvent;
 import ganymedes01.ganysnether.core.handlers.VersionCheckTickHandler;
 import ganymedes01.ganysnether.core.proxy.CommonProxy;
@@ -29,7 +29,6 @@ import java.io.File;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -45,9 +44,9 @@ import cpw.mods.fml.relauncher.Side;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES)
@@ -117,11 +116,8 @@ public class GanysNether {
 		if (shouldGenerateCrops || shouldGenerateUndertakers)
 			GameRegistry.registerWorldGenerator(new NetherWorldGen(), 0);
 
-		if (!Loader.isModLoaded("mobsplice"))
-			if (event.getSide() == Side.CLIENT) {
-				RenderCapeHandler.getUsernames();
-				MinecraftForge.EVENT_BUS.register(new RenderCapeHandler());
-			}
+		if (event.getSide() == Side.CLIENT)
+			MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
 
 		ModIntegrator.init();
 	}
