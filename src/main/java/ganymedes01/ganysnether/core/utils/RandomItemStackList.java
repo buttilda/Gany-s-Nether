@@ -14,9 +14,9 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class RandomItemStackList {
@@ -60,7 +60,7 @@ public class RandomItemStackList {
 		for (int i = 0; i < maxSlot; i++)
 			for (Entry<UnsizedStack, Integer> entry : weightedStackList.entrySet())
 				if (rand.nextInt(entry.getValue()) == 0 && rand.nextInt(GanysNether.undertakerFillSlotChance) == 0) {
-					ItemStack stack = entry.getKey().getStack(rand.nextInt(entry.getKey().getOldStackSize()));
+					ItemStack stack = entry.getKey().getStack(1 + rand.nextInt(entry.getKey().getOldStackSize()));
 					inventory.setInventorySlotContents(i, stack);
 				}
 	}
