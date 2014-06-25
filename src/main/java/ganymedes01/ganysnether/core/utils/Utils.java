@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.UUID;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
@@ -26,9 +27,9 @@ import com.mojang.authlib.GameProfile;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class Utils {
@@ -83,7 +84,7 @@ public class Utils {
 		if (player != null)
 			return player;
 		else {
-			player = new EntityPlayer(world, new GameProfile(Reference.MOD_ID, "[" + Reference.CHANNEL + "]")) {
+			player = new EntityPlayer(world, new GameProfile(UUID.fromString(Reference.MOD_ID), "[" + Reference.CHANNEL + "]")) {
 
 				@Override
 				public boolean canCommandSenderUseCommand(int var1, String var2) {

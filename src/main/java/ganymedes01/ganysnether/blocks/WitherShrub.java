@@ -25,9 +25,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class WitherShrub extends NetherCrop {
@@ -151,7 +151,7 @@ public class WitherShrub extends NetherCrop {
 				world.setBlock(skullX, y, skullZ, Blocks.skull, direction + 2, 2);
 				TileEntitySkull tile = Utils.getTileEntity(world, skullX, y, skullZ, TileEntitySkull.class);
 				if (tile != null) {
-					tile.func_145905_a(1, "");
+					tile.func_152107_a(1);
 					world.notifyBlockChange(skullX, y, skullZ, this);
 				}
 				return;
