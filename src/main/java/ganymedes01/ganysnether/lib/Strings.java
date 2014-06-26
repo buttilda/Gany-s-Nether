@@ -2,9 +2,9 @@ package ganymedes01.ganysnether.lib;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class Strings {
@@ -86,10 +86,10 @@ public class Strings {
 		public static final String SHOULD_DO_VERSION_CHECK = "shouldDoVersionCheck";
 		public static final String SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION = "shouldGhastTearHaveDispenserAction";
 		public static final String ENABLE_UNDERTAKER = "enableUndertaker";
-		public static final String NETHER_CROP_RATE = "netherCropSpawnRate (bigger = rarer. smaller = more common)";
-		public static final String WITHER_SHRUB_RATE = "witherShrubSpawnRate (bigger = rarer. smaller = more common)";
-		public static final String UNDERTAKER_RATE = "undertakerSpawnRate (bigger = rarer. smaller = more common)";
-		public static final String UNDERTAKER_FILL_SLOT_CHANCE = "undertakerFillSlotChance (bigger = rarer. smaller = more common)";
+		public static final String NETHER_CROP_RATE = "netherCropSpawnRate";
+		public static final String WITHER_SHRUB_RATE = "witherShrubSpawnRate";
+		public static final String UNDERTAKER_RATE = "undertakerSpawnRate";
+		public static final String UNDERTAKER_FILL_SLOT_CHANCE = "undertakerFillSlotChance";
 		public static final String ENABLE_ORE_DICT_LOOK_UP = "enableOreDictNEILookUp";
 		public static final String ENABLE_ANVIL_LOOK_UP = "enableAnvilNEILookUp";
 	}

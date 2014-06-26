@@ -2,7 +2,12 @@ package ganymedes01.ganysnether.core.handlers;
 
 import ganymedes01.ganysnether.blocks.SpectreWheatCrop;
 import ganymedes01.ganysnether.client.renderer.block.IconSpectreWheat;
+import ganymedes01.ganysnether.client.renderer.item.IconInvertedTransparent;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.items.DimensionalBread;
+import ganymedes01.ganysnether.items.GhostSeeds;
+import ganymedes01.ganysnether.items.SpectreWheat;
+import ganymedes01.ganysnether.items.WitherShrubSeeds;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 
@@ -21,6 +26,7 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -76,7 +82,7 @@ public class ClientEventsHandler {
 		if (event.entityPlayer instanceof AbstractClientPlayer)
 			if (usersWithCapes.contains(event.entityPlayer.getCommandSenderName())) {
 				AbstractClientPlayer player = (AbstractClientPlayer) event.entityPlayer;
-
+				System.out.println(player.getUniqueID());
 				if (player.getLocationCape() == null)
 					if (event.entityPlayer.getCommandSenderName().equals("Jeb_Jeb"))
 						player.func_152121_a(Type.CAPE, JEBJEB_CAPE_DATA);
@@ -131,6 +137,12 @@ public class ClientEventsHandler {
 
 			for (int i = 0; i < 8; i++)
 				SpectreWheatCrop.icons[i] = IconSpectreWheat.getIcon(event.map, Blocks.wheat, i, Strings.Blocks.SPECTRE_WHEAT_BLOCK_NAME + "_stage_" + i);
+		}
+		if (event.map.getTextureType() == 1) {
+			SpectreWheat.setIcon(IconInvertedTransparent.getIcon(event.map, Items.wheat, 0, Strings.Items.SPECTRE_WHEAT_NAME));
+			GhostSeeds.setIcon(IconInvertedTransparent.getIcon(event.map, Items.wheat_seeds, 0, Strings.Items.GHOST_SEEDS_NAME));
+			DimensionalBread.setIcon(IconInvertedTransparent.getIcon(event.map, Items.bread, 0, Strings.Items.DIMENSIONAL_BREAD_NAME));
+			WitherShrubSeeds.setIcon(IconInvertedTransparent.getIcon(event.map, Items.pumpkin_seeds, 0, Strings.Items.WITHER_SHRUB_SEEDS_NAME));
 		}
 	}
 
