@@ -1,0 +1,157 @@
+# Item localizations
+item.ganysnether.quarzBerrySeeds.name=Semi di Bacche del Quarzo
+item.ganysnether.quarzBerry.name=Bacche del Quarzo
+item.ganysnether.ghostSeeds.name=Semi Fantasma
+item.ganysnether.spectreWheatItem.name=Grano Spettrale
+item.ganysnether.glowingReedItem.name=Canna da Zucchero degli Inferi
+item.ganysnether.spookyFlour.name=Farina Spettrale
+item.ganysnether.bottomlessBucket.name=Secchio Senza Fondo
+item.ganysnether.dimensionalBread.name=Pane Dimensionale
+item.ganysnether.baseballBat.name=Mazza da Baseball
+item.ganysnether.sceptreOfConcealment.name=Scettro dell'Occultamento
+item.ganysnether.skeletonSpawner0.name=Generatore di Scheletri Normale
+item.ganysnether.skeletonSpawner1.name=Generatore di Scheletri Wither
+item.ganysnether.silverfishScale.name=Bilancia del Pesciolino d'Argento
+item.ganysnether.batWing.name=Ala di Pipistrello
+item.ganysnether.cookedBatWing.name=Ala di Pipistrello Cotta
+item.ganysnether.wolfTeeth.name=Denti di Lupo
+item.ganysnether.blazeIngot0.name=Maglia di Blaze
+item.ganysnether.blazeIngot1.name=Lingotto di Blaze
+item.ganysnether.blazeIngot2.name=Pepita di Blaze
+item.ganysnether.sceptreOfFireCharging.name=Scettro della Carica di Fuoco
+item.ganysnether.sceptreOfLightning.name=Scettro del Fulmine
+item.ganysnether.sceptreCap_0.name=Capsula dello Scettro della Carica di Fuoco
+item.ganysnether.sceptreCap_1.name=Capsula dello Scettro del Fulmine
+item.ganysnether.sceptreCap_2.name=Capsula dello Scettro dell'Occultamento
+item.ganysnether.witherShrubSeeds.name=Semi di Arbusto di Wither
+item.ganysnether.livingSoul.name=Anima Vivente
+item.ganysnether.ironNugget.name=Pepita di Ferro
+item.ganysnether.flour.name=Farina
+item.ganysnether.hellBushSeeds.name=Semi di Cespuglio degli Inferi
+item.ganysnether.lavaBerry.name=Bacche di Lava
+
+item.ganysnether.blazeHelmet.name=Elmo di Blaze
+item.ganysnether.blazeChestplate.name=Corazza di Blaze
+item.ganysnether.blazeLeggings.name=Gambali di Blaze
+item.ganysnether.blazeBoots.name=Stivali di Blaze
+
+# Block localizations
+tile.ganysnether.tilledNetherrack.name=Netherrack Coltivata
+tile.ganysnether.quarzBerryBush.name=Cespuglio di Bacche del Quarzo
+tile.ganysnether.spectreWheat.name=Grano Spettrale
+tile.ganysnether.glowingReed.name=Canna da Zucchero degli Inferi
+tile.ganysnether.soulGlass.name=Vetro dell'Anima
+tile.ganysnether.soulGlassBrick.name=Mattoni di Vetro dell'Anima
+tile.ganysnether.soulGlassStairs.name=Scalini in Mattoni di Vetro dell'Anima
+tile.ganysnether.soulChest.name=Cassa dell'Anima
+tile.ganysnether.volcanicFurnace_true.name=Fornace Vulcanica
+tile.ganysnether.volcanicFurnace_false.name=Fornace Vulcanica
+tile.ganysnether.denseLavaCell.name=Cella di Lava Densa
+tile.ganysnether.reproducer.name=Riproduttore
+tile.ganysnether.undertaker.name=Becchino
+tile.ganysnether.witherShrub.name=Arbusto del Wither
+tile.ganysnether.magmaticCentrifuge.name=Centrifuga Magmatica
+tile.ganysnether.weepingPod.name=Baccello Piangente
+tile.ganysnether.soulGlassPane.name=Pannello di Vetro dell'Anima
+tile.ganysnether.soulTNT.name=TNT dell'Anima
+tile.ganysnether.blazingCactoid.name=Cactus di Blaze
+tile.ganysnether.hellBush.name=Cespuglio degli Inferi
+
+tile.ganysnether.glowBoxBlack.name=Lampada Nera
+tile.ganysnether.glowBoxRed.name=Lampada Rossa
+tile.ganysnether.glowBoxGreen.name=Lampada Verde
+tile.ganysnether.glowBoxBrown.name=Lampada Marrone
+tile.ganysnether.glowBoxBlue.name=Lampada Blu
+tile.ganysnether.glowBoxPurple.name=Lampada Viola
+tile.ganysnether.glowBoxCyan.name=Lampada Ciano
+tile.ganysnether.glowBoxLightGrey.name=Lampada Grigio Chiaro
+tile.ganysnether.glowBoxGrey.name=Lampada Grigia
+tile.ganysnether.glowBoxPink.name=Lampada Rosa
+tile.ganysnether.glowBoxLime.name=Lampada Lime
+tile.ganysnether.glowBoxYellow.name=Lampada Gialla
+tile.ganysnether.glowBoxLightBlue.name=Lampada Azzurra
+tile.ganysnether.glowBoxMagenta.name=Lampada Magenta
+tile.ganysnether.glowBoxOrange.name=Lampada Arancione
+tile.ganysnether.glowBoxWhite.name=Lampada Bianca
+
+tile.ganysnether.colouredQuartzBlockBlack.name=Blocco di Quarzo Nero
+tile.ganysnether.colouredQuartzBlockRed.name=Blocco di Quarzo Rosso
+tile.ganysnether.colouredQuartzBlockGreen.name=Blocco di Quarzo Verde
+tile.ganysnether.colouredQuartzBlockBrown.name=Blocco di Quarzo Marrone
+tile.ganysnether.colouredQuartzBlockBlue.name=Blocco di Quarzo Blu
+tile.ganysnether.colouredQuartzBlockPurple.name=Blocco di Quarzo Viola
+tile.ganysnether.colouredQuartzBlockCyan.name=Blocco di Quarzo Ciano
+tile.ganysnether.colouredQuartzBlockLightGrey.name=Blocco di Quarzo Grigio Chiaro
+tile.ganysnether.colouredQuartzBlockGrey.name=Blocco di Quarzo Grigio
+tile.ganysnether.colouredQuartzBlockPink.name=Blocco di Quarzo Rosa
+tile.ganysnether.colouredQuartzBlockLime.name=Blocco di Quarzo Lime
+tile.ganysnether.colouredQuartzBlockYellow.name=Blocco di Quarzo Giallo
+tile.ganysnether.colouredQuartzBlockLightBlue.name=Blocco di Quarzo Azzurro
+tile.ganysnether.colouredQuartzBlockMagenta.name=Blocco di Quarzo Magenta
+tile.ganysnether.colouredQuartzBlockOrange.name=Blocco di Quarzo Arancione
+tile.ganysnether.colouredQuartzBlockWhite.name=Blocco di Quarzo Bianco
+
+tile.ganysnether.colouredChiselledQuartzBlockBlack.name=Blocco di Quarzo Cesellato Nero
+tile.ganysnether.colouredChiselledQuartzBlockRed.name=Blocco di Quarzo Cesellato Rosso
+tile.ganysnether.colouredChiselledQuartzBlockGreen.name=Blocco di Quarzo Cesellato Verde
+tile.ganysnether.colouredChiselledQuartzBlockBrown.name=Blocco di Quarzo Cesellato Marrone
+tile.ganysnether.colouredChiselledQuartzBlockBlue.name=Blocco di Quarzo Cesellato Blu
+tile.ganysnether.colouredChiselledQuartzBlockPurple.name=Blocco di Quarzo Cesellato Viola
+tile.ganysnether.colouredChiselledQuartzBlockCyan.name=Blocco di Quarzo Cesellato Ciano
+tile.ganysnether.colouredChiselledQuartzBlockLightGrey.name=Blocco di Quarzo Cesellato Grigio Chiaro
+tile.ganysnether.colouredChiselledQuartzBlockGrey.name=Blocco di Quarzo Cesellato Grigio
+tile.ganysnether.colouredChiselledQuartzBlockPink.name=Blocco di Quarzo Cesellato Rosa
+tile.ganysnether.colouredChiselledQuartzBlockLime.name=Blocco di Quarzo Cesellato Lime
+tile.ganysnether.colouredChiselledQuartzBlockYellow.name=Blocco di Quarzo Cesellato Giallo
+tile.ganysnether.colouredChiselledQuartzBlockLightBlue.name=Blocco di Quarzo Cesellato Azzurro
+tile.ganysnether.colouredChiselledQuartzBlockMagenta.name=Blocco di Quarzo Cesellato Magenta
+tile.ganysnether.colouredChiselledQuartzBlockOrange.name=Blocco di Quarzo Cesellato Arancione
+tile.ganysnether.colouredChiselledQuartzBlockWhite.name=Blocco di Quarzo Cesellato Bianco
+
+tile.ganysnether.colouredQuartzPillar00.name=Pilastro di Quarzo Nero
+tile.ganysnether.colouredQuartzPillar01.name=Pilastro di Quarzo Rosso
+tile.ganysnether.colouredQuartzPillar02.name=Pilastro di Quarzo Verde
+tile.ganysnether.colouredQuartzPillar03.name=Pilastro di Quarzo Marrone
+tile.ganysnether.colouredQuartzPillar10.name=Pilastro di Quarzo Blu
+tile.ganysnether.colouredQuartzPillar11.name=Pilastro di Quarzo Viola
+tile.ganysnether.colouredQuartzPillar12.name=Pilastro di Quarzo Ciano
+tile.ganysnether.colouredQuartzPillar13.name=Pilastro di Quarzo Grigio Chiaro
+tile.ganysnether.colouredQuartzPillar20.name=Pilastro di Quarzo Grigio
+tile.ganysnether.colouredQuartzPillar21.name=Pilastro di Quarzo Rosa
+tile.ganysnether.colouredQuartzPillar22.name=Pilastro di Quarzo Lime
+tile.ganysnether.colouredQuartzPillar23.name=Pilastro di Quarzo Giallo
+tile.ganysnether.colouredQuartzPillar30.name=Pilastro di Quarzo Azzurro
+tile.ganysnether.colouredQuartzPillar31.name=Pilastro di Quarzo Magenta
+tile.ganysnether.colouredQuartzPillar32.name=Pilastro di Quarzo Arancione
+tile.ganysnether.colouredQuartzPillar33.name=Pilastro di Quarzo Bianco
+
+tile.ganysnether.blackQuartzStairs.name=Scalini di Quarzo Neri
+tile.ganysnether.redQuartzStairs.name=Scalini di Quarzo Rossi
+tile.ganysnether.greenQuartzStairs.name=Scalini di Quarzo Verdi
+tile.ganysnether.brownQuartzStairs.name=Scalini di Quarzo Marroni
+tile.ganysnether.blueQuartzStairs.name=Scalini di Quarzo Blu
+tile.ganysnether.purpleQuartzStairs.name=Scalini di Quarzo Viola
+tile.ganysnether.cyanQuartzStairs.name=Scalini di Quarzo Ciano
+tile.ganysnether.lightGreyQuartzStairs.name=Scalini di Quarzo Grigio Chiaro
+tile.ganysnether.greyQuartzStairs.name=Scalini di Quarzo Grigi
+tile.ganysnether.pinkQuartzStairs.name=Scalini di Quarzo Rosa
+tile.ganysnether.limeQuartzStairs.name=Scalini di Quarzo Lime
+tile.ganysnether.yellowQuartzStairs.name=Scalini di Quarzo Gialli
+tile.ganysnether.lightBlueQuartzStairs.name=Scalini di Quarzo Azzurri
+tile.ganysnether.magentaQuartzStairs.name=Scalini di Quarzo Magenta
+tile.ganysnether.orangeQuartzStairs.name=Scalini di Quarzo Arancioni
+tile.ganysnether.whiteQuartzStairs.name=Scalini di Quarzo Bianchi
+
+# GUI localizations
+container.ganysnether:volcanicFurnace=Fornace Vulcanica
+container.ganysnether:reproducer=Riproduttore
+container.ganysnether:soulChest=Cassa dell'Anima
+container.ganysnether:undertaker=Becchino
+container.ganysnether:magmaticCentrifuge=Centrifuga Magmatica
+fluidtogo=Liquido Producibile:
+
+# Creative Tab localizations
+itemGroup.ganysnether=Gany's Nether
+
+# Others
+hotontheinside=Caldo Dentro

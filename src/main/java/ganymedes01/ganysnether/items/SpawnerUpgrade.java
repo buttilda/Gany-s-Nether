@@ -28,15 +28,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class SpawnerUpgrade extends Item {
 
 	public enum UpgradeType {
-		// @formatter:off
 		tierCoal(Utils.getColour(33, 40, 45), new ItemStack(Items.coal), new ItemStack(Blocks.coal_block)),
 		tierIron(Utils.getColour(255, 255, 255), new ItemStack(Items.iron_ingot), new ItemStack(Blocks.iron_block)),
 		tierLapis(Utils.getColour(29, 47, 157), new ItemStack(Items.dye, 1, 4), new ItemStack(Blocks.lapis_block)),
@@ -51,7 +50,6 @@ public class SpawnerUpgrade extends Item {
 		silky(0, new ItemStack(Blocks.quartz_ore), Utils.enchantStack(new ItemStack(Items.enchanted_book), Enchantment.silkTouch, 1)),
 		spawnCount(0, null, null),
 		spawnRange(0, new ItemStack(Items.ender_eye), new ItemStack(Blocks.fire));
-		// @formatter:on
 
 		private final int colour;
 		private final ItemStack mat1, mat2;

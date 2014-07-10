@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.blocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Strings;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
@@ -46,5 +47,10 @@ public class SpectreWheatCrop extends NetherCrop {
 		if (meta < 0 || meta > 7)
 			return icons[7];
 		return icons[meta];
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister reg) {
 	}
 }

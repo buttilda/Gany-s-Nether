@@ -82,7 +82,7 @@ public class ClientEventsHandler {
 		if (event.entityPlayer instanceof AbstractClientPlayer)
 			if (usersWithCapes.contains(event.entityPlayer.getCommandSenderName())) {
 				AbstractClientPlayer player = (AbstractClientPlayer) event.entityPlayer;
-				System.out.println(player.getUniqueID());
+
 				if (player.getLocationCape() == null)
 					if (event.entityPlayer.getCommandSenderName().equals("Jeb_Jeb"))
 						player.func_152121_a(Type.CAPE, JEBJEB_CAPE_DATA);
