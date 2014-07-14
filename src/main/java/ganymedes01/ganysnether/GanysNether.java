@@ -5,7 +5,7 @@ import ganymedes01.ganysnether.command.GanysNetherCommand;
 import ganymedes01.ganysnether.configuration.ConfigurationHandler;
 import ganymedes01.ganysnether.core.handlers.BonemealOnNetherCrops;
 import ganymedes01.ganysnether.core.handlers.ClientEventsHandler;
-import ganymedes01.ganysnether.core.handlers.EntityDeathEvent;
+import ganymedes01.ganysnether.core.handlers.EntityEvents;
 import ganymedes01.ganysnether.core.handlers.FuelHandler;
 import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.InterModComms;
@@ -104,7 +104,7 @@ public class GanysNether {
 		GameRegistry.registerFuelHandler(new FuelHandler());
 
 		MinecraftForge.EVENT_BUS.register(new HoeEvent());
-		MinecraftForge.EVENT_BUS.register(new EntityDeathEvent());
+		MinecraftForge.EVENT_BUS.register(new EntityEvents());
 		MinecraftForge.EVENT_BUS.register(new BonemealOnNetherCrops());
 		if (shouldGenerateCrops) {
 			MinecraftForge.EVENT_BUS.register(new PlayerRightClickEvent());
