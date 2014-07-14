@@ -21,9 +21,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class BlazingCactoid extends BlockCactus {
@@ -42,7 +42,7 @@ public class BlazingCactoid extends BlockCactus {
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		if (!world.isRemote)
-			if (world.isAirBlock(x, y + 1, z) && rand.nextInt(4) == 2) {
+			if (world.isAirBlock(x, y + 1, z) && rand.nextInt(10) == 0) {
 				int height;
 				for (height = 1; world.getBlock(x, y - height, z) == this; height++);
 				if (height < 5) {
