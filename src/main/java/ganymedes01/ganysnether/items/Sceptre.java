@@ -4,18 +4,17 @@ import ganymedes01.ganysnether.GanysNether;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemSimpleFoiled;
 import net.minecraft.item.ItemStack;
-import thaumcraft.api.IRepairable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
-public class Sceptre extends ItemSimpleFoiled implements IRepairable {
+public class Sceptre extends ItemSimpleFoiled {
 
 	Sceptre() {
 		setFull3D();
