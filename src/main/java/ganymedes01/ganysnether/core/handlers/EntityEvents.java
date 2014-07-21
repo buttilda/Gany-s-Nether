@@ -18,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
@@ -29,7 +30,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class EntityEvents {
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void deathEvent(LivingDeathEvent event) {
 		if (event.entityLiving.worldObj.isRemote)
 			return;
