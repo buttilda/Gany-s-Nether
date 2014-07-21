@@ -20,6 +20,6 @@ public class VolcanicFurnaceSlot extends Slot {
 
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-		return VolcanicFurnaceHandler.itemIsFuel(stack);
+		return VolcanicFurnaceHandler.isItemMeltable(stack);
 	}
 }

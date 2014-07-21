@@ -70,7 +70,7 @@ public class ContainerVolcanicFurnace extends Container {
 			} else if (FluidContainerRegistry.isEmptyContainer(slotItemStack)) {
 				if (!mergeItemStack(slotItemStack, 1, 2, false))
 					return null;
-			} else if (VolcanicFurnaceHandler.itemIsFuel(slotItemStack)) {
+			} else if (VolcanicFurnaceHandler.isItemMeltable(slotItemStack)) {
 				if (!mergeItemStack(slotItemStack, 0, 1, false))
 					return null;
 			} else

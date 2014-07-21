@@ -175,7 +175,7 @@ public class TileEntityVolcanicFurnace extends GanysInventory implements ISidedI
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return slot == 0 ? VolcanicFurnaceHandler.itemIsFuel(stack) : slot == 1 ? FluidContainerRegistry.isEmptyContainer(stack) : false;
+		return slot == 0 ? VolcanicFurnaceHandler.isItemMeltable(stack) : slot == 1 ? FluidContainerRegistry.isEmptyContainer(stack) : false;
 	}
 
 	@Override

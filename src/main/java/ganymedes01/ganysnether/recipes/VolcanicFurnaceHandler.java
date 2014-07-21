@@ -29,9 +29,9 @@ import cpw.mods.fml.relauncher.ReflectionHelper;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class VolcanicFurnaceHandler {
@@ -101,7 +101,7 @@ public class VolcanicFurnaceHandler {
 			if (burnTime <= 0)
 				return;
 
-			if (!itemIsFuel(stack))
+			if (!isItemMeltable(stack))
 				whiteListItem(stack);
 
 			burnTimes.put(new UnsizedStack(stack), burnTime);
@@ -123,11 +123,11 @@ public class VolcanicFurnaceHandler {
 			meltingBlackList.add(new UnsizedStack(stack));
 	}
 
-	public static boolean itemIsFuel(ItemStack stack) {
+	public static boolean isItemMeltable(ItemStack stack) {
 		if (stack != null) {
-			if (meltingWhiteList.contains(stack))
+			if (meltingWhiteList.contains(new UnsizedStack(stack)))
 				return true;
-			if (meltingBlackList.contains(stack))
+			if (meltingBlackList.contains(new UnsizedStack(stack)))
 				return false;
 
 			if (stack.getItem() instanceof ItemPotion) {
@@ -174,7 +174,7 @@ public class VolcanicFurnaceHandler {
 		if (mapContainsKeys(oreBurnTimes, stack))
 			return getValue(oreBurnTimes, stack);
 
-		if (!itemIsFuel(stack))
+		if (!isItemMeltable(stack))
 			return 0;
 
 		Item item = stack.getItem();
