@@ -12,9 +12,7 @@ import ganymedes01.ganysnether.core.handlers.EntityEvents;
 import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.PlayerRightClickEvent;
 import ganymedes01.ganysnether.core.handlers.TooltipEvent;
-import ganymedes01.ganysnether.core.handlers.VersionCheckTickHandler;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.core.utils.VersionHelper;
 import ganymedes01.ganysnether.entities.EntityLightningBall;
 import ganymedes01.ganysnether.entities.EntitySlowTNT;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
@@ -52,11 +50,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class CommonProxy implements IGuiHandler {
 
 	public void registerEvents() {
-		if (GanysNether.shouldDoVersionCheck) {
-			VersionHelper.execute();
-			FMLCommonHandler.instance().bus().register(new VersionCheckTickHandler());
-		}
-
 		FMLCommonHandler.instance().bus().register(ConfigurationHandler.INSTANCE);
 
 		MinecraftForge.EVENT_BUS.register(new HoeEvent());
