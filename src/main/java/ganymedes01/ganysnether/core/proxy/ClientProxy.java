@@ -16,6 +16,7 @@ import ganymedes01.ganysnether.client.renderer.tileentity.TileEntityExtendedSpaw
 import ganymedes01.ganysnether.client.renderer.tileentity.TileEntityHorseArmourStandRender;
 import ganymedes01.ganysnether.client.renderer.tileentity.TileEntityMagmaticCentrifugeRender;
 import ganymedes01.ganysnether.client.renderer.tileentity.TileEntitySoulChestRender;
+import ganymedes01.ganysnether.core.handlers.ClientEventsHandler;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.entities.EntityLightningBall;
 import ganymedes01.ganysnether.entities.EntitySlowTNT;
@@ -27,6 +28,7 @@ import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
@@ -38,6 +40,12 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
  */
 
 public class ClientProxy extends CommonProxy {
+
+	@Override
+	public void registerEvents() {
+		super.registerEvents();
+		MinecraftForge.EVENT_BUS.register(new ClientEventsHandler());
+	}
 
 	@Override
 	public void registerTileEntities() {

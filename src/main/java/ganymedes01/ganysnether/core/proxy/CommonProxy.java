@@ -6,7 +6,15 @@ import ganymedes01.ganysnether.client.gui.inventory.GuiReproducer;
 import ganymedes01.ganysnether.client.gui.inventory.GuiThermalSmelter;
 import ganymedes01.ganysnether.client.gui.inventory.GuiUndertaker;
 import ganymedes01.ganysnether.client.gui.inventory.GuiVolcanicFurnace;
+import ganymedes01.ganysnether.configuration.ConfigurationHandler;
+import ganymedes01.ganysnether.core.handlers.BonemealOnNetherCrops;
+import ganymedes01.ganysnether.core.handlers.EntityEvents;
+import ganymedes01.ganysnether.core.handlers.HoeEvent;
+import ganymedes01.ganysnether.core.handlers.PlayerRightClickEvent;
+import ganymedes01.ganysnether.core.handlers.TooltipEvent;
+import ganymedes01.ganysnether.core.handlers.VersionCheckTickHandler;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.core.utils.VersionHelper;
 import ganymedes01.ganysnether.entities.EntityLightningBall;
 import ganymedes01.ganysnether.entities.EntitySlowTNT;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
@@ -28,18 +36,37 @@ import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class CommonProxy implements IGuiHandler {
+
+	public void registerEvents() {
+		if (GanysNether.shouldDoVersionCheck) {
+			VersionHelper.execute();
+			FMLCommonHandler.instance().bus().register(new VersionCheckTickHandler());
+		}
+
+		FMLCommonHandler.instance().bus().register(ConfigurationHandler.INSTANCE);
+
+		MinecraftForge.EVENT_BUS.register(new HoeEvent());
+		MinecraftForge.EVENT_BUS.register(new EntityEvents());
+		MinecraftForge.EVENT_BUS.register(new BonemealOnNetherCrops());
+		if (GanysNether.shouldGenerateCrops) {
+			MinecraftForge.EVENT_BUS.register(new PlayerRightClickEvent());
+			MinecraftForge.EVENT_BUS.register(new TooltipEvent());
+		}
+	}
 
 	public void registerTileEntities() {
 		GameRegistry.registerTileEntity(TileEntitySoulChest.class, Strings.Blocks.SOUL_CHEST_NAME);
