@@ -81,7 +81,7 @@ public class VolcanicFurnaceHandler {
 		addBurnTimeForOre("nuggetAluminum", 2);
 		addBurnTimeForOre("nuggetGold", 2);
 		addBurnTimeForOre("nuggetBlaze", 2);
-		addBurnTimeForOre("mobHead", 32);
+		addBurnTimeForOre("itemSkull", 32);
 		addBurnTimeForOre("mobEgg", 64);
 		addBurnTimeForOre("blockSpawner", 256);
 

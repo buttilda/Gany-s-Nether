@@ -19,9 +19,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ModRecipes {
@@ -71,7 +71,7 @@ public class ModRecipes {
 
 		GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.tierDragonEgg.ordinal()), "xyx", "yzy", "xyx", 'x', new ItemStack(Items.golden_apple, 1, 1), 'y', ModItems.netherCore, 'z', Blocks.dragon_egg);
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnCount.ordinal()), "xyx", "yzy", "xyx", 'x', "mobEgg", 'y', "mobEgg", 'z', ModItems.netherCore));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnCount.ordinal()), "xyx", "yzy", "xyx", 'x', "mobHead", 'y', "mobHead", 'z', ModItems.netherCore));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnCount.ordinal()), "xyx", "yzy", "xyx", 'x', "itemSkull", 'y', "itemSkull", 'z', ModItems.netherCore));
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dragon_egg), new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.tierDragonEgg.ordinal()));
 
 		// Vanilla
@@ -163,9 +163,7 @@ public class ModRecipes {
 			OreDictionary.registerOre("blockQuartzPillar", new ItemStack(ModBlocks.colouredQuartzPillar[i], 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("blockQuartzPillar", new ItemStack(Blocks.quartz_block, 1, 2));
 
-		if (OreDictionary.getOres("egg").isEmpty())
-			OreDictionary.registerOre("egg", new ItemStack(Items.egg));
-		if (OreDictionary.getOres("mobHead").isEmpty())
-			OreDictionary.registerOre("mobHead", new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("egg", new ItemStack(Items.egg));
+		OreDictionary.registerOre("itemSkull", new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE));
 	}
 }
