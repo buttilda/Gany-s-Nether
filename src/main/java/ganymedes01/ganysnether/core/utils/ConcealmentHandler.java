@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.core.utils;
 
-import ganymedes01.ganysnether.items.ModItems;
+import ganymedes01.ganysnether.ModItems;
 
 import java.util.ArrayList;
 import java.util.HashMap;

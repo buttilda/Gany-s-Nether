@@ -15,9 +15,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class SoulTNT extends BlockTNT {
@@ -25,7 +25,7 @@ public class SoulTNT extends BlockTNT {
 	@SideOnly(Side.CLIENT)
 	private IIcon blockTop, blockBottom;
 
-	SoulTNT() {
+	public SoulTNT() {
 		setHardness(0.0F);
 		setStepSound(soundTypeGrass);
 		setCreativeTab(GanysNether.netherTab);

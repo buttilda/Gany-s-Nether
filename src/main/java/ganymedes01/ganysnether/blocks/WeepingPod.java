@@ -20,9 +20,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class WeepingPod extends BlockCocoa {
@@ -30,7 +30,7 @@ public class WeepingPod extends BlockCocoa {
 	@SideOnly(Side.CLIENT)
 	private IIcon[] iconArray;
 
-	WeepingPod() {
+	public WeepingPod() {
 		setHardness(0.2F);
 		setResistance(5.0F);
 		setStepSound(soundTypeWood);

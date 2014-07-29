@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.core.handlers;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.HoeList;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

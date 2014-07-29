@@ -7,14 +7,14 @@ import net.minecraft.item.Item;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class IronNugget extends Item {
 
-	IronNugget() {
+	public IronNugget() {
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.IRON_NUGGET_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.IRON_NUGGET_NAME));

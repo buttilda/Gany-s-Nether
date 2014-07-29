@@ -26,14 +26,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ExtendedSpawner extends BlockMobSpawner {
 
-	ExtendedSpawner() {
+	public ExtendedSpawner() {
 		disableStats();
 		setHardness(5.0F);
 		setStepSound(soundTypeMetal);

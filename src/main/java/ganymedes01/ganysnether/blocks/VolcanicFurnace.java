@@ -22,7 +22,7 @@ public class VolcanicFurnace extends InventoryBlock {
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
-	VolcanicFurnace() {
+	public VolcanicFurnace() {
 		super(Material.rock);
 		setHardness(3.5F);
 		setStepSound(soundTypeStone);

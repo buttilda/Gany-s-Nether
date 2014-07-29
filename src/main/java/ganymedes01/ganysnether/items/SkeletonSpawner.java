@@ -34,9 +34,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class SkeletonSpawner extends Item {
@@ -44,7 +44,7 @@ public class SkeletonSpawner extends Item {
 	@SideOnly(Side.CLIENT)
 	private IIcon overlay;
 
-	SkeletonSpawner() {
+	public SkeletonSpawner() {
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setTextureName("spawn_egg");

@@ -28,7 +28,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlazingCactoid extends BlockCactus {
 
-	BlazingCactoid() {
+	public BlazingCactoid() {
 		super();
 		setHardness(0.4F);
 		setLightLevel(0.8F);

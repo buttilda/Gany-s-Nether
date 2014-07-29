@@ -18,16 +18,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 public class ColouredQuartzBlock extends Block {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] blockIcon;
 
-	ColouredQuartzBlock() {
+	public ColouredQuartzBlock() {
 		super(Material.rock);
 		setHardness(0.8F);
 		setStepSound(soundTypeStone);

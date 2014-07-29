@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.items.blocks;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.tileentities.TileEntityHorseArmourStand;
 import net.minecraft.block.Block;

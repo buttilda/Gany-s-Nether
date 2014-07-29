@@ -16,9 +16,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class BlazeIngot extends Item {
@@ -26,7 +26,7 @@ public class BlazeIngot extends Item {
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icon;
 
-	BlazeIngot() {
+	public BlazeIngot() {
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setCreativeTab(GanysNether.netherTab);

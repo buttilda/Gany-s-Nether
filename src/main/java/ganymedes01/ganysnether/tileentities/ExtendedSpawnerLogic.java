@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.tileentities;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.SpawnEggHelper;
 import ganymedes01.ganysnether.items.SkeletonSpawner;

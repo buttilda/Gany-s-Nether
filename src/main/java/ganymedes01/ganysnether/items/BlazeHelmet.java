@@ -5,14 +5,14 @@ import ganymedes01.ganysnether.lib.Strings;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class BlazeHelmet extends BlazeArmour {
 
-	BlazeHelmet() {
+	public BlazeHelmet() {
 		super(0);
 		setTextureName(Utils.getItemTexture(Strings.Items.BLAZE_HELMET_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.BLAZE_HELMET_NAME));

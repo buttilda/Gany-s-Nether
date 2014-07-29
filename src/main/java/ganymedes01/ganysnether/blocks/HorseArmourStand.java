@@ -18,14 +18,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class HorseArmourStand extends BlockContainer {
 
-	HorseArmourStand() {
+	public HorseArmourStand() {
 		super(Material.iron);
 		setHardness(1.0F);
 		setBlockTextureName("stone");

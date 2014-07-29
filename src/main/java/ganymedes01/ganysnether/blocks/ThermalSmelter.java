@@ -23,9 +23,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ThermalSmelter extends InventoryBlock {
@@ -33,7 +33,7 @@ public class ThermalSmelter extends InventoryBlock {
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
-	ThermalSmelter() {
+	public ThermalSmelter() {
 		super(Material.rock);
 		setHardness(2.5F);
 		setStepSound(soundTypeStone);

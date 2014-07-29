@@ -18,9 +18,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class GlowBox extends Block {
@@ -28,7 +28,7 @@ public class GlowBox extends Block {
 	@SideOnly(Side.CLIENT)
 	private IIcon[] blockSide, blockTop;
 
-	GlowBox() {
+	public GlowBox() {
 		super(Material.glass);
 		setLightLevel(1F);
 		setHardness(0.2F);

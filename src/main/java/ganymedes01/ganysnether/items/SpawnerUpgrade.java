@@ -1,7 +1,8 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
@@ -76,7 +77,7 @@ public class SpawnerUpgrade extends Item {
 	@SideOnly(Side.CLIENT)
 	private IIcon inside;
 
-	SpawnerUpgrade() {
+	public SpawnerUpgrade() {
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setCreativeTab(GanysNether.netherTab);

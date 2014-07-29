@@ -7,14 +7,14 @@ import net.minecraft.item.Item;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class SilverfishScale extends Item {
 
-	SilverfishScale() {
+	public SilverfishScale() {
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.SILVERFISH_SCALE_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SILVERFISH_SCALE_NAME));

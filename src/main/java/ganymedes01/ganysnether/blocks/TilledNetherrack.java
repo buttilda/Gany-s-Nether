@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 
@@ -22,9 +23,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class TilledNetherrack extends BlockFarmland {
@@ -32,7 +33,7 @@ public class TilledNetherrack extends BlockFarmland {
 	@SideOnly(Side.CLIENT)
 	private IIcon wetIcon, dryIcon;
 
-	TilledNetherrack() {
+	public TilledNetherrack() {
 		setHardness(0.5F);
 		setLightOpacity(0);
 		setStepSound(soundTypeGravel);

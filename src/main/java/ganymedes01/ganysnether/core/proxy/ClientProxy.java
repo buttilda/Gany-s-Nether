@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.core.proxy;
 
 import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.client.renderer.block.BlockBlazingCactoidRender;
 import ganymedes01.ganysnether.client.renderer.block.BlockExtendedSpawnerRender;
 import ganymedes01.ganysnether.client.renderer.block.BlockFocusedLavaCellRender;

@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
@@ -11,14 +11,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class HellBush extends QuarzBerryBush {
 
-	HellBush() {
+	public HellBush() {
 		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.HELL_BUSH_NAME));
 	}
 

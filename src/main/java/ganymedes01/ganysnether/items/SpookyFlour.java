@@ -10,14 +10,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class SpookyFlour extends Item {
 
-	SpookyFlour() {
+	public SpookyFlour() {
 		setTextureName("sugar");
 		setCreativeTab(GanysNether.netherTab);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SPOOKY_FLOUR_NAME));

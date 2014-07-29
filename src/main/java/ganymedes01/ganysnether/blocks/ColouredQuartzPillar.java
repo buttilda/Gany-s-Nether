@@ -18,9 +18,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ColouredQuartzPillar extends BlockRotatedPillar {
@@ -30,7 +30,7 @@ public class ColouredQuartzPillar extends BlockRotatedPillar {
 
 	private final int startIndex;
 
-	ColouredQuartzPillar(int startIndex) {
+	public ColouredQuartzPillar(int startIndex) {
 		super(Material.rock);
 		setHardness(0.8F);
 		this.startIndex = startIndex;

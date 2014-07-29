@@ -1,5 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.ModBlocks;
+
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;

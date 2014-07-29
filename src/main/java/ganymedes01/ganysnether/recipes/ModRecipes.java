@@ -1,9 +1,9 @@
 package ganymedes01.ganysnether.recipes;
 
 import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;

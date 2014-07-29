@@ -13,14 +13,14 @@ import net.minecraft.util.StatCollector;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class LavaBerry extends Item {
 
-	LavaBerry() {
+	public LavaBerry() {
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.LAVA_BERRY_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.LAVA_BERRY_NAME));

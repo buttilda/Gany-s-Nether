@@ -16,9 +16,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class Reproducer extends InventoryBlock {
@@ -26,7 +26,7 @@ public class Reproducer extends InventoryBlock {
 	@SideOnly(Side.CLIENT)
 	private IIcon blockSide, blockBottom, blockTop;
 
-	Reproducer() {
+	public Reproducer() {
 		super(Material.rock);
 		setHardness(2.5F);
 		setStepSound(soundTypeStone);

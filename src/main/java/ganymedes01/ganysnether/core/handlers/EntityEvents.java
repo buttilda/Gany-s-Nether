@@ -1,8 +1,8 @@
 package ganymedes01.ganysnether.core.handlers;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 
 import java.util.List;

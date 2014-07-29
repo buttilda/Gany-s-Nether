@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.integration;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
-import ganymedes01.ganysnether.items.ModItems;
+import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;

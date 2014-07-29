@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.client.renderer.entity;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.entities.EntitySlowTNT;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.Render;

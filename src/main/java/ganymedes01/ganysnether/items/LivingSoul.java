@@ -16,14 +16,14 @@ import cpw.mods.fml.common.eventhandler.Event.Result;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class LivingSoul extends Item {
 
-	LivingSoul() {
+	public LivingSoul() {
 		setFull3D();
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.LIVING_SOUL_NAME));

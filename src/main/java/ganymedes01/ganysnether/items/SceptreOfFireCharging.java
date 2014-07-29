@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,14 +14,14 @@ import net.minecraft.world.World;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class SceptreOfFireCharging extends Sceptre {
 
-	SceptreOfFireCharging() {
+	public SceptreOfFireCharging() {
 		super();
 		setMaxDamage(GanysNether.sceptreOfFireCharging);
 		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME));

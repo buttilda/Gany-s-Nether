@@ -7,14 +7,14 @@ import net.minecraft.item.Item;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class BatWing extends Item {
 
-	BatWing() {
+	public BatWing() {
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.BAT_WING_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.BAT_WING_NAME));

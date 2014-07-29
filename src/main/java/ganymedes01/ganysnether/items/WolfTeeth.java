@@ -7,14 +7,14 @@ import net.minecraft.item.Item;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class WolfTeeth extends Item {
 
-	WolfTeeth() {
+	public WolfTeeth() {
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.WOLF_TEETH_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.WOLF_TEETH_NAME));

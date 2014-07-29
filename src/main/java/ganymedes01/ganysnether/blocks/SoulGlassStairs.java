@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 
@@ -10,14 +11,14 @@ import net.minecraft.block.BlockStairs;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class SoulGlassStairs extends BlockStairs {
 
-	SoulGlassStairs() {
+	public SoulGlassStairs() {
 		super(ModBlocks.soulGlass, 1);
 		setHardness(0.3F);
 		setLightOpacity(3);

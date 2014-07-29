@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.recipes;
 
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.UnsizedStack;
-import ganymedes01.ganysnether.items.ModItems;
 
 import java.util.HashMap;
 import java.util.Map;

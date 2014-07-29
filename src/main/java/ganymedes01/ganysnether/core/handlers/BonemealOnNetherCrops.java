@@ -1,8 +1,8 @@
 package ganymedes01.ganysnether.core.handlers;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.blocks.NetherCrop;
-import ganymedes01.ganysnether.items.ModItems;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;

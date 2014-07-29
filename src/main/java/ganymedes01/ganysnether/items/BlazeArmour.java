@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.client.model.ModelBlazeArmour;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.integration.GanysEndManager;

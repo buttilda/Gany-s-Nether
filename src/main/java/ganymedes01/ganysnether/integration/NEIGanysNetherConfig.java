@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.integration;
 
 import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.client.gui.inventory.GuiMagmaticCentrifuge;
 import ganymedes01.ganysnether.integration.nei.AnvilHandler;
 import ganymedes01.ganysnether.integration.nei.MagmaticCentrifugeRecipeHandler;

@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
@@ -11,14 +12,14 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class FocusedLavaCell extends Block {
 
-	FocusedLavaCell() {
+	public FocusedLavaCell() {
 		super(Material.iron);
 		setHardness(2F);
 		setLightLevel(1F);

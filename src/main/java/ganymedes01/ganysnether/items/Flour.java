@@ -10,14 +10,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class Flour extends Item {
 
-	Flour() {
+	public Flour() {
 		setTextureName("sugar");
 		setCreativeTab(GanysNether.netherTab);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.FLOUR_NAME));

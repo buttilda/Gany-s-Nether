@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,7 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class SpectreWheat extends Item {
 
-	SpectreWheat() {
+	public SpectreWheat() {
 		setCreativeTab(GanysNether.netherTab);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SPECTRE_WHEAT_NAME));
 	}

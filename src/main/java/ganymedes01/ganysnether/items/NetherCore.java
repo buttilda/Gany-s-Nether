@@ -7,14 +7,14 @@ import net.minecraft.item.Item;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class NetherCore extends Item {
 
-	NetherCore() {
+	public NetherCore() {
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.NETHER_CORE_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.NETHER_CORE_NAME));

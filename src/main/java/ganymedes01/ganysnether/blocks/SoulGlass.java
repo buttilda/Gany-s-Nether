@@ -20,9 +20,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class SoulGlass extends Block {
@@ -30,7 +30,7 @@ public class SoulGlass extends Block {
 	@SideOnly(Side.CLIENT)
 	private IIcon block, brick;
 
-	SoulGlass() {
+	public SoulGlass() {
 		super(Material.glass);
 		setHardness(0.3F);
 		setLightOpacity(3);

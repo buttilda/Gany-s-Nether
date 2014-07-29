@@ -1,8 +1,8 @@
 package ganymedes01.ganysnether.tileentities;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.SpawnEggHelper;
-import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.items.SkeletonSpawner;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import ganymedes01.ganysnether.network.IPacketHandlingTile;

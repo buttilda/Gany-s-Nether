@@ -18,9 +18,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class SceptreCap extends ItemSimpleFoiled {
@@ -28,7 +28,7 @@ public class SceptreCap extends ItemSimpleFoiled {
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icon;
 
-	SceptreCap() {
+	public SceptreCap() {
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setCreativeTab(GanysNether.netherTab);

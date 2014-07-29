@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSeeds;

@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.integration.cg;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.UnsizedStack;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ReproducerRecipes;

@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
@@ -12,9 +12,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class QuarzBerryBush extends NetherCrop {
@@ -22,7 +22,7 @@ public class QuarzBerryBush extends NetherCrop {
 	@SideOnly(Side.CLIENT)
 	protected IIcon[] iconArray;
 
-	QuarzBerryBush() {
+	public QuarzBerryBush() {
 		float f = 1F / 8F;
 		setBlockBounds(3F * f, 0.0F, 3F * f, 1F - 3F * f, 2F * f, 1F - 3F * f);
 		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.QUARZ_BERRY_BUSH_NAME));

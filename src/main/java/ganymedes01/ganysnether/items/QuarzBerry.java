@@ -7,14 +7,14 @@ import net.minecraft.item.Item;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class QuarzBerry extends Item {
 
-	QuarzBerry() {
+	public QuarzBerry() {
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.QUARZ_BERRY_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.QUARZ_BERRY_NAME));

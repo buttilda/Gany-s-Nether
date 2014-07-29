@@ -8,14 +8,14 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class CookedBatWing extends ItemFood {
 
-	CookedBatWing() {
+	public CookedBatWing() {
 		super(1, true);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.COOKED_BAT_WING_NAME));

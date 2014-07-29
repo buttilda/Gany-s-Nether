@@ -1,8 +1,8 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
 
@@ -35,7 +35,7 @@ public class WitherShrub extends NetherCrop {
 	@SideOnly(Side.CLIENT)
 	private IIcon disconnected, connected;
 
-	WitherShrub() {
+	public WitherShrub() {
 		setHardness(0.0F);
 		setTickRandomly(true);
 		setBlockBounds(0.375F, 0.0F, 0.375F, 0.625F, 0.25F, 0.625F);

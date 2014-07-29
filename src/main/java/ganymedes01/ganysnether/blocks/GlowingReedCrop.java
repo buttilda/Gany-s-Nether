@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.Random;
@@ -19,14 +19,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class GlowingReedCrop extends BlockReed {
 
-	GlowingReedCrop() {
+	public GlowingReedCrop() {
 		super();
 		setHardness(0.0F);
 		setLightLevel(0.5F);

@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.ConcealmentHandler;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
@@ -13,14 +14,14 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class SceptreOfConcealment extends Sceptre {
 
-	SceptreOfConcealment() {
+	public SceptreOfConcealment() {
 		super();
 		setMaxDamage(GanysNether.sceptreOfConcealmentDurability);
 		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_CONCEALMENT_NAME));

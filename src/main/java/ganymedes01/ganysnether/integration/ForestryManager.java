@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.integration;
 
-import ganymedes01.ganysnether.items.ModItems;
+import ganymedes01.ganysnether.ModItems;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

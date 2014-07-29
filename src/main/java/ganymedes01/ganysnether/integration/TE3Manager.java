@@ -1,6 +1,6 @@
 package ganymedes01.ganysnether.integration;
 
-import ganymedes01.ganysnether.items.ModItems;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

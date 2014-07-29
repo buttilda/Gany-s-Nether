@@ -16,14 +16,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class BottomlessBucket extends ItemSimpleFoiled {
 
-	BottomlessBucket() {
+	public BottomlessBucket() {
 		setMaxStackSize(1);
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.BOTTOMLESS_BUCKET_NAME));

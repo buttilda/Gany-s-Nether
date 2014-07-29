@@ -14,14 +14,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class MagmaticCentrifuge extends InventoryBlock {
 
-	MagmaticCentrifuge() {
+	public MagmaticCentrifuge() {
 		super(Material.rock);
 		setHardness(2.5F);
 		setStepSound(soundTypeStone);

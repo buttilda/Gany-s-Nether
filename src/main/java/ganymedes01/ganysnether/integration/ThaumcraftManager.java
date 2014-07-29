@@ -1,8 +1,8 @@
 package ganymedes01.ganysnether.integration;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.HoeList;
-import ganymedes01.ganysnether.items.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

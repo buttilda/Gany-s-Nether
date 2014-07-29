@@ -18,9 +18,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ColouredChiselledQuartzBlock extends Block {
@@ -28,7 +28,7 @@ public class ColouredChiselledQuartzBlock extends Block {
 	@SideOnly(Side.CLIENT)
 	private IIcon[] blockTop, blockSide;
 
-	ColouredChiselledQuartzBlock() {
+	public ColouredChiselledQuartzBlock() {
 		super(Material.rock);
 		setHardness(0.8F);
 		setStepSound(soundTypeStone);

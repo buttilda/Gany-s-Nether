@@ -10,14 +10,14 @@ import net.minecraft.util.MathHelper;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class BaseballBat extends Item {
 
-	BaseballBat() {
+	public BaseballBat() {
 		setFull3D();
 		setMaxStackSize(1);
 		setCreativeTab(GanysNether.netherTab);

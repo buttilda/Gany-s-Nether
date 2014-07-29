@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
+import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -19,7 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WitherShrubSeeds extends NetherSeeds {
 
-	WitherShrubSeeds() {
+	public WitherShrubSeeds() {
 		super(ModBlocks.witherShrub);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.WITHER_SHRUB_SEEDS_NAME));
 	}

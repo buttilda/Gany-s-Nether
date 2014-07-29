@@ -20,14 +20,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class SoulChest extends InventoryBlock {
 
-	SoulChest() {
+	public SoulChest() {
 		super(Material.sand);
 		setHardness(2.5F);
 		setStepSound(soundTypeSand);

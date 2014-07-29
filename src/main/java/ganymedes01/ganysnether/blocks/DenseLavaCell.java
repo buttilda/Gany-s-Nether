@@ -15,14 +15,14 @@ import net.minecraft.world.World;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class DenseLavaCell extends Block {
 
-	DenseLavaCell() {
+	public DenseLavaCell() {
 		super(Material.iron);
 		setHardness(5F);
 		setLightLevel(1F);

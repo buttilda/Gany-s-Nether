@@ -1,6 +1,5 @@
 package ganymedes01.ganysnether;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
 import ganymedes01.ganysnether.command.GanysNetherCommand;
 import ganymedes01.ganysnether.configuration.ConfigurationHandler;
 import ganymedes01.ganysnether.core.handlers.FuelHandler;
@@ -9,7 +8,6 @@ import ganymedes01.ganysnether.core.proxy.CommonProxy;
 import ganymedes01.ganysnether.core.utils.HoeList;
 import ganymedes01.ganysnether.creativetab.CreativeTabNether;
 import ganymedes01.ganysnether.integration.ModIntegrator;
-import ganymedes01.ganysnether.items.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.network.PacketHandler;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;

@@ -1,7 +1,7 @@
 package ganymedes01.ganysnether.recipes;
 
-import ganymedes01.ganysnether.blocks.ModBlocks;
-import ganymedes01.ganysnether.items.ModItems;
+import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.recipes.centrifuge.CentrifugeRecipe;
 import ganymedes01.ganysnether.recipes.centrifuge.ItemStackCentrifugeRecipe;
