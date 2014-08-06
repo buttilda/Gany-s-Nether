@@ -49,12 +49,14 @@ public class ColouredQuartzPillar extends BlockRotatedPillar {
 	@Override
 	@SideOnly(Side.CLIENT)
 	protected IIcon getSideIcon(int index) {
+		index = Math.max(0, Math.min(index, blockSide.length - 1));
 		return blockSide[index];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	protected IIcon getTopIcon(int index) {
+		index = Math.max(0, Math.min(index, blockTop.length - 1));
 		return blockTop[index];
 	}
 

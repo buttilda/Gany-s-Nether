@@ -51,7 +51,7 @@ public class ColouredQuartzBlock extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		return blockIcon[meta];
+		return blockIcon[Math.max(0, Math.min(meta, blockIcon.length - 1))];
 	}
 
 	@Override

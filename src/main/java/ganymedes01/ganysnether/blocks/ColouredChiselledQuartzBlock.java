@@ -52,6 +52,7 @@ public class ColouredChiselledQuartzBlock extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
+		meta = Math.max(0, Math.min(meta, blockSide.length - 1));
 		if (side == 0 || side == 1)
 			return blockTop[meta];
 		return blockSide[meta];
