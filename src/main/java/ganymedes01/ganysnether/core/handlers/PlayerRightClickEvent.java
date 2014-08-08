@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.core.handlers;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -11,16 +12,16 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class PlayerRightClickEvent {
 
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		if (event.entityPlayer != null) {
+		if (event.entityPlayer != null && GanysNether.shouldGenerateCrops) {
 			World world = event.entityPlayer.worldObj;
 			if (event.action == Action.RIGHT_CLICK_BLOCK)
 				if (world.getBlock(event.x, event.y, event.z) == Blocks.obsidian) {

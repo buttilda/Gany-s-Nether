@@ -55,10 +55,8 @@ public class CommonProxy implements IGuiHandler {
 		MinecraftForge.EVENT_BUS.register(new HoeEvent());
 		MinecraftForge.EVENT_BUS.register(new EntityEvents());
 		MinecraftForge.EVENT_BUS.register(new BonemealOnNetherCrops());
-		if (GanysNether.shouldGenerateCrops) {
-			MinecraftForge.EVENT_BUS.register(new PlayerRightClickEvent());
-			MinecraftForge.EVENT_BUS.register(new TooltipEvent());
-		}
+		MinecraftForge.EVENT_BUS.register(new PlayerRightClickEvent());
+		MinecraftForge.EVENT_BUS.register(new TooltipEvent());
 	}
 
 	public void registerTileEntities() {

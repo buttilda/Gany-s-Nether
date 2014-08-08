@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.core.handlers;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
@@ -20,7 +21,7 @@ public class TooltipEvent {
 
 		Item item = event.itemStack.getItem();
 
-		if (item == Items.ghast_tear)
+		if (item == Items.ghast_tear && GanysNether.shouldGenerateCrops)
 			event.toolTip.add(StatCollector.translateToLocal("tooltip.ganysnether.ghastTear"));
 		if (item == Item.getItemFromBlock(ModBlocks.extendedSpawner) && event.itemStack.hasTagCompound() && event.itemStack.getTagCompound().hasKey("EntityId"))
 			event.toolTip.add(EnumChatFormatting.GOLD + event.itemStack.getTagCompound().getString("EntityId"));
