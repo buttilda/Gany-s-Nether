@@ -159,7 +159,7 @@ public class ClientEventsHandler {
 		}
 
 		@Override
-		public void loadTexture(IResourceManager p_110551_1_) throws IOException {
+		public void loadTexture(IResourceManager p_110551_1_) {
 			deleteGlTexture();
 			TextureUtil.uploadTextureImageAllocate(getGlTextureId(), image, false, false);
 		}
