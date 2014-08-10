@@ -13,19 +13,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
 public class ItemSoulChestRender implements IItemRenderer {
 
-	private ModelSoulChest modelChest;
+	private final ModelSoulChest modelChest = new ModelSoulChest();
 	private final ResourceLocation texture;
 
 	public ItemSoulChestRender(ResourceLocation texture) {
-		modelChest = new ModelSoulChest();
 		this.texture = texture;
 	}
 

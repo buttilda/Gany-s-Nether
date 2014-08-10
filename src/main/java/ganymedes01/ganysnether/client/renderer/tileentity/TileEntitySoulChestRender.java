@@ -7,16 +7,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
@@ -36,7 +35,6 @@ public class TileEntitySoulChestRender extends TileEntitySpecialRenderer {
 		bindTexture(texture);
 
 		GL11.glPushMatrix();
-		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glTranslatef((float) x, (float) y + 2.0F, (float) z + 1.0F);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
@@ -59,7 +57,6 @@ public class TileEntitySoulChestRender extends TileEntitySpecialRenderer {
 		lidRotation = 1.0F - lidRotation * lidRotation * lidRotation;
 		modelchest.setRotationAngles(lidRotation);
 		modelchest.renderAll();
-		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 		GL11.glPopMatrix();
 	}
 }

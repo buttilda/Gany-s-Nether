@@ -4,6 +4,7 @@ import ganymedes01.ganysnether.client.model.ModelMagmaticCentrifuge;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
@@ -14,15 +15,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
 public class ItemMagmaticCentrifugeRender implements IItemRenderer {
 
 	private final ModelMagmaticCentrifuge model;
+	private final ResourceLocation texture = Utils.getResource(Utils.getEntityTexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME));
 
 	public ItemMagmaticCentrifugeRender() {
 		model = new ModelMagmaticCentrifuge();
@@ -63,7 +65,7 @@ public class ItemMagmaticCentrifugeRender implements IItemRenderer {
 	}
 
 	private void renderCentrifuge(float x, float y, float z) {
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME)));
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
 		GL11.glPushMatrix();
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GL11.glEnable(GL11.GL_BLEND);

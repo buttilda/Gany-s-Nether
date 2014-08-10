@@ -11,6 +11,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
@@ -20,16 +21,17 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
 public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRenderer {
 
-	private RenderItem customRenderItem;
+	private final RenderItem customRenderItem;
 	private final ModelMagmaticCentrifuge modelCentrifuge = new ModelMagmaticCentrifuge();
+	private final ResourceLocation texture = Utils.getResource(Utils.getEntityTexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME));
 
 	public TileEntityMagmaticCentrifugeRender() {
 		customRenderItem = new RenderItem() {
@@ -63,10 +65,10 @@ public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRendere
 		renderItem(centrifuge.getWorldObj(), x, y, z, material2, rotationAngle, true);
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		bindTexture(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME)));
+		bindTexture(texture);
 		GL11.glPushMatrix();
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GL11.glTranslatef((float) x, (float) y + 1.5F, (float) z + 1.0F);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glTranslatef(0.5F, 0.5F, 0.5F);

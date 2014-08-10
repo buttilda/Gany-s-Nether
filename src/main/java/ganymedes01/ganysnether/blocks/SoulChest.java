@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.blocks;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import net.minecraft.block.material.Material;
@@ -62,7 +63,7 @@ public class SoulChest extends InventoryBlock {
 
 	@Override
 	public int getRenderType() {
-		return -1;
+		return RenderIDs.SOUL_CHEST;
 	}
 
 	@Override

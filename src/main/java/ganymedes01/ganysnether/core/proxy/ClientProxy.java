@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.core.proxy;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.client.renderer.block.BlockBlazingCactoidRender;
+import ganymedes01.ganysnether.client.renderer.block.BlockChestRenderer;
 import ganymedes01.ganysnether.client.renderer.block.BlockExtendedSpawnerRender;
 import ganymedes01.ganysnether.client.renderer.block.BlockFocusedLavaCellRender;
 import ganymedes01.ganysnether.client.renderer.block.BlockVolcanicFurnaceRender;
@@ -12,7 +13,6 @@ import ganymedes01.ganysnether.client.renderer.entity.EntitySoulTNTRenderer;
 import ganymedes01.ganysnether.client.renderer.item.ItemHorseArmourStandRender;
 import ganymedes01.ganysnether.client.renderer.item.ItemMagmaticCentrifugeRender;
 import ganymedes01.ganysnether.client.renderer.item.ItemSoulChestRender;
-import ganymedes01.ganysnether.client.renderer.item.ItemThermalSmelterRender;
 import ganymedes01.ganysnether.client.renderer.tileentity.TileEntityExtendedSpawnerRender;
 import ganymedes01.ganysnether.client.renderer.tileentity.TileEntityHorseArmourStandRender;
 import ganymedes01.ganysnether.client.renderer.tileentity.TileEntityMagmaticCentrifugeRender;
@@ -70,7 +70,6 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.soulChest), new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.SOUL_CHEST_NAME))));
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.undertaker), new ItemSoulChestRender(Utils.getResource(Utils.getEntityTexture(Strings.Blocks.UNDERTAKER_NAME))));
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.magmaticCentrifuge), new ItemMagmaticCentrifugeRender());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.thermalSmelter), new ItemThermalSmelterRender());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.horseArmourStand), new ItemHorseArmourStandRender());
 
 		RenderingRegistry.registerBlockHandler(new BlockWitherShrubRender());
@@ -78,6 +77,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerBlockHandler(new BlockExtendedSpawnerRender());
 		RenderingRegistry.registerBlockHandler(new BlockFocusedLavaCellRender());
 		RenderingRegistry.registerBlockHandler(new BlockVolcanicFurnaceRender());
+		RenderingRegistry.registerBlockHandler(new BlockChestRenderer());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityLightningBall.class, new EntityLightningBallRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySlowTNT.class, new EntitySoulTNTRenderer());
