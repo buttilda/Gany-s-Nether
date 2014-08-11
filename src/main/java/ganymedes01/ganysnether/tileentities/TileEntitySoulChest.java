@@ -4,16 +4,16 @@ import ganymedes01.ganysnether.lib.Strings;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class TileEntitySoulChest extends GanysInventory {
 
 	public float lidAngle;
 	public float prevLidAngle;
-	public int numUsingPlayers;
+	public int usingPlayers;
 
 	public TileEntitySoulChest() {
 		this(27, Strings.Blocks.SOUL_CHEST_NAME);
@@ -27,13 +27,13 @@ public class TileEntitySoulChest extends GanysInventory {
 	public void updateEntity() {
 		prevLidAngle = lidAngle;
 
-		if (numUsingPlayers > 0 && lidAngle == 0.0F)
+		if (usingPlayers > 0 && lidAngle == 0.0F)
 			worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.chestopen", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
 
-		if (numUsingPlayers <= 0 && lidAngle > 0.0F || numUsingPlayers > 0 && lidAngle < 1.0F) {
-			float initialLidAngle = lidAngle;
+		if (usingPlayers <= 0 && lidAngle > 0.0F || usingPlayers > 0 && lidAngle < 1.0F) {
+			float oldLidAngle = lidAngle;
 
-			if (numUsingPlayers > 0)
+			if (usingPlayers > 0)
 				lidAngle += 0.1F;
 			else
 				lidAngle -= 0.1F;
@@ -43,15 +43,15 @@ public class TileEntitySoulChest extends GanysInventory {
 			else if (lidAngle < 0.0F)
 				lidAngle = 0.0F;
 
-			if (lidAngle < 0.5F && initialLidAngle >= 0.5F)
+			if (lidAngle < 0.5F && oldLidAngle >= 0.5F)
 				worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.chestclosed", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
 		}
 	}
 
 	@Override
-	public boolean receiveClientEvent(int eventType, int arg) {
-		if (eventType == 1) {
-			numUsingPlayers = arg;
+	public boolean receiveClientEvent(int eventID, int value) {
+		if (eventID == 0) {
+			usingPlayers = value;
 			return true;
 		}
 		return false;
@@ -59,19 +59,19 @@ public class TileEntitySoulChest extends GanysInventory {
 
 	@Override
 	public void openInventory() {
-		if (numUsingPlayers < 0)
-			numUsingPlayers = 0;
+		if (usingPlayers < 0)
+			usingPlayers = 0;
 
-		numUsingPlayers++;
-		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType(), 1, numUsingPlayers);
+		usingPlayers++;
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType(), 0, usingPlayers);
 	}
 
 	@Override
 	public void closeInventory() {
-		numUsingPlayers--;
-		if (numUsingPlayers < 0)
-			numUsingPlayers = 0;
+		usingPlayers--;
+		if (usingPlayers < 0)
+			usingPlayers = 0;
 
-		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType(), 1, numUsingPlayers);
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType(), 0, usingPlayers);
 	}
 }

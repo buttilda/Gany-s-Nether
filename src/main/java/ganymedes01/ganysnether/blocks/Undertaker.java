@@ -8,11 +8,14 @@ import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 
 import java.util.Random;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class Undertaker extends SoulChest {
 
@@ -51,5 +54,13 @@ public class Undertaker extends SoulChest {
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityUndertaker();
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister reg) {
+		blockIcon = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.UNDERTAKER_NAME + "_top"));
+		sides = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.UNDERTAKER_NAME + "_side"));
+		bottom = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.UNDERTAKER_NAME + "_bottom"));
 	}
 }

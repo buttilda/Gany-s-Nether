@@ -7,6 +7,7 @@ import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntitySoulChest;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -14,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -28,11 +30,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class SoulChest extends InventoryBlock {
 
+	@SideOnly(Side.CLIENT)
+	protected IIcon sides, bottom;
+
 	public SoulChest() {
 		super(Material.sand);
 		setHardness(2.5F);
 		setStepSound(soundTypeSand);
-		setBlockTextureName("soul_sand");
 		setCreativeTab(GanysNether.netherTab);
 		setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_CHEST_NAME));
@@ -59,6 +63,20 @@ public class SoulChest extends InventoryBlock {
 	@SideOnly(Side.CLIENT)
 	public boolean renderAsNormalBlock() {
 		return false;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister reg) {
+		blockIcon = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SOUL_CHEST_NAME + "_top"));
+		sides = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SOUL_CHEST_NAME + "_side"));
+		bottom = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SOUL_CHEST_NAME + "_bottom"));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(int side, int meta) {
+		return side == 1 ? blockIcon : side == 0 ? bottom : sides;
 	}
 
 	@Override

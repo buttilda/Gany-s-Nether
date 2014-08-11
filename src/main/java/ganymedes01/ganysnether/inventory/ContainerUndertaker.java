@@ -11,21 +11,26 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ContainerUndertaker extends Container {
 
-	public ContainerUndertaker(InventoryPlayer inventory, TileEntityUndertaker tileUndertaker) {
+	private final TileEntityUndertaker tile;
+
+	public ContainerUndertaker(InventoryPlayer inventory, TileEntityUndertaker tile) {
+		this.tile = tile;
+		tile.openInventory();
+
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 9; j++)
-				addSlotToContainer(new InvalidSlot(tileUndertaker, j + i * 9 + 9, 8 + j * 18, 34 + i * 18));
+				addSlotToContainer(new InvalidSlot(tile, j + i * 9 + 9, 8 + j * 18, 34 + i * 18));
 		for (int i = 0; i < 9; i++)
-			addSlotToContainer(new InvalidSlot(tileUndertaker, i, 8 + i * 18, 92));
+			addSlotToContainer(new InvalidSlot(tile, i, 8 + i * 18, 92));
 		for (int i = 0; i < 4; i++)
-			addSlotToContainer(new InvalidArmourSlot(tileUndertaker, i + 36, 8 + i * 18, 16, i));
+			addSlotToContainer(new InvalidArmourSlot(tile, i + 36, 8 + i * 18, 16, i));
 
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 9; j++)
@@ -60,5 +65,11 @@ public class ContainerUndertaker extends Container {
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		return true;
+	}
+
+	@Override
+	public void onContainerClosed(EntityPlayer player) {
+		super.onContainerClosed(player);
+		tile.closeInventory();
 	}
 }
