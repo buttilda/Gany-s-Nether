@@ -47,7 +47,7 @@ public class WitherShrub extends NetherCrop {
 		if (world.isRemote)
 			return;
 		if (canPlaceBlockOn(world.getBlock(x, y - 1, z)))
-			if (rand.nextInt(60) == 0) {
+			if (rand.nextInt(40) == 0) {
 				int meta = world.getBlockMetadata(x, y, z);
 
 				if (meta < 7)
