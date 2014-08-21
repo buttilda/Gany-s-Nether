@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.core.handlers;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.integration.GravestoneModManager;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 
 import java.util.List;
@@ -70,17 +71,16 @@ public class EntityEvents {
 	public void dropEvent(LivingDropsEvent event) {
 		if (event.entityLiving.worldObj.isRemote)
 			return;
+		if (event.lootingLevel < 0)
+			return;
+
 		Random rand = event.entityLiving.worldObj.rand;
-		if (event.entityLiving instanceof EntitySilverfish) {
-			addDrop(new ItemStack(ModItems.silverfishScale, rand.nextInt(3)), event.entityLiving, event.drops);
-			return;
-		} else if (event.entityLiving instanceof EntityBat) {
-			addDrop(new ItemStack(ModItems.batWing, 1 + rand.nextInt(1)), event.entityLiving, event.drops);
-			return;
-		} else if (event.entityLiving instanceof EntityWolf) {
-			addDrop(new ItemStack(ModItems.wolfTeeth, rand.nextInt(2)), event.entityLiving, event.drops);
-			return;
-		}
+		if (event.entityLiving instanceof EntitySilverfish)
+			addDrop(new ItemStack(ModItems.silverfishScale, rand.nextInt(3 + event.lootingLevel)), event.entityLiving, event.drops);
+		else if (event.entityLiving instanceof EntityBat)
+			addDrop(new ItemStack(event.entityLiving.isBurning() ? ModItems.cookedBatWing : ModItems.batWing, 1 + (event.lootingLevel >= 2 ? 1 : rand.nextInt(1))), event.entityLiving, event.drops);
+		else if (event.entityLiving instanceof EntityWolf || GravestoneModManager.isUndeadDog(event.entityLiving))
+			addDrop(new ItemStack(ModItems.wolfTeeth, rand.nextInt(2 + event.lootingLevel)), event.entityLiving, event.drops);
 	}
 
 	private void addDrop(ItemStack stack, EntityLivingBase entity, List<EntityItem> list) {
