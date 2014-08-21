@@ -109,8 +109,8 @@ public class HorseArmourStand extends BlockContainer {
 							break;
 					}
 					if (stack != null) {
-						if (!player.capabilities.isCreativeMode && !player.inventory.addItemStackToInventory(stack))
-							InventoryUtils.dropStack(world, (int) player.posX, (int) player.posY, (int) player.posZ, stack);
+						if (!player.capabilities.isCreativeMode)
+							InventoryUtils.addToPlayerInventory(player, stack, x, y, z);
 						tile.setArmourType((byte) -1);
 					}
 				}
