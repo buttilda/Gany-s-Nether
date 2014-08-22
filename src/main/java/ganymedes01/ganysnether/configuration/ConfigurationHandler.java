@@ -65,8 +65,6 @@ public class ConfigurationHandler {
 		GanysNether.shouldDoVersionCheck = configBoolean(Strings.Others.SHOULD_DO_VERSION_CHECK, true, GanysNether.shouldDoVersionCheck);
 		GanysNether.shouldGhastTearHaveDispenserAction = configBoolean(Strings.Others.SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION, true, GanysNether.shouldGhastTearHaveDispenserAction);
 		GanysNether.enableUndertaker = configBoolean(Strings.Others.ENABLE_UNDERTAKER, true, GanysNether.enableUndertaker);
-		GanysNether.enableAnvilRepairNEILookUp = configBoolean(Strings.Others.ENABLE_ANVIL_LOOK_UP, true, GanysNether.enableAnvilRepairNEILookUp);
-		GanysNether.enableOreDictNEILookUp = configBoolean(Strings.Others.ENABLE_ORE_DICT_LOOK_UP, true, GanysNether.enableOreDictNEILookUp);
 
 		GanysNether.netherCropRate = configInteger(Strings.Others.NETHER_CROP_RATE, GanysNether.netherCropRate);
 		GanysNether.witherShrubRate = configInteger(Strings.Others.WITHER_SHRUB_RATE, GanysNether.witherShrubRate);
