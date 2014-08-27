@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -23,8 +24,9 @@ public class PlayerRightClickEvent {
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		if (event.entityPlayer != null && GanysNether.shouldGenerateCrops) {
 			World world = event.entityPlayer.worldObj;
-			if (event.action == Action.RIGHT_CLICK_BLOCK)
-				if (world.getBlock(event.x, event.y, event.z) == Blocks.obsidian) {
+			if (event.action == Action.RIGHT_CLICK_BLOCK && event.face > 1 && event.face <= 5) {
+				ForgeDirection dir = ForgeDirection.values()[event.face];
+				if (world.getBlock(event.x, event.y, event.z) == Blocks.obsidian && world.isAirBlock(event.x + dir.offsetX, event.y + dir.offsetY, event.z + dir.offsetZ)) {
 					ItemStack current = event.entityPlayer.inventory.getCurrentItem();
 					if (current != null && current.getItem() == Items.ghast_tear) {
 						event.entityPlayer.swingItem();
@@ -33,6 +35,7 @@ public class PlayerRightClickEvent {
 							event.entityPlayer.inventory.getCurrentItem().stackSize--;
 					}
 				}
+			}
 		}
 	}
 
