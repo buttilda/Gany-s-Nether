@@ -4,7 +4,6 @@ import ganymedes01.ganysnether.core.utils.Utils;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
@@ -47,7 +46,7 @@ public class IconInvertedTransparent extends TextureAtlasSprite {
 	public boolean hasCustomLoader(IResourceManager manager, ResourceLocation location) {
 		try {
 			manager.getResource(location);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			return true;
 		}
 		return false;
