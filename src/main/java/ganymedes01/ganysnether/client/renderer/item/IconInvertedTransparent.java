@@ -58,7 +58,7 @@ public class IconInvertedTransparent extends TextureAtlasSprite {
 			IResource iresource = manager.getResource(getBlockResource(base, meta));
 			AnimationMetadataSection meta = (AnimationMetadataSection) iresource.getMetadata("animation");
 			BufferedImage icon = ImageIO.read(iresource.getInputStream());
-			BufferedImage inverted = new BufferedImage(icon.getWidth(), icon.getHeight(), icon.getType());
+			BufferedImage inverted = new BufferedImage(icon.getWidth(), icon.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
 
 			for (int x = 0; x < icon.getWidth(); x++)
 				for (int y = 0; y < icon.getHeight(); y++) {
