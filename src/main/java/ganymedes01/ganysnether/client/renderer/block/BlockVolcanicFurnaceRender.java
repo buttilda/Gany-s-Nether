@@ -5,7 +5,6 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.init.Blocks;
@@ -16,9 +15,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
@@ -36,21 +35,7 @@ public class BlockVolcanicFurnaceRender implements ISimpleBlockRenderingHandler 
 		if (furnace != null && furnace.hasLava) {
 			Tessellator tessellator = Tessellator.instance;
 			tessellator.setBrightness(block.getMixedBrightnessForBlock(blockAccess, x, y, z));
-			int colour = block.colorMultiplier(blockAccess, x, y, z);
-			float R = (colour >> 16 & 255) / 255.0F;
-			float G = (colour >> 8 & 255) / 255.0F;
-			float B = (colour & 255) / 255.0F;
-
-			if (EntityRenderer.anaglyphEnable) {
-				float r = (R * 30.0F + G * 59.0F + B * 11.0F) / 100.0F;
-				float g = (R * 30.0F + G * 70.0F) / 100.0F;
-				float b = (R * 30.0F + B * 70.0F) / 100.0F;
-				R = r;
-				G = g;
-				B = b;
-			}
-
-			tessellator.setColorOpaque_F(R, G, B);
+			tessellator.setColorOpaque_F(1, 1, 1);
 			renderer.renderFaceYPos(Blocks.lava, x, y, z, Blocks.lava.getIcon(0, 0));
 		}
 
