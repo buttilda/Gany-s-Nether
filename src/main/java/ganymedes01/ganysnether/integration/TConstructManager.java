@@ -9,9 +9,9 @@ import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class TConstructManager extends Integration {
@@ -26,7 +26,7 @@ public class TConstructManager extends Integration {
 		ItemStack ingot = getStack("ingot" + ore, 3);
 		ItemStack nugget = getStack("nugget" + ore, 1);
 		if (ingot != null && nugget != null)
-			MagmaticCentrifugeRecipes.addOreDictRecipe("ore" + ore, "ore" + ore, ingot, nugget);
+			MagmaticCentrifugeRecipes.addRecipe("ore" + ore, "ore" + ore, ingot, nugget);
 	}
 
 	private ItemStack getStack(String ore, int size) {

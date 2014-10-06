@@ -27,9 +27,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISidedInventory, IFluidHandler {
@@ -181,7 +181,7 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 		if (inventory[MATERIAL_SLOT_1] == null || inventory[MATERIAL_SLOT_2] == null)
 			isRecipeValid = false;
 		else
-			isRecipeValid = MagmaticCentrifugeRecipes.isRegisteredRecipe(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]) && tank.getFluidAmount() >= FluidContainerRegistry.BUCKET_VOLUME / 10;
+			isRecipeValid = MagmaticCentrifugeRecipes.getResult(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]) != null && tank.getFluidAmount() >= FluidContainerRegistry.BUCKET_VOLUME / 10;
 	}
 
 	@Override

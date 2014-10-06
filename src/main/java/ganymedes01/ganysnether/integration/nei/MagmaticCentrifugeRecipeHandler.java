@@ -4,8 +4,8 @@ import ganymedes01.ganysnether.client.gui.inventory.GuiMagmaticCentrifuge;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
+import ganymedes01.ganysnether.recipes.CentrifugeRecipe;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
-import ganymedes01.ganysnether.recipes.centrifuge.CentrifugeRecipe;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -15,6 +15,7 @@ import java.util.Random;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.oredict.OreDictionary;
 
 import org.lwjgl.opengl.GL11;
 
@@ -113,7 +114,7 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
 		for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.getRecipes())
-			if (recipe.containsMaterial(ingredient))
+			if (recipe.isPartOfInput(ingredient))
 				arecipes.add(new CachedCentrifugeRecipe(recipe));
 	}
 
@@ -123,8 +124,8 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 		private final ArrayList<PositionedStack> result = new ArrayList<PositionedStack>();
 
 		public CachedCentrifugeRecipe(CentrifugeRecipe recipe) {
-			materials.add(new PositionedStack(recipe.getMaterial(1), 30, 20));
-			materials.add(new PositionedStack(recipe.getMaterial(2), 120, 20));
+			materials.add(new PositionedStack(validateObj(recipe.getInput1()), 30, 20));
+			materials.add(new PositionedStack(validateObj(recipe.getInput2()), 120, 20));
 
 			ItemStack[] results = recipe.getResult();
 
@@ -134,6 +135,12 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 					if (index < results.length)
 						result.add(new PositionedStack(results[index], 66 + 18 * i, 12 + 18 * j));
 				}
+		}
+
+		private Object validateObj(Object obj) {
+			if (obj instanceof String)
+				return OreDictionary.getOres((String) obj);
+			return obj;
 		}
 
 		@Override

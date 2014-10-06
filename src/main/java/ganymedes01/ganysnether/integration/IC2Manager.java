@@ -5,16 +5,16 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class IC2Manager extends Integration {
 
 	@Override
 	public void init() {
-		MagmaticCentrifugeRecipes.addOreDictRecipe("ingotCopper", "ingotTin", getItem("bronzeIngot", 2));
+		MagmaticCentrifugeRecipes.addRecipe("ingotCopper", "ingotTin", getItem("bronzeIngot", 2));
 		MagmaticCentrifugeRecipes.addRecipe(getItem("copperDust"), getItem("tinDust"), getItem("bronzeDust", 2));
 	}
 

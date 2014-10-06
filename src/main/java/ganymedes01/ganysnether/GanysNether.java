@@ -13,9 +13,6 @@ import ganymedes01.ganysnether.network.PacketHandler;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ModRecipes;
 import ganymedes01.ganysnether.world.NetherWorldGen;
-
-import java.io.File;
-
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -65,7 +62,7 @@ public class GanysNether {
 	public void preInit(FMLPreInitializationEvent event) {
 		ModIntegrator.preInit();
 
-		ConfigurationHandler.INSTANCE.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MASTER + File.separator + Reference.MOD_ID + ".cfg"));
+		ConfigurationHandler.INSTANCE.init(event);
 
 		GameRegistry.registerWorldGenerator(new NetherWorldGen(), 0);
 

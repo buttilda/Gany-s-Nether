@@ -13,9 +13,9 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class TE3Manager extends Integration {
@@ -34,7 +34,7 @@ public class TE3Manager extends Integration {
 
 		try {
 			ItemStack ingotInvar = new ItemStack((Item) Class.forName("thermalexpansion.item.TEItems").getDeclaredField("itemMaterial").get(null), 2, 71);
-			MagmaticCentrifugeRecipes.addOreDictRecipe("ingotIron", "ingotNickel", ingotInvar);
+			MagmaticCentrifugeRecipes.addRecipe("ingotIron", "ingotNickel", ingotInvar);
 		} catch (Exception e) {
 		}
 	}

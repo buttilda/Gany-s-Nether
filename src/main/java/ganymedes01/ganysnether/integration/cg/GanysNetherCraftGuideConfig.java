@@ -2,14 +2,14 @@ package ganymedes01.ganysnether.integration.cg;
 
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.UnsizedStack;
+import ganymedes01.ganysnether.recipes.CentrifugeRecipe;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ReproducerRecipes;
-import ganymedes01.ganysnether.recipes.centrifuge.CentrifugeRecipe;
 
-import java.util.ArrayList;
 import java.util.Map.Entry;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import uristqwerty.CraftGuide.api.CraftGuideAPIObject;
 import uristqwerty.CraftGuide.api.ExtraSlot;
 import uristqwerty.CraftGuide.api.ItemSlot;
@@ -21,9 +21,9 @@ import uristqwerty.CraftGuide.api.SlotType;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class GanysNetherCraftGuideConfig extends CraftGuideAPIObject implements RecipeProvider {
@@ -51,8 +51,8 @@ public class GanysNetherCraftGuideConfig extends CraftGuideAPIObject implements 
 
 		for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.getRecipes()) {
 			ItemStack[] contents = new ItemStack[7];
-			contents[0] = getStack(recipe.getMaterial(1));
-			contents[1] = getStack(recipe.getMaterial(2));
+			contents[0] = getStack(recipe.getInput1());
+			contents[1] = getStack(recipe.getInput2());
 			for (int i = 0; i < recipe.getResult().length; i++)
 				contents[2 + i] = recipe.getResult()[i].copy();
 			contents[6] = new ItemStack(ModBlocks.magmaticCentrifuge);
@@ -61,12 +61,11 @@ public class GanysNetherCraftGuideConfig extends CraftGuideAPIObject implements 
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private ItemStack getStack(Object obj) {
 		if (obj instanceof ItemStack)
 			return (ItemStack) obj;
-		else if (obj instanceof ArrayList)
-			return ((ArrayList<ItemStack>) obj).get(0);
+		else if (obj instanceof String)
+			return OreDictionary.getOres((String) obj).get(0);
 		else
 			return null;
 	}

@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class AppEnerManager extends Integration {
@@ -19,8 +19,8 @@ public class AppEnerManager extends Integration {
 
 	@Override
 	public void postInit() {
-		MagmaticCentrifugeRecipes.addOreDictRecipe("oreCertusQuartz", "oreCertusQuartz", getItem("matQuartz", 2), getItem("matQuartzDust", 1));
-		MagmaticCentrifugeRecipes.addOreDictRecipe("oreQuartz", "oreQuartz", new ItemStack(Items.quartz, 2), getItem("matQuartzDustNether", 1));
+		MagmaticCentrifugeRecipes.addRecipe("oreCertusQuartz", "oreCertusQuartz", getItem("matQuartz", 2), getItem("matQuartzDust", 1));
+		MagmaticCentrifugeRecipes.addRecipe("oreQuartz", "oreQuartz", new ItemStack(Items.quartz, 2), getItem("matQuartzDustNether", 1));
 	}
 
 	@Override
