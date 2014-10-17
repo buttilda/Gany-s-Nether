@@ -99,50 +99,6 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe("dyeBlack", new ItemStack(Blocks.wool, 1, 4), new ItemStack(Blocks.sponge));
 	}
 
-	public static void initOreDictRecipes() {
-		registerMetal("Gold", "Tin");
-		registerMetal("Iron", new ItemStack(Items.iron_ingot), "Nickle");
-		registerMetal("Copper", new ItemStack(Items.gold_nugget));
-		registerMetal("Tin", "Copper");
-		registerMetal("Silver", "Lead");
-		registerMetal("Lead", "Silver");
-		registerMetal("Aluminium", new ItemStack(ModItems.ironNugget));
-		registerMetal("Nickle", "Platinum");
-	}
-
-	private static void registerMetal(String name, ItemStack ingot, Object nuggetMetal) {
-		ItemStack nugget;
-		if (nuggetMetal instanceof ItemStack)
-			nugget = (ItemStack) nuggetMetal;
-		else {
-			nugget = getFirst("nugget" + nuggetMetal);
-			if (nugget == null) {
-				nugget = getFirst("dustTiny" + nuggetMetal);
-				if (nugget == null) {
-					nugget = getFirst("nugget" + name);
-					if (nugget == null)
-						return;
-				}
-			}
-		}
-		ingot.stackSize = 3;
-
-		addRecipe("ore" + name, "ore" + name, ingot, nugget);
-	}
-
-	private static void registerMetal(String name, Object nuggetMetal) {
-		ItemStack ingot = getFirst("ingot" + name);
-		if (ingot != null)
-			registerMetal(name, ingot, nuggetMetal);
-	}
-
-	private static ItemStack getFirst(String name) {
-		List<ItemStack> list = OreDictionary.getOres("ingot" + name);
-		if (!list.isEmpty())
-			return ItemStack.copyItemStack(list.get(0));
-		return null;
-	}
-
 	public static void addRecipe(Object input1, Object input2, ItemStack... outputs) {
 		recipes.add(new CentrifugeRecipe(input1, input2, outputs));
 	}
