@@ -19,8 +19,8 @@ public class AppEnerManager extends Integration {
 
 	@Override
 	public void postInit() {
-		MagmaticCentrifugeRecipes.addRecipe("oreCertusQuartz", "oreCertusQuartz", getItem("matQuartz", 2), getItem("matQuartzDust", 1));
-		MagmaticCentrifugeRecipes.addRecipe("oreQuartz", "oreQuartz", new ItemStack(Items.quartz, 2), getItem("matQuartzDustNether", 1));
+		MagmaticCentrifugeRecipes.INSTANCE.addRecipe("oreCertusQuartz", "oreCertusQuartz", getItem("matQuartz", 2), getItem("matQuartzDust", 1));
+		MagmaticCentrifugeRecipes.INSTANCE.addRecipe("oreQuartz", "oreQuartz", new ItemStack(Items.quartz, 2), getItem("matQuartzDustNether", 1));
 	}
 
 	@Override

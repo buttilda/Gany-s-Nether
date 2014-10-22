@@ -5,7 +5,7 @@ import ganymedes01.ganysnether.integration.Integration;
 import ganymedes01.ganysnether.integration.ModIntegrator;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
-import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
+import ganymedes01.ganysnether.recipes.RecipeRegistry;
 
 import java.io.File;
 
@@ -45,9 +45,17 @@ public class ConfigurationHandler {
 		return configFile.get("Mod Integration", "Integrate " + modID, true).setRequiresMcRestart(true).getBoolean(true);
 	}
 
+	private File fixFile(File file, String name, String extension) {
+		File parent = file.getParentFile();
+		return new File(parent, File.separator + Reference.MASTER + File.separator + name + extension);
+	}
+
 	public void init(FMLPreInitializationEvent event) {
 		configFile = new Configuration(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MASTER + File.separator + Reference.MOD_ID + ".cfg"));
-		MagmaticCentrifugeRecipes.recipesFile = new File(event.getModConfigurationDirectory(), Reference.MASTER + File.separator + "MagmaticCentrifuge.xml");
+
+		File recipes = fixFile(event.getSuggestedConfigurationFile(), "Recipes", "");
+		recipes.mkdirs();
+		RecipeRegistry.baseFile = recipes;
 
 		syncConfigs();
 	}

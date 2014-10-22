@@ -70,7 +70,7 @@ public class GanysNether {
 		ModItems.init();
 		ModRecipes.init();
 
-		MagmaticCentrifugeRecipes.initRecipes();
+		MagmaticCentrifugeRecipes.INSTANCE.init();
 		HoeList.init();
 	}
 

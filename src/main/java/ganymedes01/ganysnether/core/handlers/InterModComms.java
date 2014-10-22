@@ -25,9 +25,9 @@ import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class InterModComms {
@@ -83,7 +83,7 @@ public class InterModComms {
 					result[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
 			}
 
-			MagmaticCentrifugeRecipes.addRecipeExternal(message.getSender(), material1, material2, result);
+			MagmaticCentrifugeRecipes.INSTANCE.addRecipe(material1, material2, result);
 		} catch (Exception e) {
 			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to add a recipe to the Magmatic Centrifuge.", message.getSender()));
 		}

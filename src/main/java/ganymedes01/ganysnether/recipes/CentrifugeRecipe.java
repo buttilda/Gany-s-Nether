@@ -1,7 +1,8 @@
 package ganymedes01.ganysnether.recipes;
 
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
-import ganymedes01.ganysnether.core.utils.XMLHelper;
+import ganymedes01.ganysnether.core.utils.xml.XMLHelper;
+import ganymedes01.ganysnether.core.utils.xml.XMLNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +24,16 @@ public class CentrifugeRecipe {
 	private final Object input2;
 	private final ItemStack[] outputs;
 
-	public CentrifugeRecipe(String line) {
-		input1 = XMLHelper.processEntry(XMLHelper.getEntry(line, "input1"));
-		input2 = XMLHelper.processEntry(XMLHelper.getEntry(line, "input2"));
+	public CentrifugeRecipe(XMLNode node) {
+		input1 = XMLHelper.processEntry(node.getNode("input1"), ItemStack.class);
+		input2 = XMLHelper.processEntry(node.getNode("input2"), ItemStack.class);
 
 		List<Object> outputs = new ArrayList<Object>();
-		for (int i = 1; i <= 4; i++)
-			if (line.contains("output" + i))
-				outputs.add(XMLHelper.processEntry(XMLHelper.getEntry(line, "output" + i)));
+		for (int i = 1; i <= 4; i++) {
+			XMLNode n = node.getNode("output" + i);
+			if (n != null)
+				outputs.add(XMLHelper.processEntry(n, ItemStack.class));
+		}
 
 		this.outputs = outputs.toArray(new ItemStack[0]);
 	}
@@ -94,20 +97,5 @@ public class CentrifugeRecipe {
 			return obj;
 
 		return null;
-	}
-
-	@Override
-	public String toString() {
-		StringBuffer buffer = new StringBuffer();
-		buffer.append(XMLHelper.makeEntry("input1", input1));
-		buffer.append(XMLHelper.makeEntry("input2", input2));
-
-		int count = 1;
-		for (Object output : outputs) {
-			buffer.append(XMLHelper.makeEntry("output" + count, output));
-			count++;
-		}
-
-		return XMLHelper.makeGroup("recipe", buffer.toString());
 	}
 }

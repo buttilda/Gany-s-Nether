@@ -34,7 +34,7 @@ public class TE3Manager extends Integration {
 
 		try {
 			ItemStack ingotInvar = new ItemStack((Item) Class.forName("thermalexpansion.item.TEItems").getDeclaredField("itemMaterial").get(null), 2, 71);
-			MagmaticCentrifugeRecipes.addRecipe("ingotIron", "ingotNickel", ingotInvar);
+			MagmaticCentrifugeRecipes.INSTANCE.addRecipe("ingotIron", "ingotNickel", ingotInvar);
 		} catch (Exception e) {
 		}
 	}

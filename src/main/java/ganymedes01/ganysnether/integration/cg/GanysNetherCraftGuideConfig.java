@@ -49,7 +49,7 @@ public class GanysNetherCraftGuideConfig extends CraftGuideAPIObject implements 
 		RecipeTemplate template = generator.createRecipeTemplate(recipeSlots, new ItemStack(ModBlocks.magmaticCentrifuge));
 		template.setSize(79, 63);
 
-		for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.getRecipes()) {
+		for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.INSTANCE.getRecipes()) {
 			ItemStack[] contents = new ItemStack[7];
 			contents[0] = getStack(recipe.getInput1());
 			contents[1] = getStack(recipe.getInput2());

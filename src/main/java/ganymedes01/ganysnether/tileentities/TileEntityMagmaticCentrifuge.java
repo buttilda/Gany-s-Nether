@@ -120,7 +120,7 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 		if (tank.getFluidAmount() < FluidContainerRegistry.BUCKET_VOLUME / 10)
 			return;
 
-		ItemStack[] resultContents = MagmaticCentrifugeRecipes.getResult(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]);
+		ItemStack[] resultContents = MagmaticCentrifugeRecipes.INSTANCE.getResult(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]);
 		ArrayList<Integer> slotsTaken = new ArrayList<Integer>();
 		if (resultContents != null && resultContents.length <= 4) {
 			for (ItemStack result : resultContents) {
@@ -181,7 +181,7 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 		if (inventory[MATERIAL_SLOT_1] == null || inventory[MATERIAL_SLOT_2] == null)
 			isRecipeValid = false;
 		else
-			isRecipeValid = MagmaticCentrifugeRecipes.getResult(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]) != null && tank.getFluidAmount() >= FluidContainerRegistry.BUCKET_VOLUME / 10;
+			isRecipeValid = MagmaticCentrifugeRecipes.INSTANCE.getResult(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]) != null && tank.getFluidAmount() >= FluidContainerRegistry.BUCKET_VOLUME / 10;
 	}
 
 	@Override

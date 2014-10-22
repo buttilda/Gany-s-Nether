@@ -2,16 +2,10 @@ package ganymedes01.ganysnether.recipes;
 
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
-import ganymedes01.ganysnether.core.utils.XMLHelper;
+import ganymedes01.ganysnether.core.utils.xml.XMLBuilder;
+import ganymedes01.ganysnether.core.utils.xml.XMLNode;
 import ganymedes01.ganysnether.lib.Reference;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,43 +21,32 @@ import net.minecraftforge.oredict.OreDictionary;
  *
  */
 
-public class MagmaticCentrifugeRecipes {
+public class MagmaticCentrifugeRecipes extends RecipeRegistry<CentrifugeRecipe> {
 
-	private static ArrayList<CentrifugeRecipe> recipes;
-	public static File recipesFile;
+	public static final MagmaticCentrifugeRecipes INSTANCE = new MagmaticCentrifugeRecipes();
 
-	public static List<CentrifugeRecipe> getRecipes() {
-		return Collections.unmodifiableList(recipes);
+	protected MagmaticCentrifugeRecipes() {
+		super("MagmaticCentrifuge");
 	}
 
-	public static void clearRecipeList() {
-		recipes = new ArrayList<CentrifugeRecipe>();
+	@Override
+	protected XMLNode toXML(CentrifugeRecipe recipe) {
+		XMLBuilder builder = new XMLBuilder("recipe");
+		builder.makeEntry("input1", recipe.getInput1());
+		builder.makeEntry("input2", recipe.getInput2());
+
+		builder.makeEntries("output", recipe.getResult());
+
+		return builder.toNode();
 	}
 
-	public static void initRecipes() {
-		clearRecipeList();
-		try {
-			if (!recipesFile.exists()) {
-				addDefaultRecipes();
-				BufferedWriter bw = XMLHelper.getWriter(recipesFile);
-				for (CentrifugeRecipe recipe : recipes) {
-					bw.write(recipe.toString());
-					bw.newLine();
-					bw.newLine();
-				}
-				bw.close();
-			} else {
-				String line = XMLHelper.readFile(recipesFile);
-				Iterator<String> iterator = XMLHelper.getIterator("recipe", line);
-				while (iterator.hasNext())
-					recipes.add(new CentrifugeRecipe(iterator.next()));
-			}
-		} catch (IOException e) {
-			throw new RuntimeException("Problem reading Magmatic Centrifuge recipes!" + e);
-		}
+	@Override
+	protected CentrifugeRecipe makeRecipe(XMLNode node) {
+		return new CentrifugeRecipe(node);
 	}
 
-	private static void addDefaultRecipes() {
+	@Override
+	protected void addDefaultRecipes() {
 		addRecipe(Items.glowstone_dust, Blocks.netherrack, new ItemStack(Items.redstone, 4));
 		addRecipe(Items.magma_cream, Items.magma_cream, new ItemStack(Items.blaze_powder, 2), new ItemStack(Items.slime_ball, 2));
 		addRecipe(ModItems.glowingReed, ModItems.glowingReed, new ItemStack(Items.glowstone_dust, 2), new ItemStack(Items.sugar, 2));
@@ -99,11 +82,11 @@ public class MagmaticCentrifugeRecipes {
 		addRecipe("dyeBlack", new ItemStack(Blocks.wool, 1, 4), new ItemStack(Blocks.sponge));
 	}
 
-	public static void addRecipe(Object input1, Object input2, ItemStack... outputs) {
-		recipes.add(new CentrifugeRecipe(input1, input2, outputs));
+	public void addRecipe(Object input1, Object input2, ItemStack... outputs) {
+		addRecipe(new CentrifugeRecipe(input1, input2, outputs));
 	}
 
-	public static void addRecipeExternal(String sender, ItemStack input1, ItemStack input2, ItemStack... outputs) {
+	public void addRecipeExternal(String sender, ItemStack input1, ItemStack input2, ItemStack... outputs) {
 		if (outputs != null && outputs.length > 4 || input1 == null || input2 == null) {
 			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, sender + " attempted to add an invalid recipe to the Magmatic Centrifuge: Null material or invalid sized result array");
 			return;
@@ -114,7 +97,7 @@ public class MagmaticCentrifugeRecipes {
 					return;
 				}
 			CentrifugeRecipe newRecipe = new CentrifugeRecipe(input1, input2, outputs);
-			recipes.add(newRecipe);
+			addRecipe(newRecipe);
 			Level lvl = Level.INFO;
 			if (sender.equalsIgnoreCase(Reference.MOD_ID))
 				lvl = Level.FINE;
@@ -122,8 +105,8 @@ public class MagmaticCentrifugeRecipes {
 		}
 	}
 
-	public static ItemStack[] getResult(ItemStack input1, ItemStack input2) {
-		for (CentrifugeRecipe recipe : recipes)
+	public ItemStack[] getResult(ItemStack input1, ItemStack input2) {
+		for (CentrifugeRecipe recipe : getRecipes())
 			if (recipe.matches(input1, input2))
 				return recipe.getResult();
 		return null;

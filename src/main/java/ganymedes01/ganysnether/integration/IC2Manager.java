@@ -14,8 +14,8 @@ public class IC2Manager extends Integration {
 
 	@Override
 	public void init() {
-		MagmaticCentrifugeRecipes.addRecipe("ingotCopper", "ingotTin", getItem("bronzeIngot", 2));
-		MagmaticCentrifugeRecipes.addRecipe(getItem("copperDust"), getItem("tinDust"), getItem("bronzeDust", 2));
+		MagmaticCentrifugeRecipes.INSTANCE.addRecipe("ingotCopper", "ingotTin", getItem("bronzeIngot", 2));
+		MagmaticCentrifugeRecipes.INSTANCE.addRecipe(getItem("copperDust"), getItem("tinDust"), getItem("bronzeDust", 2));
 	}
 
 	@Override

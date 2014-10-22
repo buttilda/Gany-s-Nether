@@ -98,7 +98,7 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
 		if (outputId.equals(getRecipeId()))
-			for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.getRecipes())
+			for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.INSTANCE.getRecipes())
 				arecipes.add(new CachedCentrifugeRecipe(recipe));
 		else
 			super.loadCraftingRecipes(outputId, results);
@@ -106,14 +106,14 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void loadCraftingRecipes(ItemStack result) {
-		for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.getRecipes())
+		for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.INSTANCE.getRecipes())
 			if (recipe.isPartOfResult(result))
 				arecipes.add(new CachedCentrifugeRecipe(recipe));
 	}
 
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
-		for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.getRecipes())
+		for (CentrifugeRecipe recipe : MagmaticCentrifugeRecipes.INSTANCE.getRecipes())
 			if (recipe.isPartOfInput(ingredient))
 				arecipes.add(new CachedCentrifugeRecipe(recipe));
 	}
