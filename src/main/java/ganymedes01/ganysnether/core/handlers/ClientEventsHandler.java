@@ -137,6 +137,9 @@ public class ClientEventsHandler {
 
 	@SubscribeEvent
 	public void loadTextures(TextureStitchEvent.Pre event) {
+		if (!GanysNether.enableDynamicTextures)
+			return;
+
 		if (event.map.getTextureType() == 0) {
 			SpectreWheatCrop.icons = new IIcon[8];
 

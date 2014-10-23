@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
@@ -52,5 +53,10 @@ public class SpectreWheatCrop extends NetherCrop {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister reg) {
+		if (!GanysNether.enableDynamicTextures) {
+			icons = new IIcon[8];
+			for (int i = 0; i < icons.length; i++)
+				icons[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SPECTRE_WHEAT_BLOCK_NAME + "_state_" + i));
+		}
 	}
 }

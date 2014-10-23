@@ -22,11 +22,15 @@ public class SpectreWheat extends Item {
 	public SpectreWheat() {
 		setCreativeTab(GanysNether.netherTab);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SPECTRE_WHEAT_NAME));
+		if (!GanysNether.enableDynamicTextures)
+			setTextureName(Utils.getItemTexture(Strings.Items.SPECTRE_WHEAT_NAME));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister reg) {
+		if (!GanysNether.enableDynamicTextures)
+			super.registerIcons(reg);
 	}
 
 	public static void setIcon(IIcon icon) {

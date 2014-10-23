@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.items;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
@@ -23,6 +24,8 @@ public class WitherShrubSeeds extends NetherSeeds {
 	public WitherShrubSeeds() {
 		super(ModBlocks.witherShrub);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.WITHER_SHRUB_SEEDS_NAME));
+		if (!GanysNether.enableDynamicTextures)
+			setTextureName(Utils.getItemTexture(Strings.Items.WITHER_SHRUB_SEEDS_NAME));
 	}
 
 	public static void setIcon(IIcon icon) {
@@ -32,6 +35,8 @@ public class WitherShrubSeeds extends NetherSeeds {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister reg) {
+		if (!GanysNether.enableDynamicTextures)
+			super.registerIcons(reg);
 	}
 
 	@Override

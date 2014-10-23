@@ -71,16 +71,17 @@ public class ConfigurationHandler {
 		GanysNether.sceptreOfFireCharging = configDurability(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME, 32);
 		GanysNether.baseballBatDurability = configDurability(Strings.Items.BASEBALL_BAT_NAME, 256);
 
-		GanysNether.shouldGenerateCrops = configBoolean(Strings.Others.SHOULD_GENERATE_CROPS, false, GanysNether.shouldGenerateCrops);
-		GanysNether.shouldGenerateUndertakers = configBoolean(Strings.Others.SHOULD_GENERATE_UNDERTAKERS, false, GanysNether.shouldGenerateUndertakers);
-		GanysNether.shouldDoVersionCheck = configBoolean(Strings.Others.SHOULD_DO_VERSION_CHECK, true, GanysNether.shouldDoVersionCheck);
-		GanysNether.shouldGhastTearHaveDispenserAction = configBoolean(Strings.Others.SHOULD_GHAST_TEAR_HAVE_DISPENSER_ACTION, true, GanysNether.shouldGhastTearHaveDispenserAction);
-		GanysNether.enableUndertaker = configBoolean(Strings.Others.ENABLE_UNDERTAKER, true, GanysNether.enableUndertaker);
+		GanysNether.shouldGenerateCrops = configBoolean("shouldGenerateCrops", false, GanysNether.shouldGenerateCrops);
+		GanysNether.shouldGenerateUndertakers = configBoolean("shouldGenerateUndertakers", false, GanysNether.shouldGenerateUndertakers);
+		GanysNether.shouldDoVersionCheck = configBoolean("shouldDoVersionCheck", true, GanysNether.shouldDoVersionCheck);
+		GanysNether.shouldGhastTearHaveDispenserAction = configBoolean("shouldGhastTearHaveDispenserAction", true, GanysNether.shouldGhastTearHaveDispenserAction);
+		GanysNether.enableUndertaker = configBoolean("enableUndertaker", true, GanysNether.enableUndertaker);
+		GanysNether.enableDynamicTextures = configBoolean("enableDynamicTextures", true, GanysNether.enableDynamicTextures);
 
-		GanysNether.netherCropRate = configInteger(Strings.Others.NETHER_CROP_RATE, GanysNether.netherCropRate);
-		GanysNether.witherShrubRate = configInteger(Strings.Others.WITHER_SHRUB_RATE, GanysNether.witherShrubRate);
-		GanysNether.undertakerRate = configInteger(Strings.Others.UNDERTAKER_RATE, GanysNether.undertakerRate);
-		GanysNether.undertakerFillSlotChance = configInteger(Strings.Others.UNDERTAKER_FILL_SLOT_CHANCE, GanysNether.undertakerFillSlotChance);
+		GanysNether.netherCropRate = configInteger("netherCropSpawnRate", GanysNether.netherCropRate);
+		GanysNether.witherShrubRate = configInteger("witherShrubSpawnRate", GanysNether.witherShrubRate);
+		GanysNether.undertakerRate = configInteger("undertakerSpawnRate", GanysNether.undertakerRate);
+		GanysNether.undertakerFillSlotChance = configInteger("undertakerFillSlotChance", GanysNether.undertakerFillSlotChance);
 
 		if (configFile.hasChanged())
 			configFile.save();
