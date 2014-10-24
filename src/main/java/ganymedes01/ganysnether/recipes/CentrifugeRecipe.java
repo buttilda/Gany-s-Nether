@@ -1,8 +1,8 @@
 package ganymedes01.ganysnether.recipes;
 
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
-import ganymedes01.ganysnether.core.utils.xml.XMLHelper;
 import ganymedes01.ganysnether.core.utils.xml.XMLNode;
+import ganymedes01.ganysnether.core.utils.xml.XMLParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ import net.minecraftforge.oredict.OreDictionary;
  * @author ganymedes01
  *
  */
+
 public class CentrifugeRecipe {
 
 	private final Object input1;
@@ -25,14 +26,14 @@ public class CentrifugeRecipe {
 	private final ItemStack[] outputs;
 
 	public CentrifugeRecipe(XMLNode node) {
-		input1 = XMLHelper.processEntry(node.getNode("input1"), ItemStack.class);
-		input2 = XMLHelper.processEntry(node.getNode("input2"), ItemStack.class);
+		input1 = XMLParser.parseNode(node.getNode("input1"));
+		input2 = XMLParser.parseNode(node.getNode("input2"));
 
 		List<Object> outputs = new ArrayList<Object>();
 		for (int i = 1; i <= 4; i++) {
 			XMLNode n = node.getNode("output" + i);
 			if (n != null)
-				outputs.add(XMLHelper.processEntry(n, ItemStack.class));
+				outputs.add(XMLParser.parseItemStackNode(n));
 		}
 
 		this.outputs = outputs.toArray(new ItemStack[0]);
