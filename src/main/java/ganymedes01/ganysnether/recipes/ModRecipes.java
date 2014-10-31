@@ -115,7 +115,7 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.quartz_block, 1, 0), "   ", " x ", "   ", 'x', "blockQuartz"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.quartz_block, 1, 1), "   ", " x ", "   ", 'x', "blockQuartzChiselled"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.quartz_block, 1, 2), "   ", " x ", "   ", 'x', "blockQuartzPillar"));
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassStairs), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassStairs, 4), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 1));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.reproducer), "yzy", "wxw", "zwz", 'x', new ItemStack(Blocks.quartz_block, 1, 2), 'y', Blocks.obsidian, 'z', Blocks.soul_sand, 'w', "mobEgg"));
 
 		int index = 0;
