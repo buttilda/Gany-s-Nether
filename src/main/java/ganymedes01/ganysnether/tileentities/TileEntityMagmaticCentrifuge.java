@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.tileentities;
 
+import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
@@ -41,6 +42,7 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 	private int turnsCount = 0;
 
 	public boolean isRecipeValid = false;
+	public boolean isPowered = false;
 
 	public static final int FULL_BUCKET_SLOT = 0, EMPTY_BUCKET_SLOT = 1, MATERIAL_SLOT_1 = 2, MATERIAL_SLOT_2 = 3, RESULT_SLOT_1 = 4, RESULT_SLOT_2 = 5, RESULT_SLOT_3 = 6, RESULT_SLOT_4 = 7;
 
@@ -52,21 +54,22 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 
 	@Override
 	public void updateEntity() {
-		if (worldObj.isRemote)
-			return;
-		if (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord))
+		if (worldObj.isRemote || isPowered)
 			return;
 
 		if (isRecipeValid) {
 			angle++;
 			if (angle >= 360) {
-				angle = 0;
+				angle -= 360;
 				turnsCount++;
 			}
-		} else if (angle != 0) {
-			angle -= 6;
-			if (angle < 0)
-				angle = 0;
+		} else {
+			turnsCount = 0;
+			if (angle != 0) {
+				angle -= 6;
+				if (angle < 0)
+					angle = 0;
+			}
 		}
 
 		fillTankFromContainer();
@@ -137,9 +140,8 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 					if (result == null)
 						break;
 					if (resultSlot != null) {
-						if (result.getItem() == resultSlot.getItem() && result.getItemDamage() == result.getItemDamage())
-							if (resultSlot.stackSize + result.stackSize <= resultSlot.getMaxStackSize())
-								resultSlot.stackSize += result.stackSize;
+						if (InventoryUtils.areStacksTheSame(result, resultSlot, false) && resultSlot.stackSize + result.stackSize <= resultSlot.getMaxStackSize())
+							resultSlot.stackSize += result.stackSize;
 					} else
 						inventory[slotsTaken.get(i)] = result.copy();
 				}
@@ -151,8 +153,8 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 					inventory[MATERIAL_SLOT_1] = null;
 				if (inventory[MATERIAL_SLOT_2].stackSize <= 0)
 					inventory[MATERIAL_SLOT_2] = null;
+
 				markDirty();
-				checkRecipe();
 			}
 		}
 	}
@@ -166,13 +168,12 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 				list.add(i);
 				continue;
 			}
-			if (stack.getItem() == inventory[i].getItem() && stack.getItemDamage() == inventory[i].getItemDamage())
-				if (inventory[i].stackSize + stack.stackSize <= inventory[i].getMaxStackSize()) {
-					if (ignore.contains(i))
-						continue;
-					list.add(i);
+			if (InventoryUtils.areStacksTheSame(stack, inventory[i], false) && inventory[i].stackSize + stack.stackSize <= inventory[i].getMaxStackSize()) {
+				if (ignore.contains(i))
 					continue;
-				}
+				list.add(i);
+				continue;
+			}
 		}
 		return list;
 	}
@@ -278,8 +279,12 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 
 	@Override
 	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+		if (resource == null || resource.getFluid() != FluidRegistry.LAVA)
+			return 0;
+
+		int filled = tank.fill(resource, doFill);
 		checkRecipe();
-		return tank.fill(resource, doFill);
+		return filled;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.GUIsID;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -63,5 +64,12 @@ public class MagmaticCentrifuge extends InventoryBlock {
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityMagmaticCentrifuge();
+	}
+
+	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbour) {
+		TileEntityMagmaticCentrifuge tile = Utils.getTileEntity(world, x, y, z, TileEntityMagmaticCentrifuge.class);
+		if (tile != null)
+			tile.isPowered = world.isBlockIndirectlyGettingPowered(x, y, z);
 	}
 }
