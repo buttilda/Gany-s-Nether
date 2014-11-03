@@ -78,8 +78,8 @@ public class ModRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust, 2), new ItemStack(ModItems.glowingReed));
 		GameRegistry.addRecipe(new ItemStack(Items.quartz, 6), "xxx", "yyy", "xxx", 'x', ModItems.quarzBerry, 'y', Blocks.glass);
 		GameRegistry.addRecipe(new ItemStack(Items.arrow, 16), "x", "y", "z", 'x', ModItems.wolfTeeth, 'y', Items.stick, 'z', Items.feather);
-		GameRegistry.addRecipe(new ItemStack(Items.iron_ingot), "xxx", "xxx", "xxx", 'x', ModItems.ironNugget);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.ironNugget, 9), Items.iron_ingot);
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.iron_ingot), "xxx", "xxx", "xxx", 'x', "nuggetIron"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironNugget, 9), "x", 'x', "ingotIron"));
 		GameRegistry.addRecipe(new ItemStack(Blocks.monster_egg), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', Blocks.stone);
 		GameRegistry.addRecipe(new ItemStack(Blocks.monster_egg, 1, 1), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', Blocks.cobblestone);
 		GameRegistry.addRecipe(new ItemStack(Blocks.monster_egg, 1, 2), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', new ItemStack(Blocks.stonebrick));
