@@ -11,9 +11,9 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class NetherSeeds extends ItemSeeds {
@@ -23,7 +23,7 @@ public class NetherSeeds extends ItemSeeds {
 	NetherSeeds(Block cropID) {
 		super(cropID, ModBlocks.tilledNetherrack);
 		blockType = cropID;
-		setCreativeTab(GanysNether.netherTab);
+		setCreativeTab(GanysNether.shouldGenerateCrops ? GanysNether.netherTab : null);
 	}
 
 	@Override

@@ -54,7 +54,7 @@ public class ModBlocks {
 	public static final Block glowingReed = new GlowingReedCrop();
 	public static final Block soulGlass = new SoulGlass();
 	public static final Block soulChest = new SoulChest();
-	public static final Block volcanicFurnaceIdle = new VolcanicFurnace();
+	public static final Block volcanicFurnace = new VolcanicFurnace();
 	public static final Block denseLavaCell = new DenseLavaCell();
 	public static final Block glowBox = new GlowBox();
 	public static final Block colouredQuartzBlock = new ColouredQuartzBlock();
@@ -92,7 +92,7 @@ public class ModBlocks {
 		registerBlock(soulGlass, ItemSoulGlass.class);
 		registerBlock(soulGlassStairs);
 		registerBlock(soulChest);
-		registerBlock(volcanicFurnaceIdle);
+		registerBlock(volcanicFurnace);
 		registerBlock(denseLavaCell);
 		registerBlock(glowBox, ItemGlowBox.class);
 		registerBlock(colouredQuartzBlock, ItemColouredQuartzBlock.class);

@@ -15,8 +15,8 @@ import net.minecraft.item.Item;
 public class QuarzBerry extends Item {
 
 	public QuarzBerry() {
-		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.QUARZ_BERRY_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.QUARZ_BERRY_NAME));
+		setCreativeTab(GanysNether.shouldGenerateCrops ? GanysNether.netherTab : null);
 	}
 }

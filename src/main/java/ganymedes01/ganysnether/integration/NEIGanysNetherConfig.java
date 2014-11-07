@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.integration;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.client.gui.inventory.GuiMagmaticCentrifuge;
 import ganymedes01.ganysnether.integration.nei.MagmaticCentrifugeRecipeHandler;
 import ganymedes01.ganysnether.integration.nei.ReproducerRecipeHandler;
@@ -44,6 +45,18 @@ public class NEIGanysNetherConfig implements IConfigureNEI {
 		API.hideItem(new ItemStack(ModBlocks.hellBush));
 		if (!GanysNether.enableUndertaker)
 			API.hideItem(new ItemStack(ModBlocks.undertaker));
+		if (!GanysNether.shouldGenerateCrops) {
+			API.hideItem(new ItemStack(ModItems.hellBushSeeds));
+			API.hideItem(new ItemStack(ModItems.witherShrubSeeds));
+			API.hideItem(new ItemStack(ModItems.quarzBerrySeeds));
+			API.hideItem(new ItemStack(ModItems.ghostSeeds));
+			API.hideItem(new ItemStack(ModItems.lavaBerry));
+			API.hideItem(new ItemStack(ModItems.quarzBerry));
+			API.hideItem(new ItemStack(ModItems.spectreWheat));
+			API.hideItem(new ItemStack(ModItems.spookyFlour));
+			API.hideItem(new ItemStack(ModItems.glowingReed));
+			API.hideItem(new ItemStack(ModBlocks.blazingCactoid));
+		}
 	}
 
 	@Override

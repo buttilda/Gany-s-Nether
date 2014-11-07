@@ -20,10 +20,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class SpectreWheat extends Item {
 
 	public SpectreWheat() {
-		setCreativeTab(GanysNether.netherTab);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SPECTRE_WHEAT_NAME));
 		if (!GanysNether.enableDynamicTextures)
 			setTextureName(Utils.getItemTexture(Strings.Items.SPECTRE_WHEAT_NAME));
+		setCreativeTab(GanysNether.shouldGenerateCrops ? GanysNether.netherTab : null);
 	}
 
 	@Override

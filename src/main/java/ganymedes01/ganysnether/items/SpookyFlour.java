@@ -19,8 +19,8 @@ public class SpookyFlour extends Item {
 
 	public SpookyFlour() {
 		setTextureName("sugar");
-		setCreativeTab(GanysNether.netherTab);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SPOOKY_FLOUR_NAME));
+		setCreativeTab(GanysNether.shouldGenerateCrops ? GanysNether.netherTab : null);
 	}
 
 	@Override

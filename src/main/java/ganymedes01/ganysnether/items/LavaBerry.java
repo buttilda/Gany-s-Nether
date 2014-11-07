@@ -21,9 +21,9 @@ import net.minecraft.util.StatCollector;
 public class LavaBerry extends Item {
 
 	public LavaBerry() {
-		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.LAVA_BERRY_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.LAVA_BERRY_NAME));
+		setCreativeTab(GanysNether.shouldGenerateCrops ? GanysNether.netherTab : null);
 	}
 
 	@Override
