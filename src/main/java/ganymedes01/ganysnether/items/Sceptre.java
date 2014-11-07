@@ -19,7 +19,7 @@ public class Sceptre extends ItemSimpleFoiled {
 	Sceptre() {
 		setFull3D();
 		setMaxStackSize(1);
-		setCreativeTab(GanysNether.netherTab);
+		setCreativeTab(GanysNether.enableSceptres ? GanysNether.netherTab : null);
 	}
 
 	@Override

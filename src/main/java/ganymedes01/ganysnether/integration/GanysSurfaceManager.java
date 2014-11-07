@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.integration;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -7,19 +8,22 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class GanysSurfaceManager extends Integration {
 
 	@Override
 	public void init() {
-		addYieldForOrganicMatter(new ItemStack(ModItems.quarzBerry), 2);
-		addYieldForOrganicMatter(new ItemStack(ModItems.spectreWheat), 2);
-		addYieldForOrganicMatter(new ItemStack(ModItems.spookyFlour), 1);
-		addYieldForOrganicMatter(new ItemStack(ModItems.glowingReed), 2);
+		if (GanysNether.shouldGenerateCrops) {
+			addYieldForOrganicMatter(new ItemStack(ModItems.quarzBerry), 2);
+			addYieldForOrganicMatter(new ItemStack(ModItems.spectreWheat), 2);
+			addYieldForOrganicMatter(new ItemStack(ModItems.spookyFlour), 1);
+			addYieldForOrganicMatter(new ItemStack(ModItems.glowingReed), 2);
+		}
+
 		addYieldForOrganicMatter(new ItemStack(ModItems.skeletonSpawner), 2);
 		addYieldForOrganicMatter(new ItemStack(ModItems.skeletonSpawner, 1, 1), 2);
 		addYieldForOrganicMatter(new ItemStack(ModItems.silverfishScale), 2);

@@ -54,6 +54,8 @@ public class GanysNether {
 	public static boolean shouldGhastTearHaveDispenserAction = true;
 	public static boolean enableUndertaker = true;
 	public static boolean enableDynamicTextures = true;
+	public static boolean enableSceptres = true;
+	public static boolean enableSpawners = true;
 	public static int netherCropRate = 20;
 	public static int witherShrubRate = 50;
 	public static int undertakerRate = 1200;

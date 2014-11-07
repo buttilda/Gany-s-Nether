@@ -71,12 +71,14 @@ public class ConfigurationHandler {
 		GanysNether.sceptreOfFireCharging = configDurability(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME, 32);
 		GanysNether.baseballBatDurability = configDurability(Strings.Items.BASEBALL_BAT_NAME, 256);
 
-		GanysNether.shouldGenerateCrops = configBoolean("shouldGenerateCrops", false, GanysNether.shouldGenerateCrops);
-		GanysNether.shouldGenerateUndertakers = configBoolean("shouldGenerateUndertakers", false, GanysNether.shouldGenerateUndertakers);
+		GanysNether.shouldGenerateCrops = configBoolean("shouldGenerateCrops", true, GanysNether.shouldGenerateCrops);
+		GanysNether.shouldGenerateUndertakers = configBoolean("shouldGenerateUndertakers", true, GanysNether.shouldGenerateUndertakers);
 		GanysNether.shouldDoVersionCheck = configBoolean("shouldDoVersionCheck", true, GanysNether.shouldDoVersionCheck);
 		GanysNether.shouldGhastTearHaveDispenserAction = configBoolean("shouldGhastTearHaveDispenserAction", true, GanysNether.shouldGhastTearHaveDispenserAction);
 		GanysNether.enableUndertaker = configBoolean("enableUndertaker", true, GanysNether.enableUndertaker);
 		GanysNether.enableDynamicTextures = configBoolean("enableDynamicTextures", true, GanysNether.enableDynamicTextures);
+		GanysNether.enableSceptres = configBoolean("enableSceptres", true, GanysNether.enableSceptres);
+		GanysNether.enableSpawners = configBoolean("enableSpawners", true, GanysNether.enableSpawners);
 
 		GanysNether.netherCropRate = configInteger("netherCropSpawnRate", GanysNether.netherCropRate);
 		GanysNether.witherShrubRate = configInteger("witherShrubSpawnRate", GanysNether.witherShrubRate);

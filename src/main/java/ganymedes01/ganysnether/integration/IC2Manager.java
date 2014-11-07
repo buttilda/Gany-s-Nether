@@ -15,7 +15,7 @@ public class IC2Manager extends Integration {
 	@Override
 	public void init() {
 		MagmaticCentrifugeRecipes.INSTANCE.addRecipe("ingotCopper", "ingotTin", getItem("bronzeIngot", 2));
-		MagmaticCentrifugeRecipes.INSTANCE.addRecipe(getItem("copperDust"), getItem("tinDust"), getItem("bronzeDust", 2));
+		MagmaticCentrifugeRecipes.INSTANCE.addRecipe("dustCopper", "dustTin", getItem("bronzeDust", 2));
 	}
 
 	@Override
@@ -25,10 +25,6 @@ public class IC2Manager extends Integration {
 	@Override
 	public String getModID() {
 		return "IC2";
-	}
-
-	private ItemStack getItem(String name) {
-		return getItem(name, 1);
 	}
 
 	private ItemStack getItem(String name, int size) {

@@ -15,8 +15,8 @@ import net.minecraft.item.Item;
 public class NetherCore extends Item {
 
 	public NetherCore() {
-		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.NETHER_CORE_NAME));
+		setCreativeTab(GanysNether.enableSpawners ? GanysNether.netherTab : null);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.NETHER_CORE_NAME));
 	}
 }

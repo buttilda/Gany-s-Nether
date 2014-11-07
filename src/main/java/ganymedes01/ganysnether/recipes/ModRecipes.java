@@ -58,23 +58,25 @@ public class ModRecipes {
 		// Living Soul
 		GameRegistry.addRecipe(new ItemStack(ModItems.livingSoul, 2), "zxz", "xyx", "zyz", 'x', Items.rotten_flesh, 'y', Items.bone, 'z', Blocks.soul_sand);
 
-		// Sceptres
-		createCapRecipe(0, new ItemStack(Blocks.tnt), new ItemStack(ModItems.blazeIngot, 1, 1), Items.fire_charge);
-		createCapRecipe(1, new ItemStack(Items.quartz), new ItemStack(Items.nether_wart), Items.nether_star);
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.sceptreCap, 1, 2), "xxx", "xyx", "xxx", 'x', "egg", 'y', Items.nether_star));
-		createSceptreRecipe(ModItems.sceptreOfFireCharging, 0, Items.magma_cream, GanysNether.sceptreOfFireCharging);
-		createSceptreRecipe(ModItems.sceptreOfLightning, 1, Items.gold_ingot, GanysNether.sceptreOfLightningDurability);
-		createSceptreRecipe(ModItems.sceptreOfConcealment, 2, Items.gold_ingot, GanysNether.sceptreOfConcealmentDurability);
+		if (GanysNether.enableSceptres) {
+			createCapRecipe(0, new ItemStack(Blocks.tnt), new ItemStack(ModItems.blazeIngot, 1, 1), Items.fire_charge);
+			createCapRecipe(1, new ItemStack(Items.quartz), new ItemStack(Items.nether_wart), Items.nether_star);
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.sceptreCap, 1, 2), "xxx", "xyx", "xxx", 'x', "egg", 'y', Items.nether_star));
+			createSceptreRecipe(ModItems.sceptreOfFireCharging, 0, Items.magma_cream, GanysNether.sceptreOfFireCharging);
+			createSceptreRecipe(ModItems.sceptreOfLightning, 1, Items.gold_ingot, GanysNether.sceptreOfLightningDurability);
+			createSceptreRecipe(ModItems.sceptreOfConcealment, 2, Items.gold_ingot, GanysNether.sceptreOfConcealmentDurability);
+		}
 
-		// Spawners
-		GameRegistry.addRecipe(new ItemStack(ModItems.netherCore), "xyz", "wab", "cde", 'x', Items.magma_cream, 'y', Items.nether_wart, 'z', Items.quartz, 'w', Items.blaze_rod, 'a', Items.glowstone_dust, 'b', Blocks.soul_sand, 'c', Blocks.nether_brick, 'd', Items.ghast_tear, 'e', new ItemStack(Items.skull, 1, 1));
-		for (int i = 0; i < UpgradeType.values().length; i++)
-			if (UpgradeType.values()[i].getMat1() != null && UpgradeType.values()[i].getMat2() != null)
-				GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, i), "xyx", "yzy", "xyx", 'x', UpgradeType.values()[i].getMat1(), 'y', UpgradeType.values()[i].getMat2(), 'z', ModItems.netherCore);
-		GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.tierDragonEgg.ordinal()), "xyx", "yzy", "xyx", 'x', new ItemStack(Items.golden_apple, 1, 1), 'y', ModItems.netherCore, 'z', Blocks.dragon_egg);
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnCount.ordinal()), "xyx", "yzy", "xyx", 'x', "mobEgg", 'y', "mobEgg", 'z', ModItems.netherCore));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnCount.ordinal()), "xyx", "yzy", "xyx", 'x', "itemSkull", 'y', "itemSkull", 'z', ModItems.netherCore));
-		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dragon_egg), new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.tierDragonEgg.ordinal()));
+		if (GanysNether.enableSpawners) {
+			GameRegistry.addRecipe(new ItemStack(ModItems.netherCore), "xyz", "wab", "cde", 'x', Items.magma_cream, 'y', Items.nether_wart, 'z', Items.quartz, 'w', Items.blaze_rod, 'a', Items.glowstone_dust, 'b', Blocks.soul_sand, 'c', Blocks.nether_brick, 'd', Items.ghast_tear, 'e', new ItemStack(Items.skull, 1, 1));
+			for (int i = 0; i < UpgradeType.values().length; i++)
+				if (UpgradeType.values()[i].getMat1() != null && UpgradeType.values()[i].getMat2() != null)
+					GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, i), "xyx", "yzy", "xyx", 'x', UpgradeType.values()[i].getMat1(), 'y', UpgradeType.values()[i].getMat2(), 'z', ModItems.netherCore);
+			GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.tierDragonEgg.ordinal()), "xyx", "yzy", "xyx", 'x', new ItemStack(Items.golden_apple, 1, 1), 'y', ModItems.netherCore, 'z', Blocks.dragon_egg);
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnCount.ordinal()), "xyx", "yzy", "xyx", 'x', "mobEgg", 'y', "mobEgg", 'z', ModItems.netherCore));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.spawnCount.ordinal()), "xyx", "yzy", "xyx", 'x', "itemSkull", 'y', "itemSkull", 'z', ModItems.netherCore));
+			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dragon_egg), new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.tierDragonEgg.ordinal()));
+		}
 
 		// Drops
 		GameRegistry.addRecipe(new ItemStack(Items.arrow, 16), "x", "y", "z", 'x', ModItems.wolfTeeth, 'y', Items.stick, 'z', Items.feather);

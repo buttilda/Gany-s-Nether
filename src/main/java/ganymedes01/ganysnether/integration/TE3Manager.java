@@ -1,14 +1,15 @@
 package ganymedes01.ganysnether.integration;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
@@ -22,18 +23,22 @@ public class TE3Manager extends Integration {
 
 	@Override
 	public void init() {
-		addMagmaCruicibleRecipe(30000, new ItemStack(ModItems.lavaBerry), new FluidStack(FluidRegistry.LAVA, 250));
+		if (GanysNether.shouldGenerateCrops) {
+			addMagmaCruicibleRecipe(30000, new ItemStack(ModItems.lavaBerry), new FluidStack(FluidRegistry.LAVA, 250));
 
-		addInductionSmelterRecipe(4000, new ItemStack(ModItems.spookyFlour), new ItemStack(Blocks.sand), new ItemStack(Blocks.soul_sand));
-		addInductionSmelterRecipe(4000, new ItemStack(ModItems.quarzBerry), new ItemStack(Blocks.glass), new ItemStack(Items.quartz));
-		addInductionSmelterRecipe(8000, new ItemStack(ModItems.silverfishScale), new ItemStack(Blocks.stonebrick, 8, 3), new ItemStack(Blocks.gravel), new ItemStack(Items.emerald), 5);
+			addInductionSmelterRecipe(4000, new ItemStack(ModItems.spookyFlour), new ItemStack(Blocks.sand), new ItemStack(Blocks.soul_sand));
+			addInductionSmelterRecipe(4000, new ItemStack(ModItems.quarzBerry), new ItemStack(Blocks.glass), new ItemStack(Items.quartz));
+			addInductionSmelterRecipe(8000, new ItemStack(ModItems.silverfishScale), new ItemStack(Blocks.stonebrick, 8, 3), new ItemStack(Blocks.gravel), new ItemStack(Items.emerald), 5);
 
-		addPulveriserRecipe(3000, new ItemStack(ModItems.glowingReed), new ItemStack(Items.glowstone_dust, 3));
-		addPulveriserRecipe(6000, new ItemStack(ModItems.spectreWheat), new ItemStack(ModItems.spookyFlour));
+			addPulveriserRecipe(3000, new ItemStack(ModItems.glowingReed), new ItemStack(Items.glowstone_dust, 3));
+			addPulveriserRecipe(6000, new ItemStack(ModItems.spectreWheat), new ItemStack(ModItems.spookyFlour));
+		}
+
 		addPulveriserRecipe(1500, new ItemStack(Items.wheat), new ItemStack(ModItems.flour));
 
 		try {
-			ItemStack ingotInvar = new ItemStack((Item) Class.forName("thermalexpansion.item.TEItems").getDeclaredField("itemMaterial").get(null), 2, 71);
+			ItemStack ingotInvar = OreDictionary.getOres("ingotInvar").get(0);
+			ingotInvar.stackSize = 2;
 			MagmaticCentrifugeRecipes.INSTANCE.addRecipe("ingotIron", "ingotNickel", ingotInvar);
 		} catch (Exception e) {
 		}

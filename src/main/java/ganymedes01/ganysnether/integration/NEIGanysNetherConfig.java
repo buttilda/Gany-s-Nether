@@ -10,6 +10,7 @@ import ganymedes01.ganysnether.integration.nei.VolcanicFurnaceYieldHandler;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 import codechicken.nei.recipe.DefaultOverlayHandler;
@@ -56,6 +57,12 @@ public class NEIGanysNetherConfig implements IConfigureNEI {
 			API.hideItem(new ItemStack(ModItems.spookyFlour));
 			API.hideItem(new ItemStack(ModItems.glowingReed));
 			API.hideItem(new ItemStack(ModBlocks.blazingCactoid));
+		}
+		if (!GanysNether.enableSceptres) {
+			API.hideItem(new ItemStack(ModItems.sceptreOfConcealment));
+			API.hideItem(new ItemStack(ModItems.sceptreOfFireCharging));
+			API.hideItem(new ItemStack(ModItems.sceptreOfLightning));
+			API.hideItem(new ItemStack(ModItems.sceptreCap, 1, OreDictionary.WILDCARD_VALUE));
 		}
 	}
 

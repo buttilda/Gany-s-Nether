@@ -20,12 +20,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class Undertaker extends SoulChest {
 
 	public Undertaker() {
-		if (GanysNether.enableUndertaker)
-			setCreativeTab(GanysNether.netherTab);
-		else
-			setCreativeTab(null);
 		setResistance(2000.0F);
 		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.UNDERTAKER_NAME));
+		setCreativeTab(GanysNether.enableUndertaker ? GanysNether.netherTab : null);
 	}
 
 	@Override

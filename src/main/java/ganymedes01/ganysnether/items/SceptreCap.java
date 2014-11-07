@@ -31,7 +31,7 @@ public class SceptreCap extends ItemSimpleFoiled {
 	public SceptreCap() {
 		setMaxDamage(0);
 		setHasSubtypes(true);
-		setCreativeTab(GanysNether.netherTab);
+		setCreativeTab(GanysNether.enableSceptres ? GanysNether.netherTab : null);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SCEPTRE_CAP_NAME));
 	}
 
