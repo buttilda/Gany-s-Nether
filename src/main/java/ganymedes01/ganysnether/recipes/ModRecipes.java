@@ -67,8 +67,10 @@ public class ModRecipes {
 			createSceptreRecipe(ModItems.sceptreOfConcealment, 2, Items.gold_ingot, GanysNether.sceptreOfConcealmentDurability);
 		}
 
+		// Volcanic Furnace and Spawners
+		GameRegistry.addRecipe(new ItemStack(ModItems.netherCore), "xyz", "wab", "cde", 'x', Items.magma_cream, 'y', Items.nether_wart, 'z', Items.quartz, 'w', Items.blaze_rod, 'a', Items.glowstone_dust, 'b', Blocks.soul_sand, 'c', Blocks.nether_brick, 'd', Items.ghast_tear, 'e', new ItemStack(Items.skull, 1, 1));
+
 		if (GanysNether.enableSpawners) {
-			GameRegistry.addRecipe(new ItemStack(ModItems.netherCore), "xyz", "wab", "cde", 'x', Items.magma_cream, 'y', Items.nether_wart, 'z', Items.quartz, 'w', Items.blaze_rod, 'a', Items.glowstone_dust, 'b', Blocks.soul_sand, 'c', Blocks.nether_brick, 'd', Items.ghast_tear, 'e', new ItemStack(Items.skull, 1, 1));
 			for (int i = 0; i < UpgradeType.values().length; i++)
 				if (UpgradeType.values()[i].getMat1() != null && UpgradeType.values()[i].getMat2() != null)
 					GameRegistry.addRecipe(new ItemStack(ModItems.spawnerUpgrade, 1, i), "xyx", "yzy", "xyx", 'x', UpgradeType.values()[i].getMat1(), 'y', UpgradeType.values()[i].getMat2(), 'z', ModItems.netherCore);

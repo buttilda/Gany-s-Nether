@@ -64,6 +64,8 @@ public class NEIGanysNetherConfig implements IConfigureNEI {
 			API.hideItem(new ItemStack(ModItems.sceptreOfLightning));
 			API.hideItem(new ItemStack(ModItems.sceptreCap, 1, OreDictionary.WILDCARD_VALUE));
 		}
+		if (!GanysNether.enableSpawners)
+			API.hideItem(new ItemStack(ModItems.spawnerUpgrade, 1, OreDictionary.WILDCARD_VALUE));
 	}
 
 	@Override
