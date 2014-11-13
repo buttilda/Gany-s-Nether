@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.integration;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModItems;
 
 import java.lang.reflect.Field;
@@ -11,9 +12,9 @@ import net.minecraftforge.fluids.FluidStack;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ForestryManager extends Integration {
@@ -54,11 +55,13 @@ public class ForestryManager extends Integration {
 
 	@Override
 	public void postInit() {
-		addSqueezerRecipe(new ItemStack(ModItems.ghostSeeds), 20);
-		addSqueezerRecipe(new ItemStack(ModItems.quarzBerrySeeds), 20);
-		addSqueezerRecipe("lava", new ItemStack(ModItems.hellBushSeeds), 15);
-		addSqueezerRecipe("lava", new ItemStack(ModItems.lavaBerry), 250);
-		addSqueezerRecipe(new ItemStack(ModItems.witherShrubSeeds), 2000);
+		if (GanysNether.shouldGenerateCrops) {
+			addSqueezerRecipe(new ItemStack(ModItems.ghostSeeds), 20);
+			addSqueezerRecipe(new ItemStack(ModItems.quarzBerrySeeds), 20);
+			addSqueezerRecipe("lava", new ItemStack(ModItems.hellBushSeeds), 15);
+			addSqueezerRecipe("lava", new ItemStack(ModItems.lavaBerry), 250);
+			addSqueezerRecipe(new ItemStack(ModItems.witherShrubSeeds), 2000);
+		}
 	}
 
 	@Override
