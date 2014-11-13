@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.recipes;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.UnsizedStack;
@@ -124,7 +125,7 @@ public class VolcanicFurnaceHandler {
 	}
 
 	public static boolean isItemMeltable(ItemStack stack) {
-		if (stack != null) {
+		if (stack != null && GanysNether.enableVolcanicFurnace) {
 			if (meltingWhiteList.contains(new UnsizedStack(stack)))
 				return true;
 			if (meltingBlackList.contains(new UnsizedStack(stack)))

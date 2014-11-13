@@ -33,9 +33,9 @@ public class GlowBox extends Block {
 		setLightLevel(1F);
 		setHardness(0.2F);
 		setStepSound(soundTypeGlass);
-		setCreativeTab(GanysNether.netherTab);
 		setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);
 		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.GLOW_BOX_NAME));
+		setCreativeTab(GanysNether.enableGlowbox ? GanysNether.netherTab : null);
 	}
 
 	@Override

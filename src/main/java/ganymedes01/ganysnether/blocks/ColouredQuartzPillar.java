@@ -35,7 +35,7 @@ public class ColouredQuartzPillar extends BlockRotatedPillar {
 		setHardness(0.8F);
 		this.startIndex = startIndex;
 		setStepSound(soundTypeStone);
-		setCreativeTab(GanysNether.netherTab);
+		setCreativeTab(GanysNether.enableQuartz ? GanysNether.netherTab : null);
 	}
 
 	@Override

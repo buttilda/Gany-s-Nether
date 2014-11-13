@@ -35,8 +35,8 @@ public class SoulGlass extends Block {
 		setHardness(0.3F);
 		setLightOpacity(3);
 		setStepSound(soundTypeGlass);
-		setCreativeTab(GanysNether.netherTab);
 		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_GLASS_NAME));
+		setCreativeTab(GanysNether.enableSoulGlass ? GanysNether.netherTab : null);
 	}
 
 	@Override

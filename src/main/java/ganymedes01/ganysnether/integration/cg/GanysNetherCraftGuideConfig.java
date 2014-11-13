@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.integration.cg;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.UnsizedStack;
 import ganymedes01.ganysnether.recipes.CentrifugeRecipe;
@@ -30,8 +31,10 @@ public class GanysNetherCraftGuideConfig extends CraftGuideAPIObject implements 
 
 	@Override
 	public void generateRecipes(RecipeGenerator generator) {
-		addMagmaticCentrifugeRecipes(generator);
-		addReproducerRecipes(generator);
+		if (GanysNether.enableMagmaticCentrifuge)
+			addMagmaticCentrifugeRecipes(generator);
+		if (GanysNether.enableReproducerAndDrops)
+			addReproducerRecipes(generator);
 	}
 
 	private void addMagmaticCentrifugeRecipes(RecipeGenerator generator) {

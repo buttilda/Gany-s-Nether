@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.recipes;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.xml.XMLBuilder;
@@ -59,7 +60,6 @@ public class MagmaticCentrifugeRecipes extends RecipeRegistry<CentrifugeRecipe> 
 		addRecipe("blockGlass", "blockGlass", new ItemStack(Blocks.sand, 2));
 		addRecipe(new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE), Items.flint, new ItemStack(Items.string, 6));
 		addRecipe(Items.rotten_flesh, Items.rotten_flesh, new ItemStack(Items.leather));
-		addRecipe(ModBlocks.soulGlass, ModBlocks.soulGlass, new ItemStack(Blocks.soul_sand, 2));
 		addRecipe(Blocks.soul_sand, Blocks.soul_sand, new ItemStack(ModBlocks.soulGlass, 2));
 		addRecipe(Items.bucket, Items.flint, new ItemStack(Items.iron_ingot, 3));
 		addRecipe(Items.arrow, Items.arrow, new ItemStack(Items.flint, 2), new ItemStack(Items.stick, 2), new ItemStack(Items.feather, 2));
@@ -106,9 +106,10 @@ public class MagmaticCentrifugeRecipes extends RecipeRegistry<CentrifugeRecipe> 
 	}
 
 	public ItemStack[] getResult(ItemStack input1, ItemStack input2) {
-		for (CentrifugeRecipe recipe : getRecipes())
-			if (recipe.matches(input1, input2))
-				return recipe.getResult();
+		if (GanysNether.enableMagmaticCentrifuge)
+			for (CentrifugeRecipe recipe : getRecipes())
+				if (recipe.matches(input1, input2))
+					return recipe.getResult();
 		return null;
 	}
 }

@@ -23,13 +23,14 @@ public class GanysSurfaceManager extends Integration {
 			addYieldForOrganicMatter(new ItemStack(ModItems.spookyFlour), 1);
 			addYieldForOrganicMatter(new ItemStack(ModItems.glowingReed), 2);
 		}
-
+		if (GanysNether.enableReproducerAndDrops) {
+			addYieldForOrganicMatter(new ItemStack(ModItems.silverfishScale), 2);
+			addYieldForOrganicMatter(new ItemStack(ModItems.batWing), 1);
+			addYieldForOrganicMatter(new ItemStack(ModItems.wolfTeeth), 1);
+			addYieldForOrganicMatter(new ItemStack(ModItems.livingSoul), 5);
+		}
 		addYieldForOrganicMatter(new ItemStack(ModItems.skeletonSpawner), 2);
 		addYieldForOrganicMatter(new ItemStack(ModItems.skeletonSpawner, 1, 1), 2);
-		addYieldForOrganicMatter(new ItemStack(ModItems.silverfishScale), 2);
-		addYieldForOrganicMatter(new ItemStack(ModItems.batWing), 1);
-		addYieldForOrganicMatter(new ItemStack(ModItems.wolfTeeth), 1);
-		addYieldForOrganicMatter(new ItemStack(ModItems.livingSoul), 5);
 		addYieldForOrganicMatter(new ItemStack(ModItems.flour), 2);
 	}
 

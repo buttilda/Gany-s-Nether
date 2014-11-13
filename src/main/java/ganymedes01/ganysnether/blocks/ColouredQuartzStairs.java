@@ -18,6 +18,6 @@ public class ColouredQuartzStairs extends BlockStairs {
 		setHardness(0.8F);
 		setLightOpacity(0);
 		setStepSound(soundTypeStone);
-		setCreativeTab(GanysNether.netherTab);
+		setCreativeTab(GanysNether.enableQuartz ? GanysNether.netherTab : null);
 	}
 }

@@ -30,8 +30,8 @@ public class Reproducer extends InventoryBlock {
 		super(Material.rock);
 		setHardness(2.5F);
 		setStepSound(soundTypeStone);
-		setCreativeTab(GanysNether.netherTab);
 		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.REPRODUCER_NAME));
+		setCreativeTab(GanysNether.enableReproducerAndDrops ? GanysNether.netherTab : null);
 	}
 
 	@Override

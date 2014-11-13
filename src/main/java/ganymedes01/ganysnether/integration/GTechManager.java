@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.integration;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.HoeList;
 
 import java.lang.reflect.Method;
@@ -9,16 +10,17 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class GTechManager extends Integration {
 
 	@Override
 	public void init() {
-		HoeList.addHoe(getItem("Tool_Hoe_TungstenSteel"));
+		if (GanysNether.shouldGenerateCrops)
+			HoeList.addHoe(getItem("Tool_Hoe_TungstenSteel"));
 	}
 
 	@Override

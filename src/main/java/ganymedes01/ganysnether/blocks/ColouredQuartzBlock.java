@@ -31,7 +31,7 @@ public class ColouredQuartzBlock extends Block {
 		super(Material.rock);
 		setHardness(0.8F);
 		setStepSound(soundTypeStone);
-		setCreativeTab(GanysNether.netherTab);
+		setCreativeTab(GanysNether.enableQuartz ? GanysNether.netherTab : null);
 		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.COLOURED_QUARTZ_BLOCK_NAME));
 	}
 

@@ -15,6 +15,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.RecipeSorter.Category;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
@@ -39,16 +40,19 @@ public class ModRecipes {
 
 	private static void registerItemRecipes() {
 		// Blaze stuff
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeHelmet), "xxx", "x x", 'x', "ingotBlaze"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeChestplate), "x x", "xxx", "xxx", 'x', "ingotBlaze"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeLeggings), "xxx", "x x", "x x", 'x', "ingotBlaze"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeBoots), "x x", "x x", 'x', "ingotBlaze"));
+		if (GanysNether.enableBlazeArmour) {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeHelmet), "xxx", "x x", 'x', "ingotBlaze"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeChestplate), "x x", "xxx", "xxx", 'x', "ingotBlaze"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeLeggings), "xxx", "x x", "x x", 'x', "ingotBlaze"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeBoots), "x x", "x x", 'x', "ingotBlaze"));
+		}
+
 		GameRegistry.addSmelting(new ItemStack(ModItems.blazeIngot), new ItemStack(ModItems.blazeIngot, 1, 1), 0.0F);
-		GameRegistry.addRecipe(new ItemStack(Items.blaze_rod), "x", "x", "x", 'x', new ItemStack(ModItems.blazeIngot, 1, 2));
 		GameRegistry.addRecipe(new ItemStack(ModItems.blazeIngot, 1, 0), "x", "x", "x", 'x', Items.blaze_rod);
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeIngot, 1, 1), "xxx", "xxx", "xxx", 'x', "nuggetBlaze"));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.blazeIngot, 9, 2), "ingotBlaze"));
 
-		// Bucket
+		// Bottomless Bucket
 		GameRegistry.addRecipe(new ItemStack(ModItems.bottomlessBucket), "xxx", "zxz", "yzy", 'x', Items.bucket, 'y', Blocks.soul_sand, 'z', Items.netherbrick);
 
 		// Baseball Bat
@@ -59,7 +63,7 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ItemStack(ModItems.livingSoul, 2), "zxz", "xyx", "zyz", 'x', Items.rotten_flesh, 'y', Items.bone, 'z', Blocks.soul_sand);
 
 		if (GanysNether.enableSceptres) {
-			createCapRecipe(0, new ItemStack(Blocks.tnt), new ItemStack(ModItems.blazeIngot, 1, 1), Items.fire_charge);
+			createCapRecipe(0, new ItemStack(Blocks.tnt), "ingotBlaze", Items.fire_charge);
 			createCapRecipe(1, new ItemStack(Items.quartz), new ItemStack(Items.nether_wart), Items.nether_star);
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.sceptreCap, 1, 2), "xxx", "xyx", "xxx", 'x', "egg", 'y', Items.nether_star));
 			createSceptreRecipe(ModItems.sceptreOfFireCharging, 0, Items.magma_cream, GanysNether.sceptreOfFireCharging);
@@ -67,8 +71,8 @@ public class ModRecipes {
 			createSceptreRecipe(ModItems.sceptreOfConcealment, 2, Items.gold_ingot, GanysNether.sceptreOfConcealmentDurability);
 		}
 
-		// Volcanic Furnace and Spawners
-		GameRegistry.addRecipe(new ItemStack(ModItems.netherCore), "xyz", "wab", "cde", 'x', Items.magma_cream, 'y', Items.nether_wart, 'z', Items.quartz, 'w', Items.blaze_rod, 'a', Items.glowstone_dust, 'b', Blocks.soul_sand, 'c', Blocks.nether_brick, 'd', Items.ghast_tear, 'e', new ItemStack(Items.skull, 1, 1));
+		if (GanysNether.enableVolcanicFurnace || GanysNether.enableSpawners)
+			GameRegistry.addRecipe(new ItemStack(ModItems.netherCore), "xyz", "wab", "cde", 'x', Items.magma_cream, 'y', Items.nether_wart, 'z', Items.quartz, 'w', Items.blaze_rod, 'a', Items.glowstone_dust, 'b', Blocks.soul_sand, 'c', Blocks.nether_brick, 'd', Items.ghast_tear, 'e', new ItemStack(Items.skull, 1, 1));
 
 		if (GanysNether.enableSpawners) {
 			for (int i = 0; i < UpgradeType.values().length; i++)
@@ -81,11 +85,13 @@ public class ModRecipes {
 		}
 
 		// Drops
-		GameRegistry.addRecipe(new ItemStack(Items.arrow, 16), "x", "y", "z", 'x', ModItems.wolfTeeth, 'y', Items.stick, 'z', Items.feather);
-		GameRegistry.addRecipe(new ItemStack(Blocks.monster_egg), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', Blocks.stone);
-		GameRegistry.addRecipe(new ItemStack(Blocks.monster_egg, 1, 1), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', Blocks.cobblestone);
-		GameRegistry.addRecipe(new ItemStack(Blocks.monster_egg, 1, 2), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', new ItemStack(Blocks.stonebrick));
-		GameRegistry.addSmelting(ModItems.batWing, new ItemStack(ModItems.cookedBatWing), 0.0F);
+		if (GanysNether.enableReproducerAndDrops) {
+			GameRegistry.addRecipe(new ItemStack(Items.arrow, 16), "x", "y", "z", 'x', ModItems.wolfTeeth, 'y', Items.stick, 'z', Items.feather);
+			GameRegistry.addRecipe(new ItemStack(Blocks.monster_egg), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', Blocks.stone);
+			GameRegistry.addRecipe(new ItemStack(Blocks.monster_egg, 1, 1), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', Blocks.cobblestone);
+			GameRegistry.addRecipe(new ItemStack(Blocks.monster_egg, 1, 2), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', new ItemStack(Blocks.stonebrick));
+			GameRegistry.addSmelting(ModItems.batWing, new ItemStack(ModItems.cookedBatWing), 0.0F);
+		}
 
 		// Others
 		GameRegistry.addSmelting(ModItems.flour, new ItemStack(Items.bread), 0.0F);
@@ -97,6 +103,7 @@ public class ModRecipes {
 
 		if (GanysNether.shouldGenerateCrops) {
 			GameRegistry.addSmelting(ModBlocks.blazingCactoid, new ItemStack(ModItems.blazeIngot, 1, 2), 1F);
+			GameRegistry.addRecipe(new ItemStack(Items.blaze_rod), "x", "x", "x", 'x', "nuggetBlaze");
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust, 2), new ItemStack(ModItems.glowingReed));
 			GameRegistry.addSmelting(ModItems.spookyFlour, new ItemStack(ModItems.dimensionalBread), 0.0F);
 			GameRegistry.addRecipe(new ItemStack(Items.quartz, 6), "xxx", "yyy", "xxx", 'x', ModItems.quarzBerry, 'y', Blocks.glass);
@@ -109,50 +116,54 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ItemStack(sceptre, 1, durability), "  x", " y ", "z  ", 'x', new ItemStack(ModItems.sceptreCap, 1, capMeta), 'y', handle, 'z', Items.netherbrick);
 	}
 
-	private static void createCapRecipe(int capMeta, ItemStack capMaterial, ItemStack capMaterialSec, Item capCore) {
-		GameRegistry.addRecipe(new ItemStack(ModItems.sceptreCap, 1, capMeta), "yxy", "xzx", "yxy", 'x', capMaterial, 'y', capMaterialSec, 'z', capCore);
+	private static void createCapRecipe(int capMeta, Object capMaterial, Object capMaterialSec, Item capCore) {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.sceptreCap, 1, capMeta), "yxy", "xzx", "yxy", 'x', capMaterial, 'y', capMaterialSec, 'z', capCore));
 	}
 
 	private static void registerBlockRecipes() {
-		// Soul Glass
-		GameRegistry.addSmelting(Blocks.soul_sand, new ItemStack(ModBlocks.soulGlass), 1F);
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlass, 4, 1), "xx", "xx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 0));
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassStairs, 4), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 1));
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassPane0, 16), "xxx", "xxx", 'x', new ItemStack(ModBlocks.soulGlass));
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassPane1, 16), "xxx", "xxx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 1));
+		if (GanysNether.enableSoulGlass) {
+			GameRegistry.addSmelting(Blocks.soul_sand, new ItemStack(ModBlocks.soulGlass), 1F);
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlass, 4, 1), "xx", "xx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 0));
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassStairs, 4), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 1));
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassPane0, 16), "xxx", "xxx", 'x', new ItemStack(ModBlocks.soulGlass));
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassPane1, 16), "xxx", "xxx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 1));
+		}
 
 		// Soul Chest
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulChest), "xyx", "x x", "xxx", 'x', Blocks.soul_sand, 'y', Items.quartz);
 
-		// Volcanic Furnace
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.volcanicFurnace), "yxy", "ywy", "zzz", 'x', Items.cauldron, 'y', Blocks.nether_brick, 'z', Blocks.obsidian, 'w', ModBlocks.denseLavaCell);
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.denseLavaCell), "yxy", "xzx", "yxy", 'x', Items.lava_bucket, 'y', Items.diamond, 'z', Blocks.fire);
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.focusedLavaCell), "zzz", "xyx", "xwx", 'x', ModBlocks.denseLavaCell, 'y', new ItemStack(ModBlocks.colouredChiselledQuartzBlock), 'z', "ingotBlaze", 'w', ModItems.netherCore));
-
-		// Glow Box
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.glowBox, 4, 11), " y ", "yxy", " y ", 'x', Blocks.glowstone, 'y', Blocks.glass_pane);
-		for (int i = 0; i < dyes.length; i++)
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.glowBox, 8, i), "xxx", "xyx", "xxx", 'x', new ItemStack(ModBlocks.glowBox, 1, OreDictionary.WILDCARD_VALUE), 'y', dyes[i]));
-
-		// Quartz
-		for (int i = 0; i < dyes.length; i++) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.colouredQuartzBlock, 8, i), "xxx", "xyx", "xxx", 'x', "blockQuartz", 'y', dyes[i]));
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 8, i), "xxx", "xyx", "xxx", 'x', "blockQuartzChiselled", 'y', dyes[i]));
-			GameRegistry.addRecipe(new ItemStack(ModBlocks.colouredQuartzBlockStairs[i], 4), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.colouredQuartzBlock, 1, i));
+		if (GanysNether.enableVolcanicFurnace) {
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.volcanicFurnace), "yxy", "ywy", "zzz", 'x', Items.cauldron, 'y', Blocks.nether_brick, 'z', Blocks.obsidian, 'w', ModBlocks.denseLavaCell);
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.denseLavaCell), "yxy", "xzx", "yxy", 'x', Items.lava_bucket, 'y', Items.diamond, 'z', Blocks.fire);
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.focusedLavaCell), "zzz", "xyx", "xwx", 'x', ModBlocks.denseLavaCell, 'y', GanysNether.enableQuartz ? new ItemStack(ModBlocks.colouredChiselledQuartzBlock) : "blockCoal", 'z', "ingotBlaze", 'w', ModItems.netherCore));
 		}
-		int index = 0;
-		for (Block pillar : ModBlocks.colouredQuartzPillar)
-			for (int i = 0; i < 4; i++)
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(pillar, 8, i), "xxx", "xyx", "xxx", 'x', "blockQuartzPillar", 'y', dyes[index++]));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.quartz_block, 1, 0), "   ", " x ", "   ", 'x', "blockQuartz"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.quartz_block, 1, 1), "   ", " x ", "   ", 'x', "blockQuartzChiselled"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.quartz_block, 1, 2), "   ", " x ", "   ", 'x', "blockQuartzPillar"));
 
-		// Reproducer
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.reproducer), "yzy", "wxw", "zwz", 'x', new ItemStack(Blocks.quartz_block, 1, 2), 'y', Blocks.obsidian, 'z', Blocks.soul_sand, 'w', "mobEgg"));
+		if (GanysNether.enableGlowbox) {
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.glowBox, 4, 11), " y ", "yxy", " y ", 'x', Blocks.glowstone, 'y', Blocks.glass_pane);
+			for (int i = 0; i < dyes.length; i++)
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.glowBox, 8, i), "xxx", "xyx", "xxx", 'x', new ItemStack(ModBlocks.glowBox, 1, OreDictionary.WILDCARD_VALUE), 'y', dyes[i]));
+		}
 
-		// Magmatic Centrifuge
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.magmaticCentrifuge), "zyz", "wxw", "zyz", 'x', Blocks.obsidian, 'y', Blocks.nether_brick, 'z', Items.blaze_rod, 'w', "blockGlass"));
+		if (GanysNether.enableQuartz) {
+			for (int i = 0; i < dyes.length; i++) {
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.colouredQuartzBlock, 8, i), "xxx", "xyx", "xxx", 'x', "blockQuartz", 'y', dyes[i]));
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 8, i), "xxx", "xyx", "xxx", 'x', "blockQuartzChiselled", 'y', dyes[i]));
+				GameRegistry.addRecipe(new ItemStack(ModBlocks.colouredQuartzBlockStairs[i], 4), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.colouredQuartzBlock, 1, i));
+			}
+			int index = 0;
+			for (Block pillar : ModBlocks.colouredQuartzPillar)
+				for (int i = 0; i < 4; i++)
+					GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(pillar, 8, i), "xxx", "xyx", "xxx", 'x', "blockQuartzPillar", 'y', dyes[index++]));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.quartz_block, 1, 0), "   ", " x ", "   ", 'x', "blockQuartz"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.quartz_block, 1, 1), "   ", " x ", "   ", 'x', "blockQuartzChiselled"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.quartz_block, 1, 2), "   ", " x ", "   ", 'x', "blockQuartzPillar"));
+		}
+
+		if (GanysNether.enableReproducerAndDrops)
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.reproducer), "yzy", "wxw", "zwz", 'x', new ItemStack(Blocks.quartz_block, 1, 2), 'y', Blocks.obsidian, 'z', Blocks.soul_sand, 'w', "mobEgg"));
+
+		if (GanysNether.enableMagmaticCentrifuge)
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.magmaticCentrifuge), "zyz", "wxw", "zyz", 'x', Blocks.obsidian, 'y', Blocks.nether_brick, 'z', Items.blaze_rod, 'w', "blockGlass"));
 
 		// Soul TNT
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulTNT), "xyx", "yxy", "xyx", 'x', Items.gunpowder, 'y', Blocks.soul_sand);
@@ -172,29 +183,37 @@ public class ModRecipes {
 	private static void registerOreDictionary() {
 		OreDictionary.registerOre("ingotBlaze", new ItemStack(ModItems.blazeIngot, 1, 1));
 		OreDictionary.registerOre("nuggetBlaze", new ItemStack(ModItems.blazeIngot, 1, 2));
+
 		OreDictionary.registerOre("nuggetIron", ModItems.ironNugget);
 		OreDictionary.registerOre("dustWheat", ModItems.flour);
 		OreDictionary.registerOre("mobEgg", new ItemStack(Items.spawn_egg, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("mobEgg", new ItemStack(ModItems.skeletonSpawner, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("blockSpawner", new ItemStack(Blocks.mob_spawner, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("blockSpawner", new ItemStack(ModBlocks.extendedSpawner, 1, OreDictionary.WILDCARD_VALUE));
 
-		OreDictionary.registerOre("blockQuartz", new ItemStack(ModBlocks.colouredQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("blockQuartz", new ItemStack(Blocks.quartz_block, 1, 0));
+		if (GanysNether.enableSpawners) {
+			OreDictionary.registerOre("blockSpawner", new ItemStack(Blocks.mob_spawner, 1, OreDictionary.WILDCARD_VALUE));
+			OreDictionary.registerOre("blockSpawner", new ItemStack(ModBlocks.extendedSpawner, 1, OreDictionary.WILDCARD_VALUE));
+		}
 
-		OreDictionary.registerOre("blockGlass", new ItemStack(ModBlocks.soulGlass, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("blockGlassBrown", new ItemStack(ModBlocks.soulGlass, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("paneGlass", new ItemStack(ModBlocks.soulGlassPane0));
-		OreDictionary.registerOre("paneGlass", new ItemStack(ModBlocks.soulGlassPane1));
-		OreDictionary.registerOre("paneGlassBrown", new ItemStack(ModBlocks.soulGlassPane0));
-		OreDictionary.registerOre("paneGlassBrown", new ItemStack(ModBlocks.soulGlassPane1));
+		if (GanysNether.enableQuartz) {
+			OreDictionary.registerOre("blockQuartz", new ItemStack(ModBlocks.colouredQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
+			OreDictionary.registerOre("blockQuartz", new ItemStack(Blocks.quartz_block, 1, 0));
 
-		OreDictionary.registerOre("blockQuartzChiselled", new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("blockQuartzChiselled", new ItemStack(Blocks.quartz_block, 1, 1));
+			OreDictionary.registerOre("blockQuartzChiselled", new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
+			OreDictionary.registerOre("blockQuartzChiselled", new ItemStack(Blocks.quartz_block, 1, 1));
 
-		for (int i = 0; i < ModBlocks.colouredQuartzPillar.length; i++)
-			OreDictionary.registerOre("blockQuartzPillar", new ItemStack(ModBlocks.colouredQuartzPillar[i], 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("blockQuartzPillar", new ItemStack(Blocks.quartz_block, 1, 2));
+			for (int i = 0; i < ModBlocks.colouredQuartzPillar.length; i++)
+				OreDictionary.registerOre("blockQuartzPillar", new ItemStack(ModBlocks.colouredQuartzPillar[i], 1, OreDictionary.WILDCARD_VALUE));
+			OreDictionary.registerOre("blockQuartzPillar", new ItemStack(Blocks.quartz_block, 1, 2));
+		}
+
+		if (GanysNether.enableSoulGlass) {
+			OreDictionary.registerOre("blockGlass", new ItemStack(ModBlocks.soulGlass, 1, OreDictionary.WILDCARD_VALUE));
+			OreDictionary.registerOre("blockGlassBrown", new ItemStack(ModBlocks.soulGlass, 1, OreDictionary.WILDCARD_VALUE));
+			OreDictionary.registerOre("paneGlass", new ItemStack(ModBlocks.soulGlassPane0));
+			OreDictionary.registerOre("paneGlass", new ItemStack(ModBlocks.soulGlassPane1));
+			OreDictionary.registerOre("paneGlassBrown", new ItemStack(ModBlocks.soulGlassPane0));
+			OreDictionary.registerOre("paneGlassBrown", new ItemStack(ModBlocks.soulGlassPane1));
+		}
 
 		OreDictionary.registerOre("egg", new ItemStack(Items.egg));
 		OreDictionary.registerOre("itemSkull", new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE));

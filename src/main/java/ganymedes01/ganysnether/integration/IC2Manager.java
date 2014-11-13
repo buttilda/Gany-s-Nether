@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.integration;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import net.minecraft.item.ItemStack;
 
@@ -14,8 +15,10 @@ public class IC2Manager extends Integration {
 
 	@Override
 	public void init() {
-		MagmaticCentrifugeRecipes.INSTANCE.addRecipe("ingotCopper", "ingotTin", getItem("bronzeIngot", 2));
-		MagmaticCentrifugeRecipes.INSTANCE.addRecipe("dustCopper", "dustTin", getItem("bronzeDust", 2));
+		if (GanysNether.enableMagmaticCentrifuge) {
+			MagmaticCentrifugeRecipes.INSTANCE.addRecipe("ingotCopper", "ingotTin", getItem("bronzeIngot", 2));
+			MagmaticCentrifugeRecipes.INSTANCE.addRecipe("dustCopper", "dustTin", getItem("bronzeDust", 2));
+		}
 	}
 
 	@Override

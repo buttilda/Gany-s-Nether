@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.core.handlers;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
@@ -74,6 +75,8 @@ public class EntityEvents {
 		if (event.entityLiving.worldObj.isRemote)
 			return;
 		if (event.lootingLevel < 0)
+			return;
+		if (!GanysNether.enableReproducerAndDrops)
 			return;
 
 		Random rand = event.entityLiving.worldObj.rand;

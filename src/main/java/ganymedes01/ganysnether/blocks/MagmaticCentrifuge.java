@@ -27,8 +27,8 @@ public class MagmaticCentrifuge extends InventoryBlock {
 		setHardness(2.5F);
 		setStepSound(soundTypeStone);
 		setBlockTextureName("nether_brick");
-		setCreativeTab(GanysNether.netherTab);
 		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME));
+		setCreativeTab(GanysNether.enableMagmaticCentrifuge ? GanysNether.netherTab : null);
 	}
 
 	@Override

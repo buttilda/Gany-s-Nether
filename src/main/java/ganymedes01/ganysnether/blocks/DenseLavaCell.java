@@ -27,9 +27,9 @@ public class DenseLavaCell extends Block {
 		setHardness(5F);
 		setLightLevel(1F);
 		setTickRandomly(true);
-		setCreativeTab(GanysNether.netherTab);
 		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.DENSE_LAVA_CELL_NAME));
 		setBlockTextureName(Utils.getBlockTexture(Strings.Blocks.DENSE_LAVA_CELL_NAME));
+		setCreativeTab(GanysNether.enableVolcanicFurnace ? GanysNether.netherTab : null);
 	}
 
 	@Override

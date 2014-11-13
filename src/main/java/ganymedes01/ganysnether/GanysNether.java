@@ -56,6 +56,13 @@ public class GanysNether {
 	public static boolean enableDynamicTextures = true;
 	public static boolean enableSceptres = true;
 	public static boolean enableSpawners = true;
+	public static boolean enableQuartz = true;
+	public static boolean enableGlowbox = true;
+	public static boolean enableSoulGlass = true;
+	public static boolean enableReproducerAndDrops = true;
+	public static boolean enableBlazeArmour = true;
+	public static boolean enableVolcanicFurnace = true;
+	public static boolean enableMagmaticCentrifuge = true;
 	public static int netherCropRate = 20;
 	public static int witherShrubRate = 50;
 	public static int undertakerRate = 1200;
@@ -67,14 +74,17 @@ public class GanysNether {
 
 		ConfigurationHandler.INSTANCE.init(event);
 
-		GameRegistry.registerWorldGenerator(new NetherWorldGen(), 0);
+		if (shouldGenerateUndertakers || shouldGenerateCrops)
+			GameRegistry.registerWorldGenerator(new NetherWorldGen(), 0);
 
 		ModBlocks.init();
 		ModItems.init();
 		ModRecipes.init();
 
-		MagmaticCentrifugeRecipes.INSTANCE.init();
-		HoeList.init();
+		if (enableMagmaticCentrifuge)
+			MagmaticCentrifugeRecipes.INSTANCE.init();
+		if (shouldGenerateCrops)
+			HoeList.init();
 	}
 
 	@EventHandler

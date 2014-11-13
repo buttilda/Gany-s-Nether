@@ -1,12 +1,13 @@
 package ganymedes01.ganysnether.integration;
 
+import ganymedes01.ganysnether.GanysNether;
 import net.minecraft.enchantment.Enchantment;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class GanysEndManager extends Integration {
@@ -15,9 +16,10 @@ public class GanysEndManager extends Integration {
 
 	@Override
 	public void init() {
-		for (Enchantment ench : Enchantment.enchantmentsList)
-			if (ench != null && ench.getName().contains("imperviousness"))
-				imperviousnessID = ench.effectId;
+		if (GanysNether.enableBlazeArmour)
+			for (Enchantment ench : Enchantment.enchantmentsList)
+				if (ench != null && ench.getName().contains("imperviousness"))
+					imperviousnessID = ench.effectId;
 	}
 
 	@Override

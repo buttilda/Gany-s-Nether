@@ -79,6 +79,13 @@ public class ConfigurationHandler {
 		GanysNether.enableDynamicTextures = configBoolean("enableDynamicTextures", true, GanysNether.enableDynamicTextures);
 		GanysNether.enableSceptres = configBoolean("enableSceptres", true, GanysNether.enableSceptres);
 		GanysNether.enableSpawners = configBoolean("enableSpawners", true, GanysNether.enableSpawners);
+		GanysNether.enableQuartz = configBoolean("enableQuartz", true, GanysNether.enableQuartz);
+		GanysNether.enableGlowbox = configBoolean("enableGlowbox", true, GanysNether.enableGlowbox);
+		GanysNether.enableSoulGlass = configBoolean("enableSoulGlass", true, GanysNether.enableSoulGlass);
+		GanysNether.enableReproducerAndDrops = configBoolean("enableReproducerAndDrops", true, GanysNether.enableReproducerAndDrops);
+		GanysNether.enableBlazeArmour = configBoolean("enableBlazeArmour", true, GanysNether.enableBlazeArmour);
+		GanysNether.enableVolcanicFurnace = configBoolean("enableVolcanicFurnace", true, GanysNether.enableVolcanicFurnace);
+		GanysNether.enableMagmaticCentrifuge = configBoolean("enableMagmaticCentrifuge", true, GanysNether.enableMagmaticCentrifuge);
 
 		GanysNether.netherCropRate = configInteger("netherCropSpawnRate", GanysNether.netherCropRate);
 		GanysNether.witherShrubRate = configInteger("witherShrubSpawnRate", GanysNether.witherShrubRate);

@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.integration;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.HoeList;
@@ -15,21 +16,22 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ThaumcraftManager extends Integration {
 
 	@Override
 	public void init() {
-		HoeList.addHoe(ItemApi.getItem("itemHoeThaumium", 0));
-		HoeList.addHoe(ItemApi.getItem("itemHoeElemental", 0));
+		if (GanysNether.shouldGenerateCrops) {
+			HoeList.addHoe(ItemApi.getItem("itemHoeThaumium", 0));
+			HoeList.addHoe(ItemApi.getItem("itemHoeElemental", 0));
+			FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(ModBlocks.witherShrub, 1, 8));
+		}
 
 		ThaumcraftApi.addSmeltingBonus(new ItemStack(ModItems.blazeIngot, 1, 1), new ItemStack(ModItems.blazeIngot, 0, 2));
-
-		FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(ModBlocks.witherShrub, 1, 8));
 
 		addAspectsToItem(ModBlocks.soulGlass, new Aspect[] { Aspect.CRYSTAL, Aspect.SOUL }, new int[] { 1, 1 });
 		addAspectsToItem(ModBlocks.glowBox, new Aspect[] { Aspect.LIGHT, Aspect.SENSES }, new int[] { 3, 1 });

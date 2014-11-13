@@ -23,9 +23,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class BlazeArmour extends ItemArmor {
@@ -36,7 +36,7 @@ public class BlazeArmour extends ItemArmor {
 	BlazeArmour(int type) {
 		super(ModMaterials.BLAZE, 0, type);
 		setMaxStackSize(1);
-		setCreativeTab(GanysNether.netherTab);
+		setCreativeTab(GanysNether.enableBlazeArmour ? GanysNether.netherTab : null);
 	}
 
 	@Override

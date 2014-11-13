@@ -37,7 +37,7 @@ public class ExtendedSpawner extends BlockMobSpawner {
 		disableStats();
 		setHardness(5.0F);
 		setStepSound(soundTypeMetal);
-		setCreativeTab(GanysNether.netherTab);
+		setCreativeTab(GanysNether.enableSpawners ? GanysNether.netherTab : null);
 		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.EXTENDED_SPAWNER_NAME));
 		setBlockTextureName(Utils.getBlockTexture(Strings.Blocks.EXTENDED_SPAWNER_NAME));
 	}

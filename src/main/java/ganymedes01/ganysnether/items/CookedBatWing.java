@@ -17,9 +17,9 @@ public class CookedBatWing extends ItemFood {
 
 	public CookedBatWing() {
 		super(1, true);
-		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.COOKED_BAT_WING_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.COOKED_BAT_WING_NAME));
+		setCreativeTab(GanysNether.enableReproducerAndDrops ? GanysNether.netherTab : null);
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import ganymedes01.ganysnether.integration.nei.ReproducerRecipeHandler;
 import ganymedes01.ganysnether.integration.nei.VolcanicFurnaceYieldHandler;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import codechicken.nei.api.API;
@@ -26,16 +27,20 @@ public class NEIGanysNetherConfig implements IConfigureNEI {
 
 	@Override
 	public void loadConfig() {
-		API.registerRecipeHandler(new MagmaticCentrifugeRecipeHandler());
-		API.registerUsageHandler(new MagmaticCentrifugeRecipeHandler());
-		API.registerGuiOverlay(GuiMagmaticCentrifuge.class, Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME, 5, 11);
-		API.registerGuiOverlayHandler(GuiMagmaticCentrifuge.class, new DefaultOverlayHandler(5, 11), Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME);
-
-		API.registerRecipeHandler(new ReproducerRecipeHandler());
-		API.registerUsageHandler(new ReproducerRecipeHandler());
-
-		API.registerUsageHandler(new VolcanicFurnaceYieldHandler());
-		API.registerRecipeHandler(new VolcanicFurnaceYieldHandler());
+		if (GanysNether.enableMagmaticCentrifuge) {
+			API.registerRecipeHandler(new MagmaticCentrifugeRecipeHandler());
+			API.registerUsageHandler(new MagmaticCentrifugeRecipeHandler());
+			API.registerGuiOverlay(GuiMagmaticCentrifuge.class, Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME, 5, 11);
+			API.registerGuiOverlayHandler(GuiMagmaticCentrifuge.class, new DefaultOverlayHandler(5, 11), Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME);
+		}
+		if (GanysNether.enableReproducerAndDrops) {
+			API.registerRecipeHandler(new ReproducerRecipeHandler());
+			API.registerUsageHandler(new ReproducerRecipeHandler());
+		}
+		if (GanysNether.enableVolcanicFurnace) {
+			API.registerUsageHandler(new VolcanicFurnaceYieldHandler());
+			API.registerRecipeHandler(new VolcanicFurnaceYieldHandler());
+		}
 
 		API.hideItem(new ItemStack(ModBlocks.tilledNetherrack));
 		API.hideItem(new ItemStack(ModBlocks.spectreWheat));
@@ -64,8 +69,46 @@ public class NEIGanysNetherConfig implements IConfigureNEI {
 			API.hideItem(new ItemStack(ModItems.sceptreOfLightning));
 			API.hideItem(new ItemStack(ModItems.sceptreCap, 1, OreDictionary.WILDCARD_VALUE));
 		}
-		if (!GanysNether.enableSpawners)
+		if (!GanysNether.enableSpawners) {
 			API.hideItem(new ItemStack(ModItems.spawnerUpgrade, 1, OreDictionary.WILDCARD_VALUE));
+			API.hideItem(new ItemStack(ModBlocks.extendedSpawner));
+		}
+		if (!GanysNether.enableQuartz) {
+			API.hideItem(new ItemStack(ModBlocks.colouredQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
+			API.hideItem(new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
+			for (Block b : ModBlocks.colouredQuartzPillar)
+				API.hideItem(new ItemStack(b, 1, OreDictionary.WILDCARD_VALUE));
+			for (Block b : ModBlocks.colouredQuartzBlockStairs)
+				API.hideItem(new ItemStack(b, 1, OreDictionary.WILDCARD_VALUE));
+		}
+		if (!GanysNether.enableGlowbox)
+			API.hideItem(new ItemStack(ModBlocks.glowBox, 1, OreDictionary.WILDCARD_VALUE));
+		if (!GanysNether.enableSoulGlass) {
+			API.hideItem(new ItemStack(ModBlocks.soulGlass, 1, OreDictionary.WILDCARD_VALUE));
+			API.hideItem(new ItemStack(ModBlocks.soulGlassPane0));
+			API.hideItem(new ItemStack(ModBlocks.soulGlassPane1));
+			API.hideItem(new ItemStack(ModBlocks.soulGlassStairs));
+		}
+		if (!GanysNether.enableReproducerAndDrops) {
+			API.hideItem(new ItemStack(ModBlocks.reproducer));
+			API.hideItem(new ItemStack(ModItems.batWing));
+			API.hideItem(new ItemStack(ModItems.cookedBatWing));
+			API.hideItem(new ItemStack(ModItems.silverfishScale));
+			API.hideItem(new ItemStack(ModItems.wolfTeeth));
+		}
+		if (!GanysNether.enableBlazeArmour) {
+			API.hideItem(new ItemStack(ModItems.blazeHelmet));
+			API.hideItem(new ItemStack(ModItems.blazeChestplate));
+			API.hideItem(new ItemStack(ModItems.blazeLeggings));
+			API.hideItem(new ItemStack(ModItems.blazeBoots));
+		}
+		if (!GanysNether.enableVolcanicFurnace) {
+			API.hideItem(new ItemStack(ModBlocks.volcanicFurnace));
+			API.hideItem(new ItemStack(ModBlocks.denseLavaCell));
+			API.hideItem(new ItemStack(ModBlocks.focusedLavaCell));
+		}
+		if (!GanysNether.enableMagmaticCentrifuge)
+			API.hideItem(new ItemStack(ModBlocks.magmaticCentrifuge));
 	}
 
 	@Override
