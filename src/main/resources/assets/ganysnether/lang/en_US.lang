@@ -175,7 +175,7 @@ fluidtogo=Fluid to go:
 itemGroup.ganysnether=Gany's Nether
 
 # Tooltips
-hotontheinside=Hot on the inside
+tooltip.ganysnether.hotInside=Hot on the inside
 tooltip.ganysnether.ghastTear=Right-Click an Obsidian block to plant
 tooltip.ganysnether.firstUpgrade=First Upgrade
 tooltip.ganysnether.plusTwoSlots=+2 Slots

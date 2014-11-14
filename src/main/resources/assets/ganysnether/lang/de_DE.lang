@@ -153,5 +153,5 @@ fluidtogo=Vorh. Fl¸ssigkeit:
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether
 
-# Others
-hotontheinside=Heiﬂ im Innern
+# Tooltips
+tooltip.ganysnether.hotInside=Heiﬂ im Innern

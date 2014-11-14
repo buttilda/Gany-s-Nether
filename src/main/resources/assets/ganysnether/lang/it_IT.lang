@@ -153,5 +153,5 @@ fluidtogo=Liquido Producibile:
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether
 
-# Others
-hotontheinside=Caldo Dentro
+# Tooltips
+tooltip.ganysnether.hotInside=Caldo Dentro

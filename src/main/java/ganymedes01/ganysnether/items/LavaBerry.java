@@ -29,6 +29,6 @@ public class LavaBerry extends Item {
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag) {
-		list.add(StatCollector.translateToLocal("hotontheinside"));
+		list.add(StatCollector.translateToLocal("tooltip.ganysnether.hotInside"));
 	}
 }

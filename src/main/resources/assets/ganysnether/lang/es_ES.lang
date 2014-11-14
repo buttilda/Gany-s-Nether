@@ -147,5 +147,5 @@ fluidtogo=Fluido restante:
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether
 
-# Others
-hotontheinside=Caliente en el interior
+# Tooltips
+tooltip.ganysnether.hotInside=Caliente en el interior
