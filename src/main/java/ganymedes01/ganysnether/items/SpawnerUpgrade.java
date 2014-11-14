@@ -23,6 +23,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -104,7 +105,6 @@ public class SpawnerUpgrade extends Item {
 				world.setBlock(x, y, z, ModBlocks.extendedSpawner);
 				TileEntity tile = world.getTileEntity(x, y, z);
 				tile.readFromNBT(data);
-				//FIXME PacketDispatcher.sendPacketToAllPlayers(tile.getDescriptionPacket());
 				useItem(stack, player);
 				return true;
 			}
@@ -148,7 +148,6 @@ public class SpawnerUpgrade extends Item {
 
 			if (used) {
 				useItem(stack, player);
-				//FIXME  PacketDispatcher.sendPacketToAllPlayers(tile.getDescriptionPacket());
 				return true;
 			}
 		}
@@ -162,6 +161,33 @@ public class SpawnerUpgrade extends Item {
 		stack.stackSize--;
 		if (stack.stackSize <= 0)
 			stack = null;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean isComplex) {
+		UpgradeType type = UpgradeType.values()[stack.getItemDamage()];
+
+		if (type == UpgradeType.tierCoal)
+			list.add(StatCollector.translateToLocal("tooltip.ganysnether.firstUpgrade"));
+		else if (type.ordinal() < UpgradeType.tierDragonEgg.ordinal())
+			list.add(StatCollector.translateToLocal("tooltip.ganysnether.plusTwoSlots"));
+		else if (type == UpgradeType.tierDragonEgg) {
+			list.add(StatCollector.translateToLocal("tooltip.ganysnether.plusTwoSlots"));
+			list.add(StatCollector.translateToLocal("tooltip.ganysnether.spawnsUpToThree"));
+		} else if (type == UpgradeType.redstone)
+			list.add(StatCollector.translateToLocal("tooltip.ganysnether.controlWithRedstone"));
+		else if (type == UpgradeType.noPlayer)
+			list.add(StatCollector.translateToLocal("tooltip.ganysnether.spawnerWillRunWithNoPlayers"));
+		else if (type == UpgradeType.ignoreConditions)
+			list.add(StatCollector.translateToLocal("tooltip.ganysnether.spawnerIgnoreConditions"));
+		else if (type == UpgradeType.silky)
+			list.add(StatCollector.translateToLocal("tooltip.ganysnether.spawnerSilky"));
+		else if (type == UpgradeType.spawnCount)
+			list.add(StatCollector.translateToLocal("tooltip.ganysnether.spawnerPlusOne"));
+		else if (type == UpgradeType.spawnRange)
+			list.add(StatCollector.translateToLocal("tooltip.ganysnether.spawnerRange"));
 	}
 
 	@Override

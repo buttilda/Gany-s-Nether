@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.core.handlers;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.blocks.NetherCrop;
@@ -12,9 +13,9 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class BonemealOnNetherCrops {
@@ -27,7 +28,7 @@ public class BonemealOnNetherCrops {
 		int meta = event.world.getBlockMetadata(event.x, event.y, event.z);
 
 		if (stack != null)
-			if (stack.getItem() == ModItems.livingSoul) {
+			if (GanysNether.enableLivingSoul && stack.getItem() == ModItems.livingSoul) {
 				if (event.block instanceof NetherCrop) {
 					if (meta < 7) {
 						event.world.setBlockMetadataWithNotify(event.x, event.y, event.z, ++meta, 3);

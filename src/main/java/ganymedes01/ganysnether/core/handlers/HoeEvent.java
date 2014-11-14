@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.core.handlers;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.HoeList;
 import net.minecraft.block.Block;
@@ -10,15 +11,17 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class HoeEvent {
 
 	@SubscribeEvent
 	public void onHoeUseEvent(UseHoeEvent event) {
+		if (!GanysNether.shouldGenerateCrops)
+			return;
 		if (event.world.getBlock(event.x, event.y, event.z) == Blocks.netherrack)
 			if (event.current != null)
 				if (HoeList.canTillNetherrack(event.current.getItem())) {

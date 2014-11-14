@@ -63,6 +63,14 @@ public class GanysNether {
 	public static boolean enableBlazeArmour = true;
 	public static boolean enableVolcanicFurnace = true;
 	public static boolean enableMagmaticCentrifuge = true;
+	public static boolean enableBottomlessBucket = true;
+	public static boolean enableSoulChest = true;
+	public static boolean enableHorseArmourStand = true;
+	public static boolean enableThermalSmelter = true;
+	public static boolean enableBaseballBat = true;
+	public static boolean enableLivingSoul = true;
+	public static boolean enableSoulTNT = true;
+
 	public static int netherCropRate = 20;
 	public static int witherShrubRate = 50;
 	public static int undertakerRate = 1200;

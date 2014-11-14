@@ -86,6 +86,13 @@ public class ConfigurationHandler {
 		GanysNether.enableBlazeArmour = configBoolean("enableBlazeArmour", true, GanysNether.enableBlazeArmour);
 		GanysNether.enableVolcanicFurnace = configBoolean("enableVolcanicFurnace", true, GanysNether.enableVolcanicFurnace);
 		GanysNether.enableMagmaticCentrifuge = configBoolean("enableMagmaticCentrifuge", true, GanysNether.enableMagmaticCentrifuge);
+		GanysNether.enableBottomlessBucket = configBoolean("enableBottomlessBucket", true, GanysNether.enableBottomlessBucket);
+		GanysNether.enableSoulChest = configBoolean("enableSoulChest", true, GanysNether.enableSoulChest);
+		GanysNether.enableHorseArmourStand = configBoolean("enableHorseArmourStand", true, GanysNether.enableHorseArmourStand);
+		GanysNether.enableThermalSmelter = configBoolean("enableThermalSmelter", true, GanysNether.enableThermalSmelter);
+		GanysNether.enableBaseballBat = configBoolean("enableBaseballBat", true, GanysNether.enableBaseballBat);
+		GanysNether.enableLivingSoul = configBoolean("enableLivingSoul", true, GanysNether.enableLivingSoul);
+		GanysNether.enableSoulTNT = configBoolean("enableSoulTNT", true, GanysNether.enableSoulTNT);
 
 		GanysNether.netherCropRate = configInteger("netherCropSpawnRate", GanysNether.netherCropRate);
 		GanysNether.witherShrubRate = configInteger("witherShrubSpawnRate", GanysNether.witherShrubRate);

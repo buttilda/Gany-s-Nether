@@ -39,7 +39,6 @@ public class ModRecipes {
 	}
 
 	private static void registerItemRecipes() {
-		// Blaze stuff
 		if (GanysNether.enableBlazeArmour) {
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeHelmet), "xxx", "x x", 'x', "ingotBlaze"));
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeChestplate), "x x", "xxx", "xxx", 'x', "ingotBlaze"));
@@ -52,15 +51,16 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blazeIngot, 1, 1), "xxx", "xxx", "xxx", 'x', "nuggetBlaze"));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.blazeIngot, 9, 2), "ingotBlaze"));
 
-		// Bottomless Bucket
-		GameRegistry.addRecipe(new ItemStack(ModItems.bottomlessBucket), "xxx", "zxz", "yzy", 'x', Items.bucket, 'y', Blocks.soul_sand, 'z', Items.netherbrick);
+		if (GanysNether.enableBottomlessBucket)
+			GameRegistry.addRecipe(new ItemStack(ModItems.bottomlessBucket), "xxx", "zxz", "yzy", 'x', Items.bucket, 'y', Blocks.soul_sand, 'z', Items.netherbrick);
 
-		// Baseball Bat
-		GameRegistry.addRecipe(EnchantSensitiveRecipe.makeRecipe(new ItemStack(ModItems.baseballBat), " zx", " yz", "y  ", 'x', Items.diamond, 'y', Items.netherbrick, 'z', Utils.enchantStack(new ItemStack(Items.enchanted_book), Enchantment.knockback, 1)));
-		GameRegistry.addRecipe(EnchantSensitiveRecipe.makeRecipe(new ItemStack(ModItems.baseballBat), " zx", " y ", "y  ", 'x', Items.diamond, 'y', Items.netherbrick, 'z', Utils.enchantStack(new ItemStack(Items.enchanted_book), Enchantment.knockback, 2)));
+		if (GanysNether.enableBaseballBat) {
+			GameRegistry.addRecipe(EnchantSensitiveRecipe.makeRecipe(new ItemStack(ModItems.baseballBat), " zx", " yz", "y  ", 'x', Items.diamond, 'y', Items.netherbrick, 'z', Utils.enchantStack(new ItemStack(Items.enchanted_book), Enchantment.knockback, 1)));
+			GameRegistry.addRecipe(EnchantSensitiveRecipe.makeRecipe(new ItemStack(ModItems.baseballBat), " zx", " y ", "y  ", 'x', Items.diamond, 'y', Items.netherbrick, 'z', Utils.enchantStack(new ItemStack(Items.enchanted_book), Enchantment.knockback, 2)));
+		}
 
-		// Living Soul
-		GameRegistry.addRecipe(new ItemStack(ModItems.livingSoul, 2), "zxz", "xyx", "zyz", 'x', Items.rotten_flesh, 'y', Items.bone, 'z', Blocks.soul_sand);
+		if (GanysNether.enableLivingSoul)
+			GameRegistry.addRecipe(new ItemStack(ModItems.livingSoul, 2), "zxz", "xyx", "zyz", 'x', Items.rotten_flesh, 'y', Items.bone, 'z', Blocks.soul_sand);
 
 		if (GanysNether.enableSceptres) {
 			createCapRecipe(0, new ItemStack(Blocks.tnt), "ingotBlaze", Items.fire_charge);
@@ -84,7 +84,6 @@ public class ModRecipes {
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dragon_egg), new ItemStack(ModItems.spawnerUpgrade, 1, UpgradeType.tierDragonEgg.ordinal()));
 		}
 
-		// Drops
 		if (GanysNether.enableReproducerAndDrops) {
 			GameRegistry.addRecipe(new ItemStack(Items.arrow, 16), "x", "y", "z", 'x', ModItems.wolfTeeth, 'y', Items.stick, 'z', Items.feather);
 			GameRegistry.addRecipe(new ItemStack(Blocks.monster_egg), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', Blocks.stone);
@@ -129,8 +128,8 @@ public class ModRecipes {
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.soulGlassPane1, 16), "xxx", "xxx", 'x', new ItemStack(ModBlocks.soulGlass, 1, 1));
 		}
 
-		// Soul Chest
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulChest), "xyx", "x x", "xxx", 'x', Blocks.soul_sand, 'y', Items.quartz);
+		if (GanysNether.enableSoulChest)
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.soulChest), "xyx", "x x", "xxx", 'x', Blocks.soul_sand, 'y', Items.quartz);
 
 		if (GanysNether.enableVolcanicFurnace) {
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.volcanicFurnace), "yxy", "ywy", "zzz", 'x', Items.cauldron, 'y', Blocks.nether_brick, 'z', Blocks.obsidian, 'w', ModBlocks.denseLavaCell);
@@ -165,14 +164,14 @@ public class ModRecipes {
 		if (GanysNether.enableMagmaticCentrifuge)
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.magmaticCentrifuge), "zyz", "wxw", "zyz", 'x', Blocks.obsidian, 'y', Blocks.nether_brick, 'z', Items.blaze_rod, 'w', "blockGlass"));
 
-		// Soul TNT
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.soulTNT), "xyx", "yxy", "xyx", 'x', Items.gunpowder, 'y', Blocks.soul_sand);
+		if (GanysNether.enableSoulTNT)
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.soulTNT), "xyx", "yxy", "xyx", 'x', Items.gunpowder, 'y', Blocks.soul_sand);
 
-		// Thermal Smelter
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.thermalSmelter), "xxx", "yzy", 'x', Items.coal, 'y', Items.lava_bucket, 'z', Blocks.furnace);
+		if (GanysNether.enableThermalSmelter)
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.thermalSmelter), "xxx", "yzy", 'x', Items.coal, 'y', Items.lava_bucket, 'z', Blocks.furnace);
 
-		// Horse Armour Stand
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.horseArmourStand), "x  ", "xxx", "y y", 'x', new ItemStack(Blocks.stone_slab), 'y', Items.iron_ingot);
+		if (GanysNether.enableHorseArmourStand)
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.horseArmourStand), "x  ", "xxx", "y y", 'x', new ItemStack(Blocks.stone_slab), 'y', Items.iron_ingot);
 
 		if (GanysNether.shouldGenerateCrops)
 			GameRegistry.addRecipe(new ItemStack(Blocks.soul_sand, 6), "xxx", "yyy", "xxx", 'x', ModItems.spookyFlour, 'y', Blocks.sand);

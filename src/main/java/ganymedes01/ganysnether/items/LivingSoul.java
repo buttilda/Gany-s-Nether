@@ -25,9 +25,9 @@ public class LivingSoul extends Item {
 
 	public LivingSoul() {
 		setFull3D();
-		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.LIVING_SOUL_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.LIVING_SOUL_NAME));
+		setCreativeTab(GanysNether.enableLivingSoul ? GanysNether.netherTab : null);
 	}
 
 	@Override

@@ -109,6 +109,22 @@ public class NEIGanysNetherConfig implements IConfigureNEI {
 		}
 		if (!GanysNether.enableMagmaticCentrifuge)
 			API.hideItem(new ItemStack(ModBlocks.magmaticCentrifuge));
+		if (!GanysNether.enableVolcanicFurnace && !GanysNether.enableSpawners)
+			API.hideItem(new ItemStack(ModItems.netherCore));
+		if (!GanysNether.enableBottomlessBucket)
+			API.hideItem(new ItemStack(ModItems.bottomlessBucket));
+		if (!GanysNether.enableSoulChest)
+			API.hideItem(new ItemStack(ModBlocks.soulChest));
+		if (!GanysNether.enableHorseArmourStand)
+			API.hideItem(new ItemStack(ModBlocks.horseArmourStand));
+		if (!GanysNether.enableThermalSmelter)
+			API.hideItem(new ItemStack(ModBlocks.thermalSmelter));
+		if (!GanysNether.enableBaseballBat)
+			API.hideItem(new ItemStack(ModItems.baseballBat));
+		if (!GanysNether.enableSoulTNT)
+			API.hideItem(new ItemStack(ModBlocks.soulTNT));
+		if (!GanysNether.enableLivingSoul)
+			API.hideItem(new ItemStack(ModItems.livingSoul));
 	}
 
 	@Override

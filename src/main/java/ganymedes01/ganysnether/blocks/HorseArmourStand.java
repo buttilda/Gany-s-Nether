@@ -29,8 +29,8 @@ public class HorseArmourStand extends BlockContainer {
 		super(Material.iron);
 		setHardness(1.0F);
 		setBlockTextureName("stone");
-		setCreativeTab(GanysNether.netherTab);
 		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.HORSE_ARMOUR_STAND_NAME));
+		setCreativeTab(GanysNether.enableHorseArmourStand ? GanysNether.netherTab : null);
 	}
 
 	@Override
