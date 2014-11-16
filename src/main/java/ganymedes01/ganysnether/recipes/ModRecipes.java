@@ -102,7 +102,7 @@ public class ModRecipes {
 
 		if (GanysNether.shouldGenerateCrops) {
 			GameRegistry.addSmelting(ModBlocks.blazingCactoid, new ItemStack(ModItems.blazeIngot, 1, 2), 1F);
-			GameRegistry.addRecipe(new ItemStack(Items.blaze_rod), "x", "x", "x", 'x', "nuggetBlaze");
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.blaze_rod), "x", "x", "x", 'x', "nuggetBlaze"));
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust, 2), new ItemStack(ModItems.glowingReed));
 			GameRegistry.addSmelting(ModItems.spookyFlour, new ItemStack(ModItems.dimensionalBread), 0.0F);
 			GameRegistry.addRecipe(new ItemStack(Items.quartz, 6), "xxx", "yyy", "xxx", 'x', ModItems.quarzBerry, 'y', Blocks.glass);
