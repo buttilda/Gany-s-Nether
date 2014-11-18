@@ -56,7 +56,7 @@ public class SpectreWheatCrop extends NetherCrop {
 		if (!GanysNether.enableDynamicTextures) {
 			icons = new IIcon[8];
 			for (int i = 0; i < icons.length; i++)
-				icons[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SPECTRE_WHEAT_BLOCK_NAME + "_state_" + i));
+				icons[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SPECTRE_WHEAT_BLOCK_NAME + "_stage_" + i));
 		}
 	}
 }
