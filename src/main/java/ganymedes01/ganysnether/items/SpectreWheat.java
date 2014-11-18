@@ -21,8 +21,6 @@ public class SpectreWheat extends Item {
 
 	public SpectreWheat() {
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SPECTRE_WHEAT_NAME));
-		if (!GanysNether.enableDynamicTextures)
-			setTextureName(Utils.getItemTexture(Strings.Items.SPECTRE_WHEAT_NAME));
 		setCreativeTab(GanysNether.shouldGenerateCrops ? GanysNether.netherTab : null);
 	}
 
@@ -30,7 +28,7 @@ public class SpectreWheat extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister reg) {
 		if (!GanysNether.enableDynamicTextures)
-			super.registerIcons(reg);
+			itemIcon = reg.registerIcon(Utils.getItemTexture(Strings.Items.SPECTRE_WHEAT_NAME));
 	}
 
 	public static void setIcon(IIcon icon) {

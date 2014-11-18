@@ -24,8 +24,6 @@ public class WitherShrubSeeds extends NetherSeeds {
 	public WitherShrubSeeds() {
 		super(ModBlocks.witherShrub);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.WITHER_SHRUB_SEEDS_NAME));
-		if (!GanysNether.enableDynamicTextures)
-			setTextureName(Utils.getItemTexture(Strings.Items.WITHER_SHRUB_SEEDS_NAME));
 	}
 
 	public static void setIcon(IIcon icon) {
@@ -36,7 +34,7 @@ public class WitherShrubSeeds extends NetherSeeds {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister reg) {
 		if (!GanysNether.enableDynamicTextures)
-			super.registerIcons(reg);
+			itemIcon = reg.registerIcon(Utils.getItemTexture(Strings.Items.WITHER_SHRUB_SEEDS_NAME));
 	}
 
 	@Override

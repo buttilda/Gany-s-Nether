@@ -27,8 +27,6 @@ public class DimensionalBread extends ItemFood {
 		setCreativeTab(GanysNether.netherTab);
 		setPotionEffect(Potion.invisibility.id, 60, 0, 0.5F);
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.DIMENSIONAL_BREAD_NAME));
-		if (!GanysNether.enableDynamicTextures)
-			setTextureName(Utils.getItemTexture(Strings.Items.DIMENSIONAL_BREAD_NAME));
 	}
 
 	public static void setIcon(IIcon icon) {
@@ -39,7 +37,7 @@ public class DimensionalBread extends ItemFood {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister reg) {
 		if (!GanysNether.enableDynamicTextures)
-			super.registerIcons(reg);
+			itemIcon = reg.registerIcon(Utils.getItemTexture(Strings.Items.DIMENSIONAL_BREAD_NAME));
 	}
 
 	@Override
