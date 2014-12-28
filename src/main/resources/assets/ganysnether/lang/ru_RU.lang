@@ -177,3 +177,12 @@ itemGroup.ganysnether=Gany's Nether
 # Tooltips
 tooltip.ganysnether.hotInside=Внутри горячо
 tooltip.ganysnether.ghastTear=ПКМ по обсидиановому блоку, чтобы посадить
+tooltip.ganysnether.firstUpgrade=Первое улучшение
+tooltip.ganysnether.plusTwoSlots=+2 слота
+tooltip.ganysnether.spawnsUpToThree=Призывает до 3-ёх разных мобов
+tooltip.ganysnether.controlWithRedstone=Контролирует спаунер сигналами красного камня
+tooltip.ganysnether.spawnerWillRunWithNoPlayers=Спаунер будет работать даже, если рядом нету игрока
+tooltip.ganysnether.spawnerIgnoreConditions=Спаунер будет игнорировать уровни освещения, измерение и т.д...
+tooltip.ganysnether.spawnerSilky=Спаунер выпадет в мир, если его сломать
+tooltip.ganysnether.spawnerPlusOne=+1 возможное появление
+tooltip.ganysnether.spawnerRange=+2,+0,+2 (x,y,z) улучшения дальности появления
