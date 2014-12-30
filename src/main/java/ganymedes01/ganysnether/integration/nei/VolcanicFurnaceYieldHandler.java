@@ -34,9 +34,9 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {

@@ -44,7 +44,7 @@ public class VolcanicFurnaceHandler {
 	private static HashMap<UnsizedStack, Integer> burnTimes = new HashMap<UnsizedStack, Integer>();
 	private static HashMap<Integer, Integer> oreBurnTimes = new HashMap<Integer, Integer>();
 
-	static {
+	public static void init() {
 		blackListItem(new ItemStack(Items.experience_bottle));
 		blackListItem(new ItemStack(Items.snowball));
 		blackListItem(new ItemStack(Blocks.snow));
@@ -90,11 +90,6 @@ public class VolcanicFurnaceHandler {
 			if (data != null)
 				if (data.fluid != null && data.fluid.getFluid() == FluidRegistry.LAVA)
 					addBurnTimeForItem(data.filledContainer, data.fluid.amount);
-
-		try {
-			Block.class.getField("blockHardness").setAccessible(true);
-		} catch (Exception e) {
-		}
 	}
 
 	public static void addBurnTimeForItem(ItemStack stack, int burnTime) {
@@ -244,6 +239,7 @@ public class VolcanicFurnaceHandler {
 	private static float getHardness(Block block) {
 		Field hardness = ReflectionHelper.findField(Block.class, "field_149782_v", "blockHardness");
 		try {
+			hardness.setAccessible(true);
 			return hardness.getFloat(block);
 		} catch (Exception e) {
 			return 0.0F;

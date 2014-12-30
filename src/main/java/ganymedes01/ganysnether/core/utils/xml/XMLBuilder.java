@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.core.utils.xml;
 
+
 /**
  * Gany's Nether
  *
@@ -20,8 +21,10 @@ public class XMLBuilder {
 			makeEntry(key + (i + 1), objs[i]);
 	}
 
-	public void makeEntry(String key, Object obj) {
-		node.addNode(new XMLNode(key).setValue(XMLHelper.toNodeValue(obj)));
+	public XMLNode makeEntry(String key, Object obj) {
+		XMLNode n = new XMLNode(key).setValue(XMLHelper.toNodeValue(obj));
+		node.addNode(n);
+		return n;
 	}
 
 	@Override

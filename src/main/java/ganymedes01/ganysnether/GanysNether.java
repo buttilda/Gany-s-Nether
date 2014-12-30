@@ -12,6 +12,7 @@ import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.network.PacketHandler;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ModRecipes;
+import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import ganymedes01.ganysnether.world.NetherWorldGen;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.Mod;
@@ -93,6 +94,8 @@ public class GanysNether {
 			MagmaticCentrifugeRecipes.INSTANCE.init();
 		if (shouldGenerateCrops)
 			HoeList.init();
+		if (enableVolcanicFurnace)
+			VolcanicFurnaceHandler.init();
 	}
 
 	@EventHandler
