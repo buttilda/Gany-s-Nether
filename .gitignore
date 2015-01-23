@@ -4,3 +4,4 @@
 build
 /libs
 .gradle
+/src/api

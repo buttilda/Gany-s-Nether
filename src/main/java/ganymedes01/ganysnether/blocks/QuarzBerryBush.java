@@ -30,36 +30,12 @@ public class QuarzBerryBush extends NetherCrop {
 
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
-		float f = 1F / 8F;
-		switch (world.getBlockMetadata(x, y, z)) {
-			case 0:
-				setBlockBounds(3F * f, 0.0F, 3F * f, 1F - 3F * f, 2F * f, 1F - 3F * f);
-				break;
-			case 1:
-				setBlockBounds(3F * f, 0.0F, 3F * f, 1F - 3F * f, 2F * f, 1F - 3F * f);
-				break;
-			case 2:
-				setBlockBounds(2F * f, 0.0F, 2F * f, 1F - 2F * f, 4F * f, 1F - 2F * f);
-				break;
-			case 3:
-				setBlockBounds(2F * f, 0.0F, 2F * f, 1F - 2F * f, 4F * f, 1F - 2F * f);
-				break;
-			case 4:
-				setBlockBounds(1F * f, 0.0F, 1F * f, 1F - 1F * f, 6F * f, 1F - 1F * f);
-				break;
-			case 5:
-				setBlockBounds(1F * f, 0.0F, 1F * f, 1F - 1F * f, 6F * f, 1F - 1F * f);
-				break;
-			case 6:
-				setBlockBounds(1F * f, 0.0F, 1F * f, 1F - 1F * f, 6F * f, 1F - 1F * f);
-				break;
-			default:
-				setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
-		}
+		float rate = 1 - (world.getBlockMetadata(x, y, z) + 1) * 2 / 16F;
+		setBlockBounds(rate / 2F, 0, rate / 2F, 1 - rate / 2F, 1 - rate, 1 - rate / 2F);
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
+	@SideOnly(Side.CLIENT)
 	public int getRenderType() {
 		return 0;
 	}
