@@ -1,7 +1,6 @@
 package ganymedes01.ganysnether.inventory;
 
-import ganymedes01.ganysnether.inventory.slots.InvalidSlot;
-import ganymedes01.ganysnether.inventory.slots.MonsterPlacerSlot;
+import ganymedes01.ganysnether.inventory.slots.BetterSlot;
 import ganymedes01.ganysnether.recipes.ReproducerRecipes;
 import ganymedes01.ganysnether.tileentities.TileEntityReproducer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,20 +12,20 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ContainerReproducer extends Container {
 
-	private TileEntityReproducer reproducer;
+	private final TileEntityReproducer reproducer;
 
 	public ContainerReproducer(InventoryPlayer inventory, TileEntityReproducer tile) {
 		reproducer = tile;
-		addSlotToContainer(new MonsterPlacerSlot(tile, 0, 36, 33));
-		addSlotToContainer(new MonsterPlacerSlot(tile, 1, 72, 33));
-		addSlotToContainer(new InvalidSlot(tile, 2, 130, 33));
+		addSlotToContainer(new BetterSlot(tile, 0, 36, 33));
+		addSlotToContainer(new BetterSlot(tile, 1, 72, 33));
+		addSlotToContainer(new BetterSlot(tile, 2, 130, 33));
 		addSlotToContainer(new Slot(tile, 3, 54, 15));
 		addSlotToContainer(new Slot(tile, 4, 54, 51));
 

@@ -1,13 +1,16 @@
 package ganymedes01.ganysnether.inventory;
 
-import ganymedes01.ganysnether.inventory.slots.InvalidArmourSlot;
-import ganymedes01.ganysnether.inventory.slots.InvalidSlot;
+import ganymedes01.ganysnether.inventory.slots.BetterSlot;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
@@ -26,11 +29,19 @@ public class ContainerUndertaker extends Container {
 
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 9; j++)
-				addSlotToContainer(new InvalidSlot(tile, j + i * 9 + 9, 8 + j * 18, 34 + i * 18));
+				addSlotToContainer(new BetterSlot(tile, j + i * 9 + 9, 8 + j * 18, 34 + i * 18));
 		for (int i = 0; i < 9; i++)
-			addSlotToContainer(new InvalidSlot(tile, i, 8 + i * 18, 92));
-		for (int i = 0; i < 4; i++)
-			addSlotToContainer(new InvalidArmourSlot(tile, i + 36, 8 + i * 18, 16, i));
+			addSlotToContainer(new BetterSlot(tile, i, 8 + i * 18, 92));
+		for (int i = 0; i < 4; i++) {
+			final int index = i;
+			addSlotToContainer(new BetterSlot(tile, i + 36, 8 + i * 18, 16) {
+				@Override
+				@SideOnly(Side.CLIENT)
+				public IIcon getBackgroundIconIndex() {
+					return ItemArmor.func_94602_b(index);
+				}
+			});
+		}
 
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 9; j++)

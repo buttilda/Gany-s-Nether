@@ -1,8 +1,6 @@
 package ganymedes01.ganysnether.inventory;
 
-import ganymedes01.ganysnether.inventory.slots.EmptyContainerSlot;
-import ganymedes01.ganysnether.inventory.slots.FullContainerSlot;
-import ganymedes01.ganysnether.inventory.slots.InvalidSlot;
+import ganymedes01.ganysnether.inventory.slots.BetterSlot;
 import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -27,16 +25,16 @@ public class ContainerMagmaticCentrifuge extends Container {
 
 	public ContainerMagmaticCentrifuge(InventoryPlayer inventory, TileEntityMagmaticCentrifuge tile) {
 		centrifuge = tile;
-		addSlotToContainer(new FullContainerSlot(tile, 0, 153, 31));
-		addSlotToContainer(new EmptyContainerSlot(tile, 1, 153, 111));
+		addSlotToContainer(new BetterSlot(tile, 0, 153, 31));
+		addSlotToContainer(new BetterSlot(tile, 1, 153, 111));
 
 		addSlotToContainer(new Slot(tile, 2, 30, 69));
 		addSlotToContainer(new Slot(tile, 3, 128, 69));
 
-		addSlotToContainer(new InvalidSlot(tile, 4, 71, 62));
-		addSlotToContainer(new InvalidSlot(tile, 5, 71 + 18, 62));
-		addSlotToContainer(new InvalidSlot(tile, 6, 71, 62 + 18));
-		addSlotToContainer(new InvalidSlot(tile, 7, 71 + 18, 62 + 18));
+		addSlotToContainer(new BetterSlot(tile, 4, 71, 62));
+		addSlotToContainer(new BetterSlot(tile, 5, 71 + 18, 62));
+		addSlotToContainer(new BetterSlot(tile, 6, 71, 62 + 18));
+		addSlotToContainer(new BetterSlot(tile, 7, 71 + 18, 62 + 18));
 
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 9; j++)

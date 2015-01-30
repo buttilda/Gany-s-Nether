@@ -1,8 +1,6 @@
 package ganymedes01.ganysnether.inventory;
 
-import ganymedes01.ganysnether.inventory.slots.EmptyContainerSlot;
-import ganymedes01.ganysnether.inventory.slots.InvalidSlot;
-import ganymedes01.ganysnether.inventory.slots.VolcanicFurnaceSlot;
+import ganymedes01.ganysnether.inventory.slots.BetterSlot;
 import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,20 +13,20 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ContainerVolcanicFurnace extends Container {
 
-	private TileEntityVolcanicFurnace furnace;
+	private final TileEntityVolcanicFurnace furnace;
 
 	public ContainerVolcanicFurnace(InventoryPlayer inventory, TileEntityVolcanicFurnace tile) {
 		furnace = tile;
-		addSlotToContainer(new VolcanicFurnaceSlot(tile, 0, 48, 36));
-		addSlotToContainer(new EmptyContainerSlot(tile, 1, 136, 17));
-		addSlotToContainer(new InvalidSlot(tile, 2, 136, 53));
+		addSlotToContainer(new BetterSlot(tile, 0, 48, 36));
+		addSlotToContainer(new BetterSlot(tile, 1, 136, 17));
+		addSlotToContainer(new BetterSlot(tile, 2, 136, 53));
 
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 9; j++)
