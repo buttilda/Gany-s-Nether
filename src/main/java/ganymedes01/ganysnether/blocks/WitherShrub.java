@@ -163,7 +163,7 @@ public class WitherShrub extends NetherCrop {
 	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
 		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 		int size = 1;
-		if (metadata >= 7 && new Random().nextInt(80) == 40)
+		if (metadata >= 7 && world.rand.nextInt(80) == 40)
 			size++;
 
 		list.add(new ItemStack(ModItems.witherShrubSeeds, size));
@@ -192,6 +192,11 @@ public class WitherShrub extends NetherCrop {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Item getItem(World world, int x, int y, int z) {
+		return ModItems.witherShrubSeeds;
+	}
+
+	@Override
+	protected Item func_149866_i() {
 		return ModItems.witherShrubSeeds;
 	}
 
