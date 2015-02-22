@@ -44,6 +44,8 @@ public class SceptreOfConcealment extends Sceptre {
 						target.entityDropItem(ConcealmentHandler.getEggFromEntity(target), 1.0F);
 						target.setDead();
 						stack.damageItem(1, player);
+						if (stack.stackSize <= 0)
+							player.setCurrentItemOrArmor(0, null);
 					}
 					return true;
 				}

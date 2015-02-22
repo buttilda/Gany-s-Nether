@@ -30,8 +30,11 @@ public class SceptreOfFireCharging extends Sceptre {
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (!(player.inventory.consumeInventoryItem(Items.fire_charge) || player.capabilities.isCreativeMode))
+		if (!(player.inventory.consumeInventoryItem(Items.fire_charge) || player.capabilities.isCreativeMode)) {
 			stack.damageItem(1, player);
+			if (stack.stackSize <= 0)
+				player.setCurrentItemOrArmor(0, null);
+		}
 		player.swingItem();
 		spawnFireCharge(world, player);
 		world.playAuxSFX(1009, (int) player.posX, (int) player.posY, (int) player.posZ, 0);

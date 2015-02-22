@@ -31,6 +31,8 @@ public class SceptreOfLightning extends Sceptre {
 		if (!world.isRemote)
 			world.spawnEntityInWorld(new EntityLightningBall(world, player));
 		stack.damageItem(1, player);
+		if (stack.stackSize <= 0)
+			player.setCurrentItemOrArmor(0, null);
 		return stack;
 	}
 
