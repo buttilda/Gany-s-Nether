@@ -14,8 +14,8 @@ public class Reference {
 	public static final String DEPENDENCIES = "required-after:Forge@[10.13.0.1180,);";
 	public static final String CHANNEL = "GanysNether";
 	public static final String MASTER = "GanysMods";
-	public static final String VERSION_NUMBER = "1.7.7";
-	public static final int RAW_VERSION_NUMBER = 177;
+	public static final String VERSION_NUMBER = "1.7.8";
+	public static final int RAW_VERSION_NUMBER = 178;
 	public static String LATEST_VERSION;
 	public static final String ITEM_BLOCK_TEXTURE_PATH = MOD_ID + ":";
 	public static final String ARMOUR_TEXTURE_PATH = ITEM_BLOCK_TEXTURE_PATH + "textures/models/armor/";
