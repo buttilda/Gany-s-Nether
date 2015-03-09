@@ -47,7 +47,7 @@ public class MFRManager extends Integration {
 			public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
 				for (ForgeDirection side : SIDES)
 					if (world.getBlock(x + side.offsetX, y, z + side.offsetZ) == Blocks.obsidian)
-						return true;
+						return world.getBlock(x, y, z).isReplaceable(world, x, y, z);
 				return false;
 			}
 
