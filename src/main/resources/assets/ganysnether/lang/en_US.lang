@@ -186,3 +186,7 @@ tooltip.ganysnether.spawnerIgnoreConditions=Spawner will ignore light levels, di
 tooltip.ganysnether.spawnerSilky=Spawner block will drop when broken
 tooltip.ganysnether.spawnerPlusOne=+1 possible spawn
 tooltip.ganysnether.spawnerRange=+2,+0,+2 (x,y,z) spawn range upgrade
+
+# Version Check
+versioncheck.ganyssurface.message=§6Gany's Nether §fis §coutdated§f.
+versioncheck.ganyssurface.download=Download %s
