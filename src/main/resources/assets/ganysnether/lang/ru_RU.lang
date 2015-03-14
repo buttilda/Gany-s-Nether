@@ -186,3 +186,7 @@ tooltip.ganysnether.spawnerIgnoreConditions=Спаунер будет игнор
 tooltip.ganysnether.spawnerSilky=Спаунер выпадет в мир, если его сломать
 tooltip.ganysnether.spawnerPlusOne=+1 возможное появление
 tooltip.ganysnether.spawnerRange=+2,+0,+2 (x,y,z) улучшения дальности появления
+
+# Version Check
+versioncheck.ganyssurface.message=§6Модификация §fGany's Nether §cустарела§f.
+versioncheck.ganyssurface.download=Загрузить версию %s
