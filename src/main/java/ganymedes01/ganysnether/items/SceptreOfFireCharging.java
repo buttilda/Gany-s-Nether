@@ -1,7 +1,6 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +21,7 @@ import net.minecraft.world.World;
 public class SceptreOfFireCharging extends Sceptre {
 
 	public SceptreOfFireCharging() {
-		super();
+		super(0);
 		setMaxDamage(GanysNether.sceptreOfFireCharging);
 		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME));
@@ -59,10 +58,5 @@ public class SceptreOfFireCharging extends Sceptre {
 		entitylargefireball.accelerationZ = targetPos.zCoord / factor * 0.1D;
 
 		world.spawnEntityInWorld(entitylargefireball);
-	}
-
-	@Override
-	public boolean getIsRepairable(ItemStack item, ItemStack material) {
-		return material.getItem() == ModItems.sceptreCap && material.getItemDamage() == 0;
 	}
 }

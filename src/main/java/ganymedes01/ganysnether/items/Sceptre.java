@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
 
 import java.util.List;
@@ -22,9 +23,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class Sceptre extends ItemSimpleFoiled {
 
-	Sceptre() {
+	private final int capMeta;
+
+	Sceptre(int capMeta) {
 		setFull3D();
 		setMaxStackSize(1);
+		this.capMeta = capMeta;
 		setCreativeTab(GanysNether.enableSceptres ? GanysNether.netherTab : null);
 	}
 
@@ -44,5 +48,10 @@ public class Sceptre extends ItemSimpleFoiled {
 	@Override
 	public int getItemEnchantability() {
 		return 22;
+	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack item, ItemStack material) {
+		return material.getItem() == ModItems.sceptreCap && material.getItemDamage() == capMeta;
 	}
 }

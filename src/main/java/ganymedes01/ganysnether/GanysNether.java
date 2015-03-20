@@ -49,6 +49,7 @@ public class GanysNether {
 	public static int sceptreOfLightningDurability;
 	public static int sceptreOfFireCharging;
 	public static int baseballBatDurability;
+	public static int sceptreOfWithering;
 	public static boolean shouldGenerateCrops = true;
 	public static boolean shouldGenerateUndertakers = true;
 	public static boolean shouldDoVersionCheck = true;

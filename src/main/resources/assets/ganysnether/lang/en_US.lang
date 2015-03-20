@@ -23,6 +23,7 @@ item.ganysnether.sceptreOfLightning.name=Sceptre of Lightning
 item.ganysnether.sceptreCap_0.name=Fire Charging Cap
 item.ganysnether.sceptreCap_1.name=Lightning Cap
 item.ganysnether.sceptreCap_2.name=Concealment Cap
+item.ganysnether.sceptreCap_3.name=Withering Cap
 item.ganysnether.witherShrubSeeds.name=Wither Shrub Seeds
 item.ganysnether.livingSoul.name=Living Soul
 item.ganysnether.ironNugget.name=Iron Nugget
@@ -44,6 +45,7 @@ item.ganysnether.spawnerUpgrade10.name=Spawner Upgrade: Ignore Spawn Rules
 item.ganysnether.spawnerUpgrade11.name=Spawner Upgrade: Silky
 item.ganysnether.spawnerUpgrade12.name=Spawner Upgrade: Quantity
 item.ganysnether.spawnerUpgrade13.name=Spawner Upgrade: Range
+item.ganysnether.sceptreOfWithering.name=Sceptre of Withering
 
 item.ganysnether.blazeHelmet.name=Blaze Helmet
 item.ganysnether.blazeChestplate.name=Blaze Chestplate

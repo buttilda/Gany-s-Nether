@@ -63,7 +63,7 @@ public class SceptreCap extends ItemSimpleFoiled {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister reg) {
-		icon = new IIcon[3];
+		icon = new IIcon[4];
 		for (int i = 0; i < icon.length; i++)
 			icon[i] = reg.registerIcon(Utils.getItemTexture(Strings.Items.SCEPTRE_CAP_NAME) + "_" + i);
 	}

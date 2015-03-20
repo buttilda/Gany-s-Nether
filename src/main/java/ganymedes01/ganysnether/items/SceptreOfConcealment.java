@@ -1,7 +1,6 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.ConcealmentHandler;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
@@ -22,7 +21,7 @@ import net.minecraft.item.ItemStack;
 public class SceptreOfConcealment extends Sceptre {
 
 	public SceptreOfConcealment() {
-		super();
+		super(2);
 		setMaxDamage(GanysNether.sceptreOfConcealmentDurability);
 		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_CONCEALMENT_NAME));
 		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SCEPTRE_OF_CONCEALMENT_NAME));
@@ -50,10 +49,5 @@ public class SceptreOfConcealment extends Sceptre {
 					return true;
 				}
 		return false;
-	}
-
-	@Override
-	public boolean getIsRepairable(ItemStack item, ItemStack material) {
-		return material.getItem() == ModItems.sceptreCap && material.getItemDamage() == 2;
 	}
 }

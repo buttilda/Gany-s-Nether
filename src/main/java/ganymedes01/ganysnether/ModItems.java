@@ -4,6 +4,7 @@ import ganymedes01.ganysnether.dispenser.DispenserBehaviorBottomlessBucket;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorLivingSoul;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorSceptreOfFireCharging;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorSceptreOfLightning;
+import ganymedes01.ganysnether.dispenser.DispenserBehaviorSceptreOfWithering;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorSkeletonSpawner;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorWeepingPod;
 import ganymedes01.ganysnether.items.BaseballBat;
@@ -30,6 +31,7 @@ import ganymedes01.ganysnether.items.SceptreCap;
 import ganymedes01.ganysnether.items.SceptreOfConcealment;
 import ganymedes01.ganysnether.items.SceptreOfFireCharging;
 import ganymedes01.ganysnether.items.SceptreOfLightning;
+import ganymedes01.ganysnether.items.SceptreOfWithering;
 import ganymedes01.ganysnether.items.SilverfishScale;
 import ganymedes01.ganysnether.items.SkeletonSpawner;
 import ganymedes01.ganysnether.items.SpawnerUpgrade;
@@ -44,9 +46,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ModItems {
@@ -79,6 +81,7 @@ public class ModItems {
 	public static final Item lavaBerry = new LavaBerry();
 	public static final Item netherCore = new NetherCore();
 	public static final Item spawnerUpgrade = new SpawnerUpgrade();
+	public static final Item sceptreOfWithering = new SceptreOfWithering();
 
 	// Armour
 	public static final Item blazeHelmet = new BlazeHelmet();
@@ -114,6 +117,7 @@ public class ModItems {
 		registerItem(lavaBerry);
 		registerItem(netherCore);
 		registerItem(spawnerUpgrade);
+		registerItem(sceptreOfWithering);
 
 		// Armour
 		registerItem(blazeHelmet);
@@ -126,6 +130,7 @@ public class ModItems {
 		BlockDispenser.dispenseBehaviorRegistry.putObject(bottomlessBucket, new DispenserBehaviorBottomlessBucket());
 		BlockDispenser.dispenseBehaviorRegistry.putObject(sceptreOfFireCharging, new DispenserBehaviorSceptreOfFireCharging());
 		BlockDispenser.dispenseBehaviorRegistry.putObject(sceptreOfLightning, new DispenserBehaviorSceptreOfLightning());
+		BlockDispenser.dispenseBehaviorRegistry.putObject(sceptreOfWithering, new DispenserBehaviorSceptreOfWithering());
 		if (GanysNether.shouldGhastTearHaveDispenserAction)
 			BlockDispenser.dispenseBehaviorRegistry.putObject(Items.ghast_tear, new DispenserBehaviorWeepingPod());
 	}

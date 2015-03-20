@@ -70,6 +70,7 @@ public class ConfigurationHandler {
 		GanysNether.sceptreOfLightningDurability = configDurability(Strings.Items.SCEPTRE_OF_LIGHTNING_NAME, 128);
 		GanysNether.sceptreOfFireCharging = configDurability(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME, 32);
 		GanysNether.baseballBatDurability = configDurability(Strings.Items.BASEBALL_BAT_NAME, 256);
+		GanysNether.sceptreOfWithering = configDurability(Strings.Items.SCEPTRE_OF_WITHERING_NAME, 128);
 
 		GanysNether.shouldGenerateCrops = configBoolean("shouldGenerateCrops", true, GanysNether.shouldGenerateCrops);
 		GanysNether.shouldGenerateUndertakers = configBoolean("shouldGenerateUndertakers", true, GanysNether.shouldGenerateUndertakers);

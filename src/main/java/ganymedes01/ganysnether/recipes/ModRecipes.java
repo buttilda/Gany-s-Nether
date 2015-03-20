@@ -66,9 +66,11 @@ public class ModRecipes {
 			createCapRecipe(0, new ItemStack(Blocks.tnt), "ingotBlaze", Items.fire_charge);
 			createCapRecipe(1, new ItemStack(Items.quartz), new ItemStack(Items.nether_wart), Items.nether_star);
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.sceptreCap, 1, 2), "xxx", "xyx", "xxx", 'x', "egg", 'y', Items.nether_star));
+			createCapRecipe(3, "skullWitherSkeleton", new ItemStack(Items.coal), Items.nether_star);
 			createSceptreRecipe(ModItems.sceptreOfFireCharging, 0, Items.magma_cream);
 			createSceptreRecipe(ModItems.sceptreOfLightning, 1, Items.gold_ingot);
 			createSceptreRecipe(ModItems.sceptreOfConcealment, 2, Items.gold_ingot);
+			createSceptreRecipe(ModItems.sceptreOfWithering, 3, Items.bone);
 		}
 
 		if (GanysNether.enableVolcanicFurnace || GanysNether.enableSpawners)
@@ -216,5 +218,10 @@ public class ModRecipes {
 
 		OreDictionary.registerOre("egg", new ItemStack(Items.egg));
 		OreDictionary.registerOre("itemSkull", new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("skullSkeleton", new ItemStack(Items.skull, 1, 0));
+		OreDictionary.registerOre("skullWitherSkeleton", new ItemStack(Items.skull, 1, 1));
+		OreDictionary.registerOre("skullZombie", new ItemStack(Items.skull, 1, 2));
+		OreDictionary.registerOre("skullPlayer", new ItemStack(Items.skull, 1, 3));
+		OreDictionary.registerOre("skullCreeper", new ItemStack(Items.skull, 1, 4));
 	}
 }

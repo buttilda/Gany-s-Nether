@@ -73,6 +73,7 @@ public class Strings {
 		public static final String LAVA_BERRY_NAME = "lavaBerry";
 		public static final String NETHER_CORE_NAME = "netherCore";
 		public static final String SPAWNER_UPGRADE_NAME = "spawnerUpgrade";
+		public static final String SCEPTRE_OF_WITHERING_NAME = "sceptreOfWithering";
 	}
 
 	public static class Entities {
