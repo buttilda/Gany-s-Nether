@@ -2,16 +2,22 @@ package ganymedes01.ganysnether.world;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
-import ganymedes01.ganysnether.core.utils.RandomItemStackList;
+import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.Reference;
+import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.common.ChestGenHooks;
 import cpw.mods.fml.common.IWorldGenerator;
 
 /**
@@ -22,6 +28,64 @@ import cpw.mods.fml.common.IWorldGenerator;
  */
 
 public class NetherWorldGen implements IWorldGenerator {
+
+	public static void initChestGenHook() {
+		String key = Reference.MOD_ID + "." + Strings.Blocks.UNDERTAKER_NAME;
+		ChestGenHooks info = ChestGenHooks.getInfo(key);
+		info.setMin(2);
+		info.setMax(8);
+		/*
+		insertStackOnList(new ItemStack(ModItems.witherShrubSeeds), 200);
+		insertStackOnList(new ItemStack(ModItems.skeletonSpawner), 45);
+		insertStackOnList(new ItemStack(ModItems.skeletonSpawner, 1, 1), 50);
+		insertStackOnList(new ItemStack(ModItems.dimensionalBread, 18), 10);
+		insertStackOnList(new ItemStack(ModItems.quarzBerrySeeds, 12), 40);
+		insertStackOnList(new ItemStack(ModItems.ghostSeeds, 16), 40);
+
+		insertStackOnList(new ItemStack(Blocks.torch, 32), 30);
+		insertStackOnList(new ItemStack(Items.coal, 32), 10);
+		insertStackOnList(new ItemStack(Items.stick, 32), 4);
+		insertStackOnList(new ItemStack(Items.beef, 10), 10);
+		insertStackOnList(new ItemStack(Items.baked_potato, 20), 7);
+		insertStackOnList(new ItemStack(Items.gold_nugget, 14), 30);
+		insertStackOnList(new ItemStack(Items.rotten_flesh, 64), 5);
+		insertStackOnList(new ItemStack(Blocks.nether_brick, 64), 15);
+		insertStackOnList(new ItemStack(Items.nether_wart, 11), 8);
+		insertStackOnList(new ItemStack(Blocks.end_stone, 40), 20);
+		insertStackOnList(new ItemStack(Blocks.log, 32), 10);
+		insertStackOnList(new ItemStack(Blocks.log2, 32), 10);
+		insertStackOnList(new ItemStack(Blocks.dirt, 64), 5);
+		insertStackOnList(new ItemStack(Blocks.sand, 64), 5);
+		insertStackOnList(new ItemStack(Items.wheat_seeds, 20), 25);
+		insertStackOnList(new ItemStack(Items.leather, 10), 30);
+		insertStackOnList(new ItemStack(Blocks.cobblestone, 64), 5);
+		insertStackOnList(new ItemStack(Items.redstone, 24), 25);
+		 */
+
+		// min, max, weight
+		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.witherShrubSeeds), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.skeletonSpawner), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.skeletonSpawner, 1, 1), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.dimensionalBread), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.quarzBerrySeeds), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.torch), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.coal), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.stick), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.beef), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.baked_potato), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.gold_nugget), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.rotten_flesh), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.nether_brick), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.end_stone), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.log), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.log2), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.dirt), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.sand), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.wheat_seeds), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.leather), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.cobblestone), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.redstone), 0, 1, 5));
+	}
 
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -81,9 +145,9 @@ public class NetherWorldGen implements IWorldGenerator {
 	}
 
 	private boolean shouldGenerate(World world, int x, int y, int z) {
-		if (!world.isAirBlock(x, y - 1, z))
-			if (world.isAirBlock(x, y, z))
-				if (world.getBlock(x, y - 1, z).getMaterial() != Material.lava)
+		if (y >= 25)
+			if (!world.isAirBlock(x, y - 1, z) && world.getBlock(x, y - 1, z).getMaterial() != Material.lava)
+				if (world.isAirBlock(x, y, z) && world.isAirBlock(x, y + 1, z) && world.isAirBlock(x, y + 2, z))
 					return true;
 		return false;
 	}
@@ -93,15 +157,11 @@ public class NetherWorldGen implements IWorldGenerator {
 	}
 
 	private void generateUndertakerWithRandomContents(World world, int x, int y, int z, Random rand) {
-		if (y < 25)
-			return;
-
-		if (world.isAirBlock(x, y + 1, z))
-			if (world.isAirBlock(x, y + 2, z)) {
-				world.setBlock(x, y, z, ModBlocks.undertaker);
-				TileEntityUndertaker undertaker = Utils.getTileEntity(world, x, y, z, TileEntityUndertaker.class);
-				if (undertaker != null)
-					RandomItemStackList.fillInventory(undertaker, undertaker.getSizeInventory() - 4, rand);
-			}
+		world.setBlock(x, y, z, ModBlocks.undertaker);
+		TileEntityUndertaker undertaker = Utils.getTileEntity(world, x, y, z, TileEntityUndertaker.class);
+		if (undertaker != null) {
+			ChestGenHooks info = ChestGenHooks.getInfo(Reference.MOD_ID + "." + Strings.Blocks.UNDERTAKER_NAME);
+			WeightedRandomChestContent.generateChestContents(world.rand, info.getItems(world.rand), undertaker, info.getCount(world.rand));
+		}
 	}
 }

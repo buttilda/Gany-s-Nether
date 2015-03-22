@@ -2,9 +2,9 @@ package ganymedes01.ganysnether.lib;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class IMCKeys {
@@ -18,5 +18,4 @@ public class IMCKeys {
 	public static final String WHITE_LIST_MELTING_ITEM = "whiteListMeltingItem";
 	public static final String BLACK_LIST_MELTING_ITEM = "blackListMeltingItem";
 	public static final String ADD_BURN_TIME_FOR_ITEM = "addBurnTimeForItem";
-	public static final String ADD_STACK_TO_UNDERTAKERS = "addStackToUndertakers";
 }

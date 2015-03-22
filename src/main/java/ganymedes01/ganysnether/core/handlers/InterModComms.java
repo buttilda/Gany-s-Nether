@@ -2,7 +2,6 @@ package ganymedes01.ganysnether.core.handlers;
 
 import ganymedes01.ganysnether.core.utils.ConcealmentHandler;
 import ganymedes01.ganysnether.core.utils.HoeList;
-import ganymedes01.ganysnether.core.utils.RandomItemStackList;
 import ganymedes01.ganysnether.lib.IMCKeys;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
@@ -52,8 +51,6 @@ public class InterModComms {
 				blackListMeltingItem(message);
 			else if (message.key.equals(IMCKeys.ADD_BURN_TIME_FOR_ITEM))
 				addBurnTimeForItem(message);
-			else if (message.key.equals(IMCKeys.ADD_STACK_TO_UNDERTAKERS))
-				addStackToUndertakers(message);
 	}
 
 	private static void addCentrifugeRecipe(IMCMessage message) {
@@ -206,20 +203,6 @@ public class InterModComms {
 			VolcanicFurnaceHandler.addBurnTimeForItem(stack, burnTime);
 		} catch (Exception e) {
 			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to set a custom burn time for an item on the Volcanic Furnace", message.getSender()));
-		}
-	}
-
-	private static void addStackToUndertakers(IMCMessage message) {
-		try {
-			NBTTagCompound data = message.getNBTValue();
-			ItemStack stack = ItemStack.loadItemStackFromNBT(data.getCompoundTag("stack"));
-			int weight = data.getInteger("weight");
-			if (stack != null && stack.stackSize > 0 && weight > 0)
-				RandomItemStackList.insertStackOnList(stack, weight);
-			else
-				Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to add a custom stack to the Undertakers: Stack null, stacksize 0 or weight smaller than 0", message.getSender()));
-		} catch (Exception e) {
-			Logger.getLogger(Reference.MOD_ID).log(Level.WARNING, String.format("%s failed to add a custom stack to the Undertakers", message.getSender()));
 		}
 	}
 }

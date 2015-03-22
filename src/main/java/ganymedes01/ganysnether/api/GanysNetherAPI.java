@@ -13,9 +13,9 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class GanysNetherAPI {
@@ -24,14 +24,14 @@ public class GanysNetherAPI {
 
 	/**
 	 * Allows you to register a recipe for the Magmatic Centrifuge
-	 * 
+	 *
 	 * The order of materials is not important!
-	 * 
+	 *
 	 * Result must not be null and must contain 4 or less items. If you try to
 	 * create a recipe that is already registered it will be denied.
-	 * 
+	 *
 	 * Both materials must not be null.
-	 * 
+	 *
 	 * @param material1
 	 *            : One of the materials
 	 * @param material2
@@ -77,11 +77,11 @@ public class GanysNetherAPI {
 
 	/**
 	 * Allows you to register an item that will till netherrack.
-	 * 
+	 *
 	 * ITEM MUST CREATE A UseHoeEvent EVENT ON THE onItemUse METHOD OTHERWISE
 	 * THIS WON'T WORK! Either extend the ItemHoe class or look at the onItemUse
 	 * method inside of it for an example of what to do.
-	 * 
+	 *
 	 * @param hoe
 	 */
 	public static final void addHoeThatCanTillNetherrack(Item hoe) {
@@ -94,7 +94,7 @@ public class GanysNetherAPI {
 	/**
 	 * Any entity classes passed to this method WON'T be collected by the
 	 * Sceptre of Concealment
-	 * 
+	 *
 	 * @param entity
 	 */
 	public static final void blackListEntity(Class<? extends EntityLivingBase> entity) {
@@ -106,10 +106,10 @@ public class GanysNetherAPI {
 	 * If your mod adds an entity that doesn't use the vanilla spawn eggs use
 	 * this method to make the Sceptre of Concealment drop the correct egg
 	 * (otherwise it won't drop anything)
-	 * 
+	 *
 	 * NOTE: Be smart... passing any random items to this won't turn them into
 	 * spawners. That's for you to handle. All this will do is drop the item.
-	 * 
+	 *
 	 * @param entity
 	 * @param egg
 	 *            : Item that spawns entity
@@ -134,9 +134,9 @@ public class GanysNetherAPI {
 	 * these two items together. Not much point to it unless your mob gives you
 	 * access to the spawnEgg item or you added it to the Sceptre of Concealment
 	 * list.
-	 * 
+	 *
 	 * You won't be able to override already registered tuples!
-	 * 
+	 *
 	 * @param spawnEgg
 	 *            : Item that spawns the entity
 	 * @param mobDrop
@@ -161,9 +161,9 @@ public class GanysNetherAPI {
 	/**
 	 * If your entity uses vanilla eggs you can use this method to register its
 	 * drop to the Reproducer
-	 * 
+	 *
 	 * You won't be able to override already registered tuples!
-	 * 
+	 *
 	 * @param entity
 	 *            : Entity that has a vanilla spawn egg
 	 * @param mobDrop
@@ -188,9 +188,9 @@ public class GanysNetherAPI {
 	/**
 	 * White-Listing an item/block will force it to be melt down in the Volcanic
 	 * Furnace
-	 * 
+	 *
 	 * This is metadata sensitive.
-	 * 
+	 *
 	 * @param stack
 	 *            : ItemStack of item/block to be white-listed
 	 */
@@ -202,9 +202,9 @@ public class GanysNetherAPI {
 	/**
 	 * Block-Listing an item/block will force it NOT to be melt down in the
 	 * Volcanic Furnace
-	 * 
+	 *
 	 * This is metadata sensitive.
-	 * 
+	 *
 	 * @param stack
 	 *            : ItemStack of item/block to be black-listed
 	 */
@@ -216,16 +216,16 @@ public class GanysNetherAPI {
 	/**
 	 * Sets a custom burnTime of an specific item/block. Keep in mind that the
 	 * burnTime is directly related to the amount of lava produced by an item.
-	 * 
+	 *
 	 * This is metadata sensitive.
-	 * 
+	 *
 	 * DO NOT SET THE BURNTIME TO ZERO. If you wish to block an item from being
 	 * melted use the blackListMeltingItem method.
-	 * 
+	 *
 	 * Default is between 16 and 20
-	 * 
+	 *
 	 * 1 Bucket of lava = 1000
-	 * 
+	 *
 	 * @param stack
 	 *            : ItemStack of item/block
 	 * @param burnTime
@@ -245,46 +245,14 @@ public class GanysNetherAPI {
 		}
 	}
 
-	// UNDERTAKER //
-
-	/**
-	 * Adds an ItemStack to the list of stacks that can be found inside
-	 * Undertakers that generate around in the nether.
-	 * 
-	 * The bigger the weight value the rarer the stack will be! The maximum
-	 * stackSize will be the stackSize of the stack you pass.
-	 * 
-	 * e.g.: addStackToUndertakers(new ItemStack(Item.apple,24),50); There will
-	 * be a chance of 1 in 50 to find a stack of apples of size up to 24 inside
-	 * any Undertaker generated in the nether.
-	 * 
-	 * @param stack
-	 *            : ItemStack of item/block
-	 * @param weight
-	 *            : chance of finding the stack
-	 */
-	public static final void addStackToUndertakers(ItemStack stack, int weight) {
-		if (stack != null && stack.stackSize > 0 && weight > 0) {
-			NBTTagCompound data = new NBTTagCompound();
-
-			data.setInteger("weight", weight);
-
-			NBTTagCompound tagCompound = new NBTTagCompound();
-			stack.writeToNBT(tagCompound);
-			data.setTag("stack", tagCompound);
-
-			FMLInterModComms.sendMessage("ganysnether", "addStackToUndertakers", data);
-		}
-	}
-
 	// BLOCKS
 	/*
 	 * Here's a list of the blocks that can/should be retrieved by this method
-	 * 
+	 *
 	 * tilledNetherrack
 	 * quarzBerryBush
 	 * spectreWheat
-	 * glowingReed 
+	 * glowingReed
 	 * soulGlass
 	 * soulChest
 	 * volcanicFurnaceIdle
@@ -298,7 +266,7 @@ public class GanysNetherAPI {
 	 * undertaker
 	 * witherShrub
 	 * magmaticCentrifuge
-	 * 
+	 *
 	 */
 	public static final Block getBlock(String blockName) {
 		try {
@@ -314,7 +282,7 @@ public class GanysNetherAPI {
 	// ITEMS
 	/*
 	 * Here's a list of the items that can/should be retrieved by this method
-	 * 
+	 *
 	 * quarzBerrySeeds
 	 * quarzBerry
 	 * ghostSeeds
@@ -326,8 +294,8 @@ public class GanysNetherAPI {
 	 * baseballBat
 	 * sceptreOfConcealment
 	 * skeletonSpawner
-	 * silverfishScale 
-	 * batWing 
+	 * silverfishScale
+	 * batWing
 	 * cookedBatWing
 	 * wolfTeeth
 	 * blazeIngot
@@ -338,12 +306,12 @@ public class GanysNetherAPI {
 	 * livingSoul
 	 * ironNugget
 	 * flour
-	 * 
+	 *
 	 * blazeHelmet
 	 * blazeChestplate
 	 * blazeLeggings
 	 * blazeBoots
-	 * 
+	 *
 	 */
 	public static final Item getItem(String itemName) {
 		try {

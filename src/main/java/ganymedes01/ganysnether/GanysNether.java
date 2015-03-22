@@ -76,7 +76,6 @@ public class GanysNether {
 	public static int netherCropRate = 20;
 	public static int witherShrubRate = 50;
 	public static int undertakerRate = 1200;
-	public static int undertakerFillSlotChance = 10;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -97,10 +96,12 @@ public class GanysNether {
 			HoeList.init();
 		if (enableVolcanicFurnace)
 			VolcanicFurnaceHandler.init();
+		if (enableUndertaker)
+			NetherWorldGen.initChestGenHook();
 	}
 
 	@EventHandler
-	public void load(FMLInitializationEvent event) {
+	public void init(FMLInitializationEvent event) {
 		PacketHandler.init();
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);

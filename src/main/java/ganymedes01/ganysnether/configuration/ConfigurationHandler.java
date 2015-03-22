@@ -98,7 +98,6 @@ public class ConfigurationHandler {
 		GanysNether.netherCropRate = configInteger("netherCropSpawnRate", GanysNether.netherCropRate);
 		GanysNether.witherShrubRate = configInteger("witherShrubSpawnRate", GanysNether.witherShrubRate);
 		GanysNether.undertakerRate = configInteger("undertakerSpawnRate", GanysNether.undertakerRate);
-		GanysNether.undertakerFillSlotChance = configInteger("undertakerFillSlotChance", GanysNether.undertakerFillSlotChance);
 
 		if (configFile.hasChanged())
 			configFile.save();
