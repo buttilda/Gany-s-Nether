@@ -34,57 +34,30 @@ public class NetherWorldGen implements IWorldGenerator {
 		ChestGenHooks info = ChestGenHooks.getInfo(key);
 		info.setMin(2);
 		info.setMax(8);
-		/*
-		insertStackOnList(new ItemStack(ModItems.witherShrubSeeds), 200);
-		insertStackOnList(new ItemStack(ModItems.skeletonSpawner), 45);
-		insertStackOnList(new ItemStack(ModItems.skeletonSpawner, 1, 1), 50);
-		insertStackOnList(new ItemStack(ModItems.dimensionalBread, 18), 10);
-		insertStackOnList(new ItemStack(ModItems.quarzBerrySeeds, 12), 40);
-		insertStackOnList(new ItemStack(ModItems.ghostSeeds, 16), 40);
 
-		insertStackOnList(new ItemStack(Blocks.torch, 32), 30);
-		insertStackOnList(new ItemStack(Items.coal, 32), 10);
-		insertStackOnList(new ItemStack(Items.stick, 32), 4);
-		insertStackOnList(new ItemStack(Items.beef, 10), 10);
-		insertStackOnList(new ItemStack(Items.baked_potato, 20), 7);
-		insertStackOnList(new ItemStack(Items.gold_nugget, 14), 30);
-		insertStackOnList(new ItemStack(Items.rotten_flesh, 64), 5);
-		insertStackOnList(new ItemStack(Blocks.nether_brick, 64), 15);
-		insertStackOnList(new ItemStack(Items.nether_wart, 11), 8);
-		insertStackOnList(new ItemStack(Blocks.end_stone, 40), 20);
-		insertStackOnList(new ItemStack(Blocks.log, 32), 10);
-		insertStackOnList(new ItemStack(Blocks.log2, 32), 10);
-		insertStackOnList(new ItemStack(Blocks.dirt, 64), 5);
-		insertStackOnList(new ItemStack(Blocks.sand, 64), 5);
-		insertStackOnList(new ItemStack(Items.wheat_seeds, 20), 25);
-		insertStackOnList(new ItemStack(Items.leather, 10), 30);
-		insertStackOnList(new ItemStack(Blocks.cobblestone, 64), 5);
-		insertStackOnList(new ItemStack(Items.redstone, 24), 25);
-		 */
-
-		// min, max, weight
-		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.witherShrubSeeds), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.skeletonSpawner), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.skeletonSpawner, 1, 1), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.dimensionalBread), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.quarzBerrySeeds), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.torch), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.coal), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.stick), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.beef), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.baked_potato), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.gold_nugget), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.rotten_flesh), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.nether_brick), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.end_stone), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.log), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.log2), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.dirt), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.sand), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.wheat_seeds), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.leather), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.cobblestone), 0, 1, 5));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.redstone), 0, 1, 5));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.witherShrubSeeds), 1, 2, 1));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.skeletonSpawner), 0, 1, 8));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.skeletonSpawner, 1, 1), 0, 1, 9));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.dimensionalBread), 0, 18, 15));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.quarzBerrySeeds), 0, 12, 10));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.ghostSeeds), 0, 16, 8));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.torch), 0, 32, 13));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.coal), 0, 32, 20));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.stick), 0, 32, 22));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.beef), 0, 10, 12));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.baked_potato), 0, 20, 21));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.gold_nugget), 0, 14, 15));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.rotten_flesh), 0, 64, 25));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.nether_brick), 0, 64, 15));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.end_stone), 0, 40, 10));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.log), 0, 32, 15));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.log2), 0, 16, 15));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.dirt), 0, 64, 20));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.sand), 0, 64, 19));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.wheat_seeds), 0, 20, 11));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.leather), 0, 10, 10));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.cobblestone), 0, 64, 30));
+		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.redstone), 0, 24, 15));
 	}
 
 	@Override
