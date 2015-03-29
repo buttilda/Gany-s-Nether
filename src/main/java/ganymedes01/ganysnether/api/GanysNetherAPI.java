@@ -27,8 +27,7 @@ public class GanysNetherAPI {
 	 *
 	 * The order of materials is not important!
 	 *
-	 * Result must not be null and must contain 4 or less items. If you try to
-	 * create a recipe that is already registered it will be denied.
+	 * Result must not be null and must contain 4 or less items. If you try to create a recipe that is already registered it will be denied.
 	 *
 	 * Both materials must not be null.
 	 *
@@ -78,9 +77,7 @@ public class GanysNetherAPI {
 	/**
 	 * Allows you to register an item that will till netherrack.
 	 *
-	 * ITEM MUST CREATE A UseHoeEvent EVENT ON THE onItemUse METHOD OTHERWISE
-	 * THIS WON'T WORK! Either extend the ItemHoe class or look at the onItemUse
-	 * method inside of it for an example of what to do.
+	 * ITEM MUST CREATE A UseHoeEvent EVENT ON THE onItemUse METHOD OTHERWISE THIS WON'T WORK! Either extend the ItemHoe class or look at the onItemUse method inside of it for an example of what to do.
 	 *
 	 * @param hoe
 	 */
@@ -92,8 +89,7 @@ public class GanysNetherAPI {
 	// SCEPTRE OF CONCEALMENT //
 
 	/**
-	 * Any entity classes passed to this method WON'T be collected by the
-	 * Sceptre of Concealment
+	 * Any entity classes passed to this method WON'T be collected by the Sceptre of Concealment
 	 *
 	 * @param entity
 	 */
@@ -103,12 +99,9 @@ public class GanysNetherAPI {
 	}
 
 	/**
-	 * If your mod adds an entity that doesn't use the vanilla spawn eggs use
-	 * this method to make the Sceptre of Concealment drop the correct egg
-	 * (otherwise it won't drop anything)
+	 * If your mod adds an entity that doesn't use the vanilla spawn eggs use this method to make the Sceptre of Concealment drop the correct egg (otherwise it won't drop anything)
 	 *
-	 * NOTE: Be smart... passing any random items to this won't turn them into
-	 * spawners. That's for you to handle. All this will do is drop the item.
+	 * NOTE: Be smart... passing any random items to this won't turn them into spawners. That's for you to handle. All this will do is drop the item.
 	 *
 	 * @param entity
 	 * @param egg
@@ -130,10 +123,7 @@ public class GanysNetherAPI {
 	// REPRODUCER //
 
 	/**
-	 * You'll be able to duplicate/duplicate other items on the Reproducer using
-	 * these two items together. Not much point to it unless your mob gives you
-	 * access to the spawnEgg item or you added it to the Sceptre of Concealment
-	 * list.
+	 * You'll be able to duplicate/duplicate other items on the Reproducer using these two items together. Not much point to it unless your mob gives you access to the spawnEgg item or you added it to the Sceptre of Concealment list.
 	 *
 	 * You won't be able to override already registered tuples!
 	 *
@@ -159,8 +149,7 @@ public class GanysNetherAPI {
 	}
 
 	/**
-	 * If your entity uses vanilla eggs you can use this method to register its
-	 * drop to the Reproducer
+	 * If your entity uses vanilla eggs you can use this method to register its drop to the Reproducer
 	 *
 	 * You won't be able to override already registered tuples!
 	 *
@@ -186,8 +175,7 @@ public class GanysNetherAPI {
 	// VOLCANIC FURNACE //
 
 	/**
-	 * White-Listing an item/block will force it to be melt down in the Volcanic
-	 * Furnace
+	 * White-Listing an item/block will force it to be melt down in the Volcanic Furnace
 	 *
 	 * This is metadata sensitive.
 	 *
@@ -200,8 +188,7 @@ public class GanysNetherAPI {
 	}
 
 	/**
-	 * Block-Listing an item/block will force it NOT to be melt down in the
-	 * Volcanic Furnace
+	 * Block-Listing an item/block will force it NOT to be melt down in the Volcanic Furnace
 	 *
 	 * This is metadata sensitive.
 	 *
@@ -214,13 +201,11 @@ public class GanysNetherAPI {
 	}
 
 	/**
-	 * Sets a custom burnTime of an specific item/block. Keep in mind that the
-	 * burnTime is directly related to the amount of lava produced by an item.
+	 * Sets a custom burnTime of an specific item/block. Keep in mind that the burnTime is directly related to the amount of lava produced by an item.
 	 *
 	 * This is metadata sensitive.
 	 *
-	 * DO NOT SET THE BURNTIME TO ZERO. If you wish to block an item from being
-	 * melted use the blackListMeltingItem method.
+	 * DO NOT SET THE BURNTIME TO ZERO. If you wish to block an item from being melted use the blackListMeltingItem method.
 	 *
 	 * Default is between 16 and 20
 	 *
@@ -247,26 +232,7 @@ public class GanysNetherAPI {
 
 	// BLOCKS
 	/*
-	 * Here's a list of the blocks that can/should be retrieved by this method
-	 *
-	 * tilledNetherrack
-	 * quarzBerryBush
-	 * spectreWheat
-	 * glowingReed
-	 * soulGlass
-	 * soulChest
-	 * volcanicFurnaceIdle
-	 * volcanicFurnaceActive
-	 * denseLavaCell
-	 * glowBox
-	 * colouredQuartzBlock
-	 * colouredChiselledQuartzBlock
-	 * soulGlassStairs;
-	 * reproducer
-	 * undertaker
-	 * witherShrub
-	 * magmaticCentrifuge
-	 *
+	 * Here's a list of the blocks that can/should be retrieved by this method tilledNetherrack quarzBerryBush spectreWheat glowingReed soulGlass soulChest volcanicFurnaceIdle volcanicFurnaceActive denseLavaCell glowBox colouredQuartzBlock colouredChiselledQuartzBlock soulGlassStairs; reproducer undertaker witherShrub magmaticCentrifuge
 	 */
 	public static final Block getBlock(String blockName) {
 		try {
@@ -281,37 +247,7 @@ public class GanysNetherAPI {
 
 	// ITEMS
 	/*
-	 * Here's a list of the items that can/should be retrieved by this method
-	 *
-	 * quarzBerrySeeds
-	 * quarzBerry
-	 * ghostSeeds
-	 * spectreWheat
-	 * spookyFlour
-	 * glowingReed
-	 * bottomlessBucket
-	 * dimensionalBread
-	 * baseballBat
-	 * sceptreOfConcealment
-	 * skeletonSpawner
-	 * silverfishScale
-	 * batWing
-	 * cookedBatWing
-	 * wolfTeeth
-	 * blazeIngot
-	 * sceptreOfFireCharging
-	 * sceptreOfLightning
-	 * sceptreCap
-	 * witherShrubSeeds
-	 * livingSoul
-	 * ironNugget
-	 * flour
-	 *
-	 * blazeHelmet
-	 * blazeChestplate
-	 * blazeLeggings
-	 * blazeBoots
-	 *
+	 * Here's a list of the items that can/should be retrieved by this method quarzBerrySeeds quarzBerry ghostSeeds spectreWheat spookyFlour glowingReed bottomlessBucket dimensionalBread baseballBat sceptreOfConcealment skeletonSpawner silverfishScale batWing cookedBatWing wolfTeeth blazeIngot sceptreOfFireCharging sceptreOfLightning sceptreCap witherShrubSeeds livingSoul ironNugget flour blazeHelmet blazeChestplate blazeLeggings blazeBoots
 	 */
 	public static final Item getItem(String itemName) {
 		try {

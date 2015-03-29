@@ -44,7 +44,8 @@ public class BlazingCactoid extends BlockCactus {
 		if (!world.isRemote)
 			if (world.isAirBlock(x, y + 1, z) && rand.nextInt(10) == 0) {
 				int height;
-				for (height = 1; world.getBlock(x, y - height, z) == this; height++);
+				for (height = 1; world.getBlock(x, y - height, z) == this; height++)
+					;
 				if (height < 5) {
 					world.setBlock(x, y + 1, z, this);
 					onNeighborBlockChange(world, x, y + 1, z, this);
