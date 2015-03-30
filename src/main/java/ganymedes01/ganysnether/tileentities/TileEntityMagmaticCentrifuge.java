@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.tileentities;
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
 import ganymedes01.ganysnether.lib.Strings;
+import ganymedes01.ganysnether.recipes.CentrifugeRecipe;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 
 import java.util.ArrayList;
@@ -120,10 +121,11 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 	}
 
 	private void centrifuge() {
-		if (tank.getFluidAmount() < FluidContainerRegistry.BUCKET_VOLUME / 10)
+		CentrifugeRecipe recipe = MagmaticCentrifugeRecipes.INSTANCE.getRecipe(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]);
+		if (tank.getFluidAmount() < recipe.getLavaAmount())
 			return;
 
-		ItemStack[] resultContents = MagmaticCentrifugeRecipes.INSTANCE.getResult(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]);
+		ItemStack[] resultContents = recipe.getResult();
 		ArrayList<Integer> slotsTaken = new ArrayList<Integer>();
 		if (resultContents != null && resultContents.length <= 4) {
 			for (ItemStack result : resultContents) {
@@ -146,7 +148,7 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 						inventory[slotsTaken.get(i)] = result.copy();
 				}
 
-				tank.drain(FluidContainerRegistry.BUCKET_VOLUME / 10, true);
+				tank.drain(recipe.getLavaAmount(), true);
 				inventory[MATERIAL_SLOT_1].stackSize--;
 				inventory[MATERIAL_SLOT_2].stackSize--;
 				if (inventory[MATERIAL_SLOT_1].stackSize <= 0)
@@ -181,8 +183,10 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 	private void checkRecipe() {
 		if (inventory[MATERIAL_SLOT_1] == null || inventory[MATERIAL_SLOT_2] == null)
 			isRecipeValid = false;
-		else
-			isRecipeValid = MagmaticCentrifugeRecipes.INSTANCE.getResult(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]) != null && tank.getFluidAmount() >= FluidContainerRegistry.BUCKET_VOLUME / 10;
+		else {
+			CentrifugeRecipe recipe = MagmaticCentrifugeRecipes.INSTANCE.getRecipe(inventory[MATERIAL_SLOT_1], inventory[MATERIAL_SLOT_2]);
+			isRecipeValid = recipe != null && tank.getFluidAmount() >= recipe.getLavaAmount();
+		}
 	}
 
 	@Override
@@ -224,7 +228,6 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 			rotationAngle = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);
 		else
 			rotationAngle -= rotationAngle > 0 ? 2 : 0;
-
 		return rotationAngle;
 	}
 
@@ -258,6 +261,10 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 		return (float) (angle * (Math.PI / 180));
 	}
 
+	public int getTurnsCount() {
+		return turnsCount;
+	}
+
 	public void getGUIData(int id, int value) {
 		switch (id) {
 			case 1:
@@ -269,12 +276,16 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 			case 2:
 				angle = value;
 				break;
+			case 3:
+				turnsCount = value;
+				break;
 		}
 	}
 
 	public void sendGUIData(ContainerMagmaticCentrifuge containerMagmaticCentrifuge, ICrafting craft) {
 		craft.sendProgressBarUpdate(containerMagmaticCentrifuge, 1, tank.getFluid() != null ? tank.getFluid().amount : 0);
 		craft.sendProgressBarUpdate(containerMagmaticCentrifuge, 2, angle);
+		craft.sendProgressBarUpdate(containerMagmaticCentrifuge, 3, turnsCount);
 	}
 
 	@Override

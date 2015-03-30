@@ -36,6 +36,8 @@ public class MagmaticCentrifugeRecipes extends RecipeRegistry<CentrifugeRecipe> 
 		builder.makeEntry("input1", recipe.getInput1());
 		builder.makeEntry("input2", recipe.getInput2());
 
+		builder.makeEntry("lavaAmount", recipe.getLavaAmount());
+
 		builder.makeEntries("output", recipe.getResult());
 
 		return builder.toNode();
@@ -105,11 +107,11 @@ public class MagmaticCentrifugeRecipes extends RecipeRegistry<CentrifugeRecipe> 
 		}
 	}
 
-	public ItemStack[] getResult(ItemStack input1, ItemStack input2) {
+	public CentrifugeRecipe getRecipe(ItemStack input1, ItemStack input2) {
 		if (GanysNether.enableMagmaticCentrifuge)
 			for (CentrifugeRecipe recipe : getRecipes())
 				if (recipe.matches(input1, input2))
-					return recipe.getResult();
+					return recipe;
 		return null;
 	}
 }

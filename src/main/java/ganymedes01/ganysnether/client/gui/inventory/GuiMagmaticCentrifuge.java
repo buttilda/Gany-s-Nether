@@ -39,6 +39,12 @@ public class GuiMagmaticCentrifuge extends GuiGanysNether {
 		String name = StatCollector.translateToLocal(centrifuge.getInventoryName());
 		fontRendererObj.drawString(name, xSize / 2 - fontRendererObj.getStringWidth(name) / 2, 6, BLACK);
 		fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, BLACK);
+
+		double turnsCount = centrifuge.getTurnsCount() / 3.0;
+		double angle = centrifuge.getAngle() / (2 * Math.PI);
+		double total = angle / 3.0 + turnsCount;
+		String str = (int) Math.floor(total * 100) + "%";
+		fontRendererObj.drawString(str, (xSize - fontRendererObj.getStringWidth(str)) / 2, 100, BLACK);
 	}
 
 	@Override

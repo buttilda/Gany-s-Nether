@@ -100,11 +100,12 @@ public class TileEntityMagmaticCentrifugeRender extends TileEntitySpecialRendere
 			EntityItem ghostEntityItem = new EntityItem(world);
 			ghostEntityItem.hoverStart = 0.0F;
 			ghostEntityItem.setEntityItemStack(stack);
-			GL11.glTranslatef((float) x + 0.5F, (float) (y + translate), (float) z + 0.5F);
+			GL11.glTranslated(x + 0.5, y + translate, z + 0.5);
 			GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
 			GL11.glRotatef(90.0F + rotationAngle, 0.0F, 1.0F, 0.0F);
-
-			customRenderItem.doRender(ghostEntityItem, 0, 0, offset, 0, 0);
+			GL11.glTranslated(0, 0, offset);
+			GL11.glRotatef(rotationAngle * 2, 0, 1, 0);
+			customRenderItem.doRender(ghostEntityItem, 0, 0, 0, 0, 0);
 			GL11.glEnable(GL11.GL_CULL_FACE);
 			GL11.glEnable(GL11.GL_LIGHTING);
 			GL11.glPopMatrix();

@@ -10,6 +10,7 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
@@ -24,6 +25,7 @@ public class CentrifugeRecipe {
 	private final Object input1;
 	private final Object input2;
 	private final ItemStack[] outputs;
+	private final int lavaAmount;
 
 	public CentrifugeRecipe(XMLNode node) {
 		input1 = XMLParser.parseNode(node.getNode("input1"));
@@ -36,13 +38,24 @@ public class CentrifugeRecipe {
 				outputs.add(XMLParser.parseItemStackNode(n));
 		}
 
+		XMLNode n = node.getNode("lavaAmount");
+		if (n != null)
+			lavaAmount = Integer.parseInt(n.getValue());
+		else
+			lavaAmount = FluidContainerRegistry.BUCKET_VOLUME / 10;
+
 		this.outputs = outputs.toArray(new ItemStack[0]);
 	}
 
-	public CentrifugeRecipe(Object input1, Object input2, ItemStack... outputs) {
+	public CentrifugeRecipe(Object input1, Object input2, int lavaAmount, ItemStack... outputs) {
 		this.input1 = getValidObject(input1);
 		this.input2 = getValidObject(input2);
+		this.lavaAmount = lavaAmount;
 		this.outputs = outputs;
+	}
+
+	public CentrifugeRecipe(Object input1, Object input2, ItemStack... outputs) {
+		this(input1, input2, FluidContainerRegistry.BUCKET_VOLUME / 10, outputs);
 	}
 
 	public boolean isPartOfResult(ItemStack target) {
@@ -87,6 +100,10 @@ public class CentrifugeRecipe {
 
 	public ItemStack[] getResult() {
 		return outputs;
+	}
+
+	public int getLavaAmount() {
+		return lavaAmount;
 	}
 
 	private Object getValidObject(Object obj) {
