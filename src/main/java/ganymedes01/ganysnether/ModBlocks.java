@@ -28,22 +28,19 @@ import ganymedes01.ganysnether.blocks.VolcanicFurnace;
 import ganymedes01.ganysnether.blocks.WeepingPod;
 import ganymedes01.ganysnether.blocks.WitherShrub;
 import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.items.blocks.ItemColouredChiselledQuartzBlock;
-import ganymedes01.ganysnether.items.blocks.ItemColouredQuartzBlock;
-import ganymedes01.ganysnether.items.blocks.ItemColouredQuartzPillars;
-import ganymedes01.ganysnether.items.blocks.ItemGlowBox;
-import ganymedes01.ganysnether.items.blocks.ItemHorseArmourStand;
-import ganymedes01.ganysnether.items.blocks.ItemSoulGlass;
 import ganymedes01.ganysnether.lib.Strings;
+
+import java.lang.reflect.Field;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class ModBlocks {
@@ -85,47 +82,33 @@ public class ModBlocks {
 	}
 
 	public static void init() {
-		registerBlock(tilledNetherrack);
-		registerBlock(quarzBerryBush);
-		registerBlock(spectreWheat);
-		registerBlock(glowingReed);
-		registerBlock(soulGlass, ItemSoulGlass.class);
-		registerBlock(soulGlassStairs);
-		registerBlock(soulChest);
-		registerBlock(volcanicFurnace);
-		registerBlock(denseLavaCell);
-		registerBlock(glowBox, ItemGlowBox.class);
-		registerBlock(colouredQuartzBlock, ItemColouredQuartzBlock.class);
-		registerBlock(colouredChiselledQuartzBlock, ItemColouredChiselledQuartzBlock.class);
-		for (int i = 0; i < Strings.COLOURS.length; i++)
-			registerBlock(colouredQuartzBlockStairs[i]);
-		for (int i = 0; i < colouredQuartzPillar.length; i++)
-			registerBlock(colouredQuartzPillar[i], ItemColouredQuartzPillars.class);
-		registerBlock(reproducer);
-		registerBlock(undertaker);
-		registerBlock(witherShrub);
-		registerBlock(magmaticCentrifuge);
-		registerBlock(weepingPod);
-		registerBlock(soulTNT);
-		registerBlock(blazingCactoid);
-		registerBlock(hellBush);
-		registerBlock(thermalSmelter);
-		registerBlock(horseArmourStand, ItemHorseArmourStand.class);
-		registerBlock(extendedSpawner);
-		registerBlock(focusedLavaCell);
-		registerBlock(soulGlassPane0);
-		registerBlock(soulGlassPane1);
+		try {
+			for (Field f : ModBlocks.class.getDeclaredFields()) {
+				Object obj = f.get(null);
+				if (obj instanceof Block)
+					registerBlock((Block) obj);
+				else if (obj instanceof Block[])
+					for (Block block : (Block[]) obj)
+						if (block != null)
+							registerBlock(block);
+			}
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	private static void registerBlock(Block block) {
 		String name = block.getUnlocalizedName();
 		String[] strings = name.split("\\.");
-		GameRegistry.registerBlock(block, strings[strings.length - 1]);
+
+		if (block instanceof ISubBlocksBlock)
+			GameRegistry.registerBlock(block, ((ISubBlocksBlock) block).getItemBlockClass(), strings[strings.length - 1]);
+		else
+			GameRegistry.registerBlock(block, strings[strings.length - 1]);
 	}
 
-	private static void registerBlock(Block block, Class<? extends ItemBlock> item) {
-		String name = block.getUnlocalizedName();
-		String[] strings = name.split("\\.");
-		GameRegistry.registerBlock(block, item, strings[strings.length - 1]);
+	public static interface ISubBlocksBlock {
+
+		Class<? extends ItemBlock> getItemBlockClass();
 	}
 }

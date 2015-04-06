@@ -1,8 +1,10 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModBlocks.ISubBlocksBlock;
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.items.blocks.ItemHorseArmourStand;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityHorseArmourStand;
 import net.minecraft.block.Block;
@@ -10,6 +12,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -23,7 +26,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class HorseArmourStand extends BlockContainer {
+public class HorseArmourStand extends BlockContainer implements ISubBlocksBlock {
 
 	public HorseArmourStand() {
 		super(Material.iron);
@@ -219,5 +222,10 @@ public class HorseArmourStand extends BlockContainer {
 	@Override
 	public int getRenderType() {
 		return -1;
+	}
+
+	@Override
+	public Class<? extends ItemBlock> getItemBlockClass() {
+		return ItemHorseArmourStand.class;
 	}
 }

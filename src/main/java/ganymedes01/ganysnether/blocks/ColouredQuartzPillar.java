@@ -1,7 +1,9 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModBlocks.ISubBlocksBlock;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.items.blocks.ItemColouredQuartzPillars;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
@@ -23,7 +26,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class ColouredQuartzPillar extends BlockRotatedPillar {
+public class ColouredQuartzPillar extends BlockRotatedPillar implements ISubBlocksBlock {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] blockSide, blockTop;
@@ -69,5 +72,10 @@ public class ColouredQuartzPillar extends BlockRotatedPillar {
 			blockSide[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.COLOURED_QUARTZ_PILLARS_NAME) + "_side_" + (startIndex * 4 + i));
 			blockTop[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.COLOURED_QUARTZ_PILLARS_NAME) + "_top_" + (startIndex * 4 + i));
 		}
+	}
+
+	@Override
+	public Class<? extends ItemBlock> getItemBlockClass() {
+		return ItemColouredQuartzPillars.class;
 	}
 }

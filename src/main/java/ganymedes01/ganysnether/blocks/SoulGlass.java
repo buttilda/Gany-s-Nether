@@ -1,7 +1,9 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModBlocks.ISubBlocksBlock;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.items.blocks.ItemSoulGlass;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -25,7 +28,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class SoulGlass extends Block {
+public class SoulGlass extends Block implements ISubBlocksBlock {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon block, brick;
@@ -101,5 +104,10 @@ public class SoulGlass extends Block {
 	public void registerBlockIcons(IIconRegister reg) {
 		block = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SOUL_GLASS_NAME) + "_0");
 		brick = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SOUL_GLASS_NAME) + "_1");
+	}
+
+	@Override
+	public Class<? extends ItemBlock> getItemBlockClass() {
+		return ItemSoulGlass.class;
 	}
 }

@@ -1,7 +1,9 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModBlocks.ISubBlocksBlock;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.items.blocks.ItemGlowBox;
 import ganymedes01.ganysnether.lib.Strings;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
@@ -23,7 +26,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class GlowBox extends Block {
+public class GlowBox extends Block implements ISubBlocksBlock {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] blockSide, blockTop;
@@ -77,5 +80,10 @@ public class GlowBox extends Block {
 			blockTop[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.GLOW_BOX_NAME) + "_top_" + i);
 			blockSide[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.GLOW_BOX_NAME) + "_side_" + i);
 		}
+	}
+
+	@Override
+	public Class<? extends ItemBlock> getItemBlockClass() {
+		return ItemGlowBox.class;
 	}
 }

@@ -39,6 +39,9 @@ import ganymedes01.ganysnether.items.SpectreWheat;
 import ganymedes01.ganysnether.items.SpookyFlour;
 import ganymedes01.ganysnether.items.WitherShrubSeeds;
 import ganymedes01.ganysnether.items.WolfTeeth;
+
+import java.lang.reflect.Field;
+
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -90,47 +93,29 @@ public class ModItems {
 	public static final Item blazeBoots = new BlazeBoots();
 
 	public static void init() {
-		registerItem(quarzBerrySeeds);
-		registerItem(quarzBerry);
-		registerItem(ghostSeeds);
-		registerItem(spectreWheat);
-		registerItem(spookyFlour);
-		registerItem(glowingReed);
-		registerItem(bottomlessBucket);
-		registerItem(dimensionalBread);
-		registerItem(baseballBat);
-		registerItem(sceptreOfConcealment);
-		registerItem(skeletonSpawner);
-		registerItem(silverfishScale);
-		registerItem(batWing);
-		registerItem(cookedBatWing);
-		registerItem(wolfTeeth);
-		registerItem(blazeIngot);
-		registerItem(sceptreOfFireCharging);
-		registerItem(sceptreOfLightning);
-		registerItem(sceptreCap);
-		registerItem(witherShrubSeeds);
-		registerItem(livingSoul);
-		registerItem(ironNugget);
-		registerItem(flour);
-		registerItem(hellBushSeeds);
-		registerItem(lavaBerry);
-		registerItem(netherCore);
-		registerItem(spawnerUpgrade);
-		registerItem(sceptreOfWithering);
-
-		// Armour
-		registerItem(blazeHelmet);
-		registerItem(blazeChestplate);
-		registerItem(blazeLeggings);
-		registerItem(blazeBoots);
+		try {
+			for (Field f : ModItems.class.getDeclaredFields()) {
+				Object obj = f.get(null);
+				if (obj instanceof Item)
+					registerItem((Item) obj);
+				else if (obj instanceof Item[])
+					for (Item item : (Item[]) obj)
+						registerItem(item);
+			}
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		}
 
 		BlockDispenser.dispenseBehaviorRegistry.putObject(skeletonSpawner, new DispenserBehaviorSkeletonSpawner());
-		BlockDispenser.dispenseBehaviorRegistry.putObject(livingSoul, new DispenserBehaviorLivingSoul());
-		BlockDispenser.dispenseBehaviorRegistry.putObject(bottomlessBucket, new DispenserBehaviorBottomlessBucket());
-		BlockDispenser.dispenseBehaviorRegistry.putObject(sceptreOfFireCharging, new DispenserBehaviorSceptreOfFireCharging());
-		BlockDispenser.dispenseBehaviorRegistry.putObject(sceptreOfLightning, new DispenserBehaviorSceptreOfLightning());
-		BlockDispenser.dispenseBehaviorRegistry.putObject(sceptreOfWithering, new DispenserBehaviorSceptreOfWithering());
+		if (GanysNether.enableLivingSoul)
+			BlockDispenser.dispenseBehaviorRegistry.putObject(livingSoul, new DispenserBehaviorLivingSoul());
+		if (GanysNether.enableBottomlessBucket)
+			BlockDispenser.dispenseBehaviorRegistry.putObject(bottomlessBucket, new DispenserBehaviorBottomlessBucket());
+		if (GanysNether.enableSceptres) {
+			BlockDispenser.dispenseBehaviorRegistry.putObject(sceptreOfFireCharging, new DispenserBehaviorSceptreOfFireCharging());
+			BlockDispenser.dispenseBehaviorRegistry.putObject(sceptreOfLightning, new DispenserBehaviorSceptreOfLightning());
+			BlockDispenser.dispenseBehaviorRegistry.putObject(sceptreOfWithering, new DispenserBehaviorSceptreOfWithering());
+		}
 		if (GanysNether.shouldGhastTearHaveDispenserAction)
 			BlockDispenser.dispenseBehaviorRegistry.putObject(Items.ghast_tear, new DispenserBehaviorWeepingPod());
 	}
