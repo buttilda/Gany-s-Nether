@@ -24,7 +24,7 @@ public class SceptreOfConcealment extends Sceptre {
 		super(2);
 		setMaxDamage(GanysNether.sceptreOfConcealmentDurability);
 		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_CONCEALMENT_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SCEPTRE_OF_CONCEALMENT_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.SCEPTRE_OF_CONCEALMENT_NAME));
 	}
 
 	@Override

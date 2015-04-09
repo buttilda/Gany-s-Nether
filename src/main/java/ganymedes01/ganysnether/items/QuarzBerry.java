@@ -16,7 +16,7 @@ public class QuarzBerry extends Item {
 
 	public QuarzBerry() {
 		setTextureName(Utils.getItemTexture(Strings.Items.QUARZ_BERRY_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.QUARZ_BERRY_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.QUARZ_BERRY_NAME));
 		setCreativeTab(GanysNether.shouldGenerateCrops ? GanysNether.netherTab : null);
 	}
 }

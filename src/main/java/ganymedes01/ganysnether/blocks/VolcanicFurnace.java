@@ -26,7 +26,7 @@ public class VolcanicFurnace extends InventoryBlock {
 		super(Material.rock);
 		setHardness(3.5F);
 		setStepSound(soundTypeStone);
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.VOLCANIC_FURNACE_NAME));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.VOLCANIC_FURNACE_NAME));
 		setCreativeTab(GanysNether.enableVolcanicFurnace ? GanysNether.netherTab : null);
 	}
 

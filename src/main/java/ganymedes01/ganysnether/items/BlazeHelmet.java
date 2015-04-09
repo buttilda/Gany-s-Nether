@@ -15,6 +15,6 @@ public class BlazeHelmet extends BlazeArmour {
 	public BlazeHelmet() {
 		super(0);
 		setTextureName(Utils.getItemTexture(Strings.Items.BLAZE_HELMET_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.BLAZE_HELMET_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.BLAZE_HELMET_NAME));
 	}
 }

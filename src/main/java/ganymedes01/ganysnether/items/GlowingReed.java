@@ -18,7 +18,7 @@ public class GlowingReed extends ItemReed {
 	public GlowingReed() {
 		super(ModBlocks.glowingReed);
 		setTextureName(Utils.getItemTexture(Strings.Items.GLOWING_REED_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.GLOWING_REED_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.GLOWING_REED_NAME));
 		setCreativeTab(GanysNether.shouldGenerateCrops ? GanysNether.netherTab : null);
 	}
 }

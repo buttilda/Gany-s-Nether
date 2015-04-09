@@ -21,7 +21,7 @@ public class GhostSeeds extends NetherSeeds {
 
 	public GhostSeeds() {
 		super(ModBlocks.spectreWheat);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.GHOST_SEEDS_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.GHOST_SEEDS_NAME));
 	}
 
 	@Override

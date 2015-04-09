@@ -23,7 +23,7 @@ public class WitherShrubSeeds extends NetherSeeds {
 
 	public WitherShrubSeeds() {
 		super(ModBlocks.witherShrub);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.WITHER_SHRUB_SEEDS_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.WITHER_SHRUB_SEEDS_NAME));
 	}
 
 	public static void setIcon(IIcon icon) {

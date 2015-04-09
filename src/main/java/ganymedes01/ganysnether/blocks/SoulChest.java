@@ -38,7 +38,7 @@ public class SoulChest extends InventoryBlock {
 		setHardness(2.5F);
 		setStepSound(soundTypeSand);
 		setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_CHEST_NAME));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.SOUL_CHEST_NAME));
 		setCreativeTab(GanysNether.enableSoulChest ? GanysNether.netherTab : null);
 	}
 

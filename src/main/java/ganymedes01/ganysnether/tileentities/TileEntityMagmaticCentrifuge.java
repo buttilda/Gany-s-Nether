@@ -269,7 +269,7 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 		switch (id) {
 			case 1:
 				if (tank.getFluid() == null)
-					tank.setFluid(new FluidStack(0, value));
+					tank.setFluid(new FluidStack(FluidRegistry.LAVA, value));
 				else
 					tank.getFluid().amount = value;
 				break;

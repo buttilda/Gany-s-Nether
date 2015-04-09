@@ -16,7 +16,7 @@ public class WolfTeeth extends Item {
 
 	public WolfTeeth() {
 		setTextureName(Utils.getItemTexture(Strings.Items.WOLF_TEETH_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.WOLF_TEETH_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.WOLF_TEETH_NAME));
 		setCreativeTab(GanysNether.enableReproducerAndDrops ? GanysNether.netherTab : null);
 	}
 }

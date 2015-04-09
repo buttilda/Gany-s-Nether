@@ -17,6 +17,6 @@ public class IronNugget extends Item {
 	public IronNugget() {
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.IRON_NUGGET_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.IRON_NUGGET_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.IRON_NUGGET_NAME));
 	}
 }

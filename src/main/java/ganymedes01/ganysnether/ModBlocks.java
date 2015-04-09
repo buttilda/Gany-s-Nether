@@ -76,9 +76,9 @@ public class ModBlocks {
 
 	static {
 		for (int i = 0; i < colouredQuartzBlockStairs.length; i++)
-			colouredQuartzBlockStairs[i] = new ColouredQuartzStairs(i).setBlockName(Utils.getUnlocalizedName(Strings.Blocks.COLOURED_QUARTZ_STAIRS_NAMES[i]));
+			colouredQuartzBlockStairs[i] = new ColouredQuartzStairs(i).setBlockName(Utils.getUnlocalisedName(Strings.Blocks.COLOURED_QUARTZ_STAIRS_NAMES[i]));
 		for (int i = 0; i < colouredQuartzPillar.length; i++)
-			colouredQuartzPillar[i] = new ColouredQuartzPillar(i).setBlockName(Utils.getUnlocalizedName(Strings.Blocks.COLOURED_QUARTZ_PILLARS_NAME) + i);
+			colouredQuartzPillar[i] = new ColouredQuartzPillar(i).setBlockName(Utils.getUnlocalisedName(Strings.Blocks.COLOURED_QUARTZ_PILLARS_NAME) + i);
 	}
 
 	public static void init() {

@@ -64,15 +64,15 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileEntityVolcanicFurnace.class, Strings.Blocks.VOLCANIC_FURNACE_NAME);
 		GameRegistry.registerTileEntity(TileEntityReproducer.class, Strings.Blocks.REPRODUCER_NAME);
 		GameRegistry.registerTileEntity(TileEntityUndertaker.class, Strings.Blocks.UNDERTAKER_NAME);
-		GameRegistry.registerTileEntity(TileEntityMagmaticCentrifuge.class, Utils.getUnlocalizedName(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME));
-		GameRegistry.registerTileEntity(TileEntityThermalSmelter.class, Utils.getUnlocalizedName(Strings.Blocks.THERMAL_SMELTER_NAME));
-		GameRegistry.registerTileEntity(TileEntityHorseArmourStand.class, Utils.getUnlocalizedName(Strings.Blocks.HORSE_ARMOUR_STAND_NAME));
-		GameRegistry.registerTileEntity(TileEntityExtendedSpawner.class, Utils.getUnlocalizedName(Strings.Blocks.EXTENDED_SPAWNER_NAME));
+		GameRegistry.registerTileEntity(TileEntityMagmaticCentrifuge.class, Utils.getUnlocalisedName(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME));
+		GameRegistry.registerTileEntity(TileEntityThermalSmelter.class, Utils.getUnlocalisedName(Strings.Blocks.THERMAL_SMELTER_NAME));
+		GameRegistry.registerTileEntity(TileEntityHorseArmourStand.class, Utils.getUnlocalisedName(Strings.Blocks.HORSE_ARMOUR_STAND_NAME));
+		GameRegistry.registerTileEntity(TileEntityExtendedSpawner.class, Utils.getUnlocalisedName(Strings.Blocks.EXTENDED_SPAWNER_NAME));
 	}
 
 	public void registerEntities() {
-		EntityRegistry.registerModEntity(EntityLightningBall.class, Utils.getUnlocalizedName(Strings.Entities.ENTITY_LIGHTNING_BALL_NAME), ModIDs.ENTITY_LIGHTNING_BALL_ID, GanysNether.instance, 160, 5, true);
-		EntityRegistry.registerModEntity(EntitySlowTNT.class, Utils.getUnlocalizedName(Strings.Entities.ENTITY_SLOW_TNT_NAME), ModIDs.ENTITY_SLOW_TNT_ID, GanysNether.instance, 160, 5, true);
+		EntityRegistry.registerModEntity(EntityLightningBall.class, Utils.getUnlocalisedName(Strings.Entities.ENTITY_LIGHTNING_BALL_NAME), ModIDs.ENTITY_LIGHTNING_BALL_ID, GanysNether.instance, 160, 5, true);
+		EntityRegistry.registerModEntity(EntitySlowTNT.class, Utils.getUnlocalisedName(Strings.Entities.ENTITY_SLOW_TNT_NAME), ModIDs.ENTITY_SLOW_TNT_ID, GanysNether.instance, 160, 5, true);
 	}
 
 	public void registerRenderers() {

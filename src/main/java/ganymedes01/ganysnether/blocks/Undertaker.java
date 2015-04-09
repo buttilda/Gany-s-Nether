@@ -21,7 +21,7 @@ public class Undertaker extends SoulChest {
 
 	public Undertaker() {
 		setResistance(2000.0F);
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.UNDERTAKER_NAME));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.UNDERTAKER_NAME));
 		setCreativeTab(GanysNether.enableUndertaker ? GanysNether.netherTab : null);
 	}
 

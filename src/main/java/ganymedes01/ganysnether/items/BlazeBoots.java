@@ -15,6 +15,6 @@ public class BlazeBoots extends BlazeArmour {
 	public BlazeBoots() {
 		super(3);
 		setTextureName(Utils.getItemTexture(Strings.Items.BLAZE_BOOTS_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.BLAZE_BOOTS_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.BLAZE_BOOTS_NAME));
 	}
 }

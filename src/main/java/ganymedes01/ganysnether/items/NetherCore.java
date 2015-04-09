@@ -16,7 +16,7 @@ public class NetherCore extends Item {
 
 	public NetherCore() {
 		setTextureName(Utils.getItemTexture(Strings.Items.NETHER_CORE_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.NETHER_CORE_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.NETHER_CORE_NAME));
 		setCreativeTab(GanysNether.enableVolcanicFurnace || GanysNether.enableSpawners ? GanysNether.netherTab : null);
 	}
 }

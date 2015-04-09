@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class HellBush extends QuarzBerryBush {
 
 	public HellBush() {
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.HELL_BUSH_NAME));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.HELL_BUSH_NAME));
 	}
 
 	@Override

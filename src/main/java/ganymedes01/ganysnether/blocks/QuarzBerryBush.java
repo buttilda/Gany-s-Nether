@@ -25,7 +25,7 @@ public class QuarzBerryBush extends NetherCrop {
 	public QuarzBerryBush() {
 		float f = 1F / 8F;
 		setBlockBounds(3F * f, 0.0F, 3F * f, 1F - 3F * f, 2F * f, 1F - 3F * f);
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.QUARZ_BERRY_BUSH_NAME));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.QUARZ_BERRY_BUSH_NAME));
 	}
 
 	@Override

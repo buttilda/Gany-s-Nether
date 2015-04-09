@@ -34,7 +34,7 @@ public class WeepingPod extends BlockCocoa {
 		setHardness(0.2F);
 		setResistance(5.0F);
 		setStepSound(soundTypeWood);
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.WEEPING_POD_NAME));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.WEEPING_POD_NAME));
 	}
 
 	@Override

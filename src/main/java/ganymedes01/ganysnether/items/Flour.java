@@ -17,6 +17,6 @@ public class Flour extends Item {
 	public Flour() {
 		setCreativeTab(GanysNether.netherTab);
 		setTextureName(Utils.getItemTexture(Strings.Items.FLOUR_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.FLOUR_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.FLOUR_NAME));
 	}
 }

@@ -23,7 +23,7 @@ public class SceptreOfWithering extends Sceptre {
 		super(3);
 		setMaxDamage(GanysNether.sceptreOfWithering);
 		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_WITHERING_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SCEPTRE_OF_WITHERING_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.SCEPTRE_OF_WITHERING_NAME));
 	}
 
 	@Override

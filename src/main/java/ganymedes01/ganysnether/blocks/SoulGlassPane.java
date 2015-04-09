@@ -15,7 +15,7 @@ public class SoulGlassPane extends BlockPane {
 		setHardness(0.3F);
 		setStepSound(soundTypeGlass);
 		setCreativeTab(GanysNether.enableSoulGlass ? GanysNether.netherTab : null);
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.SOUL_GLASS_PANE_NAME + type));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.SOUL_GLASS_PANE_NAME + type));
 	}
 
 	@Override

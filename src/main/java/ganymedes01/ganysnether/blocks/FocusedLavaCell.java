@@ -23,7 +23,7 @@ public class FocusedLavaCell extends Block {
 		super(Material.iron);
 		setHardness(2F);
 		setLightLevel(1F);
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.FOCUSED_LAVA_CELL_NAME));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.FOCUSED_LAVA_CELL_NAME));
 		setBlockTextureName(Utils.getBlockTexture(Strings.Blocks.FOCUSED_LAVA_CELL_NAME));
 		setCreativeTab(GanysNether.enableVolcanicFurnace ? GanysNether.netherTab : null);
 	}

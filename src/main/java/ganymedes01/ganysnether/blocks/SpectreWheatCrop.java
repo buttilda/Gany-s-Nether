@@ -23,7 +23,7 @@ public class SpectreWheatCrop extends NetherCrop {
 	public static IIcon[] icons;
 
 	public SpectreWheatCrop() {
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.SPECTRE_WHEAT_BLOCK_NAME));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.SPECTRE_WHEAT_BLOCK_NAME));
 	}
 
 	@Override

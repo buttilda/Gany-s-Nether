@@ -16,6 +16,6 @@ public class QuarzBerrySeeds extends NetherSeeds {
 	public QuarzBerrySeeds() {
 		super(ModBlocks.quarzBerryBush);
 		setTextureName(Utils.getItemTexture(Strings.Items.QUARZ_BERRY_SEEDS_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.QUARZ_BERRY_SEEDS_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.QUARZ_BERRY_SEEDS_NAME));
 	}
 }

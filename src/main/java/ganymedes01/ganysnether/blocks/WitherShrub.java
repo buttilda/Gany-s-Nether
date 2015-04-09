@@ -39,7 +39,7 @@ public class WitherShrub extends NetherCrop {
 		setHardness(0.0F);
 		setTickRandomly(true);
 		setBlockBounds(0.375F, 0.0F, 0.375F, 0.625F, 0.25F, 0.625F);
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.WITHER_SHRUB_NAME));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.WITHER_SHRUB_NAME));
 	}
 
 	@Override

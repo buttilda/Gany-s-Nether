@@ -24,7 +24,7 @@ public class SceptreOfFireCharging extends Sceptre {
 		super(0);
 		setMaxDamage(GanysNether.sceptreOfFireCharging);
 		setTextureName(Utils.getItemTexture(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.SCEPTRE_OF_FIRE_CHARGING_NAME));
 	}
 
 	@Override

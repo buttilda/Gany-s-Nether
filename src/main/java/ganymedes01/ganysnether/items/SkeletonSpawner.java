@@ -54,7 +54,7 @@ public class SkeletonSpawner extends Item {
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return "item." + Utils.getUnlocalizedName(Strings.Items.SKELETON_SPAWNER_NAME) + stack.getItemDamage();
+		return "item." + Utils.getUnlocalisedName(Strings.Items.SKELETON_SPAWNER_NAME) + stack.getItemDamage();
 	}
 
 	public static Entity spawnSkeleton(World world, double x, double y, double z, int type) {

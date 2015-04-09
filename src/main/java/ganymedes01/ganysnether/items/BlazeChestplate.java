@@ -15,6 +15,6 @@ public class BlazeChestplate extends BlazeArmour {
 	public BlazeChestplate() {
 		super(1);
 		setTextureName(Utils.getItemTexture(Strings.Items.BLAZE_CHESTPLATE_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.BLAZE_CHESTPLATE_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.BLAZE_CHESTPLATE_NAME));
 	}
 }

@@ -22,7 +22,7 @@ public class LavaBerry extends Item {
 
 	public LavaBerry() {
 		setTextureName(Utils.getItemTexture(Strings.Items.LAVA_BERRY_NAME));
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.LAVA_BERRY_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.LAVA_BERRY_NAME));
 		setCreativeTab(GanysNether.shouldGenerateCrops ? GanysNether.netherTab : null);
 	}
 

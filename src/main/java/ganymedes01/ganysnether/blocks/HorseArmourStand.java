@@ -32,7 +32,7 @@ public class HorseArmourStand extends BlockContainer implements ISubBlocksBlock 
 		super(Material.iron);
 		setHardness(1.0F);
 		setBlockTextureName("stone");
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.HORSE_ARMOUR_STAND_NAME));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.HORSE_ARMOUR_STAND_NAME));
 		setCreativeTab(GanysNether.enableHorseArmourStand ? GanysNether.netherTab : null);
 	}
 

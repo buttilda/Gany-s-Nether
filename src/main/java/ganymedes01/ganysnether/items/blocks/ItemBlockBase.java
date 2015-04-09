@@ -18,7 +18,7 @@ public class ItemBlockBase extends ItemBlock {
 	public ItemBlockBase(Block block, String name) {
 		super(block);
 		setHasSubtypes(true);
-		setUnlocalizedName(Utils.getUnlocalizedName(name));
+		setUnlocalizedName(Utils.getUnlocalisedName(name));
 	}
 
 	@Override

@@ -36,7 +36,7 @@ public class ColouredChiselledQuartzBlock extends Block implements ISubBlocksBlo
 		setHardness(0.8F);
 		setStepSound(soundTypeStone);
 		setCreativeTab(GanysNether.enableQuartz ? GanysNether.netherTab : null);
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.COLOURED_CHISELLED_QUARTZ_BLOCK_NAME));
 	}
 
 	@Override

@@ -37,7 +37,7 @@ public class TilledNetherrack extends BlockFarmland {
 		setHardness(0.5F);
 		setLightOpacity(0);
 		setStepSound(soundTypeGravel);
-		setBlockName(Utils.getUnlocalizedName(Strings.Blocks.TILLED_NETHERRACK_NAME));
+		setBlockName(Utils.getUnlocalisedName(Strings.Blocks.TILLED_NETHERRACK_NAME));
 	}
 
 	@Override

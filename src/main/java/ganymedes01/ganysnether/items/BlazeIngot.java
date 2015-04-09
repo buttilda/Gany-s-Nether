@@ -30,7 +30,7 @@ public class BlazeIngot extends Item {
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setCreativeTab(GanysNether.netherTab);
-		setUnlocalizedName(Utils.getUnlocalizedName(Strings.Items.BLAZE_INGOT_NAME));
+		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.BLAZE_INGOT_NAME));
 	}
 
 	@Override
