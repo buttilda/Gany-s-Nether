@@ -11,7 +11,7 @@ public class Reference {
 
 	public static final String MOD_ID = "ganysnether";
 	public static final String MOD_NAME = "Gany's Nether";
-	public static final String DEPENDENCIES = "required-after:Forge@[10.13.0.1180,);";
+	public static final String DEPENDENCIES = "required-after:Forge@[10.13.3.1360,);";
 	public static final String CHANNEL = "GanysNether";
 	public static final String MASTER = "GanysMods";
 	public static final String VERSION_NUMBER = "1.7.8";
