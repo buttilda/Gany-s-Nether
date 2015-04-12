@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.client.renderer.entity;
 
 import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.entities.EntitySlowTNT;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.Render;
@@ -15,19 +16,19 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
 public class EntitySoulTNTRenderer extends Render {
 
-	private RenderBlocks blockRenderer = new RenderBlocks();
+	private final RenderBlocks blockRenderer = new RenderBlocks();
 
 	public void renderSlowTNT(EntitySlowTNT tnt, double x, double y, double z, float rotation, float scale) {
-		GL11.glPushMatrix();
-		GL11.glTranslatef((float) x, (float) y, (float) z);
+		OpenGLHelper.pushMatrix();
+		OpenGLHelper.translate((float) x, (float) y, (float) z);
 		float f2;
 
 		if (tnt.getFuse() - scale + 1.0F < 10.0F) {
@@ -42,7 +43,7 @@ public class EntitySoulTNTRenderer extends Render {
 			f2 *= f2;
 			f2 *= f2;
 			float f3 = 1.0F + f2 * 0.3F;
-			GL11.glScalef(f3, f3, f3);
+			OpenGLHelper.scale(f3, f3, f3);
 		}
 
 		f2 = (1.0F - (tnt.getFuse() - scale + 1.0F) / 100.0F) * 0.8F;
@@ -50,19 +51,19 @@ public class EntitySoulTNTRenderer extends Render {
 		blockRenderer.renderBlockAsItem(ModBlocks.soulTNT, 0, tnt.getBrightness(scale));
 
 		if (tnt.getFuse() / 5 % 2 == 0) {
-			GL11.glDisable(GL11.GL_TEXTURE_2D);
-			GL11.glDisable(GL11.GL_LIGHTING);
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_DST_ALPHA);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, f2);
+			OpenGLHelper.disableTexture2D();
+			OpenGLHelper.disableLighting();
+			OpenGLHelper.enableBlend();
+			OpenGLHelper.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_DST_ALPHA);
+			OpenGLHelper.colour(1.0F, 1.0F, 1.0F, f2);
 			blockRenderer.renderBlockAsItem(ModBlocks.soulTNT, 0, 1.0F);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glEnable(GL11.GL_LIGHTING);
-			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			OpenGLHelper.colour(1.0F, 1.0F, 1.0F, 1.0F);
+			OpenGLHelper.disableBlend();
+			OpenGLHelper.enableLighting();
+			OpenGLHelper.enableTexture2D();
 		}
 
-		GL11.glPopMatrix();
+		OpenGLHelper.popMatrix();
 	}
 
 	@Override

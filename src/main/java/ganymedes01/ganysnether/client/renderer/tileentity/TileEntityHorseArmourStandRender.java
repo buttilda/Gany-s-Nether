@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.client.renderer.tileentity;
 
+import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.client.model.ModelHorseArmourStand;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
@@ -12,18 +13,14 @@ import net.minecraft.client.renderer.texture.LayeredTexture;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
@@ -52,31 +49,31 @@ public class TileEntityHorseArmourStandRender extends TileEntitySpecialRenderer 
 		if (tile instanceof TileEntityHorseArmourStand && tile.getBlockMetadata() == 0) {
 			TileEntityHorseArmourStand stand = (TileEntityHorseArmourStand) tile;
 
-			GL11.glPushMatrix();
-			GL11.glDisable(GL11.GL_CULL_FACE);
-			GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-			GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 1.0F);
-			GL11.glScalef(1.0F, -1.0F, -1.0F);
+			OpenGLHelper.pushMatrix();
+			OpenGLHelper.disableCull();
+			OpenGLHelper.enableRescaleNormal();
+			OpenGLHelper.translate((float) x + 0.5F, (float) y + 1.5F, (float) z + 1.0F);
+			OpenGLHelper.scale(1.0F, -1.0F, -1.0F);
 
 			switch (stand.getRotation()) {
 				case 1:
-					GL11.glRotated(90, 0, 1, 0);
-					GL11.glTranslatef(-0.5F, 0.0F, -0.5F);
+					OpenGLHelper.rotate(90, 0, 1, 0);
+					OpenGLHelper.translate(-0.5F, 0.0F, -0.5F);
 					break;
 				case 2:
-					GL11.glRotated(180, 0, 1, 0);
-					GL11.glTranslatef(0.0F, 0.0F, -1.0F);
+					OpenGLHelper.rotate(180, 0, 1, 0);
+					OpenGLHelper.translate(0.0F, 0.0F, -1.0F);
 					break;
 				case 3:
-					GL11.glRotated(270, 0, 1, 0);
-					GL11.glTranslatef(0.5F, 0.0F, -0.5F);
+					OpenGLHelper.rotate(270, 0, 1, 0);
+					OpenGLHelper.translate(0.5F, 0.0F, -0.5F);
 					break;
 			}
 			bindTexture(getTexture(stand.getArmourType()));
 			model.renderAll();
-			GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-			GL11.glEnable(GL11.GL_CULL_FACE);
-			GL11.glPopMatrix();
+			OpenGLHelper.disableRescaleNormal();
+			OpenGLHelper.enableCull();
+			OpenGLHelper.popMatrix();
 		}
 	}
 }

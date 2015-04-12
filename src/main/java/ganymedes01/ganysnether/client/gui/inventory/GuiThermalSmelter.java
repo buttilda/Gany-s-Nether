@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.client.gui.inventory;
 
+import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.inventory.ContainerThermalSmelter;
 import ganymedes01.ganysnether.lib.Strings;
@@ -7,17 +8,14 @@ import ganymedes01.ganysnether.tileentities.TileEntityThermalSmelter;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
@@ -39,7 +37,7 @@ public class GuiThermalSmelter extends GuiGanysNether {
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		OpenGLHelper.colour(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.THERMAL_SMELTER_NAME)));
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;

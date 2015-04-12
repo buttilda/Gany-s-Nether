@@ -1,11 +1,9 @@
 package ganymedes01.ganysnether.client.renderer;
 
+import ganymedes01.ganysnether.client.OpenGLHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -21,7 +19,7 @@ public class RenderingHelper {
 
 	public static void renderCube(Block block, int meta, RenderBlocks renderer) {
 		Tessellator tessellator = Tessellator.instance;
-		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+		OpenGLHelper.translate(-0.5F, -0.5F, -0.5F);
 
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0F, -1.0F, 0.0F);
@@ -52,7 +50,5 @@ public class RenderingHelper {
 		tessellator.setNormal(1.0F, 0.0F, 0.0F);
 		renderer.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSideAndMetadata(block, 5, meta));
 		tessellator.draw();
-
-		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 	}
 }

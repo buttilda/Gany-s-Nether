@@ -1,22 +1,20 @@
 package ganymedes01.ganysnether.client.renderer.block;
 
+import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.lib.RenderIDs;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
-
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
@@ -25,7 +23,7 @@ public class BlockExtendedSpawnerRender implements ISimpleBlockRenderingHandler 
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 		Tessellator tess = Tessellator.instance;
-		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+		OpenGLHelper.translate(-0.5F, -0.5F, -0.5F);
 
 		tess.startDrawingQuads();
 		tess.setNormal(0.0F, -1.0F, 0.0F);
@@ -80,8 +78,6 @@ public class BlockExtendedSpawnerRender implements ISimpleBlockRenderingHandler 
 		tess.setNormal(1.0F, 0.0F, 0.0F);
 		renderer.renderFaceXPos(block, -1.0D, 0.0D, 0.0D, renderer.getBlockIconFromSideAndMetadata(block, 5, metadata));
 		tess.draw();
-
-		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 	}
 
 	@Override

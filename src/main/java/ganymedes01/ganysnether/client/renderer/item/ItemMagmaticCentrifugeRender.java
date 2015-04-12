@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.client.renderer.item;
 
+import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.client.model.ModelMagmaticCentrifuge;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
@@ -66,14 +67,14 @@ public class ItemMagmaticCentrifugeRender implements IItemRenderer {
 
 	private void renderCentrifuge(float x, float y, float z) {
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
-		GL11.glPushMatrix();
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glTranslatef(x, y, z);
-		GL11.glRotatef(180, 1, 0, 0);
-		GL11.glRotatef(90, 0, 1, 0);
+		OpenGLHelper.pushMatrix();
+		OpenGLHelper.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		OpenGLHelper.enableBlend();
+		OpenGLHelper.translate(x, y, z);
+		OpenGLHelper.rotate(180, 1, 0, 0);
+		OpenGLHelper.rotate(90, 0, 1, 0);
 		model.renderAll();
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glPopMatrix();
+		OpenGLHelper.disableBlend();
+		OpenGLHelper.popMatrix();
 	}
 }

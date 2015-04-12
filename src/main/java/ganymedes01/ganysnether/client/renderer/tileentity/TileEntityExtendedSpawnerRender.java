@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.client.renderer.tileentity;
 
+import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import ganymedes01.ganysnether.tileentities.ExtendedSpawnerLogic;
 import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
@@ -8,17 +9,14 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.tileentity.TileEntity;
-
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
@@ -26,10 +24,10 @@ public class TileEntityExtendedSpawnerRender extends TileEntitySpecialRenderer {
 
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float partialTick) {
-		GL11.glPushMatrix();
-		GL11.glTranslatef((float) x + 0.5F, (float) y, (float) z + 0.5F);
+		OpenGLHelper.pushMatrix();
+		OpenGLHelper.translate(x + 0.5F, y, z + 0.5F);
 		renderLogic(((TileEntityExtendedSpawner) tile).logic, x, y, z, partialTick);
-		GL11.glPopMatrix();
+		OpenGLHelper.popMatrix();
 	}
 
 	private void renderLogic(ExtendedSpawnerLogic logic, double x, double y, double z, float partialTick) {
@@ -37,16 +35,16 @@ public class TileEntityExtendedSpawnerRender extends TileEntitySpecialRenderer {
 
 		if (entity != null) {
 			entity.setWorld(logic.getSpawnerWorld());
-			GL11.glTranslatef(0.0F, 0.4F, 0.0F);
-			GL11.glRotatef((float) (logic.field_98284_d + (logic.field_98287_c - logic.field_98284_d) * partialTick) * 10.0F, 0.0F, 1.0F, 0.0F);
+			OpenGLHelper.translate(0.0F, 0.4F, 0.0F);
+			OpenGLHelper.rotate((float) (logic.field_98284_d + (logic.field_98287_c - logic.field_98284_d) * partialTick) * 10.0F, 0.0F, 1.0F, 0.0F);
 			if (logic.tier != UpgradeType.tierDragonEgg.ordinal()) {
-				GL11.glRotatef(-30.0F, 1.0F, 0.0F, 0.0F);
-				GL11.glTranslatef(0.0F, -0.4F, 0.0F);
-				GL11.glScalef(0.4375F, 0.4375F, 0.4375F);
+				OpenGLHelper.rotate(-30.0F, 1.0F, 0.0F, 0.0F);
+				OpenGLHelper.translate(0.0F, -0.4F, 0.0F);
+				OpenGLHelper.scale(0.4375F, 0.4375F, 0.4375F);
 			} else {
 				((EntityItem) entity).hoverStart = 0.0F;
-				GL11.glTranslatef(0.0F, -0.1F, 0.0F);
-				GL11.glScalef(3, 3, 3);
+				OpenGLHelper.translate(0.0F, -0.1F, 0.0F);
+				OpenGLHelper.scale(3, 3, 3);
 			}
 			entity.setLocationAndAngles(x, y, z, 0.0F, 0.0F);
 			RenderManager.instance.renderEntityWithPosYaw(entity, 0.0D, 0.0D, 0.0D, 0.0F, partialTick);

@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.integration.nei;
 
+import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.client.gui.inventory.GuiVolcanicFurnace;
 import ganymedes01.ganysnether.core.utils.UnsizedStack;
 import ganymedes01.ganysnether.core.utils.Utils;
@@ -24,9 +25,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
-
-import org.lwjgl.opengl.GL11;
-
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.PositionedStack;
@@ -72,7 +70,7 @@ public class VolcanicFurnaceYieldHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void drawBackground(int index) {
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		OpenGLHelper.colour(1.0F, 1.0F, 1.0F, 1.0F);
 		GuiDraw.changeTexture(getGuiTexture());
 		GuiDraw.drawTexturedModalRect(0, 0, 5, 11, 98, 65);
 

@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.client.gui.inventory;
 
+import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.core.utils.Utils;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -8,18 +9,14 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
@@ -35,10 +32,10 @@ public abstract class GuiGanysNether extends GuiContainer {
 	protected abstract void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY);
 
 	protected void drawToolTip(int mouseX, int mouseY, String text) {
-		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+		OpenGLHelper.disableRescaleNormal();
 		RenderHelper.disableStandardItemLighting();
-		GL11.glDisable(GL11.GL_LIGHTING);
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		OpenGLHelper.disableLighting();
+		OpenGLHelper.disableDepth();
 		int k = 0;
 		int l = fontRendererObj.getStringWidth(text);
 
@@ -74,10 +71,10 @@ public abstract class GuiGanysNether extends GuiContainer {
 
 		zLevel = 0.0F;
 		itemRender.zLevel = 0.0F;
-		GL11.glEnable(GL11.GL_LIGHTING);
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		OpenGLHelper.enableLighting();
+		OpenGLHelper.enableDepth();
 		RenderHelper.enableStandardItemLighting();
-		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+		OpenGLHelper.enableRescaleNormal();
 	}
 
 	protected void drawFluid(Fluid fluid, int level, int x, int y, int width, int height) {
@@ -118,6 +115,6 @@ public abstract class GuiGanysNether extends GuiContainer {
 		float red = (color >> 16 & 255) / 255.0F;
 		float green = (color >> 8 & 255) / 255.0F;
 		float blue = (color & 255) / 255.0F;
-		GL11.glColor4f(red, green, blue, 1.0F);
+		OpenGLHelper.colour(red, green, blue, 1.0F);
 	}
 }
