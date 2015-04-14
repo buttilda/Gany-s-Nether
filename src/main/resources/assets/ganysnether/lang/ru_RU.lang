@@ -23,6 +23,7 @@ item.ganysnether.sceptreOfLightning.name=Скипетр молний
 item.ganysnether.sceptreCap_0.name=Наконечник огненных зарядов
 item.ganysnether.sceptreCap_1.name=Наконечник молний
 item.ganysnether.sceptreCap_2.name=Наконечник сокрытия
+item.ganysnether.sceptreCap_3.name=Иссушающий наконечник
 item.ganysnether.witherShrubSeeds.name=Семена иссушающего куста
 item.ganysnether.livingSoul.name=Живая душа
 item.ganysnether.ironNugget.name=Железный самородок
@@ -44,6 +45,7 @@ item.ganysnether.spawnerUpgrade10.name=Улучшение спаунера: Иг
 item.ganysnether.spawnerUpgrade11.name=Улучшение спаунера: Шелковистость
 item.ganysnether.spawnerUpgrade12.name=Улучшение спаунера: Количество
 item.ganysnether.spawnerUpgrade13.name=Улучшение спаунера: Дальность
+item.ganysnether.sceptreOfWithering.name=Скипетр иссушения
 
 item.ganysnether.blazeHelmet.name=Ифритовый шлем
 item.ganysnether.blazeChestplate.name=Ифритовая кираса
