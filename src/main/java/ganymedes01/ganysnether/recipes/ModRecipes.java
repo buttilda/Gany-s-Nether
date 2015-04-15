@@ -131,16 +131,16 @@ public class ModRecipes {
 		}
 
 		if (GanysNether.enableSoulChest)
-			addShapedRecipe(new ItemStack(ModBlocks.soulChest), "xyx", "x x", "xxx", 'x', Blocks.soul_sand, 'y', Items.quartz);
+			addShapedRecipe(new ItemStack(ModBlocks.soulChest), "xyx", "x x", "xxx", 'x', Blocks.soul_sand, 'y', "gemQuartz");
 
 		if (GanysNether.enableVolcanicFurnace) {
 			addShapedRecipe(new ItemStack(ModBlocks.volcanicFurnace), "yxy", "ywy", "zzz", 'x', Items.cauldron, 'y', Blocks.nether_brick, 'z', Blocks.obsidian, 'w', ModBlocks.denseLavaCell);
-			addShapedRecipe(new ItemStack(ModBlocks.denseLavaCell), "yxy", "xzx", "yxy", 'x', Items.lava_bucket, 'y', Items.diamond, 'z', Blocks.fire);
+			addShapedRecipe(new ItemStack(ModBlocks.denseLavaCell), "yxy", "xzx", "yxy", 'x', Items.lava_bucket, 'y', "gemDiamond", 'z', Blocks.fire);
 			addShapedRecipe(new ItemStack(ModBlocks.focusedLavaCell), "zzz", "xyx", "xwx", 'x', ModBlocks.denseLavaCell, 'y', GanysNether.enableQuartz ? new ItemStack(ModBlocks.colouredChiselledQuartzBlock) : "blockCoal", 'z', "ingotBlaze", 'w', ModItems.netherCore);
 		}
 
 		if (GanysNether.enableGlowbox) {
-			addShapedRecipe(new ItemStack(ModBlocks.glowBox, 4, 11), " y ", "yxy", " y ", 'x', Blocks.glowstone, 'y', Blocks.glass_pane);
+			addShapedRecipe(new ItemStack(ModBlocks.glowBox, 4, 11), " y ", "yxy", " y ", 'x', "dustGlowstone", 'y', Blocks.glass_pane);
 			for (int i = 0; i < dyes.length; i++)
 				addShapedRecipe(new ItemStack(ModBlocks.glowBox, 8, i), "xxx", "xyx", "xxx", 'x', new ItemStack(ModBlocks.glowBox, 1, OreDictionary.WILDCARD_VALUE), 'y', dyes[i]);
 		}
@@ -197,7 +197,6 @@ public class ModRecipes {
 
 		if (GanysNether.enableQuartz) {
 			OreDictionary.registerOre("blockQuartz", new ItemStack(ModBlocks.colouredQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
-			OreDictionary.registerOre("blockQuartz", new ItemStack(Blocks.quartz_block, 1, 0));
 
 			OreDictionary.registerOre("blockQuartzChiselled", new ItemStack(ModBlocks.colouredChiselledQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
 			OreDictionary.registerOre("blockQuartzChiselled", new ItemStack(Blocks.quartz_block, 1, 1));

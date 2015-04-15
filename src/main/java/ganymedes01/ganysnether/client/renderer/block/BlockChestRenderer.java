@@ -36,6 +36,7 @@ public class BlockChestRenderer implements ISimpleBlockRenderingHandler {
 
 		renderer.setRenderBounds(1F / 16F, 0, 1F / 16F, 15F / 16F, 10F / 16F, 15F / 16F);
 		BlockRendererHelper.renderSimpleBlock(block, metadata, renderer);
+		OpenGLHelper.translate(0.5F, 0.5F, 0.5F);
 
 		OpenGLHelper.pushMatrix();
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(block == ModBlocks.soulChest ? SOUL_CHEST : UNDERTAKER);
