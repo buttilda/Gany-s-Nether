@@ -2,6 +2,7 @@ package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
@@ -27,25 +28,25 @@ public class BaseballBat extends Item {
 	}
 
 	@Override
-	public boolean hitEntity(ItemStack item, EntityLivingBase attacked, EntityLivingBase player) {
+	public boolean hitEntity(ItemStack item, EntityLivingBase target, EntityLivingBase player) {
 		int max = item.getMaxDamage();
 		int dam = max - item.getItemDamage();
-		double d = attacked.posX - player.posX;
+		double d = target.posX - player.posX;
 		double d1;
-		for (d1 = attacked.posZ - player.posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)
+		for (d1 = target.posZ - player.posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)
 			d = (Math.random() - Math.random()) * 0.01D;
 
-		attacked.isAirBorne = true;
+		target.isAirBorne = true;
 		float f = MathHelper.sqrt_double(d * d + d1 * d1);
 		float f1 = 0.4F;
-		attacked.motionX /= 2D;
-		attacked.motionY /= 2D;
-		attacked.motionZ /= 2D;
-		attacked.motionX += d / f * f1 * dam / max * 10;
-		attacked.motionY += 0.40000000596046448D * dam / max * 2;
-		attacked.motionZ += d1 / f * f1 * dam / max * 10;
+		target.motionX /= 2D;
+		target.motionY /= 2D;
+		target.motionZ /= 2D;
+		target.motionX += d / f * f1 * dam / max * 10;
+		target.motionY += 0.4D * dam / max * 2;
+		target.motionZ += d1 / f * f1 * dam / max * 10;
 		item.damageItem(1, player);
-		attacked.worldObj.playAuxSFX(1012, (int) attacked.posX, (int) attacked.posY, (int) attacked.posZ, 0);
+		player.worldObj.playSoundAtEntity(target, Reference.MOD_ID + ":bat", 1.5F, player.worldObj.rand.nextFloat() * 0.1F + 0.9F);
 
 		return true;
 	}

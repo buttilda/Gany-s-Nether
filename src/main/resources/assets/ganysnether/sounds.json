@@ -4,5 +4,11 @@
     "sounds": [
       "breath"
     ]
+  },
+  "bat": {
+    "category": "player",
+    "sounds": [
+      "bat"
+    ]
   }
 }
