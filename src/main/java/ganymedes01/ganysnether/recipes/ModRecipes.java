@@ -5,6 +5,7 @@ import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
+import ganymedes01.ganysnether.lib.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
@@ -30,7 +31,7 @@ public class ModRecipes {
 	private static String[] dyes = new String[] { "dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple", "dyeCyan", "dyeLightGray", "dyeGray", "dyePink", "dyeLime", "dyeYellow", "dyeLightBlue", "dyeMagenta", "dyeOrange", "dyeWhite" };
 
 	public static void init() {
-		RecipeSorter.register("EnchantSensitive", EnchantSensitiveRecipe.class, Category.SHAPED, "after:minecraft:shaped");
+		RecipeSorter.register(Reference.MOD_ID + ".EnchantSensitive", EnchantSensitiveRecipe.class, Category.SHAPED, "after:minecraft:shaped");
 
 		registerOreDictionary();
 
