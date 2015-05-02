@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.client.renderer.block;
 
+import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.client.renderer.RenderingHelper;
 import ganymedes01.ganysnether.lib.RenderIDs;
 import net.minecraft.block.Block;
@@ -14,9 +15,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 @SideOnly(Side.CLIENT)
@@ -25,6 +26,7 @@ public class BlockFocusedLavaCellRender implements ISimpleBlockRenderingHandler 
 	@Override
 	public void renderInventoryBlock(Block block, int meta, int modelID, RenderBlocks renderer) {
 		RenderingHelper.renderCube(Blocks.lava, meta, renderer);
+		OpenGLHelper.translate(0.5F, 0.5F, 0.5F);
 		RenderingHelper.renderCube(block, meta, renderer);
 	}
 
