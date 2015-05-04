@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.client.model.ModelBlazeArmour;
 import ganymedes01.ganysnether.core.utils.Utils;
@@ -28,7 +29,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class BlazeArmour extends ItemArmor {
+public class BlazeArmour extends ItemArmor implements IConfigurable {
 
 	private final int MAX_COOL_DOWN = 160;
 	private int coolDown = MAX_COOL_DOWN;
@@ -116,5 +117,10 @@ public class BlazeArmour extends ItemArmor {
 		model.bipedLeftLeg.showModel = slot == 2 || slot == 3;
 		model.isSneak = player.isSneaking();
 		return model;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableBlazeArmour;
 	}
 }

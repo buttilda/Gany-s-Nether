@@ -33,15 +33,16 @@ public class TE3Manager extends Integration {
 			addPulveriserRecipe(3000, new ItemStack(ModItems.glowingReed), new ItemStack(Items.glowstone_dust, 3));
 			addPulveriserRecipe(6000, new ItemStack(ModItems.spectreWheat), new ItemStack(ModItems.spookyFlour));
 		}
+		if (GanysNether.enableFlour)
+			addPulveriserRecipe(1500, new ItemStack(Items.wheat), new ItemStack(ModItems.flour));
 
-		addPulveriserRecipe(1500, new ItemStack(Items.wheat), new ItemStack(ModItems.flour));
-
-		try {
-			ItemStack ingotInvar = OreDictionary.getOres("ingotInvar").get(0);
-			ingotInvar.stackSize = 2;
-			MagmaticCentrifugeRecipes.INSTANCE.addRecipe("ingotIron", "ingotNickel", ingotInvar);
-		} catch (Exception e) {
-		}
+		if (GanysNether.enableMagmaticCentrifuge)
+			try {
+				ItemStack ingotInvar = OreDictionary.getOres("ingotInvar").get(0);
+				ingotInvar.stackSize = 2;
+				MagmaticCentrifugeRecipes.INSTANCE.addRecipe("ingotIron", "ingotNickel", ingotInvar);
+			} catch (Exception e) {
+			}
 	}
 
 	@Override

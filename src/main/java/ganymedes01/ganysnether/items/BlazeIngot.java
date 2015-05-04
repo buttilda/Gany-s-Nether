@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 
@@ -21,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class BlazeIngot extends Item {
+public class BlazeIngot extends Item implements IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icon;
@@ -59,5 +60,10 @@ public class BlazeIngot extends Item {
 	public void getSubItems(Item itemID, CreativeTabs tab, List list) {
 		for (int i = 0; i < 3; i++)
 			list.add(new ItemStack(itemID, 1, i));
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 }

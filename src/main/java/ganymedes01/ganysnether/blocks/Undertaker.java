@@ -60,4 +60,9 @@ public class Undertaker extends SoulChest {
 		sides = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.UNDERTAKER_NAME + "_side"));
 		bottom = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.UNDERTAKER_NAME + "_bottom"));
 	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableUndertaker;
+	}
 }

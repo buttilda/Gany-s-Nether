@@ -1,5 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
@@ -24,7 +26,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class GlowingReedCrop extends BlockReed {
+public class GlowingReedCrop extends BlockReed implements IConfigurable {
 
 	public GlowingReedCrop() {
 		super();
@@ -78,5 +80,10 @@ public class GlowingReedCrop extends BlockReed {
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
 		return Utils.getColour(255, 255, 255);
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops;
 	}
 }

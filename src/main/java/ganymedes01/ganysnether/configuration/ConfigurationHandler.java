@@ -94,6 +94,7 @@ public class ConfigurationHandler {
 		GanysNether.enableBaseballBat = configBoolean("enableBaseballBat", true, GanysNether.enableBaseballBat);
 		GanysNether.enableLivingSoul = configBoolean("enableLivingSoul", true, GanysNether.enableLivingSoul);
 		GanysNether.enableSoulTNT = configBoolean("enableSoulTNT", true, GanysNether.enableSoulTNT);
+		GanysNether.enableFlour = configBoolean("enableFlour", true, GanysNether.enableFlour);
 
 		GanysNether.netherCropRate = configInteger("netherCropSpawnRate", GanysNether.netherCropRate);
 		GanysNether.witherShrubRate = configInteger("witherShrubSpawnRate", GanysNether.witherShrubRate);

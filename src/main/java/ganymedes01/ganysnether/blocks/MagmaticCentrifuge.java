@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.GUIsID;
 import ganymedes01.ganysnether.lib.Strings;
@@ -20,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class MagmaticCentrifuge extends InventoryBlock {
+public class MagmaticCentrifuge extends InventoryBlock implements IConfigurable {
 
 	public MagmaticCentrifuge() {
 		super(Material.rock);
@@ -71,5 +72,10 @@ public class MagmaticCentrifuge extends InventoryBlock {
 		TileEntityMagmaticCentrifuge tile = Utils.getTileEntity(world, x, y, z, TileEntityMagmaticCentrifuge.class);
 		if (tile != null)
 			tile.isPowered = world.isBlockIndirectlyGettingPowered(x, y, z);
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableMagmaticCentrifuge;
 	}
 }

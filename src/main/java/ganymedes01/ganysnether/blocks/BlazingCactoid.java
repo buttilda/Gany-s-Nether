@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.ModSounds;
 import ganymedes01.ganysnether.lib.RenderIDs;
@@ -26,7 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class BlazingCactoid extends BlockCactus {
+public class BlazingCactoid extends BlockCactus implements IConfigurable {
 
 	public BlazingCactoid() {
 		super();
@@ -94,5 +95,10 @@ public class BlazingCactoid extends BlockCactus {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister reg) {
 		blockIcon = reg.registerIcon(getTextureName());
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops;
 	}
 }

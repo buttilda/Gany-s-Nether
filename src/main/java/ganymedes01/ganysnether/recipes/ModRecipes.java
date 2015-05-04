@@ -96,8 +96,10 @@ public class ModRecipes {
 		}
 
 		// Others
-		GameRegistry.addSmelting(ModItems.flour, new ItemStack(Items.bread), 0.0F);
-		addShapedRecipe(new ItemStack(Blocks.torch, 8), "x", "y", 'x', Blocks.fire, 'y', "stickWood");
+		if (GanysNether.enableFlour)
+			GameRegistry.addSmelting(ModItems.flour, new ItemStack(Items.bread), 0.0F);
+		if (GanysNether.enableMagmaticCentrifuge)
+			addShapedRecipe(new ItemStack(Blocks.torch, 8), "x", "y", 'x', Blocks.fire, 'y', "stickWood");
 
 		// Iron
 		addShapedRecipe(new ItemStack(Items.iron_ingot), "xxx", "xxx", "xxx", 'x', "nuggetIron");
@@ -187,7 +189,8 @@ public class ModRecipes {
 		OreDictionary.registerOre("nuggetBlaze", new ItemStack(ModItems.blazeIngot, 1, 2));
 
 		OreDictionary.registerOre("nuggetIron", ModItems.ironNugget);
-		OreDictionary.registerOre("dustWheat", ModItems.flour);
+		if (GanysNether.enableFlour)
+			OreDictionary.registerOre("dustWheat", ModItems.flour);
 		OreDictionary.registerOre("mobEgg", new ItemStack(Items.spawn_egg, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("mobEgg", new ItemStack(ModItems.skeletonSpawner, 1, OreDictionary.WILDCARD_VALUE));
 

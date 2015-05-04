@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.GUIsID;
 import ganymedes01.ganysnether.lib.RenderIDs;
@@ -17,7 +18,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class VolcanicFurnace extends InventoryBlock {
+public class VolcanicFurnace extends InventoryBlock implements IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
@@ -98,5 +99,10 @@ public class VolcanicFurnace extends InventoryBlock {
 		icons[1] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.VOLCANIC_FURNACE_NAME) + "_top_off");
 		icons[2] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.VOLCANIC_FURNACE_NAME) + "_top_on");
 		icons[3] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.VOLCANIC_FURNACE_NAME) + "_side");
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableVolcanicFurnace;
 	}
 }

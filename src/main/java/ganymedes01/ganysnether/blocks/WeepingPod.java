@@ -1,5 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 
@@ -25,7 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class WeepingPod extends BlockCocoa {
+public class WeepingPod extends BlockCocoa implements IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] iconArray;
@@ -104,5 +106,10 @@ public class WeepingPod extends BlockCocoa {
 	@Override
 	public int getDamageValue(World world, int x, int y, int z) {
 		return 0;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops;
 	}
 }

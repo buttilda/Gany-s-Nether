@@ -52,12 +52,15 @@ public class MagmaticCentrifugeRecipes extends RecipeRegistry<CentrifugeRecipe> 
 	protected void addDefaultRecipes() {
 		addRecipe(Items.glowstone_dust, Blocks.netherrack, new ItemStack(Items.redstone, 4));
 		addRecipe(Items.magma_cream, Items.magma_cream, new ItemStack(Items.blaze_powder, 2), new ItemStack(Items.slime_ball, 2));
-		addRecipe(ModItems.glowingReed, ModItems.glowingReed, new ItemStack(Items.glowstone_dust, 2), new ItemStack(Items.sugar, 2));
-		addRecipe(ModItems.quarzBerry, Items.glass_bottle, new ItemStack(Items.potionitem));
+		if (GanysNether.shouldGenerateCrops) {
+			addRecipe(ModItems.glowingReed, ModItems.glowingReed, new ItemStack(Items.glowstone_dust, 2), new ItemStack(Items.sugar, 2));
+			addRecipe(ModItems.quarzBerry, Items.glass_bottle, new ItemStack(Items.potionitem));
+			addRecipe(ModItems.glowingReed, Items.potionitem, new ItemStack(Items.reeds), new ItemStack(Items.glass_bottle));
+			addRecipe(ModItems.spectreWheat, "gemDiamond", new ItemStack(ModItems.spookyFlour), new ItemStack(Items.diamond));
+		}
 		addRecipe(Blocks.glowstone, Items.flint, new ItemStack(Items.glowstone_dust, 4));
 		addRecipe(Blocks.gravel, Blocks.gravel, new ItemStack(Items.flint, 2));
 		addRecipe(Items.ender_eye, Items.ender_eye, new ItemStack(Items.blaze_powder, 2), new ItemStack(Items.ender_pearl, 2));
-		addRecipe(ModItems.glowingReed, Items.potionitem, new ItemStack(Items.reeds), new ItemStack(Items.glass_bottle));
 		addRecipe(Blocks.sand, Blocks.sand, new ItemStack(Blocks.glass, 2));
 		addRecipe("blockGlass", "blockGlass", new ItemStack(Blocks.sand, 2));
 		addRecipe(new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE), Items.flint, new ItemStack(Items.string, 6));
@@ -77,10 +80,10 @@ public class MagmaticCentrifugeRecipes extends RecipeRegistry<CentrifugeRecipe> 
 		addRecipe(Blocks.bookshelf, Items.flint, new ItemStack(Blocks.planks, 6), new ItemStack(Items.book, 3));
 		addRecipe(Items.leather, Items.flint, new ItemStack(Items.string, 3));
 		addRecipe(new ItemStack(Blocks.monster_egg, 1, OreDictionary.WILDCARD_VALUE), "gemQuartz", new ItemStack(Items.spawn_egg, 1, 60), new ItemStack(Blocks.cobblestone));
-		addRecipe(ModItems.spectreWheat, "gemDiamond", new ItemStack(ModItems.spookyFlour), new ItemStack(Items.diamond));
 		addRecipe(Blocks.quartz_block, Blocks.quartz_block, new ItemStack(Blocks.fire, 6));
 		addRecipe(new ItemStack(Items.dye, 1, 2), new ItemStack(Items.dye, 1, 2), new ItemStack(Items.slime_ball));
-		addRecipe(Items.wheat, Items.flint, new ItemStack(ModItems.flour), new ItemStack(Items.flint));
+		if (GanysNether.enableFlour)
+			addRecipe(Items.wheat, Items.flint, new ItemStack(ModItems.flour), new ItemStack(Items.flint));
 		addRecipe("dyeBlack", new ItemStack(Blocks.wool, 1, 4), new ItemStack(Blocks.sponge));
 	}
 

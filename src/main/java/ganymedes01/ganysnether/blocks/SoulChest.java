@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.RenderIDs;
@@ -28,7 +29,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class SoulChest extends InventoryBlock {
+public class SoulChest extends InventoryBlock implements IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	protected IIcon sides, bottom;
@@ -124,5 +125,10 @@ public class SoulChest extends InventoryBlock {
 	@Override
 	public boolean hasComparatorInputOverride() {
 		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableSoulChest;
 	}
 }

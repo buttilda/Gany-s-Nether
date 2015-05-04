@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
@@ -20,12 +21,12 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class DimensionalBread extends ItemFood {
+public class DimensionalBread extends ItemFood implements IConfigurable {
 
 	public DimensionalBread() {
 		super(5, false);
-		setCreativeTab(GanysNether.netherTab);
 		setPotionEffect(Potion.invisibility.id, 60, 0, 0.5F);
+		setCreativeTab(GanysNether.shouldGenerateCrops ? GanysNether.netherTab : null);
 		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.DIMENSIONAL_BREAD_NAME));
 	}
 
@@ -44,5 +45,10 @@ public class DimensionalBread extends ItemFood {
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack) {
 		return EnumRarity.uncommon;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops;
 	}
 }

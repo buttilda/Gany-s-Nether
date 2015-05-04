@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModBlocks.ISubBlocksBlock;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.blocks.ItemSoulGlass;
@@ -28,7 +29,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class SoulGlass extends Block implements ISubBlocksBlock {
+public class SoulGlass extends Block implements ISubBlocksBlock, IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon block, brick;
@@ -109,5 +110,10 @@ public class SoulGlass extends Block implements ISubBlocksBlock {
 	@Override
 	public Class<? extends ItemBlock> getItemBlockClass() {
 		return ItemSoulGlass.class;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableSoulGlass;
 	}
 }

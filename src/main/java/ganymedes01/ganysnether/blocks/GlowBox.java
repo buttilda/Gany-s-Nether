@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModBlocks.ISubBlocksBlock;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.blocks.ItemGlowBox;
@@ -26,7 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class GlowBox extends Block implements ISubBlocksBlock {
+public class GlowBox extends Block implements ISubBlocksBlock, IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] blockSide, blockTop;
@@ -85,5 +86,10 @@ public class GlowBox extends Block implements ISubBlocksBlock {
 	@Override
 	public Class<? extends ItemBlock> getItemBlockClass() {
 		return ItemGlowBox.class;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableGlowbox;
 	}
 }

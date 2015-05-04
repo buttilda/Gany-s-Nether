@@ -31,7 +31,8 @@ public class GanysSurfaceManager extends Integration {
 		}
 		addYieldForOrganicMatter(new ItemStack(ModItems.skeletonSpawner), 2);
 		addYieldForOrganicMatter(new ItemStack(ModItems.skeletonSpawner, 1, 1), 2);
-		addYieldForOrganicMatter(new ItemStack(ModItems.flour), 2);
+		if (GanysNether.enableFlour)
+			addYieldForOrganicMatter(new ItemStack(ModItems.flour), 2);
 	}
 
 	@Override

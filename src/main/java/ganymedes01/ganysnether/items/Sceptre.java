@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.lib.Reference;
 
@@ -21,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class Sceptre extends ItemSimpleFoiled {
+public class Sceptre extends ItemSimpleFoiled implements IConfigurable {
 
 	private final int capMeta;
 
@@ -53,5 +54,10 @@ public class Sceptre extends ItemSimpleFoiled {
 	@Override
 	public boolean getIsRepairable(ItemStack item, ItemStack material) {
 		return material.getItem() == ModItems.sceptreCap && material.getItemDamage() == capMeta;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableSceptres;
 	}
 }

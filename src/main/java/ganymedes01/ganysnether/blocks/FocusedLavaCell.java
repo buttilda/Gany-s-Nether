@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.RenderIDs;
@@ -17,7 +18,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  *
  */
 
-public class FocusedLavaCell extends Block {
+public class FocusedLavaCell extends Block implements IConfigurable {
 
 	public FocusedLavaCell() {
 		super(Material.iron);
@@ -39,5 +40,10 @@ public class FocusedLavaCell extends Block {
 			if (world.getBlock(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ) == ModBlocks.focusedLavaCell)
 				count++;
 		return count;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableVolcanicFurnace;
 	}
 }

@@ -1,5 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
@@ -28,7 +30,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class TilledNetherrack extends BlockFarmland {
+public class TilledNetherrack extends BlockFarmland implements IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon wetIcon, dryIcon;
@@ -128,5 +130,10 @@ public class TilledNetherrack extends BlockFarmland {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
 		return side == 1 ? meta > 0 ? wetIcon : dryIcon : Blocks.netherrack.getBlockTextureFromSide(side);
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops;
 	}
 }

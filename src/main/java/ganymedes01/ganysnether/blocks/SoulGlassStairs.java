@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
@@ -16,7 +17,7 @@ import net.minecraft.block.BlockStairs;
  *
  */
 
-public class SoulGlassStairs extends BlockStairs {
+public class SoulGlassStairs extends BlockStairs implements IConfigurable {
 
 	public SoulGlassStairs() {
 		super(ModBlocks.soulGlass, 1);
@@ -38,5 +39,10 @@ public class SoulGlassStairs extends BlockStairs {
 		if (quantity == 5)
 			return 1;
 		return 0;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableSoulGlass;
 	}
 }

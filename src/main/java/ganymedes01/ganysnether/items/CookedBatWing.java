@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.ItemFood;
@@ -13,7 +14,7 @@ import net.minecraft.item.ItemStack;
  *
  */
 
-public class CookedBatWing extends ItemFood {
+public class CookedBatWing extends ItemFood implements IConfigurable {
 
 	public CookedBatWing() {
 		super(1, true);
@@ -25,5 +26,10 @@ public class CookedBatWing extends ItemFood {
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack) {
 		return 8;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableReproducerAndDrops;
 	}
 }

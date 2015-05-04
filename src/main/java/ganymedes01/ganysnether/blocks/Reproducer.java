@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.GUIsID;
 import ganymedes01.ganysnether.lib.Strings;
@@ -21,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class Reproducer extends InventoryBlock {
+public class Reproducer extends InventoryBlock implements IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon blockSide, blockBottom, blockTop;
@@ -65,5 +66,10 @@ public class Reproducer extends InventoryBlock {
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityReproducer();
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableReproducerAndDrops;
 	}
 }

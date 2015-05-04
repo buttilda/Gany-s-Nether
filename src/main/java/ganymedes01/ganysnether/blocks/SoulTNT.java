@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.entities.EntitySlowTNT;
 import ganymedes01.ganysnether.lib.Strings;
@@ -20,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class SoulTNT extends BlockTNT {
+public class SoulTNT extends BlockTNT implements IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon blockTop, blockBottom;
@@ -64,5 +65,10 @@ public class SoulTNT extends BlockTNT {
 		blockIcon = reg.registerIcon(getTextureName() + "side");
 		blockTop = reg.registerIcon(getTextureName() + "top");
 		blockBottom = reg.registerIcon(getTextureName() + "bottom");
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableSoulTNT;
 	}
 }

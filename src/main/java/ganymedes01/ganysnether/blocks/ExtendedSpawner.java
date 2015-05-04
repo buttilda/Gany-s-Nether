@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
@@ -31,7 +32,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class ExtendedSpawner extends BlockMobSpawner {
+public class ExtendedSpawner extends BlockMobSpawner implements IConfigurable {
 
 	public ExtendedSpawner() {
 		disableStats();
@@ -148,5 +149,10 @@ public class ExtendedSpawner extends BlockMobSpawner {
 		if (spawner != null)
 			if (spawner.logic.tier == UpgradeType.tierDragonEgg.ordinal())
 				Blocks.ender_chest.randomDisplayTick(world, x, y, z, rand);
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableSpawners;
 	}
 }

@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
@@ -35,7 +36,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class SpawnerUpgrade extends Item {
+public class SpawnerUpgrade extends Item implements IConfigurable {
 
 	public enum UpgradeType {
 		tierCoal(Utils.getColour(33, 40, 45), new ItemStack(Items.coal), new ItemStack(Blocks.coal_block)),
@@ -226,5 +227,10 @@ public class SpawnerUpgrade extends Item {
 	public void getSubItems(Item item, CreativeTabs tabs, List list) {
 		for (int i = 0; i < UpgradeType.values().length; i++)
 			list.add(new ItemStack(item, 1, i));
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableSpawners;
 	}
 }

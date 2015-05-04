@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.GUIsID;
 import ganymedes01.ganysnether.lib.Strings;
@@ -29,7 +30,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class ThermalSmelter extends InventoryBlock {
+public class ThermalSmelter extends InventoryBlock implements IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
@@ -144,5 +145,10 @@ public class ThermalSmelter extends InventoryBlock {
 			world.spawnParticle("smoke", f + f4, f1, f2 + f3, 0.0D, 0.0D, 0.0D);
 			world.spawnParticle("flame", f + f4, f1, f2 + f3, 0.0D, 0.0D, 0.0D);
 		}
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableThermalSmelter;
 	}
 }

@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.block.material.Material;
@@ -21,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class BottomlessBucket extends ItemSimpleFoiled {
+public class BottomlessBucket extends ItemSimpleFoiled implements IConfigurable {
 
 	public BottomlessBucket() {
 		setMaxStackSize(1);
@@ -51,5 +52,10 @@ public class BottomlessBucket extends ItemSimpleFoiled {
 			}
 		}
 		return stack;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableBottomlessBucket;
 	}
 }

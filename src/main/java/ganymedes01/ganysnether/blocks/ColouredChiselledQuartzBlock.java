@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModBlocks.ISubBlocksBlock;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.blocks.ItemColouredChiselledQuartzBlock;
@@ -26,7 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class ColouredChiselledQuartzBlock extends Block implements ISubBlocksBlock {
+public class ColouredChiselledQuartzBlock extends Block implements ISubBlocksBlock, IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] blockTop, blockSide;
@@ -75,5 +76,10 @@ public class ColouredChiselledQuartzBlock extends Block implements ISubBlocksBlo
 	@Override
 	public Class<? extends ItemBlock> getItemBlockClass() {
 		return ItemColouredChiselledQuartzBlock.class;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableQuartz;
 	}
 }

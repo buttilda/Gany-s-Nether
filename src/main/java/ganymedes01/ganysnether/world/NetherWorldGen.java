@@ -35,12 +35,16 @@ public class NetherWorldGen implements IWorldGenerator {
 		info.setMin(2);
 		info.setMax(8);
 
-		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.witherShrubSeeds), 1, 2, 1));
+		if (GanysNether.shouldGenerateCrops) {
+			info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.witherShrubSeeds), 1, 2, 1));
+			info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.quarzBerrySeeds), 0, 12, 10));
+			info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.ghostSeeds), 0, 16, 8));
+			info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.dimensionalBread), 0, 18, 15));
+		}
+
 		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.skeletonSpawner), 0, 1, 8));
 		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.skeletonSpawner, 1, 1), 0, 1, 9));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.dimensionalBread), 0, 18, 15));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.quarzBerrySeeds), 0, 12, 10));
-		info.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.ghostSeeds), 0, 16, 8));
+
 		info.addItem(new WeightedRandomChestContent(new ItemStack(Blocks.torch), 0, 32, 13));
 		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.coal), 0, 32, 20));
 		info.addItem(new WeightedRandomChestContent(new ItemStack(Items.stick), 0, 32, 22));

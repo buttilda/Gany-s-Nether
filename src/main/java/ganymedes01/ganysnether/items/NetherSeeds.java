@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,13 +17,13 @@ import net.minecraftforge.common.util.ForgeDirection;
  *
  */
 
-public class NetherSeeds extends ItemSeeds {
+public class NetherSeeds extends ItemSeeds implements IConfigurable {
 
 	private final Block blockType;
 
-	NetherSeeds(Block cropID) {
-		super(cropID, ModBlocks.tilledNetherrack);
-		blockType = cropID;
+	NetherSeeds(Block crop) {
+		super(crop, ModBlocks.tilledNetherrack);
+		blockType = crop;
 		setCreativeTab(GanysNether.shouldGenerateCrops ? GanysNether.netherTab : null);
 	}
 
@@ -40,5 +41,10 @@ public class NetherSeeds extends ItemSeeds {
 				}
 		}
 		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops;
 	}
 }

@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
@@ -16,7 +17,7 @@ import net.minecraft.util.MathHelper;
  *
  */
 
-public class BaseballBat extends Item {
+public class BaseballBat extends Item implements IConfigurable {
 
 	public BaseballBat() {
 		setFull3D();
@@ -49,5 +50,10 @@ public class BaseballBat extends Item {
 		player.worldObj.playSoundAtEntity(target, Reference.MOD_ID + ":bat", 1.5F, player.worldObj.rand.nextFloat() * 0.1F + 0.9F);
 
 		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableBaseballBat;
 	}
 }

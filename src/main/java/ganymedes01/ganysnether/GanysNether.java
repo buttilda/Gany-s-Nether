@@ -72,6 +72,7 @@ public class GanysNether {
 	public static boolean enableBaseballBat = true;
 	public static boolean enableLivingSoul = true;
 	public static boolean enableSoulTNT = true;
+	public static boolean enableFlour = true;
 
 	public static int netherCropRate = 20;
 	public static int witherShrubRate = 50;

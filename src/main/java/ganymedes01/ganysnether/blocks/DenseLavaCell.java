@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 
@@ -20,7 +21,7 @@ import net.minecraft.world.World;
  *
  */
 
-public class DenseLavaCell extends Block {
+public class DenseLavaCell extends Block implements IConfigurable {
 
 	public DenseLavaCell() {
 		super(Material.iron);
@@ -69,5 +70,10 @@ public class DenseLavaCell extends Block {
 
 	private boolean isFlammable(World world, int x, int y, int z) {
 		return world.getBlock(x, y, z).getMaterial().getCanBurn();
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableVolcanicFurnace;
 	}
 }

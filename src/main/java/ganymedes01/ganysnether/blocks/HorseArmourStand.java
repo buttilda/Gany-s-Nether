@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModBlocks.ISubBlocksBlock;
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
@@ -26,7 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class HorseArmourStand extends BlockContainer implements ISubBlocksBlock {
+public class HorseArmourStand extends BlockContainer implements ISubBlocksBlock, IConfigurable {
 
 	public HorseArmourStand() {
 		super(Material.iron);
@@ -227,5 +228,10 @@ public class HorseArmourStand extends BlockContainer implements ISubBlocksBlock 
 	@Override
 	public Class<? extends ItemBlock> getItemBlockClass() {
 		return ItemHorseArmourStand.class;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableHorseArmourStand;
 	}
 }

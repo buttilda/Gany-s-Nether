@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
@@ -17,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class SpectreWheat extends Item {
+public class SpectreWheat extends Item implements IConfigurable {
 
 	public SpectreWheat() {
 		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.SPECTRE_WHEAT_NAME));
@@ -33,5 +34,10 @@ public class SpectreWheat extends Item {
 
 	public static void setIcon(IIcon icon) {
 		((SpectreWheat) ModItems.spectreWheat).itemIcon = icon;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops;
 	}
 }

@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 
@@ -21,7 +22,7 @@ import cpw.mods.fml.common.eventhandler.Event.Result;
  *
  */
 
-public class LivingSoul extends Item {
+public class LivingSoul extends Item implements IConfigurable {
 
 	public LivingSoul() {
 		setFull3D();
@@ -57,5 +58,10 @@ public class LivingSoul extends Item {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableLivingSoul;
 	}
 }

@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.blocks;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModBlocks;
 import net.minecraft.block.BlockStairs;
 
@@ -11,7 +12,7 @@ import net.minecraft.block.BlockStairs;
  *
  */
 
-public class ColouredQuartzStairs extends BlockStairs {
+public class ColouredQuartzStairs extends BlockStairs implements IConfigurable {
 
 	public ColouredQuartzStairs(int meta) {
 		super(ModBlocks.colouredQuartzBlock, meta);
@@ -19,5 +20,10 @@ public class ColouredQuartzStairs extends BlockStairs {
 		setLightOpacity(0);
 		setStepSound(soundTypeStone);
 		setCreativeTab(GanysNether.enableQuartz ? GanysNether.netherTab : null);
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableQuartz;
 	}
 }

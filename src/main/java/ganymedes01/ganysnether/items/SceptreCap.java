@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 
@@ -23,7 +24,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class SceptreCap extends ItemSimpleFoiled {
+public class SceptreCap extends ItemSimpleFoiled implements IConfigurable {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icon;
@@ -66,5 +67,10 @@ public class SceptreCap extends ItemSimpleFoiled {
 		icon = new IIcon[4];
 		for (int i = 0; i < icon.length; i++)
 			icon[i] = reg.registerIcon(Utils.getItemTexture(Strings.Items.SCEPTRE_CAP_NAME) + "_" + i);
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.enableSceptres;
 	}
 }

@@ -1,6 +1,7 @@
 package ganymedes01.ganysnether.items;
 
 import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 
@@ -18,7 +19,7 @@ import net.minecraft.util.StatCollector;
  *
  */
 
-public class LavaBerry extends Item {
+public class LavaBerry extends Item implements IConfigurable {
 
 	public LavaBerry() {
 		setTextureName(Utils.getItemTexture(Strings.Items.LAVA_BERRY_NAME));
@@ -30,5 +31,10 @@ public class LavaBerry extends Item {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag) {
 		list.add(StatCollector.translateToLocal("tooltip.ganysnether.hotInside"));
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops;
 	}
 }
