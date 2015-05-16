@@ -30,6 +30,7 @@ public class GlowingReedCrop extends BlockReed implements IConfigurable {
 
 	public GlowingReedCrop() {
 		super();
+		disableStats();
 		setHardness(0.0F);
 		setLightLevel(0.5F);
 		setStepSound(soundTypeGrass);
@@ -39,8 +40,15 @@ public class GlowingReedCrop extends BlockReed implements IConfigurable {
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
-		if (rand.nextInt(5) == 0)
-			super.updateTick(world, x, y, z, rand);
+		if (rand.nextInt(25) == 0 && canPlaceBlockAt(world, x, y, z))
+			if (world.isAirBlock(x, y + 1, z)) {
+				int height;
+
+				for (height = 1; world.getBlock(x, y - height, z) == this; height++)
+					;
+				if (height < 4)
+					world.setBlock(x, y + 1, z, this);
+			}
 	}
 
 	@Override
