@@ -1,0 +1,196 @@
+# Mainland Chinese localization - Joccob
+# Item localizations
+item.ganysnether.quarzBerrySeeds.name=石英莓种子
+item.ganysnether.quarzBerry.name=石英莓
+item.ganysnether.ghostSeeds.name=幽灵种子
+item.ganysnether.spectreWheatItem.name=幽冥小麦
+item.ganysnether.glowingReedItem.name=荧光甘蔗
+item.ganysnether.spookyFlour.name=幽冥粉
+item.ganysnether.bottomlessBucket.name=无底之桶
+item.ganysnether.dimensionalBread.name=空间面包
+item.ganysnether.baseballBat.name=棒球棍
+item.ganysnether.sceptreOfConcealment.name=捕获权杖
+item.ganysnether.skeletonSpawner0.name=生成 普通骷髅
+item.ganysnether.skeletonSpawner1.name=生成 凋零骷髅
+item.ganysnether.silverfishScale.name=银鱼磷
+item.ganysnether.batWing.name=蝙蝠翼
+item.ganysnether.cookedBatWing.name=烤蝙蝠翼
+item.ganysnether.wolfTeeth.name=狼牙
+item.ganysnether.blazeIngot0.name=烈焰网
+item.ganysnether.blazeIngot1.name=烈焰锭
+item.ganysnether.blazeIngot2.name=烈焰粒
+item.ganysnether.sceptreOfFireCharging.name=炎爆权杖
+item.ganysnether.sceptreOfLightning.name=闪电权杖
+item.ganysnether.sceptreCap_0.name=炎爆杖端
+item.ganysnether.sceptreCap_1.name=闪光杖端
+item.ganysnether.sceptreCap_2.name=捕获杖端
+item.ganysnether.sceptreCap_3.name=凋零杖端
+item.ganysnether.witherShrubSeeds.name=凋零灌木种子
+item.ganysnether.livingSoul.name=生魂
+item.ganysnether.ironNugget.name=铁粒
+item.ganysnether.flour.name=面粉
+item.ganysnether.hellBushSeeds.name=地狱灌木种子
+item.ganysnether.lavaBerry.name=烈焰莓
+item.ganysnether.netherCore.name=下界核心
+item.ganysnether.spawnerUpgrade0.name=刷怪笼升级：等级 0
+item.ganysnether.spawnerUpgrade1.name=刷怪笼升级：等级 1
+item.ganysnether.spawnerUpgrade2.name=刷怪笼升级：等级 2
+item.ganysnether.spawnerUpgrade3.name=刷怪笼升级：等级 3
+item.ganysnether.spawnerUpgrade4.name=刷怪笼升级：等级 4
+item.ganysnether.spawnerUpgrade5.name=刷怪笼升级：等级 5
+item.ganysnether.spawnerUpgrade6.name=刷怪笼升级：等级 6
+item.ganysnether.spawnerUpgrade7.name=刷怪笼升级：等级 7
+item.ganysnether.spawnerUpgrade8.name=刷怪笼升级：红石控制
+item.ganysnether.spawnerUpgrade9.name=刷怪笼升级： Autonomous
+item.ganysnether.spawnerUpgrade10.name=刷怪笼升级： 无视生成规则
+item.ganysnether.spawnerUpgrade11.name=刷怪笼升级： 精准采集
+item.ganysnether.spawnerUpgrade12.name=刷怪笼升级： 数量
+item.ganysnether.spawnerUpgrade13.name=刷怪笼升级： 范围
+item.ganysnether.sceptreOfWithering.name=凋零权杖
+
+item.ganysnether.blazeHelmet.name=烈焰头盔
+item.ganysnether.blazeChestplate.name=烈焰胸甲
+item.ganysnether.blazeLeggings.name=烈焰护腿
+item.ganysnether.blazeBoots.name=烈焰靴子
+
+# Block localizations
+tile.ganysnether.tilledNetherrack.name=耕种地狱岩
+tile.ganysnether.quarzBerryBush.name=石英莓灌木
+tile.ganysnether.spectreWheat.name=幽冥小麦
+tile.ganysnether.glowingReed.name=荧光甘蔗
+tile.ganysnether.soulGlass.name=灵魂玻璃
+tile.ganysnether.soulGlassBrick.name=灵魂玻璃砖
+tile.ganysnether.soulGlassStairs.name=灵魂玻璃砖楼梯
+tile.ganysnether.soulChest.name=灵魂箱
+tile.ganysnether.volcanicFurnace.name=火山熔炉
+tile.ganysnether.denseLavaCell.name=浓缩岩浆单元
+tile.ganysnether.reproducer.name=再生器
+tile.ganysnether.undertaker.name=送葬者
+tile.ganysnether.witherShrub.name=凋零灌木
+tile.ganysnether.magmaticCentrifuge.name=岩浆离心机
+tile.ganysnether.weepingPod.name=啼哭豆荚
+tile.ganysnether.soulGlassPane.name=灵魂玻璃板
+tile.ganysnether.soulTNT.name=灵魂TNT
+tile.ganysnether.blazingCactoid.name=烈焰珊瑚
+tile.ganysnether.hellBush.name=地狱灌木
+tile.ganysnether.thermalSmelter.name=热能炉
+tile.ganysnether.horseArmourStand.name=马铠架
+tile.ganysnether.extendedSpawner.name=拓展刷怪笼
+tile.ganysnether.focusedLavaCell.name=精华岩浆单元
+tile.ganysnether.soulGlassPane0.name=灵魂玻璃板
+tile.ganysnether.soulGlassPane1.name=灵魂玻璃砖板
+
+tile.ganysnether.glowBoxBlack.name=黑色荧光柱
+tile.ganysnether.glowBoxRed.name=红色荧光柱
+tile.ganysnether.glowBoxGreen.name=绿色荧光柱
+tile.ganysnether.glowBoxBrown.name=棕色荧光柱
+tile.ganysnether.glowBoxBlue.name=蓝色荧光柱
+tile.ganysnether.glowBoxPurple.name=紫色荧光柱
+tile.ganysnether.glowBoxCyan.name=青色荧光柱
+tile.ganysnether.glowBoxLightGrey.name=浅灰色荧光柱
+tile.ganysnether.glowBoxGrey.name=灰色荧光柱
+tile.ganysnether.glowBoxPink.name=粉色荧光柱
+tile.ganysnether.glowBoxLime.name=黄绿色荧光柱
+tile.ganysnether.glowBoxYellow.name=黄色荧光柱
+tile.ganysnether.glowBoxLightBlue.name=淡蓝色荧光柱
+tile.ganysnether.glowBoxMagenta.name=品红色荧光柱
+tile.ganysnether.glowBoxOrange.name=橙色荧光柱
+tile.ganysnether.glowBoxWhite.name=白色荧光柱
+
+tile.ganysnether.colouredQuartzBlockBlack.name=黑色石英块
+tile.ganysnether.colouredQuartzBlockRed.name=红色石英块
+tile.ganysnether.colouredQuartzBlockGreen.name=绿色石英块
+tile.ganysnether.colouredQuartzBlockBrown.name=棕色石英块
+tile.ganysnether.colouredQuartzBlockBlue.name=蓝色石英块
+tile.ganysnether.colouredQuartzBlockPurple.name=紫色石英块
+tile.ganysnether.colouredQuartzBlockCyan.name=青色石英块
+tile.ganysnether.colouredQuartzBlockLightGrey.name=浅灰色石英块
+tile.ganysnether.colouredQuartzBlockGrey.name=灰色石英块
+tile.ganysnether.colouredQuartzBlockPink.name=粉色石英块
+tile.ganysnether.colouredQuartzBlockLime.name=黄绿色石英块
+tile.ganysnether.colouredQuartzBlockYellow.name=黄色石英块
+tile.ganysnether.colouredQuartzBlockLightBlue.name=淡蓝色石英块
+tile.ganysnether.colouredQuartzBlockMagenta.name=品红色石英块
+tile.ganysnether.colouredQuartzBlockOrange.name=橙色石英块
+tile.ganysnether.colouredQuartzBlockWhite.name=白色石英块
+
+tile.ganysnether.colouredChiselledQuartzBlockBlack.name=黑色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockRed.name=红色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockGreen.name=绿色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockBrown.name=棕色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockBlue.name=蓝色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockPurple.name=紫色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockCyan.name=青色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockLightGrey.name=浅灰色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockGrey.name=灰色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockPink.name=粉色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockLime.name=黄绿色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockYellow.name=黄色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockLightBlue.name=淡蓝色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockMagenta.name=品红色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockOrange.name=橙色錾制石英块
+tile.ganysnether.colouredChiselledQuartzBlockWhite.name=白色錾制石英块
+
+tile.ganysnether.colouredQuartzPillar00.name=黑色竖纹石英块
+tile.ganysnether.colouredQuartzPillar01.name=红色竖纹石英块
+tile.ganysnether.colouredQuartzPillar02.name=绿色竖纹石英块
+tile.ganysnether.colouredQuartzPillar03.name=棕色竖纹石英块
+tile.ganysnether.colouredQuartzPillar10.name=蓝色竖纹石英块
+tile.ganysnether.colouredQuartzPillar11.name=紫色竖纹石英块
+tile.ganysnether.colouredQuartzPillar12.name=青色竖纹石英块
+tile.ganysnether.colouredQuartzPillar13.name=浅灰色竖纹石英块
+tile.ganysnether.colouredQuartzPillar20.name=灰色竖纹石英块
+tile.ganysnether.colouredQuartzPillar21.name=粉色竖纹石英块
+tile.ganysnether.colouredQuartzPillar22.name=黄绿色竖纹石英块
+tile.ganysnether.colouredQuartzPillar23.name=黄色竖纹石英块
+tile.ganysnether.colouredQuartzPillar30.name=淡蓝色竖纹石英块
+tile.ganysnether.colouredQuartzPillar31.name=品红色竖纹石英块
+tile.ganysnether.colouredQuartzPillar32.name=橙色竖纹石英块
+tile.ganysnether.colouredQuartzPillar33.name=白色竖纹石英块
+
+tile.ganysnether.blackQuartzStairs.name=黑色石英楼梯
+tile.ganysnether.redQuartzStairs.name=红色石英楼梯
+tile.ganysnether.greenQuartzStairs.name=绿色石英楼梯
+tile.ganysnether.brownQuartzStairs.name=棕色石英楼梯
+tile.ganysnether.blueQuartzStairs.name=蓝色石英楼梯
+tile.ganysnether.purpleQuartzStairs.name=紫色石英楼梯
+tile.ganysnether.cyanQuartzStairs.name=青色石英楼梯
+tile.ganysnether.lightGreyQuartzStairs.name=淡灰色石英楼梯
+tile.ganysnether.greyQuartzStairs.name=灰色石英楼梯
+tile.ganysnether.pinkQuartzStairs.name=粉色石英楼梯
+tile.ganysnether.limeQuartzStairs.name=黄绿色石英楼梯
+tile.ganysnether.yellowQuartzStairs.name=黄色石英楼梯
+tile.ganysnether.lightBlueQuartzStairs.name=淡蓝色石英楼梯
+tile.ganysnether.magentaQuartzStairs.name=品红色石英楼梯
+tile.ganysnether.orangeQuartzStairs.name=橙色石英楼梯
+tile.ganysnether.whiteQuartzStairs.name=白色石英楼梯
+
+# GUI localizations
+container.ganysnether.volcanicFurnace=火山熔炉
+container.ganysnether.reproducer=再生器
+container.ganysnether.soulChest=灵魂箱
+container.ganysnether.undertaker=送葬者
+container.ganysnether.magmaticCentrifuge=岩浆离心机
+container.ganysnether.thermalSmelter=热能炉
+fluidtogo=Fluid to go:
+
+# Creative Tab localizations
+itemGroup.ganysnether=Gany's Nether
+
+# Tooltips
+tooltip.ganysnether.hotInside=炽热的内心
+tooltip.ganysnether.ghastTear=右击黑曜石来种植
+tooltip.ganysnether.firstUpgrade=第一个升级
+tooltip.ganysnether.plusTwoSlots=+2 插槽
+tooltip.ganysnether.spawnsUpToThree=生成最多三种不同怪物
+tooltip.ganysnether.controlWithRedstone=通过红石信号控制刷怪笼
+tooltip.ganysnether.spawnerWillRunWithNoPlayers=周围无玩家时刷怪笼依旧运作
+tooltip.ganysnether.spawnerIgnoreConditions=刷怪笼会无视亮度, 维度, 等等...
+tooltip.ganysnether.spawnerSilky=刷怪笼被破坏后可被拾取
+tooltip.ganysnether.spawnerPlusOne=+1 随机生成
+tooltip.ganysnether.spawnerRange=+2,+0,+2 (x,y,z) 生成范围升级
+tooltip.ganysnether.sceptre=在铁砧修复我!
+
+# Version Check
+versioncheck.ganyssurface.message=§6Gany's Nether §fis §coutdated§f.
+versioncheck.ganyssurface.download=Download %s
