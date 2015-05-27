@@ -4,7 +4,6 @@ import ganymedes01.ganysnether.inventory.slots.BetterSlot;
 import ganymedes01.ganysnether.tileentities.TileEntityMagmaticCentrifuge;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -17,13 +16,14 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
  *
  */
 
-public class ContainerMagmaticCentrifuge extends Container {
+public class ContainerMagmaticCentrifuge extends GanysContainer {
 
 	private final TileEntityMagmaticCentrifuge centrifuge;
 	private final int centerX = 80, centerY = 71;
 	private final int posX1, posY1, posX2, posY2;
 
 	public ContainerMagmaticCentrifuge(InventoryPlayer inventory, TileEntityMagmaticCentrifuge tile) {
+		super(tile);
 		centrifuge = tile;
 		addSlotToContainer(new BetterSlot(tile, 0, 153, 31));
 		addSlotToContainer(new BetterSlot(tile, 1, 153, 111));
@@ -71,11 +71,6 @@ public class ContainerMagmaticCentrifuge extends Container {
 
 		((Slot) inventorySlots.get(3)).xDisplayPosition = (int) (centerX + (posX2 - centerX) * Math.cos(angle) - (posY2 - centerY) * Math.sin(angle));
 		((Slot) inventorySlots.get(3)).yDisplayPosition = (int) (centerY + (posX2 - centerX) * Math.sin(angle) + (posY2 - centerY) * Math.cos(angle));
-	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return true;
 	}
 
 	@Override

@@ -5,7 +5,6 @@ import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import ganymedes01.ganysnether.tileentities.TileEntityVolcanicFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -18,11 +17,12 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
  *
  */
 
-public class ContainerVolcanicFurnace extends Container {
+public class ContainerVolcanicFurnace extends GanysContainer {
 
 	private final TileEntityVolcanicFurnace furnace;
 
 	public ContainerVolcanicFurnace(InventoryPlayer inventory, TileEntityVolcanicFurnace tile) {
+		super(tile);
 		furnace = tile;
 		addSlotToContainer(new BetterSlot(tile, 0, 48, 36));
 		addSlotToContainer(new BetterSlot(tile, 1, 136, 17));
@@ -46,11 +46,6 @@ public class ContainerVolcanicFurnace extends Container {
 	@Override
 	public void updateProgressBar(int id, int value) {
 		furnace.getGUIData(id, value);
-	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return true;
 	}
 
 	@Override

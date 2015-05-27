@@ -5,7 +5,6 @@ import ganymedes01.ganysnether.recipes.ReproducerRecipes;
 import ganymedes01.ganysnether.tileentities.TileEntityReproducer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -17,11 +16,12 @@ import net.minecraft.item.ItemStack;
  *
  */
 
-public class ContainerReproducer extends Container {
+public class ContainerReproducer extends GanysContainer {
 
 	private final TileEntityReproducer reproducer;
 
 	public ContainerReproducer(InventoryPlayer inventory, TileEntityReproducer tile) {
+		super(tile);
 		reproducer = tile;
 		addSlotToContainer(new BetterSlot(tile, 0, 36, 33));
 		addSlotToContainer(new BetterSlot(tile, 1, 72, 33));
@@ -47,11 +47,6 @@ public class ContainerReproducer extends Container {
 	@Override
 	public void updateProgressBar(int id, int value) {
 		reproducer.getGUIData(id, value);
-	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return true;
 	}
 
 	@Override

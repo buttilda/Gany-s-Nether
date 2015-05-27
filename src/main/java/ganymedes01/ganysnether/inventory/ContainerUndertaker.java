@@ -4,7 +4,6 @@ import ganymedes01.ganysnether.inventory.slots.BetterSlot;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -19,11 +18,12 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class ContainerUndertaker extends Container {
+public class ContainerUndertaker extends GanysContainer {
 
 	private final TileEntityUndertaker tile;
 
 	public ContainerUndertaker(InventoryPlayer inventory, TileEntityUndertaker tile) {
+		super(tile);
 		this.tile = tile;
 		tile.openInventory();
 
@@ -71,11 +71,6 @@ public class ContainerUndertaker extends Container {
 				slot.onSlotChanged();
 		}
 		return itemStack;
-	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return true;
 	}
 
 	@Override
