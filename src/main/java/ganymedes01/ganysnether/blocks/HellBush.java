@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
@@ -38,5 +39,10 @@ public class HellBush extends QuarzBerryBush {
 		iconArray = new IIcon[4];
 		for (int i = 0; i < iconArray.length; i++)
 			iconArray[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.HELL_BUSH_NAME + "_stage_") + i);
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateHellBush;
 	}
 }

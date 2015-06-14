@@ -25,6 +25,6 @@ public class GlowingReed extends ItemReed implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return GanysNether.shouldGenerateCrops;
+		return GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateGlowingReed;
 	}
 }

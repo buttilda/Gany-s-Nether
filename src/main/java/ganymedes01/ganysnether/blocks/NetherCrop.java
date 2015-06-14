@@ -1,6 +1,5 @@
 package ganymedes01.ganysnether.blocks;
 
-import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModBlocks;
 
@@ -19,7 +18,7 @@ import net.minecraft.world.World;
  *
  */
 
-public class NetherCrop extends BlockCrops implements IConfigurable {
+public abstract class NetherCrop extends BlockCrops implements IConfigurable {
 
 	@Override
 	protected boolean canPlaceBlockOn(Block block) {
@@ -55,10 +54,5 @@ public class NetherCrop extends BlockCrops implements IConfigurable {
 
 		if (meta < 7)
 			world.setBlockMetadataWithNotify(x, y, z, ++meta, 3);
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return GanysNether.shouldGenerateCrops;
 	}
 }

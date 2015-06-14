@@ -110,6 +110,6 @@ public class WeepingPod extends BlockCocoa implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return GanysNether.shouldGenerateCrops;
+		return GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateWeepingPod;
 	}
 }

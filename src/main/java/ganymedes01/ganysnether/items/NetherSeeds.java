@@ -17,7 +17,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  *
  */
 
-public class NetherSeeds extends ItemSeeds implements IConfigurable {
+public abstract class NetherSeeds extends ItemSeeds implements IConfigurable {
 
 	private final Block blockType;
 
@@ -41,10 +41,5 @@ public class NetherSeeds extends ItemSeeds implements IConfigurable {
 				}
 		}
 		return false;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return GanysNether.shouldGenerateCrops;
 	}
 }

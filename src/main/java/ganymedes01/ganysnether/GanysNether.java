@@ -74,6 +74,14 @@ public class GanysNether {
 	public static boolean enableSoulTNT = true;
 	public static boolean enableFlour = true;
 
+	public static boolean shouldGenerateBlazingCactoid = true;
+	public static boolean shouldGenerateHellBush = true;
+	public static boolean shouldGenerateGlowingReed = true;
+	public static boolean shouldGenerateQuarzBerryBush = true;
+	public static boolean shouldGenerateSpectreWheat = true;
+	public static boolean shouldGenerateWitherShrub = true;
+	public static boolean shouldGenerateWeepingPod = true;
+
 	public static int netherCropRate = 20;
 	public static int witherShrubRate = 50;
 	public static int undertakerRate = 1200;

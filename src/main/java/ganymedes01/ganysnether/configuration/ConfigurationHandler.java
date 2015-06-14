@@ -25,7 +25,7 @@ public class ConfigurationHandler {
 
 	public static ConfigurationHandler INSTANCE = new ConfigurationHandler();
 	public Configuration configFile;
-	public String[] usedCategories = { Configuration.CATEGORY_GENERAL, "durability", "mod integration" };
+	public String[] usedCategories = { Configuration.CATEGORY_GENERAL, "durability", "mod integration", "crops" };
 
 	private int configDurability(String name, int def) {
 		int config = configFile.get("Durability", name, def).setRequiresMcRestart(true).getInt(def);
@@ -38,7 +38,11 @@ public class ConfigurationHandler {
 	}
 
 	private boolean configBoolean(String name, boolean requiresRestart, boolean def) {
-		return configFile.get(Configuration.CATEGORY_GENERAL, name, def).getBoolean(def);
+		return configBoolean(Configuration.CATEGORY_GENERAL, name, requiresRestart, def);
+	}
+
+	private boolean configBoolean(String category, String name, boolean requiresRestart, boolean def) {
+		return configFile.get(category, name, def).getBoolean(def);
 	}
 
 	private boolean configIntegrationBoolean(String modID) {
@@ -95,6 +99,14 @@ public class ConfigurationHandler {
 		GanysNether.enableLivingSoul = configBoolean("enableLivingSoul", true, GanysNether.enableLivingSoul);
 		GanysNether.enableSoulTNT = configBoolean("enableSoulTNT", true, GanysNether.enableSoulTNT);
 		GanysNether.enableFlour = configBoolean("enableFlour", true, GanysNether.enableFlour);
+
+		GanysNether.shouldGenerateBlazingCactoid = configBoolean("crops", "blazing cactoid", true, GanysNether.shouldGenerateBlazingCactoid);
+		GanysNether.shouldGenerateHellBush = configBoolean("crops", "hell bush", true, GanysNether.shouldGenerateHellBush);
+		GanysNether.shouldGenerateGlowingReed = configBoolean("crops", "glowing reed", true, GanysNether.shouldGenerateGlowingReed);
+		GanysNether.shouldGenerateQuarzBerryBush = configBoolean("crops", "quarz berry bush", true, GanysNether.shouldGenerateQuarzBerryBush);
+		GanysNether.shouldGenerateSpectreWheat = configBoolean("crops", "spectre wheat", true, GanysNether.shouldGenerateSpectreWheat);
+		GanysNether.shouldGenerateWitherShrub = configBoolean("crops", "wither shrub", true, GanysNether.shouldGenerateWitherShrub);
+		GanysNether.shouldGenerateWeepingPod = configBoolean("crops", "weeping pod", true, GanysNether.shouldGenerateWeepingPod);
 
 		GanysNether.netherCropRate = configInteger("netherCropSpawnRate", GanysNether.netherCropRate);
 		GanysNether.witherShrubRate = configInteger("witherShrubSpawnRate", GanysNether.witherShrubRate);

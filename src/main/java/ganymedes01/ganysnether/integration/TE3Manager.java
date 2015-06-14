@@ -24,14 +24,19 @@ public class TE3Manager extends Integration {
 	@Override
 	public void init() {
 		if (GanysNether.shouldGenerateCrops) {
-			addMagmaCruicibleRecipe(30000, new ItemStack(ModItems.lavaBerry), new FluidStack(FluidRegistry.LAVA, 250));
+			if (GanysNether.shouldGenerateHellBush)
+				addMagmaCruicibleRecipe(30000, new ItemStack(ModItems.lavaBerry), new FluidStack(FluidRegistry.LAVA, 250));
+			if (GanysNether.shouldGenerateSpectreWheat) {
+				addInductionSmelterRecipe(4000, new ItemStack(ModItems.spookyFlour), new ItemStack(Blocks.sand), new ItemStack(Blocks.soul_sand));
+				addPulveriserRecipe(6000, new ItemStack(ModItems.spectreWheat), new ItemStack(ModItems.spookyFlour));
+			}
+			if (GanysNether.shouldGenerateQuarzBerryBush)
+				addInductionSmelterRecipe(4000, new ItemStack(ModItems.quarzBerry), new ItemStack(Blocks.glass), new ItemStack(Items.quartz));
 
-			addInductionSmelterRecipe(4000, new ItemStack(ModItems.spookyFlour), new ItemStack(Blocks.sand), new ItemStack(Blocks.soul_sand));
-			addInductionSmelterRecipe(4000, new ItemStack(ModItems.quarzBerry), new ItemStack(Blocks.glass), new ItemStack(Items.quartz));
+			if (GanysNether.shouldGenerateGlowingReed)
+				addPulveriserRecipe(3000, new ItemStack(ModItems.glowingReed), new ItemStack(Items.glowstone_dust, 3));
+
 			addInductionSmelterRecipe(8000, new ItemStack(ModItems.silverfishScale), new ItemStack(Blocks.stonebrick, 8, 3), new ItemStack(Blocks.gravel), new ItemStack(Items.emerald), 5);
-
-			addPulveriserRecipe(3000, new ItemStack(ModItems.glowingReed), new ItemStack(Items.glowstone_dust, 3));
-			addPulveriserRecipe(6000, new ItemStack(ModItems.spectreWheat), new ItemStack(ModItems.spookyFlour));
 		}
 		if (GanysNether.enableFlour)
 			addPulveriserRecipe(1500, new ItemStack(Items.wheat), new ItemStack(ModItems.flour));

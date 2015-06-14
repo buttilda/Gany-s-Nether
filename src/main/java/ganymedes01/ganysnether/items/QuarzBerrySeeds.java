@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.items;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
@@ -17,5 +18,10 @@ public class QuarzBerrySeeds extends NetherSeeds {
 		super(ModBlocks.quarzBerryBush);
 		setTextureName(Utils.getItemTexture(Strings.Items.QUARZ_BERRY_SEEDS_NAME));
 		setUnlocalizedName(Utils.getUnlocalisedName(Strings.Items.QUARZ_BERRY_SEEDS_NAME));
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateQuarzBerryBush;
 	}
 }

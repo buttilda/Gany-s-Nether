@@ -38,6 +38,6 @@ public class SpectreWheat extends Item implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return GanysNether.shouldGenerateCrops;
+		return GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateSpectreWheat;
 	}
 }

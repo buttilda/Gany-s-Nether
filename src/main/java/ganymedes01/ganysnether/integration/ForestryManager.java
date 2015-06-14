@@ -56,11 +56,16 @@ public class ForestryManager extends Integration {
 	@Override
 	public void postInit() {
 		if (GanysNether.shouldGenerateCrops) {
-			addSqueezerRecipe(new ItemStack(ModItems.ghostSeeds), 20);
-			addSqueezerRecipe(new ItemStack(ModItems.quarzBerrySeeds), 20);
-			addSqueezerRecipe("lava", new ItemStack(ModItems.hellBushSeeds), 15);
-			addSqueezerRecipe("lava", new ItemStack(ModItems.lavaBerry), 250);
-			addSqueezerRecipe(new ItemStack(ModItems.witherShrubSeeds), 2000);
+			if (GanysNether.shouldGenerateSpectreWheat)
+				addSqueezerRecipe(new ItemStack(ModItems.ghostSeeds), 20);
+			if (GanysNether.shouldGenerateQuarzBerryBush)
+				addSqueezerRecipe(new ItemStack(ModItems.quarzBerrySeeds), 20);
+			if (GanysNether.shouldGenerateHellBush) {
+				addSqueezerRecipe("lava", new ItemStack(ModItems.hellBushSeeds), 15);
+				addSqueezerRecipe("lava", new ItemStack(ModItems.lavaBerry), 250);
+			}
+			if (GanysNether.shouldGenerateWitherShrub)
+				addSqueezerRecipe(new ItemStack(ModItems.witherShrubSeeds), 2000);
 		}
 	}
 

@@ -49,6 +49,6 @@ public class DimensionalBread extends ItemFood implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return GanysNether.shouldGenerateCrops;
+		return GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateSpectreWheat;
 	}
 }

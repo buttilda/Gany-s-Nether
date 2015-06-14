@@ -31,6 +31,11 @@ public class GhostSeeds extends NetherSeeds {
 			itemIcon = reg.registerIcon(Utils.getItemTexture(Strings.Items.GHOST_SEEDS_NAME));
 	}
 
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateSpectreWheat;
+	}
+
 	public static void setIcon(IIcon icon) {
 		((GhostSeeds) ModItems.ghostSeeds).itemIcon = icon;
 	}

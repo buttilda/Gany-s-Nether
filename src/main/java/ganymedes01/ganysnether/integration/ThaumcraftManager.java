@@ -67,17 +67,26 @@ public class ThaumcraftManager extends Integration {
 			addAspectsToItem(ModItems.flour, new Aspect[] { Aspect.HUNGER, Aspect.ENTROPY }, new int[] { 1, 1 });
 
 		if (GanysNether.shouldGenerateCrops) {
-			addAspectsToItem(ModItems.hellBushSeeds, new Aspect[] { Aspect.PLANT, Aspect.FIRE }, new int[] { 1, 1 });
-			addAspectsToItem(ModItems.lavaBerry, new Aspect[] { Aspect.FIRE }, new int[] { 3 });
-			addAspectsToItem(ModBlocks.blazingCactoid, new Aspect[] { Aspect.PLANT, Aspect.ENTROPY, Aspect.FIRE }, new int[] { 3, 1, 1 });
-			addAspectsToItem(ModItems.spookyFlour, new Aspect[] { Aspect.SOUL, Aspect.CROP }, new int[] { 1, 1 });
-			addAspectsToItem(ModItems.dimensionalBread, new Aspect[] { Aspect.SOUL, Aspect.CROP, Aspect.HUNGER }, new int[] { 1, 3, 2 });
-			addAspectsToItem(ModItems.glowingReed, new Aspect[] { Aspect.AIR, Aspect.FIRE, Aspect.LIGHT }, new int[] { 1, 1, 1 });
-			addAspectsToItem(ModItems.spectreWheat, new Aspect[] { Aspect.CROP, Aspect.SOUL }, new int[] { 1, 1 });
-			addAspectsToItem(ModItems.quarzBerry, new Aspect[] { Aspect.CROP, Aspect.CRYSTAL }, new int[] { 1, 1 });
-			addAspectsToItem(ModItems.quarzBerrySeeds, new Aspect[] { Aspect.PLANT, Aspect.UNDEAD }, new int[] { 1, 1 });
-			addAspectsToItem(ModItems.ghostSeeds, new Aspect[] { Aspect.PLANT, Aspect.SOUL }, new int[] { 1, 1 });
-			addAspectsToItem(ModItems.witherShrubSeeds, new Aspect[] { Aspect.PLANT, Aspect.UNDEAD }, new int[] { 1, 1 });
+			if (GanysNether.shouldGenerateHellBush) {
+				addAspectsToItem(ModItems.hellBushSeeds, new Aspect[] { Aspect.PLANT, Aspect.FIRE }, new int[] { 1, 1 });
+				addAspectsToItem(ModItems.lavaBerry, new Aspect[] { Aspect.FIRE }, new int[] { 3 });
+			}
+			if (GanysNether.shouldGenerateBlazingCactoid)
+				addAspectsToItem(ModBlocks.blazingCactoid, new Aspect[] { Aspect.PLANT, Aspect.ENTROPY, Aspect.FIRE }, new int[] { 3, 1, 1 });
+			if (GanysNether.shouldGenerateSpectreWheat) {
+				addAspectsToItem(ModItems.spookyFlour, new Aspect[] { Aspect.SOUL, Aspect.CROP }, new int[] { 1, 1 });
+				addAspectsToItem(ModItems.dimensionalBread, new Aspect[] { Aspect.SOUL, Aspect.CROP, Aspect.HUNGER }, new int[] { 1, 3, 2 });
+				addAspectsToItem(ModItems.spectreWheat, new Aspect[] { Aspect.CROP, Aspect.SOUL }, new int[] { 1, 1 });
+				addAspectsToItem(ModItems.ghostSeeds, new Aspect[] { Aspect.PLANT, Aspect.SOUL }, new int[] { 1, 1 });
+			}
+			if (GanysNether.shouldGenerateGlowingReed)
+				addAspectsToItem(ModItems.glowingReed, new Aspect[] { Aspect.AIR, Aspect.FIRE, Aspect.LIGHT }, new int[] { 1, 1, 1 });
+			if (GanysNether.shouldGenerateQuarzBerryBush) {
+				addAspectsToItem(ModItems.quarzBerry, new Aspect[] { Aspect.CROP, Aspect.CRYSTAL }, new int[] { 1, 1 });
+				addAspectsToItem(ModItems.quarzBerrySeeds, new Aspect[] { Aspect.PLANT, Aspect.UNDEAD }, new int[] { 1, 1 });
+			}
+			if (GanysNether.shouldGenerateWitherShrub)
+				addAspectsToItem(ModItems.witherShrubSeeds, new Aspect[] { Aspect.PLANT, Aspect.UNDEAD }, new int[] { 1, 1 });
 		}
 	}
 

@@ -53,10 +53,14 @@ public class MagmaticCentrifugeRecipes extends RecipeRegistry<CentrifugeRecipe> 
 		addRecipe(Items.glowstone_dust, Blocks.netherrack, new ItemStack(Items.redstone, 4));
 		addRecipe(Items.magma_cream, Items.magma_cream, new ItemStack(Items.blaze_powder, 2), new ItemStack(Items.slime_ball, 2));
 		if (GanysNether.shouldGenerateCrops) {
-			addRecipe(ModItems.glowingReed, ModItems.glowingReed, new ItemStack(Items.glowstone_dust, 2), new ItemStack(Items.sugar, 2));
-			addRecipe(ModItems.quarzBerry, Items.glass_bottle, new ItemStack(Items.potionitem));
-			addRecipe(ModItems.glowingReed, Items.potionitem, new ItemStack(Items.reeds), new ItemStack(Items.glass_bottle));
-			addRecipe(ModItems.spectreWheat, "gemDiamond", new ItemStack(ModItems.spookyFlour), new ItemStack(Items.diamond));
+			if (GanysNether.shouldGenerateGlowingReed) {
+				addRecipe(ModItems.glowingReed, ModItems.glowingReed, new ItemStack(Items.glowstone_dust, 2), new ItemStack(Items.sugar, 2));
+				addRecipe(ModItems.glowingReed, Items.potionitem, new ItemStack(Items.reeds), new ItemStack(Items.glass_bottle));
+			}
+			if (GanysNether.shouldGenerateQuarzBerryBush)
+				addRecipe(ModItems.quarzBerry, Items.glass_bottle, new ItemStack(Items.potionitem));
+			if (GanysNether.shouldGenerateSpectreWheat)
+				addRecipe(ModItems.spectreWheat, "gemDiamond", new ItemStack(ModItems.spookyFlour), new ItemStack(Items.diamond));
 		}
 		addRecipe(Blocks.glowstone, Items.flint, new ItemStack(Items.glowstone_dust, 4));
 		addRecipe(Blocks.gravel, Blocks.gravel, new ItemStack(Items.flint, 2));

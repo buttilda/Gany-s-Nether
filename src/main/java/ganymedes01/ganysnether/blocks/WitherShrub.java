@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.blocks;
 
+import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.Utils;
@@ -266,5 +267,10 @@ public class WitherShrub extends NetherCrop {
 	public void registerBlockIcons(IIconRegister reg) {
 		disconnected = reg.registerIcon("pumpkin_stem_disconnected");
 		connected = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.WITHER_SHRUB_NAME));
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateWitherShrub;
 	}
 }

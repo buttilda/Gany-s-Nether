@@ -106,12 +106,18 @@ public class ModRecipes {
 		addShapedRecipe(new ItemStack(ModItems.ironNugget, 9), "x", 'x', "ingotIron");
 
 		if (GanysNether.shouldGenerateCrops) {
-			GameRegistry.addSmelting(ModBlocks.blazingCactoid, new ItemStack(ModItems.blazeIngot, 1, 2), 1F);
-			addShapedRecipe(new ItemStack(Items.blaze_rod), "x", "x", "x", 'x', "nuggetBlaze");
-			addShapelessRecipe(new ItemStack(Items.glowstone_dust, 2), new ItemStack(ModItems.glowingReed));
-			GameRegistry.addSmelting(ModItems.spookyFlour, new ItemStack(ModItems.dimensionalBread), 0.0F);
-			addShapedRecipe(new ItemStack(Items.quartz, 6), "xxx", "yyy", "xxx", 'x', ModItems.quarzBerry, 'y', Blocks.glass);
-			addShapedRecipe(new ItemStack(Items.lava_bucket), "xxx", "xyx", "xxx", 'x', ModItems.lavaBerry, 'y', Items.bucket);
+			if (GanysNether.shouldGenerateBlazingCactoid) {
+				GameRegistry.addSmelting(ModBlocks.blazingCactoid, new ItemStack(ModItems.blazeIngot, 1, 2), 1F);
+				addShapedRecipe(new ItemStack(Items.blaze_rod), "x", "x", "x", 'x', "nuggetBlaze");
+			}
+			if (GanysNether.shouldGenerateGlowingReed)
+				addShapelessRecipe(new ItemStack(Items.glowstone_dust, 2), new ItemStack(ModItems.glowingReed));
+			if (GanysNether.shouldGenerateSpectreWheat)
+				GameRegistry.addSmelting(ModItems.spookyFlour, new ItemStack(ModItems.dimensionalBread), 0.0F);
+			if (GanysNether.shouldGenerateQuarzBerryBush)
+				addShapedRecipe(new ItemStack(Items.quartz, 6), "xxx", "yyy", "xxx", 'x', ModItems.quarzBerry, 'y', Blocks.glass);
+			if (GanysNether.shouldGenerateHellBush)
+				addShapedRecipe(new ItemStack(Items.lava_bucket), "xxx", "xyx", "xxx", 'x', ModItems.lavaBerry, 'y', Items.bucket);
 
 		}
 	}
@@ -178,7 +184,7 @@ public class ModRecipes {
 		if (GanysNether.enableHorseArmourStand)
 			addShapedRecipe(new ItemStack(ModBlocks.horseArmourStand), "x  ", "xxx", "y y", 'x', new ItemStack(Blocks.stone_slab), 'y', Items.iron_ingot);
 
-		if (GanysNether.shouldGenerateCrops)
+		if (GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateSpectreWheat)
 			addShapedRecipe(new ItemStack(Blocks.soul_sand, 6), "xxx", "yyy", "xxx", 'x', ModItems.spookyFlour, 'y', Blocks.sand);
 		if (GanysNether.enableUndertaker)
 			GameRegistry.addSmelting(ModBlocks.soulChest, new ItemStack(ModBlocks.undertaker), 0.1F);

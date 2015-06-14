@@ -18,10 +18,14 @@ public class GanysSurfaceManager extends Integration {
 	@Override
 	public void init() {
 		if (GanysNether.shouldGenerateCrops) {
-			addYieldForOrganicMatter(new ItemStack(ModItems.quarzBerry), 2);
-			addYieldForOrganicMatter(new ItemStack(ModItems.spectreWheat), 2);
-			addYieldForOrganicMatter(new ItemStack(ModItems.spookyFlour), 1);
-			addYieldForOrganicMatter(new ItemStack(ModItems.glowingReed), 2);
+			if (GanysNether.shouldGenerateQuarzBerryBush)
+				addYieldForOrganicMatter(new ItemStack(ModItems.quarzBerry), 2);
+			if (GanysNether.shouldGenerateSpectreWheat) {
+				addYieldForOrganicMatter(new ItemStack(ModItems.spectreWheat), 2);
+				addYieldForOrganicMatter(new ItemStack(ModItems.spookyFlour), 1);
+			}
+			if (GanysNether.shouldGenerateGlowingReed)
+				addYieldForOrganicMatter(new ItemStack(ModItems.glowingReed), 2);
 		}
 		if (GanysNether.enableReproducerAndDrops) {
 			addYieldForOrganicMatter(new ItemStack(ModItems.silverfishScale), 2);

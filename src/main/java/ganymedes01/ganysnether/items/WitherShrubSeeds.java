@@ -48,4 +48,9 @@ public class WitherShrubSeeds extends NetherSeeds {
 	public boolean hasEffect(ItemStack stack) {
 		return true;
 	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateWitherShrub;
+	}
 }

@@ -19,7 +19,7 @@ public class TooltipEvent {
 
 		Item item = event.itemStack.getItem();
 
-		if (item == Items.ghast_tear && GanysNether.shouldGenerateCrops)
+		if (item == Items.ghast_tear && GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateWeepingPod)
 			event.toolTip.add(StatCollector.translateToLocal("tooltip.ganysnether.ghastTear"));
 		if (item == Item.getItemFromBlock(ModBlocks.extendedSpawner) && event.itemStack.hasTagCompound() && event.itemStack.getTagCompound().hasKey("EntityId"))
 			event.toolTip.add(EnumChatFormatting.GOLD + event.itemStack.getTagCompound().getString("EntityId"));

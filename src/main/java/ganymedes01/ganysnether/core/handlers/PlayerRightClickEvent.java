@@ -22,7 +22,7 @@ public class PlayerRightClickEvent {
 
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		if (event.entityPlayer != null && GanysNether.shouldGenerateCrops) {
+		if (event.entityPlayer != null && GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateWeepingPod) {
 			World world = event.entityPlayer.worldObj;
 			if (event.action == Action.RIGHT_CLICK_BLOCK && event.face > 1 && event.face <= 5) {
 				ForgeDirection dir = ForgeDirection.values()[event.face];

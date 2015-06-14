@@ -59,4 +59,9 @@ public class SpectreWheatCrop extends NetherCrop {
 				icons[i] = reg.registerIcon(Utils.getBlockTexture(Strings.Blocks.SPECTRE_WHEAT_BLOCK_NAME + "_stage_" + i));
 		}
 	}
+
+	@Override
+	public boolean isEnabled() {
+		return GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateSpectreWheat;
+	}
 }

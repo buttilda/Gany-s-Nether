@@ -41,12 +41,18 @@ public class NEIGanysNetherConfig implements IConfigureNEI {
 
 		if (GanysNether.shouldGenerateCrops) {
 			API.hideItem(new ItemStack(ModBlocks.tilledNetherrack));
-			API.hideItem(new ItemStack(ModBlocks.spectreWheat));
-			API.hideItem(new ItemStack(ModBlocks.quarzBerryBush));
-			API.hideItem(new ItemStack(ModBlocks.glowingReed));
-			API.hideItem(new ItemStack(ModBlocks.witherShrub));
-			API.hideItem(new ItemStack(ModBlocks.weepingPod));
-			API.hideItem(new ItemStack(ModBlocks.hellBush));
+			if (GanysNether.shouldGenerateSpectreWheat)
+				API.hideItem(new ItemStack(ModBlocks.spectreWheat));
+			if (GanysNether.shouldGenerateQuarzBerryBush)
+				API.hideItem(new ItemStack(ModBlocks.quarzBerryBush));
+			if (GanysNether.shouldGenerateGlowingReed)
+				API.hideItem(new ItemStack(ModBlocks.glowingReed));
+			if (GanysNether.shouldGenerateWitherShrub)
+				API.hideItem(new ItemStack(ModBlocks.witherShrub));
+			if (GanysNether.shouldGenerateWeepingPod)
+				API.hideItem(new ItemStack(ModBlocks.weepingPod));
+			if (GanysNether.shouldGenerateHellBush)
+				API.hideItem(new ItemStack(ModBlocks.hellBush));
 		}
 	}
 
