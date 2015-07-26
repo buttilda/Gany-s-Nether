@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether;
 
+import ganymedes01.ganysnether.blocks.BlazeBlock;
 import ganymedes01.ganysnether.blocks.BlazingCactoid;
 import ganymedes01.ganysnether.blocks.ColouredChiselledQuartzBlock;
 import ganymedes01.ganysnether.blocks.ColouredQuartzBlock;
@@ -73,6 +74,7 @@ public class ModBlocks {
 	public static final Block focusedLavaCell = new FocusedLavaCell();
 	public static final Block soulGlassPane0 = new SoulGlassPane(0);
 	public static final Block soulGlassPane1 = new SoulGlassPane(1);
+	public static final Block blazeBlock = new BlazeBlock();
 
 	static {
 		for (int i = 0; i < colouredQuartzBlockStairs.length; i++)

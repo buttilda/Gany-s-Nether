@@ -73,6 +73,7 @@ public class GanysNether {
 	public static boolean enableLivingSoul = true;
 	public static boolean enableSoulTNT = true;
 	public static boolean enableFlour = true;
+	public static boolean enableBlazeBlock = true;
 
 	public static boolean shouldGenerateBlazingCactoid = true;
 	public static boolean shouldGenerateHellBush = true;

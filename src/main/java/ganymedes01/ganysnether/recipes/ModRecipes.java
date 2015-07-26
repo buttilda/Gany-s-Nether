@@ -186,13 +186,22 @@ public class ModRecipes {
 
 		if (GanysNether.shouldGenerateCrops && GanysNether.shouldGenerateSpectreWheat)
 			addShapedRecipe(new ItemStack(Blocks.soul_sand, 6), "xxx", "yyy", "xxx", 'x', ModItems.spookyFlour, 'y', Blocks.sand);
+
 		if (GanysNether.enableUndertaker)
 			GameRegistry.addSmelting(ModBlocks.soulChest, new ItemStack(ModBlocks.undertaker), 0.1F);
+
+		if (GanysNether.enableBlazeBlock) {
+			addShapedRecipe(new ItemStack(ModBlocks.blazeBlock), "xxx", "xxx", "xxx", 'x', "ingotBlaze");
+			addShapelessRecipe(new ItemStack(ModItems.blazeIngot, 9, 1), "blockBlaze");
+		}
 	}
 
 	private static void registerOreDictionary() {
 		OreDictionary.registerOre("ingotBlaze", new ItemStack(ModItems.blazeIngot, 1, 1));
 		OreDictionary.registerOre("nuggetBlaze", new ItemStack(ModItems.blazeIngot, 1, 2));
+
+		if (GanysNether.enableBlazeBlock)
+			OreDictionary.registerOre("blockBlaze", ModBlocks.blazeBlock);
 
 		OreDictionary.registerOre("nuggetIron", ModItems.ironNugget);
 		if (GanysNether.enableFlour)

@@ -99,6 +99,7 @@ public class ConfigurationHandler {
 		GanysNether.enableLivingSoul = configBoolean("enableLivingSoul", true, GanysNether.enableLivingSoul);
 		GanysNether.enableSoulTNT = configBoolean("enableSoulTNT", true, GanysNether.enableSoulTNT);
 		GanysNether.enableFlour = configBoolean("enableFlour", true, GanysNether.enableFlour);
+		GanysNether.enableBlazeBlock = configBoolean("enableBlazeBlock", true, GanysNether.enableBlazeBlock);
 
 		GanysNether.shouldGenerateBlazingCactoid = configBoolean("crops", "blazing cactoid", true, GanysNether.shouldGenerateBlazingCactoid);
 		GanysNether.shouldGenerateHellBush = configBoolean("crops", "hell bush", true, GanysNether.shouldGenerateHellBush);

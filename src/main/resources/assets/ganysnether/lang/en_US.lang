@@ -78,6 +78,7 @@ tile.ganysnether.extendedSpawner.name=Extended Spawner
 tile.ganysnether.focusedLavaCell.name=Focused Lava Cell
 tile.ganysnether.soulGlassPane0.name=Soul Glass Pane
 tile.ganysnether.soulGlassPane1.name=Soul Glass Brick Pane
+tile.ganysnether.blazeBlock.name=Blaze Block
 
 tile.ganysnether.glowBoxBlack.name=Black Glow Box
 tile.ganysnether.glowBoxRed.name=Red Glow Box

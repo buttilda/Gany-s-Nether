@@ -39,6 +39,7 @@ public class Strings {
 		public static final String EXTENDED_SPAWNER_NAME = "extendedSpawner";
 		public static final String FOCUSED_LAVA_CELL_NAME = "focusedLavaCell";
 		public static final String SOUL_GLASS_PANE_NAME = "soulGlassPane";
+		public static final String BLAZE_BLOCK_NAME = "blazeBlock";
 	}
 
 	public static class Items {
