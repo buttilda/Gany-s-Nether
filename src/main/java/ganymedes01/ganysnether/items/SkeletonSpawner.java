@@ -149,7 +149,8 @@ public class SkeletonSpawner extends Item {
 					((EntityLiving) entity).setCustomNameTag(stack.getDisplayName());
 
 				if (!player.capabilities.isCreativeMode)
-					stack.stackSize--;
+					if (--stack.stackSize <= 0)
+						player.setCurrentItemOrArmor(0, null);
 			}
 
 			return true;
