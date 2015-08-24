@@ -23,6 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiMagmaticCentrifuge extends GuiGanysNether {
 
+	private final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME));
 	private final TileEntityMagmaticCentrifuge centrifuge;
 	private int tankXMin, tankYMin, tankXMax, tankYMax;
 
@@ -48,7 +49,7 @@ public class GuiMagmaticCentrifuge extends GuiGanysNether {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		OpenGLHelper.colour(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME)));
+		mc.renderEngine.bindTexture(TEXTURE);
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 

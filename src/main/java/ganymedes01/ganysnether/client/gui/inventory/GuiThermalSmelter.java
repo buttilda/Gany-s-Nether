@@ -21,6 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiThermalSmelter extends GuiGanysNether {
 
+	private final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.THERMAL_SMELTER_NAME));
 	private final TileEntityThermalSmelter tile;
 
 	public GuiThermalSmelter(InventoryPlayer inventory, TileEntityThermalSmelter tile) {
@@ -38,7 +39,7 @@ public class GuiThermalSmelter extends GuiGanysNether {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		OpenGLHelper.colour(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.THERMAL_SMELTER_NAME)));
+		mc.renderEngine.bindTexture(TEXTURE);
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 		drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

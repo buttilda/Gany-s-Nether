@@ -21,6 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiReproducer extends GuiGanysNether {
 
+	private final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.REPRODUCER_NAME));
 	private final TileEntityReproducer reproducer;
 
 	public GuiReproducer(InventoryPlayer inventory, TileEntityReproducer tile) {
@@ -38,7 +39,7 @@ public class GuiReproducer extends GuiGanysNether {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		OpenGLHelper.colour(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.REPRODUCER_NAME)));
+		mc.renderEngine.bindTexture(TEXTURE);
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);

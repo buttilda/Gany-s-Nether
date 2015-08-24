@@ -21,6 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiUndertaker extends GuiGanysNether {
 
+	private final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.UNDERTAKER_NAME));
 	private final TileEntityUndertaker undertaker;
 
 	public GuiUndertaker(InventoryPlayer inventory, TileEntityUndertaker tileUndertaker) {
@@ -39,7 +40,7 @@ public class GuiUndertaker extends GuiGanysNether {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		OpenGLHelper.colour(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.UNDERTAKER_NAME)));
+		mc.renderEngine.bindTexture(TEXTURE);
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 		drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

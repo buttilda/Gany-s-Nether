@@ -23,6 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiVolcanicFurnace extends GuiGanysNether {
 
+	private final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.VOLCANIC_FURNACE_NAME));
 	private final String FLUID_TO_GO = StatCollector.translateToLocal("string.ganysnether.fluidtogo") + " ";
 	private final TileEntityVolcanicFurnace furnace;
 	private int tankXMin, tankYMin, tankXMax, tankYMax;
@@ -43,7 +44,7 @@ public class GuiVolcanicFurnace extends GuiGanysNether {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		OpenGLHelper.colour(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.VOLCANIC_FURNACE_NAME)));
+		mc.renderEngine.bindTexture(TEXTURE);
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 
@@ -53,7 +54,7 @@ public class GuiVolcanicFurnace extends GuiGanysNether {
 		if (furnace.getMeltTimeRemainingScaled(24) > 0)
 			drawTexturedModelRectFromIcon(x + 73, y + 36, FluidRegistry.LAVA.getStillIcon(), 22 - furnace.getMeltTimeRemainingScaled(24), 15);
 
-		mc.renderEngine.bindTexture(new ResourceLocation(Utils.getGUITexture(Strings.Blocks.VOLCANIC_FURNACE_NAME)));
+		mc.renderEngine.bindTexture(TEXTURE);
 
 		drawTexturedModalRect(x + 73, y + 35, 177, 13, 24, 16);
 		drawTexturedModalRect(x + 104, y + 17, 176, 31, 16, 52);
