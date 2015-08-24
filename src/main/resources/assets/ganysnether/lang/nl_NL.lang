@@ -126,7 +126,7 @@ container.ganysnether:volcanicFurnace=Vulkaan Fornuis
 container.ganysnether:reproducer=Reproducer
 container.ganysnether:soulChest=Zielen Klist
 container.ganysnether:undertaker=Undertaker
-fluidtogo=Klaar voor Gebruik:
+string.ganysnether.fluidtogo=Klaar voor Gebruik:
 
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether

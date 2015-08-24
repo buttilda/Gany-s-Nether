@@ -171,7 +171,7 @@ container.ganysnether.soulChest=Сундук душ
 container.ganysnether.undertaker=Гробовщик
 container.ganysnether.magmaticCentrifuge=Магматическая центрифуга
 container.ganysnether.thermalSmelter=Тепловая плавильня
-fluidtogo=Получится жидкости:
+string.ganysnether.fluidtogo=Получится жидкости:
 
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether

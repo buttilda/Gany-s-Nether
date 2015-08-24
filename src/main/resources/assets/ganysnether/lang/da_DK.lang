@@ -137,7 +137,7 @@ container.ganysnether:reproducer=Gengiver
 container.ganysnether:soulChest=Sjæle Kiste
 container.ganysnether:undertaker=Undertager
 container.ganysnether:magmaticCentrifuge=Magmatisk Centrifuge
-fluidtogo=Fluid to go:
+string.ganysnether.fluidtogo=Fluid to go:
 
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether

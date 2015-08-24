@@ -72,6 +72,9 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 
 		GuiDraw.drawTexturedModalRect(29, 19, 176, 3, 18, 18);
 		GuiDraw.drawTexturedModalRect(119, 19, 176, 3, 18, 18);
+
+		CachedCentrifugeRecipe cachedRecipe = (CachedCentrifugeRecipe) arecipes.get(recipe);
+		GuiDraw.fontRenderer.drawString(String.format(StatCollector.translateToLocal("string.ganysnether.lavaAmount"), cachedRecipe.lavaAmount), 20, 55, Utils.getColour(0, 0, 0));
 	}
 
 	@Override
@@ -118,10 +121,12 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 
 	private class CachedCentrifugeRecipe extends CachedRecipe {
 
+		private final int lavaAmount;
 		private final ArrayList<PositionedStack> materials = new ArrayList<PositionedStack>();
 		private final ArrayList<PositionedStack> result = new ArrayList<PositionedStack>();
 
 		public CachedCentrifugeRecipe(CentrifugeRecipe recipe) {
+			lavaAmount = recipe.getLavaAmount();
 			materials.add(new PositionedStack(validateObj(recipe.getInput1()), 30, 20));
 			materials.add(new PositionedStack(validateObj(recipe.getInput2()), 120, 20));
 

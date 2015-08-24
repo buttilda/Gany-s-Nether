@@ -169,7 +169,7 @@ container.ganysnether.soulChest=ソウルチェスト
 container.ganysnether.undertaker=遺品箱
 container.ganysnether.magmaticCentrifuge=熱遠心分離機
 container.ganysnether.thermalSmelter=高温製錬炉
-fluidtogo=移動中の液体:
+string.ganysnether.fluidtogo=移動中の液体:
 
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether

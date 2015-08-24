@@ -148,7 +148,7 @@ container.ganysnether:reproducer=Vervielf‰ltiger
 container.ganysnether:soulChest=Seelentruhe
 container.ganysnether:undertaker=Bestatter
 container.ganysnether:magmaticCentrifuge=Magmatische Zentrifuge
-fluidtogo=Vorh. Fl¸ssigkeit:
+string.ganysnether.fluidtogo=Vorh. Fl¸ssigkeit:
 
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether

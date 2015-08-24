@@ -142,7 +142,7 @@ container.ganysnether:reproducer=Reproductor
 container.ganysnether:soulChest=Cofre de Almas
 container.ganysnether:undertaker=Cofre Enterrado
 container.ganysnether:magmaticCentrifuge=Centrífuga Magmática
-fluidtogo=Fluido restante:
+string.ganysnether.fluidtogo=Fluido restante:
 
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether

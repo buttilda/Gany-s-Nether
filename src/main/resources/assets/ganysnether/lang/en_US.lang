@@ -172,7 +172,8 @@ container.ganysnether.soulChest=Soul Chest
 container.ganysnether.undertaker=Undertaker
 container.ganysnether.magmaticCentrifuge=Magmatic Centrifuge
 container.ganysnether.thermalSmelter=Thermal Smelter
-fluidtogo=Fluid to go:
+string.ganysnether.fluidtogo=Fluid to go:
+string.ganysnether.lavaAmount=Lava: %d mB
 
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether

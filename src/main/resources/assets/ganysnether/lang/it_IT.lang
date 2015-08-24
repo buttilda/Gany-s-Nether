@@ -148,7 +148,7 @@ container.ganysnether:reproducer=Riproduttore
 container.ganysnether:soulChest=Cassa dell'Anima
 container.ganysnether:undertaker=Becchino
 container.ganysnether:magmaticCentrifuge=Centrifuga Magmatica
-fluidtogo=Liquido Producibile:
+string.ganysnether.fluidtogo=Liquido Producibile:
 
 # Creative Tab localizations
 itemGroup.ganysnether=Gany's Nether
