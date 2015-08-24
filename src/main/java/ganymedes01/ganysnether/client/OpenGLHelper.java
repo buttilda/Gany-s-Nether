@@ -61,11 +61,11 @@ public class OpenGLHelper {
 	}
 
 	public static void disableDepth() {
-		disable(GL11.GL_DEPTH);
+		disable(GL11.GL_DEPTH_TEST);
 	}
 
 	public static void enableDepth() {
-		enable(GL11.GL_DEPTH);
+		enable(GL11.GL_DEPTH_TEST);
 	}
 
 	public static void depthFunc(int func) {
