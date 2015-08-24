@@ -31,6 +31,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlazeArmour extends ItemArmor implements IConfigurable {
 
+	@SideOnly(Side.CLIENT)
+	private ModelBlazeArmour model1, model2;
 	private final int MAX_COOL_DOWN = 160;
 	private int coolDown = MAX_COOL_DOWN;
 
@@ -107,7 +109,12 @@ public class BlazeArmour extends ItemArmor implements IConfigurable {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase player, ItemStack stack, int slot) {
-		ModelBlazeArmour model = slot == 2 ? new ModelBlazeArmour(0.5F, true) : new ModelBlazeArmour(1.0F, false);
+		if (model1 == null)
+			model1 = new ModelBlazeArmour(0.5F, true);
+		if (model2 == null)
+			model2 = new ModelBlazeArmour(1.0F, false);
+
+		ModelBlazeArmour model = slot == 2 ? model1 : model2;
 		model.bipedHead.showModel = slot == 0;
 		model.bipedHeadwear.showModel = slot == 0;
 		model.bipedBody.showModel = slot == 1 || slot == 2;
