@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiThermalSmelter extends GuiGanysNether {
 
-	private final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.THERMAL_SMELTER_NAME));
+	private static final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.THERMAL_SMELTER_NAME));
 	private final TileEntityThermalSmelter tile;
 
 	public GuiThermalSmelter(InventoryPlayer inventory, TileEntityThermalSmelter tile) {

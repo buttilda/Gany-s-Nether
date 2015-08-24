@@ -23,7 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiMagmaticCentrifuge extends GuiGanysNether {
 
-	private final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME));
+	private static final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME));
 	private final TileEntityMagmaticCentrifuge centrifuge;
 	private int tankXMin, tankYMin, tankXMax, tankYMax;
 

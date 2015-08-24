@@ -23,7 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiVolcanicFurnace extends GuiGanysNether {
 
-	private final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.VOLCANIC_FURNACE_NAME));
+	private static final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.VOLCANIC_FURNACE_NAME));
 	private final String FLUID_TO_GO = StatCollector.translateToLocal("string.ganysnether.fluidtogo") + " ";
 	private final TileEntityVolcanicFurnace furnace;
 	private int tankXMin, tankYMin, tankXMax, tankYMax;

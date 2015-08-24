@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiUndertaker extends GuiGanysNether {
 
-	private final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.UNDERTAKER_NAME));
+	private static final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.UNDERTAKER_NAME));
 	private final TileEntityUndertaker undertaker;
 
 	public GuiUndertaker(InventoryPlayer inventory, TileEntityUndertaker tileUndertaker) {

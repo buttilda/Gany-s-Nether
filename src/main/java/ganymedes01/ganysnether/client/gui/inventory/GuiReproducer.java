@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiReproducer extends GuiGanysNether {
 
-	private final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.REPRODUCER_NAME));
+	private static final ResourceLocation TEXTURE = Utils.getResource(Utils.getGUITexture(Strings.Blocks.REPRODUCER_NAME));
 	private final TileEntityReproducer reproducer;
 
 	public GuiReproducer(InventoryPlayer inventory, TileEntityReproducer tile) {
