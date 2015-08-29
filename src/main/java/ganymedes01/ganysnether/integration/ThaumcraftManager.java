@@ -25,12 +25,6 @@ public class ThaumcraftManager extends Integration {
 
 	@Override
 	public void init() {
-		if (GanysNether.shouldGenerateCrops) {
-			HoeList.addHoe(ItemApi.getItem("itemHoeThaumium", 0));
-			HoeList.addHoe(ItemApi.getItem("itemHoeElemental", 0));
-			FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(ModBlocks.witherShrub, 1, 8));
-		}
-
 		ThaumcraftApi.addSmeltingBonus(new ItemStack(ModItems.blazeIngot, 1, 1), new ItemStack(ModItems.blazeIngot, 0, 2));
 		addAspectsToItem(ModItems.blazeIngot, 2, new Aspect[] { Aspect.FIRE }, new int[] { 1 });
 		addAspectsToItem(ModItems.blazeIngot, 1, new Aspect[] { Aspect.FIRE, Aspect.MAGIC, Aspect.METAL }, new int[] { 2, 2, 2 });
@@ -67,6 +61,9 @@ public class ThaumcraftManager extends Integration {
 			addAspectsToItem(ModItems.flour, new Aspect[] { Aspect.HUNGER, Aspect.ENTROPY }, new int[] { 1, 1 });
 
 		if (GanysNether.shouldGenerateCrops) {
+			HoeList.addHoe(ItemApi.getItem("itemHoeThaumium", 0));
+			HoeList.addHoe(ItemApi.getItem("itemHoeElemental", 0));
+
 			if (GanysNether.shouldGenerateHellBush) {
 				addAspectsToItem(ModItems.hellBushSeeds, new Aspect[] { Aspect.PLANT, Aspect.FIRE }, new int[] { 1, 1 });
 				addAspectsToItem(ModItems.lavaBerry, new Aspect[] { Aspect.FIRE }, new int[] { 3 });
@@ -85,8 +82,10 @@ public class ThaumcraftManager extends Integration {
 				addAspectsToItem(ModItems.quarzBerry, new Aspect[] { Aspect.CROP, Aspect.CRYSTAL }, new int[] { 1, 1 });
 				addAspectsToItem(ModItems.quarzBerrySeeds, new Aspect[] { Aspect.PLANT, Aspect.UNDEAD }, new int[] { 1, 1 });
 			}
-			if (GanysNether.shouldGenerateWitherShrub)
+			if (GanysNether.shouldGenerateWitherShrub) {
 				addAspectsToItem(ModItems.witherShrubSeeds, new Aspect[] { Aspect.PLANT, Aspect.UNDEAD }, new int[] { 1, 1 });
+				FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(ModBlocks.witherShrub, 1, 8));
+			}
 		}
 	}
 
