@@ -36,18 +36,21 @@ public class SceptreOfConcealment extends Sceptre {
 		if (target.isChild())
 			return false;
 		if (ConcealmentHandler.canBeConcealed(target))
-			if (player instanceof EntityPlayer)
-				if (player.inventory.consumeInventoryItem(Items.egg)) {
-					if (!player.worldObj.isRemote) {
-						player.worldObj.playSoundAtEntity(target, Reference.MOD_ID + ":breath", 1.5F, player.worldObj.rand.nextFloat() * 0.1F + 0.9F);
-						target.entityDropItem(ConcealmentHandler.getEggFromEntity(target), 1.0F);
-						target.setDead();
-						stack.damageItem(1, player);
-						if (stack.stackSize <= 0)
-							player.setCurrentItemOrArmor(0, null);
-					}
-					return true;
+			if (player.worldObj.isRemote)
+				for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
+					ItemStack invtStack = player.inventory.getStackInSlot(i);
+					if (invtStack != null && invtStack.getItem() == Items.egg)
+						return true;
 				}
+			else if (player.inventory.consumeInventoryItem(Items.egg)) {
+				player.worldObj.playSoundAtEntity(target, Reference.MOD_ID + ":breath", 1.5F, player.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+				target.entityDropItem(ConcealmentHandler.getEggFromEntity(target), 1.0F);
+				target.setDead();
+				stack.damageItem(1, player);
+				if (stack.stackSize <= 0)
+					player.setCurrentItemOrArmor(0, null);
+				return true;
+			}
 		return false;
 	}
 }
