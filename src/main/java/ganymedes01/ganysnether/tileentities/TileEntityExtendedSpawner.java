@@ -3,6 +3,7 @@ package ganymedes01.ganysnether.tileentities;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.SpawnEggHelper;
+import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.items.SkeletonSpawner;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import ganymedes01.ganysnether.network.IPacketHandlingTile;
@@ -27,9 +28,9 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class TileEntityExtendedSpawner extends TileEntity implements IPacketHandlingTile {
@@ -69,29 +70,29 @@ public class TileEntityExtendedSpawner extends TileEntity implements IPacketHand
 
 	public String[] getUpgradeList() {
 		ArrayList<String> list = new ArrayList<String>();
-		list.add(EnumChatFormatting.BOLD + "Tier: " + EnumChatFormatting.RESET + logic.tier);
+		list.add(EnumChatFormatting.BOLD + Utils.getLocString("tier") + ": " + EnumChatFormatting.RESET + logic.tier);
 		int slots = getSlots();
-		list.add(EnumChatFormatting.BOLD + "Slots: " + EnumChatFormatting.RESET + slots + " (" + (slots - getSlotsUsed()) + " available)");
+		list.add(EnumChatFormatting.BOLD + Utils.getLocString("slots") + ": " + EnumChatFormatting.RESET + slots + " (" + (slots - getSlotsUsed()) + " " + Utils.getLocString("available") + ")");
 		list.add("");
 
-		list.add(EnumChatFormatting.ITALIC + "Spawn Quantity: " + EnumChatFormatting.RESET + logic.spawnCount);
+		list.add(EnumChatFormatting.ITALIC + Utils.getLocString("spawnquantity") + ": " + EnumChatFormatting.RESET + logic.spawnCount);
 		AxisAlignedBB area = AxisAlignedBB.getBoundingBox(0, 0, 0, 1, 1, 1).expand(logic.spawnRange * 2, 4.0D, logic.spawnRange * 2);
-		list.add(EnumChatFormatting.ITALIC + "Range: " + EnumChatFormatting.RESET + logic.spawnRange + " (" + (int) (area.maxX - area.minX) + ", " + (int) (area.maxY - area.minY) + ", " + (int) (area.maxZ - area.minZ) + ")");
+		list.add(EnumChatFormatting.ITALIC + Utils.getLocString("range") + ": " + EnumChatFormatting.RESET + logic.spawnRange + " (" + (int) (area.maxX - area.minX) + ", " + (int) (area.maxY - area.minY) + ", " + (int) (area.maxZ - area.minZ) + ")");
 
 		if (logic.redstoneUpgrade)
-			list.add(EnumChatFormatting.ITALIC + "Redstone controlled" + EnumChatFormatting.RESET);
+			list.add(EnumChatFormatting.ITALIC + Utils.getLocString("redstonecontrolled") + ": " + EnumChatFormatting.RESET);
 		if (logic.noPlayerUpgrade)
-			list.add(EnumChatFormatting.ITALIC + "Autonomous" + EnumChatFormatting.RESET);
+			list.add(EnumChatFormatting.ITALIC + Utils.getLocString("autonomous") + ": " + EnumChatFormatting.RESET);
 		if (logic.ignoreConditionsUpgrade)
-			list.add(EnumChatFormatting.ITALIC + "Ignores Spawn Conditions" + EnumChatFormatting.RESET);
+			list.add(EnumChatFormatting.ITALIC + Utils.getLocString("ignoresspawnconditions") + ": " + EnumChatFormatting.RESET);
 		if (logic.silkyUpgrade)
-			list.add(EnumChatFormatting.ITALIC + "Silky" + EnumChatFormatting.RESET);
+			list.add(EnumChatFormatting.ITALIC + Utils.getLocString("silky") + ": " + EnumChatFormatting.RESET);
 		list.add("");
 		for (ItemStack egg : logic.getFifo())
 			if (egg != null) {
 				String entityName;
 				if (egg.getItem() instanceof SkeletonSpawner)
-					entityName = egg.getItemDamage() == 1 ? "Wither Skeleton" : StatCollector.translateToLocal("entity." + EntityList.classToStringMapping.get(EntitySkeleton.class) + ".name");
+					entityName = egg.getItemDamage() == 1 ? Utils.getLocString("witherskeleton") : StatCollector.translateToLocal("entity." + EntityList.classToStringMapping.get(EntitySkeleton.class) + ".name");
 				else
 					entityName = StatCollector.translateToLocal("entity." + EntityList.classToStringMapping.get(SpawnEggHelper.getEntity(worldObj, xCoord, yCoord, zCoord, egg).getClass()) + ".name");
 				list.add(entityName);

@@ -45,7 +45,7 @@ public class ExtendedSpawner extends BlockMobSpawner implements IConfigurable {
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitz) {
-		if (!world.isRemote)
+		if (world.isRemote)
 			if (player.isSneaking()) {
 				TileEntityExtendedSpawner tile = Utils.getTileEntity(world, x, y, z, TileEntityExtendedSpawner.class);
 				if (tile != null)

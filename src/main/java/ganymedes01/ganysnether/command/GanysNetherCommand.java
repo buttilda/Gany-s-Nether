@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.command;
 
+import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
 
 import java.util.ArrayList;
@@ -63,11 +64,8 @@ public class GanysNetherCommand extends CommandBase {
 				killAllCommand(sender, args[1]);
 			else if (type.equalsIgnoreCase("EntityMap"))
 				entityMapCommand(sender);
-			else {
-				EnumChatFormatting red = EnumChatFormatting.RED;
-				EnumChatFormatting gold = EnumChatFormatting.GOLD;
-				sender.addChatMessage(new ChatComponentText(red + "Unknown argument: " + type + ". Try " + gold + "KillAll" + red + " or " + gold + "EntityMap" + red + "!"));
-			}
+			else
+				sender.addChatMessage(new ChatComponentText(String.format(Utils.getLocString("unknownargumenttry"), type, "KillAll", "EntityMap")));
 		} catch (Exception e) {
 			throw new WrongUsageException(getCommandUsage(sender), new Object[0]);
 		}

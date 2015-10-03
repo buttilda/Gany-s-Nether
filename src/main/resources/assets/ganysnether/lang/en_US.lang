@@ -191,6 +191,20 @@ tooltip.ganysnether.spawnerSilky=Spawner block will drop when broken
 tooltip.ganysnether.spawnerPlusOne=+1 possible spawn
 tooltip.ganysnether.spawnerRange=+2,+0,+2 (x,y,z) spawn range upgrade
 tooltip.ganysnether.sceptre=Fix me in an anvil!
+tooltip.ganysnether.boo=Boo.
+
+# Strings
+string.ganysnether.tier=Tier
+string.ganysnether.slots=Slots
+string.ganysnether.spawnquantity=Spawn Quantity
+string.ganysnether.range=Range
+string.ganysnether.redstonecontrolled=Redstone controlled
+string.ganysnether.autonomous=Autonomous
+string.ganysnether.ignoresspawnconditions=Ignores Spawn Conditions
+string.ganysnether.silky=Silky
+string.ganysnether.witherskeleton=Wither Skeleton
+string.ganysnether.available=available
+string.ganysnether.unknownargumenttry=§cUnknown argument: %s. Try §6%s §cor §6%s
 
 # Version Check
 versioncheck.ganyssurface.message=§6Gany's Nether §fis §coutdated§f.

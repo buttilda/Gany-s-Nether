@@ -18,6 +18,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -60,6 +61,10 @@ public class Utils {
 
 	public static String getConainerName(String name) {
 		return "container." + Reference.MOD_ID + "." + name;
+	}
+
+	public static String getLocString(String str) {
+		return StatCollector.translateToLocal("string." + Reference.MOD_ID + "." + str);
 	}
 
 	public static int getColour(int R, int G, int B) {
