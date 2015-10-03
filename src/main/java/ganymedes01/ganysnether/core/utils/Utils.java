@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
@@ -117,6 +117,6 @@ public class Utils {
 	}
 
 	public static void sendMessageToPlayer(EntityPlayer player, Object message) {
-		player.addChatMessage(new ChatComponentText(message.toString()));
+		player.addChatMessage(new ChatComponentTranslation(message.toString()));
 	}
 }

@@ -17,6 +17,7 @@ import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 
 /**
@@ -65,7 +66,7 @@ public class GanysNetherCommand extends CommandBase {
 			else if (type.equalsIgnoreCase("EntityMap"))
 				entityMapCommand(sender);
 			else
-				sender.addChatMessage(new ChatComponentText(String.format(Utils.getLocString("unknownargumenttry"), type, "KillAll", "EntityMap")));
+				sender.addChatMessage(new ChatComponentTranslation(String.format(Utils.getLocString("unknownargumenttry"), type, "KillAll", "EntityMap")));
 		} catch (Exception e) {
 			throw new WrongUsageException(getCommandUsage(sender), new Object[0]);
 		}
