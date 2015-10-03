@@ -20,9 +20,7 @@ public class HoeEvent {
 
 	@SubscribeEvent
 	public void onHoeUseEvent(UseHoeEvent event) {
-		if (!GanysNether.shouldGenerateCrops)
-			return;
-		if (event.world.getBlock(event.x, event.y, event.z) == Blocks.netherrack)
+		if (GanysNether.shouldGenerateCrops && event.world.getBlock(event.x, event.y, event.z) == Blocks.netherrack)
 			if (event.current != null)
 				if (HoeList.canTillNetherrack(event.current.getItem())) {
 					event.world.setBlock(event.x, event.y, event.z, ModBlocks.tilledNetherrack);

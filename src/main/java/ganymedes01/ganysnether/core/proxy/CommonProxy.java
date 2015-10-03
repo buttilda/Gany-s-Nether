@@ -13,6 +13,7 @@ import ganymedes01.ganysnether.core.handlers.HoeEvent;
 import ganymedes01.ganysnether.core.handlers.PlayerRightClickEvent;
 import ganymedes01.ganysnether.core.handlers.TooltipEvent;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.entities.EntityBlazeGolem;
 import ganymedes01.ganysnether.entities.EntityLightningBall;
 import ganymedes01.ganysnether.entities.EntitySlowTNT;
 import ganymedes01.ganysnether.inventory.ContainerMagmaticCentrifuge;
@@ -60,19 +61,31 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileEntitySoulChest.class, Strings.Blocks.SOUL_CHEST_NAME);
-		GameRegistry.registerTileEntity(TileEntityVolcanicFurnace.class, Strings.Blocks.VOLCANIC_FURNACE_NAME);
-		GameRegistry.registerTileEntity(TileEntityReproducer.class, Strings.Blocks.REPRODUCER_NAME);
-		GameRegistry.registerTileEntity(TileEntityUndertaker.class, Strings.Blocks.UNDERTAKER_NAME);
-		GameRegistry.registerTileEntity(TileEntityMagmaticCentrifuge.class, Utils.getUnlocalisedName(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME));
-		GameRegistry.registerTileEntity(TileEntityThermalSmelter.class, Utils.getUnlocalisedName(Strings.Blocks.THERMAL_SMELTER_NAME));
-		GameRegistry.registerTileEntity(TileEntityHorseArmourStand.class, Utils.getUnlocalisedName(Strings.Blocks.HORSE_ARMOUR_STAND_NAME));
-		GameRegistry.registerTileEntity(TileEntityExtendedSpawner.class, Utils.getUnlocalisedName(Strings.Blocks.EXTENDED_SPAWNER_NAME));
+		if (GanysNether.enableSoulChest)
+			GameRegistry.registerTileEntity(TileEntitySoulChest.class, Strings.Blocks.SOUL_CHEST_NAME);
+		if (GanysNether.enableVolcanicFurnace)
+			GameRegistry.registerTileEntity(TileEntityVolcanicFurnace.class, Strings.Blocks.VOLCANIC_FURNACE_NAME);
+		if (GanysNether.enableReproducerAndDrops)
+			GameRegistry.registerTileEntity(TileEntityReproducer.class, Strings.Blocks.REPRODUCER_NAME);
+		if (GanysNether.enableUndertaker)
+			GameRegistry.registerTileEntity(TileEntityUndertaker.class, Strings.Blocks.UNDERTAKER_NAME);
+		if (GanysNether.enableMagmaticCentrifuge)
+			GameRegistry.registerTileEntity(TileEntityMagmaticCentrifuge.class, Utils.getUnlocalisedName(Strings.Blocks.MAGMATIC_CENTRIFUGE_NAME));
+		if (GanysNether.enableThermalSmelter)
+			GameRegistry.registerTileEntity(TileEntityThermalSmelter.class, Utils.getUnlocalisedName(Strings.Blocks.THERMAL_SMELTER_NAME));
+		if (GanysNether.enableHorseArmourStand)
+			GameRegistry.registerTileEntity(TileEntityHorseArmourStand.class, Utils.getUnlocalisedName(Strings.Blocks.HORSE_ARMOUR_STAND_NAME));
+		if (GanysNether.enableSpawners)
+			GameRegistry.registerTileEntity(TileEntityExtendedSpawner.class, Utils.getUnlocalisedName(Strings.Blocks.EXTENDED_SPAWNER_NAME));
 	}
 
 	public void registerEntities() {
-		EntityRegistry.registerModEntity(EntityLightningBall.class, Utils.getUnlocalisedName(Strings.Entities.ENTITY_LIGHTNING_BALL_NAME), ModIDs.ENTITY_LIGHTNING_BALL_ID, GanysNether.instance, 160, 5, true);
-		EntityRegistry.registerModEntity(EntitySlowTNT.class, Utils.getUnlocalisedName(Strings.Entities.ENTITY_SLOW_TNT_NAME), ModIDs.ENTITY_SLOW_TNT_ID, GanysNether.instance, 160, 5, true);
+		if (GanysNether.enableSceptres)
+			EntityRegistry.registerModEntity(EntityLightningBall.class, Utils.getUnlocalisedName(Strings.Entities.ENTITY_LIGHTNING_BALL_NAME), ModIDs.ENTITY_LIGHTNING_BALL_ID, GanysNether.instance, 64, 10, false);
+		if (GanysNether.enableSoulTNT)
+			EntityRegistry.registerModEntity(EntitySlowTNT.class, Utils.getUnlocalisedName(Strings.Entities.ENTITY_SLOW_TNT_NAME), ModIDs.ENTITY_SLOW_TNT_ID, GanysNether.instance, 160, 10, true);
+		if (GanysNether.enableBlazeBlock)
+			EntityRegistry.registerModEntity(EntityBlazeGolem.class, Utils.getUnlocalisedName("blameGolem"), ModIDs.ENTITY_BLAZE_GOLEM_ID, GanysNether.instance, 64, 1, true);
 	}
 
 	public void registerRenderers() {
