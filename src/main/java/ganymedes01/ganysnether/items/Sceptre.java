@@ -12,6 +12,8 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemSimpleFoiled;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+import thaumcraft.api.IRepairable;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -22,7 +24,8 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 
-public class Sceptre extends ItemSimpleFoiled implements IConfigurable {
+@Optional.Interface(iface = "thaumcraft.api.IRepairable", modid = "Thaumcraft")
+public class Sceptre extends ItemSimpleFoiled implements IConfigurable, IRepairable {
 
 	private final int capMeta;
 
