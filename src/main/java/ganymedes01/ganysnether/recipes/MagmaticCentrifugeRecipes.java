@@ -33,8 +33,8 @@ public class MagmaticCentrifugeRecipes extends RecipeRegistry<CentrifugeRecipe> 
 	@Override
 	protected XMLNode toXML(CentrifugeRecipe recipe) {
 		XMLBuilder builder = new XMLBuilder("recipe");
-		builder.makeEntry("input1", recipe.getInput1());
-		builder.makeEntry("input2", recipe.getInput2());
+		builder.makeEntry("input1", recipe.getInput1().getObject());
+		builder.makeEntry("input2", recipe.getInput2().getObject());
 
 		builder.makeEntry("lavaAmount", recipe.getLavaAmount());
 

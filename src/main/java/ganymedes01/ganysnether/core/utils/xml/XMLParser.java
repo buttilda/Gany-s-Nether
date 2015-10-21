@@ -26,6 +26,8 @@ public class XMLParser {
 		try {
 			if (isStringValue(value))
 				return parseStringNode(node);
+			else if (isOreStackValue(value))
+				return parseOreStackNode(node);
 			else if (isFluidStackValue(value))
 				return parseFluidStackNode(node);
 			else if (isItemStackValue(value))
@@ -91,5 +93,25 @@ public class XMLParser {
 				throw new RuntimeException(e);
 			}
 		return stack;
+	}
+
+	public static boolean isOreStackValue(String nodeValue) {
+		String[] array = nodeValue.split(" ");
+		return array.length == 2 && isStringValue(array[0]) && isInteger(array[1]);
+	}
+
+	public static OreStack parseOreStackNode(XMLNode node) {
+		String[] data = node.value.split(" ");
+		return new OreStack(data[0].replace("\"", ""), Integer.parseInt(data[1]));
+	}
+
+	private static boolean isInteger(String str) {
+		try {
+			Integer.parseInt(str);
+		} catch (Exception e) {
+			return false;
+		}
+
+		return true;
 	}
 }

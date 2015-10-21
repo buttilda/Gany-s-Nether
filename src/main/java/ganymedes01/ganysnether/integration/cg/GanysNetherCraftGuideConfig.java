@@ -3,8 +3,10 @@ package ganymedes01.ganysnether.integration.cg;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.UnsizedStack;
+import ganymedes01.ganysnether.core.utils.xml.OreStack;
 import ganymedes01.ganysnether.recipes.CentrifugeRecipe;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
+import ganymedes01.ganysnether.recipes.RecipeInput;
 import ganymedes01.ganysnether.recipes.ReproducerRecipes;
 
 import java.util.Map.Entry;
@@ -64,11 +66,13 @@ public class GanysNetherCraftGuideConfig extends CraftGuideAPIObject implements 
 		}
 	}
 
-	private ItemStack getStack(Object obj) {
+	private ItemStack getStack(RecipeInput<?> input) {
+		Object obj = input.getObject();
+
 		if (obj instanceof ItemStack)
 			return (ItemStack) obj;
-		else if (obj instanceof String)
-			return OreDictionary.getOres((String) obj).get(0);
+		else if (obj instanceof OreStack)
+			return OreDictionary.getOres(((OreStack) obj).ore).get(0);
 		else
 			return null;
 	}

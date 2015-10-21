@@ -3,10 +3,12 @@ package ganymedes01.ganysnether.integration.nei;
 import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.client.gui.inventory.GuiMagmaticCentrifuge;
 import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.core.utils.xml.OreStack;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.CentrifugeRecipe;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
+import ganymedes01.ganysnether.recipes.RecipeInput;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -130,6 +132,25 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 			materials.add(new PositionedStack(validateObj(recipe.getInput1()), 30, 20));
 			materials.add(new PositionedStack(validateObj(recipe.getInput2()), 120, 20));
 
+			for (int i = 0; i < 2; i++) {
+				PositionedStack posStack = materials.get(i);
+				int size = i == 0 ? recipe.getInput1().getSize() : recipe.getInput2().getSize();
+
+				if (posStack.items != null) {
+					ItemStack[] items = new ItemStack[posStack.items.length];
+					for (int j = 0; j < items.length; j++) {
+						items[j] = posStack.items[j].copy();
+						items[j].stackSize = size;
+					}
+					posStack.items = items;
+				}
+
+				if (posStack.item != null) {
+					posStack.item = posStack.item.copy();
+					posStack.item.stackSize = size;
+				}
+			}
+
 			ItemStack[] results = recipe.getResult();
 
 			for (int i = 0; i < 2; i++)
@@ -140,9 +161,11 @@ public class MagmaticCentrifugeRecipeHandler extends TemplateRecipeHandler {
 				}
 		}
 
-		private Object validateObj(Object obj) {
-			if (obj instanceof String)
-				return OreDictionary.getOres((String) obj);
+		private Object validateObj(RecipeInput<?> input) {
+			Object obj = input.getObject();
+			if (obj instanceof OreStack)
+				return OreDictionary.getOres(((OreStack) obj).ore);
+
 			return obj;
 		}
 

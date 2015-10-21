@@ -1,8 +1,11 @@
 package ganymedes01.ganysnether.recipes;
 
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
+import ganymedes01.ganysnether.core.utils.xml.OreStack;
 import ganymedes01.ganysnether.core.utils.xml.XMLNode;
 import ganymedes01.ganysnether.core.utils.xml.XMLParser;
+import ganymedes01.ganysnether.recipes.RecipeInput.RecipeInputItemStack;
+import ganymedes01.ganysnether.recipes.RecipeInput.RecipeInputOre;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +14,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Gany's Nether
@@ -22,14 +24,14 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class CentrifugeRecipe {
 
-	private final Object input1;
-	private final Object input2;
+	private final RecipeInput<?> input1;
+	private final RecipeInput<?> input2;
 	private final ItemStack[] outputs;
 	private final int lavaAmount;
 
 	public CentrifugeRecipe(XMLNode node) {
-		input1 = XMLParser.parseNode(node.getNode("input1"));
-		input2 = XMLParser.parseNode(node.getNode("input2"));
+		input1 = getValidObject(XMLParser.parseNode(node.getNode("input1")));
+		input2 = getValidObject(XMLParser.parseNode(node.getNode("input2")));
 
 		List<Object> outputs = new ArrayList<Object>();
 		for (int i = 1; i <= 4; i++) {
@@ -66,35 +68,22 @@ public class CentrifugeRecipe {
 	}
 
 	public boolean isPartOfInput(ItemStack target) {
-		return areStacksTheSame(input1, target) || areStacksTheSame(input2, target);
+		return input1.matches(target) || input2.matches(target);
 	}
 
 	public boolean matches(ItemStack input1, ItemStack input2) {
-		if (areStacksTheSame(this.input1, input1) && areStacksTheSame(this.input2, input2))
+		if (this.input1.matches(input1) && this.input2.matches(input2))
 			return true;
-		if (areStacksTheSame(this.input1, input2) && areStacksTheSame(this.input2, input1))
+		if (this.input1.matches(input2) && this.input2.matches(input1))
 			return true;
 		return false;
 	}
 
-	private boolean areStacksTheSame(Object obj, ItemStack target) {
-		if (obj instanceof ItemStack)
-			return InventoryUtils.areStacksTheSame((ItemStack) obj, target, false);
-		else if (obj instanceof String) {
-			List<ItemStack> list = OreDictionary.getOres((String) obj);
-			for (ItemStack stack : list)
-				if (InventoryUtils.areStacksTheSame(stack, target, false))
-					return true;
-		}
-
-		return false;
-	}
-
-	public Object getInput1() {
+	public RecipeInput<?> getInput1() {
 		return input1;
 	}
 
-	public Object getInput2() {
+	public RecipeInput<?> getInput2() {
 		return input2;
 	}
 
@@ -106,13 +95,19 @@ public class CentrifugeRecipe {
 		return lavaAmount;
 	}
 
-	private Object getValidObject(Object obj) {
+	private RecipeInput<?> getValidObject(Object obj) {
 		if (obj instanceof Item)
-			return new ItemStack((Item) obj);
+			return new RecipeInputItemStack(new ItemStack((Item) obj));
 		else if (obj instanceof Block)
-			return new ItemStack((Block) obj);
-		else if (obj instanceof ItemStack || obj instanceof String)
-			return obj;
+			return new RecipeInputItemStack(new ItemStack((Block) obj));
+		else if (obj instanceof ItemStack)
+			return new RecipeInputItemStack((ItemStack) obj);
+		else if (obj instanceof String)
+			return new RecipeInputOre(new OreStack((String) obj));
+		else if (obj instanceof OreStack)
+			return new RecipeInputOre((OreStack) obj);
+		else if (obj instanceof RecipeInput)
+			return (RecipeInput<?>) obj;
 
 		return null;
 	}
