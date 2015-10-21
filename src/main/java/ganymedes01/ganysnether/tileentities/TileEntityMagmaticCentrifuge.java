@@ -150,13 +150,19 @@ public class TileEntityMagmaticCentrifuge extends GanysInventory implements ISid
 
 				tank.drain(recipe.getLavaAmount(), true);
 
-				if (recipe.getInput1().matches(inventory[MATERIAL_SLOT_1])) { // if the input1 matches the slot 1 then the slot 2 will match input2
+				if (recipe.getInput1().getSize() != recipe.getInput2().getSize()) {
+					if (recipe.getInput1().matches(inventory[MATERIAL_SLOT_1])) { // if the input1 matches the slot 1 then the slot 2 will match input2
+						inventory[MATERIAL_SLOT_1].stackSize -= recipe.getInput1().getSize();
+						inventory[MATERIAL_SLOT_2].stackSize -= recipe.getInput2().getSize();
+					} else { // else... input1 must match slot2 and slot1 must match input2
+						inventory[MATERIAL_SLOT_1].stackSize -= recipe.getInput2().getSize();
+						inventory[MATERIAL_SLOT_2].stackSize -= recipe.getInput1().getSize();
+					}
+				} else {
 					inventory[MATERIAL_SLOT_1].stackSize -= recipe.getInput1().getSize();
-					inventory[MATERIAL_SLOT_2].stackSize -= recipe.getInput2().getSize();
-				} else { // else... input1 must match slot2 and slot1 must match input2
-					inventory[MATERIAL_SLOT_1].stackSize -= recipe.getInput2().getSize();
 					inventory[MATERIAL_SLOT_2].stackSize -= recipe.getInput1().getSize();
 				}
+
 				if (inventory[MATERIAL_SLOT_1].stackSize <= 0)
 					inventory[MATERIAL_SLOT_1] = null;
 				if (inventory[MATERIAL_SLOT_2].stackSize <= 0)
