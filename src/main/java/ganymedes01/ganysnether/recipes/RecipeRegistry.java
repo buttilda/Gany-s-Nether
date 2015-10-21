@@ -35,7 +35,8 @@ public abstract class RecipeRegistry<T> {
 								"\n" +
 								"The syntax for an item stack is the same as you'd use in the /give command. NBT tags are supported! (e.g. minecraft:skull 1 3 {SkullOwner:\"ganymedes01\"})\n" +
 								"The syntax for a fluid stack is simiar to the item stack, it should be the fluid name followed by the amount. NBT tags are also supported! (e.g. water 1000)\n" +
-								"The syntax for ore dictionary values is the value between double-quotes. (e.g. \"ingotIron\")\n";
+								"The syntax for ore dictionary values is the value between double-quotes. (e.g. \"ingotIron\"), but you can also define sizes, by simply putting the value after the ore name (e.g. \"ingotIron\" 1)." +
+								"If no value is give the game will assume 1.\n";
 	// @formatter:on
 	
 	protected RecipeRegistry(String name) {
