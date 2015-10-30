@@ -209,10 +209,8 @@ public class ModRecipes {
 		OreDictionary.registerOre("mobEgg", new ItemStack(Items.spawn_egg, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("mobEgg", new ItemStack(ModItems.skeletonSpawner, 1, OreDictionary.WILDCARD_VALUE));
 
-		if (GanysNether.enableSpawners) {
-			OreDictionary.registerOre("blockSpawner", new ItemStack(Blocks.mob_spawner, 1, OreDictionary.WILDCARD_VALUE));
+		if (GanysNether.enableSpawners)
 			OreDictionary.registerOre("blockSpawner", new ItemStack(ModBlocks.extendedSpawner, 1, OreDictionary.WILDCARD_VALUE));
-		}
 
 		if (GanysNether.enableQuartz) {
 			OreDictionary.registerOre("blockQuartz", new ItemStack(ModBlocks.colouredQuartzBlock, 1, OreDictionary.WILDCARD_VALUE));
