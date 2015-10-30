@@ -15,9 +15,6 @@ import ganymedes01.ganysnether.recipes.ModRecipes;
 import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import ganymedes01.ganysnether.world.NetherWorldGen;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -131,9 +128,6 @@ public class GanysNether {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		// Moved to postInit because of NEI overriding the ItemBlock for the spawners
-		if (GanysNether.enableSpawners)
-			OreDictionary.registerOre("blockSpawner", new ItemStack(Blocks.mob_spawner, 1, OreDictionary.WILDCARD_VALUE));
 		ModIntegrator.postInit();
 	}
 
