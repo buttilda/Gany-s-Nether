@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.recipes;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
@@ -17,7 +18,6 @@ import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.RecipeSorter.Category;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * Gany's Nether
@@ -93,6 +93,7 @@ public class ModRecipes {
 			addShapedRecipe(new ItemStack(Blocks.monster_egg, 1, 1), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', Blocks.cobblestone);
 			addShapedRecipe(new ItemStack(Blocks.monster_egg, 1, 2), "xxx", "xyx", "xxx", 'x', ModItems.silverfishScale, 'y', new ItemStack(Blocks.stonebrick));
 			GameRegistry.addSmelting(ModItems.batWing, new ItemStack(ModItems.cookedBatWing), 0.0F);
+			addShapedRecipe(new ItemStack(Items.leather), "xxx", "xxx", "xxx", 'x', ModItems.batWing);
 		}
 
 		// Others
