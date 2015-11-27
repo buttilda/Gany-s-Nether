@@ -1,5 +1,9 @@
 package ganymedes01.ganysnether.blocks;
 
+import java.util.Random;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
@@ -9,9 +13,6 @@ import ganymedes01.ganysnether.lib.RenderIDs;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.network.PacketHandler;
 import ganymedes01.ganysnether.tileentities.TileEntityExtendedSpawner;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,8 +23,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether

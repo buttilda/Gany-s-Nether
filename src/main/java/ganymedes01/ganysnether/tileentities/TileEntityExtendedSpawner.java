@@ -1,5 +1,8 @@
 package ganymedes01.ganysnether.tileentities;
 
+import java.util.ArrayList;
+
+import cpw.mods.fml.common.network.ByteBufUtils;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.SpawnEggHelper;
@@ -10,9 +13,6 @@ import ganymedes01.ganysnether.network.IPacketHandlingTile;
 import ganymedes01.ganysnether.network.packet.PacketTileEntity;
 import ganymedes01.ganysnether.network.packet.PacketTileEntity.TileData;
 import io.netty.buffer.ByteBuf;
-
-import java.util.ArrayList;
-
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.item.ItemStack;
@@ -24,7 +24,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
-import cpw.mods.fml.common.network.ByteBufUtils;
 
 /**
  * Gany's Nether

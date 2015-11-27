@@ -1,13 +1,13 @@
 package ganymedes01.ganysnether.blocks;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class SoulGlassPane extends BlockPane implements IConfigurable {
 

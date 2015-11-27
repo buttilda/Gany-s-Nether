@@ -1,12 +1,11 @@
 package ganymedes01.ganysnether.core.utils;
 
-import ganymedes01.ganysnether.ModItems;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import ganymedes01.ganysnether.ModItems;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.IBossDisplayData;

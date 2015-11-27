@@ -1,5 +1,8 @@
 package ganymedes01.ganysnether.world;
 
+import java.util.Random;
+
+import cpw.mods.fml.common.IWorldGenerator;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
@@ -7,9 +10,6 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityUndertaker;
-
-import java.util.Random;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -18,7 +18,6 @@ import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.ChestGenHooks;
-import cpw.mods.fml.common.IWorldGenerator;
 
 /**
  * Gany's Nether

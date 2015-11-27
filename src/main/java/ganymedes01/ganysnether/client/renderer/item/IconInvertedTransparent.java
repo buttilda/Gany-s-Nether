@@ -1,12 +1,13 @@
 package ganymedes01.ganysnether.client.renderer.item;
 
-import ganymedes01.ganysnether.core.utils.Utils;
-
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.ganysnether.core.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -16,8 +17,6 @@ import net.minecraft.client.resources.data.AnimationMetadataSection;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Based on RWTema's implementation for his mod DenseOres.

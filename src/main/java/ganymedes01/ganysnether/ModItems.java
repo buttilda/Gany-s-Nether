@@ -1,5 +1,8 @@
 package ganymedes01.ganysnether;
 
+import java.lang.reflect.Field;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorBottomlessBucket;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorLivingSoul;
 import ganymedes01.ganysnether.dispenser.DispenserBehaviorSceptreOfFireCharging;
@@ -39,13 +42,9 @@ import ganymedes01.ganysnether.items.SpectreWheat;
 import ganymedes01.ganysnether.items.SpookyFlour;
 import ganymedes01.ganysnether.items.WitherShrubSeeds;
 import ganymedes01.ganysnether.items.WolfTeeth;
-
-import java.lang.reflect.Field;
-
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * Gany's Nether

@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.core.handlers;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import net.minecraft.init.Blocks;
@@ -9,7 +10,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * Gany's Nether

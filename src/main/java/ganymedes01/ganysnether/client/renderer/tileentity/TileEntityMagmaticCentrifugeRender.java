@@ -1,5 +1,9 @@
 package ganymedes01.ganysnether.client.renderer.tileentity;
 
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.client.model.ModelMagmaticCentrifuge;
 import ganymedes01.ganysnether.core.utils.Utils;
@@ -14,11 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether

@@ -1,5 +1,12 @@
 package ganymedes01.ganysnether.core.handlers;
 
+import java.lang.reflect.Field;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
+import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
 import ganymedes01.ganysnether.core.utils.ConcealmentHandler;
 import ganymedes01.ganysnether.core.utils.HoeList;
 import ganymedes01.ganysnether.lib.IMCKeys;
@@ -7,20 +14,12 @@ import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.ReproducerRecipes;
 import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
-
-import java.lang.reflect.Field;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
-import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
 
 /**
  * Gany's Nether

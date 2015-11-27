@@ -1,5 +1,8 @@
 package ganymedes01.ganysnether.integration;
 
+import codechicken.nei.api.API;
+import codechicken.nei.api.IConfigureNEI;
+import codechicken.nei.recipe.DefaultOverlayHandler;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.client.gui.inventory.GuiMagmaticCentrifuge;
@@ -9,9 +12,6 @@ import ganymedes01.ganysnether.integration.nei.VolcanicFurnaceYieldHandler;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.item.ItemStack;
-import codechicken.nei.api.API;
-import codechicken.nei.api.IConfigureNEI;
-import codechicken.nei.recipe.DefaultOverlayHandler;
 
 /**
  * Gany's Nether

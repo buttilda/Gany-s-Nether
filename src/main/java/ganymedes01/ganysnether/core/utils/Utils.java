@@ -1,13 +1,14 @@
 package ganymedes01.ganysnether.core.utils;
 
-import ganymedes01.ganysnether.lib.Reference;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
+import com.mojang.authlib.GameProfile;
+
+import ganymedes01.ganysnether.lib.Reference;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,8 +24,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayerFactory;
-
-import com.mojang.authlib.GameProfile;
 
 /**
  * Gany's Nether

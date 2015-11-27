@@ -1,10 +1,10 @@
 package ganymedes01.ganysnether.integration;
 
+import cpw.mods.fml.common.event.FMLInterModComms;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
  * Gany's Nether

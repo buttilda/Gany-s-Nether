@@ -1,13 +1,13 @@
 package ganymedes01.ganysnether.client.renderer.item;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.client.model.ModelHorseArmourStand;
 import ganymedes01.ganysnether.client.renderer.tileentity.TileEntityHorseArmourStandRender;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether

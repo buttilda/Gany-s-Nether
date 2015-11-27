@@ -1,17 +1,5 @@
 package ganymedes01.ganysnether.core.handlers;
 
-import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.blocks.SpectreWheatCrop;
-import ganymedes01.ganysnether.client.renderer.block.IconSpectreWheat;
-import ganymedes01.ganysnether.client.renderer.item.IconInvertedTransparent;
-import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.items.DimensionalBread;
-import ganymedes01.ganysnether.items.GhostSeeds;
-import ganymedes01.ganysnether.items.SpectreWheat;
-import ganymedes01.ganysnether.items.WitherShrubSeeds;
-import ganymedes01.ganysnether.lib.Reference;
-import ganymedes01.ganysnether.lib.Strings;
-
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -23,6 +11,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.blocks.SpectreWheatCrop;
+import ganymedes01.ganysnether.client.renderer.block.IconSpectreWheat;
+import ganymedes01.ganysnether.client.renderer.item.IconInvertedTransparent;
+import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.items.DimensionalBread;
+import ganymedes01.ganysnether.items.GhostSeeds;
+import ganymedes01.ganysnether.items.SpectreWheat;
+import ganymedes01.ganysnether.items.WitherShrubSeeds;
+import ganymedes01.ganysnether.lib.Reference;
+import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -32,12 +36,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
-
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether

@@ -1,10 +1,9 @@
 package ganymedes01.ganysnether.recipes;
 
-import ganymedes01.ganysnether.core.utils.Utils;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import ganymedes01.ganysnether.core.utils.Utils;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

@@ -1,12 +1,11 @@
 package ganymedes01.ganysnether.core.utils;
 
-import ganymedes01.ganysnether.lib.Reference;
-import ganymedes01.ganysnether.lib.Strings;
-
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
+import ganymedes01.ganysnether.lib.Reference;
+import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.StatCollector;

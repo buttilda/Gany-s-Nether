@@ -1,5 +1,7 @@
 package ganymedes01.ganysnether.integration.cg;
 
+import java.util.Map.Entry;
+
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.UnsizedStack;
@@ -8,9 +10,6 @@ import ganymedes01.ganysnether.recipes.CentrifugeRecipe;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import ganymedes01.ganysnether.recipes.RecipeInput;
 import ganymedes01.ganysnether.recipes.ReproducerRecipes;
-
-import java.util.Map.Entry;
-
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import uristqwerty.CraftGuide.api.CraftGuideAPIObject;

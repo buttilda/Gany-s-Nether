@@ -1,20 +1,19 @@
 package ganymedes01.ganysnether.client.renderer.tileentity;
 
+import java.util.HashMap;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.client.model.ModelHorseArmourStand;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.tileentities.TileEntityHorseArmourStand;
-
-import java.util.HashMap;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.LayeredTexture;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether

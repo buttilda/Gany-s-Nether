@@ -1,5 +1,7 @@
 package ganymedes01.ganysnether.client.renderer.tileentity;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.items.SpawnerUpgrade.UpgradeType;
 import ganymedes01.ganysnether.tileentities.ExtendedSpawnerLogic;
@@ -9,8 +11,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.tileentity.TileEntity;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether

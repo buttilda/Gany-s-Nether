@@ -1,12 +1,11 @@
 package ganymedes01.ganysnether.items;
 
+import java.util.List;
+
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
-
-import java.util.List;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -1,10 +1,9 @@
 package ganymedes01.ganysnether.core.utils;
 
-import ganymedes01.ganysnether.items.SkeletonSpawner;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import ganymedes01.ganysnether.items.SkeletonSpawner;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;

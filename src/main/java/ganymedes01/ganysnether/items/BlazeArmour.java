@@ -1,5 +1,9 @@
 package ganymedes01.ganysnether.items;
 
+import java.util.Map;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModItems;
@@ -7,9 +11,6 @@ import ganymedes01.ganysnether.client.model.ModelBlazeArmour;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.integration.GanysEndManager;
 import ganymedes01.ganysnether.lib.ModMaterials;
-
-import java.util.Map;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -19,8 +20,6 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether

@@ -1,13 +1,5 @@
 package ganymedes01.ganysnether.integration.nei;
 
-import ganymedes01.ganysnether.client.OpenGLHelper;
-import ganymedes01.ganysnether.client.gui.inventory.GuiVolcanicFurnace;
-import ganymedes01.ganysnether.core.utils.UnsizedStack;
-import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.Reference;
-import ganymedes01.ganysnether.lib.Strings;
-import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
-
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +9,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import codechicken.lib.gui.GuiDraw;
+import codechicken.nei.ItemList;
+import codechicken.nei.PositionedStack;
+import codechicken.nei.recipe.TemplateRecipeHandler;
+import ganymedes01.ganysnether.client.OpenGLHelper;
+import ganymedes01.ganysnether.client.gui.inventory.GuiVolcanicFurnace;
+import ganymedes01.ganysnether.core.utils.UnsizedStack;
+import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.Reference;
+import ganymedes01.ganysnether.lib.Strings;
+import ganymedes01.ganysnether.recipes.VolcanicFurnaceHandler;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -25,10 +28,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
-import codechicken.lib.gui.GuiDraw;
-import codechicken.nei.ItemList;
-import codechicken.nei.PositionedStack;
-import codechicken.nei.recipe.TemplateRecipeHandler;
 
 /**
  * Gany's Nether

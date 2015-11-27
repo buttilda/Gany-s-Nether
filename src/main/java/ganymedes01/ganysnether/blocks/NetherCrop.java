@@ -1,10 +1,9 @@
 package ganymedes01.ganysnether.blocks;
 
-import ganymedes01.ganysnether.IConfigurable;
-import ganymedes01.ganysnether.ModBlocks;
-
 import java.util.ArrayList;
 
+import ganymedes01.ganysnether.IConfigurable;
+import ganymedes01.ganysnether.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.init.Items;

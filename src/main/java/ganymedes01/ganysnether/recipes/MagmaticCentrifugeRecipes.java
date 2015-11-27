@@ -1,15 +1,14 @@
 package ganymedes01.ganysnether.recipes;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.core.utils.xml.XMLBuilder;
 import ganymedes01.ganysnether.core.utils.xml.XMLNode;
 import ganymedes01.ganysnether.lib.Reference;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

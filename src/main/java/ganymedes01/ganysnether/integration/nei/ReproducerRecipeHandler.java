@@ -1,5 +1,13 @@
 package ganymedes01.ganysnether.integration.nei;
 
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
+
+import codechicken.lib.gui.GuiDraw;
+import codechicken.nei.PositionedStack;
+import codechicken.nei.recipe.TemplateRecipeHandler;
 import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.client.gui.inventory.GuiReproducer;
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
@@ -8,18 +16,9 @@ import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.ReproducerRecipes;
-
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map.Entry;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
-import codechicken.lib.gui.GuiDraw;
-import codechicken.nei.PositionedStack;
-import codechicken.nei.recipe.TemplateRecipeHandler;
 
 /**
  * Gany's Nether

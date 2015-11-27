@@ -1,18 +1,17 @@
 package ganymedes01.ganysnether.configuration;
 
+import java.io.File;
+
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.integration.Integration;
 import ganymedes01.ganysnether.integration.ModIntegrator;
 import ganymedes01.ganysnether.lib.Reference;
 import ganymedes01.ganysnether.lib.Strings;
 import ganymedes01.ganysnether.recipes.RecipeRegistry;
-
-import java.io.File;
-
 import net.minecraftforge.common.config.Configuration;
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * Gany's Nether

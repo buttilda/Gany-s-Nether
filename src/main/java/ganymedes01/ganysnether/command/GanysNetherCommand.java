@@ -1,8 +1,5 @@
 package ganymedes01.ganysnether.command;
 
-import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.Reference;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,6 +8,8 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.Reference;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;

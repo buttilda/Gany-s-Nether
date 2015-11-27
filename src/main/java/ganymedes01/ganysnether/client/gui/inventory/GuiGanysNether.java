@@ -1,5 +1,7 @@
 package ganymedes01.ganysnether.client.gui.inventory;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.core.utils.Utils;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -9,8 +11,6 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether

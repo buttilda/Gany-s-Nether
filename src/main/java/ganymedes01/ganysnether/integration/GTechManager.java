@@ -1,10 +1,9 @@
 package ganymedes01.ganysnether.integration;
 
-import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.core.utils.HoeList;
-
 import java.lang.reflect.Method;
 
+import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.core.utils.HoeList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

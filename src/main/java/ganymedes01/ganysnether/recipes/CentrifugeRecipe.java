@@ -1,15 +1,14 @@
 package ganymedes01.ganysnether.recipes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ganymedes01.ganysnether.core.utils.InventoryUtils;
 import ganymedes01.ganysnether.core.utils.xml.OreStack;
 import ganymedes01.ganysnether.core.utils.xml.XMLNode;
 import ganymedes01.ganysnether.core.utils.xml.XMLParser;
 import ganymedes01.ganysnether.recipes.RecipeInput.RecipeInputItemStack;
 import ganymedes01.ganysnether.recipes.RecipeInput.RecipeInputOre;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

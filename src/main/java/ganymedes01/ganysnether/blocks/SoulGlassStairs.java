@@ -1,13 +1,12 @@
 package ganymedes01.ganysnether.blocks;
 
+import java.util.Random;
+
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.IConfigurable;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
-
-import java.util.Random;
-
 import net.minecraft.block.BlockStairs;
 
 /**

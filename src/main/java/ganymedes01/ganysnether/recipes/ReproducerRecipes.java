@@ -1,11 +1,10 @@
 package ganymedes01.ganysnether.recipes;
 
-import ganymedes01.ganysnether.ModItems;
-import ganymedes01.ganysnether.core.utils.UnsizedStack;
-
 import java.util.HashMap;
 import java.util.Map;
 
+import ganymedes01.ganysnether.ModItems;
+import ganymedes01.ganysnether.core.utils.UnsizedStack;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

@@ -1,11 +1,11 @@
 package ganymedes01.ganysnether.integration;
 
-import ganymedes01.ganysnether.lib.Reference;
-
 import java.util.ArrayList;
 
 import com.google.common.reflect.ClassPath;
 import com.google.common.reflect.ClassPath.ClassInfo;
+
+import ganymedes01.ganysnether.lib.Reference;
 
 /**
  * Gany's Nether

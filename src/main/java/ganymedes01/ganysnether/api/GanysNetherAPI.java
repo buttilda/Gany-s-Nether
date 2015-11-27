@@ -2,14 +2,14 @@ package ganymedes01.ganysnether.api;
 
 import java.lang.reflect.Field;
 
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
  * Gany's Nether

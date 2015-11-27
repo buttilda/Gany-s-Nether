@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.integration;
 
+import cpw.mods.fml.common.event.FMLInterModComms;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.ModItems;
@@ -12,7 +13,6 @@ import thaumcraft.api.ItemApi;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
-import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
  * Gany's Nether

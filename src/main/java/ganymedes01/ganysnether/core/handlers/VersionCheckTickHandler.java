@@ -1,12 +1,12 @@
 package ganymedes01.ganysnether.core.handlers;
 
-import ganymedes01.ganysnether.core.utils.VersionHelper;
-import net.minecraft.client.Minecraft;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.Type;
+import ganymedes01.ganysnether.core.utils.VersionHelper;
+import net.minecraft.client.Minecraft;
 
 /**
  * Gany's Nether

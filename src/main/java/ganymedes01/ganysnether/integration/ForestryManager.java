@@ -1,11 +1,10 @@
 package ganymedes01.ganysnether.integration;
 
-import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.ModItems;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;

@@ -1,14 +1,13 @@
 package ganymedes01.ganysnether.integration;
 
-import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.ModBlocks;
-import ganymedes01.ganysnether.ModItems;
-import ganymedes01.ganysnether.core.utils.Utils;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.ModItems;
+import ganymedes01.ganysnether.core.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

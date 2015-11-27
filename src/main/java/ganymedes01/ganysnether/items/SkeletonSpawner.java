@@ -1,12 +1,13 @@
 package ganymedes01.ganysnether.items;
 
-import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.core.utils.Utils;
-import ganymedes01.ganysnether.lib.Strings;
-
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.core.utils.Utils;
+import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -29,8 +30,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether

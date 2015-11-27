@@ -1,5 +1,8 @@
 package ganymedes01.ganysnether;
 
+import java.lang.reflect.Field;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.ganysnether.blocks.BlazeBlock;
 import ganymedes01.ganysnether.blocks.BlazingCactoid;
 import ganymedes01.ganysnether.blocks.ColouredChiselledQuartzBlock;
@@ -30,12 +33,8 @@ import ganymedes01.ganysnether.blocks.WeepingPod;
 import ganymedes01.ganysnether.blocks.WitherShrub;
 import ganymedes01.ganysnether.core.utils.Utils;
 import ganymedes01.ganysnether.lib.Strings;
-
-import java.lang.reflect.Field;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * Gany's Nether

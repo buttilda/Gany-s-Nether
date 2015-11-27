@@ -1,10 +1,9 @@
 package ganymedes01.ganysnether.tileentities;
 
-import ganymedes01.ganysnether.inventory.ContainerThermalSmelter;
-import ganymedes01.ganysnether.lib.Strings;
-
 import java.util.ArrayList;
 
+import ganymedes01.ganysnether.inventory.ContainerThermalSmelter;
+import ganymedes01.ganysnether.lib.Strings;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.ICrafting;

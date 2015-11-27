@@ -1,5 +1,9 @@
 package ganymedes01.ganysnether.client.renderer.entity;
 
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.ganysnether.ModBlocks;
 import ganymedes01.ganysnether.client.OpenGLHelper;
 import ganymedes01.ganysnether.entities.EntitySlowTNT;
@@ -8,11 +12,6 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Gany's Nether

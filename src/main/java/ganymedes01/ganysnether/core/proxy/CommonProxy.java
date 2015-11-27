@@ -1,5 +1,9 @@
 package ganymedes01.ganysnether.core.proxy;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.IGuiHandler;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.client.gui.inventory.GuiMagmaticCentrifuge;
 import ganymedes01.ganysnether.client.gui.inventory.GuiReproducer;
@@ -36,10 +40,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * Gany's Nether

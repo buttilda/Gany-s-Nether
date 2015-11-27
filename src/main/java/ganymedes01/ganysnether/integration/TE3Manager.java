@@ -1,5 +1,6 @@
 package ganymedes01.ganysnether.integration;
 
+import cpw.mods.fml.common.event.FMLInterModComms;
 import ganymedes01.ganysnether.GanysNether;
 import ganymedes01.ganysnether.ModItems;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
@@ -10,7 +11,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.common.event.FMLInterModComms;
 
 /**
  * Gany's Nether

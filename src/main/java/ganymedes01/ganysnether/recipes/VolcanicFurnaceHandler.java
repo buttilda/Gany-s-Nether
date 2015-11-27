@@ -1,14 +1,14 @@
 package ganymedes01.ganysnether.recipes;
 
-import ganymedes01.ganysnether.GanysNether;
-import ganymedes01.ganysnether.ModBlocks;
-import ganymedes01.ganysnether.ModItems;
-import ganymedes01.ganysnether.core.utils.UnsizedStack;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import ganymedes01.ganysnether.GanysNether;
+import ganymedes01.ganysnether.ModBlocks;
+import ganymedes01.ganysnether.ModItems;
+import ganymedes01.ganysnether.core.utils.UnsizedStack;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.BlockStairs;
@@ -26,7 +26,6 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 
 /**
  * Gany's Nether
