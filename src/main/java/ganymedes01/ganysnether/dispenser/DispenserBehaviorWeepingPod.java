@@ -11,9 +11,9 @@ import net.minecraft.world.World;
 
 /**
  * Gany's Nether
- * 
+ *
  * @author ganymedes01
- * 
+ *
  */
 
 public class DispenserBehaviorWeepingPod extends BehaviorDefaultDispenseItem {
@@ -27,8 +27,10 @@ public class DispenserBehaviorWeepingPod extends BehaviorDefaultDispenseItem {
 		int z = block.getZInt() + enumfacing.getFrontOffsetZ();
 
 		if (world.isAirBlock(x, y, z))
-			if (world.getBlock(x + enumfacing.getFrontOffsetX(), y + enumfacing.getFrontOffsetY(), z + enumfacing.getFrontOffsetZ()) == Blocks.obsidian)
+			if (world.getBlock(x + enumfacing.getFrontOffsetX(), y + enumfacing.getFrontOffsetY(), z + enumfacing.getFrontOffsetZ()) == Blocks.obsidian) {
 				plantBlock(world, x, y, z, enumfacing.ordinal());
+				stack.stackSize--;
+			}
 
 		return stack;
 	}
