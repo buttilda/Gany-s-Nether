@@ -99,15 +99,6 @@ public class GanysNether {
 		ModBlocks.init();
 		ModItems.init();
 		ModRecipes.init();
-
-		if (enableMagmaticCentrifuge)
-			MagmaticCentrifugeRecipes.INSTANCE.init();
-		if (shouldGenerateCrops)
-			HoeList.init();
-		if (enableVolcanicFurnace)
-			VolcanicFurnaceHandler.init();
-		if (enableUndertaker)
-			NetherWorldGen.initChestGenHook();
 	}
 
 	@EventHandler
@@ -122,6 +113,15 @@ public class GanysNether {
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
 		proxy.registerEntities();
+
+		if (enableMagmaticCentrifuge)
+			MagmaticCentrifugeRecipes.INSTANCE.init();
+		if (shouldGenerateCrops)
+			HoeList.init();
+		if (enableVolcanicFurnace)
+			VolcanicFurnaceHandler.init();
+		if (enableUndertaker)
+			NetherWorldGen.initChestGenHook();
 
 		ModIntegrator.init();
 	}

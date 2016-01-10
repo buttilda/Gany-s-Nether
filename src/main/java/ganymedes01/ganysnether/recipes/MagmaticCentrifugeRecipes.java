@@ -34,11 +34,8 @@ public class MagmaticCentrifugeRecipes extends RecipeRegistry<CentrifugeRecipe> 
 		XMLBuilder builder = new XMLBuilder("recipe");
 		builder.makeEntry("input1", recipe.getInput1().getObject());
 		builder.makeEntry("input2", recipe.getInput2().getObject());
-
 		builder.makeEntry("lavaAmount", recipe.getLavaAmount());
-
 		builder.makeEntries("output", recipe.getResult());
-
 		return builder.toNode();
 	}
 

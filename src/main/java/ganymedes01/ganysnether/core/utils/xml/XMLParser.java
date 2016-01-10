@@ -56,6 +56,8 @@ public class XMLParser {
 	public static ItemStack parseItemStackNode(XMLNode node) {
 		String[] data = node.value.split(" ");
 		Item item = (Item) Item.itemRegistry.getObject(data[0]);
+		if (item == null)
+			throw new IllegalArgumentException("Item not found: " + data[0]);
 		int size = Integer.parseInt(data[1]);
 		int meta = Integer.parseInt(data[2]);
 		ItemStack stack = new ItemStack(item, size, meta);
